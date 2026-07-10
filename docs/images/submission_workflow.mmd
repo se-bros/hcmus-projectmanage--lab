@@ -1,0 +1,40 @@
+sequenceDiagram
+    autonumber
+    actor SV as Sinh viên tốt nghiệp
+    participant Sys as Hệ thống Repository (DSpace)
+    participant SSO as Xác thực SSO (CAS/LDAP)
+    actor TT as Thủ thư / Cán bộ duyệt
+    participant DB as Cơ sở dữ liệu PostgreSQL
+    participant ES as Elasticsearch Engine
+
+    SV->>Sys: Truy cập & Yêu cầu đăng nhập
+    Sys->>SSO: Chuyển hướng xác thực SSO
+    SSO-->>SV: Hiển thị form đăng nhập trường
+    SV->>SSO: Nhập thông tin tài khoản trường
+    SSO-->>Sys: Xác thực thành công & Gửi User Token
+    Sys-->>SV: Hiển thị Dashboard nộp khóa luận
+    
+    SV->>Sys: Nhập Metadata (Dublin Core) & Tải lên tệp PDF
+    SV->>Sys: Ký xác nhận điều khoản đồng ý (Consent Form)
+    Sys->>DB: Lưu thông tin bản nháp (Draft) & Trạng thái Consent
+    Sys->>Sys: Lưu trữ tệp tin PDF an toàn (Object Storage)
+    Sys-->>SV: Xác nhận gửi bài thành công, chờ kiểm duyệt
+    
+    Sys->>TT: Gửi thông báo có khóa luận mới cần duyệt
+    TT->>Sys: Đăng nhập & Truy cập Dashboard kiểm duyệt
+    Sys-->>TT: Hiển thị danh sách bài nộp và thông tin chi tiết
+    
+    alt Metadata hợp lệ & Đạt chuẩn
+        TT->>Sys: Xác nhận phê duyệt & Phân mức truy cập (Public/Internal/Embargo)
+        Sys->>DB: Cập nhật trạng thái "Published" & Thiết lập quyền truy cập
+        Sys->>ES: Gửi dữ liệu lập chỉ mục toàn văn (Full-text Indexing)
+        ES-->>Sys: Xác nhận chỉ mục thành công
+        Sys->>Sys: Khởi tạo mã định danh bền vững (Handle ID)
+        Sys-->>SV: Gửi Email tự động thông báo xuất bản kèm Handle Link
+        Sys-->>TT: Hiển thị thông báo duyệt thành công
+    else Metadata lỗi / Sai sót tài liệu
+        TT->>Sys: Từ chối bài nộp & Nhập lý do trả về
+        Sys->>DB: Cập nhật trạng thái "Rejected"
+        Sys-->>SV: Gửi Email thông báo yêu cầu sửa đổi kèm lý do từ chối
+        Sys-->>TT: Hiển thị thông báo từ chối thành công
+    end

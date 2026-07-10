@@ -1,0 +1,25 @@
+graph TD
+    Root["Kho Lưu trữ Số Khóa luận (Mandatory)"] --> WP1["Nộp & Duyệt khóa luận (Mandatory, AND)"]
+    Root --> WP2["Lưu trữ chuẩn hóa (Mandatory, AND)"]
+    Root --> WP3["Phân quyền truy cập (Mandatory, Alternative)"]
+    Root --> WP4["Tìm kiếm toàn văn (Mandatory)"]
+    Root -.-> WP5["Tìm kiếm AI/RAG (Optional)"]
+    
+    WP1 --> WP1_1["Nộp bản mềm + metadata"]
+    WP1 --> WP1_2["Duyệt metadata trước xuất bản"]
+    
+    WP2 --> WP2_1["Metadata theo Dublin Core"]
+    WP2 --> WP2_2["Mã định danh bền vững Handle/DOI"]
+    
+    WP3 --> WP3_1["Công khai (Public)"]
+    WP3 --> WP3_2["Nội bộ mạng trường (Internal)"]
+    WP3 --> WP3_3["Cấm vận / Embargo"]
+    
+    WP4 --> WP4_1["Theo nội dung, tác giả, GVHD, năm, khoa"]
+    
+    WP5 -.-> WP5_1["Tìm kiếm theo ý nghĩa (Semantic)"]
+    WP5 -.-> WP5_2["Tóm tắt tự động"]
+    
+    style Root fill:#d4f1f9,stroke:#333,stroke-width:2px;
+    style WP3 fill:#f9d4f1,stroke:#333,stroke-width:2px;
+    style WP5 fill:#f9f1d4,stroke:#333,stroke-dasharray: 5 5;

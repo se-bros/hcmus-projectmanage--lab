@@ -1,0 +1,30 @@
+%%{init: { 'gantt': { 'leftPadding': 180 } } }%%
+gantt
+    title Kế hoạch triển khai Kho Lưu trữ Số (Phương án B)
+    dateFormat  X
+    axisFormat Tuần %O
+    
+    section WP1: Khảo sát & Khởi động
+    Khảo sát & chốt baseline :active, wp1_1, 0, 4
+    Ký duyệt quy trình consent :active, wp1_2, 0, 4
+    
+    section WP2: Hạ tầng & Nền tảng
+    Cài đặt repository : wp2_1, 4, 8
+    Cấu hình bảo mật & backup : wp2_2, 6, 8
+    
+    section WP3: Phát triển & Tùy biến
+    Tùy biến UI & Dublin Core : wp3_1, 4, 10
+    Luồng nộp-duyệt & SSO : wp3_2, 6, 12
+    Tích hợp Elasticsearch : wp3_3, 8, 12
+    
+    section WP4: Số hóa tài liệu
+    Số hóa thí điểm MVP : wp4_1, 4, 8
+    Số hóa các khoa còn lại : wp4_2, 8, 20
+    
+    section WP5: Kiểm thử & UAT
+    Kiểm thử & UAT thí điểm : wp5_1, 12, 16
+    
+    section WP6: Triển khai & Go-live
+    Đào tạo thủ thư & giáo vụ : wp6_1, 14, 16
+    Go-live MVP : milestone, mvp_go, 16, 16
+    Vận hành & hỗ trợ kỹ thuật : wp6_2, 16, 20
