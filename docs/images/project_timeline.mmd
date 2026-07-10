@@ -1,30 +1,31 @@
 %%{init: { 'gantt': { 'leftPadding': 180 } } }%%
 gantt
-    title Kế hoạch triển khai Kho Lưu trữ Số (Phương án B)
+    title Kế hoạch triển khai Hệ thống HCMUS-LDMS (Scan-to-EPUB)
     dateFormat  X
     axisFormat Tuần %O
     
-    section WP1: Khảo sát & Khởi động
-    Khảo sát & chốt baseline :active, wp1_1, 0, 4
-    Ký duyệt quy trình consent :active, wp1_2, 0, 4
+    section WP1: Khảo sát & Bản quyền
+    Khảo sát hiện trạng & baseline :active, wp1_1, 0, 4
+    Xây dựng quy chế số hóa & bản quyền :active, wp1_2, 1, 4
     
-    section WP2: Hạ tầng & Nền tảng
-    Cài đặt repository : wp2_1, 4, 8
-    Cấu hình bảo mật & backup : wp2_2, 6, 8
+    section WP2: Thiết lập Backend & DB
+    Cấu hình server, PostgreSQL, MinIO, Keycloak : wp2_1, 4, 8
+    Phát triển API Quản trị & RBAC : wp2_2, 6, 9
     
-    section WP3: Phát triển & Tùy biến
-    Tùy biến UI & Dublin Core : wp3_1, 4, 10
-    Luồng nộp-duyệt & SSO : wp3_2, 6, 12
-    Tích hợp Elasticsearch : wp3_3, 8, 12
+    section WP3: Phát triển UI & OCR
+    Xây dựng Web Reader (Epub.js) : wp3_1, 4, 10
+    Tích hợp OCR Tesseract & Editor : wp3_2, 6, 11
+    Tích hợp Elasticsearch & Search : wp3_3, 8, 12
     
     section WP4: Số hóa tài liệu
-    Số hóa thí điểm MVP : wp4_1, 4, 8
-    Số hóa các khoa còn lại : wp4_2, 8, 20
+    Scan & OCR thử nghiệm MVP : wp4_1, 4, 8
+    Số hóa giáo trình diện rộng : wp4_2, 8, 20
     
     section WP5: Kiểm thử & UAT
-    Kiểm thử & UAT thí điểm : wp5_1, 12, 16
+    Kiểm thử chức năng & UAT biên tập : wp5_1, 12, 16
     
     section WP6: Triển khai & Go-live
-    Đào tạo thủ thư & giáo vụ : wp6_1, 14, 16
+    Đào tạo thủ thư & biên tập viên : wp6_1, 14, 16
     Go-live MVP : milestone, mvp_go, 16, 16
-    Vận hành & hỗ trợ kỹ thuật : wp6_2, 16, 20
+    Hỗ trợ kỹ thuật & số hóa tiếp tục : wp6_2, 16, 20
+

@@ -1,6 +1,6 @@
 # PROJECT IDEA
 
-## Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS
 
 **Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
 
@@ -21,35 +21,38 @@ Phiên bản 1.0 • Tháng 7/2026 • One-pager trước khi đầu tư viết 
 
 ## Tên ý tưởng
 
-**Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS** (Digital Repository for Undergraduate Theses)
+**Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS** (HCMUS Library Document Management & Digitization System - HCMUS-LDMS)
 
 ## Nguồn gốc (Origin)
 
-Đề xuất phối hợp giữa **Thư viện** và **Phòng Công nghệ Thông tin** của HCMUS, xuất phát từ quan sát vận hành thực tế (không phải RFP từ bên ngoài, không phải yêu cầu của một khách hàng cụ thể).
+Đề xuất phối hợp giữa **Thư viện** và **Phòng Công nghệ Thông tin** của HCMUS nhằm hiện đại hóa hạ tầng tri thức số của trường, xuất phát từ quan sát vận hành và nhu cầu chuyển đổi số thực tế.
 
 ## Vấn đề/Cơ hội
 
-Kho khóa luận tốt nghiệp dạng bản cứng đang chiếm dụng không gian ngày càng lớn, có rủi ro xuống cấp không phục hồi được, và không thể truy cập từ xa. Đây vừa là vấn đề cấp bách về quản lý tài sản vật lý, vừa là cơ hội để biến một nguồn tri thức học thuật tĩnh thành tài nguyên số truy cập 24/7.
+Tài liệu giấy (giáo trình, sách tham khảo, tài liệu học thuật) tại thư viện đang bị xuống cấp, rách hỏng do tần suất sử dụng cao. Không gian lưu trữ vật lý ngày càng quá tải. Bản scan PDF hiện tại rất khó đọc trên các thiết bị di động do không có tính năng responsive (tự động co giãn theo màn hình). 
+
+Dự án mang lại cơ hội lớn để số hóa tài liệu giấy, sử dụng công nghệ OCR để trích xuất văn bản và tự động chuyển đổi sang định dạng **EPUB responsive**, giúp sinh viên dễ dàng đọc sách trên smartphone/tablet mọi lúc mọi nơi, đồng thời giải phóng không gian kho bãi vật lý và bảo tồn tài nguyên số vĩnh viễn.
 
 ## Đối tượng hưởng lợi dự kiến
 
-Thư viện (vận hành), sinh viên và giảng viên (tra cứu/tham khảo), Phòng Đào tạo/Sau Đại học (đối chiếu đề tài), Ban Giám hiệu (dữ liệu phục vụ kiểm định và định hướng chuyển đổi số). *(Phân loại chi tiết Sponsor/Client/Customer/User thuộc phạm vi Project Proposal.)*
+Độc giả (sinh viên, giảng viên) có thể tra cứu toàn văn và đọc sách số EPUB responsive từ xa; thủ thư và biên tập viên thư viện có bộ công cụ khép kín để quản lý và số hóa tài liệu; Phòng CNTT sở hữu nền tảng quản lý tài liệu số chuẩn hóa; Ban Giám hiệu đạt chỉ tiêu chuyển đổi số giáo dục.
 
 ## Giá trị cốt lõi (Core Value Proposition)
 
-Chuyển khối tri thức khóa luận đang "đóng băng" trong kho giấy thành tài nguyên số có thể tìm kiếm, truy cập và bảo quản dài hạn, mà không cần đến thư viện vật lý.
+Chuyển đổi tài liệu giấy tĩnh truyền thống thành sách điện tử EPUB responsive dễ tiếp cận, tích hợp quy trình số hóa khép kín (Scan -> OCR -> Biên tập -> Đóng gói EPUB) và cơ chế phân quyền bảo mật chặt chẽ.
 
 ## Giả định cần kiểm chứng (Assumptions to validate)
 
-- Quy chế lưu trữ hiện hành cho phép số hóa và (ở mức độ nào đó) giảm/di dời bản cứng sau số hóa.
-- Sinh viên (tác giả khóa luận) đồng ý cho công khai bản số hóa dưới hình thức nào đó (toàn văn, giới hạn nội bộ, hoặc embargo).
-- Nội lực Phòng CNTT có thể bố trí nhân sự triển khai mà không cần tuyển dụng/thuê ngoài toàn bộ.
-- Nhu cầu tra cứu từ xa của sinh viên/giảng viên đủ lớn để biện minh cho đầu tư (chưa có khảo sát định lượng).
+- Luật Sở hữu trí tuệ (Khoản 1 Điều 25) cho phép thư viện số hóa sách phục vụ học tập/nghiên cứu nội bộ không nhằm mục đích thương mại mà không phải xin phép/trả nhuận bút (cần kiểm chứng pháp lý).
+- Độ chính xác của công nghệ OCR tiếng Việt trên các tài liệu scan cũ đủ tốt để biên tập viên không tốn quá nhiều thời gian hiệu chỉnh lỗi chính tả.
+- Sinh viên có nhu cầu đọc sách điện tử định dạng EPUB responsive trên thiết bị di động đủ lớn để biện minh cho mức đầu tư của dự án.
+- Đội ngũ kỹ thuật Phòng CNTT có thể tự xây dựng và cấu hình tích hợp hệ thống (React, FastAPI, Tesseract, Pandoc) mà không cần thuê ngoài.
 
 ## Mức độ ưu tiên/khẩn cấp sơ bộ
 
-**Mức độ ưu tiên:** Cao. Dự án được xếp vào danh mục trọng điểm trong kế hoạch chuyển đổi số giai đoạn 2026-2030 của Trường Đại học Khoa học Tự nhiên, cần hoàn thành phiên bản MVP trước kỳ tốt nghiệp chính thức năm 2026 để áp dụng trực tiếp cho sinh viên khóa mới.
+**Mức độ ưu tiên:** Cao. Dự án nằm trong chương trình chuyển đổi số trọng điểm của HCMUS giai đoạn 2026-2030, cần triển khai phiên bản MVP trước năm học mới 2026 để cung cấp giáo trình số kịp thời cho sinh viên khóa mới.
 
 ## Bước tiếp theo đề xuất (Next Step)
 
-Tiến hành viết **Project Proposal** đầy đủ (xem `02-project-proposal.md`) — làm rõ Business Goals, phân loại Stakeholder chi tiết, và xác nhận đây là nhánh "cơ hội tự phát hiện, không có RFP chính thức" trước khi đầu tư vào Vision & Scope và Feasibility Study.
+Tiến hành viết **Project Proposal** đầy đủ (xem [02-project-proposal.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/02-project-proposal.md)) để làm rõ mục tiêu kinh doanh, phân tích tài chính đầu tư hạ tầng máy scan/OCR, và khảo sát ý kiến người dùng sơ bộ.
+

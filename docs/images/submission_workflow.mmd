@@ -1,40 +1,37 @@
 sequenceDiagram
     autonumber
-    actor SV as Sinh viên tốt nghiệp
-    participant Sys as Hệ thống Repository (DSpace)
-    participant SSO as Xác thực SSO (CAS/LDAP)
-    actor TT as Thủ thư / Cán bộ duyệt
-    participant DB as Cơ sở dữ liệu PostgreSQL
+    actor TT as Thủ thư / Biên tập viên
+    participant Sys as Hệ thống HCMUS-LDMS
+    participant OCR as Dịch vụ OCR (Tesseract)
+    participant MinIO as MinIO Storage
+    participant DB as CSDL PostgreSQL
     participant ES as Elasticsearch Engine
+    actor DG as Độc giả (SV, GV, Khách)
 
-    SV->>Sys: Truy cập & Yêu cầu đăng nhập
-    Sys->>SSO: Chuyển hướng xác thực SSO
-    SSO-->>SV: Hiển thị form đăng nhập trường
-    SV->>SSO: Nhập thông tin tài khoản trường
-    SSO-->>Sys: Xác thực thành công & Gửi User Token
-    Sys-->>SV: Hiển thị Dashboard nộp khóa luận
+    TT->>Sys: Đăng nhập & Tải tệp scan (PDF/Ảnh)
+    Sys->>MinIO: Lưu trữ tệp tin scan gốc
+    Sys->>OCR: Gửi tệp yêu cầu trích xuất văn bản
+    OCR-->>Sys: Trả về văn bản thô (OCR Text)
+    Sys-->>TT: Hiển thị giao diện biên tập và sửa lỗi chính tả
     
-    SV->>Sys: Nhập Metadata (Dublin Core) & Tải lên tệp PDF
-    SV->>Sys: Ký xác nhận điều khoản đồng ý (Consent Form)
-    Sys->>DB: Lưu thông tin bản nháp (Draft) & Trạng thái Consent
-    Sys->>Sys: Lưu trữ tệp tin PDF an toàn (Object Storage)
-    Sys-->>SV: Xác nhận gửi bài thành công, chờ kiểm duyệt
+    TT->>Sys: Nhập metadata, gắn Category/Tag & Lưu chỉnh sửa
+    TT->>Sys: Yêu cầu đóng gói & Xuất bản EPUB
+    Sys->>Sys: Chuyển đổi văn bản sang định dạng EPUB (Pandoc)
+    Sys->>MinIO: Lưu trữ file EPUB hoàn chỉnh
+    Sys->>DB: Lưu siêu dữ liệu (Metadata, Category, Tag, Quyền)
+    Sys->>ES: Lập chỉ mục toàn văn nội dung EPUB
+    Sys-->>TT: Thông báo xuất bản tài liệu thành công
     
-    Sys->>TT: Gửi thông báo có khóa luận mới cần duyệt
-    TT->>Sys: Đăng nhập & Truy cập Dashboard kiểm duyệt
-    Sys-->>TT: Hiển thị danh sách bài nộp và thông tin chi tiết
-    
-    alt Metadata hợp lệ & Đạt chuẩn
-        TT->>Sys: Xác nhận phê duyệt & Phân mức truy cập (Public/Internal/Embargo)
-        Sys->>DB: Cập nhật trạng thái "Published" & Thiết lập quyền truy cập
-        Sys->>ES: Gửi dữ liệu lập chỉ mục toàn văn (Full-text Indexing)
-        ES-->>Sys: Xác nhận chỉ mục thành công
-        Sys->>Sys: Khởi tạo mã định danh bền vững (Handle ID)
-        Sys-->>SV: Gửi Email tự động thông báo xuất bản kèm Handle Link
-        Sys-->>TT: Hiển thị thông báo duyệt thành công
-    else Metadata lỗi / Sai sót tài liệu
-        TT->>Sys: Từ chối bài nộp & Nhập lý do trả về
-        Sys->>DB: Cập nhật trạng thái "Rejected"
-        Sys-->>SV: Gửi Email thông báo yêu cầu sửa đổi kèm lý do từ chối
-        Sys-->>TT: Hiển thị thông báo từ chối thành công
+    DG->>Sys: Truy cập hệ thống & Đăng nhập SSO Keycloak
+    DG->>Sys: Nhập từ khóa tìm kiếm toàn văn
+    Sys->>ES: Truy vấn từ khóa trong chỉ mục
+    ES-->>Sys: Trả về danh sách kết quả phù hợp
+    Sys->>DB: Kiểm tra quyền truy cập của độc giả với tài liệu
+    alt Có quyền truy cập
+        Sys->>MinIO: Sinh Signed URL bảo mật (15 phút)
+        MinIO-->>Sys: Trả về Signed URL
+        Sys-->>DG: Hiển thị tài liệu trên trình đọc Web EPUB Reader
+    else Bị hạn chế quyền
+        Sys-->>DG: Hiển thị thông báo yêu cầu đăng nhập/nâng quyền
     end
+

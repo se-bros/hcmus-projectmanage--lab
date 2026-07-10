@@ -1,6 +1,6 @@
 # PROJECT VISION & SCOPE (WHAT)
 
-## Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS
 
 **Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
 
@@ -22,187 +22,160 @@ Phiên bản 1.0 • Tháng 7/2026
 
 | Thuật ngữ | Định nghĩa |
 | --- | --- |
-| **Repository** | Nền tảng lưu trữ và quản lý vòng đời số của khóa luận (nộp → duyệt → lưu trữ → tra cứu). |
-| **Metadata** | Dữ liệu mô tả khóa luận (tác giả, GVHD, năm, khoa, tóm tắt...), chuẩn hóa theo **Dublin Core**. |
-| **Handle/DOI nội bộ** | Mã định danh bền vững, không đổi theo thời gian, dùng để trích dẫn/tham chiếu ổn định đến một khóa luận. |
-| **Embargo** | Khoảng thời gian hạn chế công khai một tài liệu theo yêu cầu của tác giả, sau đó tự động chuyển sang mức truy cập đã định trước. |
-| **OCR (Optical Character Recognition)** | Công nghệ nhận dạng ký tự từ ảnh scan để chuyển thành văn bản có thể tìm kiếm được. |
-| **RAG (Retrieval-Augmented Generation)** | Kỹ thuật tìm kiếm ngữ nghĩa kết hợp mô hình sinh ngôn ngữ, dự kiến ở giai đoạn sau MVP. |
+| **HCMUS-LDMS** | Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (Library Document Management & Digitization System). |
+| **EPUB** | Định dạng sách điện tử mã nguồn mở (Electronic Publication), hỗ trợ hiển thị responsive và reflowable (tự co giãn dàn trang tương thích với mọi kích thước màn hình). |
+| **OCR (Optical Character Recognition)** | Công nghệ nhận dạng ký tự quang học từ ảnh quét để chuyển đổi thành văn bản kỹ thuật số có thể tìm kiếm và chỉnh sửa. |
+| **Signed URL** | Đường dẫn bảo mật có thời hạn, được sinh tự động bởi hệ thống để cho phép đọc tệp tin từ Object Storage (MinIO) mà không làm lộ URL gốc, ngăn chặn bot tải tệp hàng loạt. |
+| **RBAC (Role-Based Access Control)** | Cơ chế quản lý phân quyền truy cập hệ thống dựa trên vai trò của người dùng (Admin, Editor, Reader). |
+| **Dublin Core** | Chuẩn siêu dữ liệu (metadata) quốc tế gồm 15 trường cơ bản dùng để mô tả thông tin tài liệu học thuật. |
 
 ### Business Rules
 
 | Quy tắc nghiệp vụ (Rule) | Nguồn tham chiếu (Source) | Mức độ biến động |
 | --- | --- | --- |
-| Metadata khóa luận phải tuân theo chuẩn Dublin Core | Thông lệ nghiệp vụ thư viện số quốc tế | Thấp — chuẩn quốc tế ổn định |
-| Mỗi khóa luận có đúng 1 trong 3 mức truy cập: công khai / nội bộ mạng trường / hạn chế (embargo) | Quyết định số 142/QĐ-KHTN ngày 12/03/2024 của Hiệu trưởng HCMUS về Quy chế hoạt động Thư viện | Trung bình — có thể điều chỉnh theo chính sách xuất bản học thuật |
-| Khóa luận chỉ được công khai sau khi có xác nhận đồng ý (consent) của tác giả | Luật Sở hữu trí tuệ số 50/2005/QH11 và Luật sửa đổi, bổ sung một số điều của Luật Sở hữu trí tuệ số 07/2022/QH15 | **Cao — phụ thuộc vào quy định pháp luật về bản quyền** |
-| Thời hạn embargo tối đa là 36 tháng | Quy định quản lý sở hữu trí tuệ của ĐHQG-HCM ban hành kèm Quyết định số 82/QĐ-ĐHQG ngày 15/01/2023 | Trung bình |
-| Việc di dời, bảo quản hoặc tiêu hủy bản cứng sau khi số hóa phải tuân thủ quy trình lưu trữ | Quy chế Công tác văn thư, lưu trữ của Trường ĐHKHTN ban hành kèm Quyết định số 915/QĐ-KHTN ngày 15/10/2022 | Trung bình |
+| Siêu dữ liệu tài liệu phải tuân thủ chuẩn Dublin Core kết hợp danh mục và tag | Thông lệ nghiệp vụ thư viện số quốc tế và cấu trúc học liệu HCMUS | Thấp — chuẩn nghiệp vụ ổn định |
+| Việc số hóa sách không cần xin phép/trả nhuận bút chỉ áp dụng cho tài liệu phục vụ giảng dạy, học tập nội bộ không thương mại | Khoản 1 Điều 25 Luật Sở hữu trí tuệ Việt Nam hiện hành | Trung bình — phụ thuộc vào thay đổi pháp lý về SHTT |
+| Mỗi tài liệu được gán đúng 1 trong 3 mức truy cập: Công khai (Public), Nội bộ (Internal), hoặc Hạn chế (Restricted) | Quy chế hoạt động Thư viện HCMUS ban hành kèm Quyết định số 142/QĐ-KHTN | Trung bình |
+| Thời hạn hạn chế truy cập tối đa đối với các tài liệu đặc thù là 36 tháng | Quy chế quản lý sở hữu trí tuệ của ĐHQG-HCM | Thấp |
+| Quy trình hiệu chỉnh văn bản OCR bắt buộc phải được kiểm duyệt bởi thủ thư trước khi xuất bản thành EPUB | Quy trình quản lý chất lượng học liệu số của Thư viện trường | Thấp |
+
+---
 
 ## 2. Feature Model & MVP
 
-Vì tính năng **phân quyền truy cập** chứa quan hệ **Alternative** (chọn đúng 1 mức), nhóm tính năng dưới đây được trình bày dưới dạng **Feature Model** đầy đủ (And / Alternative / Or / Mandatory-Optional), không phải Feature Tree đơn giản.
+Nhóm tính năng của hệ thống được tổ chức dưới dạng **Feature Model** đầy đủ (And/Alternative/Or/Mandatory-Optional) để thể hiện các mối quan hệ ràng buộc:
 
-![Sơ đồ mô hình tính năng (Feature Model)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/feature_model.svg)
+![Sơ đồ mô hình tính năng (Feature Model)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/images/feature_model.svg)
 
+Mỗi feature quan trọng được thiết kế theo mẫu *User → Business goal → Metric → Action*:
 
-Mỗi feature quan trọng, viết theo mẫu *User → Business goal → Metric → Action*:
+- **User** Thủ thư / Biên tập viên → **Business goal** số hóa sách giấy rách nát thành EPUB nhanh chóng → **Metric** thời gian đóng gói 1 cuốn sách, tỷ lệ lỗi chính tả → **Action** Quy trình Scan-to-EPUB (OCR Tesseract tự động kết hợp màn hình biên tập sửa lỗi chính tả và đóng gói Pandoc).
+- **User** Độc giả (Sinh viên, Giảng viên) → **Business goal** đọc giáo trình thuận tiện trên di động từ xa → **Metric** số lượt đọc trên di động/tháng, thời gian tra cứu → **Action** Đọc sách qua trình Web EPUB Reader tích hợp (Epub.js) responsive và tìm kiếm toàn văn Elasticsearch.
+- **User** Quản trị viên (Admin) → **Business goal** kiểm soát truy cập và bảo vệ bản quyền sách → **Metric** 0 trường hợp rò rỉ sách bản quyền → **Action** Quản lý vai trò người dùng (RBAC), cấu hình 3 mức độ tiếp cận và sinh Signed URL bảo mật.
 
-- **User** Sinh viên/Giảng viên → **Business goal** cần tra cứu khóa luận từ xa → **Metric** lượt truy cập/tháng, thời gian tra cứu → **Action** Tìm kiếm toàn văn theo nội dung/tác giả/GVHD/năm/khoa.
-- **User** Cán bộ thư viện → **Business goal** kiểm soát chất lượng metadata và bản quyền trước khi xuất bản → **Metric** tỷ lệ khóa luận duyệt đúng hạn → **Action** Luồng duyệt metadata + phân quyền/embargo.
-- **User** Tác giả khóa luận (cựu sinh viên) → **Business goal** kiểm soát mức độ công khai công trình của mình → **Metric** tỷ lệ khóa luận có xác nhận consent hợp lệ → **Action** Cơ chế embargo/hạn chế truy cập theo yêu cầu tác giả.
+**MVP (Minimum Viable Product):** Quy trình nộp & OCR cơ bản + Biên tập sửa lỗi trực tuyến + Xuất bản EPUB + Quản lý Category & Tag + Phân quyền người dùng (RBAC) + Tìm kiếm toàn văn. Triển khai thí điểm số hóa 500 cuốn giáo trình Công nghệ thông tin. Các tính năng AI/RAG **không** thuộc phạm vi MVP.
 
-**MVP (Minimum Viable Product):** Nộp & Duyệt + Lưu trữ chuẩn hóa + Phân quyền 3 mức + Tìm kiếm toàn văn, triển khai thí điểm tại 1 khoa. Tìm kiếm ngữ nghĩa AI/RAG **không** thuộc MVP.
+---
 
 ## 3. Vision — Black-box Solution
 
 ### Bối cảnh/Tổng quan
 
-Hệ thống được mô tả như một "black-box" đối với người dùng: CÁI GÌ hệ thống làm cho họ, không mô tả CÁCH xây (xem `06-architecture.md` cho phần HOW).
+Hệ thống được mô tả như một "black-box" đối với độc giả và thủ thư: CÁI GÌ hệ thống thực hiện cho họ, không mô tả CÁCH xây dựng (xem chi tiết thiết kế hệ thống tại [06-architecture.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/06-architecture.md)).
 
-![Sơ đồ ngữ cảnh hệ thống (System Context Diagram)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/context_diagram.svg)
+#### Tầm nhìn cho các vai trò tương tác (User Role Vision)
+- **Tầm nhìn của Thủ thư (Librarian/Editor Vision):** Chuyển đổi từ người quản lý sách giấy vật lý thủ công thành nhà quản trị tài nguyên tri thức số. Hệ thống cung cấp một trợ lý số hóa khép kín: tự động OCR và biên dịch EPUB chỉ với vài thao tác kéo thả, giảm thiểu 85% sức lao động kiểm duyệt thủ công, giúp xuất bản sách số chất lượng cao dễ dàng.
+- **Tầm nhìn của Học sinh / Độc giả (Student/Reader Vision):** Mang toàn bộ thư viện học liệu thu nhỏ vào thiết bị di động cá nhân. Sinh viên không còn rào cản về khoảng cách địa lý, giờ mở cửa hay số lượng bản in giới hạn; họ có thể tra cứu toàn văn tức thì và đọc sách EPUB responsive tương tác cao (ghi chú, tô sáng, bookmark, tự động trích dẫn) phục vụ đắc lực cho tự học và nghiên cứu khoa học.
+
+![Sơ đồ ngữ cảnh hệ thống (System Context Diagram)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/images/context_diagram.svg)
 
 
 ### Current Situation (Trạng thái hiện tại)
 
 #### Quy trình Hiện trạng (As-is Workflow)
-Quy trình tiếp nhận, lưu trữ và khai thác khóa luận tốt nghiệp tại HCMUS hiện nay hoàn toàn thủ công và dựa trên bản giấy vật lý:
-- **Bước 1 (Hoàn thành & In ấn):** Sau khi bảo vệ thành công, sinh viên phải tự in khóa luận và đóng tập bìa cứng mạ vàng thành nhiều bản.
-- **Bước 2 (Nộp bài trực tiếp):** Sinh viên di chuyển từ các cơ sở (ví dụ: cơ sở Linh Trung ở Thủ Đức) đến Thư viện chính tại cơ sở Nguyễn Văn Cừ (Quận 5) để nộp trực tiếp bản cứng.
-- **Bước 3 (Kiểm kê & Nhập liệu thủ công):** Thủ thư tiếp nhận sách giấy, đối chiếu thông tin sinh viên tốt nghiệp thủ công bằng danh sách giấy từ Phòng Đào tạo. Sau đó, nhập các thông tin mô tả cơ bản của khóa luận vào sổ đăng ký cá biệt và phần mềm quản lý thư viện truyền thống cũ.
-- **Bước 4 (Phân loại & Xếp kho):** Thủ thư dán mã đăng ký cá biệt lên sách, phân phối và xếp cuốn khóa luận giấy lên kệ kho lưu trữ vật lý theo phân loại Khoa và Năm học.
-- **Bước 5 (Tra cứu & Yêu cầu mượn):** Độc giả (sinh viên khóa dưới, giảng viên) có nhu cầu tham khảo phải đến trực tiếp Thư viện Q5 trong giờ hành chính, tra cứu mã sách qua tủ thẻ mục lục giấy hoặc máy tính nội bộ của thư viện, rồi viết thông tin vào phiếu mượn giấy nộp cho thủ thư.
-- **Bước 6 (Tìm kiếm vật lý):** Thủ thư tiếp nhận phiếu mượn giấy, đi sâu vào các kệ kho lưu trữ tối để lục tìm cuốn khóa luận giấy duy nhất đó và bàn giao cho độc giả.
-- **Bước 7 (Khai thác tại chỗ):** Độc giả chỉ được phép đọc và chép tay hoặc tự gõ lại các thông tin nghiên cứu quan trọng (thuật toán, công thức) trực tiếp tại phòng đọc thư viện. Thư viện nghiêm cấm photocopy hoặc chụp hình để bảo vệ bản quyền tác giả.
-- **Bước 8 (Trả tài liệu):** Độc giả trả lại sách, thủ thư kiểm tra tình trạng vật lý (có rách hỏng, ẩm mốc, mất trang không) trước khi mang xếp lại vào kệ kho.
+Quy trình khai thác tài liệu giấy truyền thống tại thư viện HCMUS hiện nay hoàn toàn thủ công:
+
+- **Bước 1 (Tiếp nhận & Lưu kho vật lý):** Thư viện tiếp nhận sách giấy từ nhà in/nhà tài trợ, thực hiện kiểm đếm số lượng thủ công, dán nhãn gáy sách (mã xếp giá DDC/UDC) và dán nhãn mã vạch (barcode). Cán bộ thư viện ghi chép vào sổ đăng ký cá biệt, đóng dấu thư viện lên trang bản quyền và xếp sách lên các kệ gỗ/sắt vật lý theo phân loại ngành tại kho sách cơ sở Nguyễn Văn Cừ (Quận 5).
+- **Bước 2 (Hao mòn & Xuống cấp tự nhiên):** Do điều kiện khí hậu ẩm gió mùa tại TP.HCM và kho chứa không có hệ thống điều hòa chống ẩm chuyên dụng chạy 24/7, sách giấy chịu rủi ro ẩm mốc, mối mọt ăn mòn. Tần suất lật giở trang và mượn đọc liên tục của sinh viên qua nhiều năm khiến gáy sách bị bong tróc, trang sách bị rách nát, mờ chữ hoặc mất trang, gây hư hỏng nghiêm trọng tài liệu gốc.
+- **Bước 3 (Độc giả di chuyển địa lý):** Độc giả (sinh viên, giảng viên từ các cơ sở khác như Linh Trung - Thủ Đức) khi cần mượn đọc buộc phải sắp xếp thời gian trong giờ hành chính, bắt các chuyến xe buýt dài hơn 15km để di chuyển trực tiếp đến cơ sở Quận 5, gây tốn kém thời gian và chi phí đi lại.
+- **Bước 4 (Tra cứu thẻ mục lục & Điền phiếu mượn):** Độc giả đến phòng đọc, tự tra cứu mã sách trên cổng tra cứu OPAC cũ hoặc tìm kiếm trực tiếp trên tủ thẻ mục lục giấy. Độc giả điền tay đầy đủ thông tin sách (Tên sách, Tác giả, Mã đăng ký cá biệt) và thông tin cá nhân (MSSV, Họ tên) vào phiếu yêu cầu mượn bằng giấy rồi xếp hàng nộp cho thủ thư.
+- **Bước 5 (Thủ thư tìm kiếm sách thủ công):** Thủ thư tiếp nhận phiếu mượn giấy, đối chiếu thông tin thủ công trên sổ đăng ký để xác định sách còn trong kho hay đã được người khác mượn. Sau đó, thủ thư phải trực tiếp di chuyển vào kho sách bám bụi, tìm kiếm giữa hàng chục kệ hàng dựa trên mã phân loại để rút cuốn sách cứng vật lý ra.
+- **Bước 6 (Khai thác giới hạn & Chép tay thủ công):** Vì là giáo trình quý hiếm/độc bản, thư viện áp dụng quy chế nghiêm ngặt: chỉ cho phép đọc tại phòng đọc, nghiêm cấm mang về nhà và cấm photocopy để tránh hư hại gáy sách. Độc giả phải ngồi đọc tại chỗ và cắm cúi dùng bút ghi chép tay hoặc tự gõ lại từng dòng công thức, đoạn văn học thuật cần dùng vào laptop cá nhân.
+- **Bước 7 (Trả sách & Hậu kiểm tình trạng):** Khi đọc xong hoặc hết giờ hành chính, độc giả mang sách trả lại bàn thủ thư. Thủ thư thực hiện hậu kiểm lật giở từng trang để kiểm tra xem sách có bị rách, viết vẽ bậy hay xé trang hay không. Nếu sách nguyên vẹn, thủ thư ký xác nhận hoàn thành vào sổ mượn trả và di chuyển vào kho xếp sách lại lên kệ gỗ.
 
 #### Vấn đề của quy trình hiện tại (Core Pain Points)
-- **Hạn chế về mặt địa lý:** Độc giả buộc phải đến tận cơ sở Nguyễn Văn Cừ (Quận 5) để khai thác khóa luận. Sinh viên học tại Linh Trung (Thủ Đức) phải di chuyển hơn 15km rất tốn thời gian và công sức.
-- **Tìm kiếm thông tin kém hiệu quả:** Chỉ có thể tra cứu theo các thông tin cơ bản (Tên khóa luận, Tác giả, Năm), hoàn toàn không thể tìm kiếm toàn văn (full-text) bên trong nội dung hoặc phương pháp nghiên cứu.
-- **Hao mòn & Rủi ro hư hỏng tài liệu:** Do chỉ lưu trữ duy nhất một bản cứng vật lý, tần suất mượn đọc cao làm sách nhanh hư hỏng, rách nát. Môi trường kho lưu trữ không chuẩn dễ gây ẩm mốc, mối mọt làm mất mát nguồn tri thức quý giá.
-- **Quy trình nghiệp vụ quá tải:** Mỗi mùa tốt nghiệp, thủ thư phải đối chiếu danh sách và nhập liệu thủ công hàng ngàn bản ghi mô tả khóa luận, mất hàng trăm giờ làm việc hành chính và dễ xảy ra sai sót dữ liệu.
-- **Tắc nghẽn không gian kho bãi:** Số lượng khóa luận tăng tuyến tính mỗi năm gây áp lực nặng nề lên diện tích lưu kho vốn dĩ đã quá tải của thư viện.
-- **Rủi ro pháp lý về bản quyền:** Thư viện thiếu một quy trình và công cụ để thu thập cam kết bản quyền (Consent Form) từ sinh viên một cách hệ thống và pháp lý, dẫn đến rủi ro pháp lý khi xuất bản hoặc chia sẻ tài liệu số hóa cho cộng đồng.
+- **Hao mòn & Hư hỏng vật lý:** Nhiều giáo trình cũ độc bản bị rách nát, mất trang, không thể phục hồi được, gây thất thoát tri thức.
+- **Hạn chế địa lý & Thời gian:** Độc giả bắt buộc phải đến tận nơi để đọc sách, không hỗ trợ tra cứu học tập từ xa 24/7.
+- **Tìm kiếm hạn chế:** Không thể tìm kiếm toàn văn (full-text) bên trong sách, độc giả chỉ tìm kiếm được theo tên sách, tác giả hoặc năm xuất bản ghi trên thẻ mục lục.
+- **Trải nghiệm đọc số kém:** Việc quét sách sang PDF thông thường chỉ là ảnh chụp tĩnh, chữ hiển thị siêu nhỏ và không responsive trên thiết bị di động.
+- **Quá tải không gian lưu trữ:** Kho chứa sách của thư viện đang chật kín, tốn nhiều chi phí quản lý diện tích.
+- **Rủi ro pháp lý về bản quyền:** Thư viện thiếu một quy trình phân quyền truy cập và kiểm soát phân phối tài liệu số, dẫn đến rủi ro pháp lý khi tự ý chia sẻ tài liệu số hóa cho cộng đồng.
 
-- **Domain model hiện tại (đơn giản):** *Khóa luận (bản giấy)* — *Sổ mượn/trả* — *Thẻ mục lục* — *Kệ/kho theo khoa-năm*. Không có thực thể "metadata số" hay "quyền truy cập" tách biệt khỏi bản vật lý.
+---
 
 ### Future Situation (Trạng thái tương lai)
 
 #### Quy trình Tương lai (To-be Workflow)
-Hệ thống Repository số hóa sẽ tự động hóa toàn bộ vòng đời của khóa luận tốt nghiệp từ khâu nộp bài đến kiểm duyệt, lưu trữ và khai thác. Dưới đây là mô tả chi tiết cách người dùng tương tác với hệ thống:
+Hệ thống HCMUS-LDMS tự động hóa luồng số hóa khép kín và phân phối sách điện tử EPUB responsive với các tương tác chi tiết như sau:
 
-##### 1. Đối với Tác giả (Sinh viên tốt nghiệp) - Quy trình Nộp bài trực tuyến:
-- **Bước 1.1 (Đăng nhập hệ thống):** Sinh viên truy cập Cổng Repository số của HCMUS qua trình duyệt. Nhấp chọn "Đăng nhập", hệ thống sẽ chuyển hướng sang trang xác thực tập trung SSO của trường (CAS/LDAP). Sinh viên nhập tài khoản định danh trường (MSSV và mật khẩu) để hoàn tất đăng nhập.
-- **Bước 1.2 (Khởi tạo hồ sơ nộp):** Tại giao diện Dashboard cá nhân, sinh viên chọn chức năng "Nộp khóa luận mới" để mở form khai báo hồ sơ.
-- **Bước 1.3 (Nhập liệu Metadata chuẩn hóa):** Sinh viên nhập đầy đủ thông tin vào các trường metadata bắt buộc theo chuẩn Dublin Core:
-  - *Thông tin tác giả:* Tên sinh viên, MSSV, Khoa, Khóa học, Email cá nhân.
-  - *Thông tin khóa luận:* Tên đề tài (Tiếng Việt & Tiếng Anh), giảng viên hướng dẫn (chọn từ danh sách gợi ý hoặc nhập mới), hội đồng bảo vệ, điểm số.
-  - *Tóm tắt & Từ khóa:* Nhập bản tóm tắt đề tài (abstract) và các từ khóa liên quan (keywords) phục vụ lập chỉ mục tìm kiếm.
-- **Bước 1.4 (Tải lên file khóa luận):** Sinh viên tải lên file PDF khóa luận toàn văn. Hệ thống tự động kiểm tra định dạng tại chỗ (client-side validation): dung lượng file (tối đa 100MB), đuôi mở rộng bắt buộc là `.pdf`, và kiểm tra xem file có bị đặt mật khẩu khóa hay không.
-- **Bước 1.5 (Ký cam kết bản quyền & Chọn phân quyền):** Sinh viên đọc văn bản thỏa thuận quyền sở hữu trí tuệ (Digital Consent Form) hiển thị trên màn hình, sau đó:
-  - Tích chọn cam kết chịu trách nhiệm về tính trung thực và bản quyền của nội dung.
-  - Lựa chọn 1 trong 3 mức truy cập:
-    - *Public (Công khai):* Cho phép mọi người dùng Internet được truy cập và đọc toàn văn khóa luận.
-    - *Internal (Nội bộ):* Chỉ cho phép người dùng đăng nhập bằng tài khoản SSO trường HCMUS truy cập đọc toàn văn.
-    - *Embargo (Hạn chế có thời hạn):* Ẩn file toàn văn và chỉ hiển thị metadata trong thời hạn lựa chọn (12, 24 hoặc tối đa 36 tháng). Sau thời hạn này, hệ thống sẽ tự động chuyển sang mức truy cập đã cấu hình trước (Public hoặc Internal).
-  - Nhấp nút "Gửi phê duyệt". Hệ thống lưu trạng thái hồ sơ là "Chờ duyệt" và tự động gửi email xác nhận đã tiếp nhận thành công cho sinh viên.
-- **Bước 1.6 (Cập nhật sửa đổi):** Nếu bài nộp bị thủ thư từ chối, sinh viên nhận email tự động ghi rõ lý do. Sinh viên đăng nhập lại hệ thống, vào mục "Hồ sơ cần chỉnh sửa", thực hiện sửa metadata hoặc tải lại file PDF mới theo yêu cầu và gửi lại để duyệt.
+##### 1. Quy trình chi tiết của Thủ thư / Biên tập viên (Digitization & Publish Workflow)
+- **Bước 1 (Chụp quét tài liệu - Scan/Capture):** Thủ thư sử dụng máy quét chuyên dụng (quét phẳng hoặc máy quét chữ V chống tháo gáy sách cổ/hiếm) quét toàn bộ sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng, lọc vết lem mực).
+- **Bước 2 (Tải lên & Khởi tạo - Upload & Metadata Init):** Thủ thư đăng nhập hệ thống bằng tài khoản vai trò Editor/Librarian, truy cập Dashboard Số hóa, tải lên tệp PDF gốc và khai báo siêu dữ liệu chuẩn học thuật Dublin Core (Tên tài liệu, Tác giả, Nhà xuất bản, Năm phát hành).
+- **Bước 3 (Chạy OCR tự động - Auto OCR):** Hệ thống đưa tệp tin PDF vào hàng đợi xử lý bất đồng bộ, sử dụng công cụ OCR Tesseract nhận dạng ký tự tiếng Việt (`vie`) để trích xuất toàn bộ văn bản thô từ ảnh quét.
+- **Bước 4 (Hiệu chỉnh văn bản & Đóng cấu trúc - Online Text Editing):** Biên tập viên sử dụng giao diện Split-screen (chia đôi màn hình):
+  - *Bên trái:* Ảnh chụp PDF gốc của trang sách để đối chiếu trực quan.
+  - *Bên phải:* Trình soạn thảo WYSIWYG/Markdown chứa văn bản thô sau OCR. Biên tập viên soát lỗi chính tả (sửa các lỗi ký tự nhận dạng sai), cấu hình phân cấp tiêu đề (H1, H2, H3) và chèn lại các hình ảnh minh họa tương ứng từ tệp gốc.
+- **Bước 5 (Gắn phân loại & Phân quyền - Categorization & Access Control):** Biên tập viên chọn **Danh mục (Category)** theo sơ đồ hình cây môn học, gắn các nhãn **Thẻ (Tag)** liên quan, và thiết lập mức độ tiếp cận (Public, Internal, hoặc Restricted).
+- **Bước 6 (Đóng gói & Lưu trữ - Compile EPUB & Save):** Thủ thư bấm nút "Đóng gói & Xuất bản". Hệ thống gọi tự động Pandoc/Calibre CLI biên dịch văn bản đã hiệu chỉnh thành tệp **EPUB 3.0 responsive**. Tệp EPUB hoàn chỉnh và tệp PDF gốc được lưu trữ an toàn trong MinIO Object Storage, đồng thời toàn bộ nội dung chữ được gửi sang Elasticsearch lập chỉ mục.
 
-##### 2. Đối với Thủ thư (Cán bộ kiểm duyệt) - Quy trình Duyệt bài trực tuyến:
-- **Bước 2.1 (Tiếp nhận hồ sơ mới):** Khi sinh viên gửi bài nộp, yêu cầu duyệt sẽ được đẩy vào danh sách chờ (Approval Queue) trên dashboard quản trị của thủ thư theo thứ tự thời gian.
-- **Bước 2.2 (Xem chi tiết & Thẩm định):** Thủ thư chọn một hồ sơ chờ duyệt để thực hiện:
-  - *Thẩm định Metadata:* Hệ thống tự động đối chiếu thông tin sinh viên nhập với danh sách tốt nghiệp chính thức từ Phòng Đào tạo (cảnh báo đỏ nếu có sai lệch về MSSV, họ tên hoặc khoa).
-  - *Thẩm định File PDF:* Thủ thư xem trực tiếp file PDF qua trình xem PDF nội bộ của admin để kiểm tra định dạng, sự đầy đủ của các trang chính, hình vẽ, và chữ ký xác nhận của GVHD/Hội đồng bảo vệ trên trang bìa.
-- **Bước 2.3 (Thực hiện phê duyệt hoặc từ chối):**
-  - **Trường hợp Phê duyệt (Approve):** Thủ thư xác nhận thông tin đã chuẩn hóa, nhấp "Phê duyệt & Xuất bản". Hệ thống sẽ tự động gán mã định danh bền vững Handle ID, lưu tệp PDF vào Object Storage, và lập chỉ mục toàn văn (Full-text Indexing) trên Elasticsearch. Một email thông báo tự động chứa Handle Link trích dẫn sẽ được gửi đến sinh viên.
-  - **Trường hợp Từ chối (Reject):** Thủ thư chọn lý do từ chối từ danh mục mẫu (ví dụ: "File PDF thiếu trang bìa có chữ ký", "Metadata sai thông tin GVHD") hoặc tự nhập nội dung lý do chi tiết, rồi nhấp "Từ chối". Hệ thống chuyển trạng thái hồ sơ về "Cần chỉnh sửa" và gửi email phản hồi kèm lý do cho sinh viên.
-
-##### 3. Đối với Độc giả (Sinh viên tra cứu, Giảng viên, Khách vãng lai) - Quy trình Tra cứu & Đọc tài liệu:
-- **Bước 3.1 (Truy cập & Tìm kiếm):** Độc giả truy cập trang chủ Cổng Repository số của HCMUS (không bắt buộc đăng nhập để xem thông tin công khai):
-  - *Tìm kiếm đơn giản:* Nhập từ khóa tự do vào thanh công cụ tìm kiếm toàn văn.
-  - *Tìm kiếm nâng cao:* Kết hợp các bộ lọc thông minh ở thanh bên (lọc theo Khoa, Năm tốt nghiệp, Giảng viên hướng dẫn, v.v.).
-- **Bước 3.2 (Xem Metadata):** Hệ thống trả về danh sách kết quả phù hợp nhất. Độc giả nhấp chọn tài liệu quan tâm để xem trang chi tiết chứa toàn bộ Metadata chuẩn Dublin Core và bản tóm tắt (abstract).
-- **Bước 3.3 (Đọc toàn văn theo phân quyền):** Khi độc giả nhấp nút "Đọc toàn văn", hệ thống tự động kiểm tra mức độ phân quyền của tài liệu:
-  - *Tài liệu Public:* Mở trình xem PDF trực tuyến trên giao diện web để đọc ngay lập tức.
-  - *Tài liệu Internal:* Hiển thị hộp thoại yêu cầu đăng nhập. Độc giả phải đăng nhập tài khoản SSO trường để xem nội dung.
-  - *Tài liệu Embargo:* Ẩn file toàn văn, hiển thị biểu tượng ổ khóa kèm ghi chú thời gian hết hạn embargo (ví dụ: "Bị hạn chế đến 12/08/2027"). Đối với độc giả trong trường cần truy cập sớm phục vụ nghiên cứu, hệ thống cung cấp nút "Gửi yêu cầu xin phép tác giả" để nhập lý do mượn; hệ thống sẽ chuyển tiếp yêu cầu đến email tác giả để tác giả phê duyệt cấp quyền đọc thủ công.
-- **Bước 3.4 (Đọc trực tuyến bảo mật):** Đối với các tài liệu được quyền xem, trình xem PDF Viewer bảo mật của hệ thống hoạt động như sau:
-  - Sinh đường dẫn Signed URL bảo mật tạm thời có hiệu lực tối đa 15 phút. Nếu độc giả vẫn tiếp tục đọc, hệ thống tự động làm mới liên kết ở chế độ nền mà không làm gián đoạn việc đọc, ngăn chặn việc sao chép link hoặc chia sẻ link ra ngoài.
-  - Vô hiệu hóa chuột phải (ngăn chặn sao chép văn bản), ẩn phím tắt in ấn mặc định của trình duyệt và ẩn nút download tệp trực tiếp đối với các tài liệu nội bộ/embargo để phòng chống cào quét dữ liệu (data scraping).
-- **Bước 3.5 (Trích dẫn tài liệu):** Tại trang chi tiết khóa luận, độc giả nhấp chọn chức năng "Trích dẫn". Hệ thống hiển thị các định dạng trích dẫn học thuật chuẩn hóa (APA, IEEE, Harvard...) chứa đầy đủ thông tin tác giả, năm, tên đề tài và đính kèm liên kết Handle Link bền vững để độc giả dễ dàng sao chép phục vụ nghiên cứu khoa học.
+##### 2. Quy trình chi tiết của Học sinh / Độc giả (Search & Responsive Reading Workflow)
+- **Bước 1 (Đăng nhập & Xác thực - Access & Login):** Sinh viên truy cập Web Portal bằng máy tính hoặc thiết bị di động, đăng nhập thông qua cổng định danh Keycloak SSO của trường bằng tài khoản sinh viên.
+- **Bước 2 (Tìm kiếm & Bộ lọc - Search & Filter):**
+  - *Tìm kiếm toàn văn (Elasticsearch):* Sinh viên nhập từ khóa để tìm kiếm sâu trong nội dung sách EPUB (tìm kiếm từ khóa, định lý, công thức) chứ không chỉ giới hạn ở tiêu đề hay tên tác giả. Kết quả phản hồi tức thì dưới 3 giây.
+  - *Lọc thông minh:* Sử dụng bộ lọc danh mục ngành học (Category) và thẻ từ khóa (Tag) để thu hẹp danh sách kết quả.
+- **Bước 3 (Sinh URL bảo mật - Secure File Load):** Khi sinh viên nhấn đọc sách, hệ thống đối chiếu phân quyền RBAC. Nếu được phép đọc, hệ thống sinh ra một **Signed URL** kết nối với MinIO có thời hạn hiệu lực 15 phút để tải tệp sách lên Web Reader.
+- **Bước 4 (Đọc trực tuyến responsive - Web EPUB Reader):** Trình xem Epub.js hiển thị sách responsive thích ứng hoàn hảo mọi màn hình (mobile, tablet, PC) với các chức năng tương tác:
+  - *Tùy chỉnh giao diện:* Tăng/giảm cỡ chữ, thay đổi font chữ, chọn chế độ nền đọc sách (Sáng, Vàng bảo vệ mắt, Tối - Dark mode).
+  - *Xem mục lục:* Di chuyển nhanh giữa các chương mục của sách thông qua cây thư mục nội dung.
+  - *Đánh dấu trang (Bookmark):* Tự động lưu lại vị trí trang sách đang đọc dở để tiếp tục đọc trong các phiên sau.
+  - *Ghi chú & Tô sáng (Highlight & Note):* Sinh viên có thể bôi đen đoạn văn để tô màu highlight hoặc viết ghi chú trực tuyến, lưu trữ vào tài khoản cá nhân.
+- **Bước 5 (Trích dẫn tự động - Auto Citation):** Sinh viên bấm nút "Trích dẫn" để hệ thống tự động xuất ra mẫu trích dẫn học thuật chuẩn APA/IEEE kèm link định danh sách phục vụ viết tiểu luận/nghiên cứu.
 
 
 #### Sơ đồ Quy trình Hiện trạng (As-is) và Tương lai (To-be)
-Quy trình chuyển đổi từ thủ công sang số hóa được trực quan hóa chi tiết trong sơ đồ dưới đây:
+Sự chuyển đổi quy trình được trực quan hóa chi tiết trong sơ đồ dưới đây:
 
-![Sơ đồ Quy trình Hiện trạng vs Tương lai](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/as_is_to_be_workflow.svg)
+![Sơ đồ Quy trình Hiện trạng vs Tương lai](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/images/as_is_to_be_workflow.svg)
 
 #### Bảng Đối chiếu Vấn đề và Giải pháp Tính năng
-Dưới đây là bảng ánh xạ cách các tính năng của hệ thống số hóa giải quyết triệt để từng vấn đề của quy trình thủ công hiện tại:
 
 | Vấn đề Hiện tại (Pain Point) | Giải pháp Số hóa (To-be Solution) | Tính năng Hệ thống (System Feature) | Giá trị mang lại (Value Delivered) |
 | :--- | :--- | :--- | :--- |
-| **Hạn chế địa lý:** Phải đến tận thư viện Q5 để đọc bản cứng. | Cho phép truy cập từ xa mọi lúc mọi nơi thông qua mạng Internet. | • Cổng thông tin Web Responsive<br>• Tích hợp xác thực Single Sign-On (SSO) | Độc giả (đặc biệt ở Linh Trung) tra cứu tài liệu từ xa 24/7 không cần di chuyển vật lý. |
-| **Tìm kiếm hạn chế:** Chỉ tra được theo tên đề tài, tác giả trên thẻ mục lục. | Hỗ trợ tìm kiếm từ khóa trong toàn bộ nội dung khóa luận. | • Tìm kiếm toàn văn (Full-text Search) bằng Elasticsearch<br>• Bộ lọc thông minh theo Khoa, Năm, GVHD | Tiết kiệm 95% thời gian tra cứu, tìm đúng nội dung chuyên môn sâu và đối chiếu đề tài trùng lặp. |
-| **Hao mòn tài liệu:** Bản cứng duy nhất dễ rách hỏng, ẩm mốc. | Chuyển đổi thành bản số lưu trữ dự phòng đám mây/máy chủ. | • Lưu trữ số hóa (Object Storage)<br>• Quy trình sao lưu tự động (Backup & Disaster Recovery) | Bảo tồn nguyên vẹn tri thức học thuật vĩnh viễn, loại bỏ hao mòn vật lý. |
-| **Rủi ro pháp lý bản quyền:** Không có sự đồng ý chính thức từ tác giả để chia sẻ. | Thu thập cam kết bản quyền của tác giả bằng quy trình số hóa bắt buộc. | • Quản lý cam kết bản quyền (Digital Consent Form)<br>• Phân quyền 3 mức (Public, Internal, Embargo) | Đảm bảo tính hợp pháp tối đa cho nhà trường khi chia sẻ dữ liệu số, bảo vệ quyền lợi sinh viên. |
-| **Quá tải không gian kho:** Kệ sách vật lý chật kín, tốn chi phí quản lý diện tích. | Thay thế lưu trữ giấy bằng lưu trữ số dung lượng lớn, giải phóng kho bãi. | • Cloud/Server Storage dung lượng lớn<br>• Quản lý lưu trữ tệp số tập trung | Giải phóng hàng trăm mét vuông không gian thư viện làm khu tự học, giảm chi phí vận hành kho bãi. |
-| **Quy trình thủ công quá tải:** Thủ thư mất thời gian đối chiếu danh sách và nhập liệu giấy. | Tự động hóa quy trình nộp bài, tự động gán mã và định danh. | • Luồng duyệt tự động (Review Workflow Dashboard)<br>• Tự động gán mã định danh bền vững Handle ID | Rút ngắn thời gian xử lý hồ sơ tốt nghiệp của thủ thư từ vài tuần xuống còn vài phút mỗi bài nộp. |
-| **Rò rỉ & Tải tài liệu lậu:** Rủi ro độc giả tải hàng loạt PDF về phát tán trái phép. | Kiểm soát chặt chẽ việc tải tệp và đọc trực tuyến an toàn. | • Signed URL bảo mật (hạn dùng 15 phút)<br>• PDF Viewer bảo mật (chặn chuột phải, download trực tiếp) | Ngăn chặn các công cụ cào dữ liệu (bot/crawlers) tải hàng loạt tài liệu, bảo vệ tài sản trí tuệ. |
+| **Sách giấy hao mòn:** Giáo trình độc bản bị rách nát, mục ẩm theo thời gian. | Số hóa tài liệu gốc và bảo tồn vĩnh viễn dưới dạng tệp tin kỹ thuật số. | • Scan & Upload tệp PDF/Ảnh<br>• Lưu trữ đám mây MinIO | Triệt tiêu hoàn toàn sự hao mòn vật lý, bảo tồn nguyên vẹn tri thức học thuật lâu dài. |
+| **PDF khó đọc trên di động:** Bản quét PDF chữ siêu nhỏ, không tự co giãn dòng. | Chuyển đổi văn bản sang định dạng responsive thích ứng màn hình di động. | • Dịch vụ OCR Tesseract tiếng Việt<br>• Module đóng gói EPUB bằng Pandoc | Độc giả đọc sách trên điện thoại/tablet mượt mà không cần phóng to hay kéo ngang màn hình. |
+| **Hạn chế địa lý:** Phải đến tận thư viện Q5 để tra cứu và mượn giáo trình giấy. | Cho phép tra cứu và tiếp cận tài liệu trực tuyến mọi lúc mọi nơi. | • Cổng thông tin Web Portal responsive<br>• Xác thực Keycloak SSO trường | Độc giả dễ dàng tự học, tra cứu giáo trình từ xa 24/7 không giới hạn vị trí địa lý. |
+| **Tìm kiếm hạn chế:** Chỉ tra được theo tên sách, tác giả trên thẻ mục lục. | Hỗ trợ tìm kiếm từ khóa bên trong nội dung sách. | • Tìm kiếm toàn văn bằng Elasticsearch<br>• Lọc tài liệu theo Category & Tag | Tiết kiệm 95% thời gian tra cứu, tìm kiếm sâu đến từng chương, đoạn văn nghiên cứu. |
+| **Rủi ro vi phạm bản quyền:** Chia sẻ sách số dễ bị sao chép lậu và phát tán trái phép. | Thiết lập phân quyền truy cập và kiểm soát luồng đọc tệp tin nghiêm ngặt. | • Phân quyền vai trò RBAC<br>• Signed URL bảo mật (15 phút)<br>• Web EPUB Reader bảo mật | Ngăn chặn bot cào quét tải sách hàng loạt, bảo vệ sở hữu trí tuệ theo quy định pháp lý. |
+| **Quá tải không gian kho:** Kệ sách vật lý chật kín, tốn diện tích quản lý. | Thay thế lưu trữ sách giấy bằng máy chủ số hóa dung lượng lớn. | • Máy chủ lưu trữ on-premise của trường | Thu hồi không gian phòng đọc thư viện Quận 5 làm khu vực tự học hiện đại cho sinh viên. |
 
-- **Domain model tương lai:** *Thesis (khóa luận số)* — *Metadata (Dublin Core)* — *Author/Consent* — *Access Level (Public/Internal/Embargo)* — *Identifier (Handle/DOI nội bộ)* — *Search Index*.
-- **Thành phần/tính năng SẼ phát triển:** nộp & duyệt trực tuyến, lưu trữ chuẩn hóa, phân quyền 3 mức, tìm kiếm toàn văn (MVP); tìm kiếm ngữ nghĩa AI/RAG (sau MVP, khi ngân sách/nhu cầu được xác nhận).
-- **Thành phần/tính năng SẼ loại trừ (out of scope):** công cụ kiểm tra đạo văn chuyên dụng (Turnitin/DoIT); số hóa các loại tài liệu khác ngoài khóa luận tốt nghiệp (giáo trình, luận văn cao học); việc tiêu hủy bản cứng.
-- **Giả định:** quy chế lưu trữ cho phép công bố bản số song song với việc giữ/di dời bản cứng theo lộ trình riêng; tác giả có thể được liên hệ lại để xin consent hồi tố cho khóa luận cũ.
-- **Rủi ro:** một số khóa luận cũ không thể liên hệ lại tác giả để xin consent → cần quy tắc mặc định (vd: mặc định giới hạn nội bộ nếu chưa có consent) — xem thêm `04-feasibility-study.md`.
-- **Kết luận:** chuyển đổi từ mô hình "tài sản vật lý tĩnh, truy cập tại chỗ" sang "tài nguyên số có cấu trúc, truy cập theo phân quyền" là thay đổi cốt lõi mà dự án mang lại.
-
+---
 
 ## 4. Project Scope Statement
 
-**Mô tả phạm vi sản phẩm:** một nền tảng repository số cho khóa luận tốt nghiệp đại học của HCMUS, bao gồm nộp, duyệt, lưu trữ metadata chuẩn hóa, phân quyền truy cập, và tìm kiếm toàn văn.
+**Mô tả phạm vi sản phẩm:** Ứng dụng web HCMUS-LDMS quản lý và số hóa tài liệu thư viện, bao gồm luồng scan-to-EPUB (OCR, sửa lỗi, convert), phân loại tài liệu theo Category/Tag, quản trị phân quyền vai trò (RBAC), tìm kiếm toàn văn Elasticsearch và trình đọc Web EPUB Reader bảo mật.
 
-**Deliverables:**
-- Nền tảng repository vận hành (dựa trên nền tảng mã nguồn mở tùy biến).
-- Kho khóa luận đã số hóa (thí điểm 1 khoa ở MVP, mở rộng toàn trường ở pha sau).
-- Tài liệu hướng dẫn sử dụng/quản trị cho cán bộ thư viện.
-- Quy trình nộp khóa luận trực tuyến tích hợp vào quy chế tốt nghiệp.
+**Deliverables (Các kết quả bàn giao):**
+- Mã nguồn ứng dụng web HCMUS-LDMS (gồm mã nguồn Frontend React và Backend FastAPI).
+- Kho giáo trình số hóa đợt đầu (~500 cuốn EPUB khoa CNTT).
+- Tài liệu thiết kế hệ thống, cơ sở dữ liệu và API.
+- Tài liệu hướng dẫn sử dụng cho thủ thư/biên tập viên và độc giả.
+- 02 máy quét sách chuyên dụng được lắp đặt tại thư viện trường.
 
-**Project Exclusions:**
-- Công cụ chống đạo văn chuyên dụng (Turnitin/DoIT) — hạng mục tích hợp riêng, license riêng.
-- Số hóa giáo trình, luận văn cao học hoặc tài liệu khác ngoài khóa luận đại học.
-- Quyết định/thực hiện tiêu hủy bản cứng — thuộc thẩm quyền quy chế lưu trữ, không phải phạm vi dự án CNTT.
-- Tìm kiếm ngữ nghĩa AI/RAG trong phạm vi MVP (đưa vào giai đoạn sau).
+**Project Exclusions (Phạm vi loại trừ):**
+- Bản quyền phần mềm chống đạo văn chuyên dụng (như Turnitin).
+- Số hóa các tài liệu lưu trữ hành chính và hồ sơ nhân sự của trường.
+- Quy trình di dời hoặc thanh lý sách giấy vật lý.
+- Tính năng tìm kiếm AI/RAG thông minh (đưa vào Giai đoạn 3).
 
-**Constraints:**
-- Nội lực triển khai chủ yếu dựa vào đội CNTT hiện có của trường (chưa xác nhận năng lực/thời gian rảnh thực tế).
-- Ngân sách số hóa tỷ lệ thuận với khối lượng tài liệu — số hóa toàn trường ngay từ đầu kéo dài thời gian và chi phí đáng kể (xem `04-feasibility-study.md`).
-- Ràng buộc pháp lý về bản quyền/consent của sinh viên phải được giải quyết trước khi số hóa hàng loạt.
+**Constraints (Các ràng buộc):**
+- Tiến độ số hóa phụ thuộc vào tốc độ scan sách vật lý và hiệu suất sửa lỗi chính tả OCR của thủ thư.
+- Tài nguyên máy chủ và băng thông mạng nội bộ của trường giới hạn dung lượng tải tệp đồng thời.
+- Ràng buộc pháp lý về bản quyền: Chỉ được số hóa và chia sẻ nội bộ các tài liệu học tập của HCMUS tự soạn thảo.
 
-**Yêu cầu phi chức năng & Chỉ số chất lượng (Non-Functional Requirements):**
-- **Hiệu năng (Performance):** Thời gian phản hồi cho truy vấn tìm kiếm toàn văn dưới 3 giây đối với 95% số truy vấn, dưới 5 giây đối với 99% số truy vấn dưới tải trọng 500 người dùng đồng thời.
-- **Độ tin cậy (Reliability):** Uptime SLA đạt tối thiểu 99.5% hàng năm (trừ thời gian bảo trì hệ thống định kỳ được thông báo trước). Chỉ số điểm phục hồi mục tiêu RPO < 24 giờ và thời gian phục hồi hệ thống RTO < 4 giờ.
-- **Bảo mật & Quyền riêng tư (Security & Privacy):** 
-  - Toàn bộ dữ liệu truyền tải bắt buộc sử dụng giao thức mã hóa HTTPS (TLS 1.3).
-  - Tuân thủ Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân (ẩn các thông tin cá nhân nhạy cảm như số điện thoại, email cá nhân, địa chỉ nhà của sinh viên trên bản hiển thị công khai).
-  - Áp dụng cơ chế Signed URL có thời hạn tối đa 15 phút để ngăn chặn việc tải tệp hàng loạt bất hợp pháp (scraping/crawling).
-- **Chất lượng số hóa (OCR Quality):** Tỷ lệ nhận dạng ký tự tiếng Việt chính xác (Character Accuracy Rate - CAR) đạt tối thiểu 90% đối với tài liệu scan sạch (từ năm 2015 trở đi) và tối thiểu 75% đối với tài liệu scan cũ, mờ.
+**Yêu cầu phi chức năng (Non-Functional Requirements):**
+- **Hiệu năng:** Thời gian phản hồi truy vấn tìm kiếm toàn văn dưới 3 giây đối với 95% số lượt tìm kiếm.
+- **Độ tin cậy:** Hệ thống hoạt động ổn định với Uptime SLA ≥ 99.5%, chỉ số RPO < 24 giờ và RTO < 4 giờ.
+- **Bảo mật:** Toàn bộ kết nối sử dụng HTTPS (TLS 1.3). Signed URL truy cập tệp tin EPUB hết hạn sau tối đa 15 phút.
+- **Chất lượng OCR:** Tỷ lệ nhận dạng ký tự tiếng Việt chính xác (CAR) đạt tối thiểu 85% đối với các bản scan in chuẩn.
 
-**Acceptance Criteria:**
-- MVP vận hành ổn định với ít nhất 1 khoa thí điểm, đo được lượt truy cập thực tế.
-- Cán bộ thư viện có thể duyệt và xuất bản khóa luận qua quy trình trực tuyến mà không cần thao tác thủ công song song.
-- Người dùng tìm kiếm được khóa luận theo nội dung, tác giả, GVHD, năm, khoa với tỷ lệ khớp chính xác (Precision) đạt tối thiểu 90% và tỷ lệ bao phủ (Recall) đạt tối thiểu 85% dựa trên tập dữ liệu thử nghiệm.
-
-**Assumptions:**
-- Quy chế lưu trữ và bản quyền sẽ được làm rõ trong giai đoạn khảo sát trước khi số hóa quy mô lớn.
-- Nền tảng mã nguồn mở (DSpace/Invenio) đáp ứng được yêu cầu nghiệp vụ mà không cần phát triển từ đầu.
+---
 
 ## 5. Mockup, Prototype & PoC
 
-**Thiết kế Prototype (luồng UI/UX cần trực quan hóa trước khi code):**
-- Luồng **nộp — duyệt — xuất bản**: đây là luồng rủi ro cao nhất vì liên quan trực tiếp đến quyết định phân quyền/embargo của tác giả; cần mockup và cho cán bộ thư viện + một nhóm sinh viên thao tác thử trước khi lập trình chính thức.
-- Luồng **tìm kiếm & lọc kết quả** (theo nội dung/tác giả/GVHD/năm/khoa): cần mockup để xác nhận bộ lọc đáp ứng đúng thói quen tra cứu của người dùng.
+**Mockup & UI Prototype:**
+- **Màn hình Biên tập lỗi OCR:** Giao diện chia đôi màn hình (Split-screen) hiển thị ảnh scan gốc ở bên trái và trình soạn thảo văn bản thô OCR ở bên phải giúp biên tập viên dễ dàng so sánh sửa lỗi chính tả.
+- **Trình đọc Web EPUB Reader:** Mockup giao diện đọc sách responsive trên thiết bị di động, tích hợp bộ công cụ thay đổi font chữ, tăng giảm cỡ chữ, chuyển chế độ nền tối (Dark mode) bảo vệ mắt và nút Bookmark.
 
-**Mục tiêu PoC (giới hạn công nghệ cần thử nghiệm trước khi cam kết kiến trúc):**
-- **OCR tiếng Việt:** thử nghiệm trên một mẫu tài liệu scan thực tế (chất lượng không đồng đều) để đo độ chính xác nhận dạng trước khi cam kết quy trình số hóa hàng loạt ~10.000+ cuốn.
-- **Tìm kiếm ngữ nghĩa AI/RAG (nếu triển khai ở pha sau):** thử nghiệm mô hình embedding hỗ trợ tiếng Việt trên một tập nhỏ khóa luận để xác nhận chất lượng truy vấn ngữ nghĩa trước khi đầu tư hạ tầng vector đầy đủ.
+**Mục tiêu PoC (Proof of Concept):**
+- **OCR Tesseract tiếng Việt:** Chạy thử nghiệm nhận dạng văn bản tiếng Việt trên 50 trang mẫu có chất lượng in khác nhau để đánh giá độ chính xác và cấu hình bộ tiền xử lý ảnh (bình chỉnh trang, tăng tương phản).
+- **Pandoc / Calibre Conversion:** Thử nghiệm công cụ chuyển đổi tài liệu Markdown/HTML chứa hình ảnh và bảng biểu sang tệp EPUB để kiểm tra khả năng hiển thị định dạng chuẩn của file EPUB trên các thiết bị di động khác nhau.

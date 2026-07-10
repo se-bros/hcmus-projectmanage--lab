@@ -1,6 +1,6 @@
 # PROJECT CHARTER (WHO)
 
-## Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS
 
 **Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
 
@@ -13,28 +13,32 @@ Phiên bản 1.0 • Tháng 7/2026
 * [3. Cơ sở Vật chất & Nguồn lực](#3-cơ-sở-vật-chất--nguồn-lực)
 * [4. Ma trận Trách nhiệm (RACI)](#4-ma-trận-trách-nhiệm-raci)
 * [5. Lộ trình (Roadmap)](#5-lộ-trình-roadmap)
+* [6. Tiêu chí Thành công & KPI](#6-tiêu-chí-thành-công--kpi)
+* [7. Phương pháp luận & Quy tắc Làm việc](#7-phương-pháp-luận--quy-tắc-làm-việc)
+* [8. Chữ ký (Signatures)](#8-chữ-ký-signatures)
 
 ---
 
 ## 1. Tổng quan & Phạm vi
 
-**Bối cảnh:** HCMUS hiện lưu trữ khóa luận tốt nghiệp dưới dạng bản cứng, gây quá tải không gian, rủi ro xuống cấp tài liệu, và phụ thuộc hoàn toàn vào thao tác thủ công. Dự án xây dựng một nền tảng kho lưu trữ số tập trung để số hóa, lưu trữ, phân quyền và quản lý khóa luận, kèm năng lực tìm kiếm toàn văn (chi tiết đầy đủ về vấn đề và giải pháp tại `02-project-proposal.md` và `03-vision-and-scope.md`).
+**Bối cảnh:** Thư viện HCMUS hiện lưu trữ lượng lớn giáo trình và tài liệu tham khảo dưới dạng sách giấy. Việc này gây ra tình trạng quá tải kho lưu trữ vật lý, rủi ro rách hỏng tài liệu do tần suất mượn đọc cao, và độc giả từ xa không thể tiếp cận. Đồng thời, các tài liệu PDF scan hiện tại chỉ là ảnh chụp tĩnh, cực kỳ khó đọc trên điện thoại di động do không responsive. Dự án xây dựng ứng dụng web **HCMUS-LDMS** tự xây dựng để tự động hóa luồng số hóa khép kín: quét sách giấy -> OCR trích xuất chữ -> biên tập hiệu chỉnh -> đóng gói thành file EPUB responsive, giúp lưu trữ, phân loại và phục vụ đọc sách trực tuyến bảo mật.
 
-**Phạm vi (tóm tắt):** MVP gồm nộp & duyệt trực tuyến, lưu trữ chuẩn hóa (Dublin Core), phân quyền 3 mức, tìm kiếm toàn văn, số hóa thí điểm 1 khoa; mở rộng số hóa toàn trường và tích hợp xác thực toàn trường ở pha sau; tìm kiếm ngữ nghĩa AI/RAG và công cụ chống đạo văn là hạng mục tùy chọn giai đoạn cuối.
+**Phạm vi (tóm tắt):** MVP gồm luồng số hóa PDF/Ảnh quét, chạy OCR Tesseract, biên tập trực tuyến, đóng gói EPUB bằng Pandoc, quản lý Category & Tag, phân quyền người dùng (RBAC), tìm kiếm toàn văn Elasticsearch và tích hợp trình xem Web EPUB Reader (Epub.js) bảo mật. Thí điểm số hóa 500 cuốn sách ngành CNTT trước khi nhân rộng toàn trường. Các tính năng AI/RAG là tùy chọn giai đoạn 3.
 
 **Ma trận Tác nhân, Trách nhiệm và Tác động Trước - Sau (Stakeholder Responsibility & Impact Matrix):**
 
 | Tác nhân / Vai trò | Trách nhiệm trong dự án | Tác động TRƯỚC khi có hệ thống (Before / As-is) | Tác động SAU khi có hệ thống (After / To-be) |
 | :--- | :--- | :--- | :--- |
-| **Ban Giám hiệu**<br>*(Sponsor)* | • Phê duyệt chủ trương đầu tư và cấp ngân sách theo các giai đoạn.<br>• Ký ban hành quy chế về bản quyền số và quy chế tốt nghiệp sửa đổi. | • Thiếu công cụ đo lường và thực hiện chỉ tiêu chuyển đổi số cấp trường.<br>• Đối mặt với rủi ro thất thoát tài sản trí tuệ và rủi ro tranh chấp bản quyền học thuật. | • Đạt chỉ tiêu chuyển đổi số thư viện học thuật.<br>• Nâng cao vị thế và uy tín khoa học của nhà trường.<br>• Tối ưu hóa ngân sách dài hạn (giảm chi phí đầu tư kho vật lý). |
-| **Ban Giám đốc Thư viện**<br>*(Client - Nghiệp vụ)* | • Chủ trì xây dựng yêu cầu nghiệp vụ và chuẩn hóa metadata (Dublin Core).<br>• Chỉ đạo công tác số hóa khóa luận cũ.<br>• Tiếp nhận bàn giao và quản lý vận hành hệ thống. | • Đau đầu vì kho chứa khóa luận giấy bị quá tải không gian lưu trữ.<br>• Gánh chịu chi phí bảo quản tài liệu vật lý lớn chống mối mọt, ẩm mốc.<br>• Khó khăn trong việc phục vụ độc giả từ xa do ràng buộc địa lý. | • Giải phóng diện tích kho bãi vật lý để làm phòng tự học cho sinh viên.<br>• Bảo tồn vĩnh viễn tài nguyên số an toàn trên hệ thống máy chủ.<br>• Quản lý và khai thác tri thức tập trung theo đúng chính sách bản quyền. |
-| **Thủ thư / Cán bộ Thư viện**<br>*(User Nghiệp vụ)* | • Trực tiếp kiểm duyệt thông tin metadata và định dạng file PDF sinh viên nộp trực tuyến.<br>• Thiết lập thời hạn embargo hoặc mức phân quyền cho từng khóa luận. | • Mất hàng trăm giờ lao động thủ công mỗi mùa tốt nghiệp để nhận sách cứng và nhập liệu giấy.<br>• Mất thời gian đi vào các kệ kho bám bụi để tìm kiếm khóa luận giấy cho độc giả mượn đọc.<br>• Chịu áp lực đối chiếu thông tin tốt nghiệp thủ công dễ sai sót. | • Nghiệp vụ chuyển đổi hoàn toàn sang môi trường số qua Dashboard kiểm duyệt trực tuyến.<br>• Thời gian xử lý hồ sơ tốt nghiệp giảm từ vài ngày xuống còn vài phút.<br>• Không còn phải vận chuyển, sắp xếp và tìm kiếm sách cứng thủ công. |
-| **Trưởng phòng CNTT**<br>*(Client - Kỹ thuật / PM)* | • Quản trị tiến độ dự án, điều phối nguồn lực phát triển kỹ thuật.<br>• Chuẩn bị hạ tầng máy chủ, mạng và cấu hình bảo mật.<br>• Thiết lập hệ thống sao lưu và khôi phục thảm họa (Backup & DR). | • Quản lý hạ tầng CNTT thư viện manh mún, thiếu tập trung.<br>• Khó kiểm soát an toàn thông tin khi sinh viên chia sẻ tài liệu số qua các kênh không chính thống.<br>• Chịu trách nhiệm nếu dữ liệu học thuật bị mất mát do lỗi phần cứng. | • Sở hữu nền tảng Repository số chuẩn quốc tế DSpace, dễ dàng tích hợp và mở rộng.<br>• Làm chủ cơ chế sao lưu tự động (PgBackRest, Restic) và an toàn thông tin (Keycloak, Signed URL).<br>• Tối ưu hóa hạ tầng máy chủ của trường. |
-| **Đội ngũ kỹ thuật Phòng CNTT**<br>*(Dev & Network Engineer)* | • Cài đặt, cấu hình nền tảng DSpace 7.x/8.0 (Angular, Tomcat).<br>• Custom giao diện theo thương hiệu trường.<br>• Tích hợp SSO Keycloak, Solr, Elasticsearch, MinIO.<br>• Xây dựng CI/CD và vận hành kỹ thuật. | • Thường xuyên phải hỗ trợ kỹ thuật cho các phần mềm cũ lỗi thời, khó bảo trì.<br>• Thiếu kinh nghiệm thực tế triển khai hệ thống lưu trữ số quy mô lớn và các công cụ tìm kiếm mạnh mẽ. | • Làm chủ các công nghệ hiện đại (Docker, Elasticsearch, MinIO, Keycloak).<br>• Nhàn nhã hơn trong khâu bảo trì nhờ kiến trúc Modular Monolith ổn định và tự động hóa. |
-| **Phòng Đào tạo / Sau đại học**<br>*(Bên liên quan quy chế)* | • Cung cấp danh sách sinh viên tốt nghiệp chính thức để hệ thống đối chiếu tự động.<br>• Đưa quy định nộp khóa luận số vào quy chế công nhận tốt nghiệp bắt buộc. | • Quy trình xét tốt nghiệp và thủ tục ra trường của sinh viên bị kéo dài do khâu đối chiếu thủ công liên phòng ban.<br>• Khó kiểm soát việc sinh viên đã thực sự hoàn thành nghĩa vụ nộp khóa luận hay chưa. | • Quy trình nộp và xác nhận hoàn thành nghĩa vụ tốt nghiệp diễn ra hoàn toàn tự động trên hệ thống.<br>• Giảm tải thủ tục hành chính, rút ngắn thời gian cấp bằng tốt nghiệp. |
-| **Bộ phận Pháp chế & Lưu trữ**<br>*(Tư vấn rủi ro)* | • Thẩm định và ký duyệt biểu mẫu cam kết bản quyền số (Digital Consent Form).<br>• Giám sát tính pháp lý của việc phân quyền truy cập và chia sẻ tài liệu số. | • Lo ngại rủi ro pháp lý lớn khi nhà trường công bố các nghiên cứu mà không có sự đồng ý bằng văn bản của tác giả.<br>• Gặp khó khăn trong kiểm soát bản quyền tài liệu số. | • Triệt tiêu hoàn toàn rủi ro vi phạm bản quyền nhờ cơ chế ký Consent Form trực tuyến có bằng chứng số định danh SSO.<br>• Các mức phân quyền tự động nghiêm ngặt bảo vệ quyền sở hữu trí tuệ. |
-| **Sinh viên tốt nghiệp**<br>*(Tác giả khóa luận)* | • Khai báo thông tin metadata khóa luận theo chuẩn Dublin Core.<br>• Tải file PDF khóa luận lên hệ thống.<br>• Ký số Consent Form và tự chọn mức phân quyền truy cập tài liệu. | • Tốn kém nhiều chi phí in ấn và đóng tập bìa cứng mạ vàng đắt đỏ.<br>• Phải di chuyển trực tiếp giữa các cơ sở để nộp sách cứng.<br>• Lo sợ nghiên cứu của mình bị đạo văn hoặc phát tán bất hợp pháp khi không có phân quyền. | • Tiết kiệm 100% chi phí in ấn khóa luận tốt nghiệp.<br>• Thực hiện nộp bài trực tuyến từ xa nhanh chóng trong 5-10 phút.<br>• Chủ động kiểm soát quyền tiếp cận nghiên cứu của mình (embargo tối đa 36 tháng).<br>• Có mã trích dẫn bền vững Handle ID để ghi vào CV. |
-| **Độc giả**<br>*(Sinh viên, GV, Độc giả ngoài)* | • Tra cứu, tìm kiếm toàn văn và khai thác thông tin khoa học phục vụ học tập, nghiên cứu. | • Phải di chuyển trực tiếp đến thư viện Q5 trong giờ hành chính.<br>• Tìm kiếm khó khăn qua thẻ mục lục giấy nghèo nàn, chỉ đọc được bản cứng duy nhất tại chỗ và phải chép tay.<br>• Nghiên cứu bị gián đoạn nếu tài liệu bị rách hỏng. | • Tra cứu và tiếp cận nguồn tri thức học thuật 24/7 từ bất kỳ đâu qua Internet.<br>• Tìm kiếm toàn văn thông minh chính xác tới từng từ khóa.<br>• Tự động trích xuất trích dẫn (APA, IEEE) chuẩn xác trong 1 click chuột.<br>• Trải nghiệm đọc trực tuyến mượt mà. |
+| **Ban Giám hiệu**<br>*(Sponsor)* | • Phê duyệt chủ trương đầu tư, ngân sách mua sắm máy quét sách chuyên dụng và phần cứng server.<br>• Ban hành Quy chế quản lý học liệu số nội bộ của nhà trường. | • Thiếu công cụ đo lường hiệu quả chuyển đổi số thư viện học liệu.<br>• Chịu áp lực ngân sách lớn cho việc xây dựng thêm kho vật lý chứa sách mới.<br>• Nguy cơ thất thoát nguồn tài nguyên tri thức quý giá do rách hỏng sách. | • Đạt chỉ số chuyển đổi số xuất sắc cấp ĐHQG-HCM.<br>• Tối ưu hóa hiệu quả sử dụng mặt bằng và hạ tầng CNTT sẵn có của trường.<br>• Bảo tồn vĩnh viễn học liệu số an toàn. |
+| **Ban Giám đốc Thư viện**<br>*(Client - Nghiệp vụ)* | • Chủ trì xây dựng yêu cầu nghiệp vụ, cấu hình cây Danh mục (Category) và hệ thống Tag.<br>• Quản trị quy trình số hóa và tiếp nhận bàn giao hệ thống để vận hành dài hạn. | • Đau đầu giải quyết tình trạng thiếu kệ lưu trữ sách giáo trình cũ.<br>• Chi phí bảo quản vật lý sách giấy (điều hòa, diệt mối mọt) lớn.<br>• Khó khăn phục vụ mượn sách cho độc giả cơ sở Thủ Đức và người học từ xa. | • Giải phóng hơn 60% diện tích kệ sách giấy tại cơ sở Quận 5 để làm phòng tự học thông minh.<br>• Làm chủ quy trình số hóa hiện đại khép kín.<br>• Chủ động chia sẻ và kiểm soát học liệu số an toàn, đúng bản quyền. |
+| **Thủ thư / Biên tập viên**<br>*(User Nghiệp vụ)* | • Thực hiện scan tài liệu giấy, tải file scan lên hệ thống.<br>• Hiệu chỉnh lỗi chính tả OCR, đóng gói EPUB, phân loại Category/Tag và cấu hình mức truy cập. | • Mất hàng trăm giờ lao động thủ công mỗi kỳ để sắp xếp sách cứng, phục vụ mượn trả và ghi sổ theo dõi.<br>• Thao tác quét sách cũ chỉ ra file PDF ảnh tĩnh thô sơ, chất lượng đọc kém.<br>• Khó kiểm soát rách hỏng trang sách của độc giả. | • Toàn bộ nghiệp vụ biên tập và xuất bản chuyển sang môi trường số trực quan.<br>• Công cụ hỗ trợ OCR tiếng Việt và đóng gói EPUB tự động giảm 85% thao tác thủ công.<br>• Công việc nhẹ nhàng hơn, tập trung vào nâng cao dịch vụ số. |
+| **Trưởng phòng CNTT**<br>*(Client - Kỹ thuật / PM)* | • Điều phối nhóm kỹ thuật thiết kế kiến trúc, phát triển phần mềm custom (React, FastAPI).<br>• Cấu hình server lưu trữ MinIO, Keycloak, Elasticsearch và sao lưu tự động. | • Quản lý hạ tầng máy chủ thư viện phân tán, chắp vá, hiệu năng kém.<br>• Không kiểm soát được an toàn thông tin khi sinh viên tự ý tải file scan chia sẻ lên mạng.<br>• Rủi ro mất mát dữ liệu do thiếu hệ thống backup chuẩn. | • Quản trị hệ thống web app hiện đại, bảo mật cao thông qua Keycloak SSO và Signed URL.<br>• Hệ thống backup tự động MinIO/PostgreSQL ổn định.<br>• Tối ưu hóa hiệu năng hạ tầng máy chủ ảo của trường. |
+| **Kỹ sư Kỹ thuật Phòng CNTT**<br>*(Dev & DevOps Team)* | • Lập trình Frontend React (Epub.js) và Backend FastAPI (Python).<br>• Tích hợp Tesseract OCR và Pandoc; cấu hình Elasticsearch lập chỉ mục.<br>• Thiết lập môi trường Dev/Staging/Production. | • Thường xuyên phải bảo trì các trang web cũ lỗi thời viết bằng PHP/ASP.NET khó nâng cấp.<br>• Thiếu cơ hội tiếp cận các dự án xử lý bất đồng bộ tải file nặng, OCR và công nghệ tìm kiếm toàn văn. | • Làm chủ các công nghệ hiện đại (FastAPI, React TypeScript, MinIO, Elasticsearch, Keycloak).<br>• Nhàn nhã trong khâu vận hành nhờ quy trình CI/CD và kiến trúc Modular Monolith chuẩn hóa. |
+| **Giáo vụ khoa / Giảng viên**<br>*(Bên liên quan nghiệp vụ)* | • Hỗ trợ Thư viện chọn lọc danh mục giáo trình cốt lõi để ưu tiên số hóa thí điểm.<br>• Gửi liên kết sách số EPUB vào đề cương chi tiết môn học cho sinh viên. | • Khó khăn khi giới thiệu sách tham khảo cho sinh viên vì thư viện chỉ có 1-2 cuốn sách giấy độc bản.<br>• Chất lượng học tập của sinh viên giảm sút do thiếu tài liệu học tập chính thống. | • Giảng viên dễ dàng nhúng liên kết tài liệu trực tuyến vào bài giảng LMS.<br>• Bảo đảm 100% sinh viên trong lớp đều có thể tiếp cận giáo trình đồng thời. |
+| **Bộ phận Pháp chế & Lưu trữ**<br>*(Tư vấn bản quyền)* | • Thẩm định quy chế số hóa sách nội bộ tuân thủ Khoản 1 Điều 25 Luật SHTT.<br>• Kiểm soát và hướng dẫn việc thiết lập các phân mức truy cập (Public/Internal/Restricted). | • Lo ngại rủi ro pháp lý cao bị kiện bản quyền khi thư viện tự ý scan sách giấy phân phối cho sinh viên.<br>• Quy trình kiểm soát bản quyền tài liệu số lỏng lẻo. | • Triệt tiêu hoàn toàn rủi ro pháp lý nhờ cơ chế phân quyền RBAC và hệ thống đọc sách web viewer bảo mật chống download.<br>• Quy chế số hóa được pháp lý hóa rõ ràng, minh bạch. |
+| **Sinh viên / Độc giả**<br>*(Người sử dụng cuối)* | • Tra cứu tài liệu, lọc danh mục/tag và đọc sách EPUB trực tuyến trên cổng thông tin Web Portal. | • Tốn chi phí mua sách giáo trình giấy in đắt đỏ hoặc di chuyển xa về cơ sở Quận 5 để đọc tại chỗ.<br>• Trải nghiệm ức chế khi đọc file PDF scan chữ siêu nhỏ trên smartphone.<br>• Đề tài nghiên cứu bị gián đoạn nếu sách giấy bị người khác mượn mất. | • Đọc giáo trình miễn phí 24/7 từ xa qua Internet.<br>• Trải nghiệm đọc EPUB responsive mượt mà trên di động (co giãn chữ, đổi màu nền).<br>• Tìm kiếm thông tin tức thời dưới 3 giây phục vụ làm bài tập, nghiên cứu. |
+
+---
 
 ## 2. Stakeholder Analysis
 
@@ -42,99 +46,87 @@ Phiên bản 1.0 • Tháng 7/2026
 
 | Tên/Nhóm | Vai trò | External/Internal | Mối quan tâm chính (Vested Interest) | Power | Interest |
 | --- | --- | --- | --- | --- | --- |
-| Ban Giám hiệu | Sponsor | Internal | Chỉ tiêu chuyển đổi số, hiệu quả ngân sách | Cao | Thấp–Trung |
-| Thư viện | Client (chủ trì nghiệp vụ) | Internal | Giảm tải vận hành, quản lý metadata/bản quyền | Cao | Cao |
-| Phòng Công nghệ Thông tin | Client (chủ trì kỹ thuật) | Internal | Triển khai đúng hạn, đúng ngân sách, hạ tầng ổn định | Cao | Cao |
-| Phòng Đào tạo/Sau ĐH | User/liên quan quy chế | Internal | Gắn quy trình nộp khóa luận vào quy chế tốt nghiệp | Trung | Trung |
-| Bộ phận pháp chế/lưu trữ | Tư vấn/kiểm soát rủi ro | Internal | Tuân thủ bản quyền, quy chế lưu trữ | Cao (có thể chặn dự án) | Thấp (tự nhiên) |
-| Khoa / GVHD / Sinh viên | User cuối | Internal | Trải nghiệm nộp/tra cứu thuận tiện | Thấp | Cao |
-| Nhà cung cấp scan/OCR thuê ngoài (nếu có) | Nhà cung cấp | **External** | Hợp đồng dịch vụ số hóa | Thấp | Thấp |
+| Ban Giám hiệu | Sponsor | Internal | Tiến độ chuyển đổi số trường, hiệu quả chi phí CapEx | Cao | Trung bình |
+| Ban GĐ Thư viện | Client (Nhiệp vụ) | Internal | Số hóa học liệu giáo trình, giải phóng kho bãi, bảo mật sách | Cao | Cao |
+| Phòng CNTT | Client (Kỹ thuật) | Internal | Chất lượng phần mềm custom, bảo mật hạ tầng Keycloak/MinIO | Cao | Cao |
+| Giáo vụ / Giảng viên | Bên liên quan | Internal | Sinh viên có sách học tập môn học đầy đủ | Trung bình | Cao |
+| Pháp chế & Lưu trữ | Tư vấn kiểm soát | Internal | Tuân thủ Luật SHTT về giới hạn quyền tác giả số hóa sách | Cao | Trung bình |
+| Sinh viên / Độc giả | User cuối | Internal | Trải nghiệm đọc EPUB responsive trên mobile mượt mà | Thấp | Cao |
 
 ### Power/Interest Grid
 
-| | Interest thấp | Interest cao |
-| --- | --- | --- |
-| **Power cao** | Ban Giám hiệu — **Giữ hài lòng**; Bộ phận pháp chế/lưu trữ — **Giữ hài lòng** (cần chủ động kéo vào, không để mặc định rơi vào nhóm Theo dõi vì rủi ro pháp lý là trọng yếu) | Thư viện, Phòng CNTT — **Quản lý sát sao** |
-| **Power thấp** | Nhà cung cấp thuê ngoài — **Theo dõi** | Khoa/GVHD/Sinh viên, Phòng Đào tạo — **Giữ thông tin** |
+*   **Power cao, Interest cao (Quản lý sát sao):** Ban Giám đốc Thư viện, Phòng Công nghệ Thông tin.
+*   **Power cao, Interest trung bình (Giữ hài lòng):** Ban Giám hiệu, Bộ phận Pháp chế & Lưu trữ (cần tham vấn pháp lý sớm từ Giai đoạn 0).
+*   **Power trung bình/thấp, Interest cao (Giữ thông tin):** Giảng viên/Giáo vụ khoa, Sinh viên/Độc giả.
 
-### Chiến lược tương tác (Engagement Strategy)
-
-| Nhóm | Tần suất/kênh |
-| --- | --- |
-| Quản lý sát sao (Thư viện, CNTT) | Họp tuần + báo cáo tiến độ trực tiếp trong suốt vòng đời dự án |
-| Giữ hài lòng (Ban Giám hiệu) | Báo cáo tổng kết theo mốc giai đoạn (end of Phase) + xin phê duyệt go/no-go |
-| Giữ hài lòng (Pháp chế/lưu trữ) | Tư vấn trực tiếp ngay từ Giai đoạn 0, không chờ đến khi có vấn đề phát sinh — do rủi ro pháp lý được xếp mức cao |
-| Giữ thông tin (Phòng Đào tạo, Khoa/GVHD/Sinh viên) | Thông báo định kỳ qua email/thông báo chính thức; khảo sát lấy ý kiến trước UAT |
-| Theo dõi (nhà cung cấp thuê ngoài) | Cập nhật qua hợp đồng/hóa đơn theo tiến độ công việc |
+---
 
 ## 3. Cơ sở Vật chất & Nguồn lực
 
-| Hạng mục | Nội dung |
+| Hạng mục | Nội dung chi tiết |
 | --- | --- |
-| Không gian số hóa | Khu vực/phòng dành riêng để scan, tháo gáy, sắp xếp tài liệu theo lô |
-| Thiết bị | Máy scan tốc độ cao, phần mềm OCR hỗ trợ tiếng Việt (license nếu cần) |
-| Môi trường kỹ thuật | Môi trường dev/staging/production riêng biệt; hạ tầng cloud/server; công cụ sao lưu |
-| Công cụ quản trị dự án | Công cụ theo dõi tiến độ (Jira/Trello hoặc tương đương), kênh giao tiếp nhóm |
-| Nhân sự | Đội ngũ nòng cốt gồm: 04 nhân sự chuyên môn từ Phòng CNTT (01 Quản trị dự án kiêm Kỹ sư hệ thống, 02 Lập trình viên, 01 Kỹ sư mạng) được phân bổ chính thức kiêm nhiệm 50% thời gian làm việc trong 3 tháng triển khai cốt lõi; cùng với 02 cán bộ chuyên môn từ Thư viện chịu trách nhiệm kiểm duyệt metadata và quy trình xuất bản. |
+| **Thiết bị Scan** | 02 máy quét sách chuyên dụng dạng chữ V (Book Scanner) lắp đặt tại phòng số hóa thư viện Quận 5. |
+| **Hạ tầng Kỹ thuật** | 01 máy chủ vật lý on-premise của trường cài đặt Docker Compose chạy các service: PostgreSQL 16, MinIO, Keycloak, Elasticsearch 8.x, FastAPI Backend và Web Server Nginx. |
+| **Nhân sự Phát triển** | 04 kỹ sư Phòng CNTT (01 PM/SA kiêm nhiệm 50% thời gian, 02 Web Dev 50%, 01 DevOps 50%) làm việc trong 3 tháng phát triển cốt lõi. |
+| **Nhân sự Số hóa & Biên tập** | 02 cán bộ thư viện phụ trách nghiệp vụ + 05 sinh viên cộng tác viên bán thời gian quét sách và chỉnh sửa lỗi văn bản OCR. |
+
+---
 
 ## 4. Ma trận Trách nhiệm (RACI)
 
-R = Responsible, A = Accountable, C = Consulted, I = Informed. Mỗi gói công việc chỉ có đúng **1** đơn vị Accountable.
+*   **R** (Responsible): Người thực hiện.
+*   **A** (Accountable): Người chịu trách nhiệm cuối cùng.
+*   **C** (Consulted): Người được tham vấn.
+*   **I** (Informed): Người nhận thông tin.
 
-| Gói công việc | Thư viện | Phòng CNTT | Phòng Đào tạo | Pháp chế/Lưu trữ | Ban Giám hiệu | Khoa/GVHD/SV |
-| --- | --- | --- | --- | --- | --- | --- |
-| WP1 — Khảo sát & Khởi động | **A**, R | R | C | C | I | — |
-| WP2 — Hạ tầng & Nền tảng | C | **A**, R | — | — | I | — |
-| WP3 — Phát triển & Tùy biến | C | **A**, R | — | — | I | — |
-| WP4 — Số hóa tài liệu | **A**, R | C | — | C | I | — |
-| WP5 — Kiểm thử & Nghiệm thu | R | **A**, R | — | — | I | C |
-| WP6 — Triển khai & Vận hành | **A**, R | R | C | — | I | I |
+| Gói công việc (WBS) | Thư viện | Phòng CNTT | Giáo vụ Khoa | Pháp chế | Ban Giám hiệu | Độc giả |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **WP1 — Khảo sát & Bản quyền** | **A** / R | R | C | C | I | - |
+| **WP2 — Thiết lập Backend & DB** | C | **A** / R | - | - | I | - |
+| **WP3 — Phát triển UI & OCR/EPUB** | C | **A** / R | - | - | I | C |
+| **WP4 — Số hóa tài liệu** | **A** / R | C | C | C | I | - |
+| **WP5 — Kiểm thử & Nghiệm thu** | R | **A** / R | - | - | I | C |
+| **WP6 — Triển khai & Vận hành** | **A** / R | R | C | - | I | I |
+
+---
 
 ## 5. Lộ trình (Roadmap)
 
-![Sơ đồ lộ trình triển khai (Project Roadmap)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/project_roadmap.svg)
+Sơ đồ lộ trình chi tiết và mốc bàn giao:
 
-| Giai đoạn | Trọng tâm | Kết quả chính |
-| --- | --- | --- |
-| 0 — Khảo sát | Kiểm kê, chọn nền tảng, chốt baseline, **giải quyết quy trình consent pháp lý** | Báo cáo hiện trạng + quyết định build/buy + ngân sách chi tiết + quy trình consent được ký duyệt |
-| 1 — MVP | Repository + tìm kiếm toàn văn + phân quyền + số hóa thí điểm 1 khoa | Hệ thống chạy thật quy mô nhỏ, đo được lượt truy cập |
-| 2 — Mở rộng | Số hóa toàn bộ kho, tích hợp xác thực toàn trường | Phủ toàn bộ khóa luận; quy trình nộp trực tuyến chính thức |
-| 3 — Nâng cao | Tìm kiếm ngữ nghĩa AI/RAG, tích hợp công cụ chống đạo văn | Truy vấn theo ngữ nghĩa; báo cáo trùng lặp |
+![Sơ đồ lộ trình triển khai (Project Roadmap)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/images/project_roadmap.svg)
 
-**Milestones chính:** (M1) Chốt baseline + quy trình consent — cuối Giai đoạn 0; (M2) MVP go-live thí điểm 1 khoa — cuối Giai đoạn 1; (M3) Phủ toàn trường — cuối Giai đoạn 2.
+### Bảng thời gian chi tiết theo gói công việc (Phương án MVP cuốn chiếu):
 
-**Critical Path:** khối lượng **số hóa (WP4)** là đường găng quyết định tổng thời gian dự án, không phải phần phát triển kỹ thuật — số hóa có thể chạy song song với WP2–WP3 nhưng vẫn là yếu tố giới hạn tiến độ tổng thể (chi tiết thời lượng từng gói tại `04-feasibility-study.md` và bảng dưới).
+![Biểu đồ tiến độ Gantt (Project Timeline Gantt Chart)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/images/project_timeline.svg)
 
-![Biểu đồ tiến độ Gantt (Project Timeline Gantt Chart)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/project_timeline.svg)
+*   **Critical Path:** Khâu **Số hóa tài liệu (WP4)** gồm quét sách và hiệu chỉnh lỗi văn bản OCR là đường găng giới hạn tiến độ bàn giao sách EPUB. Số hóa chạy song song với lập trình phần mềm để cung cấp dữ liệu thử nghiệm sớm.
+*   **Mốc quan trọng (Milestones):**
+    *   *Milestone 1 (Tuần 4):* Chốt Quy chế số hóa bản quyền & Thiết kế Mockup giao diện.
+    *   *Milestone 2 (Tuần 12):* Hoàn thành UAT phần mềm và số hóa xong 500 cuốn giáo trình CNTT.
+    *   *Milestone 3 (Tuần 16):* Go-live chính thức hệ thống HCMUS-LDMS toàn trường.
 
-| Gói | Thời lượng | Cách chạy |
-| --- | --- | --- |
-| WP1 | 3–4 tuần | Tuần tự |
-| WP2 | 3–4 tuần | Sau WP1 |
-| WP3 | 8–10 tuần | Sau WP2 |
-| WP4 (số hóa ~10.000+ cuốn) | 16–24 tuần | Song song WP2–3 |
-| WP5 | 3–4 tuần | Sau WP3 |
-| WP6 | 2–3 tuần | Sau WP5 |
-
-**Tổng thời gian tới release:** ước tính 7–10 tháng nếu số hóa toàn trường trước khi release; rút xuống còn 3–4 tháng nếu chấp nhận release MVP cho 1–2 khoa thí điểm trước (khuyến nghị).
-
+---
 
 ## 6. Tiêu chí Thành công & KPI
 
-1. Tỷ lệ khóa luận được số hóa và đưa lên hệ thống (mục tiêu: ≥ 90% trong 18 tháng).
-2. Số lượt truy cập/tải tài liệu mỗi tháng (thiết lập đường nền sau 3 tháng vận hành).
-3. Thời gian trung bình để tìm và truy cập một khóa luận (giảm so với quy trình thủ công).
-4. Tỷ lệ khóa luận mới nộp qua quy trình trực tuyến (mục tiêu: 100% sau Giai đoạn 2).
-5. Mức độ hài lòng của sinh viên/giảng viên (khảo sát định kỳ).
-6. Diện tích kho thu hồi được (chỉ tính sau khi có quy định lưu trữ cho phép).
+1.  **Tỷ lệ số hóa:** Đạt tối thiểu **90%** giáo trình tự viết của trường được đóng gói sang EPUB thành công trong vòng 12 tháng kể từ go-live.
+2.  **Độ chính xác OCR:** Tỷ lệ nhận dạng từ tiếng Việt chính xác đạt **85%** trở lên trước khi biên tập viên hiệu chỉnh thủ công.
+3.  **Tốc độ tra cứu:** Phản hồi kết quả tìm kiếm Elasticsearch dưới **3 giây** cho mỗi truy vấn tìm kiếm toàn văn.
+4.  **Tần suất tương tác:** Đạt tối thiểu **10.000 lượt đọc sách/tháng** của sinh viên sau 6 tháng vận hành.
+5.  **Bảo mật thông tin:** **0** sự cố rò rỉ file EPUB gốc từ hệ thống lưu trữ ra ngoài môi trường Internet tự do.
 
-**Giả định tiên quyết:** quy chế lưu trữ và quy trình consent bản quyền đã được xác nhận trước khi các KPI liên quan đến số hóa/công khai được đo lường.
+---
 
 ## 7. Phương pháp luận & Quy tắc Làm việc
 
-**Phương pháp luận:** áp dụng mô hình **lai (hybrid)** — gating theo giai đoạn kiểu **RUP** ở cấp roadmap (mỗi giai đoạn 0→3 có điều kiện tiên quyết và quyết định go/no-go rõ ràng trước khi cấp ngân sách giai đoạn kế tiếp — phù hợp vì đây là dự án nội bộ cần phê duyệt ngân sách theo từng đợt), kết hợp **Scrum** (sprint 2 tuần) trong nội bộ WP3 (Phát triển & Tùy biến) để lặp nhanh, điều chỉnh theo phản hồi UAT — phù hợp vì quy mô đội nhỏ (3–4 người) và cần linh hoạt tùy biến nền tảng có sẵn thay vì đặc tả cứng từ đầu.
+*   **Phương pháp luận:** Áp dụng mô hình **Lai (Hybrid)** - quản lý vòng đời dự án theo mô hình gating chặt chẽ (Giai đoạn 0 đến 3) để Ban Giám hiệu kiểm soát chi phí đầu tư từng mốc lớn, kết hợp quy trình phát triển phần mềm lặp **Scrum (Sprint 2 tuần)** trong gói WP3 để đội kỹ thuật phản ứng linh hoạt với các phản hồi UAT thực tế của thủ thư và sinh viên.
+*   **Quy tắc phối hợp:**
+    *   Họp nhóm kỹ thuật ngắn (Daily Standup) hàng ngày trực tuyến (15 phút).
+    *   Họp bàn giao Sprint (Sprint Review & Planning) cuối mỗi 2 tuần giữa Phòng CNTT và Thư viện.
+    *   Báo cáo tiến độ bằng văn bản gửi Ban Giám hiệu cuối mỗi Giai đoạn để nghiệm thu chốt chuyển pha (Gating Approval).
 
-**Quy tắc làm việc:** sprint review cuối mỗi 2 tuần trong WP3; báo cáo tiến độ hàng tuần giữa Thư viện và Phòng CNTT; báo cáo tổng kết cuối mỗi giai đoạn gửi Ban Giám hiệu để xin phê duyệt giai đoạn tiếp theo.
+---
 
 ## 8. Chữ ký (Signatures)
 
@@ -143,4 +135,4 @@ R = Responsible, A = Accountable, C = Consulted, I = Informed. Mỗi gói công 
 | Đại diện Ban Giám hiệu (Sponsor) | | | |
 | Đại diện Thư viện (Client) | | | |
 | Đại diện Phòng CNTT (Client) | | | |
-| Đại diện Bộ phận pháp chế/lưu trữ | | | |
+| Đại diện Bộ phận Pháp chế & Lưu trữ | | | |
