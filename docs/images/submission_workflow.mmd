@@ -3,29 +3,27 @@ sequenceDiagram
     actor L as Thủ thư (Librarian)
     participant Sys as LibDMS Backend API
     participant DB as PostgreSQL Database
-    participant S3 as AWS S3 Storage
     participant W as OCR & EPUB Worker
     participant ES as Elasticsearch Engine
 
     L->>Sys: 1. Tải lên tệp thô (PDF scan/PNG/JPEG) & Metadata
-    Sys->>S3: 2. Lưu trữ tệp tin thô gốc
-    Sys->>DB: 3. Khởi tạo tài liệu trạng thái "Processing"
-    Sys->>W: 4. Gửi yêu cầu OCR & Tạo EPUB (Message Queue)
-    Sys-->>L: 5. Phản hồi tiếp nhận tệp, hiển thị trạng thái đang xử lý
+    Sys->>DB: 2. Lưu trữ tệp tin thô gốc (BYTEA) & Khởi tạo "Processing"
+    Sys->>W: 3. Gửi yêu cầu OCR & Tạo EPUB (Message Queue)
+    Sys-->>L: 4. Phản hồi tiếp nhận tệp, hiển thị trạng thái đang xử lý
     
     activate W
-    W->>S3: 6. Tải tệp thô gốc xuống
-    W->>W: 7. Chạy Tesseract OCR trích xuất text tiếng Việt
-    W->>W: 8. Gọi Calibre/Pandoc đóng gói sang file EPUB
-    W->>S3: 9. Upload file EPUB mới sinh lên storage
-    W->>ES: 10. Lập chỉ mục text sau OCR phục vụ tìm kiếm
-    W->>Sys: 11. Báo cáo hoàn thành tác vụ số hóa
+    W->>DB: 5. Tải tệp thô gốc xuống từ database
+    W->>W: 6. Chạy Tesseract OCR trích xuất text tiếng Việt
+    W->>W: 7. Gọi Calibre/Pandoc đóng gói sang file EPUB
+    W->>DB: 8. Lưu file EPUB mới sinh vào database (BYTEA)
+    W->>ES: 9. Lập chỉ mục text sau OCR phục vụ tìm kiếm
+    W->>Sys: 10. Báo cáo hoàn thành tác vụ số hóa
     deactivate W
     
-    Sys->>DB: 12. Cập nhật trạng thái "Ready for Correction"
-    Sys-->>L: 13. Gửi thông báo hoàn tất số hóa tự động
+    Sys->>DB: 11. Cập nhật trạng thái "Ready for Correction"
+    Sys-->>L: 12. Gửi thông báo hoàn tất số hóa tự động
     
-    L->>Sys: 14. Truy cập Correction Dashboard hiệu đính lỗi text (nếu có)
-    L->>Sys: 15. Xác nhận xuất bản chính thức
-    Sys->>DB: 16. Cập nhật trạng thái "Published"
-    Sys-->>L: 17. Hiển thị thông báo xuất bản tài liệu thành công
+    L->>Sys: 13. Truy cập Correction Dashboard hiệu đính lỗi text (nếu có)
+    L->>Sys: 14. Xác nhận xuất bản chính thức
+    Sys->>DB: 15. Cập nhật trạng thái "Published"
+    Sys-->>L: 16. Hiển thị thông báo xuất bản tài liệu thành công

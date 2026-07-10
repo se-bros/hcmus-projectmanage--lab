@@ -30,20 +30,18 @@ graph TD
     end
 
     subgraph DataLayer ["Lớp Dữ liệu & Lưu trữ (Data Layer)"]
-        DB[(PostgreSQL CSDL)]
+        DB[(PostgreSQL CSDL & File Storage)]
         Search[(Elasticsearch Engine)]
-        Storage[(AWS S3 Storage)]
     end
     
     UI -->|HTTP / REST API| API
     API --> DB
-    API --> Storage
     API --> Search
     API --> MQ
     MQ --> OCRWorker
     MQ --> ConvWorker
-    OCRWorker --> Storage
-    ConvWorker --> Storage
+    OCRWorker --> DB
+    ConvWorker --> DB
     OCRWorker --> Search
     
     style ClientLayer fill:#f9f,stroke:#333;

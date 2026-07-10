@@ -5,12 +5,10 @@ flowchart TD
     Librarian -->|4. Hiệu đính text & Phân loại Category/Tag| Sys
     Admin[Quản trị - Admin] -->|5. Quản lý tài khoản & Cấu hình RBAC| Sys
     
-    Sys -->|6. Lưu trữ file EPUB| Storage[(AWS S3 Storage)]
-    Sys -->|7. Lưu Metadata & Lịch sử mượn| DB[(PostgreSQL Database)]
-    Sys -->|8. Lập chỉ mục & Tìm kiếm| Search[(Elasticsearch Engine)]
-    Sys -->|9. OCR văn bản tiếng Việt| OCREngine[Tesseract OCR Worker]
+    Sys -->|"6. Lưu file EPUB (BYTEA), Metadata & Mượn sách"| DB[(PostgreSQL Database)]
+    Sys -->|"7. Lập chỉ mục & Tìm kiếm"| Search[(Elasticsearch Engine)]
+    Sys -->|"8. OCR văn bản tiếng Việt"| OCREngine[Tesseract OCR Worker]
 
     style Sys fill:#d4f1f9,stroke:#007799,stroke-width:2px;
-    style Storage fill:#f9d4f1,stroke:#990077,stroke-width:2px;
-    style Search fill:#efe,stroke:#009900,stroke-width:2px;
-    style DB fill:#fff2e8,stroke:#fa8c16,stroke-width:2px;
+    style DB fill:#d4f9d4,stroke:#009900,stroke-width:2px;
+    style Search fill:#fdf9d4,stroke:#999900,stroke-width:2px;

@@ -58,7 +58,7 @@ Phần lớn các thư viện đại học và thư viện công cộng tại Vi
 | Hạng mục | Cơ sở ước tính | USD |
 | :--- | :--- | :---: |
 | Phát triển phần mềm custom | Nhóm 5 kỹ sư kiêm nhiệm phát triển trong 5 tháng cốt lõi. | $35.000 – $60.000 |
-| Thiết lập hạ tầng Cloud ban đầu | Đăng ký dịch vụ, cấu hình bảo mật VPC, Kubernetes, S3. | $3.000 – $6.000 |
+| Thiết lập hạ tầng Cloud ban đầu | Đăng ký dịch vụ, cấu hình bảo mật VPC, Kubernetes, PostgreSQL. | $3.000 – $6.000 |
 | Kiểm thử & Bảo mật (Pen-test) | Thuê đánh giá độc lập hiệu năng và lỗ hổng bảo mật. | $3.000 – $7.000 |
 | Đào tạo & Chuyển giao | Video hướng dẫn, tài liệu vận hành và tập huấn thủ thư. | $1.000 – $3.000 |
 | **Tổng Project Cost (chưa dự phòng)** | | **≈ $42.000–$76.000** |
@@ -74,7 +74,7 @@ Phần lớn các thư viện đại học và thư viện công cộng tại Vi
 
 | Hạng mục | Cơ sở ước tính | USD/năm |
 | :--- | :--- | :---: |
-| Hạ tầng Cloud duy trì | Máy chủ EC2, PostgreSQL DB, S3 Storage, Elasticsearch. | $4.000 – $8.000 |
+| Hạ tầng Cloud duy trì | Máy chủ EC2, PostgreSQL DB (bao gồm tệp nhị phân), Elasticsearch. | $4.000 – $8.000 |
 | Bảo trì & Hỗ trợ kỹ thuật | Cập nhật bản vá bảo mật, vá lỗi ứng dụng định kỳ. | $3.000 – $7.000 |
 | Băng thông & Email service | Chi phí Data Transfer Out cho bạn đọc và SMS/Email. | $1.000 – $3.000 |
 | **Tổng OpEx** | | **≈ $8.000–$18.000** |
@@ -95,8 +95,8 @@ Dưới đây là các rủi ro kỹ thuật và vận hành được nhận di�
 | Nhóm rủi ro | Chi tiết rủi ro | Mức độ | Biện pháp giảm thiểu | Risk Owner |
 | :--- | :--- | :---: | :--- | :--- |
 | **Chất lượng OCR** | Bản scan quá cũ hoặc chữ viết tay làm OCR sai lệch nghiêm trọng. | **Cao** | Hệ thống tự động cảnh báo độ tin cậy thấp, yêu cầu thủ thư hiệu đính thủ công qua màn hình Dashboard; mặc định dùng Fixed-Layout cho tài liệu kém chất lượng. | **Technical Lead** |
-| **Rò rỉ tài liệu** | Bạn đọc dùng tool download lậu để lấy file EPUB từ S3. | **Trung bình** | Sử dụng Signed URL có hiệu lực ngắn (15 phút), mã hóa DRM cơ bản cho tệp EPUB lưu trữ trên AWS S3. | **Security Engineer** |
-| **Chi phí Cloud tăng nhanh** | Băng thông mượn đọc sách số lớn làm chi phí cloud EC2/S3 vượt ngân sách. | **Trung bình** | Áp dụng CDN (CloudFront/Cloudflare) để cache file EPUB tĩnh, tối ưu hóa kích thước ảnh nén và thiết lập cảnh báo vượt ngưỡng chi phí trên AWS/Azure. | **DevOps Engineer** |
+| **Rò rỉ tài liệu** | Bạn đọc dùng tool download để lấy file EPUB trực tiếp. | **Trung bình** | Sử dụng Stream API bảo mật có xác thực token, mã hóa DRM cơ bản cho tệp EPUB được phục vụ trực tiếp từ database PostgreSQL. | **Security Engineer** |
+| **Chi phí Cloud tăng nhanh** | Băng thông mượn đọc sách số lớn làm chi phí cloud EC2/PostgreSQL vượt ngân sách. | **Trung bình** | Áp dụng CDN (CloudFront/Cloudflare) để cache file EPUB tĩnh, tối ưu hóa kích thước ảnh nén và thiết lập cảnh báo vượt ngưỡng dung lượng lưu trữ trên AWS/Azure. | **DevOps Engineer** |
 | **Sự chấp nhận của thủ thư** | Cán bộ thư viện ngại sử dụng công cụ OCR và mượn/trả trực tuyến mới. | **Trung bình** | Tổ chức đào tạo cuốn chiếu, khen thưởng các cán bộ số hóa xuất sắc, cử nhân viên kỹ thuật hỗ trợ trực tiếp tại quầy trong tháng đầu go-live. | **Project Manager** |
 
 ---

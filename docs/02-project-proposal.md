@@ -110,7 +110,7 @@ Kiến trúc hệ thống ưu tiên sử dụng mô hình **Containerized Micros
 *   **Frontend Application:** Viết bằng **Next.js** (React) giúp tối ưu hóa SEO cho trang tra cứu công khai, giao diện Responsive tương thích tốt với thiết bị di động.
 *   **Backend API Services:** Viết bằng **FastAPI (Python)** cung cấp hệ thống REST API nhanh, nhẹ, hiệu năng cao, dễ tích hợp các thư viện xử lý ngôn ngữ tự nhiên và AI.
 *   **Database chính:** **PostgreSQL** để lưu trữ thông tin có cấu trúc như thông tin tài liệu, người dùng, lịch sử mượn/trả, phân loại category/tag.
-*   **Object Storage (File Storage):** Sử dụng **AWS S3 Storage** để lưu trữ tệp tin EPUB và ảnh gốc tải lên, bảo mật bằng Signed URL.
+*   **File Storage trong CSDL:** Sử dụng trường **BYTEA của PostgreSQL** để lưu trữ trực tiếp tệp tin EPUB và ảnh thô gốc, đảm bảo bảo mật và nhất quán dữ liệu.
 *   **OCR Engine:** Container độc lập chạy **Tesseract OCR** để nhận dạng văn bản tiếng Việt từ ảnh thô.
 *   **EPUB Converter:** Dịch vụ vệ tinh chạy lệnh của **Calibre/Pandoc** để chuyển đổi định dạng tài liệu sang EPUB.
 *   **Search Engine:** **Elasticsearch** dùng để lưu trữ chỉ mục văn bản sau OCR phục vụ tìm kiếm toàn văn tốc độ cao.
@@ -229,7 +229,7 @@ Dự án được chia thành 6 gói công việc chính:
     *   Thiết kế kiến trúc hệ thống và mô hình dữ liệu PostgreSQL.
 *   **WP2 — Hạ tầng Cloud & Core API:**
     *   Thiết lập VPC, Subnet, VM và Container Registry trên AWS/Azure.
-    *   Cài đặt PostgreSQL, Elasticsearch, cấu hình AWS S3 Storage.
+    *   Cài đặt PostgreSQL (cấu hình phân tách table lưu trữ BYTEA), Elasticsearch.
     *   Xây dựng Core API FastAPI (quản lý user, auth JWT, phân quyền RBAC).
 *   **WP3 — Giao diện & Pipeline số hóa:**
     *   Xây dựng giao diện Next.js cho Admin/Librarian và Portal tra cứu cho Reader.
@@ -273,7 +273,7 @@ Ngân sách CapEx dùng để xây dựng hệ thống phần mềm custom, mua 
 | Hạng mục đầu tư | Chi tiết cơ sở ước tính | Khoảng giá (USD) |
 | :--- | :--- | :---: |
 | **Phát triển phần mềm custom** | Nhóm phát triển gồm 5 kỹ sư (Frontend, Backend, DevOps, QA, OCR specialist) thực hiện trong 5 tháng phát triển chính. | $35.000 – $60.000 |
-| **Thiết lập hạ tầng Cloud ban đầu** | Đăng ký dịch vụ, cấu hình mạng bảo mật VPC, thiết lập Kubernetes Cluster và lưu trữ S3 ban đầu. | $3.000 – $6.000 |
+| **Thiết lập hạ tầng Cloud ban đầu** | Đăng ký dịch vụ, cấu hình mạng bảo mật VPC, thiết lập Kubernetes Cluster và PostgreSQL Database ban đầu. | $3.000 – $6.000 |
 | **Kiểm thử chất lượng & Pen-test** | Thuê đánh giá độc lập về hiệu năng tìm kiếm Elasticsearch, chất lượng OCR tiếng Việt và kiểm tra lỗ hổng bảo mật Web. | $3.000 – $7.000 |
 | **Đào tạo, chuyển giao công nghệ** | Biên soạn tài liệu hướng dẫn số hóa, video tập huấn thủ thư, hỗ trợ trực tiếp tuần đầu vận hành. | $1.000 – $3.000 |
 | **Dự phòng phát sinh (15%)** | Chi phí dự phòng cho các thay đổi về phạm vi hoặc biến động tỷ giá/dịch vụ cloud. | $3.000 – $9.000 |
@@ -285,7 +285,7 @@ Chi phí duy trì hệ thống trên Cloud hoạt động ổn định hàng nă
 
 | Hạng mục vận hành | Chi tiết cơ sở ước tính | Khoảng giá (USD/năm) |
 | :--- | :--- | :---: |
-| **Hạ tầng Cloud duy trì** | Chi phí máy chủ ảo EC2/VM, PostgreSQL Database instance, Elasticsearch Cluster và S3 Object Storage trên AWS/Azure. | $4.000 – $8.000 |
+| **Hạ tầng Cloud duy trì** | Chi phí máy chủ ảo EC2/VM, PostgreSQL Database instance (bao gồm cả dung lượng lưu trữ BYTEA), Elasticsearch Cluster trên AWS/Azure. | $4.000 – $8.000 |
 | **Bảo trì & Hỗ trợ kỹ thuật** | Vá lỗi bảo mật định kỳ, cập nhật phiên bản thư viện, hỗ trợ kỹ thuật mức độ 2 (1 nhân sự CNTT bán thời gian). | $3.000 – $7.000 |
 | **Băng thông & Dịch vụ phụ trợ** | Chi phí băng thông truyền tải file EPUB tới bạn đọc (Data Transfer Out), dịch vụ gửi email thông báo, giám sát cloud. | $1.000 – $3.000 |
 | **TỔNG OPEX / NĂM** | **Chi phí vận hành hàng năm** | **≈ $8.000 – $18.000** |

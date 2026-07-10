@@ -28,7 +28,7 @@ Phiên bản 1.0 • Tháng 7/2026
 | **Category & Tag** | Danh mục phân loại đa cấp và thẻ nhãn gán cho tài liệu giúp gom nhóm tài liệu đa chiều. |
 | **RBAC (Role-Based Access Control)** | Phân quyền truy cập dựa trên vai trò của người dùng trong hệ thống (Admin, Librarian, Reader). |
 | **EPUB Reader online** | Trình đọc sách điện tử định dạng EPUB được tích hợp trực tiếp trên trình duyệt Web mà không cần cài app phụ trợ. |
-| **Signed URL** | Đường dẫn URL có đính kèm khóa chữ ký số và thời hạn hiệu lực (ví dụ: 15 phút) dùng để tải tệp tin bảo mật từ Object Storage. |
+| **Secure Stream API** | Cơ chế cung cấp dữ liệu tệp tin dưới dạng dòng luồng dữ liệu (streaming) được xác thực bằng JWT, tránh để lộ đường dẫn trực tiếp của tệp tin trong database. |
 
 ### Business Rules
 
@@ -139,7 +139,7 @@ Hệ thống **LibDMS** chuyển đổi các quy trình thủ công sang chu tr�
 - **Quy trình Tra cứu thông minh:** Bạn đọc đăng nhập portal từ xa, gõ từ khóa tự do trên thanh tìm kiếm Elasticsearch.
   - *Trạng thái hệ thống (State):* Hệ thống trả về kết quả tìm kiếm toàn văn chính xác tới từng trang sách kèm theo các bộ lọc Category/Tag thời gian thực.
 - **Quy trình Đọc sách trực tuyến bảo mật:** Bạn đọc mở trình đọc EPUB Reader online tích hợp trên web để đọc trực tiếp.
-  - *Trạng thái hệ thống (State):* Tài nguyên được phân phối an toàn thông qua Signed URL (hiệu lực 15 phút). Trình duyệt của bạn đọc bị giới hạn không cho phép chuột phải sao chép text, tắt phím tắt in ấn và ẩn hoàn toàn đường dẫn tải tệp gốc để bảo vệ bản quyền.
+  - *Trạng thái hệ thống (State):* Tài nguyên được phân phối an toàn thông qua Secure Stream API (phát luồng dữ liệu trực tiếp có xác thực JWT). Trình duyệt của bạn đọc bị giới hạn không cho phép chuột phải sao chép text, tắt phím tắt in ấn và ẩn hoàn toàn đường dẫn tải tệp gốc để bảo vệ bản quyền.
 - **Quy trình Hỏi đáp thông minh:** Sử dụng khung chat Chatbot RAG tích hợp để đặt câu hỏi về nội dung sách.
   - *Trạng thái hệ thống (State):* Chatbot gọi API ngôn ngữ lớn (LLM), kết hợp dữ liệu vector trích xuất từ văn bản đã OCR để phản hồi câu trả lời kèm trích dẫn nguồn trang sách cụ thể.
 
@@ -179,7 +179,7 @@ Hệ thống **LibDMS** chuyển đổi các quy trình thủ công sang chu tr�
 *   **Bảo mật:**
     *   Truyền dữ liệu bắt buộc qua HTTPS (TLS 1.3).
     *   Mã hóa tệp tin lưu trữ tĩnh trên Cloud (Encryption at Rest).
-    *   Sử dụng Signed URL có thời gian hết hạn tối đa 15 phút.
+    *   Sử dụng Secure Stream API kết hợp Token xác thực JWT hết hạn ngắn.
     *   Chặn chuột phải copy text và tắt tính năng in mặc định trên EPUB Reader trực tuyến.
 
 ---

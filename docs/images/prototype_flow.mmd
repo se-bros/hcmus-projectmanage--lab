@@ -1,0 +1,29 @@
+flowchart TD
+    Start([Bắt đầu]) --> Login[Màn hình Đăng nhập]
+    Login --> Dashboard[1. Màn hình Dashboard]
+    
+    subgraph Row1 ["Bước 1: Chuẩn bị & Khởi chạy Số hóa"]
+        direction LR
+        Dashboard -->|Click 'Số hóa'| Upload[2. Giao diện Tải lên]
+        Upload -->|Click 'Bắt đầu'| Processing[3. Màn hình Tiến trình]
+    end
+
+    subgraph Row2 ["Bước 2: Soát lỗi & Xuất bản"]
+        direction LR
+        OCRState{Xong OCR?} -->|Có| Correction[4. Giao diện Soát & Sửa lỗi chữ]
+        Correction -->|Click 'Phát hành'| Preview[5. Màn hình Xem trước]
+        Preview -->|Click 'Xuất bản'| PublishSystem[Hệ thống: Xuất bản]
+    end
+
+    Processing --> OCRState
+    PublishSystem -->|Quay lại| Dashboard
+
+    %% Styling
+    style Dashboard fill:#d4f1f9,stroke:#007799,stroke-width:2px;
+    style Upload fill:#d4f1f9,stroke:#007799,stroke-width:2px;
+    style Processing fill:#d4f1f9,stroke:#007799,stroke-width:2px;
+    style Correction fill:#d4f1f9,stroke:#007799,stroke-width:2px;
+    style Preview fill:#d4f1f9,stroke:#007799,stroke-width:2px;
+    
+    style OCRState fill:#fff2e8,stroke:#fa8c16,stroke-width:2px;
+    style PublishSystem fill:#f6ffed,stroke:#52c41a,stroke-width:2px;

@@ -33,7 +33,7 @@ Phiên bản 1.0 • Tháng 7/2026
 | **Ban quản lý Thư viện**<br>*(Sponsor)* | • Phê duyệt chủ trương, cấp ngân sách dự án.<br>• Phê duyệt nghiệm thu go-live hệ thống. | • Không có số liệu thống kê để tối ưu chi phí mua sắm sách giấy.<br>• Đau đầu vì diện tích kho kệ vật lý ngày càng chật chội. | • Quản trị thư viện hiện đại bằng số liệu biểu đồ trực quan.<br>• Thu hồi diện tích kho bãi vật lý làm không gian sinh hoạt chung. |
 | **Thủ thư trưởng**<br>*(Business Lead)* | • Đặc tả quy trình mượn/trả sách, mô hình phân loại danh mục, tags.<br>• Kiểm tra và phê duyệt chất lượng metadata tài liệu số hóa. | • Tốn nhiều thời gian kiểm kê, đối chiếu sổ sách mượn/trả thủ công.<br>• Khó khăn trong việc phát hiện sách mượn quá hạn hoặc thất thoát sách. | • Quản lý tập trung mọi tài liệu số và vật lý trên một giao diện.<br>• Hệ thống tự động theo dõi, nhắc hạn mượn và xuất báo cáo tự động. |
 | **Project Manager**<br>*(PM)* | • Quản lý tiến độ, điều phối nguồn lực phát triển.<br>• Quản trị rủi ro dự án. | • Gặp khó khăn khi quản lý các nhóm nghiệp vụ thư viện và kỹ thuật tách rời. | • Quản lý dự án khoa học qua các mốc bàn giao (milestones) rõ ràng. |
-| **Technical Team**<br>*(Dev & DevOps)* | • Lập trình Frontend Next.js và Backend FastAPI.<br>• Thiết lập hạ tầng Cloud AWS/Azure (Kubernetes, S3, PostgreSQL).<br>• Cấu hình Docker container cho Tesseract OCR và Elasticsearch. | • Thường xuyên phải sửa chữa các ứng dụng thư viện cũ, khó bảo trì.<br>• Thiếu công cụ số hóa tự động khép kín. | • Làm chủ công nghệ hiện đại, tự động hóa build/deploy qua CI/CD.<br>• Hệ thống chạy ổn định, dễ dàng nâng cấp bảo trì. |
+| **Technical Team**<br>*(Dev & DevOps)* | • Lập trình Frontend Next.js và Backend FastAPI.<br>• Thiết lập hạ tầng Cloud AWS/Azure (Kubernetes, PostgreSQL).<br>• Cấu hình Docker container cho Tesseract OCR và Elasticsearch. | • Thường xuyên phải sửa chữa các ứng dụng thư viện cũ, khó bảo trì.<br>• Thiếu công cụ số hóa tự động khép kín. | • Làm chủ công nghệ hiện đại, tự động hóa build/deploy qua CI/CD.<br>• Hệ thống chạy ổn định, dễ dàng nâng cấp bảo trì. |
 | **Bạn đọc**<br>*(End User)* | • Tra cứu tài liệu, mượn/trả và đọc trực tuyến. | • Phải di chuyển trực tiếp đến thư viện, đọc bản giấy cũ nát tại phòng đọc và chép tay thủ công. | • Tra cứu toàn văn nhanh chóng, đọc sách online 24/7 từ xa qua trình đọc EPUB linh hoạt trên di động. |
 
 ---
@@ -47,7 +47,7 @@ Phiên bản 1.0 • Tháng 7/2026
 | Ban quản lý Thư viện | Sponsor | Internal | Hiệu suất đầu tư ngân sách, nâng cao chất lượng phục vụ | Cao | Trung bình |
 | Thủ thư trưởng | Business Lead | Internal | Tối ưu hóa quy trình mượn/trả, độ chính xác OCR | Cao | Cao |
 | Project Manager | PM | Internal | Hoàn thành dự án đúng hạn, đúng ngân sách | Cao | Cao |
-| Technical Team | Devs & DevOps | Internal | Kiến trúc hệ thống ổn định, bảo mật tệp tin S3 | Cao | Cao |
+| Technical Team | Devs & DevOps | Internal | Kiến trúc hệ thống ổn định, bảo mật tệp tin trong PostgreSQL | Cao | Cao |
 | Cán bộ thư viện | Operator | Internal | Giao diện số hóa dễ dùng, giảm thiểu thao tác thủ công | Trung bình | Cao |
 | Bạn đọc | End User | External | Trải nghiệm EPUB Reader tốt, tìm kiếm chính xác | Thấp | Cao |
 
@@ -109,7 +109,7 @@ Dự án kéo dài **7 tháng** theo lộ trình Gantt chi tiết dưới đây:
 1.  **KPI Số hóa:** Hoàn thành số hóa và chuyển đổi sang EPUB thành công cho tối thiểu **95%** lượng tài liệu thuộc danh mục ưu tiên trong 3 tháng đầu vận hành chính thức.
 2.  **KPI Tra cứu:** Đảm bảo thời gian phản hồi tìm kiếm toàn văn luôn dưới **2 giây** với cơ sở dữ liệu lớn.
 3.  **KPI Mượn/Trả:** Tự động gửi email/SMS nhắc hạn trả sách giấy với tỷ lệ chính xác **100%**.
-4.  **KPI Bảo mật:** Đạt chứng nhận Pen-test bảo mật, **0** vụ việc rò rỉ nguyên file EPUB gốc từ S3 ra ngoài.
+4.  **KPI Bảo mật:** Đạt chứng nhận Pen-test bảo mật, **0** vụ việc rò rỉ nguyên file EPUB gốc từ CSDL PostgreSQL ra ngoài.
 5.  **KPI Uptime:** Tính sẵn sàng của portal trực tuyến đạt tối thiểu **99.9%** (Uptime SLA).
 
 ---
