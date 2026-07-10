@@ -5,14 +5,14 @@
 **Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS)**
 **Thư viện & Phòng Công nghệ Thông tin**
 
-Phiên bản 3.0 • Tháng 7/2026 • Đánh giá dựa trên **Bộ 6 tài liệu Project Initiation v2.0** (`docs/01-project-idea.md` → `06-architecture.md`)
+Phiên bản 3.0 • Tháng 7/2026 • Đánh giá dựa trên **Bộ 8 tài liệu Project Initiation & Planning v2.0** (`docs/01-project-idea.md` → `08-cost-time-resource.md`)
 
 _Tài liệu nội bộ — dùng để hỗ trợ ra quyết định phê duyệt_
 
 ---
 
 > 🧠 **Tư duy của Agent:**
-> - **Phạm vi đánh giá:** Bộ 6 tài liệu Khởi tạo Dự án v2.0 của đề tài mới "Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)".
+> - **Phạm vi đánh giá:** Bộ 8 tài liệu Khởi tạo và Hoạch định Dự án v2.0 của đề tài mới "Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)".
 > - **Giai đoạn dự án:** Khởi tạo (chưa triển khai). Các nhóm DORA (VII) và PIR (VIII) được đánh dấu N/A và thay bằng đánh giá mức độ sẵn sàng của kế hoạch đo lường.
 > - **Mục tiêu:** Đánh giá khách quan, phản biện độc lập xem bộ tài liệu mới có đáp ứng các tiêu chuẩn nghiệp vụ và kỹ thuật theo khung lý thuyết không, đồng thời chỉ ra các khoảng trống cần hoàn thiện.
 
@@ -20,13 +20,15 @@ _Tài liệu nội bộ — dùng để hỗ trợ ra quyết định phê duy�
 
 ## 0. Giới thiệu & Phương pháp báo cáo
 
-Báo cáo này tổng hợp kết quả phản biện và chấm điểm độc lập đối với hồ sơ dự án **Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)**. Tài liệu đánh giá bao gồm bộ 6 tệp tin Markdown đặc tả khởi tạo dự án:
+Báo cáo này tổng hợp kết quả phản biện và chấm điểm độc lập đối với hồ sơ dự án **Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)**. Tài liệu đánh giá bao gồm bộ 8 tệp tin Markdown đặc tả khởi tạo và hoạch định dự án:
 1.  [01-project-idea.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/01-project-idea.md)
 2.  [02-project-proposal.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/02-project-proposal.md)
 3.  [03-vision-and-scope.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/03-vision-and-scope.md)
 4.  [04-feasibility-study.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/04-feasibility-study.md)
 5.  [05-project-charter.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/05-project-charter.md)
 6.  [06-architecture.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/06-architecture.md)
+7.  [07-product-backlog.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/07-product-backlog.md)
+8.  [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md)
 
 ### Thang điểm đánh giá chuẩn
 *   **9 – 10:** Đáp ứng đầy đủ, có bằng chứng trích dẫn cụ thể.
