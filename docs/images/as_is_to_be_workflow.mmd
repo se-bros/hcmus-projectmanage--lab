@@ -1,32 +1,25 @@
 graph TD
     subgraph As-is ["Quy trình Hiện trạng Thủ công (As-is)"]
         direction TB
-        A1[Sinh viên tốt nghiệp] -->|In & đóng tập bìa cứng| A2[Di chuyển đến Thư viện Q5]
-        A2 -->|Nộp trực tiếp bản cứng| A3[Thủ thư đối chiếu danh sách giấy]
-        A3 -->|Nhập metadata thủ công| A4[Xếp kho lên kệ vật lý]
+        A1[Nhập tài liệu giấy mới] -->|Dán nhãn & ghi sổ thủ công| A2[Xếp lên kệ kho vật lý]
+        A2 -->|Hao mòn vật lý theo thời gian| A3[Rách hỏng & mất mát tài liệu]
         
-        A5[Độc giả tra cứu] -->|Đến thư viện tra thẻ mục lục| A6[Viết phiếu mượn giấy]
-        A6 -->|Gửi phiếu cho thủ thư| A7[Thủ thư vào kho tìm bản cứng]
-        A7 -->|Giao tài liệu độc nhất| A8[Đọc tại chỗ & Chép tay thủ công]
-        A8 -->|Hao mòn & Rách hỏng sách| A9[Trả sách & Xếp lại vào kho]
+        A4[Bạn đọc tra cứu] -->|Đến thư viện tra sổ/mục lục| A5[Viết phiếu mượn giấy]
+        A5 -->|Thủ thư lục tìm trong kho kệ| A6[Cho mượn bản cứng gốc]
+        A6 -->|Đọc tại chỗ & chép tay hoặc mang về| A7[Trả sách & kiểm kê thủ công]
     end
 
     subgraph To-be ["Quy trình Tương lai Số hóa (To-be)"]
         direction TB
-        B1[Sinh viên đăng nhập SSO] -->|Khai báo Metadata chuẩn Dublin Core| B2[Tải lên file PDF khóa luận]
-        B2 -->|Ký Consent số & Chọn phân quyền| B3[Thủ thư duyệt trực tuyến]
+        B1[Librarian upload tệp thô] -->|PDF scan/PNG/JPEG| B2[Dịch vụ OCR Tesseract]
+        B2 -->|Tách chữ tiếng Việt & biên tập| B3[Đóng gói EPUB & phân loại Category/Tag]
         
-        B3 -->|Duyệt đạt| B4[Hệ thống tự động hóa]
-        B4 -->|Gán Handle ID & Lưu trữ Object Storage| B5[Lập chỉ mục toàn văn Elasticsearch]
+        B4[Bạn đọc tra cứu từ xa] -->|Tìm Elasticsearch toàn văn| B5[Hệ thống kiểm tra RBAC]
+        B5 -->|Quyền Reader| B6[Đọc trực tuyến EPUB Reader online]
+        B5 -->|Yêu cầu sách giấy| B7[Đăng ký mượn/trả tự động]
         
-        B3 -->|Không đạt| B3_Err[Từ chối & Gửi mail báo sửa đổi] --> B1
-        
-        B6[Độc giả truy cập từ xa 24/7] -->|Tìm kiếm Elasticsearch nâng cao| B7[Hệ thống tự động kiểm tra phân quyền]
-        B7 -->|Thỏa mãn quyền truy cập| B8[Đọc trực tuyến qua Signed URL bảo mật]
-        B8 -->|Trích dẫn tự động APA/IEEE & Link Handle| B9[Bảo tồn số vĩnh viễn]
+        B8[Thống kê & Báo cáo] -->|Lượt đọc & mượn sách| B9[Tối ưu hóa quản lý tài nguyên]
     end
 
     style As-is fill:#fff1f0,stroke:#ff4d4f,stroke-width:2px;
     style To-be fill:#f6ffed,stroke:#52c41a,stroke-width:2px;
-    style B3_Err fill:#fff2e8,stroke:#fa8c16,stroke-width:1px;
-

@@ -1,15 +1,16 @@
 flowchart TD
-    SV[Sinh viên tốt nghiệp] -->|1. Nộp bản mềm + metadata| Sys((Hệ thống Repository))
-    SV -->|2. Ký consent bản quyền| Sys
-    Sys -->|3. Yêu cầu xác thực| SSO[Hệ thống xác thực SSO/LDAP]
-    SSO -->|4. Kết quả xác thực| Sys
-    Sys -->|5. Giao nhiệm vụ duyệt| TT[Thủ thư / Cán bộ thư viện]
-    TT -->|6. Kiểm duyệt & xuất bản| Sys
-    Sys -->|7. Lưu trữ tệp tin| Storage[(Hệ thống lưu trữ & Backup)]
-    Sys -->|8. Truy vấn / Lập chỉ mục| Search[(Elasticsearch Engine)]
-    Sys -->|9. Đối chiếu thông tin| ĐàoTạo[Hệ thống QL Đào tạo]
-    ĐộcGiả[Độc giả: SV, GV, Ngoài trường] -->|10. Tra cứu toàn văn| Sys
+    Reader[Bạn đọc - Reader] -->|1. Đăng ký mượn / Trả sách| Sys((Hệ thống LibDMS))
+    Reader -->|2. Tra cứu toàn văn & Đọc EPUB| Sys
+    Librarian[Thủ thư - Librarian] -->|3. Tải lên tệp thô PDF/PNG/JPEG| Sys
+    Librarian -->|4. Hiệu đính text & Phân loại Category/Tag| Sys
+    Admin[Quản trị - Admin] -->|5. Quản lý tài khoản & Cấu hình RBAC| Sys
     
+    Sys -->|6. Lưu trữ file EPUB| Storage[(AWS S3 Storage)]
+    Sys -->|7. Lưu Metadata & Lịch sử mượn| DB[(PostgreSQL Database)]
+    Sys -->|8. Lập chỉ mục & Tìm kiếm| Search[(Elasticsearch Engine)]
+    Sys -->|9. OCR văn bản tiếng Việt| OCREngine[Tesseract OCR Worker]
+
     style Sys fill:#d4f1f9,stroke:#007799,stroke-width:2px;
     style Storage fill:#f9d4f1,stroke:#990077,stroke-width:2px;
     style Search fill:#efe,stroke:#009900,stroke-width:2px;
+    style DB fill:#fff2e8,stroke:#fa8c16,stroke-width:2px;

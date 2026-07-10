@@ -1,8 +1,8 @@
 # ARCHITECTURE (HOW)
 
-## Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS
+## Hệ thống Quản lý Số hóa Thư viện (LibDMS)
 
-**Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
+**Thư viện hiện đại & Ban Công nghệ Thông tin**
 
 Phiên bản 1.0 • Tháng 7/2026
 
@@ -17,68 +17,70 @@ Phiên bản 1.0 • Tháng 7/2026
 
 ## 1. Phong cách Kiến trúc
 
-![Mô hình kiến trúc hệ thống (System Architecture)](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/system_architecture.svg)
+Hệ thống **LibDMS** sử dụng phong cách kiến trúc **Custom Containerized Service Architecture (Kiến trúc Dịch vụ đóng gói Container)**. Kiến trúc này được thiết kế để phân rã các tác vụ xử lý nặng như OCR và đóng gói EPUB ra khỏi máy chủ xử lý API chính, đảm bảo tính sẵn sàng và hiệu năng cao nhất trên môi trường Cloud (AWS/Azure).
 
-**Lựa chọn: Modular monolith trên nền tảng mã nguồn mở DSpace 7.x/8.0 (sử dụng Angular frontend và Java REST API backend), kết hợp dịch vụ tìm kiếm Solr/Elasticsearch tách rời và cổng dịch vụ AI/RAG vệ tinh (triển khai ở giai đoạn sau).**
+![Mô hình kiến trúc hệ thống (System Architecture)](file:///d:/Project/hcmus-projectmanage--lab/docs/images/system_architecture.svg)
 
-| Lý do chọn                                         | Giải thích                                                                                                                                                                                                                                    |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Không chọn xây mới (build from scratch)            | Nền tảng mã nguồn mở đã kiểm chứng rộng rãi trong ngành thư viện số, có sẵn mô hình dữ liệu Dublin Core, quản lý phân quyền, workflow duyệt xuất bản — rút ngắn thời gian phát triển và giảm rủi ro kỹ thuật so với tự thiết kế từ đầu.       |
-| Không chọn microservices ngay từ MVP               | Đội ngũ vận hành nhỏ (nội bộ CNTT, không có đội SRE chuyên trách); khối lượng nghiệp vụ ở MVP không đòi hỏi mở rộng độc lập theo từng service; kiến trúc phân tán sẽ tăng chi phí vận hành/giám sát không cần thiết ở giai đoạn này.          |
-| Tách riêng lớp tìm kiếm (Elasticsearch/OpenSearch) | Tìm kiếm toàn văn là năng lực lõi của MVP, cần hiệu năng và khả năng mở rộng độc lập với phần lõi repository — tách thành dịch vụ riêng nhưng vẫn nằm trong cùng hệ thống, không phải microservice độc lập theo nghĩa vận hành riêng đội ngũ. |
-| Tách riêng lớp AI/RAG (giai đoạn sau, tùy chọn)    | Chỉ triển khai khi có ngân sách/nhu cầu xác nhận (Giai đoạn 3); tách thành dịch vụ độc lập để không ảnh hưởng đến độ ổn định của repository lõi khi thử nghiệm công nghệ mới (embedding, vector search).                                      |
-| Giải quyết bài toán bảo trì/tích hợp               | Nền tảng mã nguồn mở có cộng đồng hỗ trợ dài hạn, giảm phụ thuộc vào một nhà cung cấp duy nhất (không vendor lock-in nặng); hỗ trợ chuẩn tích hợp phổ biến (SSO/LDAP, OAI-PMH) để kết nối với hệ thống quản lý đào tạo hiện có của trường.    |
+| Thành phần kiến trúc | Lý do lựa chọn |
+| --- | --- |
+| **Decoupled Frontend & Backend** | Tách biệt hoàn toàn Next.js frontend và FastAPI backend. Giúp đội ngũ lập trình có thể làm việc song song, tối ưu hóa giao diện đọc sách trên di động và dễ dàng triển khai CDN toàn cầu. |
+| **Worker-based OCR & Converter** | Tác vụ chạy nhận dạng văn bản (Tesseract OCR) và chuyển đổi định dạng (Calibre/Pandoc) ngốn rất nhiều CPU/RAM. Các tác vụ này được đưa vào các Worker chạy container độc lập, giao tiếp qua hàng đợi thông báo (Message Queue) để tránh làm nghẽn API server chính khi có hàng chục thủ thư số hóa tài liệu cùng lúc. |
+| **Tách biệt tầng tìm kiếm (Elasticsearch)** | Lập chỉ mục toàn văn văn bản sau OCR và lưu trữ độc lập trên Elasticsearch Cluster, đảm bảo các truy vấn tìm kiếm của hàng ngàn bạn đọc cùng lúc phản hồi dưới 2 giây mà không ảnh hưởng tới cơ sở dữ liệu chính PostgreSQL. |
+| **Object Storage cho tài nguyên tệp** | Toàn bộ tệp ảnh thô tải lên và file EPUB sinh ra được lưu trữ trực tiếp trên AWS S3 Storage. Giúp hệ thống không bị giới hạn bộ nhớ vật lý của máy chủ web và dễ dàng co giãn. |
+
+---
 
 ## 2. Ngăn xếp Công nghệ
 
-| Thành phần | Lựa chọn cụ thể | Lý do & Phiên bản |
+| Thành phần | Lựa chọn cụ thể | Ghi chú & Phiên bản |
 | :--- | :--- | :--- |
-| **Nền tảng lõi (repository)** | **DSpace 7.x/8.0** | Nền tảng mã nguồn mở phổ biến và ổn định nhất thế giới dành cho thư viện số học thuật, hỗ trợ sẵn chuẩn Dublin Core, quản lý phân quyền, workflow duyệt và tích hợp định danh Handle ID. |
-| **Frontend** | **Angular 16+** (custom) | DSpace 7.x/8.0 sử dụng Angular làm giao diện mặc định. Đội ngũ phát triển tùy biến theme Angular bằng HTML5, CSS3 (Sass) và Bootstrap để đồng bộ nhận diện thương hiệu HCMUS. |
-| **Backend API Server** | **Java 17 (Spring Boot)** | DSpace core chạy trên nền Spring Boot, cung cấp hệ thống REST API mạnh mẽ, bảo mật và kế thừa toàn bộ logic nghiệp vụ lưu trữ học thuật của DSpace. |
-| **Web Server / Proxy** | **Nginx 1.24+** & **Tomcat 10** | Nginx đóng vai trò Web Server phục vụ Angular static files, Reverse Proxy chuyển hướng request đến Apache Tomcat 10 container (chạy backend API), và xử lý SSL/TLS 1.3. |
-| **Cơ sở dữ liệu** | **PostgreSQL 16** | Hệ quản trị cơ sở dữ liệu quan hệ mạnh mẽ, được tối ưu sẵn cho DSpace, hỗ trợ tốt kiểu dữ liệu JSON và cho phép tích hợp tiện ích mở rộng `pgvector` cho nhu cầu AI ở giai đoạn sau. |
-| **Tìm kiếm & Chỉ mục** | **Solr 9.x** & **Elasticsearch 8.x** | Solr 9.x được tích hợp sẵn làm công cụ tìm kiếm và thống kê mặc định của DSpace. Elasticsearch 8.x được triển khai tách rời như một dịch vụ vệ tinh để cung cấp tính năng tìm kiếm toàn văn (full-text search) nâng cao với hiệu năng cao hơn. |
-| **Xác thực & SSO** | **Keycloak 24.x** kết nối **LDAP/Active Directory** | Keycloak làm Identity Provider (IdP) quản lý phiên đăng nhập tập trung (SSO) qua OIDC/SAML2, cấu hình đồng bộ trực tiếp với máy chủ LDAP/Active Directory sẵn có của HCMUS. |
-| **Lưu trữ tệp (Storage)** | **MinIO (On-premise Object Storage)** | Giải pháp lưu trữ đối tượng tương thích S3 chạy cục bộ (on-premise) trên hạ tầng máy chủ của trường, hỗ trợ mã hóa tĩnh (encryption at rest) và phân quyền truy cập thông qua Signed URL bảo mật. |
-| **Dịch vụ AI/RAG (Giai đoạn sau)** | • **Python 3.11** (FastAPI/LangChain)<br>• **Qdrant** (Vector DB)<br>• Embedding **BAAI/bge-m3**<br>• LLM **Llama-3-8B-Instruct** | Triển khai như một dịch vụ vệ tinh (Microservice độc lập) kết nối qua API với DSpace lõi. Qdrant lưu trữ vector biểu diễn. Sử dụng mô hình nguồn mở Llama-3-8B chạy GPU cục bộ để tránh rò rỉ dữ liệu học thuật ra bên ngoài. |
-| **Hạ tầng triển khai** | **Docker & Docker Compose**, **VMware/Proxmox VMs** | Sử dụng Docker để đóng gói toàn bộ các dịch vụ (Tomcat, Angular, Nginx, PostgreSQL, Solr, MinIO, Keycloak). Chạy trên hệ thống ảo hóa của phòng máy chủ trường để tối ưu hóa tài nguyên phần cứng. |
-| **Công cụ Sao lưu & DR** | **PgBackRest** (cho DB) và **Restic** (cho MinIO storage) | PgBackRest hỗ trợ backup gia tăng (incremental backup) tự động hàng ngày. Restic hỗ trợ backup và mã hóa file PDF sang máy chủ backup độc lập ngoài mạng chính của trường (off-site backup). |
+| **Frontend Portal** | **Next.js 14+ (React 18)** | Hỗ trợ Server-Side Rendering (SSR) tối ưu hóa SEO cho cổng tra cứu công khai, UI sử dụng CSS Modules/Tailwind CSS thiết kế Responsive cho Mobile/Tablet/PC. |
+| **EPUB Reader Component** | **Epub.js** | Thư viện JavaScript mạnh mẽ dùng để render sách EPUB trực tiếp trên trình duyệt, hỗ trợ bookmark, tùy biến theme đọc sách. |
+| **Backend API Server** | **FastAPI (Python 3.11)** | Framework API hiệu năng cao dựa trên Python, hỗ trợ async/await tự nhiên, tự động sinh tài liệu Swagger/OpenAPI, và tích hợp hoàn hảo với các thư viện AI/RAG (LangChain, LlamaIndex). |
+| **Database chính** | **PostgreSQL 16** | Cơ sở dữ liệu quan hệ mạnh mẽ lưu trữ Metadata tài liệu, tài khoản người dùng, phân quyền RBAC và lịch sử mượn/trả sách. |
+| **Search Engine** | **Elasticsearch 8.x** | Công cụ tìm kiếm toàn văn tốc độ cao hỗ trợ phân tích ngôn ngữ tiếng Việt (Vietnamese Analyzer) để lập chỉ mục chính xác. |
+| **File Storage** | **AWS S3 Storage** | Dịch vụ lưu trữ đối tượng đám mây của Amazon Web Services để lưu trữ an toàn các tệp tin EPUB và ảnh quét thô gốc. |
+| **OCR Engine** | **Tesseract OCR v5** | Công cụ nhận dạng ký tự quang học nguồn mở tốt nhất, cài đặt gói ngôn ngữ tiếng Việt (`vie.traineddata`) để quét tài liệu thô. |
+| **EPUB Converter** | **Calibre CLI (ebook-convert) / Pandoc** | Các công cụ chuyển đổi dòng lệnh mạnh mẽ để đóng gói tệp tin HTML/Text sau OCR thành file `.epub` chuẩn. |
+| **Chatbot AI/RAG Engine** | **LangChain & LlamaIndex (Python)** | Framework xử lý RAG kết nối Elasticsearch (Vector search) và LLMs (OpenAI/Ollama/Groq) để hỗ trợ hỏi đáp trực tuyến dựa trên văn bản sách đã OCR. |
+| **Môi trường triển khai** | **Docker, Docker Compose, Kubernetes** | Toàn bộ các dịch vụ được đóng gói thành Docker Images, chạy Docker Compose ở môi trường Staging/Dev và deploy lên AWS EKS hoặc Azure AKS ở môi trường Production. |
+| **CI/CD Pipeline** | **GitHub Actions / GitLab CI** | Tự động chạy test, build Docker image và deploy lên Kubernetes Cluster khi có commit code mới. |
+
+---
 
 ## 3. Phương án Bảo mật, Sao lưu & Khôi phục Thảm họa (Backup & Disaster Recovery)
 
-Để giải quyết bài toán độ tin cậy và cam kết mức độ dịch vụ (SLA 99.5%), hệ thống thiết lập các chính sách bảo mật và khôi phục dữ liệu chi tiết sau:
+### 3.1. Chiến lược Bảo mật (Security Strategy)
 
-### 3.1. Chiến lược Sao lưu (Backup Strategy)
-*   **Sao lưu cơ sở dữ liệu (PostgreSQL):** Thực hiện sao lưu gia tăng (incremental backup) tự động hàng ngày lúc 01:00 AM và sao lưu toàn phần (full backup) vào mỗi Chủ nhật. File backup được mã hóa AES-256.
-*   **Sao lưu tệp tin số hóa (Object Storage):** Áp dụng cơ chế đồng bộ hóa thời gian thực (real-time replication) sang một vùng lưu trữ thứ cấp độc lập (off-site storage) nằm ngoài hệ thống mạng chính của trường để tránh rủi ro mất mát dữ liệu do ransomware.
-*   **Thời gian lưu trữ bản sao lưu:** Giữ tối thiểu 30 bản sao lưu ngày gần nhất và 12 bản sao lưu tháng gần nhất.
-
-### 3.2. Chỉ số phục hồi & Khôi phục thảm họa (Disaster Recovery)
-*   **RPO (Recovery Point Objective):** Tối đa **24 giờ** (đảm bảo mất mát dữ liệu không vượt quá lượng công việc của 1 ngày trong trường hợp xấu nhất).
-*   **RTO (Recovery Time Objective):** Tối đa **4 giờ** (thời gian phục dựng lại toàn bộ hệ thống từ bản sao lưu gần nhất khi xảy ra thảm họa phần cứng).
-*   **Kịch bản diễn tập:** Tổ chức diễn tập khôi phục hệ thống (mock disaster recovery) định kỳ 6 tháng một lần do Phòng CNTT chủ trì.
-
-### 3.3. Các lớp bảo mật (Security Layers)
-*   **Mã hóa truyền tải:** Bắt buộc sử dụng giao thức HTTPS (TLS 1.3) cho toàn bộ phiên truy cập.
-*   **Mã hóa lưu trữ:** File PDF lưu trữ trong Object Storage được mã hóa tĩnh (encryption at rest).
+*   **Mã hóa truyền tải:** Bắt buộc sử dụng HTTPS (TLS 1.3) cho toàn bộ request.
+*   **Bảo mật tệp tin tài liệu:** 
+    *   File EPUB gốc lưu trữ trên Cloud Storage (S3) được cấu hình ở chế độ Private (không thể truy cập công khai).
+    *   Khi bạn đọc mở sách, backend LibDMS kiểm tra quyền truy cập (mức độ RBAC) rồi sinh ra **Signed URL** có thời hạn hiệu lực tối đa 15 phút.
+    *   Trình đọc EPUB Reader trên Next.js frontend chặn chuột phải (ngăn sao chép text), ẩn tính năng in ấn mặc định của trình duyệt và không hiển thị nút tải file về.
 *   **Xác thực và Phân quyền:**
-    *   Sinh viên và cán bộ đăng nhập qua **Keycloak SSO** (OIDC/SAML2) kết nối với hệ thống LDAP/Active Directory của trường để đồng bộ tài khoản.
-    *   Hệ thống kiểm soát quyền đọc tệp tin PDF trực tiếp ở mức ứng dụng DSpace. Link tải file từ **MinIO** được sinh tự động dưới dạng Signed URL có thời hạn hiệu lực tối đa 15 phút để ngăn chặn hành vi tải tệp hàng loạt bất hợp pháp.
+    *   Hệ thống sử dụng cơ chế xác thực **JWT (JSON Web Token)** đính kèm cookie bảo mật (`httpOnly`, `secure`, `sameSite`).
+    *   Phân quyền RBAC (Admin, Librarian, Reader) được kiểm tra ở cả tầng frontend (chặn điều hướng) và backend (API Guards).
+
+### 3.2. Sao lưu và Khôi phục dữ liệu (Backup & DR)
+
+*   **Sao lưu Database:** Sử dụng công cụ tự động snapshot hàng ngày của dịch vụ đám mây (như AWS RDS backup) hoặc chạy PgBackRest sao lưu tự động lúc 02:00 AM, giữ tối thiểu 30 bản backup gần nhất.
+*   **Sao lưu File Storage:** Cấu hình **Cross-Region Replication (CRR)** trên AWS S3 để tự động đồng bộ tệp tin EPUB sang một Region vật lý độc lập khác nhằm đề phòng thảm họa mất trung tâm dữ liệu.
+*   **Chỉ số khôi phục thảm họa:**
+    *   *RPO (Recovery Point Objective):* Dưới 24 giờ (đảm bảo mất dữ liệu tối đa trong 1 ngày làm việc).
+    *   *RTO (Recovery Time Objective):* Dưới 4 giờ (hệ thống phục hồi hoạt động hoàn toàn từ bản backup cloud gần nhất khi xảy ra thảm họa phần cứng).
 
 ---
 
 ## 4. Quy trình Nghiệp vụ & Vận hành Chi tiết
 
-Sơ đồ tuần tự (Sequence Diagram) dưới đây mô tả chi tiết sự tương tác giữa các tác nhân và hệ thống trong quy trình nộp, duyệt và xuất bản khóa luận tốt nghiệp:
+Sơ đồ tuần tự dưới đây mô tả quá trình số hóa tài liệu từ đầu vào thô sang EPUB và lưu trữ trên LibDMS:
 
-![Sơ đồ Tuần tự Nộp & Duyệt Khóa luận](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/docs/images/submission_workflow.svg)
+![Sơ đồ Tuần tự Số hóa Tài liệu](file:///d:/Project/hcmus-projectmanage--lab/docs/images/submission_workflow.svg)
 
-1. **Sinh viên** truy cập cổng thông tin và đăng nhập qua hệ thống **Keycloak SSO** kết nối **LDAP/Active Directory** tập trung của trường.
-2. Sau khi xác thực thành công, sinh viên tải lên tệp tin khóa luận (PDF) và nhập dữ liệu mô tả (**Metadata Dublin Core**), đồng thời thực hiện ký cam kết bản quyền số (**Consent Form**).
-3. Hệ thống lưu trữ thông tin ở trạng thái bản nháp và lưu tệp tin PDF an toàn vào **MinIO Object Storage**.
-4. Hệ thống thông báo cho **Thủ thư** để thực hiện kiểm duyệt.
-5. Thủ thư truy cập dashboard quản trị để rà soát chất lượng metadata và file PDF.
-6. Nếu hợp lệ, thủ thư duyệt và cấu hình mức độ truy cập (Public/Internal/Embargo). Hệ thống cập nhật trạng thái xuất bản, đồng thời gửi thông tin sang **Elasticsearch 8.x** để lập chỉ mục toàn văn. Hệ thống gán mã định danh bền vững (**Handle ID**) và tự động gửi email xác nhận kèm link truy cập cho sinh viên.
-7. Nếu không hợp lệ (lỗi metadata hoặc sai định dạng), thủ thư từ chối bài nộp và hệ thống tự động gửi email yêu cầu sinh viên sửa đổi, cập nhật lại qua cổng thông tin.
-
+1.  **Librarian** truy cập admin dashboard, thực hiện tải lên tệp tin thô (PDF scan, PNG, JPEG) và nhập Metadata cơ bản (tiêu đề, tác giả, category, tags).
+2.  Backend LibDMS tiếp nhận file, lưu tệp gốc vào **AWS S3 Storage**, tạo bản ghi tài liệu ở trạng thái "Processing" trong **PostgreSQL**.
+3.  Backend gửi một message chứa thông tin file vào hàng đợi (Message Queue).
+4.  **OCR & Converter Worker** nhận message, tải ảnh từ Storage xuống, gọi **Tesseract OCR** để trích xuất text tiếng Việt.
+5.  Worker sắp xếp cấu trúc text, gọi **Calibre/Pandoc** đóng gói thành file EPUB. File EPUB mới sinh được upload ngược lại lên **Storage**.
+6.  Worker cập nhật trạng thái tài liệu thành "Completed", đồng thời gửi text sau OCR sang **Elasticsearch** để lập chỉ mục tìm kiếm toàn văn.
+7.  Hệ thống gửi thông báo cho thủ thư kiểm duyệt. Thủ thư có thể mở trang hiệu đính (Correction Dashboard) để chỉnh sửa lỗi chính tả phát sinh do OCR trước khi cho phép xuất bản chính thức tới bạn đọc.

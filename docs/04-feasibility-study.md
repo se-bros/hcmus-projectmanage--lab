@@ -1,8 +1,8 @@
 # FEASIBILITY STUDY
 
-## Kho Lưu trữ Số Khóa luận Tốt nghiệp HCMUS
+## Hệ thống Quản lý Số hóa Thư viện (LibDMS)
 
-**Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
+**Thư viện hiện đại & Ban Công nghệ Thông tin**
 
 Phiên bản 1.0 • Tháng 7/2026
 
@@ -19,104 +19,99 @@ Phiên bản 1.0 • Tháng 7/2026
 
 ## 1. 8 Khía cạnh Khả thi
 
-| Khía cạnh                          | Đánh giá                                                                                                                                                                                                                                  |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Pháp lý (Legal)**                | **Yếu nhất.** Rủi ro bản quyền/quyền tác giả của sinh viên chưa có quy trình đồng ý công khai (consent) cụ thể. Đây là rủi ro có thể chặn đứng việc đăng tải khóa luận, cần giải quyết TRƯỚC khi số hóa hàng loạt, không xử lý song song. |
-| **Thị trường (Market — cung/cầu)** | Nhu cầu tra cứu từ xa được suy đoán là có thật (sinh viên/giảng viên) nhưng chưa được khảo sát định lượng. "Cung" (giải pháp mã nguồn mở trưởng thành) đã sẵn có trên thị trường công nghệ.                                               |
-| **Kinh tế (Economic)**             | Yếu — toàn bộ số liệu chi phí là ước lượng minh họa, biên độ dao động gần gấp đôi ở một số hạng mục, chưa có báo giá nhà cung cấp thực tế.                                                                                                |
-| **Công nghệ & Hệ thống**           | Khả thi cao — nền tảng mã nguồn mở (DSpace/Invenio) đã được kiểm chứng rộng rãi trong ngành thư viện số, giảm rủi ro kỹ thuật so với xây mới.                                                                                             |
-| **Nguồn lực (Resource)**           | Trung bình — giả định dùng nội lực CNTT (3–4 người × 3 tháng) nhưng chưa có xác nhận chính thức về năng lực và thời gian rảnh thực tế của đội ngũ.                                                                                        |
-| **Vận hành (Operational)**         | Trung bình — có kế hoạch đào tạo/truyền thông nhưng chưa có cam kết nhân sự vận hành lâu dài sau go-live.                                                                                                                                 |
-| **Lịch trình (Schedule)**          | Khá tốt — có phương án linh hoạt (số hóa toàn trường 7–10 tháng vs. thí điểm 1–2 khoa 3–4 tháng), đường găng được xác định rõ (số hóa).                                                                                                   |
-| **Văn hóa (Cultural)**             | Trung bình — cần thay đổi thói quen nộp/tra cứu bản giấy đã tồn tại lâu năm; rủi ro "adoption thấp" đã được nhận diện nhưng biện pháp còn chung chung.                                                                                    |
+| Khía cạnh | Đánh giá |
+| --- | --- |
+| **Pháp lý (Legal)** | **Trung bình.** Rủi ro về bản quyền tác giả đối với tài liệu được số hóa. Tuy nhiên, thư viện đóng vai trò là chủ sở hữu hoặc đơn vị được ủy quyền khai thác tài liệu. Hệ thống hỗ trợ cơ chế phân quyền RBAC và chặn sao chép/tải tệp trực tuyến để hạn chế tối đa vi phạm bản quyền. |
+| **Thị trường (Market — cung/cầu)** | **Khả thi cao.** Nhu cầu tra cứu tài liệu và đọc sách trực tuyến của bạn đọc ngày càng tăng cao, đặc biệt sau xu hướng học tập/làm việc từ xa. Phía "cung" có rất nhiều thư viện, giải pháp OCR và định dạng EPUB mã nguồn mở trưởng thành trên thị trường. |
+| **Kinh tế (Economic)** | **Khả thi.** Chi phí đầu tư ban đầu (CapEx) và chi phí vận hành hàng năm (OpEx) được tối ưu hóa bằng cách sử dụng các dịch vụ cloud-native trả tiền theo mức độ sử dụng (pay-as-you-go) trên AWS/Azure. |
+| **Công nghệ & Hệ thống** | **Khả thi cao.** Việc xây dựng custom stack (Next.js, FastAPI, PostgreSQL, Elasticsearch) là những công nghệ phổ biến, dễ tuyển dụng nhân sự và có tài liệu hỗ trợ phong phú. Pipeline OCR (Tesseract) và EPUB generator (Calibre/Pandoc) đều đã được chứng minh hiệu quả trong các dự án tương tự. |
+| **Nguồn lực (Resource)** | **Khả thi.** Đội ngũ kỹ thuật 5 người có đầy đủ kỹ năng phát triển frontend, backend, OCR và thiết lập hạ tầng Cloud. Các thủ thư sẵn sàng tham gia kiểm thử nghiệp vụ và hiệu đính dữ liệu. |
+| **Vận hành (Operational)** | **Khá tốt.** Hệ thống tự động hóa phần lớn quy trình OCR và đóng gói EPUB, giúp thủ thư giảm thiểu công việc thủ công. Tuy nhiên, thủ thư cần được đào tạo kỹ năng hiệu đính văn bản trên hệ thống. |
+| **Lịch trình (Schedule)** | **Khả thi.** Lộ trình 7 tháng chia nhỏ thành các chặng (sprints), với phiên bản MVP ra mắt ở tháng thứ 4 giúp kiểm chứng sớm hiệu năng hệ thống và chất lượng OCR thực tế. |
+| **Văn hóa (Cultural)** | **Tốt.** Bạn đọc trẻ tuổi thích ứng rất nhanh với việc đọc sách điện tử (EPUB) trực tuyến trên các thiết bị di động. |
+
+---
 
 ## 2. SWOT & Benchmarking
 
-|                            | Nội dung                                                                                                                                                        |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Điểm mạnh (Strengths)**  | Dùng nền tảng mã nguồn mở đã kiểm chứng (giảm rủi ro kỹ thuật); có mục "Out of scope" rõ ràng giúp tránh scope creep; có phương án MVP/thí điểm để giảm rủi ro. |
-| **Điểm yếu (Weaknesses)**  | Chưa có số liệu baseline thực tế (số đầu khóa luận, diện tích kho...); chưa có khảo sát người dùng thật; quy trình consent bản quyền chưa thiết kế.             |
-| **Cơ hội (Opportunities)** | Phù hợp định hướng chuyển đổi số của ĐHQG-HCM; có thể là hình mẫu tham chiếu cho các khoa/đơn vị khác trong trường.                                             |
-| **Thách thức (Threats)**   | Thay đổi quy định pháp lý về bản quyền/dữ liệu cá nhân; phụ thuộc quy chế lưu trữ bản cứng hiện hành; rủi ro người dùng không áp dụng.                          |
+### SWOT Analysis
 
-**Benchmarking nhanh:** Nhiều trường đại học lớn tại Việt Nam đã triển khai thành công hệ thống thư viện số trên nền tảng DSpace như Hệ thống Thư viện số VNU-LIC (Đại học Quốc gia Hà Nội) và Thư viện Tạ Quang Bửu (Đại học Bách Khoa Hà Nội). Các mô hình này đã chứng minh tính bền vững, khả năng lưu trữ hàng chục ngàn luận văn, khóa luận và giải quyết triệt để vấn đề quá tải kho vật lý. Điều này xác nhận giải pháp repository là chuẩn công nghiệp phù hợp và hoàn toàn khả thi tại HCMUS.
+| Điểm mạnh (Strengths) | Điểm yếu (Weaknesses) |
+| --- | --- |
+| • Custom stack linh hoạt, giao diện Next.js hiện đại.<br>• Hỗ trợ tự động OCR tiếng Việt và sinh EPUB.<br>• Phân quyền người dùng RBAC chặt chẽ.<br>• Tìm kiếm toàn văn Elasticsearch tốc độ cao.<br>• Tích hợp chatbot hỏi đáp thông minh (RAG Chatbot). | • OCR phụ thuộc lớn vào chất lượng ảnh quét thô đầu vào.<br>• Chi phí Cloud lưu trữ ảnh thô dung lượng lớn ban đầu.<br>• Chưa tích hợp thanh toán phạt trễ hạn. |
+| **Cơ hội (Opportunities)** | **Thách thức (Threats)** |
+| • Xu hướng chuyển đổi số thư viện toàn quốc.<br>• Tiết kiệm diện tích kho bãi vật lý cho thư viện.<br>• Khả năng mở rộng thành sản phẩm SaaS cho các thư viện khác. | • Rò rỉ tài liệu nếu người dùng cố tình bypass qua devtools trình duyệt.<br>• Chi phí dịch vụ cloud (băng thông, lưu trữ) tăng nhanh khi lượng bạn đọc đột biến. |
+
+### Benchmarking
+
+Phần lớn các thư viện đại học và thư viện công cộng tại Việt Nam hiện tại đang sử dụng các phần mềm thư viện số cũ như DSpace (ví dụ: VNU-LIC, Thư viện Tạ Quang Bửu) hoặc các phần mềm quản lý thư viện truyền thống (Koha). 
+
+*   **Hạn chế của DSpace/Koha:** Chỉ hỗ trợ lưu trữ tệp đính kèm thô (thường là PDF dạng scan rất nặng), không hỗ trợ đọc trực tuyến bảo mật tốt, giao diện khó tùy biến trên thiết bị di động và hoàn toàn không có pipeline OCR tự động chuyển sang EPUB.
+*   **Ưu thế của LibDMS:** Khắc phục triệt để các nhược điểm trên bằng giải pháp **Custom Modern Stack**. Tự động chuyển đổi tài liệu thô thành EPUB Reflowable giúp tối ưu hóa màn hình đọc, giảm dung lượng tệp tin tải xuống (chỉ bằng 10% so với PDF scan gốc) và cung cấp trình đọc trực tuyến bảo mật cao cùng chatbot hỏi đáp RAG thông minh.
+
+---
 
 ## 3. Kế hoạch Tài chính (Cost vs Budget)
 
-Chi phí (Cost) và ngân sách (Budget) được phân định rõ ràng. Toàn bộ số liệu ngân sách ước tính dưới đây được xây dựng dựa trên đơn giá thị trường khảo sát sơ bộ từ các đơn vị cung cấp dịch vụ số hóa chuyên nghiệp tại TP.HCM và định mức chi phí nội bộ của HCMUS.
+### 3.1. Project Cost (CapEx, đầu tư một lần)
 
-### 3.1. Project Cost — tính bottom-up theo WBS (CapEx, đầu tư một lần)
-
-| Hạng mục                              | Cơ sở ước tính                                                  | USD                  |
-| ------------------------------------- | --------------------------------------------------------------- | -------------------- |
-| Số hóa (scan+OCR+metadata)            | ~10.000 cuốn, ~$2–4/cuốn tùy độ dày & thuê ngoài                | $20.000–40.000       |
-| Phát triển & tùy biến                 | Nội lực team CNTT, ~3–4 người × 3 tháng (chi phí cơ hội nội bộ) | $12.000–20.000       |
-| Thiết lập hạ tầng ban đầu             | Server/cấu hình, môi trường, bảo mật                            | $2.000–5.000         |
-| Đào tạo & triển khai                  | Tài liệu, tập huấn, truyền thông ra mắt                         | $1.000–3.000         |
-| **Tổng Project Cost (chưa dự phòng)** |                                                                 | **≈ $35.000–68.000** |
+| Hạng mục | Cơ sở ước tính | USD |
+| :--- | :--- | :---: |
+| Phát triển phần mềm custom | Nhóm 5 kỹ sư kiêm nhiệm phát triển trong 5 tháng cốt lõi. | $35.000 – $60.000 |
+| Thiết lập hạ tầng Cloud ban đầu | Đăng ký dịch vụ, cấu hình bảo mật VPC, Kubernetes, S3. | $3.000 – $6.000 |
+| Kiểm thử & Bảo mật (Pen-test) | Thuê đánh giá độc lập hiệu năng và lỗ hổng bảo mật. | $3.000 – $7.000 |
+| Đào tạo & Chuyển giao | Video hướng dẫn, tài liệu vận hành và tập huấn thủ thư. | $1.000 – $3.000 |
+| **Tổng Project Cost (chưa dự phòng)** | | **≈ $42.000–$76.000** |
 
 ### 3.2. Project Budget = Cost + Contingency Reserve
 
-| Hạng mục                                    | Cơ sở ước tính                                                     | USD                  |
-| ------------------------------------------- | ------------------------------------------------------------------ | -------------------- |
-| Dự phòng rủi ro (Contingency Reserve, ~15%) | Phát sinh ngoài dự kiến (biến động giá số hóa, phát sinh kỹ thuật) | $5.000–10.000        |
-| **Tổng Project Budget (CapEx)**             | Cost + Dự phòng                                                    | **≈ $40.000–78.000** |
+| Hạng mục | Cơ sở ước tính | USD |
+| :--- | :--- | :---: |
+| Dự phòng rủi ro phát sinh (~12%) | Chi phí dự phòng thay đổi phạm vi hoặc biến động giá. | $3.000 – $9.000 |
+| **Tổng Project Budget (CapEx)** | **Cost + Dự phòng** | **≈ $45.000–$85.000** |
 
-### 3.3. OpEx — vận hành định kỳ (hàng năm)
+### 3.3. OpEx — Vận hành định kỳ (Hàng năm)
 
-| Hạng mục                        | Cơ sở ước tính                      | USD/năm             |
-| ------------------------------- | ----------------------------------- | ------------------- |
-| Hạ tầng (cloud/server + backup) | Lưu trữ + sao lưu + băng thông      | $2.000–5.000        |
-| Vận hành & bảo trì              | 1 quản trị bán thời gian + cập nhật | $4.000–8.000        |
-| Số hóa bổ sung hằng năm         | Khóa luận khóa mới                  | $1.000–2.000        |
-| **Tổng OpEx**                   | Chưa gồm AI/RAG                     | **≈ $7.000–15.000** |
+| Hạng mục | Cơ sở ước tính | USD/năm |
+| :--- | :--- | :---: |
+| Hạ tầng Cloud duy trì | Máy chủ EC2, PostgreSQL DB, S3 Storage, Elasticsearch. | $4.000 – $8.000 |
+| Bảo trì & Hỗ trợ kỹ thuật | Cập nhật bản vá bảo mật, vá lỗi ứng dụng định kỳ. | $3.000 – $7.000 |
+| Băng thông & Email service | Chi phí Data Transfer Out cho bạn đọc và SMS/Email. | $1.000 – $3.000 |
+| **Tổng OpEx** | | **≈ $8.000–$18.000** |
 
-### 3.4. Hạng mục tùy chọn (giai đoạn sau, OpEx bổ sung)
+### 3.4. ROI & Phân tích điểm hòa vốn (Break-even Analysis)
 
-| Hạng mục                  | Ghi chú                             | USD              |
-| ------------------------- | ----------------------------------- | ---------------- |
-| AI/RAG tìm kiếm ngữ nghĩa | Hạ tầng vector + inference, định kỳ | $3.000–8.000/năm |
-| Công cụ chống đạo văn     | License Turnitin/tương đương        | Theo báo giá     |
+Do hệ thống phục vụ công ích học thuật phi lợi nhuận trực tiếp, hiệu quả kinh tế được đánh giá qua mô hình **Cost Avoidance (Tiết kiệm và tránh chi phí)**:
+*   **Tiết kiệm không gian kho bãi:** Số hóa 20.000 tài liệu giúp giảm áp lực kho kệ vật lý, thu hồi khoảng 100m² không gian phòng đọc thư viện (giá trị tương đương **$3.500/năm**).
+*   **Tối ưu hóa nhân sự:** Quy trình mượn/trả tự động hóa giúp giảm tải 80% thời gian xử lý thủ công của thủ thư, tiết kiệm tương đương **$4.000/năm** chi phí giờ công lao động.
+*   **Điểm hòa vốn:** Với mức đầu tư CapEx trung bình $50.000 và OpEx $10.000/năm, lợi ích quy đổi về mặt không gian và nhân lực ước tính khoảng $15.000/năm. Điểm hòa vốn kinh tế sẽ đạt được sau khoảng **5 - 6 năm** vận hành, đồng thời gia tăng đáng kể uy tín phục vụ bạn đọc của thư viện.
 
-### 3.5. ROI & Phân tích điểm hòa vốn (ROI & Break-even Analysis)
-
-Dự án là dịch vụ công ích học thuật phục vụ nội bộ trường (phi lợi nhuận), do đó hiệu quả đầu tư được đánh giá dựa trên mô hình **Tối ưu hóa và Tiết kiệm chi phí (Cost Avoidance)** thay vì Tỷ suất hoàn vốn đầu tư trực tiếp (ROI tài chính):
-* **Chi phí cơ sở vật lý (Baseline):** Kho khóa luận giấy hiện trạng chiếm diện tích 150m² tại cơ sở Quận 5, chi phí duy trì vận hành (văn phòng phẩm, điện năng cho điều hòa chống ẩm, diệt mối mọt định kỳ) ước tính là 120.000.000 VNĐ/năm (~5.000 USD/năm).
-* **Mô hình Cost Avoidance:** Khi hệ thống đi vào vận hành và số hóa hoàn tất 10.000 khóa luận, Thư viện sẽ thu hồi 80% diện tích kho (tiết kiệm tương đương 4.000 USD/năm giá trị thuê/vận hành mặt bằng tại khu vực Quận 5), đồng thời giảm 80% thời gian xử lý của thủ thư (tiết kiệm tương đương 3.500 USD/năm chi phí giờ công lao động).
-* **Điểm hòa vốn tài chính (Break-even Analysis):**
-  * Với mức đầu tư CapEx dự kiến là 45.000 USD (mức trung bình) và chi phí vận hành OpEx 10.000 USD/năm.
-  * Lợi ích quy đổi (Cost Avoidance + Giá trị sử dụng không gian làm phòng tự học cho sinh viên) ước tính đạt 12.000 USD/năm.
-  * Điểm hòa vốn kinh tế học thuật dự kiến đạt được sau khoảng 5 năm vận hành. Do đó, khuyến nghị Ban Giám hiệu phê duyệt dự án dựa trên giá trị chuyển đổi số học thuật và cải thiện hiệu năng vận hành thay vì chỉ tiêu ROI tài chính ngắn hạn.
-
-**Đồ thị hiệu quả dự án (Project Benefit Timeline):**
-* **Năm 1-2 (Giai đoạn đầu tư và thí điểm):** Đường chi phí tích lũy dốc đứng do tập trung CapEx cho số hóa và xây dựng phần mềm lõi. Lợi ích thu về ở mức thấp, chủ yếu là UAT và chạy thử nghiệm.
-* **Năm 3 trở đi:** Đường chi phí tích lũy đi ngang (chỉ phát sinh OpEx vận hành ổn định). Đường lợi ích tích lũy (bao gồm không gian tự học giải phóng, thời gian tra cứu giảm thiểu của sinh viên và giảng viên) tăng trưởng dốc đứng, chính thức cắt đường chi phí để mang lại lợi ích ròng cho nhà trường.
+---
 
 ## 4. Quản trị Rủi ro
 
+Dưới đây là các rủi ro kỹ thuật và vận hành được nhận diện:
+
 | Nhóm rủi ro | Chi tiết rủi ro | Mức độ | Biện pháp giảm thiểu | Risk Owner |
 | :--- | :--- | :---: | :--- | :--- |
-| **Pháp lý & Bản quyền** | Sinh viên hoặc GVHD không đồng ý số hóa và công bố khóa luận lên mạng internet dẫn đến tranh chấp pháp lý. | **Cao** | Tích hợp điều khoản đồng ý (consent clause) rõ ràng vào mẫu đơn nộp khóa luận trực tuyến. Áp dụng quy tắc mặc định: Giới hạn truy cập nội bộ (chỉ xem trong mạng trường) nếu tác giả chưa ký consent công khai. | **Ban Giám đốc Thư viện** |
-| **Chất lượng OCR tiếng Việt** | Bản scan tài liệu cũ có chất lượng kém, dẫn đến kết quả nhận dạng ký tự (OCR) bị lỗi font, không thể tìm kiếm toàn văn chính xác. | **Trung bình** | Tổ chức Giai đoạn PoC (Proof of Concept) chạy thử nghiệm trên một mẫu tài liệu đa dạng. Sử dụng công cụ OCR chuyên dụng cho tiếng Việt và thiết lập quy trình duyệt thủ công đối với các tài liệu lỗi. | **Phòng Công nghệ Thông tin** |
-| **Tính tương thích hệ thống** | Nền tảng mã nguồn mở không tương thích với hệ thống hiện có của trường. | **Trung bình** | Khảo sát kỹ thuật ở Giai đoạn 0; xác nhận khả năng tích hợp SSO/LDAP trước khi chốt nền tảng. | **Phòng Công nghệ Thông tin** |
-| **Dữ liệu cá nhân** | Tài liệu chứa các thông tin nhạy cảm của cá nhân sinh viên hoặc đối tác. | **Trung bình** | Rà soát/ẩn thông tin nhạy cảm trước khi xuất bản; tuân thủ quy định bảo vệ dữ liệu cá nhân. | **Ban Giám đốc Thư viện** |
-| **Phụ thuộc quy chế lưu trữ** | Không thể di dời hoặc giải phóng không gian kho giấy do vướng quy định lưu trữ bản cứng vật lý. | **Trung bình** | Làm việc sớm với bộ phận lưu trữ; không cam kết tỷ lệ giải phóng không gian trước khi có quy định rõ. | **Bộ phận Pháp chế & Lưu trữ** |
-| **Sự chấp nhận của người dùng (Adoption)** | Người dùng (sinh viên, giảng viên) ngại chuyển sang quy trình trực tuyến mới và tiếp tục đòi nộp bản cứng hoặc tra cứu thủ công. | **Trung bình** | Ban hành văn bản quy chế bắt buộc nộp khóa luận trực tuyến từ Phòng Đào tạo làm điều kiện xét tốt nghiệp. Xây dựng tài liệu hướng dẫn trực quan và tập huấn cho các Khoa. | **Phòng Đào tạo & Thư viện** |
-| **Nguồn lực triển khai** | Đội ngũ kỹ thuật của Phòng CNTT bị quá tải do phải kiêm nhiệm nhiều dự án khác của trường. | **Trung bình** | Yêu cầu văn bản cam kết phân bổ nhân sự chính thức (từ 3-4 kỹ sư làm việc bán thời gian cố định) trước khi khởi động. Chia nhỏ lộ trình và nghiệm thu theo từng sprint 2 tuần. | **Trưởng phòng Công nghệ Thông tin** |
-| **Chi phí AI/RAG vượt kiểm soát** | Việc tích hợp tìm kiếm ngữ nghĩa ở giai đoạn sau phát sinh chi phí hạ tầng cloud (Inference API, Vector Storage) vượt quá ngân sách. | **Trung bình** | Loại trừ hoàn toàn AI/RAG ra khỏi phạm vi MVP. Thiết kế kiến trúc dạng module độc lập để dễ dàng giới hạn lượt truy vấn AI của mỗi tài khoản. | **Phòng Công nghệ Thông tin** |
+| **Chất lượng OCR** | Bản scan quá cũ hoặc chữ viết tay làm OCR sai lệch nghiêm trọng. | **Cao** | Hệ thống tự động cảnh báo độ tin cậy thấp, yêu cầu thủ thư hiệu đính thủ công qua màn hình Dashboard; mặc định dùng Fixed-Layout cho tài liệu kém chất lượng. | **Technical Lead** |
+| **Rò rỉ tài liệu** | Bạn đọc dùng tool download lậu để lấy file EPUB từ S3. | **Trung bình** | Sử dụng Signed URL có hiệu lực ngắn (15 phút), mã hóa DRM cơ bản cho tệp EPUB lưu trữ trên AWS S3. | **Security Engineer** |
+| **Chi phí Cloud tăng nhanh** | Băng thông mượn đọc sách số lớn làm chi phí cloud EC2/S3 vượt ngân sách. | **Trung bình** | Áp dụng CDN (CloudFront/Cloudflare) để cache file EPUB tĩnh, tối ưu hóa kích thước ảnh nén và thiết lập cảnh báo vượt ngưỡng chi phí trên AWS/Azure. | **DevOps Engineer** |
+| **Sự chấp nhận của thủ thư** | Cán bộ thư viện ngại sử dụng công cụ OCR và mượn/trả trực tuyến mới. | **Trung bình** | Tổ chức đào tạo cuốn chiếu, khen thưởng các cán bộ số hóa xuất sắc, cử nhân viên kỹ thuật hỗ trợ trực tiếp tại quầy trong tháng đầu go-live. | **Project Manager** |
 
+---
 
 ## 5. Cấu trúc Báo cáo Khả thi — Tổng kết
 
-| Mục                        | Nội dung                                                                                                                 |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Purpose**                | Đánh giá tính khả thi của việc xây dựng Kho Lưu trữ Số Khóa luận trước khi trình duyệt ngân sách toàn phần               |
-| **Reason**                 | Kho vật lý quá tải, xuống cấp, khó truy cập; cần xác nhận khả thi trước khi cam kết đầu tư                               |
-| **Background information** | Xem `02-project-proposal.md` (Problem Definition, Business Goals)                                                        |
-| **Evaluation criteria**    | 8 khía cạnh khả thi (mục 1), SWOT (mục 2), chi phí/lợi ích (mục 3), rủi ro (mục 4)                                       |
-| **Study findings**         | Khả thi kỹ thuật cao; khả thi kinh tế và pháp lý còn yếu, cần xử lý trước khi mở rộng toàn phần                          |
-| **Recommendations**        | Phê duyệt Giai đoạn 0 (khảo sát, chốt số liệu, giải quyết pháp lý); triển khai MVP thí điểm trước khi số hóa toàn trường |
+*   **Mục đích:** Đánh giá tính khả thi kinh tế, kỹ thuật, pháp lý của dự án LibDMS trước khi Ban giám đốc Thư viện phê duyệt ngân sách đầu tư toàn phần.
+*   **Kết luận nghiên cứu:** Dự án hoàn toàn khả thi về mặt kỹ thuật nhờ sử dụng Next.js, FastAPI và OCR Tesseract. Khía cạnh pháp lý được bảo đảm qua hệ thống phân quyền RBAC và cơ chế đọc trực tuyến bảo mật. Lợi ích kinh tế quy đổi (Cost Avoidance) đạt điểm hòa vốn sau 5 năm.
+*   **Khuyến nghị:** Phê duyệt triển khai dự án bắt đầu từ Giai đoạn 0 (Khảo sát thiết kế) để chốt kiến trúc hạ tầng Cloud và định vị chất lượng OCR trên tập tài liệu mẫu thực tế.
+
+---
 
 ## 6. Vì sao cần Feasibility Study
 
-Tài liệu này giúp: (i) phân tích đầy đủ yêu cầu trước khi cam kết ngân sách, (ii) nhận diện và lập kế hoạch rủi ro — đặc biệt rủi ro pháp lý có thể chặn đứng dự án, (iii) phân tích chi phí/lợi ích một cách minh bạch thay vì cường điệu hóa, và (iv) làm cơ sở lập kế hoạch đào tạo đội ngũ triển khai hệ thống (xem `05-project-charter.md`).
+Tài liệu Feasibility Study giúp ban giám đốc thư viện:
+1.  **Nhìn rõ bức tranh tài chính:** Tránh rủi ro phát sinh chi phí cloud đột biến bằng cách hoạch định rõ cơ chế Lifecycle policy cho dữ liệu ảnh quét.
+2.  **Giảm rủi ro kỹ thuật:** Xác định rõ giới hạn của công nghệ OCR Tesseract đối với chữ tiếng Việt và thiết lập sẵn luồng hiệu đính thủ công (Correction workflow) để đảm bảo chất lượng EPUB Reflowable đầu ra.
+3.  **Bảo vệ tài sản trí tuệ:** Định hình các lớp bảo mật ngay từ khâu thiết kế kiến trúc để chống cào quét dữ liệu.
