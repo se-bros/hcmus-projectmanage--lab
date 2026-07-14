@@ -1,76 +1,196 @@
-# PRODUCT BACKLOG & ACCEPTANCE CRITERIA
+# YÊU CẦU NGHIỆP VỤ VÀ SỔ TAY PRODUCT BACKLOG
 
-## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
-**Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
+### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-Phiên bản 1.1 • Tháng 7/2026
+| Trường thông tin (Field) | Nội dung đặc tả (Description) |
+| :--- | :--- |
+| **Mã tài liệu (Document ID)** | `HCMUS-LDMS-PBL` |
+| **Tên tài liệu (Document Title)** | Sổ tay Product Backlog (Product Backlog Document) |
+| **Dự án (Project Name)** | HCMUS-LDMS |
+| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS |
+| **Người xem xét (Reviewer)** | Trưởng phòng CNTT & Giám đốc Thư viện |
+| **Người phê duyệt (Approver)** | Ban Giám hiệu Trường ĐH Khoa học Tự nhiên |
+| **Cấp độ bảo mật (Security Class)** | Internal (Nội bộ trường) |
+| **Trạng thái tài liệu (Status)** | Under Review (Đang thẩm định) |
 
----
+### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-## 1. Định nghĩa & Quy tắc Ưu tiên
-
-Product Backlog này gom nhóm các yêu cầu nghiệp vụ dưới dạng User Story, ánh xạ trực tiếp từ **Quy trình Nghiệp vụ (Workflows)** và **Mô hình Tính năng (Feature Model)** của hệ thống HCMUS-LDMS. Các US được sắp xếp **theo trình tự thực tế người dùng** — bắt đầu từ bước đăng nhập.
-
-Độ ưu tiên theo phương pháp **MoSCoW**:
-- **Must-have (M):** Bắt buộc trong MVP (đăng nhập, số hóa Scan-to-EPUB, phân quyền, tìm kiếm).
-- **Should-have (S):** Tăng trải nghiệm (Bookmark, highlight, bộ lọc nâng cao).
-- **Could-have (C):** Có thể có nếu dư nguồn lực (trích dẫn APA/IEEE, thống kê).
-- **Won't-have (W):** Hoãn sang giai đoạn sau (AI, RAG hỏi đáp).
-
----
-
-## 2. Product Backlog — User Story & Acceptance Criteria
-
-> **Cách đọc bảng:** Mỗi US có phần tiêu chí chấp nhận (✅ AC) liệt kê ngay bên dưới trong cùng một dòng gộp.
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change) | Người thực hiện (Author) |
+| :---: | :---: | :--- | :---: |
+| 1.0 | 11/07/2026 | Khởi tạo dự thảo Product Backlog ban đầu (v1.0). | Mạch Quốc Tấn |
+| 2.0 | 14/07/2026 | Chuẩn hóa định dạng User Story, bổ sung kịch bản AC, DoD, Sprint mapping. | Mạch Quốc Tấn |
 
 ---
 
-### EPIC A — Xác thực & Phân quyền
+## Mục lục
 
-| Story ID | User Story | Workflow | Feature | Priority |
-| :---: | :--- | :--- | :---: | :---: |
-| **US00** | **Đăng nhập SSO**<br>*Là học sinh/thủ thư, tôi muốn đăng nhập bằng tài khoản HCMUS để hệ thống tự nhận diện vai trò của tôi.*<br><br>✅ **AC 1:** Trang `/login` hiển thị nút "Đăng nhập bằng tài khoản HCMUS"; khi nhấn, trình duyệt chuyển hướng đến Keycloak SSO của trường.<br>✅ **AC 2:** Sau khi xác thực thành công, Keycloak trả về JWT token hợp lệ chứa `role` (student / librarian / editor / admin).<br>✅ **AC 3:** Hệ thống map role từ token: `librarian`/`editor` → mở Dashboard Thủ thư; `student`/`faculty` → mở Cổng Học sinh (Reader).<br>✅ **AC 4:** Nếu token hết hạn (>60 phút), hệ thống tự refresh hoặc yêu cầu đăng nhập lại — người dùng không mất dữ liệu đang làm.<br>✅ **AC 5:** Nút "Đăng xuất" xóa session cả phía Keycloak lẫn cookie trình duyệt. | Xác thực (Tất cả) | Keycloak SSO (F3_1) | **Must** |
-| **US00b** | **Kiểm soát quyền truy cập tài liệu**<br>*Là học sinh, tôi chỉ muốn thấy và đọc tài liệu mà tôi có quyền xem theo phân quyền.*<br><br>✅ **AC 1:** Tài liệu có access = `Restricted` không hiển thị trong kết quả tìm kiếm của học sinh thường.<br>✅ **AC 2:** Tài liệu `Internal` hiển thị với học sinh HCMUS đã đăng nhập, bị chặn với khách chưa đăng nhập.<br>✅ **AC 3:** Tài liệu `Public` hiển thị cho tất cả — kể cả người dùng chưa đăng nhập (Guest). | Xác thực (Tất cả) | RBAC (F3_1) | **Must** |
-
----
-
-### EPIC B — Số hóa & Xuất bản (Luồng Thủ thư)
-
-| Story ID | User Story | Workflow | Feature | Priority |
-| :---: | :--- | :--- | :---: | :---: |
-| **US01** | **Tải lên tệp scan gốc**<br>*Là thủ thư, tôi muốn tải lên tệp PDF hoặc ảnh scan để bắt đầu quy trình số hóa.*<br><br>✅ **AC 1:** Giao diện hỗ trợ kéo-thả (drag & drop) hoặc chọn file qua hộp thoại hệ thống.<br>✅ **AC 2:** Chấp nhận định dạng `.pdf`, `.jpg`, `.png`; từ chối các định dạng khác với thông báo rõ ràng.<br>✅ **AC 3:** Dung lượng tối đa **100 MB** mỗi lần tải; hiển thị lỗi nếu vượt quá.<br>✅ **AC 4:** Thanh tiến trình upload (0–100%) hiển thị theo thời gian thực.<br>✅ **AC 5:** Tệp được lưu vào MinIO theo đường dẫn: `bucket-library/raw_scans/YYYYMMDD/[ID]_[ten_file]`. | Số hóa & Xuất bản | Scan & Upload (F1_1) | **Must** |
-| **US02** | **Tự động chạy OCR**<br>*Là thủ thư, tôi muốn hệ thống tự nhận dạng chữ viết từ ảnh scan để tôi không phải gõ lại văn bản.*<br><br>✅ **AC 1:** Tiến trình OCR Tesseract tự khởi động sau khi upload hoàn thành — không cần thao tác thêm.<br>✅ **AC 2:** Nhận dạng tiếng Việt có dấu chính xác ≥ **85% CAR** đối với bản scan in chuẩn (300 DPI).<br>✅ **AC 3:** Tiến trình chạy bất đồng bộ (background task); dashboard hiển thị trạng thái: "Đang xếp hàng" → "Đang nhận dạng" → "Hoàn thành" / "Lỗi".<br>✅ **AC 4:** Kết quả OCR từng trang được lưu riêng kèm số trang để thủ thư biên tập từng trang. | Số hóa & Xuất bản | Tích hợp OCR (F1_2) | **Must** |
-| **US03** | **Biên tập & hiệu chỉnh văn bản OCR**<br>*Là thủ thư, tôi muốn xem ảnh gốc và văn bản OCR song song để sửa lỗi nhận dạng.*<br><br>✅ **AC 1:** Màn hình Split-screen: trái = ảnh trang PDF có zoom/xoay; phải = editor văn bản.<br>✅ **AC 2:** Auto-save nháp mỗi **30 giây**, hiển thị thông báo "Đã lưu tự động lúc HH:MM".<br>✅ **AC 3:** Editor hỗ trợ định dạng H1/H2/H3, in đậm, in nghiêng, danh sách có số thứ tự.<br>✅ **AC 4:** Nút "Gắn hình" cho phép cắt vùng ảnh từ scan để chèn vào văn bản (bảng biểu, hình vẽ).<br>✅ **AC 5:** Hiển thị chỉ số độ chính xác OCR (%) của trang hiện tại để thủ thư ưu tiên trang cần kiểm tra kỹ. | Số hóa & Xuất bản | Biên tập & Sinh EPUB (F1_3) | **Must** |
-| **US04** | **Gán siêu dữ liệu (Metadata)**<br>*Là thủ thư, tôi muốn nhập tên sách, tác giả, danh mục, tag trước khi xuất bản.*<br><br>✅ **AC 1:** Form metadata có các trường bắt buộc: Tên tài liệu, Tác giả, Danh mục (Category); các trường tùy chọn: Nhà xuất bản, Năm, Tag, Mô tả.<br>✅ **AC 2:** Danh mục (Category) chọn từ cây thư mục có sẵn (do Admin cấu hình); không cho nhập tự do.<br>✅ **AC 3:** Tag nhập tự do, hỗ trợ gợi ý autocomplete các tag đã có trong hệ thống.<br>✅ **AC 4:** Trường Quyền truy cập (Access) là radio: Public / Internal / Restricted — mặc định Internal.<br>✅ **AC 5:** Validate: không cho phép bấm "Xuất bản" nếu Tên tài liệu hoặc Danh mục còn trống. | Số hóa & Xuất bản | Quản lý Metadata (F2_3) | **Must** |
-| **US05** | **Đóng gói & Xuất bản EPUB**<br>*Là thủ thư, tôi muốn xuất bản tài liệu thành EPUB để học sinh có thể đọc online.*<br><br>✅ **AC 1:** Nút "Đóng gói & Xuất bản" gọi Pandoc biên dịch văn bản biên tập thành EPUB 3.0 hợp lệ.<br>✅ **AC 2:** File EPUB phải vượt kiểm tra `epubcheck` — không có lỗi nghiêm trọng (FATAL/ERROR).<br>✅ **AC 3:** File EPUB lưu vào MinIO: `bucket-library/epub/[ID].epub`; trạng thái tài liệu cập nhật thành `Published`.<br>✅ **AC 4:** Nội dung toàn văn tự động được index vào Elasticsearch ngay sau khi xuất bản.<br>✅ **AC 5:** Thủ thư nhận thông báo xuất bản thành công (hoặc thất bại kèm log lỗi) ngay trên màn hình. | Số hóa & Xuất bản | Biên tập & Sinh EPUB (F1_3) | **Must** |
-| **US06** | **Quản lý danh mục & tag**<br>*Là admin, tôi muốn cấu hình cây danh mục và tag để tài liệu được phân loại có hệ thống.*<br><br>✅ **AC 1:** Admin tạo/sửa/xóa danh mục theo dạng cây phân cấp cha-con tối thiểu 2 cấp.<br>✅ **AC 2:** Ngăn tạo danh mục hoặc tag trùng tên (không phân biệt chữ hoa thường, bỏ qua khoảng trắng thừa).<br>✅ **AC 3:** Xóa danh mục chỉ thực hiện được khi không còn tài liệu nào đang thuộc danh mục đó (hiển thị cảnh báo nếu còn). | Quản trị hệ thống | Quản lý tài liệu (F2_1, F2_2) | **Must** |
+* [1. Định nghĩa Hoàn thành và Quy tắc tổ chức](#1-định-nghĩa-hoàn-thành-và-quy-tắc-tổ-chức)
+    * [1.1. Định nghĩa Hoàn thành (Definition of Done - DoD)](#11-định-nghĩa-hoàn-thành-definition-of-done---dod)
+    * [1.2. Thang đo độ ưu tiên MoSCoW](#12-thang-đo-độ-ưu-tiên-moscow)
+* [2. Chi tiết Product Backlog — User Story & Acceptance Criteria](#2-chi-tiết-product-backlog-user-story--acceptance-criteria)
+    * [EPIC A — Xác thực & Phân quyền bảo mật (Security & Identity)](#epic-a-xác-thực--phân-quyền-bảo-mật-security--identity)
+    * [EPIC B — Số hóa & Xuất bản (Digitization & Publish)](#epic-b-số-hóa--xuất-bản-digitization--publish)
+    * [EPIC C — Tra cứu & Đọc sách (Search & Reader UX)](#epic-c-tra-cứu--đọc-sách-search--reader-ux)
+* [3. Bản đồ phân bổ Sprint (Sprint Mapping)](#3-bản-đồ-phân-bổ-sprint-sprint-mapping)
 
 ---
 
-### EPIC C — Tra cứu & Đọc sách (Luồng Học sinh)
+## 1. Định nghĩa Hoàn thành và Quy tắc tổ chức
 
-| Story ID | User Story | Workflow | Feature | Priority |
-| :---: | :--- | :--- | :---: | :---: |
-| **US07** | **Tìm kiếm toàn văn**<br>*Là học sinh, tôi muốn tìm kiếm từ khóa trong nội dung sách để tìm tài liệu liên quan đến bài học.*<br><br>✅ **AC 1:** Kết quả trả về trong < **3 giây** kể cả khi tìm từ khóa trong nội dung sách (full-text search qua Elasticsearch).<br>✅ **AC 2:** Hỗ trợ Fuzzy Search — gõ "lap trinh" vẫn tìm ra "lập trình"; gõ thiếu dấu vẫn khớp.<br>✅ **AC 3:** Kết quả hiển thị snippet đoạn văn chứa từ khóa, từ khóa được bôi đậm (highlight).<br>✅ **AC 4:** Bộ lọc sidebar: Category, Năm xuất bản, Quyền truy cập (Public/Internal), Tác giả.<br>✅ **AC 5:** Kết quả được sắp xếp theo độ liên quan (Relevance Score); cho phép đổi sang sắp xếp theo Mới nhất / Cũ nhất. | Tra cứu & Đọc sách | Tìm kiếm toàn văn (F4_1) | **Must** |
-| **US08** | **Đọc EPUB trực tuyến bảo mật**<br>*Là học sinh, tôi muốn đọc sách ngay trên trình duyệt mà không cần tải file về.*<br><br>✅ **AC 1:** Web Reader tải sách dạng XHTML chia trang — không tải toàn bộ file EPUB gốc về client.<br>✅ **AC 2:** URL tải nội dung sách là Signed URL MinIO với thời hạn **15 phút**; hết hạn tự gia hạn trong phiên đọc.<br>✅ **AC 3:** Với tài liệu `Internal`/`Restricted`: chặn chuột phải, `Ctrl+C`, `Ctrl+P`, không có nút download.<br>✅ **AC 4:** Giao diện responsive — đọc được trên máy tính, máy tính bảng, điện thoại.<br>✅ **AC 5:** Hiển thị số trang hiện tại / tổng số trang và thanh tiến trình đọc. | Tra cứu & Đọc sách | Trình đọc EPUB (F3_2) | **Must** |
-| **US09** | **Tùy chỉnh giao diện đọc sách**<br>*Là học sinh, tôi muốn điều chỉnh cỡ chữ và nền màn hình để dễ đọc trong nhiều điều kiện ánh sáng.*<br><br>✅ **AC 1:** Tăng/giảm cỡ chữ từ **80% đến 200%** theo bước 10%.<br>✅ **AC 2:** Chọn font: Serif (Times-style), Sans-serif (Inter/Roboto), OpenDyslexic (hỗ trợ người khó đọc).<br>✅ **AC 3:** 3 chế độ nền: Light (nền trắng), Sepia (nền vàng nhạt bảo vệ mắt), Dark (nền đen).<br>✅ **AC 4:** Tùy chỉnh được lưu vào `localStorage` — giữ nguyên khi reload trang hoặc mở sách khác. | Tra cứu & Đọc sách | Trình đọc EPUB (F3_2) | **Should** |
-| **US10** | **Đánh dấu trang (Bookmark)**<br>*Là học sinh, tôi muốn hệ thống ghi nhớ tôi đang đọc đến đâu để lần sau mở tiếp.*<br><br>✅ **AC 1:** Hệ thống tự động lưu vị trí đọc (EPUB CFI pointer) sau mỗi 30 giây và khi đóng tab.<br>✅ **AC 2:** Khi mở lại sách, hỏi "Tiếp tục từ trang X?" với nút Tiếp tục / Bắt đầu từ đầu.<br>✅ **AC 3:** Học sinh có thể tạo bookmark thủ công tại nhiều vị trí; quản lý danh sách bookmark trong panel bên trái.<br>✅ **AC 4:** Bookmark được lưu vào PostgreSQL — đồng bộ giữa các thiết bị khi đăng nhập cùng tài khoản. | Tra cứu & Đọc sách | Trình đọc EPUB (F3_2) | **Should** |
-| **US11** | **Ghi chú & Highlight văn bản**<br>*Là học sinh, tôi muốn tô màu đoạn văn quan trọng và ghi chú bên lề để ôn tập sau.*<br><br>✅ **AC 1:** Bôi đen đoạn văn → thanh công cụ nổi hiện ra: chọn màu (Vàng / Hồng / Xanh) → lưu highlight.<br>✅ **AC 2:** Có thể gắn ghi chú văn bản vào highlight; icon ghi chú hiển thị nhỏ bên cạnh đoạn văn đó.<br>✅ **AC 3:** Toàn bộ highlight & ghi chú lưu vào PostgreSQL và hiển thị trong tab "Sổ ghi chép" trên cổng cá nhân.<br>✅ **AC 4:** Tổng hợp highlight của học sinh trong 1 cuốn sách có thể xuất ra file `.txt` định dạng ghi chú. | Tra cứu & Đọc sách | Trình đọc EPUB (F3_2) | **Should** |
-| **US12** | **Trích dẫn tài liệu tự động**<br>*Là học sinh, tôi muốn copy trích dẫn chuẩn APA/IEEE của sách với 1 click để dùng trong báo cáo.*<br><br>✅ **AC 1:** Nút "Trích dẫn" trên trang sách sinh ra chuỗi trích dẫn chuẩn APA 7th và IEEE.<br>✅ **AC 2:** Nút "Copy" copy chuỗi vào clipboard ngay lập tức; hiển thị toast "Đã sao chép!".<br>✅ **AC 3:** Trích dẫn tự động điền đủ các trường có trong metadata: Tác giả, Năm, Tên sách, Nhà xuất bản, DOI (nếu có). | Tra cứu & Đọc sách | Quản lý Metadata (F2_3) | **Could** |
+### 1.1. Định nghĩa Hoàn thành (Definition of Done - DoD)
+Một User Story chỉ được coi là hoàn thành (`Done`) và sẵn sàng bàn giao trong Sprint Review khi đáp ứng đủ các tiêu chí:
 
----
+1. **Code Quality:** Không còn lỗi cảnh báo nghiêm trọng từ ESLint/PyLint; mã nguồn đã được merge vào nhánh `main` qua Pull Request có tối thiểu 01 kỹ sư khác review.
+2. **Testing:** Unit test bao phủ dòng code tối thiểu đạt 80%. Vượt qua tất cả các ca kiểm thử chức năng tự động (Integration Test).
+3. **Deployment:** Được deploy thành công lên môi trường Staging qua quy trình CI/CD tự động.
+4. **Security:** Không chứa mật khẩu cứng (hardcoded credentials); API được bảo mật bằng JWT và xác thực phân quyền qua Keycloak.
+5. **Documentation:** API Swagger được cập nhật đầy đủ; mã nguồn được comment rõ ràng.
 
-## 3. Tổng hợp Sprint Mapping
-
-| Sprint | US | Mục tiêu | Priority |
-| :---: | :--- | :--- | :---: |
-| **Sprint 1** | US00, US00b, US01, US02 | Đăng nhập SSO + Upload + OCR pipeline cơ bản | Must |
-| **Sprint 2** | US03, US04, US05 | Biên tập Split-screen + Metadata + Xuất bản EPUB | Must |
-| **Sprint 3** | US06, US07, US08 | Quản lý Category + Tìm kiếm Elasticsearch + Đọc online | Must |
-| **Sprint 4** | US09, US10, US11 | Reader UX: Theme/Font + Bookmark + Highlight | Should |
-| **Sprint 5** | US12 | Trích dẫn tự động APA/IEEE | Could |
+### 1.2. Thang đo độ ưu tiên MoSCoW
+* **Must-have (M):** Bắt buộc phải hoàn thành trong MVP (Sprint 1 đến Sprint 3).
+* **Should-have (S):** Cần thiết để tối ưu hóa trải nghiệm người dùng, hoàn thành trong MVP (Sprint 4).
+* **Could-have (C):** Bổ sung nếu dư thời gian (Sprint 5).
+* **Won't-have (W):** Tính năng hoãn lại sang giai đoạn sau (AI/RAG, Chống đạo văn).
 
 ---
 
-*Tài liệu được duy trì bởi Nhóm Phát triển HCMUS-LDMS. Cập nhật khi có thay đổi yêu cầu nghiệp vụ.*
+## 2. Chi tiết Product Backlog — User Story & Acceptance Criteria
+
+### EPIC A — Xác thực & Phân quyền bảo mật (Security & Identity)
+
+#### US00: Đăng nhập SSO hệ thống
+* **User Story:** Là độc giả (sinh viên/giảng viên/thủ thư), tôi muốn đăng nhập bằng tài khoản email HCMUS thông qua Keycloak SSO để hệ thống tự động xác nhận vai trò và cấp quyền truy cập giao diện phù hợp.
+* **Story Points:** 5 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1 (Given-When-Then):** **Given** người dùng truy cập trang `/login`, **When** người dùng click nút "Đăng nhập với tài khoản HCMUS", **Then** hệ thống chuyển hướng thành công đến trang đăng nhập Keycloak SSO của trường.
+  * **AC 2:** Sau khi xác thực đúng tài khoản, Keycloak trả về JWT Token chứa các thông tin cá nhân và mảng vai trò `roles` (student / faculty / editor / admin).
+  * **AC 3:** Hệ thống tự động phân phối giao diện: vai trò `editor`/`librarian` truy cập vào Dashboard Quản lý; vai trò `student`/`faculty` truy cập Web Portal đọc sách; khách vãng lai (Guest) chỉ có quyền đọc tài liệu Public.
+  * **AC 4:** JWT token có thời hạn 60 phút, hệ thống tự động refresh token ngầm khi còn hoạt động hoặc yêu cầu đăng nhập lại an toàn khi hết phiên.
+
+#### US00b: Kiểm soát quyền truy cập tài liệu
+* **User Story:** Là sinh viên, tôi chỉ muốn nhìn thấy và đọc các tài liệu mà tôi được phép tiếp cận để bảo đảm tính tuân thủ pháp lý về bản quyền của nhà trường.
+* **Story Points:** 3 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Tài liệu được đánh nhãn truy cập `Restricted` sẽ không xuất hiện trong kết quả tìm kiếm và danh mục của tài khoản sinh viên thường.
+  * **AC 2:** Tài liệu `Internal` chỉ hiển thị đối với người dùng đã đăng nhập thành công tài khoản trường; bị chặn hoàn toàn đối với khách vãng lai (Guest).
+  * **AC 3:** Tài liệu `Public` cho phép hiển thị và đọc trực tuyến đối với tất cả người dùng (không yêu cầu đăng nhập).
+
+---
+
+### EPIC B — Số hóa & Xuất bản (Digitization & Publish)
+
+#### US01: Tải lên tệp scan gốc
+* **User Story:** Là thủ thư, tôi muốn tải lên tệp PDF hoặc ảnh scan sách giấy gốc để hệ thống bắt đầu xử lý luồng số hóa tự động.
+* **Story Points:** 3 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Giao diện hỗ trợ kéo thả tệp tin hoặc chọn từ thiết bị.
+  * **AC 2:** Chỉ chấp nhận định dạng tệp `.pdf`, `.jpg`, `.png` và giới hạn dung lượng tải lên tối đa là **100 MB**.
+  * **AC 3:** Hiển thị thanh tiến trình upload theo thời gian thực (0% - 100%).
+  * **AC 4:** Tệp tin tải lên được lưu trữ tự động vào MinIO Object Storage tại đường dẫn: `bucket-library/raw_scans/YYYYMMDD/[ID]_[filename]`.
+
+#### US02: Tự động chạy OCR nhận dạng ký tự
+* **User Story:** Là thủ thư, tôi muốn hệ thống tự động chạy nhận dạng ký tự quang học đối với tệp ảnh quét vừa tải lên để tôi không phải nhập liệu lại văn bản thủ công.
+* **Story Points:** 5 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Tiến trình OCR Tesseract tự động kích hoạt sau khi tệp tin upload thành công lên MinIO.
+  * **AC 2:** Độ chính xác nhận dạng ký tự tiếng Việt (CAR) đạt ≥ **85%** đối với bản in rõ nét (300 DPI).
+  * **AC 3:** Tác vụ chạy bất đồng bộ qua Celery/Redis; giao diện dashboard hiển thị trạng thái xử lý theo thời gian thực (Pending -> Processing -> Completed / Failed).
+  * **AC 4:** Kết quả OCR text thô được phân tách theo từng trang sách tương ứng với ảnh scan gốc.
+
+#### US03: Biên tập & Hiệu chỉnh văn bản OCR
+* **User Story:** Là biên tập viên, tôi muốn so sánh ảnh scan gốc và văn bản OCR song song trên giao diện để tôi hiệu chỉnh nhanh các lỗi chính tả của máy nhận dạng.
+* **Story Points:** 8 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Giao diện Split-screen: Bên trái là ảnh trang scan gốc (hỗ trợ zoom, rotate); bên phải là trình soạn thảo văn bản.
+  * **AC 2:** Trình soạn thảo hỗ trợ gán cấu trúc Heading (H1, H2, H3) và định dạng văn bản cơ bản (in đậm, in nghiêng, danh sách).
+  * **AC 3:** Hỗ trợ tính năng "Cắt ảnh" trực tiếp từ ảnh scan bên trái để nhúng nhanh làm hình minh họa trong văn bản bên phải.
+  * **AC 4:** Tự động lưu nháp (Auto-save) mỗi **30 giây** vào PostgreSQL để chống mất dữ liệu khi rớt mạng.
+
+#### US04: Gán siêu dữ liệu Dublin Core
+* **User Story:** Là thủ thư, tôi muốn nhập thông tin Dublin Core và danh mục của sách để độc giả tra cứu dễ dàng.
+* **Story Points:** 2 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Form nhập liệu yêu cầu bắt buộc các trường: Tên sách, Tác giả, Danh mục (Category), Quyền truy cập (Access Level).
+  * **AC 2:** Danh mục (Category) được chọn từ cây danh mục có sẵn; các thẻ phân loại (Tags) cho phép nhập tự do có gợi ý tự động (Autocomplete).
+  * **AC 3:** Nút "Xuất bản" bị vô hiệu hóa nếu các trường bắt buộc để trống.
+
+#### US05: Đóng gói & Xuất bản EPUB 3.0
+* **User Story:** Là thủ thư, tôi muốn đóng gói nội dung đã biên tập thành file EPUB và phát hành để độc giả có thể đọc trực tuyến responsive.
+* **Story Points:** 5 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Khi nhấn nút "Đóng gói & Xuất bản", hệ thống sử dụng Pandoc biên dịch text đã biên tập sang định dạng EPUB 3.0.
+  * **AC 2:** File EPUB sinh ra phải vượt qua kiểm định của công cụ `epubcheck` (0 lỗi nghiêm trọng).
+  * **AC 3:** File được lưu vào MinIO: `bucket-library/epub/[ID].epub` và tự động lập chỉ mục văn bản toàn văn vào Elasticsearch.
+
+#### US06: Quản lý Danh mục & Tag (Admin)
+* **User Story:** Là admin, tôi muốn cấu hình cây danh mục môn học và tag để tổ chức tài liệu một cách khoa học.
+* **Story Points:** 3 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Admin quản lý cây danh mục (Category) hỗ trợ phân cấp tối thiểu 2 cấp.
+  * **AC 2:** Ngăn chặn tạo trùng tên danh mục hoặc tag (bỏ qua khoảng trắng và không phân biệt hoa thường).
+
+---
+
+### EPIC C — Tra cứu & Đọc sách (Search & Reader UX)
+
+#### US07: Tìm kiếm toàn văn Elasticsearch và Vị trí vật lý
+* **User Story:** Là độc giả, tôi muốn tìm kiếm từ khóa trong nội dung sách và xem thông tin vị trí kệ sách giấy tương ứng để tôi có thể đến mượn trực tiếp tại thư viện khi cần.
+* **Story Points:** 8 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Trả kết quả tìm kiếm toàn văn dưới **3 giây** với tải trọng 500 người dùng đồng thời.
+  * **AC 2:** Hỗ trợ Fuzzy Search (gõ tiếng Việt không dấu vẫn tìm ra kết quả có dấu tương ứng).
+  * **AC 3:** Kết quả hiển thị snippet chứa từ khóa tìm kiếm và từ khóa được highlight bôi đậm.
+  * **AC 4:** Kết quả hiển thị rõ thông tin vị trí vật lý của sách giấy tại kho (ví dụ: Kệ 12 - Tầng 2 - Cơ sở Quận 5).
+
+#### US08: Đọc sách trực tuyến bảo mật
+* **User Story:** Là độc giả, tôi muốn đọc sách EPUB mượt mà trên trình duyệt mà không thể tải tệp gốc về máy để bảo đảm an toàn bản quyền cho tác giả.
+* **Story Points:** 8 | **Độ ưu tiên:** Must
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Trình đọc web sử dụng Epub.js kết xuất sách dạng HTML chia trang, không tải tệp EPUB gốc về client.
+  * **AC 2:** Gọi tài nguyên bằng Signed URL MinIO với thời gian hết hạn là **15 phút**.
+  * **AC 3:** Chặn chuột phải, chặn phím tắt copy (`Ctrl+C`), chặn in ấn (`Ctrl+P`) đối với tài liệu Internal/Restricted.
+
+#### US09: Tùy chỉnh giao diện đọc sách (Reader Customization)
+* **User Story:** Là độc giả, tôi muốn điều chỉnh cỡ chữ, font chữ và màu nền để bảo vệ mắt khi đọc sách ban đêm.
+* **Story Points:** 3 | **Độ ưu tiên:** Should
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Cho phép co giãn phông chữ từ **80% đến 200%**.
+  * **AC 2:** Chọn font chữ: Serif, Sans-serif, và OpenDyslexic.
+  * **AC 3:** Hỗ trợ 3 chế độ màu nền: Light, Sepia, và Dark mode.
+
+#### US10: Đánh dấu trang (Bookmark) & Highlight
+* **User Story:** Là độc giả, tôi muốn đánh dấu trang đang đọc dở và highlight các đoạn văn hay để tiện ôn tập sau này.
+* **Story Points:** 5 | **Độ ưu tiên:** Should
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Tự động lưu vị trí đọc (CFI pointer) sau mỗi 30 giây vào PostgreSQL.
+  * **AC 2:** Hỗ trợ bôi đen đoạn văn để lưu highlight (chọn màu Vàng/Hồng/Xanh) và đính kèm ghi chú.
+
+#### US11: Trích dẫn tự động (Citation Generator)
+* **User Story:** Là độc giả, tôi muốn sinh trích dẫn chuẩn APA hoặc IEEE của cuốn sách để chèn nhanh vào báo cáo khoa học.
+* **Story Points:** 2 | **Độ ưu tiên:** Could
+* **Tiêu chí chấp nhận (Acceptance Criteria):**
+  * **AC 1:** Nút "Trích dẫn" tự động trích xuất metadata Dublin Core thành chuỗi trích dẫn chuẩn APA 7th và IEEE.
+
+---
+
+## 3. Bản đồ phân bổ Sprint (Sprint Mapping)
+
+Quy trình phát triển phần mềm MVP kéo dài **10 tuần**, chia làm 5 Sprint (mỗi Sprint 2 tuần):
+
+* **Sprint 1 (Tuần 3–4):**
+  * *Mục tiêu:* Đăng nhập SSO Keycloak, Upload file scan và Pipeline OCR thô.
+  * *User Stories:* US00, US00b, US01, US02.
+* **Sprint 2 (Tuần 5–6):**
+  * *Mục tiêu:* Màn hình biên tập Split-screen, Form Metadata và Đóng gói EPUB bằng Pandoc.
+  * *User Stories:* US03, US04, US05.
+* **Sprint 3 (Tuần 7–8):**
+  * *Mục tiêu:* Quản lý Category/Tag, Elasticsearch full-text search và Trình đọc Web Reader bảo mật.
+  * *User Stories:* US06, US07, US08.
+* **Sprint 4 (Tuần 9–10):**
+  * *Mục tiêu:* Tùy chỉnh UI Reader (font/nền), Bookmark tự động và Highlight/Ghi chú.
+  * *User Stories:* US09, US10.
+* **Sprint 5 (Tuần 11–12):**
+  * *Mục tiêu:* Trích dẫn tự động, kiểm thử sửa lỗi hệ thống và nghiệm thu UAT phần mềm.
+  * *User Stories:* US11.

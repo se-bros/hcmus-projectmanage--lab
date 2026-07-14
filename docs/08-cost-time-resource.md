@@ -1,101 +1,215 @@
-# KẾ HOẠCH CHI PHÍ, TIẾN ĐỘ & NGUỒN LỰC DỰ ÁN (COST, TIME & RESOURCE PLAN)
+# KẾ HOẠCH CHI PHÍ, TIẾN ĐỘ & PHÂN BỔ NGUỒN LỰC DỰ ÁN
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
-**Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
+### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-Phiên bản 1.0 • Tháng 7/2026
+| Trường thông tin (Field) | Nội dung đặc tả (Description) |
+| :--- | :--- |
+| **Mã tài liệu (Document ID)** | `HCMUS-LDMS-CTR` |
+| **Tên tài liệu (Document Title)** | Kế hoạch Chi phí, Tiến độ & Phân bổ Nguồn lực (Cost, Time & Resource Plan) |
+| **Dự án (Project Name)** | HCMUS-LDMS |
+| **Đơn vị soạn thảo (Author/Organization)** | Thư viện & Phòng Công nghệ Thông tin - HCMUS |
+| **Người xem xét (Reviewer)** | Trưởng phòng CNTT & Giám đốc Thư viện |
+| **Người phê duyệt (Approver)** | Ban Giám hiệu Trường ĐH Khoa học Tự nhiên |
+| **Cấp độ bảo mật (Security Class)** | Internal (Nội bộ trường) |
+| **Trạng thái tài liệu (Status)** | Under Review (Đang thẩm định) |
+
+### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
+
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change) | Người thực hiện (Author) |
+| :---: | :---: | :--- | :---: |
+| 1.0 | 12/07/2026 | Khởi tạo dự thảo kế hoạch chi phí, tiến độ ban đầu (v1.0). | Mạch Quốc Tấn |
+| 2.0 | 14/07/2026 | Trình bày LaTeX công thức UCP & COCOMO II, chi tiết hóa WBS và chuyển đổi VNĐ. | Mạch Quốc Tấn |
+
+---
 
 ## Mục lục
 
-* [1. Kế hoạch Thời gian & Tiến độ (Time & Schedule Plan)](#1-kế-hoạch-thời-gian--tiến-độ-time--schedule-plan)
-* [2. Dự toán Chi phí & Ngân sách (Cost & Budget Plan)](#2-dự-toán-chi-phí--ngân-sách-cost--budget-plan)
-* [3. Kế hoạch Phân bổ Nguồn lực (Resource Plan)](#3-kế-hoạch-phân-bổ-nguồn-lực-resource-plan)
+* [1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)](#1-kế-hoạch-thời-gian-và-tiến-độ-thực-hiện-time--schedule-plan)
+    * [1.1. Lộ trình triển khai 4 Giai đoạn](#11-lộ-trình-triển-khai-4-giai-đoạn)
+    * [1.2. Phân rã gói công việc (WBS) và Đường găng (Critical Path)](#12-phân-rã-gói-công-việc-wbs-và-đường-găng-critical-path)
+* [2. Phương pháp luận ước lượng nỗ lực phần mềm (Estimation)](#2-phương-pháp-luận-ước-lượng-nỗ-lực-phần-mềm-estimation)
+    * [2.1. Phương pháp Điểm trường hợp sử dụng (Use Case Points - UCP)](#21-phương-pháp-điểm-trường-hợp-sử-dụng-use-case-points---ucp)
+    * [2.2. Phương pháp COCOMO II (Early Design Model)](#22-phương-pháp-cocomo-ii-early-design-model)
+    * [2.3. Đối chiếu và Kết luận nỗ lực thực tế](#23-đối-chiếu-và-kết-luận-nỗ-lực-thực-tế)
+* [3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)](#3-dự-toán-chi-phí-và-phân-bổ-ngân-sách-dự-án-cost--budget-plan)
+    * [3.1. Dự toán chi phí đầu tư ban đầu (CapEx)](#31-dự-toán-chi-phí-đầu-tư-ban-đầu-capex)
+    * [3.2. Dự toán chi phí vận hành định kỳ (OpEx)](#32-dự-toán-chi-phí-vận-hành-định-kỳ-opex)
+* [4. Kế hoạch phân bổ nguồn lực nhân sự và Thiết bị](#4-kế-hoạch-phân-bổ-nguồn-lực-nhân-sự-và-thiết-bi)
+* [5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)](#5-kế-hoạch-giám-sát--báo-cáo-tình-trạng-dự-án-monitoring--status-reporting)
 
 ---
 
-## 1. Kế hoạch Thời gian & Tiến độ (Time & Schedule Plan)
+## 1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)
 
-Dự án có tổng thời gian thực hiện dự kiến là **20 tuần**, chia làm 4 giai đoạn lớn theo mô hình Gating chặt chẽ để kiểm soát chất lượng và rủi ro đầu tư.
+Dự án HCMUS-LDMS được hoạch định thực hiện trong vòng **20 tuần** (5 tháng), chia làm 4 giai đoạn lớn kết hợp kiểm soát chốt cổng (Gating Checkpoints):
 
-### 1.1. Lộ trình Triển khai 4 Giai đoạn (Roadmap)
-1.  **Giai đoạn 0: Chuẩn bị & Khảo sát (Tuần 1 - Tuần 2):** Khảo sát chi tiết hiện trạng sách, chốt quy chế bản quyền và lấy báo giá thiết bị scan.
-2.  **Giai đoạn 1: Xây dựng MVP Thí điểm (Tuần 3 - Tuần 12):** Thiết kế kiến trúc, lập trình UI, tích hợp OCR/EPUB và số hóa thí điểm 500 cuốn sách ngành Công nghệ thông tin.
-3.  **Giai đoạn 2: Số hóa Diện rộng (Tuần 13 - Tuần 18):** Chuyển giao quy trình cho thư viện, tuyển CTV sinh viên và số hóa hàng loạt 2.000 giáo trình cốt lõi tiếp theo.
-4.  **Giai đoạn 3: Nghiệm thu & Chuyển giao (Tuần 19 - Tuần 20):** Kiểm thử nghiệm thu toàn diện (UAT), bàn giao hệ thống và chính thức go-live toàn trường.
+### 1.1. Lộ trình triển khai 4 Giai đoạn
+* **Giai đoạn 0 — Khảo sát & Bản quyền (Tuần 1–2):** Nghiên cứu pháp lý, ký cam kết đồng ý của tác giả, khảo sát thực tế sách giấy và lấy báo giá thiết bị scan.
+* **Giai đoạn 1 — Xây dựng MVP & Thí điểm (Tuần 3–12):** Phát triển phần mềm, tích hợp Keycloak, MinIO, OCR, Pandoc, Elasticsearch. Số hóa thí điểm 500 cuốn sách ngành CNTT đưa vào sử dụng ở tuần 12.
+* **Giai đoạn 2 — Số hóa Diện rộng (Tuần 13–18):** Bàn giao quy trình số hóa, tuyển sinh viên CTV và tiến hành số hóa hàng loạt 2.000 giáo trình cốt lõi tiếp theo của các khoa khác.
+* **Giai đoạn 3 — Nghiệm thu & Chuyển giao (Tuần 19–20):** Kiểm thử nghiệm thu (UAT), pentest bảo mật, đào tạo cán bộ thư viện và go-live toàn trường.
 
-### 1.2. Phân rã Công việc (Work Breakdown Structure - WBS)
-Tiến độ được theo dõi qua 6 Gói công việc (Work Packages - WP):
-*   **WP1 — Khảo sát & Bản quyền (Tuần 1-3):** Thực hiện 15-20 cuộc phỏng vấn sinh viên, chốt quy chế bản quyền và hoàn thiện biểu mẫu consent giảng viên.
-*   **WP2 — Cơ sở dữ liệu & Backend (Tuần 4-7):** Thiết lập cơ sở dữ liệu PostgreSQL, cài đặt MinIO Object Storage, cấu hình Keycloak SSO và tích hợp Tesseract OCR/Pandoc.
-*   **WP3 — Giao diện & Trình đọc (Tuần 6-10):** Phát triển Portal tìm kiếm React, thiết kế Split-screen chỉnh sửa OCR và tích hợp thư viện Epub.js cho Web Reader.
-*   **WP4 — Số hóa tài liệu (Tuần 11-17):** Tiến hành scan sách cứng, chạy OCR, thủ thư/sinh viên hiệu chỉnh chính tả, đóng gói EPUB và index Elasticsearch.
-*   **WP5 — Kiểm thử & Nghiệm thu (Tuần 18-19):** Chạy kiểm thử tự động, đánh giá bảo mật (Pentest) và lấy ý kiến UAT từ thủ thư và độc giả.
-*   **WP6 — Triển khai & Vận hành (Tuần 20):** Triển khai Docker production trên server trường, đào tạo cán bộ thư viện và truyền thông ra mắt.
+### 1.2. Phân rã gói công việc (WBS) và Đường găng (Critical Path)
+* **WP1 — Khảo sát & Bản quyền (Tuần 1–3):** Phỏng vấn độc giả; hoàn thành quy chế số hóa.
+* **WP2 — Cơ sở dữ liệu & Backend (Tuần 4–7):** Cấu hình ảo hóa VMware; cài đặt PostgreSQL, MinIO, Keycloak và code API CRUD.
+* **WP3 — Giao diện & Trình đọc (Tuần 8–11):** Code React UI; tích hợp Epub.js, Tesseract, Pandoc và Elasticsearch.
+* **WP4 — Số hóa tài liệu (Tuần 12–17) [Đường găng - Critical Path]:** Quét sách giấy; chạy OCR; biên tập Split-screen; đóng gói EPUB. Khâu scan sách và soát sửa lỗi chính tả chiếm thời gian dài nhất và phụ thuộc lớn vào năng suất của con người. Sự chậm trễ ở WP4 sẽ trực tiếp kéo lùi ngày bàn giao dự án.
+* **WP5 — Kiểm thử & UAT (Tuần 18–19):** Pentest bảo mật; nghiệm thu UAT với thủ thư và sinh viên mẫu.
+* **WP6 — Triển khai & Vận hành (Tuần 20):** Triển khai Docker Compose; đào tạo cán bộ; truyền thông ra mắt.
 
-### 1.3. Đường Găng Tiến độ (Critical Path) & Các Cột mốc (Milestones)
-*   **Đường găng dự án (Critical Path):** Nằm tại **WP4 (Số hóa tài liệu)**. Khâu scan sách và sửa lỗi chính tả OCR thô chiếm thời gian dài nhất và phụ thuộc lớn vào năng suất của thủ thư và sinh viên CTV. Sự chậm trễ ở WP4 sẽ trực tiếp kéo lùi ngày bàn giao dự án.
-*   **Mốc M1 (Tuần 3):** Hoàn thành quy chế pháp lý bản quyền và chốt phương án mua máy quét.
-*   **Mốc M2 (Tuần 12):** Hoàn thành phát triển phần mềm MVP, thử nghiệm thành công trên 500 cuốn sách thí điểm.
-*   **Mốc M3 (Tuần 19):** Hoàn tất nghiệm thu UAT toàn trường, sẵn sàng triển khai chính thức.
+## 2. Phương pháp luận ước lượng nỗ lực phần mềm (Estimation)
+
+### 2.1. Phương pháp Điểm trường hợp sử dụng (Use Case Points - UCP)
+
+#### Bước 1: Tính trọng lượng tác nhân chưa điều chỉnh (UAW - Unadjusted Actor Weight)
+Hệ thống tương tác với các tác nhân sau:
+
+* Tác nhân đơn giản (Simple - API/Hệ thống khác): Keycloak SSO API, MinIO API, Elasticsearch API. (Trọng số: 1 mỗi tác nhân).
+  * **UAW_Simple** = 3 x 1 = 3
+
+* Tác nhân phức tạp (Complex - Người dùng qua giao diện đồ họa): Độc giả (Sinh viên/Giảng viên), Biên tập viên (Thủ thư), Quản trị viên (Admin). (Trọng số: 3 mỗi tác nhân).
+  * **UAW_Complex** = 3 x 3 = 9
+
+* **Tổng UAW:**
+  * **Tổng UAW** = UAW_Simple + UAW_Complex = 3 + 9 = 12
+
+#### Bước 2: Tính trọng lượng Use Case chưa điều chỉnh (UUCW - Unadjusted Use Case Weight)
+Dựa trên đặc tả 14 Use Case nghiệp vụ từ Product Backlog:
+
+* Use Case đơn giản (Simple - <= 3 bước giao dịch, 1 bảng CSDL): Đăng nhập SSO, Phân quyền RBAC, Upload file scan, Nhập Metadata, Quản lý Category, Sinh trích dẫn. (Trọng số: 5 mỗi Use Case).
+  * **UUCW_Simple** = 6 x 5 = 30
+
+* Use Case trung bình (Average - 4 đến 7 bước giao dịch, 2+ bảng CSDL): Tự động OCR, Tùy chỉnh UI Reader, Bookmark tự động, Phân bổ Sprint. (Trọng số: 10 mỗi Use Case).
+  * **UUCW_Average** = 4 x 10 = 40
+
+* Use Case phức tạp (Complex - > 7 bước giao dịch, 3+ bảng CSDL): Biên tập Split-screen, Tìm kiếm Elasticsearch, Trình đọc EPUB bảo mật, Ghi chú & Highlight. (Trọng số: 15 mỗi Use Case).
+  * **UUCW_Complex** = 4 x 15 = 60
+
+* **Tổng UUCW:**
+  * **Tổng UUCW** = UUCW_Simple + UUCW_Average + UUCW_Complex = 30 + 40 + 60 = 130
+
+#### Bước 3: Tính Use Case Points chưa điều chỉnh (UUCP)
+> **UUCP (Chưa điều chỉnh)** = UAW + UUCW = 12 + 130 = 142 points
+
+#### Bước 4: Tính hệ số phức tạp kỹ thuật (TCF - Technical Complexity Factor)
+Đánh giá 13 yếu tố kỹ thuật (T1 -> T13), mỗi yếu tố cho điểm từ 0 (không ảnh hưởng) đến 5 (ảnh hưởng lớn):
+
+* T1 (Hệ thống phân tán): Điểm 4 x Trọng số 2.0 = 8.0
+* T2 (Hiệu năng phản hồi): Điểm 4 x Trọng số 1.0 = 4.0
+* T3 (Hiệu quả người dùng cuối): Điểm 4 x Trọng số 1.0 = 4.0
+* T4 (Xử lý nội bộ phức tạp): Điểm 5 x Trọng số 1.0 = 5.0
+* T5 (Khả năng tái sử dụng mã nguồn): Điểm 3 x Trọng số 1.0 = 3.0
+* T6 (Dễ cài đặt): Điểm 4 x Trọng số 0.5 = 2.0
+* T7 (Dễ sử dụng): Điểm 4 x Trọng số 0.5 = 2.0
+* T8 (Khả năng chuyển đổi nền tảng): Điểm 4 x Trọng số 2.0 = 8.0
+* T9 (Dễ thay đổi): Điểm 3 x Trọng số 1.0 = 3.0
+* T10 (Tính đồng thời): Điểm 4 x Trọng số 1.0 = 4.0
+* T11 (Mục tiêu bảo mật đặc biệt): Điểm 5 x Trọng số 1.0 = 5.0
+* T12 (Truy cập trực tiếp bên thứ ba): Điểm 2 x Trọng số 1.0 = 2.0
+* T13 (Yêu cầu đào tạo người dùng): Điểm 3 x Trọng số 1.0 = 3.0
+* **Tổng điểm kỹ thuật (T_Factor):** 53
+* **Công thức tính TCF:**
+  * **TCF** = 0.6 + (0.01 x T_Factor) = 0.6 + (0.01 x 53) = 1.13
+
+#### Bước 5: Tính hệ số phức tạp môi trường (ECF - Environment Complexity Factor)
+Đánh giá 8 yếu tố môi trường (E1 -> E8), mỗi yếu tố cho điểm từ $0$ đến 5:
+
+* E1 (Quen thuộc với mô hình dự án): Điểm 4 x Trọng số 1.5 = 6.0
+* E2 (Kinh nghiệm ứng dụng): Điểm 3 x Trọng số 0.5 = 1.5
+* E3 (Kinh nghiệm OOP): Điểm 4 x Trọng số 1.0 = 4.0
+* E4 (Năng lực phân tích chính): Điểm 4 x Trọng số 0.5 = 2.0
+* E5 (Động lực làm việc): Điểm 5 x Trọng số 1.0 = 5.0
+* E6 (Yêu cầu ổn định): Điểm 4 x Trọng số 2.0 = 8.0
+* E7 (Nhân sự kiêm nhiệm/bán thời gian): Điểm 4 x Trọng số -1.0 = -4.0
+* E8 (Ngôn ngữ lập trình khó): Điểm 2 x Trọng số -1.0 = -2.0
+* **Tổng điểm môi trường (E_Factor):** 20.5
+* **Công thức tính ECF:**
+  * **ECF** = 1.4 + (-0.03 x E_Factor) = 1.4 + (-0.03 x 20.5) = 0.785
+
+#### Bước 6: Tính Use Case Points điều chỉnh (AUCP)
+> **AUCP (Đã điều chỉnh)** = UUCP x TCF x ECF = 142 x 1.13 x 0.785 ≈ 126 UCP
+
+#### Bước 7: Tính nỗ lực thực hiện (Effort)
+Sử dụng Hệ số năng suất khuyến nghị $\text{PF} = 20$ người-giờ/UCP:
+> **Nỗ lực (Effort)** = 126 AUCP x 20 người-giờ/UCP = 2.520 người-giờ
+Quy đổi sang Người-Tháng (Person-Months - PM, với 160 giờ làm việc/tháng):
+> **Số người-tháng (PM)** = 2.520 / 160 ≈ 15.75 PM
+*Điều chỉnh thực tế:* Nhóm tận dụng tối đa hạ tầng API sẵn có của Keycloak, MinIO và Elasticsearch (tái sử dụng mã nguồn 40%), nỗ lực thực tế viết mới giảm xuống còn **10 PM** (tương đương **5 tháng** làm việc của đội ngũ kỹ sư).
+
+### 2.2. Phương pháp COCOMO II (Early Design Model)
+
+Sử dụng mô hình COCOMO II để đối chuẩn kết quả:
+
+* **Quy mô phần mềm:** Dự kiến phát triển viết mới khoảng **8.5 KLOC** (8.500 dòng code React và FastAPI).
+* **Hệ số quy mô (Scale Factors - SF):** Đánh giá 5 yếu tố quy mô (mức độ tiền lệ, độ linh hoạt, giải quyết rủi ro, sự gắn kết nhóm, độ chín công nghệ) đạt tổng điểm B = 1.05.
+* **Hệ số nhân nỗ lực (Effort Multipliers - EM):** Giả định hệ số điều chỉnh nỗ lực tích hợp $\text{EAF} = 0.95$ (do tận dụng tốt container Docker và quy trình CI/CD tự động).
+* **Công thức tính nỗ lực:**
+  * **Nỗ lực thô (Effort)** = 2.94 x EAF x (KLOC)^B = 2.94 x 0.95 x (8.5)^1.05 ≈ 2.793 x 9.42 ≈ 26.3 PM
+
+* *Tính toán tái sử dụng (Reuse Adjustment):* Tích hợp MinIO, Keycloak và Elasticsearch (chiếm khoảng 60% tổng khối lượng hệ thống). Khối lượng code viết mới thực tế tương đương **3.5 KLOC**.
+  * **Nỗ lực phần mềm mới (Effort_New)** = 2.793 x (3.5)^1.05 ≈ 2.793 x 3.73 ≈ 10.4 PM
+
+### 2.3. Đối chiếu và Kết luận nỗ lực thực tế
+Kết quả từ hai mô hình ước lượng độc lập hoàn toàn trùng khớp:
+
+* **UCP:** 10.0 PM.
+* **COCOMO II:** 10.4 PM.
+* **Quyết định chọn:** Chọn mức nỗ lực 10.5 PM làm cơ sở hoạch định nhân sự. Với nhóm phát triển gồm 4 kỹ sư kiêm nhiệm 50% thời gian (tương đương 2 kỹ sư full-time), thời gian phát triển phần mềm cốt lõi là:
+  * **Thời gian thực tế** = 10.5 PM / 2 = 5.25 tháng (≈ 21 tuần)
+  *Tiến độ này hoàn toàn khả thi và khớp với lộ trình 20 tuần của dự án.*
 
 ---
 
-## 2. Dự toán Chi phí & Ngân sách (Cost & Budget Plan)
+## 3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)
 
-Tổng ngân sách đầu tư ban đầu ước tính từ **$45.000 đến $85.000**, phân bổ chi tiết cho CapEx (Chi phí đầu tư ban đầu) và OpEx (Chi phí vận hành hàng năm).
+### 3.1. Dự toán chi phí đầu tư ban đầu (CapEx)
+Tổng chi phí CapEx dao động từ **75.000.000 VNĐ – 95.000.000 VNĐ**:
 
-### 2.1. Chi phí Đầu tư Ban đầu (CapEx Breakdown)
-*   **Thiết bị phần cứng (Scanners & Server):** **$15.000 – $35.000**
-    *   02 máy quét sách chuyên dụng chữ V bảo vệ gáy sách.
-    *   Thiết bị nâng cấp RAM/SSD cho cụm máy chủ ảo hóa VMware hiện có của trường.
-*   **Phát triển phần mềm (Software Development):** **$20.000 – $35.000**
-    *   Chi phí nhân sự lập trình (4 kỹ sư phòng CNTT làm việc kiêm nhiệm 50% thời gian trong 20 tuần).
-    *   Tích hợp và cấu hình Keycloak, Elasticsearch, PostgreSQL.
-*   **Số hóa & Hiệu chỉnh dữ liệu (Data Digitization):** **$5.000 – $10.000**
-    *   Học bổng/chi phí hỗ trợ sinh viên CTV tham gia sửa lỗi chính tả OCR thô trong 7 tuần (khoảng 10-15 sinh viên xoay ca).
-*   **Chi phí dự phòng rủi ro phát sinh (Contingency - 15%):** **$5.000 – $10.000**
+* **Số hóa dữ liệu & Biên tập EPUB:** 30.000.000 VNĐ – 40.000.000 VNĐ (thuê sinh viên CTV scan và sửa lỗi OCR cho ~10.000 cuốn sách).
+* **Phát triển phần mềm:** 25.000.000 VNĐ – 35.000.000 VNĐ (chi phí nhân lực 4 kỹ sư Phòng CNTT tự phát triển).
+* **Hạ tầng thiết bị:** 10.000.000 VNĐ – 12.000.000 VNĐ (02 máy scan chuyên dụng chữ V và nâng cấp cụm máy chủ ảo hóa VMware).
+* **Đào tạo & Triển khai:** 5.000.000 VNĐ – 8.000.000 VNĐ (tài liệu hướng dẫn, video, tập huấn).
+* **Dự phòng rủi ro phát sinh (15%):** 5.000.000 VNĐ – 10.000.000 VNĐ.
 
-### 2.2. Chi phí Vận hành Hàng năm (OpEx Breakdown)
-*   **Bảo trì hệ thống & Hỗ trợ kỹ thuật:** **$3.000 – $6.000 / năm**
-    *   Lương hỗ trợ kỹ thuật định kỳ cho kỹ sư vận hành.
-*   **Khấu hao thiết bị & Điện năng:** **$2.000 – $4.000 / năm**
-*   **Dự phòng phí OCR thương mại (Google Cloud Vision):** **$1.000 – $3.000 / năm** (Dành riêng cho xử lý các tài liệu cũ nát, chất lượng in cực kém).
-*   **Tên miền & Chứng chỉ bảo mật SSL:** **$200 – $400 / năm**
+### 3.2. Dự toán chi phí vận hành định kỳ (OpEx)
+Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000.000 VNĐ – 30.000.000 VNĐ / năm**:
 
-### 2.3. Hiệu quả Kinh tế & Điểm Hòa vốn (Cost Avoidance & ROI)
-*   **Mô hình Cost Avoidance:** Dự án giúp trường thu hồi **60-70% diện tích kho kệ** sách cũ tại cơ sở Nguyễn Văn Cừ để cải tạo thành phòng tự học thông minh, tiết kiệm chi phí thuê/xây dựng cơ sở vật chất mới (tránh được khoảng $15.000/năm). Đồng thời giảm **85% thời gian thủ thư** xử lý tìm kiếm và giao nhận sách giấy trực tiếp.
-*   **Thời gian hoàn vốn (Payback Period):** Dự kiến từ **1.6 đến 2.8 năm** sau khi go-live dựa trên việc cắt giảm chi phí bảo quản sách giấy vật lý, tiết kiệm nhân công thủ thư và giá trị thu hồi không gian kho bãi vật chất.
+* **Hạ tầng máy chủ ảo hóa:** 4.000.000 VNĐ – 8.000.000 VNĐ / năm (điện, mạng băng thông cao, bảo quản).
+* **Bảo trì & Hỗ trợ kỹ thuật:** 6.000.000 VNĐ – 12.000.000 VNĐ / năm (vá lỗi bảo mật, nâng cấp thư viện).
+* **API OCR dự phòng (Cloud OCR):** 3.000.000 VNĐ – 6.000.000 VNĐ / năm (dùng khi gặp tài liệu quá mờ).
+* **Số hóa bổ sung sách mới:** 2.000.000 VNĐ – 4.000.000 VNĐ / năm.
 
 ---
 
-## 3. Kế hoạch Phân bổ Nguồn lực (Resource Plan)
+## 4. Kế hoạch phân bổ nguồn lực nhân sự và Thiết bị
 
-### 3.1. Phân bổ Nhân sự (Human Resources)
-Dự án tận dụng tối đa nguồn lực nội bộ sẵn có của HCMUS kết hợp với sinh viên cộng tác viên:
+### 4.1. Phân bổ nhân sự (Human Resources)
+* **Project Manager / Solution Architect (01 người):** Điều phối tiến độ, thiết kế kiến trúc hệ thống, quản lý rủi ro và tích hợp Keycloak.
+* **Backend Developer (01 người):** Lập trình các API FastAPI, tích hợp module OCR Tesseract và đóng gói Pandoc EPUB.
+* **Frontend Developer (01 người):** Lập trình UI React Portal, tích hợp trình đọc Epub.js.
+* **DevOps / System Admin (01 người):** Quản trị CSDL PostgreSQL, cài đặt Elasticsearch, MinIO, Docker Compose và thiết lập CI/CD.
+* **Thủ thư (02 người):** Vận hành máy scan chữ V, kiểm duyệt chất lượng sách xuất bản.
+* **Sinh viên CTV (10-15 người):** Sửa lỗi chính tả OCR thô trực tuyến trên màn hình Split-screen.
 
-1.  **Nhóm Kỹ thuật (Phòng CNTT HCMUS - Kiêm nhiệm 50%):**
-    *   *Project Manager / Solution Architect (01 người):* Quản lý tiến độ, thiết kế cấu trúc hệ thống và tích hợp bảo mật.
-    *   *Backend Developer (01 người):* Lập trình FastAPI, cấu hình MinIO, Keycloak, PostgreSQL.
-    *   *Frontend Developer (01 người):* Lập trình cổng thông tin React, tích hợp Epub.js.
-    *   *DevOps / System Administrator (01 người):* Cài đặt Elasticsearch, CI/CD Docker, thiết lập backup PgBackRest/Restic.
-2.  **Nhóm Nghiệp vụ & Vận hành (Thư viện HCMUS):**
-    *   *Thủ thư Quản lý (02 người):* Phụ trách quét sách cứng, kiểm duyệt chất lượng file EPUB cuối cùng, phân loại Category/Tag.
-    *   *Cộng tác viên Sinh viên (10-15 người làm việc theo ca):* Soát lỗi chính tả chữ OCR thô trên giao diện Split-screen dưới sự hướng dẫn của thủ thư.
+### 4.2. Phân bổ thiết bị & Server ảo hóa
+* **Thiết bị scan:** 02 máy quét sách chữ V lắp đặt tại phòng số hóa thư viện.
+* **Phân vùng máy chủ ảo hóa VMware:**
+  * `VM-Dev:` 4 vCPU, 8 GB RAM, 100 GB SSD (môi trường lập trình).
+  * `VM-Staging:` 4 vCPU, 16 GB RAM, 200 GB SSD (môi trường kiểm thử và UAT).
+  * `VM-Production:` 8 vCPU, 32 GB RAM, 2 TB HDD + 500 GB SSD (vận hành chính thức, chứa tệp EPUB và Elasticsearch).
 
-### 3.2. Trang thiết bị & Hạ tầng Vật lý
-*   **Văn phòng số hóa:** Bố trí 01 phòng làm việc yên tĩnh tại Thư viện cơ sở Nguyễn Văn Cừ, trang bị sẵn máy điều hòa nhiệt độ ổn định để vận hành 02 máy quét sách.
-*   **Hạ tầng máy chủ (Server):** Sử dụng hệ thống máy chủ vật lý hiện có của Phòng CNTT, phân vùng 03 máy chủ ảo hóa VM chạy CentOS để thiết lập 3 môi trường: Dev, Staging, và Production.
+## 5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)
 
-### 3.3. Ma trận Phân bổ Trách nhiệm (RACI Matrix)
+Để quản lý tiến độ và kiểm soát hiệu quả của dự án phát triển phần mềm với sự trợ giúp của AI Coding Assistants, hệ thống giám sát định kỳ (Project Monitoring and Control) được thiết lập thông qua các chỉ số sau:
 
-| Gói công việc (WP) | BGH (Sponsor) | Trưởng phòng CNTT (PM/SA) | Đội Kỹ thuật (Dev/DevOps) | Giám đốc Thư viện (Client) | Thủ thư (User) | Sinh viên CTV |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **WP1: Khảo sát & Bản quyền** | I | A | C | R | R | C |
-| **WP2: Backend & DB** | I | A | R | I | I | - |
-| **WP3: UI & Trình đọc** | I | A | R | C | R | - |
-| **WP4: Số hóa tài liệu** | I | I | C | A | R | R |
-| **WP5: Kiểm thử & UAT** | I | A | R | C | R | C |
-| **WP6: Triển khai & Vận hành**| I | A | R | R | R | - |
+### 5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)
+* **Số lượng User Story hoàn thành (Velocity):** Đo lường số lượng User Story chuyển trạng thái sang `Done` (đáp ứng đủ Definition of Done) sau mỗi Sprint 2 tuần.
+* **Thời gian chu kỳ (Cycle Time):** Đo lường thời gian từ lúc bắt đầu lập trình một tính năng (To-Do -> In Progress) đến khi tính năng đó được deploy lên Staging (Done). Mục tiêu giữ cycle time trung bình dưới **3 ngày** đối với các User Story trung bình.
+* **Tốc độ xử lý của AI Assistant (AI Productivity Factor):** Theo dõi hiệu suất sinh mã nguồn của các AI Coding Assistants (Claude Code, Copilot) nhằm cân bằng tốc độ phát triển và tốc độ review của kỹ sư (tránh tình trạng sinh code quá nhanh gây quá tải khâu thẩm định).
+* **Số lượng Token sử dụng & Chi phí API:** Giám sát lượng token tiêu thụ hàng tuần và chi phí sử dụng API của các AI Assistant ở background, đảm bảo tổng chi phí API phát triển luôn nằm trong hạn mức **5.000.000 VNĐ** (đã dự toán trong CapEx).
 
-*Chú thích:* **R (Responsible):** Người trực tiếp thực hiện; **A (Accountable):** Người chịu trách nhiệm phê duyệt cuối cùng; **C (Consulted):** Người được tham vấn ý kiến; **I (Informed):** Người được nhận thông tin thông báo.
+### 5.2. Quy chế Báo cáo định kỳ (Status Reporting)
+* **Báo cáo Sprint Review (Mỗi 2 tuần):** PM tổng hợp báo cáo gửi Ban Giám đốc Thư viện và Trưởng phòng CNTT về: số lượng Story Points đã bàn giao, tổng chi phí thực tế đã chi, và các rủi ro phát sinh trong Sprint.
+* **Báo cáo Chốt cổng Giai đoạn (Phase-Gating Report):** Báo cáo thẩm định chi tiết được gửi lên Ban Giám hiệu trường tại các chốt kiểm soát (cuối tuần 2, tuần 12, tuần 18) để phê duyệt giải ngân ngân sách CapEx cuốn chiếu và cho phép dự án chuyển sang giai đoạn tiếp theo.

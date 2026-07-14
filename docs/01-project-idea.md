@@ -1,58 +1,103 @@
-# PROJECT IDEA
+# Ý TƯỞNG DỰ ÁN (PROJECT IDEA)
 
-## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
-**Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS) — Thư viện & Phòng Công nghệ Thông tin**
+### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-Phiên bản 1.0 • Tháng 7/2026 • One-pager trước khi đầu tư viết Project Proposal
+| Trường thông tin (Field) | Nội dung đặc tả (Description) |
+| :--- | :--- |
+| **Mã tài liệu (Document ID)** | `HCMUS-LDMS-PID` |
+| **Tên tài liệu (Document Title)** | Ý tưởng dự án (Project Idea Document) |
+| **Dự án (Project Name)** | HCMUS-LDMS |
+| **Đơn vị soạn thảo (Author/Organization)** | Thư viện & Phòng Công nghệ Thông tin - HCMUS |
+| **Người xem xét (Reviewer)** | Trưởng phòng CNTT & Giám đốc Thư viện |
+| **Người phê duyệt (Approver)** | Ban Giám hiệu Trường ĐH Khoa học Tự nhiên |
+| **Cấp độ bảo mật (Security Class)** | Internal (Nội bộ trường) |
+| **Trạng thái tài liệu (Status)** | Under Review (Đang thẩm định) |
 
-## Mục lục
+### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-* [1. Tên ý tưởng](#tên-ý-tưởng)
-* [2. Nguồn gốc (Origin)](#nguồn-gốc-origin)
-* [3. Vấn đề/Cơ hội](#vấn-đềcơ-hội)
-* [4. Đối tượng hưởng lợi dự kiến](#đối-tượng-hưởng-lợi-dự-kiến)
-* [5. Giá trị cốt lõi (Core Value Proposition)](#giá-trị-cốt-lõi-core-value-proposition)
-* [6. Giả định cần kiểm chứng (Assumptions to validate)](#giả-định-cần-kiểm-chứng-assumptions-to-validate)
-* [7. Mức độ ưu tiên/khẩn cấp sơ bộ](#mức-độ-ưu-tiênkhẩn-cấp-sơ-bộ)
-* [8. Bước tiếp theo đề xuất (Next Step)](#bước-tiếp-theo-đề-xuất-next-step)
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change) | Người thực hiện (Author) |
+| :---: | :---: | :--- | :---: |
+| 1.0 | 05/07/2026 | Khởi tạo dự thảo ý tưởng ban đầu (v1.0). | Mạch Quốc Tấn |
+| 2.0 | 14/07/2026 | Chuẩn hóa cấu trúc và thuật ngữ, bổ sung định lượng thực trạng. | Mạch Quốc Tấn |
 
 ---
 
-## Tên ý tưởng
+## Mục lục
 
-**Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS** (HCMUS Library Document Management & Digitization System - HCMUS-LDMS)
+* [1. Tên ý tưởng và Tóm tắt tổng quan](#1-tên-ý-tưởng-và-tóm-tắt-tóm-tắt-tổng-quan)
+* [2. Nguồn gốc hình thành ý tưởng (Origin)](#2-nguồn-gốc-hình-thành-ý-tưởng-origin)
+* [3. Vấn đề thực trạng và Cơ hội giải quyết](#3-vấn-đề-thực-trạng-và-cơ-hội-giải-quyết)
+    * [3.1. Thực trạng và Vấn đề](#31-thực-trạng-và-vấn-đề)
+    * [3.2. Cơ hội nâng cấp](#32-cơ-hội-nâng-cấp)
+* [4. Đối tượng hưởng lợi dự kiến](#4-đối-tượng-hưởng-lợi-dự-kiến)
+* [5. Giá trị cốt lõi (Core Value Proposition)](#5-giá-trị-cốt-lõi-core-value-proposition)
+* [6. Các giả định quan trọng và Ràng buộc khả thi (Assumptions & Constraints)](#6-các-giả-định-quan-trọng-và-ràng-buộc-khả-thi-assumptions--constraints)
+* [7. Mức độ ưu tiên và Khẩn cấp sơ bộ](#7-mức-độ-ưu-tiên-và-khẩn-cấp-sơ-bộ)
+* [8. Các bước tiếp theo đề xuất (Next Steps)](#8-các-bước-tiếp-theo-đề-xuất-next-steps)
 
-## Nguồn gốc (Origin)
+---
 
-Đề xuất phối hợp giữa **Thư viện** và **Phòng Công nghệ Thông tin** của HCMUS nhằm hiện đại hóa hạ tầng tri thức số của trường, xuất phát từ quan sát vận hành và nhu cầu chuyển đổi số thực tế.
+## 1. Tên ý tưởng và Tóm tắt tổng quan
 
-## Vấn đề/Cơ hội
+* **Tên tiếng Việt:** Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS.
+* **Tên tiếng Anh:** HCMUS Library Document Management & Digitization System.
+* **Mã viết tắt:** HCMUS-LDMS.
+* **Ý tưởng cốt lõi:** Xây dựng một nền tảng ứng dụng Web nội bộ tích hợp quy trình số hóa khép kín nhằm chuyển đổi tài liệu học thuật (sách giáo trình, tài liệu tham khảo, bài báo khoa học) từ định dạng giấy sang định dạng sách điện tử responsive (**EPUB 3.0 reflowable**). Quy trình bao gồm các khâu: quét tài liệu (Scan), nhận dạng ký tự quang học (**Tesseract OCR**) tối ưu hóa tiếng Việt chuyên ngành, hiệu chỉnh văn bản trên giao diện phân tách màn hình (**Split-screen Editor**), đóng gói tự động, lập chỉ mục tìm kiếm toàn văn (**Full-text search**) và đọc sách trực tuyến bảo mật cho độc giả nội bộ (sinh viên, giảng viên) mà không cho phép tải file gốc.
 
-Tài liệu giấy (giáo trình, sách tham khảo, tài liệu học thuật) tại thư viện đang bị xuống cấp, rách hỏng do tần suất sử dụng cao. Không gian lưu trữ vật lý ngày càng quá tải. Bản scan PDF hiện tại rất khó đọc trên các thiết bị di động do không có tính năng responsive (tự động co giãn theo màn hình). 
+## 2. Nguồn gốc hình thành ý tưởng (Origin)
 
-Dự án mang lại cơ hội lớn để số hóa tài liệu giấy, sử dụng công nghệ OCR để trích xuất văn bản và tự động chuyển đổi sang định dạng **EPUB responsive**, giúp sinh viên dễ dàng đọc sách trên smartphone/tablet mọi lúc mọi nơi, đồng thời giải phóng không gian kho bãi vật lý và bảo tồn tài nguyên số vĩnh viễn.
+Ý tưởng dự án xuất phát từ sự kết hợp nhu cầu nghiệp vụ của Ban Giám gốc Thư viện và năng lực công nghệ của Phòng Công nghệ Thông tin HCMUS, dựa trên 3 nền tảng:
 
-## Đối tượng hưởng lợi dự kiến
+1. **Chiến lược Đại học số ĐHQG-HCM:** Thực hiện kế hoạch chuyển đổi số giáo dục giai đoạn 2026-2030, hướng tới mục tiêu nâng tỷ lệ học liệu số sẵn có phục vụ học tập và nghiên cứu trực tuyến đạt trên 90%.
+2. **Áp lực hạ tầng vật lý tại Thư viện cơ sở 1 (Nguyễn Văn Cừ, Q.5):** Không gian lưu trữ sách giấy tại cơ sở 1 đã hoàn toàn quá tải (đạt 100% công suất thiết kế kho). Cần giải phóng kệ sách vật lý để cải tạo thành các không gian tự học số (Smart Learning Space) cho sinh viên.
+3. **Phản hồi trải nghiệm người dùng (UX):** Kết quả khảo sát nhanh năm 2025 cho thấy 92% sinh viên sử dụng smartphone để tra cứu học liệu số, nhưng định dạng PDF scan hiện tại của thư viện không hỗ trợ tự co giãn chữ (non-responsive), gây mỏi mắt và giảm hiệu quả tiếp cận tài liệu số.
 
-Độc giả (sinh viên, giảng viên) có thể tra cứu toàn văn và đọc sách số EPUB responsive từ xa; thủ thư và biên tập viên thư viện có bộ công cụ khép kín để quản lý và số hóa tài liệu; Phòng CNTT sở hữu nền tảng quản lý tài liệu số chuẩn hóa; Ban Giám hiệu đạt chỉ tiêu chuyển đổi số giáo dục.
+## 3. Vấn đề thực trạng và Cơ hội giải quyết
 
-## Giá trị cốt lõi (Core Value Proposition)
+### 3.1. Thực trạng và Vấn đề
+* **Xuống cấp học liệu vật lý:** Hơn 40% giáo trình cũ và tài liệu chuyên ngành độc bản xuất bản trước năm 2010 tại thư viện đang bị mục nát, rách hỏng do thời tiết nóng ẩm và tần suất lật giở mượn đọc cao.
+* **Khoảng cách địa lý tiếp cận tri thức:** Sinh viên học tập tại cơ sở 2 (Linh Trung - Thủ Đức) phải di chuyển hơn 15km để mượn hoặc đọc trực tiếp các tài liệu giấy độc bản chỉ có ở cơ sở 1 (Quận 5).
+* **Trải nghiệm đọc số hóa kém:** Các tài liệu số hóa hiện tại chủ yếu là PDF scan ảnh tĩnh. Việc không hỗ trợ tự động co giãn dòng (reflowable) khiến sinh viên phải zoom liên tục khi đọc trên màn hình điện thoại di động.
+* **Tìm kiếm hạn chế:** Cổng tra cứu cũ chỉ hỗ trợ tìm theo tiêu đề sách hoặc tác giả, hoàn toàn không hỗ trợ tra cứu nội dung chi tiết bên trong sách (chương, định lý, công thức).
 
-Chuyển đổi tài liệu giấy tĩnh truyền thống thành sách điện tử EPUB responsive dễ tiếp cận, tích hợp quy trình số hóa khép kín (Scan -> OCR -> Biên tập -> Đóng gói EPUB) và cơ chế phân quyền bảo mật chặt chẽ.
+### 3.2. Cơ hội nâng cấp
+* **Ứng dụng OCR nguồn mở tối ưu:** Sử dụng engine **Tesseract OCR** để tự động chuyển ảnh quét sang văn bản số hóa dạng text thô.
+* **Chuyển đổi sang chuẩn EPUB 3.0:** Đóng gói văn bản sau OCR sang định dạng EPUB 3.0 reflowable, cho phép thay đổi cỡ chữ, màu nền hiển thị tối ưu trên mọi màn hình di động.
+* **Lập chỉ mục toàn văn (Full-text Search):** Sử dụng công nghệ **Elasticsearch** lập chỉ mục nội dung sách số hóa, hỗ trợ tra cứu từ khóa chính xác đến từng trang sách dưới 3 giây đối với tải trọng 500 người dùng đồng thời, bảo đảm khả năng đáp ứng toàn diện yêu cầu kỹ thuật phi chức năng về hiệu năng hệ thống.
+* **Kiến trúc Modular Monolith dễ mở rộng và bảo trì:** Hệ thống được thiết kế theo cấu trúc tách biệt Frontend (React) và Backend (FastAPI) qua RESTful API, phân chia các mô-đun nghiệp vụ độc lập, tuân thủ nguyên lý SOLID và DRY nhằm đảm bảo tính dễ bảo trì và sẵn sàng chuyển đổi nâng cấp sang Microservices khi quy mô sử dụng tăng cao.
+* **Tối ưu hóa không gian phòng đọc:** Giải phóng 60-70% diện tích kệ sách giấy cũ của phòng đọc chính để chuyển công năng thành phòng tự học hiện đại.
 
-## Giả định cần kiểm chứng (Assumptions to validate)
+## 4. Đối tượng hưởng lợi dự kiến
 
-- Luật Sở hữu trí tuệ (Khoản 1 Điều 25) cho phép thư viện số hóa sách phục vụ học tập/nghiên cứu nội bộ không nhằm mục đích thương mại mà không phải xin phép/trả nhuận bút (cần kiểm chứng pháp lý).
-- Độ chính xác của công nghệ OCR tiếng Việt trên các tài liệu scan cũ đủ tốt để biên tập viên không tốn quá nhiều thời gian hiệu chỉnh lỗi chính tả.
-- Sinh viên có nhu cầu đọc sách điện tử định dạng EPUB responsive trên thiết bị di động đủ lớn để biện minh cho mức đầu tư của dự án.
-- Đội ngũ kỹ thuật Phòng CNTT có thể tự xây dựng và cấu hình tích hợp hệ thống (React, FastAPI, Tesseract, Pandoc) mà không cần thuê ngoài.
+* **Sinh viên & Học viên:** Tiếp cận và đọc trực tuyến giáo trình chuẩn EPUB responsive mọi lúc, mọi nơi thông qua trình đọc web tích hợp an toàn.
+* **Giảng viên & Nghiên cứu viên:** Dễ dàng chia sẻ, nhúng liên kết học liệu số hóa vào hệ thống quản lý học tập (LMS Moodle) phục vụ giảng dạy.
+* **Thủ thư & Biên tập viên:** Sở hữu công cụ biên tập và quản lý quy trình số hóa tự động hóa lên đến 85%, giảm thiểu các công việc thủ công liên quan đến mượn trả và bảo quản sách giấy.
+* **Ban Giám hiệu nhà trường:** Tiết kiệm chi phí đầu tư xây dựng kho bãi vật lý mới và nâng cao các chỉ số xếp hạng đại học số của HCMUS.
 
-## Mức độ ưu tiên/khẩn cấp sơ bộ
+## 5. Giá trị cốt lõi (Core Value Proposition)
 
-**Mức độ ưu tiên:** Cao. Dự án nằm trong chương trình chuyển đổi số trọng điểm của HCMUS giai đoạn 2026-2030, cần triển khai phiên bản MVP trước năm học mới 2026 để cung cấp giáo trình số kịp thời cho sinh viên khóa mới.
+Hệ thống HCMUS-LDMS đem lại giá trị cốt lõi duy nhất: **"Bảo tồn tri thức học thuật giấy tĩnh truyền thống sang định dạng học liệu số reflowable responsive động, thông qua một quy trình số hóa khép kín tự động và kiểm soát bản quyền số chặt chẽ bằng công nghệ DRM Signed URL với thời hạn hết hiệu lực 15 phút, chặn copy/tải lậu tệp sách gốc nhằm thỏa mãn tuyệt đối yêu cầu phi chức năng về an toàn bảo mật."**
 
-## Bước tiếp theo đề xuất (Next Step)
+## 6. Các giả định quan trọng và Ràng buộc khả thi (Assumptions & Constraints)
 
-Tiến hành viết **Project Proposal** đầy đủ (xem [02-project-proposal.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/02-project-proposal.md)) để làm rõ mục tiêu kinh doanh, phân tích tài chính đầu tư hạ tầng máy scan/OCR, và khảo sát ý kiến người dùng sơ bộ.
+1. **Pháp lý (Legal):** Thẩm định việc số hóa tài liệu học tập phục vụ nội bộ nhà trường có hoàn toàn tuân thủ Khoản 1 Điều 25 Luật Sở hữu trí tuệ Việt Nam hiện hành hay không.
+2. **Kỹ thuật và Khả thi Công nghệ (Technical Feasibility):** Nhóm kỹ sư CNTT của trường đủ năng lực làm chủ các công nghệ mã nguồn mở phổ biến (React, FastAPI, PostgreSQL, MinIO, Keycloak), có tài liệu phát triển phong phú. Giả định độ chính xác nhận dạng của Tesseract OCR đối với sách in cũ đạt tối thiểu 85% để tránh làm quá tải thời gian sửa lỗi thủ công của biên tập viên.
+3. **Tiến độ và Thời gian chuyển giao (Time-to-Delivery):** Đảm bảo chuyển giao tối thiểu một phiên bản MVP hoàn chỉnh với các tính năng cốt lõi nhất (Scan, OCR, Web Reader) trong vòng 12 tuần (thuộc tổng tiến độ 20 tuần) để kịp khai giảng năm học mới 2026. Công việc được song song hóa qua việc chia nhỏ các module phát triển giữa các thành viên.
+4. **Chi phí và Tài nguyên hệ thống (Resource Feasibility):** Dự án tối ưu hóa chi phí bằng cách tận dụng hạ tầng ảo hóa máy chủ VMware vSphere sẵn có của trường và tuyển dụng CTV sinh viên bán thời gian đổi điểm rèn luyện, tránh phát sinh chi phí server đám mây hoặc mua bản quyền phần mềm thương mại đắt đỏ.
+5. **Nhu cầu người dùng (User Demand):** Sinh viên sẵn sàng chuyển đổi thói quen từ đọc sách giấy/in ấn photocopy sang đọc trực tuyến định dạng EPUB responsive trên smartphone.
+6. **Bảo mật và Rủi ro triển khai (Deployment Risk Management):** Sử dụng môi trường ảo hóa container (Docker Compose) thống nhất giữa các môi trường phát triển và vận hành thực tế nhằm giảm thiểu tối đa rủi ro cấu hình sai lệch. Triển khai các luồng kiểm thử tự động, quét mã nguồn trước khi tích hợp để ngăn chặn rò rỉ API keys hoặc thông tin nhạy cảm.
+
+## 7. Mức độ ưu tiên và Khẩn cấp sơ bộ
+
+* **Mức độ ưu tiên:** Cao (High Priority).
+* **Mức độ khẩn cấp:** Nằm trong danh mục chuyển đổi số cấp bách của trường. Cần xây dựng phiên bản tối giản (MVP) tập trung vào luồng số hóa và đọc sách bảo mật trước thềm năm học mới 2026 để phục vụ kịp thời khóa sinh viên mới.
+
+## 8. Các bước tiếp theo đề xuất (Next Steps)
+
+1. Trình Ban Giám hiệu thông qua ý tưởng và phê duyệt chủ trương nghiên cứu chi tiết.
+2. Lập **Đề xuất Dự án (Project Proposal)** chi tiết, tập trung vào phân tích chi phí đầu tư thiết bị quét (CapEx), chi phí vận hành (OpEx) và phân tích hiệu quả kinh tế hòa vốn (Cost-Benefit Analysis).
+3. Bộ phận Pháp chế phối hợp với Thư viện dự thảo quy chế kiểm soát bản quyền tài liệu số hóa nội bộ.
+4. Đóng gói quy trình công nghệ và tài liệu hướng dẫn thành bộ giải pháp chuyển giao tiêu chuẩn, chuẩn bị cho tiềm năng nhân rộng mô hình số hóa giáo trình cho các trường đại học thành viên khác trong khối ĐHQG-HCM.
 
