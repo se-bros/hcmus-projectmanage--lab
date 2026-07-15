@@ -1,38 +1,47 @@
 graph TD
     subgraph ClientLayer ["Lớp Giao diện (Client Layer)"]
-        UI[Custom Frontend - Portal HCMUS]
+        UI[Custom Frontend - React 18 / Epub.js]
+        Web[Nginx 1.24 - Web & Reverse Proxy]
+        UI --- Web
     end
     
-    subgraph AppLayer ["Lớp Ứng dụng (Application Layer - Modular Monolith)"]
-        Core[DSpace / Invenio Core Engine]
-        SubWork[Module Nộp & Duyệt]
-        SubMeta[Module Quản lý Metadata]
-        SubAccess[Module Phân quyền Access Control]
+    subgraph AppLayer ["Lớp Ứng dụng (FastAPI Backend Monolith)"]
+        Core[FastAPI Web Core]
+        SubOCR[Module OCR & Upload]
+        SubEPUB[Module Biên tập & Sinh EPUB]
+        SubMeta[Module Quản lý Metadata/Category/Tag]
+        SubAccess[Module Phân quyền & RBAC]
         
-        Core --- SubWork
+        Core --- SubOCR
+        Core --- SubEPUB
         Core --- SubMeta
         Core --- SubAccess
     end
     
-    subgraph DataLayer ["Lớp Dữ liệu & Dịch vụ Vệ tinh"]
-        DB[(PostgreSQL CSDL)]
-        Search[(Elasticsearch / OpenSearch)]
-        Storage[(Object Storage - File & Backup)]
+    subgraph DataLayer ["Lớp Dữ liệu (Data Layer)"]
+        DB[(PostgreSQL 16 CSDL)]
+        Search[(Elasticsearch 8.x - Full-text Search)]
+        Storage[(MinIO Object Storage - PDF & EPUB)]
     end
     
-    subgraph ExternalLayer ["Hệ thống Tích hợp & Nâng cao"]
-        SSO[Xác thực SSO / LDAP]
+    subgraph ProcessingLayer ["Dịch vụ Xử lý & Tích hợp"]
+        Tess[Tesseract OCR Engine]
+        Pan[Pandoc / Calibre CLI]
+        SSO[Keycloak SSO / LDAP AD]
         AI[Dịch vụ AI / RAG - Giai đoạn 3]
     end
     
-    UI -->|HTTP / API| Core
+    Web -->|HTTP / REST API| Core
     Core --> DB
     Core --> Search
     Core --> Storage
+    SubOCR --> Tess
+    SubEPUB --> Pan
     Core --> SSO
     Core -.-> AI
     
     style ClientLayer fill:#f9f,stroke:#333;
     style AppLayer fill:#bbf,stroke:#333;
     style DataLayer fill:#bfb,stroke:#333;
-    style ExternalLayer fill:#fbb,stroke:#333;
+    style ProcessingLayer fill:#fbb,stroke:#333;
+

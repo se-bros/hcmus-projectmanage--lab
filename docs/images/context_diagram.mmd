@@ -1,15 +1,14 @@
 flowchart TD
-    SV[Sinh viên tốt nghiệp] -->|1. Nộp bản mềm + metadata| Sys((Hệ thống Repository))
-    SV -->|2. Ký consent bản quyền| Sys
-    Sys -->|3. Yêu cầu xác thực| SSO[Hệ thống xác thực SSO/LDAP]
-    SSO -->|4. Kết quả xác thực| Sys
-    Sys -->|5. Giao nhiệm vụ duyệt| TT[Thủ thư / Cán bộ thư viện]
-    TT -->|6. Kiểm duyệt & xuất bản| Sys
-    Sys -->|7. Lưu trữ tệp tin| Storage[(Hệ thống lưu trữ & Backup)]
-    Sys -->|8. Truy vấn / Lập chỉ mục| Search[(Elasticsearch Engine)]
-    Sys -->|9. Đối chiếu thông tin| ĐàoTạo[Hệ thống QL Đào tạo]
-    ĐộcGiả[Độc giả: SV, GV, Ngoài trường] -->|10. Tra cứu toàn văn| Sys
-    
+    Editor[Biên tập viên / Thủ thư] -->|1. Upload tài liệu scan PDF/Ảnh| Sys((Hệ thống HCMUS-LDMS))
+    Editor -->|2. Hiệu chỉnh văn bản OCR & Biên tập EPUB| Sys
+    Sys -->|3. Yêu cầu xác thực| Keycloak[Keycloak SSO / LDAP AD]
+    Keycloak -->|4. Phản hồi xác thực & Token| Sys
+    Reader[Độc giả: SV, GV, Khách] -->|5. Tìm kiếm nâng cao & đọc sách EPUB| Sys
+    Sys -->|6. Lưu trữ tệp scan & file EPUB| Storage[(MinIO Object Storage)]
+    Sys -->|7. Chỉ mục toàn văn & Truy vấn| Search[(Elasticsearch Engine)]
+    Admin[Quản trị viên] -->|8. Quản lý người dùng, phân quyền, danh mục/tag| Sys
+
     style Sys fill:#d4f1f9,stroke:#007799,stroke-width:2px;
     style Storage fill:#f9d4f1,stroke:#990077,stroke-width:2px;
     style Search fill:#efe,stroke:#009900,stroke-width:2px;
+
