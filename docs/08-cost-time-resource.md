@@ -205,11 +205,11 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 Để quản lý tiến độ và kiểm soát hiệu quả của dự án phát triển phần mềm với sự trợ giúp của AI Coding Assistants, hệ thống giám sát định kỳ (Project Monitoring and Control) được thiết lập thông qua các chỉ số sau:
 
 ### 5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)
-* **Số lượng User Story hoàn thành (Velocity):** Đo lường số lượng User Story chuyển trạng thái sang `Done` (đáp ứng đủ Definition of Done) sau mỗi Sprint 2 tuần.
-* **Thời gian chu kỳ (Cycle Time):** Đo lường thời gian từ lúc bắt đầu lập trình một tính năng (To-Do -> In Progress) đến khi tính năng đó được deploy lên Staging (Done). Mục tiêu giữ cycle time trung bình dưới **3 ngày** đối với các User Story trung bình.
+* **Throughput (T):** Đo lường số lượng User Story chuyển trạng thái sang `Done` (đáp ứng đủ Definition of Done) trong **mỗi 7 ngày**. Dùng công thức forecast: Dev weeks ≈ N (story còn lại) / T.
+* **Thời gian chu kỳ (Cycle Time):** Đo lường thời gian từ lúc kéo card vào *In Progress* đến khi card đạt `Done` (deploy + AC pass). Mục tiêu giữ cycle time trung bình dưới **3 ngày** đối với card size M.
 * **Tốc độ xử lý của AI Assistant (AI Productivity Factor):** Theo dõi hiệu suất sinh mã nguồn của các AI Coding Assistants (Claude Code, Copilot) nhằm cân bằng tốc độ phát triển và tốc độ review của kỹ sư (tránh tình trạng sinh code quá nhanh gây quá tải khâu thẩm định).
 * **Số lượng Token sử dụng & Chi phí API:** Giám sát lượng token tiêu thụ hàng tuần và chi phí sử dụng API của các AI Assistant ở background, đảm bảo tổng chi phí API phát triển luôn nằm trong hạn mức **5.000.000 VNĐ** (đã dự toán trong CapEx).
 
 ### 5.2. Quy chế Báo cáo định kỳ (Status Reporting)
-* **Báo cáo Sprint Review (Mỗi 2 tuần):** PM tổng hợp báo cáo gửi Ban Giám đốc Thư viện và Trưởng phòng CNTT về: số lượng Story Points đã bàn giao, tổng chi phí thực tế đã chi, và các rủi ro phát sinh trong Sprint.
+* **Báo cáo Weekly Review (Mỗi tuần):** PM tổng hợp báo cáo gửi Ban Giám đốc Thư viện và Trưởng phòng CNTT về: throughput tuần (số story Done), cycle time trung bình, tổng chi phí thực tế đã chi, và các rủi ro phát sinh.
 * **Báo cáo Chốt cổng Giai đoạn (Phase-Gating Report):** Báo cáo thẩm định chi tiết được gửi lên Ban Giám hiệu trường tại các chốt kiểm soát (cuối tuần 2, tuần 12, tuần 18) để phê duyệt giải ngân ngân sách CapEx cuốn chiếu và cho phép dự án chuyển sang giai đoạn tiếp theo.

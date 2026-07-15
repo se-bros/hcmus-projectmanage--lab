@@ -119,10 +119,10 @@ Hệ thống được thiết kế triển khai trong **20 tuần** với phươ
 
 ## 9. Phương pháp luận và Quy tắc phối hợp làm việc
 
-* **Phương pháp luận quản lý:** Áp dụng mô hình **Hybrid (Lai)**. Tiến độ vĩ mô được quản lý chặt chẽ theo mô hình Gating kết thúc giai đoạn để kiểm soát ngân sách; việc phát triển phần mềm nghiệp vụ (WP3) áp dụng **Scrum (Sprint 2 tuần)** giúp nhanh chóng cải tiến giao diện theo ý kiến phản hồi của thủ thư.
+* **Phương pháp luận quản lý:** Áp dụng mô hình **Hybrid (Lai)**. Tiến độ vĩ mô được quản lý chặt chẽ theo mô hình Gating kết thúc giai đoạn để kiểm soát ngân sách; việc phát triển phần mềm nghiệp vụ áp dụng **Kanban** (WIP = 1 card / người hoặc / agent), đo **throughput** (số story Done mỗi tuần) để forecast tiến độ thực tế, giúp linh hoạt cho nhóm kỹ sư kiêm nhiệm 50%.
 * **Quy tắc phối hợp:**
   * Họp tiến độ kỹ thuật ngắn (Daily Standup) hàng ngày trực tuyến (15 phút).
-  * Họp sơ kết và kế hoạch Sprint (Sprint Review & Planning) cuối mỗi 2 tuần giữa nhóm kỹ thuật và Thư viện.
+  * Họp sơ kết hàng tuần (Weekly Review): đếm story Done, cập nhật throughput, forecast tuần còn lại — giữa nhóm kỹ thuật và Thư viện.
   * Họp bàn giao chốt cổng kiểm soát giai đoạn (Gating Review) gửi Ban Giám hiệu phê duyệt chuyển pha.
 
 ## 10. Các giả định, Ràng buộc và Quy chế kiểm soát thay đổi
