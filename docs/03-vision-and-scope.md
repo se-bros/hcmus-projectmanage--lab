@@ -21,6 +21,7 @@
 | :---: | :---: | :--- | :---: |
 | 1.0 | 07/07/2026 | Khởi tạo dự thảo tầm nhìn và phạm vi ban đầu (v1.0). | Mạch Quốc Tấn |
 | 2.0 | 14/07/2026 | Cập nhật Domain Model, Glossary, As-is/To-be; chuẩn hóa và Việt hóa theo mẫu IEEE/RUP. | Mạch Quốc Tấn |
+| 3.0 | 15/07/2026 | Đồng bộ hóa với Product Backlog mới: Đăng nhập Google OAuth 2.0 (thay Keycloak SSO), tìm kiếm PostgreSQL FTS (MVP) và BackgroundTasks (thay Celery). Cập nhật As-Is/To-Be, Pain points, và NFRs. | Nhóm phát triển |
 
 ---
 
@@ -160,10 +161,10 @@ actor "Độc giả (SV/GV)" as Reader
 
 rectangle "Hệ thống HCMUS-LDMS" {
     usecase "Quét giáo trình\n(300 DPI)" as Scan
-    usecase "Tesseract OCR\n(Bất đồng bộ Celery)" as OCR
+    usecase "Tesseract OCR\n(BackgroundTasks)" as OCR
     usecase "Hiệu chỉnh lỗi\n(Split-screen Editor)" as Edit
     usecase "Biên dịch EPUB\n(Pandoc)" as Compile
-    usecase "Tìm kiếm & Đọc bảo mật\n(Elasticsearch & Signed URL)" as Read
+    usecase "Tìm kiếm & Đọc bảo mật\n(PostgreSQL FTS & Signed URL)" as Read
 }
 
 Librarian --> Scan : Thực hiện
@@ -187,11 +188,11 @@ Quy trình số hóa khép kín dành cho cán bộ quản lý thư viện và s
 3. **Khai báo thông tin siêu dữ liệu (Metadata):**
     * *Mô tả:* Thủ thư tải tệp ảnh quét lên dashboard, khai báo các trường thông tin chuẩn hóa Dublin Core (Tên sách, Tác giả, Nhà xuất bản, Năm phát hành, Khoa môn học, Mã số thư viện) lưu trữ trực tiếp vào cơ sở dữ liệu PostgreSQL.
 4. **Nhận dạng ký tự tự động (AI-assisted OCR):**
-    * *Mô tả:* Hệ thống đẩy file scan vào hàng đợi Celery. Tiến trình chạy Tesseract OCR xử lý nhận dạng ký tự tiếng Việt bất đồng bộ dưới nền, bóc tách toàn bộ văn bản thô từ ảnh quét.
+    * *Mô tả:* Hệ thống đưa file scan vào background queue của FastAPI. Tiến trình chạy Tesseract OCR xử lý nhận dạng ký tự tiếng Việt bất đồng bộ dưới nền, bóc tách toàn bộ văn bản thô từ ảnh quét.
 5. **Hiệu chỉnh lỗi chính tả (Giao diện Split-screen):**
     * *Mô tả:* Biên tập viên mở giao diện Split-screen (ảnh scan bên trái, văn bản OCR bên phải) để soát sửa các từ nhận dạng sai dấu, sai ký tự đặc biệt. Biên tập viên gán cấp tiêu đề (H1, H2, H3) và chèn lại các hình ảnh minh họa cần thiết.
 6. **Biên dịch tự động & Xuất bản EPUB:**
-    * *Mô tả:* Biên tập viên nhấn "Phê duyệt xuất bản". Backend gọi Pandoc biên dịch tự động văn bản đã gán thẻ sang tệp EPUB 3.0, tải lên lưu trữ an toàn MinIO Object Storage, đồng thời tự động cập nhật trạng thái "Published" lên PostgreSQL và gửi nội dung chữ sang lập chỉ mục toàn văn trên Elasticsearch.
+    * *Mô tả:* Biên tập viên nhấn "Phê duyệt xuất bản". Backend gọi Pandoc biên dịch tự động văn bản đã gán thẻ sang tệp EPUB 3.0, tải lên lưu trữ an toàn MinIO Object Storage, đồng thời tự động cập nhật trạng thái "Published" lên PostgreSQL và cập nhật nội dung chữ cho tìm kiếm toàn văn.
 
 ---
 
@@ -199,18 +200,18 @@ Quy trình số hóa khép kín dành cho cán bộ quản lý thư viện và s
 
 Quy trình tra cứu học liệu số hóa của sinh viên được thiết kế thông minh, trực quan và tối đa hóa trải nghiệm đọc:
 
-1. **Đăng nhập tập trung (Keycloak SSO):**
-    * *Mô tả:* Sinh viên truy cập vào HCMUS-LDMS Web Portal, thực hiện đăng nhập một lần (Single Sign-On) bằng tài khoản Keycloak nội bộ do nhà trường cấp. Hệ thống tự động xác thực và ánh xạ thông tin khoa/lớp để phân quyền tương ứng.
-2. **Tìm kiếm toàn văn nâng cao (Elasticsearch Query):**
-    * *Mô tả:* Sinh viên nhập từ khóa cần tìm kiếm. Elasticsearch quét toàn bộ cơ sở dữ liệu nội dung sách, trả về các kết quả có chứa từ khóa đó (phản hồi dưới 3 giây). Sinh viên có thể lọc kết quả theo cây danh mục môn học, thẻ tags hoặc tên giảng viên biên soạn.
+1. **Đăng nhập tập trung (Google OAuth 2.0 / Mock Auth):**
+    * *Mô tả:* Sinh viên truy cập vào HCMUS-LDMS Web Portal, thực hiện đăng nhập bằng tài khoản Google trường hoặc mock token khi phát triển. Hệ thống tự động xác thực và ánh xạ thông tin để phân quyền tương ứng.
+2. **Tìm kiếm toàn văn nâng cao (PostgreSQL FTS):**
+    * *Mô tả:* Sinh viên nhập từ khóa cần tìm kiếm. PostgreSQL FTS quét nội dung sách, trả về các kết quả có chứa từ khóa đó. Sinh viên có thể lọc kết quả theo danh mục môn học, tags hoặc tên giảng viên biên soạn.
 3. **Thẩm định phân quyền & Cấp quyền đọc bảo mật (Signed URL):**
-    * *Mô tả:* Khi sinh viên chọn một cuốn sách để đọc, backend kiểm tra phân quyền RBAC (Role-Based Access Control). Nếu hợp lệ (ví dụ: sinh viên khoa CNTT được đọc giáo trình CNTT chuyên ngành), backend FastAPI gọi MinIO sinh một đường dẫn Signed URL giới hạn thời hạn hiệu lực tối đa là **15 phút**.
+    * *Mô tả:* Khi sinh viên chọn một cuốn sách để đọc, backend kiểm tra phân quyền RBAC (Role-Based Access Control). Nếu hợp lệ, backend FastAPI gọi MinIO sinh một đường dẫn Signed URL giới hạn thời hạn hiệu lực tối đa là **15 phút**.
 4. **Đọc sách responsive thông minh (Epub.js Web Reader):**
-    * *Mô tả:* Trình đọc Web Reader dựa trên Epub.js tải tệp EPUB bằng Signed URL được cấp và hiển thị dạng Reflowable (tự co giãn vừa vặn màn hình điện thoại/máy tính bảng). Sinh viên có thể tùy biến font chữ, tăng giảm kích thước chữ, chuyển chế độ nền đọc ban đêm hoặc Sepia để bảo vệ mắt.
+    * *Mô tả:* Trình đọc Web Reader dựa trên Epub.js tải tệp EPUB bằng Signed URL được cấp và hiển thị dạng Reflowable (tự co giãn vừa vặn màn hình). Sinh viên có thể tùy biến font chữ, tăng giảm kích thước chữ, chuyển chế độ nền đọc ban đêm hoặc Sepia.
 5. **Tương tác trực quan & Lưu trữ cá nhân:**
-    * *Mô tả:* Sinh viên bôi đen văn bản để tô sáng (Highlight), thêm các ghi chú học tập cá nhân (Notes) hoặc đánh dấu trang (Bookmark). Các ghi chú này được lưu tự động theo tài khoản cá nhân của sinh viên để tra cứu lại sau.
+    * *Mô tả:* Sinh viên bôi đen văn bản để tô sáng (Highlight), thêm các ghi chú học tập cá nhân (Notes) hoặc đánh dấu trang (Bookmark).
 6. **Sinh trích dẫn tự động (Auto Citation):**
-    * *Mô tả:* Sinh viên bấm chọn "Trích dẫn" để hệ thống tự động biên soạn và định dạng chuỗi trích dẫn chuẩn khoa học (APA, IEEE, Harvard) của cuốn sách kèm liên kết định danh tĩnh (Permanent Link) phục vụ viết luận văn hay báo cáo nghiên cứu.
+    * *Mô tả:* Sinh viên bấm chọn "Trích dẫn" để hệ thống tự động biên soạn và định dạng chuỗi trích dẫn chuẩn khoa học (APA, IEEE) phục vụ viết luận văn hay báo cáo.
 
 **Tóm tắt các tính năng mới phục vụ tương lai:**
 
@@ -244,9 +245,9 @@ Quy trình tra cứu học liệu số hóa của sinh viên được thiết k�
 
 | Người dùng (User) | Nỗi đau cốt lõi (Core Need) | Tính năng đáp ứng (Feature Response) |
 | :--- | :--- | :--- |
-| **Sinh viên** | Đọc giáo trình trên di động không cần zoom; tra cứu nhanh nội dung bên trong sách. | Đọc EPUB 3.0 responsive; Elasticsearch full-text search dưới 3 giây. |
+| **Sinh viên** | Đọc giáo trình trên di động không cần zoom; tra cứu nhanh nội dung bên trong sách. | Đọc EPUB 3.0 responsive; PostgreSQL FTS search dưới 3 giây. |
 | **Thủ thư** | Giảm thiểu thời gian gán metadata và sửa lỗi chính tả nhận dạng OCR thô. | Dashboard OCR tự động; Trình soạn thảo Split-screen trực quan. |
-| **Giảng viên** | Bảo vệ bản quyền giáo trình tự biên soạn, tránh bị sao chép hoặc phát tán trái phép. | Bảo mật DRM: Signed URL MinIO 15 phút; chặn chuột phải copy, in ấn. |
+| **Giảng viên** | Bảo vệ bản quyền giáo trình tự biên soạn, tránh bị sao chép hoặc phát tán trái phép. | Bảo mật DRM: Signed URL MinIO 15 phút; không hiển thị nút tải gốc. |
 | **BGĐ Thư viện** | Thu hồi diện tích kho kệ vật lý để nâng cấp phòng tự học. | Số hóa toàn phần 500 giáo trình cốt lõi giai đoạn MVP. |
 
 ### 3.5 Các phương án thay thế và Đối thủ cạnh tranh
@@ -258,11 +259,11 @@ Quy trình tra cứu học liệu số hóa của sinh viên được thiết k�
 ## 4. Tổng quan sản phẩm
 
 ### 4.1 Góc nhìn sản phẩm
-HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monolith độc lập nhằm tối ưu chi phí hạ tầng. Hệ thống tích hợp trực tiếp với các dịch vụ on-premise sẵn có của nhà trường bao gồm: cụm máy chủ ảo hóa VMware vSphere, hệ thống định danh tập trung Keycloak SSO (qua LDAP trường), cơ sở dữ liệu PostgreSQL, Elasticsearch và MinIO Storage.
+HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monolith độc lập nhằm tối ưu chi phí hạ tầng. Hệ thống tích hợp trực tiếp với các dịch vụ sẵn có và nội bộ bao gồm: cụm máy chủ ảo hóa VMware vSphere, tài khoản Google OAuth 2.0 trường, cơ sở dữ liệu PostgreSQL (FTS) và MinIO Storage.
 
 ### 4.2 Các giả định và Sự phụ thuộc
 * **Giả định:** Luật SHTT Việt Nam cho phép số hóa phục vụ nghiên cứu nội bộ phi thương mại; tỷ lệ nhận dạng chữ OCR đạt trung bình >= 85% với các tài liệu in rõ nét.
-* **Phụ thuộc:** Tiến độ dự án phụ thuộc vào năng suất vận hành máy scan chữ V của con người và tính ổn định của hạ tầng server dùng chung.
+* **Phụ thuộc:** Tiến độ dự án phụ thuộc vào năng suất vận hành máy scan chữ V của con người.
 
 ---
 
@@ -295,7 +296,7 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 * **Hệ điều hành máy chủ:** Ubuntu Server 22.04 LTS chạy Docker Engine 24.x.
 
 ### 6.2 Yêu cầu về hiệu năng
-* Thời gian phản hồi kết quả tìm kiếm Elasticsearch toàn văn nhỏ hơn **3 giây** dưới tải trọng 500 người dùng đồng thời.
+* Thời gian phản hồi kết quả tìm kiếm toàn văn nhỏ hơn **3 giây** ở điều kiện bình thường.
 * Thời gian phản hồi tải trang Web Portal đọc sách nhỏ hơn **2 giây**.
 
 ### 6.3 Yêu cầu về khả năng sử dụng (UI/UX)
@@ -307,13 +308,13 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 * Cơ chế Celery retry hỗ trợ thử lại tối đa 3 lần đối với các tác vụ OCR bị lỗi do tệp tin tải lên bị hỏng.
 
 ### 6.5 Yêu cầu về bảo mật
-* Xác thực phân quyền 100% qua Keycloak SSO sử dụng giao thức OAuth 2.0 / OIDC.
+* Xác thực phân quyền qua Google OAuth 2.0 / Mock Auth.
 * Sử dụng MinIO Signed URL thời hạn hết hiệu lực tối đa 15 phút đối với mọi tài nguyên file sách gốc.
-* Chặn hoàn toàn tính năng chuột phải, phím tắt sao chép (`Ctrl+C`), phím tắt in ấn (`Ctrl+P`) đối với tài liệu phân loại `Internal` và `Restricted`.
+* Không hiển thị nút Download tệp tin EPUB gốc trên UI reader.
 
 ### 6.6 Khả năng mở rộng và Dễ bảo trì
-* Cấu trúc Modular Monolith cho phép dễ dàng đóng gói và tách biệt cơ sở dữ liệu để nâng cấp lên kiến trúc Microservices trong tương lai.
-* Tuân thủ tiêu chuẩn code sạch SOLID và DRY; tỷ lệ bao phủ kiểm thử (unit test coverage) đạt tối thiểu 80%.
+* Cấu trúc Modular Monolith cho phép dễ dàng đóng gói và tách biệt cơ sở dữ liệu để nâng cấp lên kiến trúc Microservices/Celery/Elasticsearch trong tương lai.
+* Tuân thủ tiêu chuẩn code sạch SOLID và DRY.
 
 ### 6.7 Khả năng quốc tế hóa
 * Giao diện Portal hỗ trợ song ngữ Tiếng Việt và Tiếng Anh (i18n).
@@ -330,7 +331,7 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 
 * **Sản phẩm bàn giao (Deliverables):**
   * Hệ thống mã nguồn Frontend React (TypeScript) và Backend FastAPI (Python).
-  * Bộ cài đặt container Docker Compose (PostgreSQL, MinIO, Keycloak, Elasticsearch).
+  * Bộ cài đặt container Docker Compose (PostgreSQL, MinIO).
   * 02 máy quét sách chuyên dụng chữ V bàn giao và hướng dẫn vận hành tại thư viện.
   * Kho tài liệu 500 giáo trình CNTT số hóa sang EPUB 3.0 hoàn chỉnh.
   * Bộ tài liệu thiết kế, API Swagger và Cẩm nang hướng dẫn sử dụng.

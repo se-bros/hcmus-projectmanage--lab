@@ -21,6 +21,7 @@
 | :---: | :---: | :--- | :---: |
 | 1.0 | 07/07/2026 | Khởi tạo tài liệu kiến trúc ban đầu. | Mạch Quốc Tấn |
 | 2.0 | 14/07/2026 | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi. | Mạch Quốc Tấn |
+| 3.0 | 15/07/2026 | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL. | Nhóm phát triển |
 
 ---
 
@@ -69,7 +70,7 @@ Tài liệu bao phủ toàn bộ kiến trúc logic, sơ đồ triển khai ph�
 | Thuật ngữ | Định nghĩa |
 | :---: | :--- |
 | **LDMS** | Library Document Management & Digitization System (Hệ thống quản lý số hóa thư viện). |
-| **SSO** | Single Sign-On (Xác thực một lần qua tài khoản Keycloak nội bộ). |
+| **SSO** | Single Sign-On (Xác thực một lần — MVP dùng Google OAuth 2.0, roadmap: Keycloak OIDC). |
 | **DRM** | Digital Rights Management (Cơ chế quản lý bản quyền số chống sao chép). |
 | **UCP** | Use Case Points (Phương pháp ước lượng dựa trên điểm trường hợp sử dụng). |
 | **COCOMO** | Constructive Cost Model (Mô hình toán học ước lượng nỗ lực phần mềm). |
@@ -80,9 +81,9 @@ Tài liệu bao phủ toàn bộ kiến trúc logic, sơ đồ triển khai ph�
 ## 2. Mục tiêu và Ràng buộc Kiến trúc
 
 ### 2.1 Mục tiêu kiến trúc
-* **Hiệu năng cao:** Phản hồi tìm kiếm toàn văn Elasticsearch dưới 3 giây dưới tải trọng 500 người dùng đồng thời.
-* **Bảo mật bản quyền:** Chặn hoàn toàn tải tệp EPUB gốc, chặn chuột phải sao chép văn bản và vô hiệu hóa in ấn tài liệu nội bộ.
-* **Xử lý bất đồng bộ:** Tác vụ OCR nặng được đẩy xuống Celery worker xử lý dưới nền để không gây nghẽn luồng request chính của API.
+* **Hiệu năng cao:** Phản hồi tìm kiếm toàn văn dưới 3 giây (MVP: PostgreSQL FTS, roadmap: Elasticsearch cho scale).
+* **Bảo mật bản quyền:** Không hiển thị nút tải EPUB gốc, file serve qua MinIO Signed URL 15 phút.
+* **Xử lý bất đồng bộ:** Tác vụ OCR nặng được xử lý dưới nền bằng FastAPI BackgroundTasks (MVP) để không gây nghẽn luồng request chính. Roadmap: Celery + Redis khi cần scale.
 
 ### 2.2 Ràng buộc kiến trúc
 * **Hạ tầng On-premise:** Triển khai trên máy chủ VMware vSphere có sẵn của trường HCMUS.
@@ -159,12 +160,12 @@ package "Client Presentation Layer" {
 
 package "API Gateway / Security Layer" {
     [Nginx Reverse Proxy] as Nginx
-    [Keycloak SSO] as Keycloak
+    [Google OAuth 2.0] as GoogleAuth
 }
 
 package "Application Service Layer" {
     [FastAPI Routers / Controllers] as API
-    [Celery Background Workers] as Celery
+    [FastAPI BackgroundTasks] as BGTasks
 }
 
 package "Domain Logic Layer" {
@@ -175,23 +176,22 @@ package "Domain Logic Layer" {
 }
 
 package "Data Access & Infrastructure Layer" {
-    [PostgreSQL CSDL] as DB
+    [PostgreSQL CSDL + FTS] as DB
     [MinIO Object Storage] as S3
-    [Elasticsearch Index] as ES
 }
 
 UI --> Nginx : HTTPS Requests
-Nginx --> Keycloak : Verify Token
+Nginx --> GoogleAuth : Verify Token
 Nginx --> API : Forward API
-API --> Celery : Trigger Async Jobs
+API --> BGTasks : Trigger Async Jobs
 API --> DocSvc : Invoke
-Celery --> OCRSvc : Exec OCR
-Celery --> EPUBSvc : Exec EPUB Compile
+BGTasks --> OCRSvc : Exec OCR
+BGTasks --> EPUBSvc : Exec EPUB Compile
 
 DocSvc --> DB : SQLAlchemy
 OCRSvc --> S3 : Save Image/Text
 EPUBSvc --> S3 : Write EPUB File
-SearchSvc --> ES : Query/Index
+SearchSvc --> DB : PostgreSQL FTS
 @enduml
 ```
 
@@ -205,10 +205,10 @@ Hệ thống HCMUS-LDMS được thiết kế theo mô hình **Modular Monolith*
    DSpace là một kho lưu trữ số tĩnh, tối ưu cho việc lưu trữ file PDF và siêu dữ liệu (metadata) của luận văn, báo cáo nghiên cứu. DSpace hoàn toàn không hỗ trợ các luồng nghiệp vụ tương tác động phức tạp như: chạy OCR tự động nhận dạng ký tự, biên tập sửa lỗi chính tả trực quan so sánh song song với ảnh quét gốc trên giao diện web, và tự động biên dịch sang định dạng EPUB responsive thông qua Pandoc. Việc phát triển một web app custom giúp nhà trường tối ưu hóa hoàn hảo quy trình nghiệp vụ này.
 2. **Vì sao chọn Modular Monolith thay vì Microservices?**  
    Nhóm phát triển kỹ thuật của Phòng CNTT chỉ gồm 4 kỹ sư làm việc kiêm nhiệm (tương đương 2 lập trình viên full-time). Việc triển khai Microservices sẽ gây quá tải trong khâu quản lý hạ tầng mạng, đồng bộ cơ sở dữ liệu và vận hành CI/CD. Kiến trúc Modular Monolith giúp gói gọn toàn bộ logic nghiệp vụ (OCR, Biên tập, Đóng gói, Tìm kiếm, Đọc sách) vào một khối code duy nhất nhưng được phân chia thành các module độc lập rõ ràng. Điều này giúp đơn giản hóa khâu kiểm thử, triển khai và bảo trì, đồng thời dễ dàng tách nhỏ thành các service độc lập ở giai đoạn sau nếu hệ thống phình to.
-3. **Xử lý bất đồng bộ các tác vụ nặng (FastAPI & Celery):**  
-   Các tác vụ như chạy OCR trên file PDF quét 300 trang hay biên dịch file Markdown sang EPUB bằng Pandoc là các tác vụ rất nặng, chiếm dụng nhiều CPU và thời gian xử lý. Nếu chạy trực tiếp trên luồng API chính sẽ gây nghẽn (block) toàn bộ yêu cầu khác của người dùng. Hệ thống tích hợp hàng đợi Celery kết hợp Redis để xử lý bất đồng bộ các tác vụ này dưới dạng background tasks. API trả về trạng thái "Đang xử lý" ngay lập tức, và giao diện frontend sẽ gửi yêu cầu truy vấn trạng thái (polling) hoặc nhận thông báo qua WebSocket khi tác vụ hoàn thành.
-4. **Tách biệt Elasticsearch và MinIO Object Storage:**  
-   Đảm bảo tính độc lập và hiệu năng cao cho hệ thống. Toàn bộ file scan gốc nặng nề và file EPUB hoàn chỉnh được lưu giữ trên MinIO (S3-compatible Object Storage), giảm tải dung lượng lưu trữ cho máy chủ database PostgreSQL. Trong khi đó, Elasticsearch chịu trách nhiệm lập chỉ mục toàn văn nội dung sách EPUB, bảo đảm tốc độ phản hồi tìm kiếm từ khóa dưới 3 giây.
+3. **Xử lý bất đồng bộ các tác vụ nặng (FastAPI BackgroundTasks):**  
+   Các tác vụ như chạy OCR trên file PDF hay biên dịch Markdown sang EPUB bằng Pandoc là các tác vụ nặng. Nếu chạy trực tiếp trên luồng API chính sẽ gây nghẽn (block). Hệ thống sử dụng **FastAPI BackgroundTasks** (MVP) để xử lý bất đồng bộ: API trả về trạng thái "Đang xử lý" ngay lập tức, frontend polling trạng thái job. *Roadmap:* Nếu cần scale (hàng trăm job song song), chuyển sang Celery + Redis.
+4. **Tách biệt MinIO Object Storage và PostgreSQL Full-Text Search:**  
+   File scan gốc và file EPUB được lưu trên MinIO (S3-compatible). PostgreSQL vừa lưu metadata vừa cung cấp **Full-Text Search** qua `tsvector`/`tsquery` + GIN index — đủ tốt cho vài nghìn documents. *Roadmap:* Khi dữ liệu > 10.000 documents, bổ sung Elasticsearch (LDMS-025 trong backlog).
 
 ### 4.2 Ngăn xếp công nghệ chi tiết (Technology Stack)
 
@@ -221,16 +221,16 @@ Hệ thống HCMUS-LDMS được thiết kế theo mô hình **Modular Monolith*
 | **Database** | PostgreSQL | 16 | Hệ quản trị cơ sở dữ liệu quan hệ mạnh mẽ, lưu trữ thông tin người dùng, phân quyền RBAC, danh mục và siêu dữ liệu sách. |
 | **OCR Engine** | Tesseract OCR | 5.3+ | Engine nhận dạng chữ viết nguồn mở tốt nhất, cấu hình gói tiếng Việt (`vie`) cài đặt cục bộ trực tiếp trên server backend. |
 | **EPUB Compiler** | Pandoc & Calibre CLI | 3.1+ / 6.0+ | Công cụ chuyển đổi định dạng mạnh mẽ, biên dịch Markdown/HTML sang EPUB 3.0 thông qua dòng lệnh. |
-| **Tìm kiếm** | Elasticsearch | 8.11+ | Công cụ tìm kiếm phân tán hiệu năng cao, lập chỉ mục và truy vấn toàn văn nhanh chóng. |
+| **Tìm kiếm (MVP)** | PostgreSQL FTS | 16 | `tsvector` + `tsquery` + GIN index tích hợp sẵn, không cần service riêng. Đủ tốt cho vài nghìn documents. |
 | **Lưu trữ tệp** | MinIO (On-premise) | RELEASE+ | Hệ thống Object Storage tương thích S3, dễ cấu hình và vận hành on-premise trên hạ tầng riêng của trường. |
-| **Xác thực** | Keycloak | 24.x | Máy chủ định danh tập trung (SSO), liên kết trực tiếp với LDAP/Active Directory có sẵn của trường HCMUS. |
+| **Xác thực (MVP)** | Google OAuth 2.0 | — | Sinh viên/GV có Gmail HCMUS (`@hcmus.edu.vn`). Dùng thư viện `authlib`. Không cần self-host. *Roadmap: Keycloak + LDAP khi triển khai toàn trường.* |
 | **Triển khai** | Docker & Docker Compose | 24.0+ | Đóng gói toàn bộ các service thành container độc lập giúp dễ dàng phân phối và vận hành trên VMware. |
 | **Công cụ Sao lưu** | PgBackRest & Restic | 2.x | PgBackRest tự động backup gia tăng PostgreSQL hàng ngày. Restic mã hóa và sao lưu MinIO bucket sang máy chủ dự phòng off-site. |
 
 ### 4.3. Sơ đồ bối cảnh hệ thống (C4 Context Diagram)
 
 **Ý nghĩa và lý do cần sơ đồ này:**
-Sơ đồ bối cảnh (System Context Diagram) là mức cao nhất của mô hình C4 (Mức 1). Nó chỉ rõ vị trí của hệ thống HCMUS-LDMS trong môi trường nghiệp vụ thư viện, làm rõ các tác nhân bên ngoài tương tác trực tiếp (Độc giả, Thủ thư, Quản trị viên) và các hệ thống bên ngoài liên kết (Keycloak SSO kết nối LDAP trường), giúp người đọc có cái nhìn tổng quan đầu tiên về ranh giới hệ thống.
+Sơ đồ bối cảnh (System Context Diagram) là mức cao nhất của mô hình C4 (Mức 1). Nó chỉ rõ vị trí của hệ thống HCMUS-LDMS trong môi trường nghiệp vụ thư viện, làm rõ các tác nhân bên ngoài tương tác trực tiếp (Độc giả, Thủ thư, Quản trị viên) và hệ thống xác thực bên ngoài (Google OAuth 2.0), giúp người đọc có cái nhìn tổng quan đầu tiên về ranh giới hệ thống.
 
 ```plantuml
 @startuml
@@ -242,12 +242,12 @@ Person(admin, "Quản trị viên", "Cấu hình hệ thống và phân quyền"
 
 System(ldms, "Hệ thống HCMUS-LDMS", "Hệ thống Quản lý và Số hóa Tài liệu Thư viện, quản lý toàn bộ luồng số hóa khép kín")
 
-System_Ext(keycloak, "Keycloak SSO", "Hệ thống xác thực và định danh tập trung liên kết LDAP trường")
+System_Ext(google_auth, "Google OAuth 2.0", "Xác thực danh tính qua tài khoản Google HCMUS")
 
 Rel(reader, ldms, "Tìm kiếm và đọc sách trực tuyến bảo mật")
 Rel(librarian, ldms, "Upload sách scan, sửa lỗi OCR và xuất bản EPUB")
 Rel(admin, ldms, "Quản trị người dùng và cây danh mục")
-Rel(ldms, keycloak, "Xác thực danh tính người dùng")
+Rel(ldms, google_auth, "Xác thực danh tính người dùng")
 
 @enduml
 ```
@@ -272,13 +272,13 @@ Rel(ldms, keycloak, "Xác thực danh tính người dùng")
     * *Nhiệm vụ:* Ánh xạ các HTTP requests (GET, POST, PUT, DELETE) gửi tới các Endpoint (ví dụ: `/api/documents/`) đến đúng Controller xử lý tương ứng.
     * *Tại sao cần:* Là cổng vào duy nhất của API, giúp cấu hình định tuyến tập trung và mạch lạc.
 * **Middleware Layer (Tầng kiểm soát trung gian):**
-    * *Nhiệm vụ:* Thực thi các logic kiểm tra chéo (Cross-cutting Concerns) như xác thực JWT Keycloak, phân quyền dựa trên vai trò (RBAC) và kiểm tra kích thước file upload.
+    * *Nhiệm vụ:* Thực thi các logic kiểm tra chéo (Cross-cutting Concerns) như xác thực JWT (Google OAuth / Mock), phân quyền dựa trên vai trò (RBAC) và kiểm tra kích thước file upload.
     * *Tại sao cần:* Chặn đứng các yêu cầu không hợp lệ ngay từ vòng ngoài trước khi chúng chạm vào cơ sở dữ liệu hoặc logic nghiệp vụ chính, bảo vệ tài nguyên hệ thống.
 * **Controller Layer (Tầng điều phối):**
     * *Nhiệm vụ:* Tiếp nhận request từ Router, thực hiện kiểm tra định dạng dữ liệu (sử dụng Pydantic Schemas), điều hướng sang Service layer xử lý và trả về HTTP response.
     * *Tại sao cần:* Đóng vai trò là cầu nối trung gian để chuẩn hóa giao tiếp đầu vào/đầu ra của hệ thống.
 * **Service Layer (Tầng nghiệp vụ):**
-    * *Nhiệm vụ:* Nơi chứa 100% logic nghiệp vụ cốt lõi của dự án (tính toán nỗ lực, gọi engine Tesseract OCR, gọi Pandoc đóng gói sách EPUB, lập chỉ mục Elasticsearch).
+    * *Nhiệm vụ:* Nơi chứa 100% logic nghiệp vụ cốt lõi của dự án (gọi engine Tesseract OCR, gọi Pandoc đóng gói sách EPUB, tìm kiếm toàn văn PostgreSQL FTS).
     * *Tại sao cần:* Đây là lõi nghiệp vụ của toàn dự án, tách biệt hoàn toàn khỏi cơ chế web (HTTP) giúp dễ dàng viết Unit Test và bảo trì lâu dài.
 * **Repository Layer (Tầng truy cập dữ liệu):**
     * *Nhiệm vụ:* Sử dụng SQLAlchemy ORM để truy vấn, cập nhật dữ liệu vào PostgreSQL Database.
@@ -302,28 +302,20 @@ Person(librarian, "Thủ thư / Biên tập viên", "Cán bộ số hóa tài li
 System_Boundary(ldms, "Hệ thống HCMUS-LDMS") {
     Container(frontend, "React SPA", "React 18 & TS", "Giao diện Portal & Dashboard, Epub.js Reader")
     Container(nginx, "Nginx Reverse Proxy", "Nginx 1.24", "Reverse Proxy, SSL/TLS, static files")
-    Container(backend, "FastAPI Backend", "FastAPI / Python", "Cung cấp REST API, điều phối nghiệp vụ chính")
-    Container(celery, "Celery Worker", "Celery / Python", "Xử lý OCR Tesseract & Pandoc EPUB bất đồng bộ")
-    ContainerDb(postgres, "PostgreSQL Database", "PostgreSQL 16", "Lưu trữ metadata, users, sessions, RBAC")
+    Container(backend, "FastAPI Backend", "FastAPI / Python", "Cung cấp REST API, điều phối nghiệp vụ chính, chạy BackgroundTasks")
+    ContainerDb(postgres, "PostgreSQL Database", "PostgreSQL 16", "Lưu trữ metadata, users, RBAC & hỗ trợ Full-Text Search (MVP)")
     ContainerDb(minio, "MinIO Object Storage", "MinIO (S3-compatible)", "Lưu trữ ảnh raw scan và file EPUB")
-    ContainerDb(elasticsearch, "Elasticsearch Engine", "Elasticsearch 8.x", "Lập chỉ mục toàn văn sách và tìm kiếm")
-    Container(redis, "Redis", "Redis 7.x", "Message Broker cho Celery")
 }
 
-System_Ext(keycloak, "Keycloak SSO", "Xác thực định danh tích hợp LDAP trường")
+System_Ext(google_auth, "Google OAuth 2.0", "Xác thực định danh qua Google Account trường")
 
 Rel(reader, nginx, "HTTPS / Truy cập Portal")
 Rel(librarian, nginx, "HTTPS / Truy cập Dashboard")
 Rel(nginx, frontend, "Phục vụ static files")
 Rel(nginx, backend, "Chuyển tiếp API Requests")
-Rel(backend, keycloak, "Xác thực JWT token")
-Rel(backend, postgres, "Truy vấn metadata")
-Rel(backend, minio, "Đọc/ghi file scan và sinh Signed URL")
-Rel(backend, elasticsearch, "Truy vấn tìm kiếm")
-Rel(backend, redis, "Đẩy task OCR/EPUB")
-Rel(redis, celery, "Phân phối task")
-Rel(celery, minio, "Đọc ảnh scan & ghi tệp EPUB")
-Rel(celery, elasticsearch, "Đẩy chỉ mục toàn văn")
+Rel(backend, google_auth, "Xác thực tài khoản Google")
+Rel(backend, postgres, "Truy vấn metadata & FTS")
+Rel(backend, minio, "Đọc/ghi file scan, file EPUB & sinh Signed URL")
 @enduml
 ```
 
@@ -338,17 +330,17 @@ actor Reader as "Độc giả / Sinh viên"
 participant Frontend as "React SPA"
 participant Nginx as "Nginx Proxy"
 participant Backend as "FastAPI Backend"
-participant Keycloak as "Keycloak SSO"
+participant GoogleAuth as "Google OAuth 2.0"
 database DB as "PostgreSQL"
 database MinIO as "MinIO Storage"
 
 Reader -> Frontend: Yêu cầu đọc sách "Giáo trình A"
 Frontend -> Nginx: GET /api/documents/1/read
 Nginx -> Backend: Chuyển tiếp yêu cầu kèm JWT Token
-Backend -> Keycloak: Xác thực tính hợp lệ của JWT Token
-Keycloak --> Backend: Token hợp lệ & Trả về User Profile
+Backend -> GoogleAuth: Xác thực tính hợp lệ của JWT Token (nếu không dùng Mock Auth)
+GoogleAuth --> Backend: Token hợp lệ & Trả về User Profile
 Backend -> DB: Kiểm tra phân quyền truy cập (RBAC) của User
-DB --> Backend: Có quyền đọc (Mức Internal)
+DB --> Backend: Có quyền đọc (Mức Public/Internal)
 Backend -> MinIO: Yêu cầu sinh Signed URL (hiệu lực 15 phút)
 MinIO --> Backend: Trả về Signed URL mã hóa
 Backend --> Nginx: Phản hồi 200 OK + Signed URL
@@ -367,11 +359,19 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal/Restricted).
 6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và index toàn văn sang Elasticsearch.
 
+#### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
+1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
+2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống (bằng Google OAuth hoặc Mock Auth), tải file PDF lên và nhập siêu dữ liệu Dublin Core.
+3. **OCR nhận dạng chữ:** Backend FastAPI tạo job OCR, chạy background qua `FastAPI BackgroundTasks` để trích xuất văn bản thô.
+4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả và lưu lại.
+5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal).
+6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và lập chỉ mục FTS trực tiếp trong Postgres.
+
 #### 4.7.2. Quy trình Tìm kiếm và Đọc sách trực tuyến (Sinh viên / Độc giả)
-1. **Đăng nhập:** Sinh viên truy cập Web Portal, đăng nhập Keycloak SSO trường.
-2. **Tìm kiếm:** Nhập từ khóa tìm kiếm toàn văn Elasticsearch để truy vấn sâu nội dung sách EPUB, kết hợp bộ lọc Category và Tag để lọc kết quả.
+1. **Đăng nhập:** Sinh viên truy cập Web Portal, đăng nhập qua Google OAuth.
+2. **Tìm kiếm:** Nhập từ khóa tìm kiếm để truy vấn toàn văn qua PostgreSQL Full-Text Search.
 3. **Xác thực quyền đọc:** Khi độc giả bấm đọc, backend kiểm tra phân quyền RBAC. Nếu hợp lệ, backend sinh Signed URL MinIO (hiệu lực 15 phút).
-4. **Đọc sách responsive:** Trình xem Epub.js hiển thị sách responsive trên mobile/tablet, cho phép chỉnh font, cỡ chữ, màu nền, bookmark, highlight.
+4. **Đọc sách responsive:** Trình xem Epub.js hiển thị sách responsive trên mobile/tablet, cho phép chỉnh font, cỡ chữ, màu nền, bookmark.
 
 ---
 
@@ -380,7 +380,7 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 ### 5.1 Chiến lược bảo mật dữ liệu (Security Layers)
 * **Mã hóa truyền tải:** Cấu hình HTTPS (TLS 1.3) bắt buộc trên Nginx cho mọi luồng truyền tải dữ liệu. Cấu hình tiêu đề bảo mật HSTS (HTTP Strict Transport Security) để ngăn chặn các cuộc tấn công hạ cấp giao thức.
 * **Bảo mật truy cập tệp tin (Signed URL):** File EPUB gốc được lưu giữ riêng tư trên MinIO, không công khai URL trực tiếp. Khi độc giả được xác thực quyền đọc sách qua RBAC, Backend FastAPI sẽ sinh một **Signed URL** giới hạn thời gian hiệu lực tối đa là **15 phút**. Trình đọc Epub.js ở frontend dùng URL này để tải file tương ứng của từng chương sách.
-* **Vô hiệu hóa tải lậu (Anti-scraping):** Trình xem Epub.js được tích hợp script vô hiệu hóa nhấp chuột phải, chặn phím tắt chụp màn hình (`PrintScreen`), phím tắt sao chép (`Ctrl+C`), chặn in ấn (`Ctrl+P`) và hoàn toàn không hiển thị nút tải file EPUB gốc để bảo vệ quyền tác giả.
+* **Vô hiệu hóa tải lậu (Anti-scraping):** Trình xem Epub.js không hiển thị nút tải file EPUB gốc để bảo vệ quyền tác giả. README ghi nhận các rủi ro tồn dư khác (như chụp màn hình).
 
 ### 5.2 Chiến lược sao lưu dữ liệu (Backup Strategy)
 * **PostgreSQL Database:** Sử dụng công cụ **PgBackRest** tự động chạy sao lưu gia tăng (incremental backup) vào lúc 02:00 AM mỗi ngày, và chạy sao lưu toàn phần (full backup) vào tối Chủ nhật hàng tuần. Các bản sao lưu được nén và mã hóa bằng thuật toán AES-256 trước khi lưu trữ vào cụm lưu trữ độc lập.
@@ -406,12 +406,9 @@ Deployment_Node(vmware, "Hạ tầng ảo hóa VMware vSphere (HCMUS)", "VMware 
     Deployment_Node(vm_prod, "VM-Production (Máy chủ vận hành chính)", "Ubuntu Server 22.04 LTS") {
         Deployment_Node(docker_prod, "Docker Compose Engine", "Docker v24.x") {
             Container(nginx, "Nginx Reverse Proxy", "Nginx 1.24", "Reverse Proxy, SSL/TLS, static files React")
-            Container(backend, "FastAPI Backend", "FastAPI / Python", "RESTful API Server")
-            Container(celery, "Celery Worker", "Celery / Python", "Xử lý OCR & EPUB")
-            ContainerDb(postgres, "PostgreSQL Database", "PostgreSQL 16", "Lưu trữ metadata & RBAC")
+            Container(backend, "FastAPI Backend", "FastAPI / Python", "RESTful API Server & BackgroundTasks")
+            ContainerDb(postgres, "PostgreSQL Database", "PostgreSQL 16", "Lưu trữ metadata, RBAC & Postgres FTS")
             ContainerDb(minio, "MinIO Storage", "MinIO (S3-compatible)", "Lưu trữ tài liệu và EPUB")
-            ContainerDb(elasticsearch, "Elasticsearch Engine", "Elasticsearch 8.x", "Chỉ mục tìm kiếm toàn văn")
-            Container(redis, "Redis Broker", "Redis 7.x", "Hàng đợi Celery")
         }
     }
 
@@ -422,15 +419,12 @@ Deployment_Node(vmware, "Hạ tầng ảo hóa VMware vSphere (HCMUS)", "VMware 
     }
 }
 
-System_Ext(keycloak, "Keycloak SSO Server", "Dịch vụ xác thực LDAP trường (ngoài VM dự án)")
+System_Ext(google_auth, "Google OAuth 2.0 API", "Dịch vụ xác thực Google API (ngoài VM dự án)")
 
 Rel(nginx, backend, "Chuyển tiếp API Request", "HTTP / Port 8000")
-Rel(backend, keycloak, "Xác thực JWT Token", "OIDC / HTTPS")
-Rel(backend, redis, "Đẩy task", "Redis Protocol")
-Rel(redis, celery, "Phân phối task", "Redis Protocol")
-Rel(celery, minio, "Đọc/Ghi dữ liệu tệp", "S3 API")
-Rel(celery, elasticsearch, "Đẩy chỉ mục", "HTTP / Port 9200")
-
+Rel(backend, google_auth, "Xác thực JWT Token", "HTTPS")
+Rel(backend, postgres, "Truy vấn SQL & Full-Text Search", "SQL / Port 5432")
+Rel(backend, minio, "Đọc/Ghi dữ liệu tệp", "S3 API / Port 9000")
 @enduml
 ```
 
@@ -460,18 +454,18 @@ Rel(celery, elasticsearch, "Đẩy chỉ mục", "HTTP / Port 9200")
 /backend
 ├── app/
 │   ├── api/                # Định nghĩa Router và Controller
-│   │   ├── auth.py         # Xác thực JWT với Keycloak
-│   │   ├── document.py     # Quản lý số hóa tài liệu
-│   │   └── search.py       # Tìm kiếm Elasticsearch
+│   │   ├── auth.py         # Xác thực Google OAuth 2.0 / Mock Auth
+│   │   ├── document.py     # Quản lý số hóa tài liệu & background jobs
+│   │   └── search.py       # Tìm kiếm PostgreSQL FTS
 │   ├── core/               # Cấu hình hệ thống và kết nối DB
 │   ├── models/             # Định nghĩa cấu trúc PostgreSQL (SQLAlchemy)
 │   ├── schemas/            # Định nghĩa Pydantic validation
 │   ├── services/           # Xử lý nghiệp vụ chính
 │   │   ├── ocr.py          # Tích hợp Tesseract
 │   │   └── epub.py         # Gọi Pandoc đóng gói
-│   └── workers/            # Cấu hình hàng đợi Celery / Redis
+│   └── background/         # Logic cho FastAPI BackgroundTasks
 ├── requirements.txt        # Các thư viện Python phụ thuộc
-└── docker-compose.yml      # Cấu hình chạy cụm container
+└── docker-compose.yml      # Cấu hình chạy cụm container (API + DB + Storage)
 ```
 
 ---
