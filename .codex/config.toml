@@ -1,0 +1,28 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+
+[tui]
+theme = "one-half-dark"
+
+[auto_review]
+policy = """
+never modify code without explicit instructions to do so
+always ask for clarification if the instructions are ambiguous
+"""
+
+[features]
+memories = true
+shell_snapshot = true
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[mcp_servers.playwright]
+command = "bunx"
+args = ["@playwright/mcp@latest"]
+
+[mcp_servers.serena]
+startup_timeout_sec = 15
+command = "serena"
+args = ["start-mcp-server", "--project-from-cwd", "--context=codex"]
