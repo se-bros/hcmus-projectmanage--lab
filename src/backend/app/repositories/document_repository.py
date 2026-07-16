@@ -15,15 +15,17 @@ class DocumentRepository:
         document_id: uuid.UUID,
         original_filename: str,
         object_key: str,
+        content_type: str,
+        status: str = "uploaded",
     ) -> Document:
         document = Document(
             id=document_id,
             original_filename=original_filename,
             object_key=object_key,
+            content_type=content_type,
+            status=status,
         )
         self.db.add(document)
-        self.db.commit()
-        self.db.refresh(document)
         return document
 
     def get(self, document_id: uuid.UUID) -> Document | None:

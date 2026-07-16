@@ -11,6 +11,11 @@ services:
       MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-ldms12345}
       MINIO_BUCKET: ${MINIO_BUCKET:-ldms}
       CORS_ORIGINS: '["http://localhost:5173"]'
+      OCR_DPI: ${OCR_DPI:-300}
+      OCR_LANGUAGE: ${OCR_LANGUAGE:-vie+eng}
+      OCR_TIMEOUT_SECONDS: ${OCR_TIMEOUT_SECONDS:-60}
+      PDF_RENDER_TIMEOUT_SECONDS: ${PDF_RENDER_TIMEOUT_SECONDS:-120}
+      PANDOC_TIMEOUT_SECONDS: ${PANDOC_TIMEOUT_SECONDS:-120}
     depends_on:
       postgres:
         condition: service_healthy

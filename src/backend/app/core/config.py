@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     minio_secret_key: str
     minio_bucket: str = "ldms"
     cors_origins: list[str] = ["http://localhost:5173"]
+    ocr_dpi: int = 300
+    ocr_language: str = "vie+eng"
+    ocr_timeout_seconds: int = 60
+    pdf_render_timeout_seconds: int = 120
+    pandoc_timeout_seconds: int = 120
 
 
 settings = Settings()
