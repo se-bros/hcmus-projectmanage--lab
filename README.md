@@ -10,11 +10,23 @@ Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS.
 
 ## Chạy local
 
+Chạy toàn bộ PostgreSQL, MinIO, API và frontend bằng một lệnh:
+
+```bash
+./scripts/run.sh
+```
+
+Nhấn `Ctrl+C` để dừng. Script chỉ tự động dừng Compose nếu chính nó đã khởi tạo
+các container; các service Compose có sẵn sẽ được giữ nguyên.
+
+Hoặc chạy từng phần thủ công:
+
 ```bash
 # Backend + PostgreSQL + MinIO
 cd src/backend
 cp .env.example .env
 docker compose up -d --build
+docker compose exec api uv run --no-dev alembic upgrade head
 
 # Frontend (chạy riêng, không nằm trong compose)
 cd src/frontend
@@ -31,6 +43,9 @@ npm run dev
 | MinIO Console UI | localhost:9003 |
 
 > Cổng PostgreSQL/MinIO được map ra ngoài container ở các số khác mặc định 5434, 9002, 9003
+
+Migration phải được áp dụng bằng `alembic upgrade head` trước khi gọi API upload tài liệu.
+
 ## Cấu trúc thư mục
 
 ```
