@@ -3,6 +3,8 @@
 service/router thay vì tự trả JSONResponse rải rác mỗi nơi một kiểu.
 """
 
+from typing import Any
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
@@ -12,7 +14,7 @@ class AppError(Exception):
 
     status_code = 400
 
-    def __init__(self, detail: str) -> None:
+    def __init__(self, detail: Any) -> None:
         self.detail = detail
         super().__init__(detail)
 

@@ -1,31 +1,42 @@
-import { NavLink, Route, Routes } from 'react-router-dom'
-import DocumentListPage from './pages/DocumentListPage'
-import ReaderPage from './pages/ReaderPage'
-import SearchPage from './pages/SearchPage'
+import { NavLink, Navigate, Route, Routes } from 'react-router'
+import './App.css'
+import { DashboardPage } from './pages/DashboardPage'
+import { CategoriesPage } from './pages/CategoriesPage'
+import { DocumentsPage } from './pages/DocumentsPage'
+import { DocumentViewerPage } from './pages/DocumentViewerPage'
+import { UploadPage } from './pages/UploadPage'
 
 function App() {
   return (
     <>
-      <header className="app-header">
-        <div className="app-header-inner">
-          <NavLink to="/" className="brand">
-            HCMUS-LDMS<span>Thư viện số</span>
+      <header className="site-header">
+        <NavLink className="brand-link" to="/">
+          <span className="brand-mark" aria-hidden="true">
+            L
+          </span>
+          <span>
+            <strong>HCMUS Library</strong>
+            <small>Digitization workspace</small>
+          </span>
+        </NavLink>
+        <nav aria-label="Điều hướng chính">
+          <NavLink to="/" end>
+            Tải lên
           </NavLink>
-          <nav className="app-nav">
-            <NavLink to="/" end>
-              Danh sách
-            </NavLink>
-            <NavLink to="/search">Tìm kiếm</NavLink>
-          </nav>
-        </div>
+          <NavLink to="/dashboard">Dashboard OCR</NavLink>
+          <NavLink to="/documents">Tài liệu</NavLink>
+          <NavLink to="/categories">Category</NavLink>
+        </nav>
       </header>
-      <main className="page">
-        <Routes>
-          <Route path="/" element={<DocumentListPage />} />
-          <Route path="/reader/:documentId" element={<ReaderPage />} />
-          <Route path="/search" element={<SearchPage />} />
-        </Routes>
-      </main>
+
+      <Routes>
+        <Route path="/" element={<UploadPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/documents" element={<DocumentsPage />} />
+        <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </>
   )
 }
