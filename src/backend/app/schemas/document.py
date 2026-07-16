@@ -1,7 +1,32 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, field_validator
+
+
+class DocumentSummary(BaseModel):
+    """Fixture-backed placeholder for LDMS-026/008 — see app/fixtures/documents.py."""
+
+    id: str
+    title: str
+    status: Literal["draft", "published"]
+    created_at: date
+
+
+class DocumentContent(BaseModel):
+    """Fixture-backed placeholder for LDMS-008 reader — see app/fixtures/documents.py."""
+
+    document_id: str
+    text: str
+
+
+class SearchResult(BaseModel):
+    """Fixture-backed placeholder for LDMS-015/016 search — see app/fixtures/documents.py."""
+
+    document_id: str
+    title: str
+    snippet: str
 
 
 class DocumentUploadResponse(BaseModel):
@@ -15,6 +40,7 @@ class DocumentDetail(BaseModel):
     original_filename: str
     content_type: str
     status: str
+    is_public: bool
     title: str | None
     author: str | None
     shelf_location: str | None

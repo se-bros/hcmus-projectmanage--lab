@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import DateTime, ForeignKey, String, func
+from sqlalchemy import Boolean, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -24,6 +24,7 @@ class Document(Base):
     object_key: Mapped[str] = mapped_column(String(512), unique=True)
     content_type: Mapped[str] = mapped_column(String(128))
     status: Mapped[str] = mapped_column(String(32), default="uploaded", server_default="uploaded")
+    is_public: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
     title: Mapped[str | None] = mapped_column(String(512), nullable=True)
     author: Mapped[str | None] = mapped_column(String(512), nullable=True)
     shelf_location: Mapped[str | None] = mapped_column(String(255), nullable=True)

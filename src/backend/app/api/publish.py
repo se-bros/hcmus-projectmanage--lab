@@ -2,9 +2,10 @@
 
 import uuid
 
-from fastapi import APIRouter, BackgroundTasks, status
+from fastapi import APIRouter, BackgroundTasks, Depends, status
 
 from app.api.dependencies import DbSession
+from app.core.security import require_roles
 from app.schemas.document import PublishJobAccepted, PublishJobDetail
 from app.services.publish_service import create_publish_job, latest_publish_job
 from app.workers.publish import run_publish_job
@@ -16,6 +17,7 @@ router = APIRouter(prefix="/documents", tags=["publish"])
     "/{document_id}/publish",
     response_model=PublishJobAccepted,
     status_code=status.HTTP_202_ACCEPTED,
+    dependencies=[Depends(require_roles("editor", "admin"))],
 )
 def publish_document(
     document_id: uuid.UUID,

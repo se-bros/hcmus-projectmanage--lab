@@ -7,11 +7,15 @@ def _create(client, name: str, parent_id: str | None = None):
     return client.post("/categories", json={"name": name, "parent_id": parent_id})
 
 
-def _upload(client) -> str:
-    return client.post(
+def _upload(client) -> tuple[str, dict[str, str]]:
+    token = client.post("/auth/dev-token", json={"role": "editor"}).json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+    document_id = client.post(
         "/documents",
         files={"file": ("scan.pdf", PDF_BYTES, "application/pdf")},
+        headers=headers,
     ).json()["document_id"]
+    return document_id, headers
 
 
 def test_create_parent_child_and_read_two_level_tree(api_context) -> None:
@@ -73,14 +77,17 @@ def test_delete_rejects_categories_with_children_or_documents(api_context) -> No
     assert has_children.status_code == 409
     assert "children" in has_children.json()["detail"]
 
-    document_id = _upload(client)
+    document_id, headers = _upload(client)
     assigned = client.put(
         f"/documents/{document_id}/metadata",
         json={"title": "Title", "author": "Author", "category_id": child["id"]},
     )
     assert assigned.status_code == 200
     assert assigned.json()["category_id"] == child["id"]
-    assert client.get(f"/documents/{document_id}").json()["category_id"] == child["id"]
+    assert (
+        client.get(f"/documents/{document_id}", headers=headers).json()["category_id"]
+        == child["id"]
+    )
 
     in_use = client.delete(f"/categories/{child['id']}")
     assert in_use.status_code == 409
@@ -89,7 +96,7 @@ def test_delete_rejects_categories_with_children_or_documents(api_context) -> No
 
 def test_assigning_unknown_category_returns_clear_404(api_context) -> None:
     client, _, _ = api_context
-    document_id = _upload(client)
+    document_id, _headers = _upload(client)
     response = client.put(
         f"/documents/{document_id}/metadata",
         json={"title": "Title", "author": "Author", "category_id": str(uuid.uuid4())},
