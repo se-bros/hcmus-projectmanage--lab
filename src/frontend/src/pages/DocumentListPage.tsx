@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { getDocuments, type DocumentSummary } from '../services/documents'
 
 const STATUS_LABELS: Record<DocumentSummary['status'], string> = {

@@ -5,6 +5,8 @@ os.environ.setdefault("DATABASE_URL", "postgresql+psycopg://test:test@localhost:
 os.environ.setdefault("MINIO_ENDPOINT", "localhost:9000")
 os.environ.setdefault("MINIO_ACCESS_KEY", "test")
 os.environ.setdefault("MINIO_SECRET_KEY", "test")
+os.environ.setdefault("JWT_SECRET", "test-secret-do-not-use-in-prod-min-32-bytes")
+os.environ.setdefault("AUTH_MODE", "mock")
 
 import pytest
 from fastapi.testclient import TestClient
@@ -50,3 +52,10 @@ def api_context(monkeypatch):
     finally:
         app.dependency_overrides.clear()
         engine.dispose()
+
+
+@pytest.fixture
+def editor_headers(api_context) -> dict[str, str]:
+    client, _, _ = api_context
+    token = client.post("/auth/dev-token", json={"role": "editor"}).json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}

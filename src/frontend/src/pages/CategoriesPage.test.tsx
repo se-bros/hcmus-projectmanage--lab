@@ -60,9 +60,7 @@ describe('CategoriesPage', () => {
       .mockResolvedValueOnce(response(child, 201))
       .mockResolvedValueOnce(response([{ ...parent, children: [child] }]))
       .mockResolvedValueOnce(response({ ...child, name: 'Mechanics' }))
-      .mockResolvedValueOnce(
-        response([{ ...parent, children: [{ ...child, name: 'Mechanics' }] }]),
-      )
+      .mockResolvedValueOnce(response([{ ...parent, children: [{ ...child, name: 'Mechanics' }] }]))
       .mockResolvedValueOnce(new Response(null, { status: 204 }))
       .mockResolvedValueOnce(response([{ ...parent, children: [] }]))
 
@@ -95,6 +93,9 @@ describe('CategoriesPage', () => {
     await waitFor(() =>
       expect(screen.queryByRole('button', { name: 'Đổi tên Mechanics' })).not.toBeInTheDocument(),
     )
-    expect(fetchMock).toHaveBeenCalledWith('/api/categories/child-1', { method: 'DELETE' })
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/categories/child-1',
+      expect.objectContaining({ method: 'DELETE' }),
+    )
   })
 })

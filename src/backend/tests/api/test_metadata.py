@@ -3,17 +3,20 @@ import uuid
 PDF_BYTES = b"%PDF-1.4\nminimal sample"
 
 
-def _upload(client) -> str:
+def _upload(client) -> tuple[str, dict[str, str]]:
+    token = client.post("/auth/dev-token", json={"role": "editor"}).json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
     response = client.post(
         "/documents",
         files={"file": ("scan.pdf", PDF_BYTES, "application/pdf")},
+        headers=headers,
     )
-    return response.json()["document_id"]
+    return response.json()["document_id"], headers
 
 
 def test_metadata_is_trimmed_saved_and_returned_by_document_detail(api_context) -> None:
     client, _, _ = api_context
-    document_id = _upload(client)
+    document_id, headers = _upload(client)
 
     response = client.put(
         f"/documents/{document_id}/metadata",
@@ -30,12 +33,14 @@ def test_metadata_is_trimmed_saved_and_returned_by_document_detail(api_context) 
     assert response.json()["author"] == "An author"
     assert response.json()["shelf_location"] == "A-12"
     assert response.json()["category_id"] is None
-    assert client.get(f"/documents/{document_id}").json()["shelf_location"] == "A-12"
+    assert (
+        client.get(f"/documents/{document_id}", headers=headers).json()["shelf_location"] == "A-12"
+    )
 
 
 def test_optional_metadata_can_be_null_or_blank(api_context) -> None:
     client, _, _ = api_context
-    document_id = _upload(client)
+    document_id, _headers = _upload(client)
 
     response = client.put(
         f"/documents/{document_id}/metadata",
@@ -49,7 +54,7 @@ def test_optional_metadata_can_be_null_or_blank(api_context) -> None:
 
 def test_required_metadata_reports_each_blank_field(api_context) -> None:
     client, _, _ = api_context
-    document_id = _upload(client)
+    document_id, _headers = _upload(client)
 
     response = client.put(
         f"/documents/{document_id}/metadata",

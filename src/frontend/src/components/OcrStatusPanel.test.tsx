@@ -80,9 +80,11 @@ describe('OcrStatusPanel', () => {
       await Promise.resolve()
     })
     expect(screen.getByText('Lần xử lý #2')).toBeInTheDocument()
-    expect(fetchMock).toHaveBeenNthCalledWith(2, '/api/documents/doc-1/ocr', {
-      method: 'POST',
-    })
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      2,
+      '/api/documents/doc-1/ocr',
+      expect.objectContaining({ method: 'POST' }),
+    )
     expect(screen.getByText('Đang nhận dạng')).toBeInTheDocument()
   })
 })

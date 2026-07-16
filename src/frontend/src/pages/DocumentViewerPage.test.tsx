@@ -319,10 +319,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
-    const confirm = vi
-      .spyOn(window, 'confirm')
-      .mockReturnValueOnce(false)
-      .mockReturnValueOnce(true)
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValueOnce(true)
 
     render(
       <MemoryRouter initialEntries={['/documents/doc-1']}>
