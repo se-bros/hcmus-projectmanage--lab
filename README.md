@@ -102,8 +102,9 @@ thái. Chọn một tài liệu sẽ mở `/documents/{document_id}`, nơi có f
 split-screen. Ảnh preview và textarea OCR chuyển trang đồng bộ; editor hiển thị trạng thái đang
 lưu/đã lưu/lỗi và hỏi xác nhận trước khi bỏ nội dung chưa lưu. Trang thiếu preview vẫn có
 placeholder và textarea hoạt động bình thường. Quản trị cây hai cấp tại
-`http://localhost:5173/categories`; RBAC sẽ được nối sau khi LDMS-009/010 cung cấp dependency xác
-thực.
+`http://localhost:5173/categories`; backend RBAC/`is_public` guard (LDMS-009/010, xem mục "Xác
+thực & Phân quyền" bên dưới) đã sẵn sàng — các trang FE hiện chưa gắn `Authorization` header vào
+những call này, sẽ nối khi module tương ứng cập nhật.
 
 Publish yêu cầu `Document.title`, `Document.author` và text không rỗng trên mọi page. Có thể chạy
 smoke flow metadata/category/editor hoàn toàn qua API:
@@ -137,6 +138,58 @@ Publish thành công lưu EPUB ở key
 `documents/{document_id}/epub/{publish_job_id}.epub`. Worker kiểm tra ZIP/container, title,
 author và thứ tự text trong spine trước khi cập nhật document thành `published`.
 
+## Xác thực & Phân quyền (LDMS-009, LDMS-010, LDMS-018)
+
+`AUTH_MODE` trong `.env` chọn cơ chế xác thực: `mock` (mặc định, dev) hoặc `google`. Ở chế độ
+`mock`, lấy token nhanh theo role:
+
+```bash
+curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: application/json' \
+  -d '{"role":"editor"}'
+curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: application/json' \
+  -d '{"role":"reader"}'
+curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: application/json' \
+  -d '{"role":"admin"}'
+```
+
+Gắn token vào header `Authorization: Bearer <token>`. `POST /documents` và `POST
+/documents/{id}/publish` yêu cầu role `editor` hoặc `admin`; role `reader` hoặc không có token
+đều bị từ chối (`403`/`401`). RBAC hiện chỉ áp trên hai endpoint ghi tiêu biểu theo AC (`upload`,
+`publish`); các endpoint ghi khác (`PUT .../pages/{n}`, `PUT .../metadata`, `/categories`) chưa
+có guard — ghi nhận là gap còn lại cho các module tương ứng bổ sung sau.
+
+Document có field `is_public` (mặc định `false`). Guest (không token) chỉ đọc được document
+`is_public = true`; ngược lại `GET /documents/{id}` và `.../source` trả `401`. Đặt một document
+thành public để test thủ công:
+
+```bash
+docker compose exec postgres psql -U ldms -d ldms \
+  -c "UPDATE documents SET is_public = true WHERE id = 'DOCUMENT_ID';"
+```
+
+### Google OAuth 2.0 (LDMS-018)
+
+Đặt `AUTH_MODE=google` cùng `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
+`GOOGLE_REDIRECT_URI=http://localhost:8000/auth/callback/google` trong `.env` (lấy từ [Google
+Cloud Console](https://console.cloud.google.com/apis/credentials) — thêm redirect URI trên vào
+danh sách Authorized redirect URIs của OAuth Client). Khi bật `google`, `POST /auth/dev-token`
+trả `404` — chỉ dùng được đăng nhập qua `/login` trên FE.
+
+Luồng: mở `http://localhost:5173/login` → bấm "Đăng nhập với Google" → consent screen Google →
+callback về BE → BE redirect FE tới `/auth/callback?token=...` → FE lưu token vào
+`localStorage`. Email không thuộc một trong các domain liệt kê ở `GOOGLE_ALLOWED_DOMAINS` (JSON
+array, mặc định `["hcmus.edu.vn"]`, có thể thêm domain khoa/chương trình khác — vd.
+`["hcmus.edu.vn","clc.fitus.edu.vn"]`) bị từ chối với `403`.
+
+Mọi tài khoản Google đăng nhập thành công đều được gán role `editor` mặc định (đủ quyền
+upload/publish) — chưa có phân biệt admin hay bậc quyền cao hơn giữa các tài khoản Google.
+"Guest" (không có token — không đăng nhập) chỉ đọc được document `is_public = true`; đây là ranh
+giới quyền thấp nhất của hệ thống, không phải role `reader` (role `reader` vẫn tồn tại và chỉ dùng
+khi cấp qua `/auth/dev-token` ở chế độ mock để test kịch bản RBAC từ chối ghi).
+
+**Bảo mật:** `GOOGLE_CLIENT_SECRET`/`JWT_SECRET` chỉ đọc từ `.env` (gitignored), không hardcode
+trong repo.
+
 ## Cấu trúc thư mục
 
 ```
@@ -151,7 +204,7 @@ src/
     │   ├── main.py             # App factory — wiring only, không chứa business logic
     │   ├── core/
     │   │   ├── config.py       # Settings (đọc .env qua pydantic-settings)
-    │   │   ├── security.py     # JWT/OAuth helpers — chưa implement (LDMS-009/018)
+    │   │   ├── security.py     # JWT issuance/verification + RBAC dependencies (LDMS-009/018)
     │   │   ├── logging.py      # configure_logging()
     │   │   └── exceptions.py   # AppError hierarchy + exception handler dùng chung
     │   ├── db/
@@ -182,6 +235,34 @@ Quy ước:
 - Regression frontend: `npm test && npm run lint && npm run build`.
 - Kiểm tra migration PostgreSQL: `cd src/backend && docker compose exec api uv run --no-dev alembic upgrade head`.
 - Nhánh Git theo GitFlow (`feature/*` → `develop` → `release/*` → `main`), xem `docs/06-architecture.md` §8.2.
+
+## Triển khai kiểu production-like (Nginx + TLS, buffer §8.2)
+
+Compose có thêm service `nginx` (profile `prod`) đóng gói FE build tĩnh + reverse proxy `/api` →
+backend, TLS 1.2/1.3 với cert self-signed cho demo local:
+
+```bash
+./scripts/generate-dev-cert.sh
+cd src/backend && docker compose --profile prod up -d --build
+# https://localhost:8443
+```
+
+Không ảnh hưởng luồng dev mặc định (`docker compose up` không có `--profile prod` giữ nguyên 3
+service API + PostgreSQL + MinIO theo LDMS-001 AC1). Cert self-signed chỉ phục vụ demo — production
+thật trên VMware cần CA cert hợp lệ, xem `docs/06-architecture.md` §5.1.
+
+## Sao lưu dữ liệu (buffer §5.2)
+
+`./scripts/backup-postgres.sh` chạy `pg_dump -Fc` (định dạng nén, khôi phục bằng `pg_restore`) và
+dọn bản backup cũ hơn `LDMS_BACKUP_RETENTION_DAYS` (mặc định 30 ngày).
+`./scripts/backup-minio.sh` chạy `mc mirror` đồng bộ toàn bộ bucket sang thư mục cục bộ (đại diện
+cho vị trí lưu trữ off-site). Cả hai ghi vào `.backups/` (gitignored) hoặc `$LDMS_BACKUP_DIR` nếu
+đặt biến môi trường trỏ tới NAS/máy chủ dự phòng thật.
+
+Đây là bản MVP thay thế PgBackRest/Restic — cùng tinh thần đơn giản hóa tech stack như Postgres
+FTS thay Elasticsearch (`docs/07-product-backlog.md`). Roadmap khi triển khai thật trên VMware:
+PgBackRest (incremental + AES-256) và Restic (encrypted off-site sync), xem
+`docs/06-architecture.md` §5.2.
 
 ## Tài liệu liên quan
 

@@ -13,3 +13,7 @@ __pycache__/
 # Env & OS
 .env
 .DS_Store
+
+# Local-only generated artifacts
+src/backend/nginx/certs/
+.backups/
