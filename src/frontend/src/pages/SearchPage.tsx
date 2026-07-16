@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { searchDocuments, type SearchResult } from '../services/documents'
 
 function highlightSnippet(snippet: string, keyword: string): ReactNode {

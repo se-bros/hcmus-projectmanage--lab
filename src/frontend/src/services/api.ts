@@ -1,3 +1,5 @@
+import { AUTH_TOKEN_STORAGE_KEY } from '../context/AuthContext'
+
 const API_BASE = '/api'
 
 export type DocumentDetail = {
@@ -47,7 +49,11 @@ type ApiErrorBody = {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, init)
+  const token = window.localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)
+  const headers = new Headers(init?.headers)
+  if (token) headers.set('Authorization', `Bearer ${token}`)
+
+  const response = await fetch(`${API_BASE}${path}`, { ...init, headers })
   if (!response.ok) {
     let message = `Yêu cầu thất bại (${response.status}).`
     try {

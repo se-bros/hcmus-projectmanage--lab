@@ -60,9 +60,11 @@ describe('DashboardPage', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Thử lại' }))
       await Promise.resolve()
     })
-    expect(fetchMock).toHaveBeenNthCalledWith(2, '/api/documents/doc-failed/ocr', {
-      method: 'POST',
-    })
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      2,
+      '/api/documents/doc-failed/ocr',
+      expect.objectContaining({ method: 'POST' }),
+    )
     expect(screen.getByText('#2')).toBeInTheDocument()
     const jobRow = screen.getByText('failed-book.pdf').closest('tr')!
     expect(within(jobRow).getByText('Đang nhận dạng')).toBeInTheDocument()

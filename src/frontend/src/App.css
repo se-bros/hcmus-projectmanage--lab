@@ -73,6 +73,23 @@
   background: #e7f4ee;
 }
 
+.site-header nav button.nav-logout {
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 9px;
+  color: #587068;
+  background: transparent;
+  box-shadow: none;
+  font-size: 0.86rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.site-header nav button.nav-logout:hover {
+  color: #176048;
+  background: #e7f4ee;
+}
+
 .upload-card {
   padding: 44px;
   border: 1px solid #dbe5e1;
@@ -88,6 +105,72 @@
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+.login-card {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-card header {
+  display: grid;
+  justify-items: center;
+}
+
+.google-button {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 34px;
+  padding: 13px 20px;
+  border: 1px solid #dbe5e1;
+  border-radius: 10px;
+  color: #25483d;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(22, 56, 45, 0.08);
+  font-weight: 750;
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.google-button:hover {
+  border-color: #9fc7b7;
+  box-shadow: 0 12px 28px rgba(22, 56, 45, 0.13);
+  transform: translateY(-1px);
+}
+
+.google-button:focus-visible {
+  outline: 3px solid rgba(32, 135, 103, 0.3);
+  outline-offset: 2px;
+}
+
+.login-hint {
+  margin: 18px 0 0;
+  color: #82928c;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.login-hint code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: #edf4f1;
+  color: #587068;
+  font-size: 0.76rem;
+}
+
+.auth-callback-card {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 56px 44px;
 }
 
 h1 {

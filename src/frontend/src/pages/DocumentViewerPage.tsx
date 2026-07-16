@@ -23,16 +23,14 @@ export function DocumentViewerPage() {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [shelfLocation, setShelfLocation] = useState('')
-  const [metadataSaveState, setMetadataSaveState] = useState<
-    'idle' | 'saving' | 'saved' | 'error'
-  >('idle')
+  const [metadataSaveState, setMetadataSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>(
+    'idle',
+  )
   const [metadataError, setMetadataError] = useState('')
   const [categories, setCategories] = useState<CategoryTree[]>([])
   const [categoryId, setCategoryId] = useState('')
   const [draftText, setDraftText] = useState('')
-  const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>(
-    'idle',
-  )
+  const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [pageSaveError, setPageSaveError] = useState('')
 
   useEffect(() => {
@@ -146,9 +144,7 @@ export function DocumentViewerPage() {
       setMetadataSaveState('saved')
     } catch (saveError) {
       setMetadataSaveState('error')
-      setMetadataError(
-        saveError instanceof Error ? saveError.message : 'Không thể lưu metadata.',
-      )
+      setMetadataError(saveError instanceof Error ? saveError.message : 'Không thể lưu metadata.')
     }
   }
 

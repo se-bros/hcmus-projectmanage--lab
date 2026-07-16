@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  createCategory,
-  deleteCategory,
-  getCategories,
-  renameCategory,
-} from '../services/api'
+import { createCategory, deleteCategory, getCategories, renameCategory } from '../services/api'
 import type { Category, CategoryTree } from '../services/api'
 
 export function CategoriesPage() {
