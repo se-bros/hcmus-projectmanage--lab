@@ -90,6 +90,10 @@ PDF phải trả hai page không trùng số, theo thứ tự `1, 2`; PNG trả 
 Dashboard tại `http://localhost:5173/dashboard` tổng hợp số job theo trạng thái, thời điểm cập nhật,
 error message và cho phép retry trực tiếp từng tài liệu lỗi.
 
+Trang `http://localhost:5173/documents` hiển thị kho tài liệu scan với tìm kiếm và bộ lọc trạng
+thái. Chọn một tài liệu sẽ mở `/documents/{document_id}`, nơi ảnh preview và text OCR được hiển thị
+song song, chuyển trang đồng bộ và có link mở lại file nguồn gốc.
+
 Publish yêu cầu `Document.title`, `Document.author` và text không rỗng trên mọi page. Hai field
 metadata này là contract chờ LDMS-011 nối API chỉnh sửa; trong lúc smoke module độc lập có thể gán
 qua PostgreSQL rồi gọi publish:

@@ -3,6 +3,7 @@ const API_BASE = '/api'
 export type DocumentDetail = {
   id: string
   original_filename: string
+  content_type: string
   status: string
   title: string | null
   author: string | null
@@ -31,6 +32,12 @@ export type OcrDashboardItem = {
   error_message: string | null
   created_at: string
   updated_at: string | null
+}
+
+export type DocumentPage = {
+  page_number: number
+  text_content: string
+  has_image: boolean
 }
 
 type ApiErrorBody = {
@@ -69,6 +76,18 @@ export function getOcrStatus(documentId: string): Promise<OcrJob> {
 
 export function getOcrJobs(): Promise<OcrDashboardItem[]> {
   return request('/ocr/jobs')
+}
+
+export function getDocumentPages(documentId: string): Promise<DocumentPage[]> {
+  return request(`/documents/${documentId}/pages`)
+}
+
+export function getDocumentSourceUrl(documentId: string): string {
+  return `${API_BASE}/documents/${documentId}/source`
+}
+
+export function getPageImageUrl(documentId: string, pageNumber: number): string {
+  return `${API_BASE}/documents/${documentId}/pages/${pageNumber}/image`
 }
 
 export function retryOcr(documentId: string): Promise<OcrJob> {

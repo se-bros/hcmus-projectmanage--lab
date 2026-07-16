@@ -34,6 +34,7 @@ def test_upload_creates_document_and_pending_ocr_job(api_context) -> None:
     detail = client.get(f"/documents/{document_id}")
     assert detail.status_code == 200
     assert detail.json()["status"] == "ocr_pending"
+    assert detail.json()["content_type"] == "application/pdf"
     assert detail.json()["title"] is None
 
 

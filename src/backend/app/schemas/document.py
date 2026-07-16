@@ -13,6 +13,7 @@ class DocumentDetail(BaseModel):
 
     id: uuid.UUID
     original_filename: str
+    content_type: str
     status: str
     title: str | None
     author: str | None
