@@ -7,6 +7,8 @@ export type DocumentDetail = {
   status: string
   title: string | null
   author: string | null
+  shelf_location: string | null
+  category_id: string | null
   epub_object_key: string | null
   created_at: string
 }
@@ -41,7 +43,7 @@ export type DocumentPage = {
 }
 
 type ApiErrorBody = {
-  detail?: string | { message?: string }
+  detail?: string | { message?: string } | Array<{ loc?: Array<string | number>; msg?: string }>
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -51,12 +53,21 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     try {
       const body = (await response.json()) as ApiErrorBody
       if (typeof body.detail === 'string') message = body.detail
-      else if (body.detail?.message) message = body.detail.message
+      else if (Array.isArray(body.detail)) {
+        message = body.detail
+          .map((error) => {
+            const field = error.loc?.at(-1)
+            return field ? `${field}: ${error.msg || 'không hợp lệ'}` : error.msg
+          })
+          .filter(Boolean)
+          .join('; ')
+      } else if (body.detail?.message) message = body.detail.message
     } catch {
       // Keep the status-based fallback when the response is not JSON.
     }
     throw new Error(message)
   }
+  if (response.status === 204) return undefined as T
   return (await response.json()) as T
 }
 
@@ -70,6 +81,58 @@ export function getDocument(documentId: string): Promise<DocumentDetail> {
   return request(`/documents/${documentId}`)
 }
 
+export type DocumentMetadataInput = {
+  title: string
+  author: string
+  shelf_location: string | null
+  category_id: string | null
+}
+
+export function updateDocumentMetadata(
+  documentId: string,
+  metadata: DocumentMetadataInput,
+): Promise<DocumentDetail> {
+  return request(`/documents/${documentId}/metadata`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(metadata),
+  })
+}
+
+export type Category = {
+  id: string
+  name: string
+  parent_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type CategoryTree = Category & { children: Category[] }
+
+export function getCategories(): Promise<CategoryTree[]> {
+  return request('/categories')
+}
+
+export function createCategory(name: string, parentId: string | null): Promise<Category> {
+  return request('/categories', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, parent_id: parentId }),
+  })
+}
+
+export function renameCategory(categoryId: string, name: string): Promise<Category> {
+  return request(`/categories/${categoryId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name }),
+  })
+}
+
+export function deleteCategory(categoryId: string): Promise<void> {
+  return request(`/categories/${categoryId}`, { method: 'DELETE' })
+}
+
 export function getOcrStatus(documentId: string): Promise<OcrJob> {
   return request(`/documents/${documentId}/ocr`)
 }
@@ -80,6 +143,22 @@ export function getOcrJobs(): Promise<OcrDashboardItem[]> {
 
 export function getDocumentPages(documentId: string): Promise<DocumentPage[]> {
   return request(`/documents/${documentId}/pages`)
+}
+
+export function getDocumentPage(documentId: string, pageNumber: number): Promise<DocumentPage> {
+  return request(`/documents/${documentId}/pages/${pageNumber}`)
+}
+
+export function updatePageText(
+  documentId: string,
+  pageNumber: number,
+  textContent: string,
+): Promise<DocumentPage> {
+  return request(`/documents/${documentId}/pages/${pageNumber}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text_content: textContent }),
+  })
 }
 
 export function getDocumentSourceUrl(documentId: string): string {

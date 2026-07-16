@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import {
   getDocument,
+  getCategories,
   getDocumentPages,
   getDocumentSourceUrl,
   getOcrStatus,
   getPageImageUrl,
+  updatePageText,
+  updateDocumentMetadata,
 } from '../services/api'
-import type { DocumentDetail, DocumentPage, OcrJob } from '../services/api'
+import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
 
 export function DocumentViewerPage() {
   const { documentId } = useParams<{ documentId: string }>()
@@ -17,6 +20,20 @@ export function DocumentViewerPage() {
   const [selectedPageNumber, setSelectedPageNumber] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [shelfLocation, setShelfLocation] = useState('')
+  const [metadataSaveState, setMetadataSaveState] = useState<
+    'idle' | 'saving' | 'saved' | 'error'
+  >('idle')
+  const [metadataError, setMetadataError] = useState('')
+  const [categories, setCategories] = useState<CategoryTree[]>([])
+  const [categoryId, setCategoryId] = useState('')
+  const [draftText, setDraftText] = useState('')
+  const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>(
+    'idle',
+  )
+  const [pageSaveError, setPageSaveError] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -29,15 +46,22 @@ export function DocumentViewerPage() {
     async function loadDocument() {
       try {
         const detail = await getDocument(documentId!)
-        const [documentPages, ocrJob] = await Promise.all([
+        const [documentPages, ocrJob, categoryTree] = await Promise.all([
           getDocumentPages(documentId!),
           getOcrStatus(documentId!),
+          getCategories().catch(() => []),
         ])
         if (cancelled) return
         setDocument(detail)
+        setTitle(detail.title ?? '')
+        setAuthor(detail.author ?? '')
+        setShelfLocation(detail.shelf_location ?? '')
+        setCategoryId(detail.category_id ?? '')
         setPages(documentPages)
         setJob(ocrJob)
+        setCategories(categoryTree)
         setSelectedPageNumber(documentPages[0]?.page_number ?? null)
+        setDraftText(documentPages[0]?.text_content ?? '')
         setError('')
       } catch (loadError) {
         if (!cancelled) {
@@ -57,6 +81,76 @@ export function DocumentViewerPage() {
   }, [documentId])
 
   const selectedPage = pages.find((page) => page.page_number === selectedPageNumber) ?? null
+  const hasUnsavedPageText = selectedPage !== null && draftText !== selectedPage.text_content
+
+  useEffect(() => {
+    if (!hasUnsavedPageText) return
+    function warnBeforeUnload(event: BeforeUnloadEvent) {
+      event.preventDefault()
+      event.returnValue = ''
+    }
+    window.addEventListener('beforeunload', warnBeforeUnload)
+    return () => window.removeEventListener('beforeunload', warnBeforeUnload)
+  }, [hasUnsavedPageText])
+
+  function selectPage(pageNumber: number) {
+    if (
+      hasUnsavedPageText &&
+      !window.confirm('Trang hiện tại có nội dung chưa lưu. Bỏ thay đổi và chuyển trang?')
+    ) {
+      return
+    }
+    const nextPage = pages.find((page) => page.page_number === pageNumber)
+    setSelectedPageNumber(pageNumber)
+    setDraftText(nextPage?.text_content ?? '')
+    setPageSaveState('idle')
+    setPageSaveError('')
+  }
+
+  async function savePageText() {
+    if (!documentId || !selectedPage) return
+    setPageSaveState('saving')
+    setPageSaveError('')
+    try {
+      const updated = await updatePageText(documentId, selectedPage.page_number, draftText)
+      setPages((current) =>
+        current.map((page) => (page.page_number === updated.page_number ? updated : page)),
+      )
+      setDraftText(updated.text_content)
+      setPageSaveState('saved')
+    } catch (saveError) {
+      setPageSaveState('error')
+      setPageSaveError(
+        saveError instanceof Error ? saveError.message : 'Không thể lưu nội dung trang.',
+      )
+    }
+  }
+
+  async function saveMetadata(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!documentId) return
+    setMetadataSaveState('saving')
+    setMetadataError('')
+    try {
+      const updated = await updateDocumentMetadata(documentId, {
+        title,
+        author,
+        shelf_location: shelfLocation || null,
+        category_id: categoryId || null,
+      })
+      setDocument(updated)
+      setTitle(updated.title ?? '')
+      setAuthor(updated.author ?? '')
+      setShelfLocation(updated.shelf_location ?? '')
+      setCategoryId(updated.category_id ?? '')
+      setMetadataSaveState('saved')
+    } catch (saveError) {
+      setMetadataSaveState('error')
+      setMetadataError(
+        saveError instanceof Error ? saveError.message : 'Không thể lưu metadata.',
+      )
+    }
+  }
 
   if (isLoading) {
     return <main className="page-shell viewer-page viewer-state">Đang mở tài liệu…</main>
@@ -122,6 +216,59 @@ export function DocumentViewerPage() {
         </div>
       </section>
 
+      <section className="metadata-editor" aria-labelledby="metadata-heading">
+        <div>
+          <p className="section-kicker">LDMS-011</p>
+          <h2 id="metadata-heading">Metadata tài liệu</h2>
+          <p>Title và author là bắt buộc trước khi xuất bản.</p>
+        </div>
+        <form onSubmit={saveMetadata}>
+          <label>
+            Title
+            <input value={title} onChange={(event) => setTitle(event.target.value)} />
+          </label>
+          <label>
+            Author
+            <input value={author} onChange={(event) => setAuthor(event.target.value)} />
+          </label>
+          <label>
+            Vị trí kệ (không bắt buộc)
+            <input
+              value={shelfLocation}
+              onChange={(event) => setShelfLocation(event.target.value)}
+            />
+          </label>
+          <label>
+            Category (không bắt buộc)
+            <select value={categoryId} onChange={(event) => setCategoryId(event.target.value)}>
+              <option value="">Chưa gán category</option>
+              {categories.map((category) => (
+                <optgroup label={category.name} key={category.id}>
+                  <option value={category.id}>{category.name} — cấp 1</option>
+                  {category.children.map((child) => (
+                    <option value={child.id} key={child.id}>
+                      {child.name} — cấp 2
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <div className="metadata-save-row">
+            <button type="submit" disabled={metadataSaveState === 'saving'}>
+              {metadataSaveState === 'saving' ? 'Đang lưu…' : 'Lưu metadata'}
+            </button>
+            <span
+              className={metadataSaveState === 'error' ? 'save-state error-text' : 'save-state'}
+              role="status"
+            >
+              {metadataSaveState === 'saved' && 'Đã lưu metadata.'}
+              {metadataSaveState === 'error' && (metadataError || 'Lưu metadata thất bại.')}
+            </span>
+          </div>
+        </form>
+      </section>
+
       {pages.length === 0 ? (
         <section className="viewer-empty">
           <span aria-hidden="true">⌛</span>
@@ -146,7 +293,7 @@ export function DocumentViewerPage() {
                   key={page.page_number}
                   className={selectedPageNumber === page.page_number ? 'active' : ''}
                   aria-current={selectedPageNumber === page.page_number ? 'page' : undefined}
-                  onClick={() => setSelectedPageNumber(page.page_number)}
+                  onClick={() => selectPage(page.page_number)}
                 >
                   {page.page_number}
                 </button>
@@ -178,9 +325,41 @@ export function DocumentViewerPage() {
               <article className="processed-pane">
                 <header>
                   <span>Văn bản OCR</span>
-                  <strong>{selectedPage.text_content.length} ký tự</strong>
+                  <strong>{draftText.length} ký tự</strong>
                 </header>
-                <pre>{selectedPage.text_content || 'Trang này chưa có nội dung OCR.'}</pre>
+                <div className="page-text-editor">
+                  <label className="sr-only" htmlFor="page-text-content">
+                    Nội dung OCR trang {selectedPage.page_number}
+                  </label>
+                  <textarea
+                    id="page-text-content"
+                    value={draftText}
+                    placeholder="Trang này chưa có nội dung OCR."
+                    onChange={(event) => {
+                      setDraftText(event.target.value)
+                      setPageSaveState('idle')
+                      setPageSaveError('')
+                    }}
+                  />
+                  <footer className="page-save-row">
+                    <button
+                      type="button"
+                      disabled={pageSaveState === 'saving'}
+                      onClick={() => void savePageText()}
+                    >
+                      {pageSaveState === 'saving' ? 'Đang lưu…' : 'Lưu trang'}
+                    </button>
+                    <span
+                      className={pageSaveState === 'error' ? 'save-state error-text' : 'save-state'}
+                      role="status"
+                    >
+                      {pageSaveState === 'saved' && 'Đã lưu trang.'}
+                      {pageSaveState === 'error' &&
+                        (pageSaveError || 'Lưu nội dung trang thất bại.')}
+                      {pageSaveState === 'idle' && hasUnsavedPageText && 'Có thay đổi chưa lưu.'}
+                    </span>
+                  </footer>
+                </div>
               </article>
             </section>
           )}

@@ -1,6 +1,7 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router'
 import './App.css'
 import { DashboardPage } from './pages/DashboardPage'
+import { CategoriesPage } from './pages/CategoriesPage'
 import { DocumentsPage } from './pages/DocumentsPage'
 import { DocumentViewerPage } from './pages/DocumentViewerPage'
 import { UploadPage } from './pages/UploadPage'
@@ -24,6 +25,7 @@ function App() {
           </NavLink>
           <NavLink to="/dashboard">Dashboard OCR</NavLink>
           <NavLink to="/documents">Tài liệu</NavLink>
+          <NavLink to="/categories">Category</NavLink>
         </nav>
       </header>
 
@@ -32,6 +34,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/documents" element={<DocumentsPage />} />
         <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>

@@ -893,6 +893,190 @@ dd {
   display: block;
 }
 
+.metadata-editor {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+  gap: 32px;
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid #dbe5e1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.metadata-editor h2 {
+  margin: 0;
+  color: #25483d;
+  font-size: 1.15rem;
+}
+
+.metadata-editor > div > p:last-child {
+  margin: 8px 0 0;
+  color: #71857e;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.metadata-editor form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.metadata-editor label {
+  display: grid;
+  gap: 7px;
+  color: #425e55;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.metadata-editor label:last-of-type,
+.metadata-save-row {
+  grid-column: 1 / -1;
+}
+
+.categories-page {
+  width: min(100% - 32px, 980px);
+}
+
+.category-create-card,
+.category-tree-card {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid #dbe5e1;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 38px rgba(22, 56, 45, 0.07);
+}
+
+.category-create-card h2,
+.category-tree-card h2 {
+  margin: 0;
+  color: #25483d;
+  font-size: 1.15rem;
+}
+
+.category-create-card form {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  margin-top: 18px;
+}
+
+.category-create-card label {
+  display: grid;
+  gap: 7px;
+  color: #425e55;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.category-create-card input,
+.category-create-card select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d5e2dd;
+  border-radius: 9px;
+  color: #294b40;
+  background: #f8fbfa;
+  font: inherit;
+}
+
+.category-tree-card > p {
+  color: #71857e;
+}
+
+.category-tree {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-row {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 1px solid #e1eae6;
+  border-radius: 10px;
+  background: #f9fbfa;
+}
+
+.category-row > span:first-child {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: #36594e;
+}
+
+.category-row small {
+  color: #82928c;
+  font-size: 0.68rem;
+}
+
+.category-child {
+  margin-left: 32px;
+  background: #f2f8f5;
+}
+
+.category-child i {
+  color: #68a18d;
+  font-style: normal;
+}
+
+.category-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.category-actions button {
+  padding: 7px 10px;
+  box-shadow: none;
+  font-size: 0.7rem;
+}
+
+.danger-button {
+  color: #8b2d25;
+  background: #fff0ee;
+}
+
+.metadata-editor input,
+.metadata-editor select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d5e2dd;
+  border-radius: 9px;
+  color: #294b40;
+  background: #f8fbfa;
+  font: inherit;
+  font-weight: 500;
+}
+
+.metadata-save-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.metadata-save-row button {
+  padding: 10px 15px;
+}
+
+.save-state {
+  color: #176048;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.error-text {
+  color: #8b2d25;
+}
+
 .viewer-metadata span {
   margin-bottom: 5px;
   color: #82928c;
@@ -1008,20 +1192,49 @@ dd {
   color: #71857e;
 }
 
-.processed-pane pre {
-  box-sizing: border-box;
+.page-text-editor {
+  display: grid;
   min-width: 0;
   min-height: 0;
+  grid-template-rows: 1fr auto;
+  background: #fffefb;
+}
+
+.page-text-editor textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 520px;
   margin: 0;
   padding: 28px;
+  border: 0;
+  resize: none;
   color: #294b40;
   background: #fffefb;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1rem;
   line-height: 1.75;
-  overflow: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
+}
+
+.page-text-editor textarea:focus {
+  outline: 3px solid rgba(32, 135, 103, 0.2);
+  outline-offset: -3px;
+}
+
+.page-save-row {
+  display: flex;
+  min-height: 42px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #dbe5e1;
+  background: #f7faf8;
+}
+
+.page-save-row button {
+  padding: 9px 14px;
+  font-size: 0.78rem;
 }
 
 @media (max-width: 900px) {
@@ -1044,6 +1257,10 @@ dd {
   }
 
   .scan-split-view {
+    grid-template-columns: 1fr;
+  }
+
+  .metadata-editor {
     grid-template-columns: 1fr;
   }
 
@@ -1136,6 +1353,10 @@ dd {
   }
 
   .viewer-metadata {
+    grid-template-columns: 1fr;
+  }
+
+  .metadata-editor form {
     grid-template-columns: 1fr;
   }
 

@@ -61,7 +61,14 @@ Các endpoint chính:
 | `POST` | `/documents/{id}/ocr` | Retry job failed, trả job mới với HTTP 202 |
 | `GET` | `/documents/{id}/ocr` | Job mới nhất, attempt, status và lỗi |
 | `GET` | `/documents/{id}/pages` | Text theo `page_number` tăng dần |
+| `GET` | `/documents/{id}/pages/{n}` | Đọc text và trạng thái preview của một trang |
+| `PUT` | `/documents/{id}/pages/{n}` | Lưu `{ "text_content": "..." }`, kể cả chuỗi rỗng |
 | `GET` | `/documents/{id}/pages/{n}/image` | Preview PNG của trang |
+| `PUT` | `/documents/{id}/metadata` | Lưu title, author, shelf location và category |
+| `POST` | `/categories` | Tạo category cấp 1 hoặc cấp 2 bằng `parent_id` |
+| `GET` | `/categories` | Trả cây category hai cấp với mảng `children` |
+| `PATCH` | `/categories/{id}` | Đổi tên category |
+| `DELETE` | `/categories/{id}` | Xóa category không có con và chưa được sử dụng |
 | `GET` | `/ocr/jobs` | Job OCR mới nhất của từng document cho dashboard |
 | `POST` | `/documents/{id}/publish` | Kiểm tra metadata/page text và tạo publish job |
 | `GET` | `/documents/{id}/publish` | Publish job mới nhất |
@@ -91,20 +98,40 @@ Dashboard tại `http://localhost:5173/dashboard` tổng hợp số job theo tr�
 error message và cho phép retry trực tiếp từng tài liệu lỗi.
 
 Trang `http://localhost:5173/documents` hiển thị kho tài liệu scan với tìm kiếm và bộ lọc trạng
-thái. Chọn một tài liệu sẽ mở `/documents/{document_id}`, nơi ảnh preview và text OCR được hiển thị
-song song, chuyển trang đồng bộ và có link mở lại file nguồn gốc.
+thái. Chọn một tài liệu sẽ mở `/documents/{document_id}`, nơi có form metadata/category và editor
+split-screen. Ảnh preview và textarea OCR chuyển trang đồng bộ; editor hiển thị trạng thái đang
+lưu/đã lưu/lỗi và hỏi xác nhận trước khi bỏ nội dung chưa lưu. Trang thiếu preview vẫn có
+placeholder và textarea hoạt động bình thường. Quản trị cây hai cấp tại
+`http://localhost:5173/categories`; RBAC sẽ được nối sau khi LDMS-009/010 cung cấp dependency xác
+thực.
 
-Publish yêu cầu `Document.title`, `Document.author` và text không rỗng trên mọi page. Hai field
-metadata này là contract chờ LDMS-011 nối API chỉnh sửa; trong lúc smoke module độc lập có thể gán
-qua PostgreSQL rồi gọi publish:
+Publish yêu cầu `Document.title`, `Document.author` và text không rỗng trên mọi page. Có thể chạy
+smoke flow metadata/category/editor hoàn toàn qua API:
 
 ```bash
-cd src/backend
-docker compose exec -T postgres psql -U ldms -d ldms \
-  -c "UPDATE documents SET title='OCR Sample', author='HCMUS LDMS' WHERE id='DOCUMENT_ID';"
+# Tạo category cha rồi category con; thay các ID từ response vào lệnh sau
+curl -fsS -X POST http://localhost:8000/categories \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Khoa học","parent_id":null}'
+curl -fsS -X POST http://localhost:8000/categories \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Vật lý","parent_id":"PARENT_CATEGORY_ID"}'
+
+curl -fsS -X PUT http://localhost:8000/documents/DOCUMENT_ID/metadata \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"OCR Sample","author":"HCMUS LDMS","shelf_location":"A-12","category_id":"CHILD_CATEGORY_ID"}'
+curl -fsS http://localhost:8000/documents/DOCUMENT_ID/pages/1
+curl -fsS -X PUT http://localhost:8000/documents/DOCUMENT_ID/pages/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"text_content":"Corrected OCR page text"}'
+curl -fsS http://localhost:8000/documents/DOCUMENT_ID/pages/1
 curl -fsS -X POST http://localhost:8000/documents/DOCUMENT_ID/publish
 curl -fsS http://localhost:8000/documents/DOCUMENT_ID/publish
 ```
+
+Reload `/documents/DOCUMENT_ID` sau lệnh PUT phải thấy text đã sửa. Thử title/author chỉ chứa
+whitespace phải nhận `422` chỉ rõ field; gán category UUID không tồn tại phải nhận `404`; xóa
+category có con hoặc đang được document dùng phải nhận `409`.
 
 Publish thành công lưu EPUB ở key
 `documents/{document_id}/epub/{publish_job_id}.epub`. Worker kiểm tra ZIP/container, title,
@@ -152,6 +179,8 @@ Quy ước:
 - Format trước khi commit: `uv run ruff format .` (backend), `npm run format` (frontend).
 - Lint: `uv run ruff check .` (backend), `npm run lint` (frontend).
 - Test backend: `uv run pytest`.
+- Regression frontend: `npm test && npm run lint && npm run build`.
+- Kiểm tra migration PostgreSQL: `cd src/backend && docker compose exec api uv run --no-dev alembic upgrade head`.
 - Nhánh Git theo GitFlow (`feature/*` → `develop` → `release/*` → `main`), xem `docs/06-architecture.md` §8.2.
 
 ## Tài liệu liên quan

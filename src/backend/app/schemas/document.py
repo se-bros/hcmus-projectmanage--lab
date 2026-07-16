@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
 
 
 class DocumentUploadResponse(BaseModel):
@@ -17,8 +17,32 @@ class DocumentDetail(BaseModel):
     status: str
     title: str | None
     author: str | None
+    shelf_location: str | None
+    category_id: uuid.UUID | None
     epub_object_key: str | None
     created_at: datetime
+
+
+class DocumentMetadataUpdate(BaseModel):
+    title: str
+    author: str
+    shelf_location: str | None = None
+    category_id: uuid.UUID | None = None
+
+    @field_validator("title", "author")
+    @classmethod
+    def required_text(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("must not be empty or whitespace")
+        return value
+
+    @field_validator("shelf_location")
+    @classmethod
+    def optional_text(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        return value.strip() or None
 
 
 class OcrJobDetail(BaseModel):
@@ -42,6 +66,14 @@ class PageSummary(BaseModel):
     page_number: int
     text_content: str
     has_image: bool
+
+
+class PageDetail(PageSummary):
+    pass
+
+
+class PageTextUpdate(BaseModel):
+    text_content: str
 
 
 class OcrDashboardItem(BaseModel):
