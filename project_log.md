@@ -4,4 +4,5 @@
 
 | Ngày hoàn thành | Dev | Story ID | Tên Story | Story Points | Thời gian làm (giờ) | Token AI đã dùng | Ghi chú |
 |---|---|---|---|---:|---:|---:|---|
+| 16-7-2026 |Khoa|3,4,7,13,22|Pipeline (Digitization & Publish)| - | 45min | 280K | - |
 | **Tổng cộng (cả nhóm)** | | | | **0** | **0** | **0** | |
