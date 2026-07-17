@@ -21,7 +21,7 @@
 | :---: | :---: | :--- | :---: |
 | 1.0 | 12/07/2026 | Khởi tạo dự thảo kế hoạch chi phí, tiến độ ban đầu (v1.0). | Mạch Quốc Tấn |
 | 2.0 | 14/07/2026 | Trình bày LaTeX công thức UCP & COCOMO II, chi tiết hóa WBS và chuyển đổi VNĐ. | Mạch Quốc Tấn |
-| 3.0 | 17/07/2026 | Bổ sung phần Monitoring & Reporting (mục 5): bộ chỉ số giám sát, cơ chế session logging, snapshot tiến độ tuần 1 với dữ liệu thực tế, quy chế báo cáo 3 cấp. | Mạch Quốc Tấn |
+| 3.0 | 17/07/2026 | Bổ sung phần Monitoring & Reporting (mục 5): bộ chỉ số giám sát (tiến độ, chi phí AI, rủi ro kỹ thuật), cơ chế session logging, snapshot tiến độ tuần 1 với dữ liệu thực tế (4 dev sessions, 12/26 stories), phương pháp Velocity-based Forecast (khoảng optimistic–pessimistic), quy chế báo cáo 3 cấp (Session → Weekly → Phase-Gating). | Mạch Quốc Tấn |
 
 ---
 
