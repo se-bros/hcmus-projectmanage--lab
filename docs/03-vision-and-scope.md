@@ -159,13 +159,16 @@ actor "Thủ thư / BTV" as Librarian
 actor "Độc giả (SV/GV)" as Reader
 
 rectangle "Hệ thống HCMUS-LDMS" {
+    usecase "Đăng nhập\n(Google OAuth / Mock)" as Login
     usecase "Quét giáo trình\n(300 DPI)" as Scan
-    usecase "Tesseract OCR\n(Bất đồng bộ Celery)" as OCR
+    usecase "FastAPI BackgroundTasks\n(OCR Tesseract)" as OCR
     usecase "Hiệu chỉnh lỗi\n(Split-screen Editor)" as Edit
     usecase "Biên dịch EPUB\n(Pandoc)" as Compile
-    usecase "Tìm kiếm & Đọc bảo mật\n(Elasticsearch & Signed URL)" as Read
+    usecase "Tìm kiếm & Đọc bảo mật\n(PostgreSQL FTS & Signed URL)" as Read
 }
 
+Librarian --> Login : Thực hiện
+Reader --> Login : Thực hiện
 Librarian --> Scan : Thực hiện
 Scan --> OCR : Tự động đẩy task
 OCR --> Edit : Trả về văn bản thô
@@ -184,14 +187,16 @@ Quy trình số hóa khép kín dành cho cán bộ quản lý thư viện và s
     * *Mô tả:* Cán bộ thư viện tiếp nhận các giáo trình, sách cổ độc bản từ các khoa gửi lên. Tiến hành kiểm tra hiện trạng vật lý (mức độ rách hỏng, ẩm mốc), gán số phân loại tạm thời để định danh vật lý, và lưu kho bảo quản chuyên dụng (độ ẩm 50%, nhiệt độ 20 độ C) để chống xuống cấp.
 2. **Số hóa giáo trình vật lý (Scan chữ V):**
     * *Mô tả:* Thủ thư sử dụng máy quét chuyên dụng dạng chữ V (Book Scanner) quét sách mà không cần tháo gáy sách, giữ nguyên vẹn cấu trúc vật lý của học liệu gốc. File quét được tự động canh chỉnh thẳng hàng, lọc nhiễu, tăng độ tương phản và lưu dưới định dạng PDF/ảnh 300 DPI tiêu chuẩn.
-3. **Khai báo thông tin siêu dữ liệu (Metadata):**
+3. **Đăng nhập hệ thống (Google OAuth 2.0 / Mock Auth):**
+    * *Mô tả:* Thủ thư hoặc Biên tập viên đăng nhập vào hệ thống thông qua Google OAuth 2.0 (tài khoản HCMUS) hoặc Mock Auth (trong môi trường phát triển) để được cấp quyền thao tác trên dashboard.
+4. **Khai báo thông tin siêu dữ liệu (Metadata):**
     * *Mô tả:* Thủ thư tải tệp ảnh quét lên dashboard, khai báo các trường thông tin chuẩn hóa Dublin Core (Tên sách, Tác giả, Nhà xuất bản, Năm phát hành, Khoa môn học, Mã số thư viện) lưu trữ trực tiếp vào cơ sở dữ liệu PostgreSQL.
-4. **Nhận dạng ký tự tự động (AI-assisted OCR):**
-    * *Mô tả:* Hệ thống đẩy file scan vào hàng đợi Celery. Tiến trình chạy Tesseract OCR xử lý nhận dạng ký tự tiếng Việt bất đồng bộ dưới nền, bóc tách toàn bộ văn bản thô từ ảnh quét.
-5. **Hiệu chỉnh lỗi chính tả (Giao diện Split-screen):**
+5. **Nhận dạng ký tự tự động (AI-assisted OCR):**
+    * *Mô tả:* Hệ thống đẩy file scan vào tiến trình xử lý nền `FastAPI BackgroundTasks`. Tiến trình chạy Tesseract OCR xử lý nhận dạng ký tự tiếng Việt bất đồng bộ dưới nền, bóc tách toàn bộ văn bản thô từ ảnh quét.
+6. **Hiệu chỉnh lỗi chính tả (Giao diện Split-screen):**
     * *Mô tả:* Biên tập viên mở giao diện Split-screen (ảnh scan bên trái, văn bản OCR bên phải) để soát sửa các từ nhận dạng sai dấu, sai ký tự đặc biệt. Biên tập viên gán cấp tiêu đề (H1, H2, H3) và chèn lại các hình ảnh minh họa cần thiết.
-6. **Biên dịch tự động & Xuất bản EPUB:**
-    * *Mô tả:* Biên tập viên nhấn "Phê duyệt xuất bản". Backend gọi Pandoc biên dịch tự động văn bản đã gán thẻ sang tệp EPUB 3.0, tải lên lưu trữ an toàn MinIO Object Storage, đồng thời tự động cập nhật trạng thái "Published" lên PostgreSQL và gửi nội dung chữ sang lập chỉ mục toàn văn trên Elasticsearch.
+7. **Biên dịch tự động & Xuất bản EPUB:**
+    * *Mô tả:* Biên tập viên nhấn "Phê duyệt xuất bản". Backend gọi Pandoc biên dịch tự động văn bản đã gán thẻ sang tệp EPUB 3.0, tải lên lưu trữ an toàn MinIO Object Storage, đồng thời tự động cập nhật trạng thái "Published" lên PostgreSQL và lưu trữ văn bản thô để hỗ trợ tìm kiếm toàn văn Full-Text Search.
 
 ---
 
@@ -199,10 +204,10 @@ Quy trình số hóa khép kín dành cho cán bộ quản lý thư viện và s
 
 Quy trình tra cứu học liệu số hóa của sinh viên được thiết kế thông minh, trực quan và tối đa hóa trải nghiệm đọc:
 
-1. **Đăng nhập tập trung (Keycloak SSO):**
-    * *Mô tả:* Sinh viên truy cập vào HCMUS-LDMS Web Portal, thực hiện đăng nhập một lần (Single Sign-On) bằng tài khoản Keycloak nội bộ do nhà trường cấp. Hệ thống tự động xác thực và ánh xạ thông tin khoa/lớp để phân quyền tương ứng.
-2. **Tìm kiếm toàn văn nâng cao (Elasticsearch Query):**
-    * *Mô tả:* Sinh viên nhập từ khóa cần tìm kiếm. Elasticsearch quét toàn bộ cơ sở dữ liệu nội dung sách, trả về các kết quả có chứa từ khóa đó (phản hồi dưới 3 giây). Sinh viên có thể lọc kết quả theo cây danh mục môn học, thẻ tags hoặc tên giảng viên biên soạn.
+1. **Đăng nhập hệ thống (Google OAuth 2.0 / Mock Auth):**
+    * *Mô tả:* Sinh viên truy cập vào HCMUS-LDMS Web Portal, thực hiện đăng nhập bằng tài khoản Google trường (@hcmus.edu.vn) hoặc Mock Auth (trong môi trường phát triển). Hệ thống tự động xác thực danh tính để phân quyền tương ứng.
+2. **Tìm kiếm toàn văn nâng cao (PostgreSQL FTS):**
+    * *Mô tả:* Sinh viên nhập từ khóa cần tìm kiếm. Hệ thống sử dụng PostgreSQL Full-Text Search quét toàn bộ cơ sở dữ liệu nội dung sách, trả về các kết quả có chứa từ khóa đó (phản hồi dưới 3 giây). Sinh viên có thể lọc kết quả theo cây danh mục môn học hoặc tên giảng viên biên soạn.
 3. **Thẩm định phân quyền & Cấp quyền đọc bảo mật (Signed URL):**
     * *Mô tả:* Khi sinh viên chọn một cuốn sách để đọc, backend kiểm tra phân quyền RBAC (Role-Based Access Control). Nếu hợp lệ (ví dụ: sinh viên khoa CNTT được đọc giáo trình CNTT chuyên ngành), backend FastAPI gọi MinIO sinh một đường dẫn Signed URL giới hạn thời hạn hiệu lực tối đa là **15 phút**.
 4. **Đọc sách responsive thông minh (Epub.js Web Reader):**
@@ -258,7 +263,7 @@ Quy trình tra cứu học liệu số hóa của sinh viên được thiết k�
 ## 4. Tổng quan sản phẩm
 
 ### 4.1 Góc nhìn sản phẩm
-HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monolith độc lập nhằm tối ưu chi phí hạ tầng. Hệ thống tích hợp trực tiếp với các dịch vụ on-premise sẵn có của nhà trường bao gồm: cụm máy chủ ảo hóa VMware vSphere, hệ thống định danh tập trung Keycloak SSO (qua LDAP trường), cơ sở dữ liệu PostgreSQL, Elasticsearch và MinIO Storage.
+HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monolith độc lập nhằm tối ưu chi phí hạ tầng. Hệ thống tích hợp trực tiếp với các dịch vụ sẵn có của nhà trường bao gồm cụm máy chủ ảo hóa VMware vSphere, xác thực thông qua tài khoản Google trường (Google OAuth 2.0), cơ sở dữ liệu PostgreSQL (lưu trữ và FTS), và hệ thống lưu trữ MinIO Storage.
 
 ### 4.2 Các giả định và Sự phụ thuộc
 * **Giả định:** Luật SHTT Việt Nam cho phép số hóa phục vụ nghiên cứu nội bộ phi thương mại; tỷ lệ nhận dạng chữ OCR đạt trung bình >= 85% với các tài liệu in rõ nét.
@@ -269,12 +274,12 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 ## 5. Các tính năng của sản phẩm
 
 ### 5.1 Tính năng chính (MVP)
-* **Đăng nhập Keycloak SSO:** Xác thực tập trung và tự động phân quyền truy cập theo vai trò.
+* **Đăng nhập Google OAuth 2.0 / Mock Auth:** Xác thực người dùng qua tài khoản Google trường và phân quyền truy cập theo vai trò.
 * **Quản lý tải lên (Scan Upload):** Cho phép thủ thư tải lên tệp ảnh thô hoặc PDF scan sách gốc.
-* **Nhận dạng ký tự tự động (OCR Pipeline):** Celery worker bất đồng bộ gọi Tesseract OCR tiếng Việt.
+* **Nhận dạng ký tự tự động (OCR Pipeline):** FastAPI BackgroundTasks xử lý bất đồng bộ gọi Tesseract OCR tiếng Việt.
 * **Biên tập Split-screen:** Màn hình chia đôi đối so ảnh gốc và văn bản OCR để sửa lỗi thô.
 * **Đóng gói EPUB tự động:** Biên dịch markdown sau hiệu chỉnh sang chuẩn EPUB 3.0 reflowable bằng Pandoc.
-* **Tra cứu Elasticsearch:** Tìm kiếm toàn văn siêu tốc và chỉ ra vị trí vật lý của sách giấy tại kho kệ.
+* **Tra cứu PostgreSQL FTS:** Tìm kiếm toàn văn nhanh chóng và chỉ ra vị trí vật lý của sách giấy tại kho kệ.
 * **Trình đọc Web Reader bảo mật:** Epub.js Reader hiển thị sách dạng HTML không cho tải tệp gốc, tích hợp MinIO Signed URL (DRM).
 
 ### 5.2 Tính năng mở rộng
@@ -295,7 +300,7 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 * **Hệ điều hành máy chủ:** Ubuntu Server 22.04 LTS chạy Docker Engine 24.x.
 
 ### 6.2 Yêu cầu về hiệu năng
-* Thời gian phản hồi kết quả tìm kiếm Elasticsearch toàn văn nhỏ hơn **3 giây** dưới tải trọng 500 người dùng đồng thời.
+* Thời gian phản hồi kết quả tìm kiếm toàn văn (PostgreSQL FTS) nhỏ hơn **3 giây** ở điều kiện vận hành bình thường.
 * Thời gian phản hồi tải trang Web Portal đọc sách nhỏ hơn **2 giây**.
 
 ### 6.3 Yêu cầu về khả năng sử dụng (UI/UX)
@@ -304,10 +309,10 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 
 ### 6.4 Độ tin cậy, Tính bền vững và Khả năng chịu lỗi
 * Hệ thống sao lưu CSDL tự động PgBackRest chạy định kỳ lúc 01:00 hàng ngày, đảm bảo RPO (Recovery Point Objective) < 24 giờ.
-* Cơ chế Celery retry hỗ trợ thử lại tối đa 3 lần đối với các tác vụ OCR bị lỗi do tệp tin tải lên bị hỏng.
+* Cơ chế retry của hệ thống hỗ trợ thử lại tối đa 3 lần đối với các tác vụ OCR bị lỗi do tệp tin tải lên bị hỏng.
 
 ### 6.5 Yêu cầu về bảo mật
-* Xác thực phân quyền 100% qua Keycloak SSO sử dụng giao thức OAuth 2.0 / OIDC.
+* Xác thực phân quyền qua Google OAuth 2.0 hoặc Mock Auth (roadmap: Keycloak OIDC).
 * Sử dụng MinIO Signed URL thời hạn hết hiệu lực tối đa 15 phút đối với mọi tài nguyên file sách gốc.
 * Chặn hoàn toàn tính năng chuột phải, phím tắt sao chép (`Ctrl+C`), phím tắt in ấn (`Ctrl+P`) đối với tài liệu phân loại `Internal` và `Restricted`.
 
@@ -330,7 +335,7 @@ HCMUS-LDMS là hệ thống được phát triển theo mô hình Modular Monoli
 
 * **Sản phẩm bàn giao (Deliverables):**
   * Hệ thống mã nguồn Frontend React (TypeScript) và Backend FastAPI (Python).
-  * Bộ cài đặt container Docker Compose (PostgreSQL, MinIO, Keycloak, Elasticsearch).
+  * Bộ cài đặt container Docker Compose (PostgreSQL, MinIO).
   * 02 máy quét sách chuyên dụng chữ V bàn giao và hướng dẫn vận hành tại thư viện.
   * Kho tài liệu 500 giáo trình CNTT số hóa sang EPUB 3.0 hoàn chỉnh.
   * Bộ tài liệu thiết kế, API Swagger và Cẩm nang hướng dẫn sử dụng.
