@@ -18,10 +18,8 @@ export function AuthCallbackPage() {
   return (
     <main className="page-shell login-page">
       <section className="upload-card login-card auth-callback-card" aria-live="polite">
-        <div className="live-indicator">
-          <span aria-hidden="true" />
-          Đang xác thực
-        </div>
+        <div className="auth-spinner" aria-hidden="true" />
+        <p className="eyebrow">Đang xác thực</p>
         <p className="intro">Đang hoàn tất đăng nhập, vui lòng đợi trong giây lát…</p>
       </section>
     </main>
