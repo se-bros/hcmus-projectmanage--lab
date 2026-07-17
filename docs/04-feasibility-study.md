@@ -121,10 +121,7 @@ Mô hình quy trình số hóa khép kín Scan-to-EPUB đã được kiểm ch�
 - **Dòng tiền chi phí (CapEx & OpEx trung bình):**
   - **CapEx ban đầu (C0):** **75.000.000 VNĐ** (Phương án tối giản/tiết kiệm).
   - **OpEx duy trì hàng năm (O):** **15.000.000 VNĐ / năm**.
-- **Thời gian hòa vốn (P):**
-  > **Công thức tính thời gian hòa vốn (P):**
-  > P = C_0 / (B - O) = 75.000.000 / (35.000.000 - 15.000.000) = 3.75 năm (với kịch bản cơ sở)
-  > _Nếu tính thêm giá trị tránh chi phí đầu tư xây dựng kho bãi mới trong dài hạn, thời gian hòa vốn kinh tế thực tế rút ngắn còn **2.5 đến 3.8 năm**._
+- **Thời gian hòa vốn:** Dự kiến khoảng **3.75 năm** đối với kịch bản cơ sở (lấy chi phí đầu tư ban đầu CapEx chia cho dòng tiết kiệm ròng hàng năm sau khi trừ OpEx). Nếu tính thêm các lợi ích dài hạn như giải phóng không gian vật lý và giảm thiểu hư hao sách, thời gian hòa vốn kinh tế học thuật thực tế rút ngắn chỉ còn từ **2.5 đến 3.8 năm**.
 
 ### 5.5. Đánh giá quản trị rủi ro
 

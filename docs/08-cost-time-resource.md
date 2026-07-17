@@ -61,114 +61,40 @@ Dự án HCMUS-LDMS được hoạch định thực hiện trong vòng **20 tu�
 - **WP5 — Kiểm thử & UAT (Tuần 18–19):** Pentest bảo mật; nghiệm thu UAT với thủ thư và sinh viên mẫu.
 - **WP6 — Triển khai & Vận hành (Tuần 20):** Triển khai Docker Compose; đào tạo cán bộ; truyền thông ra mắt.
 
-## 2. Phương pháp luận ước lượng nỗ lực phần mềm (Estimation)
+## 2. Ước lượng nỗ lực phát triển (Effort Estimation)
 
-### 2.1. Phương pháp Điểm trường hợp sử dụng (Use Case Points - UCP)
+Để lập kế hoạch nhân sự và tiến độ một cách khoa học, Phòng CNTT đã thực hiện ước lượng nỗ lực phát triển (effort estimation) thông qua việc đối chuẩn giữa hai phương pháp: **Use Case Points (UCP)** (tiếp cận theo độ phức tạp tính năng) và **COCOMO II** (tiếp cận theo quy mô dòng lệnh).
 
-#### Bước 1: Tính trọng lượng tác nhân chưa điều chỉnh (UAW - Unadjusted Actor Weight)
+### 2.1. Tóm tắt kết quả ước lượng theo Use Case Points (UCP)
 
-Hệ thống tương tác với các tác nhân sau:
+Phương pháp này phân tích độ phức tạp dựa trên các tác nhân (Actors) và các kịch bản nghiệp vụ (Use Cases) của hệ thống:
 
-- Tác nhân đơn giản (Simple - API/Hệ thống khác): Google OAuth 2.0 API, MinIO API, PostgreSQL DB API. (Trọng số: 1 mỗi tác nhân).
-  - **UAW_Simple** = 3 x 1 = 3
+* **Phân tích tác nhân (Actors Weight):** Hệ thống tương tác với 3 tác nhân hệ thống (Google OAuth, MinIO, PostgreSQL API) và 4 nhóm người dùng trực tiếp (Độc giả, Thủ thư, Biên tập viên, Quản trị viên). Tổng trọng số tác nhân (UAW) là **15**.
+* **Phân tích ca sử dụng (Use Cases Weight):** Dựa trên 14 Use Cases nghiệp vụ cốt lõi từ Product Backlog (phân bổ thành 6 Use Cases đơn giản, 4 Use Cases trung bình và 4 Use Cases phức tạp). Tổng trọng số Use Case (UUCW) là **130**.
+* **Hệ số điều chỉnh kỹ thuật & môi trường (TCF & ECF):**
+  * Hệ số kỹ thuật (TCF = 1.13): Đánh giá cao tính bảo mật (Signed URL, DRM), hiệu năng tìm kiếm toàn văn dưới 3 giây và tính phân tán nhẹ.
+  * Hệ số môi trường (ECF = 0.785): Tận dụng năng lực của đội ngũ kỹ sư Phòng CNTT quen thuộc với React/FastAPI/Docker, nhưng tính đến rủi ro nhân sự kiêm nhiệm 50%.
+* **Kết quả:** Điểm Use Case điều chỉnh đạt **129 UCP**. Với năng suất trung bình 20 người-giờ/UCP, tổng nỗ lực lý thuyết là **16.1 Người-Tháng (Person-Months - PM)**.
+* **Điều chỉnh thực tế:** Nhờ tận dụng tối đa kiến trúc Modular Monolith và khả năng tái sử dụng cấu hình sẵn có của PostgreSQL, MinIO (tiết kiệm ~40% nỗ lực viết mới), nỗ lực thực tế được tối ưu hóa xuống còn **10 PM** (tương đương **5 tháng** làm việc của đội ngũ kỹ sư).
 
-- Tác nhân phức tạp (Complex - Người dùng qua giao diện đồ họa): Độc giả (Sinh viên/Giảng viên), Thủ thư (Librarian), Biên tập viên (Sinh viên CTV), Quản trị viên (Admin). (Trọng số: 3 mỗi tác nhân).
-  - **UAW_Complex** = 4 x 3 = 12
+### 2.2. Đối chuẩn bằng phương pháp COCOMO II
 
-- **Tổng trọng số tác nhân (UAW - Unadjusted Actor Weight)** = 3 + 12 = 15
+Để kiểm chứng tính thực tế của phương pháp UCP, chúng tôi đối chuẩn với mô hình COCOMO II (Early Design Model):
 
-#### Bước 2: Tính trọng lượng Use Case chưa điều chỉnh (UUCW - Unadjusted Use Case Weight)
+* **Quy mô dòng lệnh (Size):** Dự kiến hệ thống viết mới khoảng **8.5 KLOC** (8.500 dòng mã nguồn React và FastAPI).
+* **Mức độ tái sử dụng (Reuse):** Tích hợp sâu các dịch vụ mã nguồn mở (MinIO Storage, PostgreSQL FTS, Google OAuth) giúp giảm khối lượng code viết mới thực tế xuống còn **3.5 KLOC**.
+* **Kết quả nỗ lực:** Mô hình COCOMO II cho kết quả nỗ lực thực tế viết mới là **10.4 PM**.
 
-Dựa trên đặc tả 14 Use Case nghiệp vụ từ Product Backlog:
+### 2.3. Kết luận nỗ lực và Phân bổ thời gian
 
-- Use Case đơn giản (Simple - <= 3 bước giao dịch, 1 bảng CSDL): Đăng nhập hệ thống, Phân quyền RBAC, Upload file scan, Nhập Metadata, Quản lý Category, Sinh trích dẫn. (Trọng số: 5 mỗi Use Case).
-  - **UUCW_Simple** = 6 x 5 = 30
+Kết quả đối chuẩn giữa hai phương pháp độc lập cho thấy độ tin cậy rất cao:
+* Theo UCP (đã tối ưu hóa): **10.0 PM**
+* Theo COCOMO II (đã tối ưu hóa): **10.4 PM**
 
-- Use Case trung bình (Average - 4 đến 7 bước giao dịch, 2+ bảng CSDL): Tự động OCR, Tùy chỉnh UI Reader, Bookmark tự động, Phân bổ Sprint. (Trọng số: 10 mỗi Use Case).
-  - **UUCW_Average** = 4 x 10 = 40
-
-- Use Case phức tạp (Complex - > 7 bước giao dịch, 3+ bảng CSDL): Biên tập Split-screen, Tìm kiếm PostgreSQL FTS, Trình đọc EPUB bảo mật, Ghi chú & Highlight. (Trọng số: 15 mỗi Use Case).
-  - **UUCW_Complex** = 4 x 15 = 60
-
-- **Tổng UUCW:**
-  - **Tổng UUCW** = UUCW_Simple + UUCW_Average + UUCW_Complex = 30 + 40 + 60 = 130
-
-#### Bước 3: Tính Use Case Points chưa điều chỉnh (UUCP)
-
-> **UUCP (Chưa điều chỉnh)** = UAW + UUCW = 15 + 130 = 145 points
-
-#### Bước 4: Tính hệ số phức tạp kỹ thuật (TCF - Technical Complexity Factor)
-
-Đánh giá 13 yếu tố kỹ thuật (T1 -> T13), mỗi yếu tố cho điểm từ 0 (không ảnh hưởng) đến 5 (ảnh hưởng lớn):
-
-- T1 (Hệ thống phân tán): Điểm 4 x Trọng số 2.0 = 8.0
-- T2 (Hiệu năng phản hồi): Điểm 4 x Trọng số 1.0 = 4.0
-- T3 (Hiệu quả người dùng cuối): Điểm 4 x Trọng số 1.0 = 4.0
-- T4 (Xử lý nội bộ phức tạp): Điểm 5 x Trọng số 1.0 = 5.0
-- T5 (Khả năng tái sử dụng mã nguồn): Điểm 3 x Trọng số 1.0 = 3.0
-- T6 (Dễ cài đặt): Điểm 4 x Trọng số 0.5 = 2.0
-- T7 (Dễ sử dụng): Điểm 4 x Trọng số 0.5 = 2.0
-- T8 (Khả năng chuyển đổi nền tảng): Điểm 4 x Trọng số 2.0 = 8.0
-- T9 (Dễ thay đổi): Điểm 3 x Trọng số 1.0 = 3.0
-- T10 (Tính đồng thời): Điểm 4 x Trọng số 1.0 = 4.0
-- T11 (Mục tiêu bảo mật đặc biệt): Điểm 5 x Trọng số 1.0 = 5.0
-- T12 (Truy cập trực tiếp bên thứ ba): Điểm 2 x Trọng số 1.0 = 2.0
-- T13 (Yêu cầu đào tạo người dùng): Điểm 3 x Trọng số 1.0 = 3.0
-- **Tổng điểm kỹ thuật (T_Factor):** 53
-- **Công thức tính TCF:**
-  - **TCF** = 0.6 + (0.01 x T_Factor) = 0.6 + (0.01 x 53) = 1.13
-
-#### Bước 5: Tính hệ số phức tạp môi trường (ECF - Environment Complexity Factor)
-
-Đánh giá 8 yếu tố môi trường (E1 -> E8), mỗi yếu tố cho điểm từ $0$ đến 5:
-
-- E1 (Quen thuộc với mô hình dự án): Điểm 4 x Trọng số 1.5 = 6.0
-- E2 (Kinh nghiệm ứng dụng): Điểm 3 x Trọng số 0.5 = 1.5
-- E3 (Kinh nghiệm OOP): Điểm 4 x Trọng số 1.0 = 4.0
-- E4 (Năng lực phân tích chính): Điểm 4 x Trọng số 0.5 = 2.0
-- E5 (Động lực làm việc): Điểm 5 x Trọng số 1.0 = 5.0
-- E6 (Yêu cầu ổn định): Điểm 4 x Trọng số 2.0 = 8.0
-- E7 (Nhân sự kiêm nhiệm/bán thời gian): Điểm 4 x Trọng số -1.0 = -4.0
-- E8 (Ngôn ngữ lập trình khó): Điểm 2 x Trọng số -1.0 = -2.0
-- **Tổng điểm môi trường (E_Factor):** 20.5
-- **Công thức tính ECF:**
-  - **ECF** = 1.4 + (-0.03 x E_Factor) = 1.4 + (-0.03 x 20.5) = 0.785
-
-#### Bước 6: Tính Use Case Points điều chỉnh (AUCP)
-
-> **AUCP (Đã điều chỉnh)** = UUCP x TCF x ECF = 145 x 1.13 x 0.785 ≈ 129 UCP
-
-#### Bước 7: Tính nỗ lực thực hiện (Effort)
-
-Sử dụng Hệ số năng suất khuyến nghị $\text{PF} = 20$ người-giờ/UCP:
-
-> **Nỗ lực (Effort)** = 129 AUCP x 20 người-giờ/UCP = 2.580 người-giờ
-> Quy đổi sang Người-Tháng (Person-Months - PM, với 160 giờ làm việc/tháng):
-> **Số người-tháng (PM)** = 2.580 / 160 ≈ 16.1 PM
-> _Điều chỉnh thực tế:_ Nhóm tận dụng tối đa thư viện mã nguồn mở có sẵn và PostgreSQL FTS, Google OAuth 2.0 (tái sử dụng và cấu hình có sẵn 40%), nỗ lực thực tế viết mới giảm xuống còn **10 PM** (tương đương **5 tháng** làm việc của đội ngũ kỹ sư).
-
-### 2.2. Phương pháp COCOMO II (Early Design Model)
-
-Sử dụng mô hình COCOMO II để đối chuẩn kết quả:
-
-- **Quy mô phần mềm:** Dự kiến phát triển viết mới khoảng **8.5 KLOC** (8.500 dòng code React và FastAPI).
-- **Hệ số quy mô (Scale Factors - SF):** Đánh giá 5 yếu tố quy mô (mức độ tiền lệ, độ linh hoạt, giải quyết rủi ro, sự gắn kết nhóm, độ chín công nghệ) đạt tổng điểm B = 1.05.
-- **Hệ số nhân nỗ lực (Effort Multipliers - EM):** Giả định hệ số điều chỉnh nỗ lực tích hợp $\text{EAF} = 0.95$ (do tận dụng tốt container Docker và quy trình CI/CD tự động).
-- **Công thức tính nỗ lực:**
-  - **Nỗ lực thô (Effort)** = 2.94 x EAF x (KLOC)^B = 2.94 x 0.95 x (8.5)^1.05 ≈ 2.793 x 9.42 ≈ 26.3 PM
-
-- _Tính toán tái sử dụng (Reuse Adjustment):_ Tích hợp MinIO, Google OAuth 2.0 và PostgreSQL FTS (chiếm khoảng 60% tổng khối lượng hệ thống). Khối lượng code viết mới thực tế tương đương **3.5 KLOC**.
-  - **Nỗ lực phần mềm mới (Effort_New)** = 2.793 x (3.5)^1.05 ≈ 2.793 x 3.73 ≈ 10.4 PM
-
-### 2.3. Đối chiếu và Kết luận nỗ lực thực tế
-
-Kết quả từ hai mô hình ước lượng độc lập hoàn toàn trùng khớp:
-
-- **UCP:** 10.0 PM.
-- **COCOMO II:** 10.4 PM.
-- **Quyết định chọn:** Chọn mức nỗ lực 10.5 PM làm cơ sở hoạch định nhân sự. Với nhóm phát triển gồm 4 kỹ sư kiêm nhiệm 50% thời gian (tương đương 2 kỹ sư full-time), thời gian phát triển phần mềm cốt lõi là:
-  - **Thời gian thực tế** = 10.5 PM / 2 = 5.25 tháng (≈ 21 tuần)
-    _Tiến độ này hoàn toàn khả thi và khớp với lộ trình 20 tuần của dự án._
+**Quyết định chọn:** Ban dự án thống nhất chọn hạn mức **10.5 PM** làm cơ sở hoạch định nhân sự.
+* Với đội ngũ **4 kỹ sư kiêm nhiệm 50% thời gian** (tương đương sức lao động của 2 nhân sự full-time), thời gian phát triển phần mềm cốt lõi sẽ kéo dài:
+  $$\text{Thời gian phát triển thực tế} = \frac{10.5 \text{ PM}}{2 \text{ nhân sự}} = 5.25 \text{ tháng } (\approx 21 \text{ tuần})$$
+* Để khớp với thời hạn **20 tuần** go-live của nhà trường, nhóm sẽ áp dụng quy trình phát triển song song (Parallel Development) giữa Frontend và Backend từ tuần thứ 4 đến tuần thứ 11, đồng thời tuyển sinh viên CTV tham gia số hóa cuốn chiếu ngay khi hoàn thành phiên bản MVP ở tuần 12.
 
 ---
 
