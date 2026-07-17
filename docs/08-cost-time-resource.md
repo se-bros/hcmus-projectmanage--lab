@@ -72,23 +72,22 @@ Hệ thống tương tác với các tác nhân sau:
 - Tác nhân đơn giản (Simple - API/Hệ thống khác): Google OAuth 2.0 API, MinIO API, PostgreSQL DB API. (Trọng số: 1 mỗi tác nhân).
   - **UAW_Simple** = 3 x 1 = 3
 
-- Tác nhân phức tạp (Complex - Người dùng qua giao diện đồ họa): Độc giả (Sinh viên/Giảng viên), Biên tập viên (Thủ thư), Quản trị viên (Admin). (Trọng số: 3 mỗi tác nhân).
-  - **UAW_Complex** = 3 x 3 = 9
+- Tác nhân phức tạp (Complex - Người dùng qua giao diện đồ họa): Độc giả (Sinh viên/Giảng viên), Thủ thư (Librarian), Biên tập viên (Sinh viên CTV), Quản trị viên (Admin). (Trọng số: 3 mỗi tác nhân).
+  - **UAW_Complex** = 4 x 3 = 12
 
-- **Tổng UAW:**
-  - **Tổng UAW** = UAW_Simple + UAW_Complex = 3 + 9 = 12
+- **Tổng trọng số tác nhân (UAW - Unadjusted Actor Weight)** = 3 + 12 = 15
 
 #### Bước 2: Tính trọng lượng Use Case chưa điều chỉnh (UUCW - Unadjusted Use Case Weight)
 
 Dựa trên đặc tả 14 Use Case nghiệp vụ từ Product Backlog:
 
-- Use Case đơn giản (Simple - <= 3 bước giao dịch, 1 bảng CSDL): Đăng nhập SSO, Phân quyền RBAC, Upload file scan, Nhập Metadata, Quản lý Category, Sinh trích dẫn. (Trọng số: 5 mỗi Use Case).
+- Use Case đơn giản (Simple - <= 3 bước giao dịch, 1 bảng CSDL): Đăng nhập hệ thống, Phân quyền RBAC, Upload file scan, Nhập Metadata, Quản lý Category, Sinh trích dẫn. (Trọng số: 5 mỗi Use Case).
   - **UUCW_Simple** = 6 x 5 = 30
 
 - Use Case trung bình (Average - 4 đến 7 bước giao dịch, 2+ bảng CSDL): Tự động OCR, Tùy chỉnh UI Reader, Bookmark tự động, Phân bổ Sprint. (Trọng số: 10 mỗi Use Case).
   - **UUCW_Average** = 4 x 10 = 40
 
-- Use Case phức tạp (Complex - > 7 bước giao dịch, 3+ bảng CSDL): Biên tập Split-screen, Tìm kiếm Elasticsearch, Trình đọc EPUB bảo mật, Ghi chú & Highlight. (Trọng số: 15 mỗi Use Case).
+- Use Case phức tạp (Complex - > 7 bước giao dịch, 3+ bảng CSDL): Biên tập Split-screen, Tìm kiếm PostgreSQL FTS, Trình đọc EPUB bảo mật, Ghi chú & Highlight. (Trọng số: 15 mỗi Use Case).
   - **UUCW_Complex** = 4 x 15 = 60
 
 - **Tổng UUCW:**
@@ -96,7 +95,7 @@ Dựa trên đặc tả 14 Use Case nghiệp vụ từ Product Backlog:
 
 #### Bước 3: Tính Use Case Points chưa điều chỉnh (UUCP)
 
-> **UUCP (Chưa điều chỉnh)** = UAW + UUCW = 12 + 130 = 142 points
+> **UUCP (Chưa điều chỉnh)** = UAW + UUCW = 15 + 130 = 145 points
 
 #### Bước 4: Tính hệ số phức tạp kỹ thuật (TCF - Technical Complexity Factor)
 
@@ -137,15 +136,15 @@ Dựa trên đặc tả 14 Use Case nghiệp vụ từ Product Backlog:
 
 #### Bước 6: Tính Use Case Points điều chỉnh (AUCP)
 
-> **AUCP (Đã điều chỉnh)** = UUCP x TCF x ECF = 142 x 1.13 x 0.785 ≈ 126 UCP
+> **AUCP (Đã điều chỉnh)** = UUCP x TCF x ECF = 145 x 1.13 x 0.785 ≈ 129 UCP
 
 #### Bước 7: Tính nỗ lực thực hiện (Effort)
 
 Sử dụng Hệ số năng suất khuyến nghị $\text{PF} = 20$ người-giờ/UCP:
 
-> **Nỗ lực (Effort)** = 126 AUCP x 20 người-giờ/UCP = 2.520 người-giờ
+> **Nỗ lực (Effort)** = 129 AUCP x 20 người-giờ/UCP = 2.580 người-giờ
 > Quy đổi sang Người-Tháng (Person-Months - PM, với 160 giờ làm việc/tháng):
-> **Số người-tháng (PM)** = 2.520 / 160 ≈ 15.75 PM
+> **Số người-tháng (PM)** = 2.580 / 160 ≈ 16.1 PM
 > _Điều chỉnh thực tế:_ Nhóm tận dụng tối đa thư viện mã nguồn mở có sẵn và PostgreSQL FTS, Google OAuth 2.0 (tái sử dụng và cấu hình có sẵn 40%), nỗ lực thực tế viết mới giảm xuống còn **10 PM** (tương đương **5 tháng** làm việc của đội ngũ kỹ sư).
 
 ### 2.2. Phương pháp COCOMO II (Early Design Model)

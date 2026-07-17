@@ -155,25 +155,35 @@ Reader --> (Đọc PDF trên Mobile/PC) : Đọc dạng ảnh không co giãn (N
 @startuml
 skinparam packageStyle rectangle
 
-actor "Thủ thư / BTV" as Librarian
+actor "Thủ thư" as Librarian
+actor "Biên tập viên (CTV)" as Editor
 actor "Độc giả (SV/GV)" as Reader
 
 rectangle "Hệ thống HCMUS-LDMS" {
     usecase "Đăng nhập\n(Google OAuth / Mock)" as Login
     usecase "Quét giáo trình\n(300 DPI)" as Scan
+    usecase "Khai báo Metadata\n(Dublin Core)" as Meta
     usecase "FastAPI BackgroundTasks\n(OCR Tesseract)" as OCR
     usecase "Hiệu chỉnh lỗi\n(Split-screen Editor)" as Edit
-    usecase "Biên dịch EPUB\n(Pandoc)" as Compile
+    usecase "Duyệt & Xuất bản EPUB\n(Pandoc)" as Compile
     usecase "Tìm kiếm & Đọc bảo mật\n(PostgreSQL FTS & Signed URL)" as Read
 }
 
 Librarian --> Login : Thực hiện
+Editor --> Login : Thực hiện
 Reader --> Login : Thực hiện
+
 Librarian --> Scan : Thực hiện
 Scan --> OCR : Tự động đẩy task
 OCR --> Edit : Trả về văn bản thô
-Librarian --> Edit : Soát lỗi chính tả
-Edit --> Compile : Nhấn Xuất bản
+
+Librarian --> Meta : Thực hiện
+
+Editor --> Edit : Soát lỗi chính tả
+
+Edit --> Compile : Bàn giao sửa xong
+Librarian --> Compile : Phê duyệt & Xuất bản
+
 Compile --> Read : Lưu trữ & Lập chỉ mục
 Reader --> Read : Tra cứu & Đọc sách responsive
 @enduml
@@ -181,22 +191,31 @@ Reader --> Read : Tra cứu & Đọc sách responsive
 
 #### 2.3.3 Quy trình vận hành To-Be chi tiết dành cho Thủ thư và Biên tập viên
 
-Quy trình số hóa khép kín dành cho cán bộ quản lý thư viện và sinh viên cộng tác viên biên tập được tổ chức phân cấp chặt chẽ:
+Quy trình số hóa khép kín được tổ chức phân cấp rõ rệt nhằm phân tách trách nhiệm giữa cán bộ quản lý (Thủ thư) và nhân sự tác nghiệp (Biên tập viên/Sinh viên CTV):
 
+##### A. Phân đoạn Số hóa & Chuẩn bị (Trách nhiệm của Thủ thư)
 1. **Tiếp nhận tài liệu thủ công & Bảo quản vật lý:**
-    * *Mô tả:* Cán bộ thư viện tiếp nhận các giáo trình, sách cổ độc bản từ các khoa gửi lên. Tiến hành kiểm tra hiện trạng vật lý (mức độ rách hỏng, ẩm mốc), gán số phân loại tạm thời để định danh vật lý, và lưu kho bảo quản chuyên dụng (độ ẩm 50%, nhiệt độ 20 độ C) để chống xuống cấp.
+    * *Mô tả:* Thủ thư tiếp nhận giáo trình, sách cổ từ các khoa. Kiểm tra hiện trạng, gán số phân loại tạm thời để định danh vật lý, và lưu kho bảo quản chuyên dụng.
 2. **Số hóa giáo trình vật lý (Scan chữ V):**
-    * *Mô tả:* Thủ thư sử dụng máy quét chuyên dụng dạng chữ V (Book Scanner) quét sách mà không cần tháo gáy sách, giữ nguyên vẹn cấu trúc vật lý của học liệu gốc. File quét được tự động canh chỉnh thẳng hàng, lọc nhiễu, tăng độ tương phản và lưu dưới định dạng PDF/ảnh 300 DPI tiêu chuẩn.
-3. **Đăng nhập hệ thống (Google OAuth 2.0 / Mock Auth):**
-    * *Mô tả:* Thủ thư hoặc Biên tập viên đăng nhập vào hệ thống thông qua Google OAuth 2.0 (tài khoản HCMUS) hoặc Mock Auth (trong môi trường phát triển) để được cấp quyền thao tác trên dashboard.
+    * *Mô tả:* Thủ thư sử dụng máy quét chuyên dụng dạng chữ V quét sách thành file PDF/ảnh 300 DPI tiêu chuẩn, được tự động canh chỉnh thẳng hàng và tăng độ tương phản.
+3. **Đăng nhập hệ thống & Tải lên tệp scan:**
+    * *Mô tả:* Thủ thư đăng nhập dashboard qua Google OAuth 2.0 (tài khoản `@hcmus.edu.vn`), thực hiện upload file scan gốc lên hệ thống (lưu vào MinIO Storage).
 4. **Khai báo thông tin siêu dữ liệu (Metadata):**
-    * *Mô tả:* Thủ thư tải tệp ảnh quét lên dashboard, khai báo các trường thông tin chuẩn hóa Dublin Core (Tên sách, Tác giả, Nhà xuất bản, Năm phát hành, Khoa môn học, Mã số thư viện) lưu trữ trực tiếp vào cơ sở dữ liệu PostgreSQL.
-5. **Nhận dạng ký tự tự động (AI-assisted OCR):**
-    * *Mô tả:* Hệ thống đẩy file scan vào tiến trình xử lý nền `FastAPI BackgroundTasks`. Tiến trình chạy Tesseract OCR xử lý nhận dạng ký tự tiếng Việt bất đồng bộ dưới nền, bóc tách toàn bộ văn bản thô từ ảnh quét.
-6. **Hiệu chỉnh lỗi chính tả (Giao diện Split-screen):**
-    * *Mô tả:* Biên tập viên mở giao diện Split-screen (ảnh scan bên trái, văn bản OCR bên phải) để soát sửa các từ nhận dạng sai dấu, sai ký tự đặc biệt. Biên tập viên gán cấp tiêu đề (H1, H2, H3) và chèn lại các hình ảnh minh họa cần thiết.
-7. **Biên dịch tự động & Xuất bản EPUB:**
-    * *Mô tả:* Biên tập viên nhấn "Phê duyệt xuất bản". Backend gọi Pandoc biên dịch tự động văn bản đã gán thẻ sang tệp EPUB 3.0, tải lên lưu trữ an toàn MinIO Object Storage, đồng thời tự động cập nhật trạng thái "Published" lên PostgreSQL và lưu trữ văn bản thô để hỗ trợ tìm kiếm toàn văn Full-Text Search.
+    * *Mô tả:* Thủ thư nhập các trường thông tin chuẩn hóa Dublin Core (Tên sách, Tác giả, Nhà xuất bản, v.v.) lưu trữ trực tiếp vào CSDL PostgreSQL.
+5. **Kích hoạt tiến trình OCR tự động:**
+    * *Mô tả:* Thủ thư kích hoạt tác vụ OCR. Hệ thống tự động đẩy file vào xử lý nền `FastAPI BackgroundTasks` bằng engine Tesseract OCR để bóc tách văn bản thô theo từng trang, sau đó phân công tài liệu cho Biên tập viên.
+
+##### B. Phân đoạn Hiệu chỉnh & Soát lỗi (Trách nhiệm của Biên tập viên)
+6. **Đăng nhập Workspace & Nhận nhiệm vụ:**
+    * *Mô tả:* Biên tập viên (BTV/Sinh viên CTV) đăng nhập hệ thống (bằng tài khoản Google trường hoặc Mock Auth), truy cập vào Workspace cá nhân để nhận danh sách tài liệu/trang được phân công soát lỗi.
+7. **Hiệu chỉnh lỗi chính tả (Giao diện Split-screen):**
+    * *Mô tả:* BTV sử dụng màn hình chia đôi (ảnh scan bên trái, văn bản OCR bên phải) để soát sửa lỗi nhận dạng sai, định dạng tiêu đề (H1, H2, H3) và chèn lại các hình ảnh minh họa cần thiết. Sau khi hoàn tất, BTV nhấn **"Gửi yêu cầu phê duyệt"** để chuyển trạng thái tài liệu sang "Chờ duyệt".
+
+##### C. Phân đoạn Kiểm duyệt & Xuất bản (Trách nhiệm của Thủ thư)
+8. **Kiểm duyệt chất lượng & Phê duyệt xuất bản:**
+    * *Mô tả:* Thủ thư đăng nhập lại dashboard, mở danh sách tài liệu "Chờ duyệt", thực hiện kiểm tra ngẫu nhiên chất lượng soát lỗi của BTV. Nếu đạt yêu cầu, Thủ thư nhấn nút **"Phê duyệt xuất bản"**.
+9. **Biên dịch tự động & Lập chỉ mục:**
+    * *Mô tả:* Hệ thống gọi Pandoc biên dịch tự động văn bản đã duyệt sang chuẩn EPUB 3.0 reflowable, đẩy lên MinIO Storage, cập nhật trạng thái "Published" lên PostgreSQL và cập nhật nội dung chữ vào PostgreSQL Full-Text Search.
 
 ---
 
@@ -238,19 +257,21 @@ Quy trình tra cứu học liệu số hóa của sinh viên được thiết k�
 
 ### 3.2 Tóm tắt về người dùng
 * **Độc giả (Reader - Sinh viên/Giảng viên):** Người thụ hưởng cuối cùng, thực hiện tra cứu toàn văn, hiển thị vị trí vật lý sách giấy và đọc sách responsive, lưu bookmark, highlight.
-* **Biên tập viên (Thủ thư/Sinh viên CTV):** Vận hành máy quét sách chữ V, upload raw scan, trực tiếp kiểm duyệt và hiệu chỉnh lỗi OCR trên giao diện Split-screen trước khi phê duyệt xuất bản.
+* **Thủ thư (Librarian):** Nhân sự chính thức của thư viện, chịu trách nhiệm tiếp nhận, quét sách chữ V, nhập metadata, kiểm duyệt chất lượng soát lỗi, và thực hiện phê duyệt xuất bản (Publish) chính thức lên hệ thống.
+* **Biên tập viên (Editor - Sinh viên CTV):** Nhân sự cộng tác viên bán thời gian, thực hiện hiệu chỉnh lỗi chính tả thô của văn bản OCR trên giao diện Split-screen của các trang sách được phân công.
 * **Quản trị viên (Admin):** Thiết lập tài khoản, phân quyền quản trị nhóm người dùng, quản lý cây danh mục và nhãn metadata.
 
 ### 3.3 Môi trường người dùng
-* **Biên tập viên/Admin:** Thao tác trên máy tính để bàn (PC/Laptop) tại văn phòng thư viện hoặc các máy trạm số hóa kết nối mạng nội bộ.
+* **Thủ thư/Biên tập viên/Admin:** Thao tác trên máy tính để bàn (PC/Laptop) tại văn phòng thư viện hoặc các máy trạm số hóa kết nối mạng nội bộ.
 * **Sinh viên/Giảng viên:** Truy cập Web Portal từ xa qua kết nối Internet/Intranet trên mọi thiết bị di động (Smartphone, Tablet) hoặc laptop.
 
 ### 3.4 Tóm tắt nhu cầu cốt lõi của các bên liên quan hoặc Người dùng
 
 | Người dùng (User) | Nỗi đau cốt lõi (Core Need) | Tính năng đáp ứng (Feature Response) |
 | :--- | :--- | :--- |
-| **Sinh viên** | Đọc giáo trình trên di động không cần zoom; tra cứu nhanh nội dung bên trong sách. | Đọc EPUB 3.0 responsive; Elasticsearch full-text search dưới 3 giây. |
-| **Thủ thư** | Giảm thiểu thời gian gán metadata và sửa lỗi chính tả nhận dạng OCR thô. | Dashboard OCR tự động; Trình soạn thảo Split-screen trực quan. |
+| **Sinh viên** | Đọc giáo trình trên di động không cần zoom; tra cứu nhanh nội dung bên trong sách. | Đọc EPUB 3.0 responsive; PostgreSQL FTS dưới 3 giây. |
+| **Thủ thư** | Quản lý quy trình số hóa, duyệt chất lượng sách trước khi xuất bản nhanh chóng. | Dashboard quản lý, kiểm duyệt chất lượng và nút phê duyệt xuất bản một chạm. |
+| **Biên tập viên** | Hiệu chỉnh lỗi chính tả OCR thô dễ dàng mà không bị nhầm lẫn dòng. | Trình soạn thảo Split-screen đối chiếu ảnh-văn bản trực quan. |
 | **Giảng viên** | Bảo vệ bản quyền giáo trình tự biên soạn, tránh bị sao chép hoặc phát tán trái phép. | Bảo mật DRM: Signed URL MinIO 15 phút; chặn chuột phải copy, in ấn. |
 | **BGĐ Thư viện** | Thu hồi diện tích kho kệ vật lý để nâng cấp phòng tự học. | Số hóa toàn phần 500 giáo trình cốt lõi giai đoạn MVP. |
 

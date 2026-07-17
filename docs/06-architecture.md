@@ -362,12 +362,16 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 
 #### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
 
-1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
-2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống (bằng Google OAuth hoặc Mock Auth), tải file PDF lên và nhập siêu dữ liệu Dublin Core.
-3. **OCR nhận dạng chữ:** Backend FastAPI tạo job OCR, chạy background qua `FastAPI BackgroundTasks` để trích xuất văn bản thô.
-4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả và lưu lại.
-5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal).
-6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và lập chỉ mục FTS trực tiếp trong Postgres.
+1. **Số hóa & Khai báo (Thủ thư):**
+   * Thủ thư quét sách giấy vật lý thành tệp PDF/ảnh 300 DPI tiêu chuẩn bằng máy quét chữ V.
+   * Đăng nhập hệ thống bằng Google OAuth 2.0, tải tệp lên dashboard (lưu trữ tại MinIO) và nhập metadata chuẩn Dublin Core.
+   * Thủ thư kích hoạt tiến trình OCR, Backend FastAPI tạo job chạy ngầm qua `FastAPI BackgroundTasks` để trích xuất văn bản thô theo trang và gán cho Biên tập viên.
+2. **Hiệu chỉnh & Bàn giao (Biên tập viên):**
+   * Biên tập viên đăng nhập hệ thống, truy cập Workspace riêng, mở giao diện Split-screen để đối chiếu ảnh scan gốc và văn bản OCR, chỉnh sửa lỗi chính tả thô.
+   * Sau khi soát lỗi xong, Biên tập viên bấm **"Gửi yêu cầu phê duyệt"**, trạng thái sách chuyển sang "Chờ duyệt".
+3. **Kiểm duyệt & Xuất bản (Thủ thư):**
+   * Thủ thư mở dashboard danh sách chờ phê duyệt, kiểm tra chất lượng bản dịch. Nếu đạt yêu cầu, nhấn **"Phê duyệt xuất bản"**.
+   * Hệ thống kích hoạt Pandoc đóng gói tài liệu thành chuẩn EPUB 3.0, tải lên MinIO Storage, cập nhật trạng thái "Published" lên PostgreSQL và lập chỉ mục FTS trực tiếp trong Postgres.
 
 #### 4.7.2. Quy trình Tìm kiếm và Đọc sách trực tuyến (Sinh viên / Độc giả)
 
