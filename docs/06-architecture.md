@@ -22,7 +22,6 @@
 |         1.0         |      07/07/2026       | Khởi tạo tài liệu kiến trúc ban đầu.                                                                                                                                                                                                                  |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi.                                                                                     |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL. |     Nhóm phát triển      |
-|         4.0         |      17/07/2026       | Tách biệt workflow Thủ thư & BTV, loại bỏ các tech stack cũ, và bổ sung đặc tả kiến trúc PoC 1 & 2 (OCR & luồng liên thông E2E) cùng Skeleton. |    Ân Tiến Nguyên An     |
 
 ---
 
@@ -365,19 +364,23 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 
 ### 4.7 Chi tiết các luồng nghiệp vụ cốt lõi
 
+#### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
+
+1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
+2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống qua Keycloak SSO, tải file PDF lên và nhập siêu dữ liệu Dublin Core.
+3. **OCR nhận dạng chữ:** Backend FastAPI đưa PDF vào hàng đợi Celery, chạy OCR Tesseract nhận dạng tiếng Việt bất đồng bộ để trích xuất văn bản thô.
+4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả, gán Heading và chèn ảnh minh họa.
+5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal/Restricted).
+6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và index toàn văn sang Elasticsearch.
 
 #### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
 
-1. **Số hóa & Khai báo (Thủ thư):**
-   * Thủ thư quét sách giấy vật lý thành tệp PDF/ảnh 300 DPI tiêu chuẩn bằng máy quét chữ V.
-   * Đăng nhập hệ thống bằng Google OAuth 2.0, tải tệp lên dashboard (lưu trữ tại MinIO) và nhập metadata chuẩn Dublin Core.
-   * Thủ thư kích hoạt tiến trình OCR, Backend FastAPI tạo job chạy ngầm qua `FastAPI BackgroundTasks` để trích xuất văn bản thô theo trang và gán cho Biên tập viên.
-2. **Hiệu chỉnh & Bàn giao (Biên tập viên):**
-   * Biên tập viên đăng nhập hệ thống, truy cập Workspace riêng, mở giao diện Split-screen để đối chiếu ảnh scan gốc và văn bản OCR, chỉnh sửa lỗi chính tả thô.
-   * Sau khi soát lỗi xong, Biên tập viên bấm **"Gửi yêu cầu phê duyệt"**, trạng thái sách chuyển sang "Chờ duyệt".
-3. **Kiểm duyệt & Xuất bản (Thủ thư):**
-   * Thủ thư mở dashboard danh sách chờ phê duyệt, kiểm tra chất lượng bản dịch. Nếu đạt yêu cầu, nhấn **"Phê duyệt xuất bản"**.
-   * Hệ thống kích hoạt Pandoc đóng gói tài liệu thành chuẩn EPUB 3.0, tải lên MinIO Storage, cập nhật trạng thái "Published" lên PostgreSQL và lập chỉ mục FTS trực tiếp trong Postgres.
+1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
+2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống (bằng Google OAuth hoặc Mock Auth), tải file PDF lên và nhập siêu dữ liệu Dublin Core.
+3. **OCR nhận dạng chữ:** Backend FastAPI tạo job OCR, chạy background qua `FastAPI BackgroundTasks` để trích xuất văn bản thô.
+4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả và lưu lại.
+5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal).
+6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và lập chỉ mục FTS trực tiếp trong Postgres.
 
 #### 4.7.2. Quy trình Tìm kiếm và Đọc sách trực tuyến (Sinh viên / Độc giả)
 
@@ -548,6 +551,7 @@ Dự án áp dụng mô hình **GitFlow** để điều phối mã nguồn của
 ### 9.1. Khái niệm và Mục tiêu của Proof of Concept (PoC)
 
 Để giảm thiểu rủi ro kỹ thuật trong pha thiết kế kiến trúc, dự án LDMS thực hiện các kịch bản kiểm chứng thực nghiệm (PoC) độc lập trước khi triển khai hệ thống quy mô lớn. Hoạt động PoC tập trung vào hai nhánh chính:
+
 1. **PoC Loại 1 (Kiểm chứng tính năng phức tạp nhất):** Xử lý nhận dạng ký tự tiếng Việt bất đồng bộ (FastAPI BackgroundTasks + Tesseract OCR). Mục tiêu là chứng minh việc cô lập các tiến trình tính toán nặng (CPU-bound) không làm ảnh hưởng đến khả năng phản hồi thời gian thực của Web Server (I/O-bound).
 2. **PoC Loại 2 (Kiểm chứng tích hợp ngăn xếp công nghệ đơn giản):** Luồng đọc sách bảo mật end-to-end. Mục tiêu là chứng minh khả năng phối hợp liên hoàn giữa xác thực Google OAuth 2.0, cấp quyền truy cập học liệu trong cơ sở dữ liệu PostgreSQL, sinh link ký số bảo mật từ Storage MinIO và hiển thị trực tuyến qua Epub.js mà không lưu trữ file tạm trên thiết bị người dùng.
 
@@ -558,6 +562,7 @@ Dự án áp dụng mô hình **GitFlow** để điều phối mã nguồn của
 Mục tiêu kiểm chứng: Xác nhận khả năng tích hợp thư viện bọc Tesseract OCR trong môi trường Python và chuyển tác vụ chạy sang BackgroundTasks để giải phóng phản hồi HTTP ngay lập tức.
 
 #### Nguyên lý thiết kế luồng xử lý:
+
 1. **Tiếp nhận Yêu cầu (Request Acceptance):** Trình duyệt gửi tệp ảnh/PDF trang sách lên API Endpoint `/api/documents/{id}/ocr`.
 2. **Chuyển tác vụ chạy ngầm (Delegation):** FastAPI tiếp nhận, ghi file thô vào vùng đệm tạm thời (hoặc MinIO Storage), sau đó đăng ký một hàm xử lý `run_ocr_task` vào `BackgroundTasks` của hệ thống.
 3. **Phản hồi tức thì (Instant Response):** API Endpoint lập tức trả về mã trạng thái `202 Accepted` kèm JSON thông báo tác vụ đã được đưa vào hàng đợi chạy ngầm. Người dùng không cần treo màn hình chờ đợi.
@@ -573,18 +578,19 @@ Mục tiêu kiểm chứng: Xác nhận khả năng tích hợp thư viện bọ
 **Mục tiêu kiểm chứng:** Đảm bảo toàn bộ ngăn xếp công nghệ kết nối đồng bộ và truyền nhận dữ liệu thông suốt giữa tất cả thành phần: client gọi API (React) $\rightarrow$ xác thực phiên làm việc (Google OAuth 2.0 / Mock Auth) $\rightarrow$ truy vấn thông tin (PostgreSQL Database) $\rightarrow$ kết nối và lấy tệp tin vật lý (MinIO Storage) $\rightarrow$ render hiển thị trên giao diện (Epub.js).
 
 #### Nguyên lý vận hành tích hợp của ngăn xếp công nghệ:
+
 1. **Xác thực định danh người dùng (Auth Integration):**
-   * Client (React) gửi yêu cầu đọc sách kèm mã định danh JWT Token (Google OAuth 2.0 / Mock Auth) qua Header HTTP.
-   * FastAPI API Server đóng vai trò Gateway tiếp nhận và giải mã token để xác định thông tin phiên làm việc của người dùng.
+   - Client (React) gửi yêu cầu đọc sách kèm mã định danh JWT Token (Google OAuth 2.0 / Mock Auth) qua Header HTTP.
+   - FastAPI API Server đóng vai trò Gateway tiếp nhận và giải mã token để xác định thông tin phiên làm việc của người dùng.
 2. **Truy xuất thông tin metadata (Database Integration):**
-   * API Server sử dụng ORM để thực hiện truy vấn thông tin tệp sách tương ứng trong PostgreSQL Database dựa trên mã ID sách nhận được.
-   * Database trả về đường dẫn lưu trữ tệp và trạng thái xuất bản hợp lệ của tài liệu.
+   - API Server sử dụng ORM để thực hiện truy vấn thông tin tệp sách tương ứng trong PostgreSQL Database dựa trên mã ID sách nhận được.
+   - Database trả về đường dẫn lưu trữ tệp và trạng thái xuất bản hợp lệ của tài liệu.
 3. **Truy xuất tệp tin vật lý (Storage Integration):**
-   * API Server gửi yêu cầu đến MinIO Client thông qua kết nối API S3 để tạo một đường dẫn tạm thời (Signed URL) trỏ tới tệp EPUB lưu trữ trong bucket.
-   * MinIO trả về Signed URL động cho API Server để gửi ngược về Client.
+   - API Server gửi yêu cầu đến MinIO Client thông qua kết nối API S3 để tạo một đường dẫn tạm thời (Signed URL) trỏ tới tệp EPUB lưu trữ trong bucket.
+   - MinIO trả về Signed URL động cho API Server để gửi ngược về Client.
 4. **Hiển thị giao diện người dùng (Frontend Integration):**
-   * Client React nhận Signed URL từ phản hồi API, nạp trực tiếp vào thư viện Web Reader (Epub.js).
-   * Thư viện Epub.js stream nội dung file và dựng (render) trực tiếp các chương sách lên trình duyệt của sinh viên.
+   - Client React nhận Signed URL từ phản hồi API, nạp trực tiếp vào thư viện Web Reader (Epub.js).
+   - Thư viện Epub.js stream nội dung file và dựng (render) trực tiếp các chương sách lên trình duyệt của sinh viên.
 
 ---
 

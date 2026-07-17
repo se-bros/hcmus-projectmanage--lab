@@ -1,1 +1,19 @@
+# Node / frontend
 node_modules/
+dist/
+*.local
+
+# Python / backend
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Env & OS
+.env
+.DS_Store
+
+# Local-only generated artifacts
+src/backend/nginx/certs/
+.backups/

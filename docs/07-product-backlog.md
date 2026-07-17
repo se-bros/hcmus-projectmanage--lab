@@ -51,11 +51,16 @@ Nhóm phát triển áp dụng **Kanban**: làm **từng card backlog** (WIP = 1
 **Definition of Ready (DoR):** Card chỉ được kéo vào _In Progress_ khi có ID, AC rõ ràng, `depends_on` đã Done (nếu có), size S hoặc M (≤ 2 ngày). Card quá to phải tách trước.
 
 **Forecast:** Thời gian dev được dự báo sau khi đo **số user story Done mỗi tuần** (deploy + AC pass), không dùng Story Point để nhân lịch. Công thức: Dev weeks ≈ N(còn lại) / T, với T = story Done/tuần. Báo cáo dạng **khoảng**.
+**Forecast:** Thời gian dev được dự báo sau khi đo **số user story Done mỗi tuần** (deploy + AC pass), không dùng Story Point để nhân lịch. Công thức: Dev weeks ≈ N(còn lại) / T, với T = story Done/tuần. Báo cáo dạng **khoảng**.
 
+**Size (thay cho Story Point):** S ≤ 1 ngày, M ≤ 2 ngày. Không dùng tổng SP để ra số tuần.
 **Size (thay cho Story Point):** S ≤ 1 ngày, M ≤ 2 ngày. Không dùng tổng SP để ra số tuần.
 
 ### 1.2. Định nghĩa Hoàn thành (Definition of Done - DoD)
 
+### 1.2. Định nghĩa Hoàn thành (Definition of Done - DoD)
+
+Một User Story chỉ được coi là hoàn thành (`Done`) khi đáp ứng đủ các tiêu chí sau:
 Một User Story chỉ được coi là hoàn thành (`Done`) khi đáp ứng đủ các tiêu chí sau:
 
 1. **AC pass:** Toàn bộ Acceptance Criteria của card đã kiểm tra đạt.
@@ -63,8 +68,16 @@ Một User Story chỉ được coi là hoàn thành (`Done`) khi đáp ứng đ
 3. **Chạy local:** Chạy được trên môi trường local (`docker compose up` + `npm run dev`).
 4. **README:** Endpoint hoặc trang mới có ghi trong README module.
 5. **Log effort:** Ghi nhận thời gian thực hiện và token AI (nếu có) phục vụ báo cáo throughput.
+6. **AC pass:** Toàn bộ Acceptance Criteria của card đã kiểm tra đạt.
+7. **Code merge:** Mã nguồn merge vào nhánh chính qua Pull Request (self-review checklist OK).
+8. **Chạy local:** Chạy được trên môi trường local (`docker compose up` + `npm run dev`).
+9. **README:** Endpoint hoặc trang mới có ghi trong README module.
+10. **Log effort:** Ghi nhận thời gian thực hiện và token AI (nếu có) phục vụ báo cáo throughput.
 
 > Chỉ đếm throughput T = số story **Done** trong 7 ngày theo DoD trên.
+> Chỉ đếm throughput T = số story **Done** trong 7 ngày theo DoD trên.
+
+### 1.3. Thang đo độ ưu tiên MoSCoW
 
 ### 1.3. Thang đo độ ưu tiên MoSCoW
 
@@ -77,7 +90,9 @@ Một User Story chỉ được coi là hoàn thành (`Done`) khi đáp ứng đ
 ## 2. Chi tiết Product Backlog — User Story & Acceptance Criteria
 
 Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **MoSCoW**, **AC**.
+Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **MoSCoW**, **AC**.
 
+**Module:** M0 Platform · M1 Documents & Storage · M2 OCR · M3 Editor · M4 Metadata · M5 Publish EPUB · M6 Reader · M7 Search · M8 Identity.
 **Module:** M0 Platform · M1 Documents & Storage · M2 OCR · M3 Editor · M4 Metadata · M5 Publish EPUB · M6 Reader · M7 Search · M8 Identity.
 
 **Lưu ý tech stack (so với [06-architecture.md](06-architecture.md)):**
@@ -103,6 +118,8 @@ Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **Mo
   - **AC 4:** Thiếu biến env bắt buộc → service fail với log/message rõ, không treo im lặng.
 
 ---
+
+### EPIC A — Xác thực & Phân quyền (Identity & Access)
 
 ### EPIC A — Xác thực & Phân quyền (Identity & Access)
 
@@ -352,6 +369,8 @@ Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **Mo
   - **AC 3:** ES down → fallback Postgres FTS hoặc trả lỗi rõ ràng — không treo.
 
 ---
+
+## 3. Bản đồ triển khai (Implementation Map)
 
 ## 3. Bản đồ triển khai (Implementation Map)
 

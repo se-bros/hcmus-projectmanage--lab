@@ -2,6 +2,9 @@
 
 > File này dùng chung cho cả nhóm. Mỗi khi hoàn thành một story, thêm một dòng mới phía trên dòng "Tổng cộng".
 
-| Ngày hoàn thành | Dev | Story ID | Tên Story | Story Points | Thời gian làm (giờ) | Token AI đã dùng | Ghi chú |
-|---|---|---|---|---:|---:|---:|---|
-| **Tổng cộng (cả nhóm)** | | | | **0** | **0** | **0** | |
+| Ngày hoàn thành         | Dev              | Story ID        | Tên Story                                                                              | Story Points | Thời gian làm (giờ) | Token AI đã dùng | Ghi chú                                                         |
+| ----------------------- | ---------------- | --------------- | -------------------------------------------------------------------------------------- | -----------: | ------------------: | ---------------: | --------------------------------------------------------------- |
+| 2026-07-16              | Khoa Nguyễn      | LDMS-008/026    | Reader/Search placeholder & Document List                                              |            3 |                   2 |           40.000 | Claude Sonnet 5 (phân tích spec) + Claude Opus 4.8 (implement); |
+| 2026-07-16              | Khoa Ngô và Thái | 3,4,7,13,22     | Pipeline (Digitization & Publish)                                                      |            - |               45min |             280K | -                                                               |
+| 2026-07-17              | Tuấn Anh         | 001/009/010/018 | Platform & Identity (Mock JWT, Access Control, Google OAuth) + FE UI + Platform buffer |            - |             1h20min |             120K | Claude Sonnet 5 (Claude Code)                                   |
+| **Tổng cộng (cả nhóm)** |                  |                 |                                                                                        |        **4** |          **4h5min** |      **440.000** |                                                                 |
