@@ -42,6 +42,7 @@
     * [3.3 Môi trường người dùng](#33-môi-trường-người-dùng)
     * [3.4 Tóm tắt nhu cầu cốt lõi của các bên liên quan hoặc Người dùng](#34-tóm-tắt-nhu-cầu-cốt-lõi-của-các-bên-liên-quan-hoặc-người-dùng)
     * [3.5 Các phương án thay thế và Đối thủ cạnh tranh](#35-các-phương-án-thay-thế-và-đối-thủ-cạnh-tranh)
+    * [3.6 So sánh đối chuẩn quy trình nghiệp vụ (Workflow Benchmarking)](#36-so-sánh-đối-chuẩn-quy-trình-nghiệp-vụ-workflow-benchmarking)
 * [4. Tổng quan sản phẩm](#4-tổng-quan-sản-phẩm)
     * [4.1 Góc nhìn sản phẩm](#41-góc-nhìn-sản-phẩm)
     * [4.2 Các giả định và Sự phụ thuộc](#42-các-giả-định-và-sự-phụ-thuộc)
@@ -278,6 +279,19 @@ Quy trình tra cứu học liệu số hóa của sinh viên được thiết k�
 ### 3.5 Các phương án thay thế và Đối thủ cạnh tranh
 * **Các giải pháp thương mại (như Lạc Việt Vebrary, DSpace):** Chi phí triển khai lớn (vượt quá ngân sách 100M VNĐ), khó tùy biến và không tích hợp sẵn cơ chế soát lỗi OCR tiếng Việt Split-screen.
 * **Phương án kết hợp công cụ có sẵn (Abbyy FineReader + Google Drive):** Rời rạc, tốn thời gian thao tác thủ công, và đặc biệt là rủi ro rò rỉ file sách gốc rất cao do Google Drive không hỗ trợ bảo mật DRM chặt chẽ.
+
+### 3.6 So sánh đối chuẩn quy trình nghiệp vụ (Workflow Benchmarking)
+
+Để làm rõ sự khác biệt và tối ưu hóa của quy trình nghiệp vụ đề xuất, bảng dưới đây đối chiếu chi tiết luồng vận hành của HCMUS-LDMS với 3 phương án còn lại:
+
+| Tiêu chí đối chiếu | Quy trình thủ công hiện tại (As-Is) | Kết hợp công cụ rời rạc (Abbyy + Drive) | Giải pháp thương mại đối thủ (Lạc Việt/DSpace) | Giải pháp đề xuất (HCMUS-LDMS) |
+| :--- | :--- | :--- | :--- | :--- |
+| **1. Quét sách & Nhập Metadata** | Photocopy thô $\rightarrow$ Tệp PDF tĩnh, đặt tên tùy tiện, không có metadata chuẩn. | Scan máy VP $\rightarrow$ Upload thủ công. Không hỗ trợ Dublin Core. | Quét thủ công $\rightarrow$ Nhập metadata trên module quản trị cồng kềnh. | Máy scan chữ V không tháo gáy $\rightarrow$ Tự động đẩy file $\rightarrow$ Nhập Dublin Core nhanh. |
+| **2. Nhận dạng & Soát lỗi OCR** | Không có (Giữ nguyên tệp ảnh quét tĩnh). | Chạy OCR offline bằng phần mềm Abbyy $\rightarrow$ Xuất text $\rightarrow$ Soát lỗi trên Word thủ công. | Không tích hợp sẵn engine OCR tiếng Việt chuyên sâu hoặc khó hiệu chỉnh lỗi thô. | Engine AI Tesseract chạy ngầm qua BackgroundTasks $\rightarrow$ Sửa lỗi nhanh trên **Split-screen Workspace** cho BTV. |
+| **3. Đóng gói & Định dạng đầu ra** | File PDF scan ảnh tĩnh cực nặng, không co giãn chữ được. | Thủ thư tự dùng phần mềm Calibre để convert sang EPUB thủ công (dễ lỗi font, vỡ ảnh). | Thường chỉ lưu trữ file PDF gốc hoặc EPUB tĩnh, không tối ưu hiển thị động. | **Pandoc** tự động biên dịch sang **EPUB 3.0 reflowable** chuẩn hóa chỉ bằng 1 nút nhấn. |
+| **4. Tìm kiếm & Tra cứu** | Tra mã sách trên OPAC $\rightarrow$ Phải tìm sách giấy trực tiếp tại kệ. | Tìm file theo tên tệp trên Google Drive (không tìm được nội dung bên trong). | Tìm kiếm cơ bản hoặc qua Elasticsearch (yêu cầu hạ tầng lớn, đắt đỏ). | **PostgreSQL Full-Text Search (FTS)** tìm kiếm toàn văn siêu tốc dưới 3 giây trực tiếp trong database. |
+| **5. Bảo mật & Chống tải lậu (DRM)** | Không bảo mật (chia sẻ link trực tiếp hoặc photocopy giấy tự do). | Google Drive không chặn được tải tệp gốc, dễ bị sinh viên copy và phát tán link công cộng. | Chặn copy cơ bản nhưng thường phân phối cả tệp PDF gốc, dễ bị cào dữ liệu qua API. | **MinIO Signed URL (hết hạn 15 phút)**, chặn chuột phải, phím tắt `Ctrl+C`/`Ctrl+P` bảo vệ bản quyền tuyệt đối. |
+| **6. Nỗ lực vận hành (Manual Overhead)** | **Rất cao** (100% thủ công từ tra cứu, mượn trả đến in ấn). | **Rất cao** (Tốn 2-3 giờ/cuốn cho việc convert, sửa lỗi rời rạc và gửi email). | **Trung bình** (Quy trình đóng, thủ thư phải tự làm nhiều bước nghiệp vụ). | **Rất thấp** (Phân rã rõ ràng: BTV chỉ soát lỗi, Thủ thư duyệt xuất bản 1-click). |
 
 ---
 
