@@ -21,6 +21,7 @@
 | :---: | :---: | :--- | :---: |
 | 1.0 | 12/07/2026 | Khởi tạo dự thảo kế hoạch chi phí, tiến độ ban đầu (v1.0). | Mạch Quốc Tấn |
 | 2.0 | 14/07/2026 | Trình bày LaTeX công thức UCP & COCOMO II, chi tiết hóa WBS và chuyển đổi VNĐ. | Mạch Quốc Tấn |
+| 3.0 | 17/07/2026 | Bổ sung phần Monitoring & Reporting (mục 5): bộ chỉ số giám sát, cơ chế session logging, snapshot tiến độ tuần 1 với dữ liệu thực tế, quy chế báo cáo 3 cấp. | Mạch Quốc Tấn |
 
 ---
 
@@ -38,6 +39,10 @@
     * [3.2. Dự toán chi phí vận hành định kỳ (OpEx)](#32-dự-toán-chi-phí-vận-hành-định-kỳ-opex)
 * [4. Kế hoạch phân bổ nguồn lực nhân sự và Thiết bị](#4-kế-hoạch-phân-bổ-nguồn-lực-nhân-sự-và-thiết-bi)
 * [5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)](#5-kế-hoạch-giám-sát--báo-cáo-tình-trạng-dự-án-monitoring--status-reporting)
+    * [5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)](#51-bộ-chỉ-số-giám-sát--đo-lường-monitoring-metrics)
+    * [5.2. Cơ chế thu thập Metrics từ AI Session (Session Logging)](#52-cơ-chế-thu-thập-metrics-từ-ai-session-session-logging)
+    * [5.3. Snapshot tiến độ thực tế — Tuần 1 (16–17/07/2026)](#53-snapshot-tiến-độ-thực-tế--tuần-1-1617072026)
+    * [5.4. Quy chế Báo cáo định kỳ (Status Reporting)](#54-quy-chế-báo-cáo-định-kỳ-status-reporting)
 
 ---
 
@@ -202,14 +207,108 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 ## 5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)
 
-Để quản lý tiến độ và kiểm soát hiệu quả của dự án phát triển phần mềm với sự trợ giúp của AI Coding Assistants, hệ thống giám sát định kỳ (Project Monitoring and Control) được thiết lập thông qua các chỉ số sau:
+Để quản lý tiến độ và kiểm soát chi phí phát triển với sự hỗ trợ của AI Coding Assistants, dự án thiết lập hệ thống giám sát định kỳ dựa trên dữ liệu thực tế được ghi nhận tại file [`project_log.md`](../project_log.md).
 
 ### 5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)
-* **Throughput (T):** Đo lường số lượng User Story chuyển trạng thái sang `Done` (đáp ứng đủ Definition of Done) trong **mỗi 7 ngày**. Dùng công thức forecast: Dev weeks ≈ N (story còn lại) / T.
-* **Thời gian chu kỳ (Cycle Time):** Đo lường thời gian từ lúc kéo card vào *In Progress* đến khi card đạt `Done` (deploy + AC pass). Mục tiêu giữ cycle time trung bình dưới **3 ngày** đối với card size M.
-* **Tốc độ xử lý của AI Assistant (AI Productivity Factor):** Theo dõi hiệu suất sinh mã nguồn của các AI Coding Assistants (Claude Code, Copilot) nhằm cân bằng tốc độ phát triển và tốc độ review của kỹ sư (tránh tình trạng sinh code quá nhanh gây quá tải khâu thẩm định).
-* **Số lượng Token sử dụng & Chi phí API:** Giám sát lượng token tiêu thụ hàng tuần và chi phí sử dụng API của các AI Assistant ở background, đảm bảo tổng chi phí API phát triển luôn nằm trong hạn mức **5.000.000 VNĐ** (đã dự toán trong CapEx).
 
-### 5.2. Quy chế Báo cáo định kỳ (Status Reporting)
-* **Báo cáo Weekly Review (Mỗi tuần):** PM tổng hợp báo cáo gửi Ban Giám đốc Thư viện và Trưởng phòng CNTT về: throughput tuần (số story Done), cycle time trung bình, tổng chi phí thực tế đã chi, và các rủi ro phát sinh.
-* **Báo cáo Chốt cổng Giai đoạn (Phase-Gating Report):** Báo cáo thẩm định chi tiết được gửi lên Ban Giám hiệu trường tại các chốt kiểm soát (cuối tuần 2, tuần 12, tuần 18) để phê duyệt giải ngân ngân sách CapEx cuốn chiếu và cho phép dự án chuyển sang giai đoạn tiếp theo.
+#### A. Chỉ số tiến độ phát triển (Development Progress)
+
+| Chỉ số | Cách đo | Mục tiêu |
+| :--- | :--- | :--- |
+| **Throughput (T)** | Số User Story chuyển trạng thái `Done` (đáp ứng đủ DoD) trong mỗi 7 ngày. | ≥ 5 stories/tuần (Must-have ưu tiên trước). |
+| **Cycle Time** | Thời gian từ lúc kéo card vào *In Progress* đến khi card `Done`. | ≤ 2 ngày (size S), ≤ 3 ngày (size M). |
+| **Forecast còn lại** | Dev weeks ≈ N (story còn lại) / T. | Cập nhật mỗi cuối tuần trong báo cáo Weekly Review. |
+| **Tỷ lệ hoàn thành Backlog** | Số stories Done / Tổng 26 stories × 100%. | 100% Must-have hoàn thành trước tuần 12. |
+
+#### B. Chỉ số chi phí AI & Hiệu suất (AI Cost & Productivity)
+
+| Chỉ số | Cách đo | Mục tiêu |
+| :--- | :--- | :--- |
+| **Token AI tiêu thụ** | Tổng token sử dụng mỗi phiên làm việc (ghi vào `project_log.md`). | ≤ 300K tokens/session trung bình. |
+| **Chi phí AI tích lũy** | Quy đổi token ra VNĐ theo bảng giá API từng model, cộng dồn theo tuần. | Tổng ≤ 5.000.000 VNĐ (hạn mức CapEx). |
+| **AI Productivity Factor** | Số stories Done / Tổng token AI đã dùng (hiệu suất sử dụng AI). | Theo dõi xu hướng để phát hiện lãng phí token. |
+
+#### C. Chỉ số rủi ro kỹ thuật (Technical Risk Indicators)
+
+| Chỉ số | Nguồn dữ liệu | Ngưỡng cảnh báo |
+| :--- | :--- | :--- |
+| **Kết quả PoC 1 (OCR chạy nền)** | Kết quả kiểm chứng tích hợp Tesseract + BackgroundTasks. | OCR timeout > 60s hoặc block Event Loop → escalate. |
+| **Kết quả PoC 2 (Liên thông E2E)** | Kết quả kiểm chứng luồng React → FastAPI → PostgreSQL → MinIO → Epub.js. | Bất kỳ lớp nào trong chuỗi không kết nối được → escalate. |
+| **Tỷ lệ nhận dạng OCR** | Đo thủ công trên mẫu 10 trang sách in rõ nét. | < 85% → cần tiền xử lý ảnh hoặc đổi model OCR. |
+
+---
+
+### 5.2. Cơ chế thu thập Metrics từ AI Session (Session Logging)
+
+Sau mỗi phiên làm việc với AI Coding Assistant (Claude Code, Copilot, v.v.), thành viên nhóm **bắt buộc** ghi nhận một dòng log vào file [`project_log.md`](../project_log.md) theo định dạng:
+
+| Trường | Mô tả | Ví dụ |
+| :--- | :--- | :--- |
+| Ngày hoàn thành | Ngày kết thúc session. | `2026-07-16` |
+| Dev | Tên thành viên thực hiện. | `Khoa Nguyễn` |
+| Story ID | Mã các stories hoàn thành trong session. | `LDMS-008/026` |
+| Tên Story | Mô tả ngắn gọn công việc đã làm. | `Reader/Search placeholder` |
+| Thời gian làm | Tổng thời gian thực tế (giờ hoặc phút). | `2h` |
+| Token AI đã dùng | Số token AI tiêu thụ trong session (lấy từ dashboard API hoặc ước tính từ giao diện chat). | `40.000` |
+| Ghi chú | Model AI sử dụng và ghi chú đặc biệt. | `Claude Sonnet 5 (spec) + Opus 4.8 (impl)` |
+
+PM tổng hợp dữ liệu từ file `project_log.md` mỗi cuối tuần để tính toán các chỉ số Monitoring ở mục 5.1.
+
+---
+
+### 5.3. Snapshot tiến độ thực tế — Tuần 1 (16–17/07/2026)
+
+Dưới đây là dữ liệu thực tế thu thập được từ 2 ngày phát triển đầu tiên của nhóm:
+
+#### Bảng tổng hợp tiến độ:
+
+| Hạng mục | Giá trị thực tế | Ghi chú |
+| :--- | ---: | :--- |
+| Stories hoàn thành (Done) | **12 / 26** | LDMS-001, 003, 004, 007, 008, 009, 010, 013, 018, 022, 026 và Reader/Search placeholder. |
+| Tỷ lệ hoàn thành Backlog | **46%** | Gần một nửa backlog trong 2 ngày đầu. |
+| Tổng thời gian dev thực tế | **4 giờ 05 phút** | 3 phiên làm việc của 3 nhóm dev. |
+| Tổng token AI đã dùng | **440.000 tokens** | Hỗn hợp Claude Sonnet 5 + Claude Opus 4.8 + Claude Code. |
+| Throughput tuần 1 (T) | **~12 stories / tuần** | Vượt mục tiêu 5 stories/tuần (lưu ý: tuần đầu thường nhanh hơn do stories nền tảng có độ phức tạp thấp). |
+
+#### Dự báo tiến độ (Forecast):
+
+* **Stories còn lại:** 26 − 12 = **14 stories** (bao gồm 4 Must, 7 Should, 3 Could).
+* **Throughput đo được (T):** ~12 stories/tuần (nhưng giảm ~50% do stories còn lại phức tạp hơn $\rightarrow$ T hiệu chỉnh ≈ 6 stories/tuần).
+* **Thời gian dự kiến hoàn thành:** 14 / 6 ≈ **2.3 tuần** nữa (dự kiến hoàn thành toàn bộ Must-have trước tuần 4).
+
+#### Phân tích chi phí AI thực tế:
+
+| Hạng mục | Giá trị |
+| :--- | ---: |
+| Token đã dùng (tuần 1) | 440.000 tokens |
+| Chi phí ước tính tuần 1 (hỗn hợp model) | ~300.000 VNĐ |
+| Hạn mức CapEx AI Tools | 5.000.000 VNĐ |
+| Tỷ lệ tiêu thụ ngân sách | **~6%** |
+| Dự báo chi phí AI tổng dự án (ngoại suy) | ~1.200.000 VNĐ |
+
+> **Nhận xét:** Tốc độ tiêu thụ ngân sách AI rất thấp (6% hạn mức sau tuần 1). Ngân sách dư có thể được điều chuyển sang mục Cloud OCR dự phòng hoặc thuê thêm AI model chất lượng cao cho các stories phức tạp còn lại.
+
+---
+
+### 5.4. Quy chế Báo cáo định kỳ (Status Reporting)
+
+#### A. Báo cáo Session (Sau mỗi phiên AI)
+
+Ngay sau khi kết thúc một phiên làm việc với AI Coding Assistant, dev ghi nhận vào `project_log.md`:
+* Nội dung đã hoàn thành (Story IDs).
+* Token AI đã dùng trong phiên.
+* Thời gian thực tế đã bỏ ra.
+* Model AI sử dụng (để PM phân tích hiệu quả từng model).
+
+#### B. Báo cáo Weekly Review (Mỗi tuần)
+
+PM tổng hợp từ `project_log.md` và gửi báo cáo cho Ban Giám đốc Thư viện và Trưởng phòng CNTT, gồm:
+* Throughput tuần (số stories Done) và Cycle Time trung bình.
+* Tổng chi phí AI tích lũy so với hạn mức CapEx.
+* Forecast thời gian hoàn thành dự kiến.
+* Các rủi ro phát sinh và biện pháp giảm thiểu.
+
+#### C. Báo cáo Chốt cổng Giai đoạn (Phase-Gating Report)
+
+Báo cáo thẩm định chi tiết gửi lên Ban Giám hiệu trường tại các chốt kiểm soát (cuối tuần 2, tuần 12, tuần 18) để phê duyệt giải ngân ngân sách CapEx cuốn chiếu và cho phép dự án chuyển sang giai đoạn tiếp theo.
+
