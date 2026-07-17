@@ -566,24 +566,23 @@ Mục tiêu kiểm chứng: Xác nhận khả năng tích hợp thư viện bọ
 
 ---
 
-### 9.3. PoC 2: Tích hợp luồng đọc sách bảo mật E2E (Secured End-to-End Workflow)
+### 9.3. PoC 2: Kiểm chứng tích hợp liên thông Tech Stack E2E (End-to-End Integration Flow)
 
-Mục tiêu kiểm chứng: Đảm bảo toàn bộ tech stack hoạt động trơn tru trong luồng nghiệp vụ đọc sách bảo mật DRM từ khâu kiểm tra xác thực đến hiển thị.
+Mục tiêu kiểm chứng: Đảm bảo toàn bộ ngăn xếp công nghệ kết nối đồng bộ và truyền nhận dữ liệu thông suốt giữa tất cả thành phần: client gọi API (React) $\rightarrow$ xác thực phiên làm việc (Google OAuth 2.0 / Mock Auth) $\rightarrow$ truy vấn thông tin (PostgreSQL Database) $\rightarrow$ kết nối và lấy tệp tin vật lý (MinIO Storage) $\rightarrow$ render hiển thị trên giao diện (Epub.js).
 
-#### Nguyên lý vận hành tích hợp:
-1. **Xác thực và Cấp quyền (Authentication & Authorization):**
-   * Người dùng truy cập Web Reader gửi JWT Token (thu được từ Google OAuth 2.0 / Mock Auth) qua Header `Authorization`.
-   * Backend giải mã token, xác minh định danh và kiểm tra phân quyền vai trò (Role-Based Access Control - RBAC) đối với ID sách yêu cầu.
-2. **Ký số bảo mật tài nguyên (Signed URL Generation):**
-   * Sau khi kiểm tra quyền hợp lệ, Backend sử dụng thư viện kết nối MinIO Client (`boto3`) để gửi yêu cầu sinh một đường dẫn truy cập tạm thời (Presigned URL) trỏ trực tiếp đến tệp EPUB lưu trong bucket an toàn.
-   * Đường dẫn Signed URL này được cấu hình thời gian hết hạn cực ngắn (15 phút).
-   * URL này chứa khóa ký số bảo mật của hệ thống, giúp client có thể stream dữ liệu sách trực tiếp từ MinIO mà không cần để lộ tài khoản quản trị hay đường dẫn gốc.
-3. **Stream và Render sách trực tuyến (Secure Frontend Rendering):**
-   * Frontend React nhận được Signed URL, truyền trực tiếp vào đối tượng dựng của thư viện `Epub.js`.
-   * `Epub.js` phân tách gói EPUB thành các file HTML/CSS nhỏ và render trực tiếp vào DOM ảo của trình đọc Web Reader.
-4. **Chế tài chống sao chép và tải lậu (DRM Client-side Enforcement):**
-   * Trình duyệt kích hoạt các cơ chế chặn sự kiện Context Menu (chuột phải) để ngăn chuột phải copy ảnh hoặc inspect.
-   * Lắng nghe sự kiện bàn phím để chặn các phím tắt hệ thống như sao chép văn bản (`Ctrl+C`), in ấn trang sách (`Ctrl+P`), và lưu trữ trang (`Ctrl+S`), bảo đảm nội dung học liệu độc quyền chỉ được hiển thị trực quan chứ không bị tải về lưu trữ vật lý.
+#### Nguyên lý vận hành tích hợp của ngăn xếp công nghệ:
+1. **Xác thực định danh người dùng (Auth Integration):**
+   * Client (React) gửi yêu cầu đọc sách kèm mã định danh JWT Token (Google OAuth 2.0 / Mock Auth) qua Header HTTP.
+   * FastAPI API Server đóng vai trò Gateway tiếp nhận và giải mã token để xác định thông tin phiên làm việc của người dùng.
+2. **Truy xuất thông tin metadata (Database Integration):**
+   * API Server sử dụng ORM để thực hiện truy vấn thông tin tệp sách tương ứng trong PostgreSQL Database dựa trên mã ID sách nhận được.
+   * Database trả về đường dẫn lưu trữ tệp và trạng thái xuất bản hợp lệ của tài liệu.
+3. **Truy xuất tệp tin vật lý (Storage Integration):**
+   * API Server gửi yêu cầu đến MinIO Client thông qua kết nối API S3 để tạo một đường dẫn tạm thời (Signed URL) trỏ tới tệp EPUB lưu trữ trong bucket.
+   * MinIO trả về Signed URL động cho API Server để gửi ngược về Client.
+4. **Hiển thị giao diện người dùng (Frontend Integration):**
+   * Client React nhận Signed URL từ phản hồi API, nạp trực tiếp vào thư viện Web Reader (Epub.js).
+   * Thư viện Epub.js stream nội dung file và dựng (render) trực tiếp các chương sách lên trình duyệt của sinh viên.
 
 ---
 
