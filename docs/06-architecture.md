@@ -22,7 +22,7 @@
 |         1.0         |      07/07/2026       | Khởi tạo tài liệu kiến trúc ban đầu.                                                                                                                                                                                                                  |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi.                                                                                     |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL. |     Nhóm phát triển      |
-|         4.0         |      17/07/2026       | Loại bỏ các tham chiếu Keycloak/Celery/Elasticsearch còn sót lại, xóa quy trình trùng lặp, tách biệt workflow Thủ thư & BTV và bổ sung phần đặc tả kiến trúc PoC & Skeleton. |    Ân Tiến Nguyên An     |
+|         4.0         |      17/07/2026       | Tách biệt workflow Thủ thư & BTV, loại bỏ các tech stack cũ, và bổ sung đặc tả kiến trúc PoC 1 & 2 (OCR & luồng liên thông E2E) cùng Skeleton. |    Ân Tiến Nguyên An     |
 
 ---
 
