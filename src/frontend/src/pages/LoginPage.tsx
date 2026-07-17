@@ -23,28 +23,58 @@ function GoogleIcon() {
   )
 }
 
+const HIGHLIGHTS = [
+  'Tra cứu toàn văn tức thì trên toàn bộ kho tài liệu',
+  'Đọc sách bảo mật trên mọi thiết bị, không giới hạn',
+  'Biên tập song song ảnh scan và văn bản OCR',
+]
+
 export function LoginPage() {
   return (
-    <main className="page-shell login-page">
-      <section className="upload-card login-card" aria-labelledby="login-title">
-        <header>
-          <p className="eyebrow">HCMUS Library</p>
-          <h1 id="login-title">Đăng nhập</h1>
-          <p className="intro">
-            Đăng nhập bằng tài khoản Google trường để truy cập kho tài liệu số và các tính năng dành
-            riêng cho thành viên HCMUS.
+    <main className="auth-shell">
+      <section className="auth-hero">
+        <div className="auth-hero-glow" aria-hidden="true" />
+        <div className="auth-hero-content">
+          <p className="eyebrow auth-hero-eyebrow">HCMUS Library</p>
+          <h1 className="auth-hero-title">
+            Số hóa tri thức,
+            <br />
+            lưu giữ trăm năm.
+          </h1>
+          <p className="auth-hero-copy">
+            Nền tảng quản lý và số hóa tài liệu thư viện HCMUS — tra cứu, biên tập và đọc sách trực
+            tuyến trong một không gian duy nhất.
           </p>
-        </header>
+          <ul className="auth-hero-list">
+            {HIGHLIGHTS.map((item) => (
+              <li key={item}>
+                <span aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-        <a className="google-button" href={`${API_BASE}/auth/login/google`}>
-          <GoogleIcon />
-          <span>Đăng nhập với Google</span>
-        </a>
+      <section className="auth-panel">
+        <div className="login-card" aria-labelledby="login-title">
+          <header>
+            <p className="eyebrow">Đăng nhập</p>
+            <h2 id="login-title">Chào mừng trở lại</h2>
+            <p className="intro">Đăng nhập bằng tài khoản Google trường để tiếp tục.</p>
+          </header>
 
-        <p className="login-hint">
-          Chỉ chấp nhận email trường (vd. <code>@hcmus.edu.vn</code>, <code>@clc.fitus.edu.vn</code>). Tài khoản thuộc domain khác
-          sẽ bị từ chối sau bước xác thực.
-        </p>
+          <a className="google-button" href={`${API_BASE}/auth/login/google`}>
+            <GoogleIcon />
+            <span>Đăng nhập với Google</span>
+          </a>
+
+          <p className="login-hint">
+            Chỉ chấp nhận email trường (vd. <code>@hcmus.edu.vn</code>,{' '}
+            <code>@clc.fitus.edu.vn</code>). Tài khoản thuộc domain khác sẽ bị từ chối sau bước xác
+            thực.
+          </p>
+        </div>
       </section>
     </main>
   )
