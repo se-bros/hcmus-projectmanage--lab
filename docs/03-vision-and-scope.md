@@ -21,6 +21,7 @@
 | :---: | :---: | :--- | :---: |
 | 1.0 | 07/07/2026 | Khởi tạo dự thảo tầm nhìn và phạm vi ban đầu (v1.0). | Mạch Quốc Tấn |
 | 2.0 | 14/07/2026 | Cập nhật Domain Model, Glossary, As-is/To-be; chuẩn hóa và Việt hóa theo mẫu IEEE/RUP. | Mạch Quốc Tấn |
+| 3.0 | 17/07/2026 | Bổ sung bước Đăng nhập To-Be, tách riêng vai trò/workflow của Thủ thư và Biên tập viên, đồng bộ tech stack mới và thêm bảng đối chuẩn Workflow Benchmarking. | Ân Tiến Nguyên An |
 
 ---
 

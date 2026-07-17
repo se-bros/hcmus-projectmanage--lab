@@ -23,6 +23,7 @@
 |         2.0         |      14/07/2026       | Chuẩn hóa, chuyển WBS/RACI sang các tài liệu phù hợp, cập nhật chi phí VNĐ. |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Bổ sung mục 2.4 Phân tích MOAT chi tiết (Lợi thế cạnh tranh bền vững).      |    Ân Tiến Nguyên An     |
 |         4.0         |      17/07/2026       | Chuyển đổi Business Case sang tự sự ngôi thứ nhất và bổ sung phần Stakeholders & RACI. |    Ân Tiến Nguyên An     |
+|         5.0         |      17/07/2026       | Đồng bộ hóa tech stack đơn giản hóa mới (Google OAuth 2.0, PostgreSQL FTS). |    Ân Tiến Nguyên An     |
 
 ---
 

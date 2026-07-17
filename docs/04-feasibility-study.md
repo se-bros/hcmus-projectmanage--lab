@@ -21,6 +21,7 @@
 | :-----------------: | :-------------------: | :------------------------------------------------------------------------------ | :----------------------: |
 |         1.0         |      08/07/2026       | Khởi tạo dự thảo báo cáo nghiên cứu khả thi ban đầu (v1.0).                     |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Chuẩn hóa cấu trúc 6 phần, bổ sung chi tiết 8 khía cạnh khả thi và quy đổi VNĐ. |      Mạch Quốc Tấn       |
+|         3.0         |      17/07/2026       | Đồng bộ hóa tech stack đơn giản hóa mới (Google OAuth 2.0, PostgreSQL FTS) và tối giản hóa mô tả thời gian hòa vốn. |    Ân Tiến Nguyên An     |
 
 ---
 

@@ -21,6 +21,7 @@
 | :-----------------: | :-------------------: | :----------------------------------------------------------------------------- | :----------------------: |
 |         1.0         |      12/07/2026       | Khởi tạo dự thảo kế hoạch chi phí, tiến độ ban đầu (v1.0).                     |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Trình bày LaTeX công thức UCP & COCOMO II, chi tiết hóa WBS và chuyển đổi VNĐ. |      Mạch Quốc Tấn       |
+|         3.0         |      17/07/2026       | Cập nhật tech stack mới, tính toán lại UCP do tách vai trò Thủ thư & BTV, và loại bỏ các công thức học thuật rườm rà. |    Ân Tiến Nguyên An     |
 
 ---
 

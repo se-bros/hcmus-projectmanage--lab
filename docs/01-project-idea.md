@@ -22,6 +22,7 @@
 |         1.0         |      05/07/2026       | Khởi tạo dự thảo ý tưởng ban đầu (v1.0).                            |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Chuẩn hóa cấu trúc và thuật ngữ, bổ sung định lượng thực trạng.     |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Bổ sung mục 5.1 Phân tích MOAT sơ bộ (Lợi thế cạnh tranh bền vững). |    Ân Tiến Nguyên An     |
+|         4.0         |      17/07/2026       | Đồng bộ hóa tech stack đơn giản hóa mới (Google OAuth 2.0, PostgreSQL FTS). |    Ân Tiến Nguyên An     |
 
 ---
 
