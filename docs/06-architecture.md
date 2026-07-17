@@ -22,7 +22,7 @@
 |         1.0         |      07/07/2026       | Khởi tạo tài liệu kiến trúc ban đầu.                                                                                                                                                                                                                  |      Mạch Quốc Tấn       |
 |         2.0         |      14/07/2026       | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi.                                                                                     |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL. |     Nhóm phát triển      |
-|         4.0         |      17/07/2026       | Loại bỏ các tham chiếu Keycloak/Celery/Elasticsearch còn sót lại, xóa quy trình trùng lặp và tách biệt workflow Số hóa & Xuất bản giữa Thủ thư và Biên tập viên. |    Ân Tiến Nguyên An     |
+|         4.0         |      17/07/2026       | Loại bỏ các tham chiếu Keycloak/Celery/Elasticsearch còn sót lại, xóa quy trình trùng lặp, tách biệt workflow Thủ thư & BTV và bổ sung phần PoC & Skeleton. |    Ân Tiến Nguyên An     |
 
 ---
 
@@ -54,6 +54,11 @@
   - [7.2 Cấu trúc thư mục Backend FastAPI](#72-cấu-trúc-thư-mục-backend-fastapi)
   - [7.3 Lý do lựa chọn cấu trúc thư mục & Phân tích phản biện](#73-lý-do-lựa-chọn-cấu-trúc-thư-mục--phân-tích-phản-biện)
 - [8. Quản lý cấu hình phần mềm và Chiến lược Git (SCM)](#8-quản-lý-cấu-hình-phần-mềm-và-chiến-lược-git-scm)
+- [9. Minh chứng công nghệ (Proof of Concept - PoC) và Cấu trúc mã nguồn khung (Skeleton)](#9-minh-chứng-công-nghệ-proof-of-concept---poc-và-cấu-trúc-mã-nguồn-khung-skeleton)
+  - [9.1 Khái niệm và Mục tiêu của Proof of Concept (PoC)](#91-khái-niệm-và-mục-tiêu-của-proof-of-concept-poc)
+  - [9.2 PoC 1: Xử lý OCR tiếng Việt bất đồng bộ (Hardest Core Feature)](#92-poc-1-xử-lý-ocr-tiếng-việt-bất-đồng-bộ-hardest-core-feature)
+  - [9.3 PoC 2: Đọc sách bảo mật E2E (Secured End-to-End Workflow)](#93-poc-2-đọc-sách-bảo-mật-e2e-secured-end-to-end-workflow)
+  - [9.4 Cấu trúc mã nguồn khung (Skeleton Project Layout)](#94-cấu-trúc-mã-nguồn-khung-skeleton-project-layout)
 
 ---
 
@@ -535,3 +540,194 @@ Dự án áp dụng mô hình **GitFlow** để điều phối mã nguồn của
 - **`feature/*`**: Các nhánh phát triển tính năng riêng lẻ (ví dụ: `feature/ocr-integration`, `feature/epub-reader`). Tạo ra từ nhánh `develop` và merge lại vào `develop` sau khi hoàn tất kiểm thử unit test cục bộ.
 - **`release/*`**: Nhánh chuẩn bị phát hành phiên bản (ví dụ: `release/v1.0-MVP`). Nhánh này phục vụ giai đoạn UAT và fix lỗi cuối cùng trước khi chuyển giao chính thức sang `main` và `develop`.
 - **`hotfix/*`**: Các nhánh sửa lỗi khẩn cấp trực tiếp từ `main` khi có lỗi bảo mật hoặc sập hệ thống trên Production. Sau khi sửa xong sẽ được merge đồng thời vào `main` và `develop`.
+
+---
+
+## 9. Minh chứng công nghệ (Proof of Concept - PoC) và Cấu trúc mã nguồn khung (Skeleton)
+
+### 9.1. Khái niệm và Mục tiêu của Proof of Concept (PoC)
+
+Để giảm thiểu rủi ro kỹ thuật trong pha thiết kế kiến trúc, dự án LDMS phân tách các nhiệm vụ kiểm chứng thành hai loại PoC thực tế:
+1. **PoC Loại 1 (Kiểm chứng tính năng khó nhất):** Xử lý nhận dạng ký tự tiếng Việt bất đồng bộ (FastAPI BackgroundTasks + Tesseract OCR). Đây là lõi nghiệp vụ có rủi ro nghẽn I/O và độ chính xác ngôn ngữ cao nhất.
+2. **PoC Loại 2 (Kiểm chứng tính năng đơn giản nhất nhưng bao quát toàn bộ tech stack):** Luồng đọc sách bảo mật end-to-end. Luồng này kiểm chứng sự phối hợp đồng bộ giữa Frontend (React/Epub.js), Backend (FastAPI Auth & RBAC), Database (PostgreSQL FTS) và Storage (MinIO Signed URL).
+
+---
+
+### 9.2. PoC 1: Xử lý OCR tiếng Việt bất đồng bộ (Hardest Core Feature)
+
+Mục tiêu của PoC này là chứng minh khả năng gọi engine Tesseract OCR để xử lý tệp ảnh scan thô một cách bất đồng bộ thông qua luồng chạy nền của FastAPI, tránh làm tắc nghẽn luồng xử lý request HTTP chính.
+
+#### Mã nguồn Backend PoC 1:
+```python
+import asyncio
+import pytesseract
+from PIL import Image
+from fastapi import FastAPI, BackgroundTasks, UploadFile, File
+
+app = FastAPI()
+
+async def run_ocr_task(file_path: str, document_id: int):
+    print(f"[OCR] Bắt đầu xử lý OCR cho tài liệu #{document_id}")
+    try:
+        # Giả lập xử lý CPU-bound trong ThreadPool để tránh block event loop
+        loop = asyncio.get_running_loop()
+        text = await loop.run_in_executor(
+            None, 
+            lambda: pytesseract.image_to_string(Image.open(file_path), lang="vie")
+        )
+        print(f"[OCR] Hoàn thành OCR cho #{document_id}. Số ký tự trích xuất: {text[:100]}...")
+        # Cập nhật kết quả vào database (giả lập)
+    except Exception as e:
+        print(f"[OCR] Lỗi khi xử lý OCR tài liệu #{document_id}: {str(e)}")
+
+@app.post("/api/poc/ocr/{document_id}")
+async def trigger_ocr(document_id: int, background_tasks: BackgroundTasks):
+    # Trong thực tế, file_path sẽ được lấy sau khi upload lên MinIO thành công
+    temp_file_path = f"/tmp/scan_{document_id}.jpg"
+    
+    # Đẩy tác vụ chạy nền thông qua FastAPI BackgroundTasks
+    background_tasks.add_task(run_ocr_task, temp_file_path, document_id)
+    
+    return {"status": "accepted", "message": "OCR pipeline đã được kích hoạt chạy ngầm."}
+```
+
+---
+
+### 9.3. PoC 2: Đọc sách bảo mật E2E (Secured End-to-End Workflow)
+
+Mục tiêu của PoC này là kiểm chứng sự kết hợp của toàn bộ ngăn xếp công nghệ: Xác thực người dùng $\rightarrow$ Kiểm soát quyền đọc $\rightarrow$ Sinh link ký số bảo mật MinIO giới hạn 15 phút $\rightarrow$ Hiển thị trên trình đọc web Epub.js và chặn hành vi sao chép trái phép.
+
+#### 1. Mã nguồn Backend (FastAPI + MinIO Client):
+```python
+import boto3
+from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+
+app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# Khởi tạo MinIO Client (tương thích AWS S3 API)
+s3_client = boto3.client(
+    's3',
+    endpoint_url='http://localhost:9000',
+    aws_access_key_id='minioadmin',
+    aws_secret_access_key='minioadmin',
+    region_name='us-east-1'
+)
+
+# Hàm dependency giả lập xác thực người dùng từ Google OAuth JWT Token
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    if token == "mock-valid-jwt-token":
+         return {"email": "linh.nguyen@hcmus.edu.vn", "role": "Reader"}
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Token xác thực không hợp lệ."
+    )
+
+@app.get("/api/poc/books/{book_id}/read-link")
+async def get_secured_read_link(book_id: int, current_user: dict = Depends(get_current_user)):
+    # 1. Kiểm tra phân quyền RBAC dựa trên database PostgreSQL
+    has_permission = True # Giả lập kiểm tra RBAC: Sinh viên có quyền đọc sách môn này
+    if not has_permission:
+        raise HTTPException(status_code=403, detail="Bạn không có quyền đọc tài liệu này.")
+    
+    # 2. Sinh đường dẫn ký số Signed URL có thời hạn hiệu lực 15 phút từ MinIO
+    try:
+        signed_url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': 'epub-store', 'Key': f'book_{book_id}.epub'},
+            ExpiresIn=900 # 15 phút = 900 giây
+        )
+        return {"secured_url": signed_url}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Không thể sinh Signed URL: {str(e)}")
+```
+
+#### 2. Mã nguồn Frontend (React + Epub.js + Security Hook):
+```typescript
+import React, { useEffect, useRef } from "react";
+import ePub from "epubjs";
+
+interface ReaderProps {
+  bookId: number;
+  token: string;
+}
+
+export const SecuredWebReader: React.FC<ReaderProps> = ({ bookId, token }) => {
+  const viewerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 1. Gọi API Backend để lấy Signed URL bảo mật
+    fetch(`/api/poc/books/${bookId}/read-link`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.secured_url && viewerRef.current) {
+          // 2. Render sách lên Web Reader bằng Epub.js qua link ký số
+          const book = ePub(data.secured_url);
+          const rendition = book.renderTo(viewerRef.current, {
+            width: "100%",
+            height: "100%",
+            flow: "scrolled-doc"
+          });
+          rendition.display();
+        }
+      });
+
+    // 3. Chặn các hành vi sao chép trái phép để bảo vệ bản quyền DRM
+    const handleContextMenu = (e: MouseEvent) => e.preventDefault(); // Chặn chuột phải
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Chặn Ctrl+C (Copy), Ctrl+P (Print), Ctrl+S (Save)
+      if (e.ctrlKey && (e.key === "c" || e.key === "p" || e.key === "s")) {
+        e.preventDefault();
+        alert("Tính năng sao chép và in ấn tài liệu nội bộ đã bị vô hiệu hóa để bảo vệ bản quyền.");
+      }
+    };
+
+    window.addEventListener("contextmenu", handleContextMenu);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("contextmenu", handleContextMenu);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [bookId, token]);
+
+  return (
+    <div className="reader-container">
+      <div ref={viewerRef} className="epub-viewer" style={{ height: "600px" }} />
+    </div>
+  );
+};
+```
+
+---
+
+### 9.4. Cấu trúc mã nguồn khung (Skeleton Project Layout)
+
+Mã nguồn khung của dự án HCMUS-LDMS được tổ chức theo mô hình Modular Monolith sạch, tách riêng Frontend và Backend trong cùng một repository:
+
+```text
+hcmus-projectmanage--lab/
+├── docker-compose.yml         # Container PostgreSQL & MinIO chạy Docker
+├── .gitignore
+├── backend/                   # SKELETON BACKEND (FastAPI)
+│   ├── requirements.txt       # Dependencies (fastapi, uvicorn, boto3, pytesseract, sqlalchemy)
+│   ├── Dockerfile
+│   └── app/
+│       ├── main.py            # Entry point chính của ứng dụng
+│       ├── core/              # Cấu hình bảo mật JWT, kết nối PostgreSQL, kết nối MinIO
+│       ├── api/               # Router endpoints (auth, documents, ocr, reader)
+│       ├── models/            # SQLAlchemy database models (User, Role, Document, Metadata)
+│       └── services/          # Xử lý nghiệp vụ chính (Background OCR, sinh Signed URL)
+└── frontend/                  # SKELETON FRONTEND (React + TypeScript)
+    ├── package.json           # Dependencies (react, typescript, tailwindcss, epubjs)
+    ├── Dockerfile
+    ├── public/
+    └── src/
+        ├── index.tsx          # Entry point chính của client SPA
+        ├── components/        # Components dùng chung (Layout, Reader, Editor UI)
+        ├── pages/             # Các trang chính (Login, Dashboard, Workspace, Portal)
+        └── services/          # Quản lý gọi API Client (axios client, auth handler)
+```
