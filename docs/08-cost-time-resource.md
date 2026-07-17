@@ -215,7 +215,7 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 | Chỉ số | Cách đo | Mục tiêu |
 | :--- | :--- | :--- |
-| **Throughput (T)** | Số User Story chuyển trạng thái `Done` (đáp ứng đủ DoD) trong mỗi 7 ngày. | ≥ 5 stories/tuần (Must-have ưu tiên trước). |
+| **Throughput (T)** | Số User Story **đã deploy và đáp ứng Acceptance Criteria** trong 1 tuần. Dùng để dự báo: Thời gian còn lại ≈ N (stories chưa Done) / T. | Đo cuối mỗi tuần; dùng khoảng (optimistic–pessimistic) vì độ khó stories không đều. |
 | **Cycle Time** | Thời gian từ lúc kéo card vào *In Progress* đến khi card `Done`. | ≤ 2 ngày (size S), ≤ 3 ngày (size M). |
 | **Forecast còn lại** | Dev weeks ≈ N (story còn lại) / T. | Cập nhật mỗi cuối tuần trong báo cáo Weekly Review. |
 | **Tỷ lệ hoàn thành Backlog** | Số stories Done / Tổng 26 stories × 100%. | 100% Must-have hoàn thành trước tuần 12. |
@@ -266,15 +266,23 @@ Dưới đây là dữ liệu thực tế thu thập được từ 2 ngày phát
 | :--- | ---: | :--- |
 | Stories hoàn thành (Done) | **12 / 26** | LDMS-001, 003, 004, 007, 008, 009, 010, 013, 018, 022, 026 và Reader/Search placeholder. |
 | Tỷ lệ hoàn thành Backlog | **46%** | Gần một nửa backlog trong 2 ngày đầu. |
-| Tổng thời gian dev thực tế | **4 giờ 05 phút** | 3 phiên làm việc của 3 nhóm dev. |
+| Tổng thời gian dev thực tế | **4 giờ 05 phút** | 4 phiên làm việc của 4 dev (Thái và Khoa Ngô ghi chung 1 dòng log). |
 | Tổng token AI đã dùng | **440.000 tokens** | Hỗn hợp Claude Sonnet 5 + Claude Opus 4.8 + Claude Code. |
-| Throughput tuần 1 (T) | **~12 stories / tuần** | Vượt mục tiêu 5 stories/tuần (lưu ý: tuần đầu thường nhanh hơn do stories nền tảng có độ phức tạp thấp). |
+| Throughput tuần 1 (T) | **12 stories / tuần** | Tuần đầu thường nhanh hơn do stories nền tảng (Platform, Identity) có độ phức tạp thấp. |
 
-#### Dự báo tiến độ (Forecast):
+#### Dự báo tiến độ (Velocity-based Forecast):
 
-* **Stories còn lại:** 26 − 12 = **14 stories** (bao gồm 4 Must, 7 Should, 3 Could).
-* **Throughput đo được (T):** ~12 stories/tuần (nhưng giảm ~50% do stories còn lại phức tạp hơn $\rightarrow$ T hiệu chỉnh ≈ 6 stories/tuần).
-* **Thời gian dự kiến hoàn thành:** 14 / 6 ≈ **2.3 tuần** nữa (dự kiến hoàn thành toàn bộ Must-have trước tuần 4).
+Phương pháp: Đếm số stories **đã deploy & đáp ứng Acceptance Criteria** trong 1 tuần (= Throughput T), rồi ước lượng thời gian còn lại = N (stories chưa Done) / T. Vì các stories có độ khó khác nhau, kết quả được trình bày dưới dạng **khoảng thời gian (optimistic – pessimistic)** thay vì một con số chính xác.
+
+* **Stories còn lại:** 26 − 12 = **14 stories** (4 Must, 7 Should, 3 Could).
+* **Throughput đo được (T):** 12 stories/tuần.
+* **Điều chỉnh T cho stories còn lại:**
+  * *Optimistic (T = 8 stories/tuần):* Stories còn lại có một số size S/M quen thuộc, giảm nhẹ so với tuần 1.
+  * *Pessimistic (T = 4 stories/tuần):* Bao gồm các stories phức tạp (Biên tập Split-screen, Trình đọc EPUB bảo mật, OCR pipeline) cần nhiều thời gian hơn.
+* **Thời gian dự kiến hoàn thành:**
+  * *Optimistic:* 14 / 8 ≈ **1.8 tuần** → hoàn thành tuần 3.
+  * *Pessimistic:* 14 / 4 ≈ **3.5 tuần** → hoàn thành tuần 5.
+  * **Khoảng ước lượng: 2–4 tuần** (dự kiến hoàn thành toàn bộ Must-have trước tuần 4, Could-have trước tuần 5).
 
 #### Phân tích chi phí AI thực tế:
 
