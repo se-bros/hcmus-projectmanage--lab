@@ -71,9 +71,22 @@ Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản 
 
 ### 2.1. Hành trình từ "Nỗi đau" vật lý đến rào cản tri thức của Độc giả
 
-Câu chuyện bắt đầu từ hành trình học tập hàng ngày của một sinh viên khoa Công nghệ Thông tin tại cơ sở Linh Trung - Thủ Đức. Để mượn được một cuốn giáo trình chuyên ngành độc bản về Kiến trúc Máy tính, sinh viên này phải bắt tuyến xe buýt 08 di chuyển hơn 15km về cơ sở 1 Quận 5 trong cái nắng gay gắt. Khi đến nơi, cuốn sách giấy duy nhất đã bị rách góc, ố vàng do tuổi thọ hơn 15 năm và độ ẩm cao của kho lưu trữ. Sinh viên chỉ được phép đọc tại chỗ, cấm mang về và cấm photocopy vì lý do bảo vệ bản quyền. Khi cố gắng chụp ảnh lại các trang sách bằng điện thoại để về nhà đọc, các file ảnh tĩnh PDF scan này không thể co giãn chữ (non-responsive), buộc sinh viên phải liên tục zoom to nhỏ trên màn hình điện thoại di động nhỏ hẹp, dẫn đến mỏi mắt và giảm sút hiệu quả tiếp cận tri thức.
+Để thấu hiểu tại sao dự án này là một bước đi sống còn cho sự phát triển của thư viện, hãy cùng phân tích hành trình trải nghiệm thực tế từ hai nhóm người dùng cốt lõi (User Personas): Sinh viên (Độc giả học tập) và Thủ thư (Vận hành hệ thống).
 
-Tại phòng đọc chính Quận 5, các thủ thư cũng đang phải đối mặt với áp lực khổng lồ. Hơn 40% học liệu cốt lõi đang xuống cấp nghiêm trọng. Mỗi lần độc giả mượn trả, thủ thư phải tìm kiếm thủ công trong những kệ sách cũ kỹ bám đầy bụi. Diện tích kho kệ chứa sách giấy đã chiếm trọn 100% không gian thiết kế, khiến thư viện không còn bất kỳ khoảng trống nào để cải tạo thành không gian tự học số (Smart Learning Space) hiện đại phục vụ sinh viên thảo luận nhóm.
+#### Câu chuyện thứ nhất: Persona Độc giả – Trải nghiệm thực tế của sinh viên Nguyễn Văn Linh
+"Tôi là Nguyễn Văn Linh, sinh viên năm cuối khoa Công nghệ Thông tin tại cơ sở Linh Trung - Thủ Đức. Từ góc độ người dùng cuối (End-user), hành trình tiếp cận tài liệu học tập của tôi đang gặp phải những rào cản trải nghiệm (UX Pain Points) cực kỳ lớn:
+
+1. **Rào cản địa lý & lãng phí tài nguyên thời gian:** Để chuẩn bị đề tài tốt nghiệp về *Kiến trúc Máy tính*, tôi buộc phải bắt chuyến xe buýt số 08 di chuyển quãng đường dài hơn 15km dưới thời tiết nắng nóng từ Linh Trung về cơ sở 1 Quận 5 — nơi duy nhất lưu trữ bản cứng độc bản. Cả hành trình đi và về tốn của tôi hơn 3 tiếng đồng hồ chỉ để tiếp cận một cuốn sách.
+2. **Trải nghiệm tài liệu vật lý xuống cấp:** Khi tiếp cận được cuốn sách, tài liệu đã bị rách góc, ố vàng do tuổi thọ hơn 15 năm và không khí ẩm mốc của kho lưu trữ.
+3. **Friction (ma sát) trong chính sách bảo mật cũ:** Vì là tài liệu độc bản, thư viện áp dụng quy chế nghiêm ngặt: chỉ đọc tại chỗ, không cho mang về và cấm photocopy. Tôi phải ngồi cắm cúi chép tay thủ công các sơ đồ mạch và công thức suốt nhiều giờ liền. 
+4. **Nỗi đau về định dạng (Format Pain Point):** Khi tôi cố chụp hình lại các trang sách bằng điện thoại để về nhà nghiên cứu, file ảnh chụp PDF tĩnh hoàn toàn không responsive. Tôi phải liên tục thực hiện thao tác zoom-in, zoom-out và cuộn ngang dọc trên màn hình điện thoại nhỏ hẹp, dẫn đến mỏi mắt và làm giảm sút 80% hiệu suất học tập."
+
+#### Câu chuyện thứ hai: Persona Vận hành – Trải nghiệm thực tế của cô thủ thư Mai
+"Tôi là Mai, cán bộ vận hành thư viện tại cơ sở Quận 5 của HCMUS. Dưới góc độ vận hành hệ thống (Operations), công việc hàng ngày của tôi đang đối mặt với những nút thắt (Bottlenecks) nghiêm trọng về hiệu suất và hạ tầng:
+
+1. **Quá tải không gian vật lý (Physical Storage Bottleneck):** Số lượng giáo trình, tài liệu tăng lên qua từng năm nhưng diện tích kho kệ chứa sách giấy đã chiếm trọn 100% không gian thiết kế của thư viện. Tôi bất lực nhìn kho sách ngày một chật hẹp, không còn bất kỳ không gian trống nào để cải tạo thành không gian tự học số (Smart Learning Space) hiện đại hỗ trợ sinh viên thảo luận nhóm.
+2. **Chi phí cơ hội và thời gian xử lý thủ công (Manual Overhead):** Mỗi khi độc giả có nhu cầu tra cứu, tôi phải di chuyển vào sâu trong kho tối, tìm kiếm thủ công từng cuốn sách giữa hàng ngàn kệ bám đầy bụi. Quy trình mượn trả giấy tờ rườm rà này ngốn của tôi hơn 85% thời gian làm việc, khiến tôi không thể tập trung vào các công việc có giá trị chuyên môn cao hơn như hỗ trợ nghiên cứu hay tối ưu hóa dịch vụ thông tin.
+3. **Rủi ro xuống cấp tài liệu vĩnh viễn:** Với tần suất lật giở liên tục của sinh viên và điều kiện bảo quản nhiệt độ thông thường, tôi lo sợ nhiều tài liệu quý giá, giáo trình độc bản của nhà trường sẽ bị hư hại vĩnh viễn trước khi kịp chuyển giao cho thế hệ sau."
 
 ### 2.2. Sự chuyển mình đột phá qua ý tưởng Scan-to-EPUB tích hợp
 
