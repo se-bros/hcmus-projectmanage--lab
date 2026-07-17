@@ -42,9 +42,10 @@
   - [4.2. Ước lượng chi phí đầu tư ban đầu (CapEx)](#42-ước-lượng-chi-phí-đầu-tư-ban-đầu-capex)
   - [4.3. Ước lượng chi phí vận hành định kỳ (OpEx)](#43-ước-lượng-chi-phí-vận-hành-định-kỳ-opex)
   - [4.4. Mô hình kinh tế tránh chi phí và Điểm hòa vốn](#44-mô-hình-kinh-tế-tránh-chi-phí-và-điểm-hòa-vốn)
-- [5. Lộ trình triển khai cấp cao (High-Level Roadmap)](#5-lộ-trình-triển-khai-cấp-cao-high-level-roadmap)
-- [6. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu](#6-danh-mục-rủi-ro-kinh-doanh-và-biện-pháp-giảm-thiểu)
-- [7. Kết luận và Khuyến nghị hành động](#7-kết-luận-và-khuyến-nghị-hành-động)
+- [5. Phân tích các bên liên quan và Phân vai (Stakeholders & RACI)](#5-phân-tích-các-bên-liên-quan-và-phân-vai-stakeholders--raci)
+- [6. Lộ trình triển khai cấp cao (High-Level Roadmap)](#6-lộ-trình-triển-khai-cấp-cao-high-level-roadmap)
+- [7. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu](#7-danh-mục-rủi-ro-kinh-doanh-và-biện-pháp-giảm-thiểu)
+- [8. Kết luận và Khuyến nghị hành động](#8-kết-luận-và-khuyến-nghị-hành-động)
 
 ---
 
@@ -74,14 +75,16 @@ Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản 
 Để thấu hiểu tại sao dự án này là một bước đi sống còn cho sự phát triển của thư viện, hãy cùng phân tích hành trình trải nghiệm thực tế từ hai nhóm người dùng cốt lõi (User Personas): Sinh viên (Độc giả học tập) và Thủ thư (Vận hành hệ thống).
 
 #### Câu chuyện thứ nhất: Persona Độc giả – Trải nghiệm thực tế của sinh viên Nguyễn Văn Linh
+
 "Tôi là Nguyễn Văn Linh, sinh viên năm cuối khoa Công nghệ Thông tin tại cơ sở Linh Trung - Thủ Đức. Từ góc độ người dùng cuối (End-user), hành trình tiếp cận tài liệu học tập của tôi đang gặp phải những rào cản trải nghiệm (UX Pain Points) cực kỳ lớn:
 
-1. **Rào cản địa lý & lãng phí tài nguyên thời gian:** Để chuẩn bị đề tài tốt nghiệp về *Kiến trúc Máy tính*, tôi buộc phải bắt chuyến xe buýt số 08 di chuyển quãng đường dài hơn 15km dưới thời tiết nắng nóng từ Linh Trung về cơ sở 1 Quận 5 — nơi duy nhất lưu trữ bản cứng độc bản. Cả hành trình đi và về tốn của tôi hơn 3 tiếng đồng hồ chỉ để tiếp cận một cuốn sách.
+1. **Rào cản địa lý & lãng phí tài nguyên thời gian:** Để chuẩn bị đề tài tốt nghiệp về _Kiến trúc Máy tính_, tôi buộc phải bắt chuyến xe buýt số 08 di chuyển quãng đường dài hơn 15km dưới thời tiết nắng nóng từ Linh Trung về cơ sở 1 Quận 5 — nơi duy nhất lưu trữ bản cứng độc bản. Cả hành trình đi và về tốn của tôi hơn 3 tiếng đồng hồ chỉ để tiếp cận một cuốn sách.
 2. **Trải nghiệm tài liệu vật lý xuống cấp:** Khi tiếp cận được cuốn sách, tài liệu đã bị rách góc, ố vàng do tuổi thọ hơn 15 năm và không khí ẩm mốc của kho lưu trữ.
-3. **Friction (ma sát) trong chính sách bảo mật cũ:** Vì là tài liệu độc bản, thư viện áp dụng quy chế nghiêm ngặt: chỉ đọc tại chỗ, không cho mang về và cấm photocopy. Tôi phải ngồi cắm cúi chép tay thủ công các sơ đồ mạch và công thức suốt nhiều giờ liền. 
+3. **Friction (ma sát) trong chính sách bảo mật cũ:** Vì là tài liệu độc bản, thư viện áp dụng quy chế nghiêm ngặt: chỉ đọc tại chỗ, không cho mang về và cấm photocopy. Tôi phải ngồi cắm cúi chép tay thủ công các sơ đồ mạch và công thức suốt nhiều giờ liền.
 4. **Nỗi đau về định dạng (Format Pain Point):** Khi tôi cố chụp hình lại các trang sách bằng điện thoại để về nhà nghiên cứu, file ảnh chụp PDF tĩnh hoàn toàn không responsive. Tôi phải liên tục thực hiện thao tác zoom-in, zoom-out và cuộn ngang dọc trên màn hình điện thoại nhỏ hẹp, dẫn đến mỏi mắt và làm giảm sút 80% hiệu suất học tập."
 
 #### Câu chuyện thứ hai: Persona Vận hành – Trải nghiệm thực tế của cô thủ thư Mai
+
 "Tôi là Mai, cán bộ vận hành thư viện tại cơ sở Quận 5 của HCMUS. Dưới góc độ vận hành hệ thống (Operations), công việc hàng ngày của tôi đang đối mặt với những nút thắt (Bottlenecks) nghiêm trọng về hiệu suất và hạ tầng:
 
 1. **Quá tải không gian vật lý (Physical Storage Bottleneck):** Số lượng giáo trình, tài liệu tăng lên qua từng năm nhưng diện tích kho kệ chứa sách giấy đã chiếm trọn 100% không gian thiết kế của thư viện. Tôi bất lực nhìn kho sách ngày một chật hẹp, không còn bất kỳ không gian trống nào để cải tạo thành không gian tự học số (Smart Learning Space) hiện đại hỗ trợ sinh viên thảo luận nhóm.
@@ -151,7 +154,7 @@ Hệ thống được phát triển theo mô hình **Modular Monolith** nhằm t
 - **Lưu trữ đối tượng:** MinIO Object Storage (On-premise tương thích S3).
 - **Định danh & Xác thực:** Keycloak 24.x liên kết LDAP/Active Directory sẵn có của trường.
 
-### 3.3. Phạm vi loại trừ cấp cao
+### 3.3. Phạm vi loại trừ cấp cao (Out of scope)
 
 - Hệ thống chống đạo văn chuyên sâu (chỉ thiết lập API mở phục vụ tích hợp tương lai).
 - Số hóa các hồ sơ hành chính, học bạ, tài liệu nhân sự của trường.
@@ -193,7 +196,37 @@ Hệ thống được phát triển theo mô hình **Modular Monolith** nhằm t
 - **Mô hình Tránh chi phí (Cost Avoidance):** Tiết kiệm tương đương **20.000.000 VNĐ/năm** nhờ giải phóng mặt bằng kệ sách vật lý tại Quận 5 làm phòng tự học số, tránh được chi phí đầu tư xây dựng kho bãi vật lý mới. Tiết kiệm giờ công lao động thủ thư mượn trả thủ công trị giá **15.000.000 VNĐ/năm**.
 - **Phân tích hòa vốn:** Với mức lợi ích kinh tế gián tiếp quy đổi đạt **20.000.000 VNĐ/năm**, hệ thống dự kiến đạt điểm hòa vốn kinh tế học thuật sau **2.5 đến 3.8 năm** vận hành thực tế.
 
-## 5. Lộ trình triển khai cấp cao (High-Level Roadmap)
+## 5. Phân tích các bên liên quan và Phân vai (Stakeholders & RACI)
+
+Để đảm bảo tính khả thi trong vận hành và triển khai thực tế của dự án **HCMUS-LDMS**, cấu trúc phân vai và trách nhiệm của các bên liên quan được hoạch định rõ ràng như sau:
+
+### 5.1. Stakeholder Register (Danh sách các bên liên quan)
+
+* **Sponsor (Nhà tài trợ):** Ban Giám hiệu HCMUS. Vai trò: Phê duyệt chủ trương, cấp ngân sách (CapEx/OpEx) theo từng giai đoạn và định hướng chiến lược chuyển đổi số của nhà trường.
+* **Client (Chủ trì nghiệp vụ):** Ban Giám đốc Thư viện HCMUS. Vai trò: Quản lý quy trình duyệt xuất bản, kiểm soát chất lượng dữ liệu OCR/EPUB, tổ chức đội ngũ sinh viên CTV số hóa và vận hành cổng thông tin sau go-live.
+* **Client (Chủ trì kỹ thuật):** Phòng Công nghệ Thông tin. Vai trò: Thiết lập hạ tầng ảo hóa VMware, cài đặt và tùy biến phần mềm lõi (React/FastAPI/PostgreSQL/MinIO), tích hợp Keycloak SSO và quản lý chỉ mục Elasticsearch.
+* **Cố vấn Pháp lý:** Bộ phận Pháp chế & Lưu trữ của trường. Vai trò: Thẩm định quy chế bản quyền số hóa nội bộ và phê duyệt điều khoản consent (đồng ý nộp và chia sẻ tài liệu số).
+* **Độc giả (Người dùng cuối):** Sinh viên và Giảng viên trường. Vai trò: Người trực tiếp nộp tài liệu (đối với sách/giáo trình mới đóng góp) và sử dụng hệ thống tra cứu, đọc sách trực tuyến.
+
+### 5.2. Ma trận Trách nhiệm (RACI Matrix)
+
+* **R** (Responsible): Bộ phận thực hiện công việc.
+* **A** (Accountable): Bộ phận chịu trách nhiệm cuối cùng (Mỗi gói công việc chỉ có duy nhất một đơn vị Accountable).
+* **C** (Consulted): Bộ phận được tham vấn ý kiến trước khi thực hiện.
+* **I** (Informed): Bộ phận được thông báo kết quả sau khi hoàn thành.
+
+| Gói công việc WBS | Thư viện | Phòng CNTT | Giáo vụ Khoa | Bộ phận Pháp chế | Ban Giám hiệu | Độc giả |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **WP1 — Khảo sát & Bản quyền** | **A** / R | R | C | C | I | - |
+| **WP2 — Thiết lập Backend & DB** | C | **A** / R | - | - | I | - |
+| **WP3 — Phát triển UI & OCR/EPUB** | C | **A** / R | - | - | I | C |
+| **WP4 — Số hóa tài liệu** | **A** / R | C | C | C | I | - |
+| **WP5 — Kiểm thử & UAT** | R | **A** / R | - | - | I | C |
+| **WP6 — Triển khai & Vận hành** | **A** / R | R | C | - | I | I |
+
+---
+
+## 6. Lộ trình triển khai cấp cao (High-Level Roadmap)
 
 Dự án kéo dài **20 tuần** và chia thành 4 giai đoạn lớn kết hợp kiểm soát cổng (Gating Checkpoints):
 
@@ -202,7 +235,9 @@ Dự án kéo dài **20 tuần** và chia thành 4 giai đoạn lớn kết hợ
 - **Giai đoạn 2 — Số hóa Diện rộng (Tuần 13–18):** Chuyển giao công nghệ cho thư viện, tuyển sinh viên CTV và tiến hành số hóa hàng loạt 2.000 giáo trình cốt lõi tiếp theo.
 - **Giai đoạn 3 — Nghiệm thu & Chuyển giao (Tuần 19–20):** Kiểm thử nghiệm thu (UAT), pentest bảo mật, đào tạo thủ thư và chính thức go-live toàn trường.
 
-## 6. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu
+---
+
+## 7. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu
 
 | Nhóm rủi ro          | Chi tiết rủi ro                                                            | Mức độ         | Biện pháp giảm thiểu                                                                                    | Risk Owner                    |
 | :------------------- | :------------------------------------------------------------------------- | :------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------- |
@@ -211,7 +246,7 @@ Dự án kéo dài **20 tuần** và chia thành 4 giai đoạn lớn kết hợ
 | **Rò rỉ tài liệu**   | Sinh viên dùng công cụ cào web lấy file EPUB gốc phát tán bên ngoài.       | **Trung bình** | • Dùng Signed URL MinIO hạn dùng 15 phút.<br>• Chặn copy, chuột phải, chia nhỏ file EPUB.               | **Phòng Công nghệ Thông tin** |
 | **Quá tải nhân sự**  | Đội ngũ kỹ sư kiêm nhiệm 50% bị quá tải công việc trường phát sinh.        | **Trung bình** | • PM ký cam kết phân bổ thời gian làm việc chính thức.<br>• Sử dụng Docker để tối ưu hóa khâu deploy.   | **Phòng Công nghệ Thông tin** |
 
-## 7. Kết luận và Khuyến nghị hành động
+## 8. Kết luận và Khuyến nghị hành động
 
 ### 7.1. Kết luận
 
