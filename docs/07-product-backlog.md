@@ -46,7 +46,7 @@
 
 ### 1.1. Quy tắc Kanban và Forecast
 
-Nhóm phát triển áp dụng **Kanban**: làm **từng card backlog** (WIP = 1 card / người), gom theo **module** (M0–M8, xem `06-architecture.md`).
+Nhóm phát triển áp dụng **Kanban**: làm **từng card backlog** (WIP = 1 card / người), gom theo **module** (M0–M8, xem [06-architecture.md](06-architecture.md)).
 
 **Definition of Ready (DoR):** Card chỉ được kéo vào _In Progress_ khi có ID, AC rõ ràng, `depends_on` đã Done (nếu có), size S hoặc M (≤ 2 ngày). Card quá to phải tách trước.
 
@@ -80,7 +80,7 @@ Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **Mo
 
 **Module:** M0 Platform · M1 Documents & Storage · M2 OCR · M3 Editor · M4 Metadata · M5 Publish EPUB · M6 Reader · M7 Search · M8 Identity.
 
-**Lưu ý tech stack (so với `06-architecture.md`):**
+**Lưu ý tech stack (so với [06-architecture.md](06-architecture.md)):**
 
 - **Auth MVP:** Mock JWT → Google OAuth 2.0 (thay Keycloak, không cần self-host).
 - **Search MVP:** PostgreSQL Full-Text Search (thay Elasticsearch, không cần service riêng).
@@ -431,4 +431,4 @@ Mục tiêu: _Tags, highlight, citation, search nâng cao._
 
 ---
 
-_Hết Product Backlog. Architecture & design: `docs/06-architecture.md`._
+_Hết Product Backlog. Architecture & design: [06-architecture.md](06-architecture.md)._

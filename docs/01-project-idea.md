@@ -28,7 +28,7 @@
 
 ## Mục lục
 
-- [1. Tên ý tưởng và Tóm tắt tổng quan](#1-tên-ý-tưởng-và-tóm-tắt-tóm-tắt-tổng-quan)
+- [1. Tên ý tưởng và Tóm tắt tổng quan](#1-tên-ý-tưởng-và-tóm-tắt-tổng-quan)
 - [2. Nguồn gốc hình thành ý tưởng (Origin)](#2-nguồn-gốc-hình-thành-ý-tưởng-origin)
 - [3. Vấn đề thực trạng và Cơ hội giải quyết](#3-vấn-đề-thực-trạng-và-cơ-hội-giải-quyết)
   - [3.1. Thực trạng và Vấn đề](#31-thực-trạng-và-vấn-đề)
@@ -36,7 +36,7 @@
 - [4. Đối tượng hưởng lợi dự kiến](#4-đối-tượng-hưởng-lợi-dự-kiến)
 - [5. Giá trị cốt lõi (Core Value Proposition)](#5-giá-trị-cốt-lõi-core-value-proposition)
   - [5.1. Lợi thế cạnh tranh bền vững sơ bộ (Preliminary MOAT Analysis)](#51-lợi-thế-cạnh-tranh-bền-vững-sơ-bộ-preliminary-moat-analysis)
-- [6. Các giả định quan trọng và Ràng buộc khả thi (Assumptions & Constraints)](#6-các-giả-định-quan-trọng-và-ràng-buộc-khả-thi-assumptions--constraints)
+- [6. Các giả định quan trọng và Ràng buộc khả thi](#6-các-giả-định-quan-trọng-và-ràng-buộc-khả-thi)
 - [7. Mức độ ưu tiên và Khẩn cấp sơ bộ](#7-mức-độ-ưu-tiên-và-khẩn-cấp-sơ-bộ)
 - [8. Các bước tiếp theo đề xuất (Next Steps)](#8-các-bước-tiếp-theo-đề-xuất-next-steps)
 
@@ -97,7 +97,7 @@ Ngoài giá trị cốt lõi, HCMUS-LDMS sở hữu **5 lợi thế cạnh tranh
 
 > **Ghi chú:** Phân tích MOAT chi tiết với đánh giá mức độ phòng thủ, chiến lược gia cố và so sánh đối chuẩn được trình bày đầy đủ trong tài liệu **Đề xuất Dự án (Project Proposal)**, mục 2.4.
 
-## 6. Các giả định quan trọng và Ràng buộc khả thi (Assumptions & Constraints)
+## 6. Các giả định quan trọng và Ràng buộc khả thi
 
 1. **Pháp lý (Legal):** Thẩm định việc số hóa tài liệu học tập phục vụ nội bộ nhà trường có hoàn toàn tuân thủ Khoản 1 Điều 25 Luật Sở hữu trí tuệ Việt Nam hiện hành hay không.
 2. **Kỹ thuật và Khả thi Công nghệ (Technical Feasibility):** Nhóm kỹ sư CNTT của trường đủ năng lực làm chủ các công nghệ mã nguồn mở phổ biến (React, FastAPI, PostgreSQL, MinIO, Google OAuth 2.0), có tài liệu phát triển phong phú. Giả định độ chính xác nhận dạng của Tesseract OCR đối với sách in cũ đạt tối thiểu 85% để tránh làm quá tải thời gian sửa lỗi thủ công của biên tập viên.

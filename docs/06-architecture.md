@@ -239,7 +239,7 @@ Hệ thống HCMUS-LDMS được thiết kế theo mô hình **Modular Monolith*
 | **Triển khai**      | Docker & Docker Compose |    24.0+    | Đóng gói toàn bộ các service thành container độc lập giúp dễ dàng phân phối và vận hành trên VMware.                                                |
 | **Công cụ Sao lưu** | PgBackRest & Restic     |     2.x     | PgBackRest tự động backup gia tăng PostgreSQL hàng ngày. Restic mã hóa và sao lưu MinIO bucket sang máy chủ dự phòng off-site.                      |
 
-### 4.3. Sơ đồ bối cảnh hệ thống (C4 Context Diagram)
+### 4.3 Sơ đồ bối cảnh hệ thống (C4 Context Diagram)
 
 **Ý nghĩa và lý do cần sơ đồ này:**
 Sơ đồ bối cảnh (System Context Diagram) là mức cao nhất của mô hình C4 (Mức 1). Nó chỉ rõ vị trí của hệ thống HCMUS-LDMS trong môi trường nghiệp vụ thư viện, làm rõ các tác nhân bên ngoài tương tác trực tiếp (Độc giả, Thủ thư, Quản trị viên) và hệ thống xác thực bên ngoài (Google OAuth 2.0), giúp người đọc có cái nhìn tổng quan đầu tiên về ranh giới hệ thống.
@@ -264,7 +264,7 @@ Rel(ldms, google_auth, "Xác thực danh tính người dùng")
 @enduml
 ```
 
-### 4.4. Giải thích các thành phần Kiến trúc logic chi tiết
+### 4.4 Giải thích các thành phần Kiến trúc logic chi tiết
 
 Để làm rõ cấu trúc bên trong các sơ đồ container, dưới đây là chi tiết vai trò, nhiệm vụ và lý do cần thiết của từng thành phần con trong hệ thống:
 
@@ -301,7 +301,7 @@ Rel(ldms, google_auth, "Xác thực danh tính người dùng")
   - _Nhiệm vụ:_ Định nghĩa cấu trúc các bảng dữ liệu trong PostgreSQL (như `Document`, `User`, `ScanPage`, `Category`, `Tag`).
   - _Tại sao cần:_ Khớp nối cấu trúc thực thể trong code với lược đồ vật lý của CSDL.
 
-### 4.3 Sơ đồ kiến trúc Container (C4 Container Diagram)
+### 4.5 Sơ đồ kiến trúc Container (C4 Container Diagram)
 
 **Ý nghĩa và lý do cần sơ đồ này:**
 Sơ đồ Container C4 cung cấp cái nhìn tổng quan về cấu trúc các thành phần phần mềm (container) độc lập trong hệ thống, chỉ rõ công nghệ được sử dụng (React, FastAPI, PostgreSQL, MinIO) và cách chúng giao tiếp với nhau. Sơ đồ này giúp các lập trình viên và quản trị viên hệ thống hiểu rõ ranh giới của từng dịch vụ, cách thức luồng dữ liệu đi qua reverse proxy Nginx và phân tách trách nhiệm giữa luồng API đồng bộ và tiến trình nền FastAPI BackgroundTasks.
@@ -363,7 +363,7 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 @enduml
 ```
 
-### 4.7. Chi tiết các luồng nghiệp vụ cốt lõi
+### 4.7 Chi tiết các luồng nghiệp vụ cốt lõi
 
 
 #### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
@@ -488,7 +488,7 @@ Rel(backend, minio, "Đọc/Ghi dữ liệu tệp", "S3 API / Port 9000")
 
 ---
 
-### 7.3. Lý do lựa chọn cấu trúc thư mục & Phân tích phản biện (Design Rationale & Refutation)
+### 7.3 Lý do lựa chọn cấu trúc thư mục & Phân tích phản biện
 
 Để bảo vệ thiết kế cấu trúc thư mục thực thi của dự án trước các phương án thay thế, dưới đây là chi tiết phân tích phản biện:
 

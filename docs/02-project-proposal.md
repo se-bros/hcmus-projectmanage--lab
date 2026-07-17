@@ -115,7 +115,7 @@ Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản 
 
 ### 2.4. Phân tích Lợi thế cạnh tranh bền vững (MOAT Analysis)
 
-Mục này phân tích chi tiết 5 yếu tố MOAT đã được nêu sơ bộ trong tài liệu Ý tưởng Dự án (Project Idea, mục 5.1), nhằm chứng minh hệ thống HCMUS-LDMS sở hữu các lợi thế cạnh tranh bền vững khiến giải pháp thay thế rất khó sao chép hoặc cạnh tranh trực tiếp.
+Mục này phân tích chi tiết 5 yếu tố MOAT đã được nêu sơ bộ trong tài liệu [Ý tưởng Dự án (Project Idea, mục 5.1)](01-project-idea.md), nhằm chứng minh hệ thống HCMUS-LDMS sở hữu các lợi thế cạnh tranh bền vững khiến giải pháp thay thế rất khó sao chép hoặc cạnh tranh trực tiếp.
 
 #### 2.4.1. Bảng tổng hợp MOAT
 
@@ -156,7 +156,7 @@ Hệ thống được phát triển theo mô hình **Modular Monolith** nhằm t
 - **Lưu trữ đối tượng:** MinIO Object Storage (On-premise tương thích S3).
 - **Định danh & Xác thực:** Google OAuth 2.0 / Mock Auth (roadmap: Keycloak OIDC liên kết LDAP/Active Directory của trường).
 
-### 3.3. Phạm vi loại trừ cấp cao (Out of scope)
+### 3.3. Phạm vi loại trừ cấp cao
 
 - Hệ thống chống đạo văn chuyên sâu (chỉ thiết lập API mở phục vụ tích hợp tương lai).
 - Số hóa các hồ sơ hành chính, học bạ, tài liệu nhân sự của trường.
@@ -250,11 +250,11 @@ Dự án kéo dài **20 tuần** và chia thành 4 giai đoạn lớn kết hợ
 
 ## 8. Kết luận và Khuyến nghị hành động
 
-### 7.1. Kết luận
+### 8.1. Kết luận
 
 Hệ thống **HCMUS-LDMS** giải quyết trực tiếp nhu cầu cấp thiết về học liệu số và giải phóng diện tích thư viện. Việc tự xây dựng hệ thống custom giúp trường làm chủ công nghệ vĩnh viễn, dễ dàng tích hợp hạ tầng định danh Google OAuth 2.0 sẵn có và tiết kiệm chi phí bản quyền khổng lồ so với mua phần mềm thương mại.
 
-### 7.2. Khuyến nghị hành động
+### 8.2. Khuyến nghị hành động
 
 1. Phê duyệt chủ trương triển khai và cấp ngân sách ban đầu thực hiện **Giai đoạn 0 (Khảo sát)**.
 2. Thông qua phương án triển khai **thí điểm cuốn chiếu MVP** để kiểm chứng hiệu quả thực tế trước khi đầu tư số hóa diện rộng.
