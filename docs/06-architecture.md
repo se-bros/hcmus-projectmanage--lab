@@ -57,7 +57,7 @@
 - [9. Minh chứng công nghệ (Proof of Concept - PoC) và Cấu trúc mã nguồn khung (Skeleton)](#9-minh-chứng-công-nghệ-proof-of-concept---poc-và-cấu-trúc-mã-nguồn-khung-skeleton)
   - [9.1 Khái niệm và Mục tiêu của Proof of Concept (PoC)](#91-khái-niệm-và-mục-tiêu-của-proof-of-concept-poc)
   - [9.2 PoC 1: Kiến trúc luồng xử lý OCR tiếng Việt bất đồng bộ (Hardest Core Feature)](#92-poc-1-kiến-trúc-luồng-xử-lý-ocr-tiếng-việt-bất-đồng-bộ-hardest-core-feature)
-  - [9.3 PoC 2: Tích hợp luồng đọc sách bảo mật E2E (Secured End-to-End Workflow)](#93-poc-2-tích-hợp-luồng-đọc-sách-bảo-mật-e2e-secured-end-to-end-workflow)
+  - [9.3 PoC 2: Kiểm chứng tích hợp liên thông Tech Stack E2E (End-to-End Integration Flow)](#93-poc-2-kiểm-chứng-tích-hợp-liên-thông-tech-stack-e2e-end-to-end-integration-flow)
   - [9.4 Cấu trúc mã nguồn khung (Skeleton Project Layout)](#94-cấu-trúc-mã-nguồn-khung-skeleton-project-layout)
 
 ---
@@ -568,7 +568,9 @@ Mục tiêu kiểm chứng: Xác nhận khả năng tích hợp thư viện bọ
 
 ### 9.3. PoC 2: Kiểm chứng tích hợp liên thông Tech Stack E2E (End-to-End Integration Flow)
 
-Mục tiêu kiểm chứng: Đảm bảo toàn bộ ngăn xếp công nghệ kết nối đồng bộ và truyền nhận dữ liệu thông suốt giữa tất cả thành phần: client gọi API (React) $\rightarrow$ xác thực phiên làm việc (Google OAuth 2.0 / Mock Auth) $\rightarrow$ truy vấn thông tin (PostgreSQL Database) $\rightarrow$ kết nối và lấy tệp tin vật lý (MinIO Storage) $\rightarrow$ render hiển thị trên giao diện (Epub.js).
+**Kịch bản kiểm chứng thực tế:** Sinh viên nhấn nút "Đọc sách" trực tuyến trên giao diện Web Portal.
+
+**Mục tiêu kiểm chứng:** Đảm bảo toàn bộ ngăn xếp công nghệ kết nối đồng bộ và truyền nhận dữ liệu thông suốt giữa tất cả thành phần: client gọi API (React) $\rightarrow$ xác thực phiên làm việc (Google OAuth 2.0 / Mock Auth) $\rightarrow$ truy vấn thông tin (PostgreSQL Database) $\rightarrow$ kết nối và lấy tệp tin vật lý (MinIO Storage) $\rightarrow$ render hiển thị trên giao diện (Epub.js).
 
 #### Nguyên lý vận hành tích hợp của ngăn xếp công nghệ:
 1. **Xác thực định danh người dùng (Auth Integration):**
