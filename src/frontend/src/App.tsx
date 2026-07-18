@@ -7,6 +7,8 @@ import { DocumentViewerPage } from './pages/DocumentViewerPage'
 import { UploadPage } from './pages/UploadPage'
 import { LoginPage } from './pages/LoginPage'
 import { AuthCallbackPage } from './pages/AuthCallbackPage'
+import ReaderPage from './pages/ReaderPage'
+import SearchPage from './pages/SearchPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
 
 function AuthNavItem() {
@@ -50,6 +52,7 @@ function App() {
           </NavLink>
           <NavLink to="/dashboard">Dashboard OCR</NavLink>
           <NavLink to="/documents">Tài liệu</NavLink>
+          <NavLink to="/search">Tìm kiếm</NavLink>
           <NavLink to="/categories">Category</NavLink>
           <AuthNavItem />
         </nav>
@@ -60,6 +63,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/documents" element={<DocumentsPage />} />
         <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+        <Route path="/reader/:documentId" element={<ReaderPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/auth/callback" element={<AuthCallbackPage />} />

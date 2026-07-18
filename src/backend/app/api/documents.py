@@ -8,11 +8,15 @@ from fastapi import APIRouter, BackgroundTasks, Depends, File, UploadFile, statu
 from fastapi.responses import StreamingResponse
 
 from app.api.dependencies import DbSession
-from app.core.exceptions import UnauthorizedError
 from app.core.security import AuthenticatedUser, get_optional_user, require_roles
 from app.models.document import Document
 from app.schemas.document import DocumentDetail, DocumentUploadResponse
-from app.services.document_service import get_document, open_document_source, upload_document
+from app.services.document_service import (
+    ensure_readable,
+    get_document,
+    open_document_source,
+    upload_document,
+)
 from app.workers.ocr import run_ocr_job
 
 router = APIRouter(prefix="/documents", tags=["documents"])
@@ -34,19 +38,13 @@ def create_document(
     return DocumentUploadResponse(document_id=document.id)
 
 
-def _ensure_readable(document: Document, user: AuthenticatedUser | None) -> Document:
-    if not document.is_public and user is None:
-        raise UnauthorizedError("Authentication required to access this document.")
-    return document
-
-
 @router.get("/{document_id}", response_model=DocumentDetail)
 def read_document(
     document_id: uuid.UUID,
     db: DbSession,
     user: Annotated[AuthenticatedUser | None, Depends(get_optional_user)],
 ) -> Document:
-    return _ensure_readable(get_document(db, document_id), user)
+    return ensure_readable(get_document(db, document_id), user)
 
 
 @router.get("/{document_id}/source")
@@ -55,7 +53,7 @@ def read_document_source(
     db: DbSession,
     user: Annotated[AuthenticatedUser | None, Depends(get_optional_user)],
 ) -> StreamingResponse:
-    _ensure_readable(get_document(db, document_id), user)
+    ensure_readable(get_document(db, document_id), user)
     document, source = open_document_source(db, document_id)
     filename = quote(document.original_filename)
     return StreamingResponse(

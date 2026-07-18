@@ -8,7 +8,8 @@ from fastapi import UploadFile
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.core.exceptions import NotFoundError, ValidationError
+from app.core.exceptions import NotFoundError, UnauthorizedError, ValidationError
+from app.core.security import AuthenticatedUser
 from app.core.storage import minio_client
 from app.models.document import Document
 from app.models.ocr_job import OcrJob
@@ -104,6 +105,12 @@ def get_document(db: Session, document_id: uuid.UUID) -> Document:
     document = DocumentRepository(db).get(document_id)
     if document is None:
         raise NotFoundError("Document not found.")
+    return document
+
+
+def ensure_readable(document: Document, user: AuthenticatedUser | None) -> Document:
+    if not document.is_public and user is None:
+        raise UnauthorizedError("Authentication required to access this document.")
     return document
 
 

@@ -70,9 +70,7 @@ def test_missing_document_or_page_returns_clear_404(api_context) -> None:
     assert missing_page.status_code == 404
     assert missing_page.json() == {"detail": "Page not found."}
     assert (
-        client.put(
-            f"/documents/{document_id}/pages/99", json={"text_content": "text"}
-        ).status_code
+        client.put(f"/documents/{document_id}/pages/99", json={"text_content": "text"}).status_code
         == 404
     )
 

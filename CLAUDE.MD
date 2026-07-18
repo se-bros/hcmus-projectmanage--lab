@@ -108,6 +108,16 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## Golden Rule
 
+**Run lint before commit**: Please run below command to format before commit code
+
+```
+cd src/backend
+uv run ruff format
+
+cd src/frontend
+npm run lint
+```
+
 **Always prefix commands with `rtk`**. If RTK has a dedicated filter, it uses it. If not, it passes through unchanged. This means RTK is always safe to use.
 
 **Important**: Even in command chains with `&&`, use `rtk`:

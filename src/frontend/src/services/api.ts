@@ -167,6 +167,46 @@ export function updatePageText(
   })
 }
 
+export type ReaderContent = {
+  document_id: string
+  title: string
+  author: string | null
+  epub_url: string
+  expires_in: number
+}
+
+export function getReaderContent(documentId: string): Promise<ReaderContent> {
+  return request(`/documents/${documentId}/reader`)
+}
+
+export type SearchResult = {
+  document_id: string
+  title: string
+  snippet: string
+}
+
+export function searchDocuments(query: string): Promise<SearchResult[]> {
+  return request(`/search?q=${encodeURIComponent(query)}`)
+}
+
+export type Bookmark = {
+  document_id: string
+  location: string
+  updated_at: string
+}
+
+export function getBookmark(documentId: string): Promise<Bookmark> {
+  return request(`/documents/${documentId}/bookmark`)
+}
+
+export function saveBookmark(documentId: string, location: string): Promise<Bookmark> {
+  return request(`/documents/${documentId}/bookmark`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location }),
+  })
+}
+
 export function getDocumentSourceUrl(documentId: string): string {
   return `${API_BASE}/documents/${documentId}/source`
 }

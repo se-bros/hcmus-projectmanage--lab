@@ -47,6 +47,16 @@ is not required — speed takes priority.
 Rationale: Automated gates matter for code that will live long-term, but
 shouldn't be forced onto scaffold code that will be replaced within days.
 
+**CI enforcement note:** `.github/workflows/ci.yml` runs on every PR
+targeting `main`/`develop` (backend: `ruff format --check`, `ruff check`,
+`pytest`; frontend: `npm run lint`, `npm run build`, `npm test`). CI does
+not distinguish scaffolding from officially-picked stories — it gates the
+PR either way. So in practice, once scaffolding work is opened as a PR
+into `develop` (not just pushed to a feature branch), it must already be
+lint-clean and must not break existing tests, even if full AC/DoD isn't
+done yet. The "not required" exemption applies to in-progress feature
+branches before a PR is opened, not to the PR/merge step itself.
+
 ### IV. File Security Is Non-Negotiable Even During MVP
 
 Original scanned files and EPUB files must never be exposed via
@@ -105,4 +115,4 @@ tech stack.
 Versioning: MAJOR (backward-incompatible principle changes/removals) ·
 MINOR (new principle/section) · PATCH (wording clarifications).
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-16 | **Last Amended**: 2026-07-16
+**Version**: 1.2.0 | **Ratified**: 2026-07-16 | **Last Amended**: 2026-07-17

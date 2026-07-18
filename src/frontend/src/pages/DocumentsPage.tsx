@@ -159,7 +159,11 @@ export function DocumentsPage() {
           {visibleItems.map((item) => (
             <Link
               className="document-card"
-              to={`/documents/${item.document_id}`}
+              to={
+                item.document_status === 'published'
+                  ? `/reader/${item.document_id}`
+                  : `/documents/${item.document_id}`
+              }
               key={item.document_id}
             >
               <DocumentThumbnail item={item} />

@@ -264,6 +264,21 @@ FTS thay Elasticsearch (`docs/07-product-backlog.md`). Roadmap khi triển khai 
 PgBackRest (incremental + AES-256) và Restic (encrypted off-site sync), xem
 `docs/06-architecture.md` §5.2.
 
+## Bảo mật đọc sách (LDMS-014)
+
+File EPUB thành phẩm **không** được phục vụ qua URL công khai/trực tiếp. Khi độc giả mở Reader,
+backend kiểm tra RBAC (`is_public` hoặc token hợp lệ) rồi mới sinh một **MinIO Signed URL** có hiệu
+lực **15 phút** (`GET /documents/{id}/reader`, xem `app/services/reader_service.py`). Trình đọc
+Epub.js dùng URL tạm thời này để tải nội dung; UI không có nút tải file EPUB gốc.
+
+**Rủi ro tồn dư (residual risk)** — không thể loại bỏ hoàn toàn bằng kỹ thuật, chấp nhận ở phạm vi MVP:
+
+- Trong 15 phút hiệu lực, người dùng có thể lấy Signed URL từ tab Network của DevTools và tải file.
+- Người dùng luôn có thể chụp màn hình từng trang đang hiển thị.
+
+Đây là cơ chế **giảm rủi ro**, không phải chống sao chép tuyệt đối — đúng tinh thần
+`docs/06-architecture.md` §5.1.
+
 ## Tài liệu liên quan
 
 - `docs/07-product-backlog.md` — backlog & AC
