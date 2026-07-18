@@ -49,8 +49,6 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_constraint(
-        "fk_documents_category_id_categories", "documents", type_="foreignkey"
-    )
+    op.drop_constraint("fk_documents_category_id_categories", "documents", type_="foreignkey")
     op.drop_index(op.f("ix_categories_parent_id"), table_name="categories")
     op.drop_table("categories")
