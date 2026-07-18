@@ -14,17 +14,36 @@ class DocumentSummary(BaseModel):
     created_at: date
 
 
-class DocumentContent(BaseModel):
-    """Fixture-backed placeholder for LDMS-008 reader — see app/fixtures/documents.py."""
+class ReaderContent(BaseModel):
+    """LDMS-008/014 — EPUB served via a time-limited MinIO Signed URL."""
 
-    document_id: str
-    text: str
+    document_id: uuid.UUID
+    title: str
+    author: str | None
+    epub_url: str
+    expires_in: int
+
+
+class BookmarkDetail(BaseModel):
+    document_id: uuid.UUID
+    location: str
+    updated_at: datetime
+
+
+class BookmarkUpdate(BaseModel):
+    location: str
+
+    @field_validator("location")
+    @classmethod
+    def required_text(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("must not be empty")
+        return value
 
 
 class SearchResult(BaseModel):
-    """Fixture-backed placeholder for LDMS-015/016 search — see app/fixtures/documents.py."""
-
-    document_id: str
+    document_id: uuid.UUID
     title: str
     snippet: str
 
