@@ -45,18 +45,45 @@ def authenticate_local_user(db: Session, email: str, password: str) -> User:
     return user
 
 
-def find_or_create_google_user(db: Session, email: str) -> User:
+def find_or_create_google_user(db: Session, email: str, name: str | None = None) -> User:
     user = db.scalar(select(User).where(User.email == email))
     if user is not None:
         return user
     user = User(
         id=uuid.uuid4(),
         email=email,
+        username=name,
         password_hash=None,
         role=DEFAULT_ROLE,
         auth_provider="google",
     )
     db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+
+def get_user_by_id(db: Session, user_id: str) -> User | None:
+    try:
+        return db.get(User, uuid.UUID(user_id))
+    except ValueError:
+        return None
+
+
+def update_profile(db: Session, user: User, username: str | None) -> User:
+    user.username = username
+    db.commit()
+    db.refresh(user)
+    return user
+
+
+def change_password(
+    db: Session, user: User, current_password: str | None, new_password: str
+) -> User:
+    if user.password_hash is not None:
+        if current_password is None or not verify_password(current_password, user.password_hash):
+            raise UnauthorizedError("Current password is incorrect.")
+    user.password_hash = hash_password(new_password)
     db.commit()
     db.refresh(user)
     return user

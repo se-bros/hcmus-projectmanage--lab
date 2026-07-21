@@ -24,6 +24,7 @@ _pending_states: dict[str, float] = {}
 class GoogleUser:
     sub: str
     email: str
+    name: str | None = None
 
 
 def _new_client() -> OAuth2Client:
@@ -57,4 +58,6 @@ def exchange_code_for_user(code: str, state: str | None) -> GoogleUser:
     payload = response.json()
     email = payload.get("email", "")
     check_allowed_domain(email)
-    return GoogleUser(sub=payload.get("sub", str(uuid.uuid4())), email=email)
+    return GoogleUser(
+        sub=payload.get("sub", str(uuid.uuid4())), email=email, name=payload.get("name")
+    )

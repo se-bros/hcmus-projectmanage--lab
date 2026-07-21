@@ -23,3 +23,21 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: str
     password: str
+
+
+class UserProfile(BaseModel):
+    id: str
+    email: str | None
+    username: str | None
+    role: Role
+    auth_provider: str
+    has_password: bool
+
+
+class UpdateProfileRequest(BaseModel):
+    username: str | None = Field(default=None, max_length=255)
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str | None = None
+    new_password: str = Field(min_length=8, max_length=72)

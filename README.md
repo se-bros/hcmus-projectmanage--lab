@@ -225,6 +225,24 @@ ngược lại), hệ thống dùng lại đúng identity/role cũ — không t�
 **Bảo mật:** `GOOGLE_CLIENT_SECRET`/`JWT_SECRET` chỉ đọc từ `.env` (gitignored),
 không hardcode trong repo.
 
+### Hồ sơ cá nhân & Yêu cầu nâng quyền
+
+`GET /auth/me` trả profile (`email`, `username`, `role`, `auth_provider`,
+`has_password`); `PATCH /auth/me` đổi `username`; `POST /auth/change-password`
+đổi mật khẩu (`current_password` bắt buộc nếu tài khoản đã có mật khẩu —
+tài khoản Google-only chưa có mật khẩu thì bỏ qua field này). Tài khoản đăng
+nhập qua `/auth/dev-token` (mock) không có bản ghi `users` thật nên `GET
+/auth/me` trả profile "tổng hợp" từ JWT (`username = null`, `has_password =
+false`), còn `PATCH /auth/me`/`change-password` trả `404`.
+
+`POST /role-requests` cho phép role `reader` gửi yêu cầu nâng lên `editor`
+(chặn nếu đã có request `pending`). `GET /role-requests/me` xem request gần
+nhất của chính mình. `GET /role-requests` (admin) liệt kê tất cả; `POST
+/role-requests/{id}/approve` hoặc `.../decline` (admin) quyết định — approve
+sẽ cập nhật `role` của user đó ngay trong DB, nhưng JWT cũ của họ vẫn giữ role
+cũ cho tới lần đăng nhập kế tiếp (giới hạn cố hữu của JWT stateless, giống
+hành vi role Google hiện tại).
+
 ## Cấu trúc thư mục
 
 ```

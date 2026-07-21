@@ -157,6 +157,7 @@ def test_google_callback_issues_jwt_with_reader_role_for_new_user(api_context, m
     class FakeUser:
         sub = "google-789"
         email = "student@hcmus.edu.vn"
+        name = "Student Name"
 
     monkeypatch.setattr(auth_router, "exchange_code_for_user", lambda code, state: FakeUser())
 
@@ -170,6 +171,9 @@ def test_google_callback_issues_jwt_with_reader_role_for_new_user(api_context, m
     payload = pyjwt.decode(token, settings.jwt_secret, algorithms=[settings.jwt_algorithm])
     assert payload["role"] == "reader"
     assert payload["email"] == "student@hcmus.edu.vn"
+
+    profile = client.get("/auth/me", headers={"Authorization": f"Bearer {token}"})
+    assert profile.json()["username"] == "Student Name"
 
 
 def test_google_callback_reuses_existing_users_role(api_context, monkeypatch) -> None:
@@ -189,6 +193,7 @@ def test_google_callback_reuses_existing_users_role(api_context, monkeypatch) ->
     class FakeUser:
         sub = "google-999"
         email = "editor@hcmus.edu.vn"
+        name = "Editor Name"
 
     monkeypatch.setattr(auth_router, "exchange_code_for_user", lambda code, state: FakeUser())
 

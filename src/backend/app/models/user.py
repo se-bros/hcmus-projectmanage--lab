@@ -14,6 +14,7 @@ class User(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(320), unique=True)
+    username: Mapped[str | None] = mapped_column(String(255), nullable=True)
     password_hash: Mapped[str | None] = mapped_column(String(255), nullable=True)
     role: Mapped[str] = mapped_column(String(32), default="reader", server_default="reader")
     auth_provider: Mapped[str] = mapped_column(String(32))

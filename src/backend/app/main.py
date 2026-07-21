@@ -6,7 +6,18 @@ from fastapi import FastAPI
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.api import auth, documents, editor, health, metadata, ocr, publish, reader, search
+from app.api import (
+    auth,
+    documents,
+    editor,
+    health,
+    metadata,
+    ocr,
+    publish,
+    reader,
+    role_requests,
+    search,
+)
 from app.core.config import settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import configure_logging
@@ -76,3 +87,4 @@ app.include_router(metadata.category_router)
 app.include_router(publish.router)
 app.include_router(reader.router)
 app.include_router(search.router)
+app.include_router(role_requests.router)
