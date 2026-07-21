@@ -158,8 +158,8 @@ curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: applica
   -d '{"role":"admin"}'
 ```
 
-Đăng ký / đăng nhập bằng email + mật khẩu (yêu cầu email thuộc
-`GOOGLE_ALLOWED_DOMAINS`, mật khẩu tối thiểu 8 ký tự):
+Đăng ký / đăng nhập bằng email + mật khẩu (mặc định nhận mọi domain email —
+xem `GOOGLE_ALLOWED_DOMAINS` bên dưới; mật khẩu tối thiểu 8 ký tự):
 
 ```bash
 curl -fsS -X POST http://localhost:8000/auth/register -H 'Content-Type: application/json' \
@@ -214,10 +214,13 @@ Client) để bật `/auth/login/google`. Không cần tắt gì khác — Googl
 Luồng: mở `http://localhost:5173/login` → bấm "Đăng nhập với Google" → consent screen Google →
 callback về BE → BE tìm hoặc tạo user theo email (role mặc định `reader` nếu
 là user mới) → redirect FE tới `/auth/callback?token=...` → FE lưu token vào
-`localStorage`. Email không thuộc một trong các domain liệt kê ở
-`GOOGLE_ALLOWED_DOMAINS` (JSON array, mặc định `["hcmus.edu.vn"]`, có thể thêm
-domain khoa/chương trình khác — vd. `["hcmus.edu.vn","clc.fitus.edu.vn"]`) bị
-từ chối với `403`. Domain allowlist này áp dụng cho cả đăng ký email/mật khẩu.
+`localStorage`.
+
+`GOOGLE_ALLOWED_DOMAINS` (JSON array trong `.env`) giới hạn domain email được
+phép — áp dụng cho cả Google login lẫn đăng ký email/mật khẩu. Mặc định `[]`
+(rỗng) = **không giới hạn**, mọi email public (gmail.com, ...) đều đăng
+ký/đăng nhập được. Đặt vd. `["hcmus.edu.vn","clc.fitus.edu.vn"]` nếu muốn chỉ
+chấp nhận email trường — email ngoài danh sách bị từ chối với `403`.
 
 Nếu một email đã đăng ký bằng mật khẩu trước đó đăng nhập lại bằng Google (hoặc
 ngược lại), hệ thống dùng lại đúng identity/role cũ — không tạo user trùng.

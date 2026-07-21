@@ -93,6 +93,18 @@ def test_check_allowed_domain_accepts_allowed_domain():
     auth_service.check_allowed_domain("someone@hcmus.edu.vn")  # does not raise
 
 
+def test_check_allowed_domain_accepts_any_domain_when_allowlist_is_empty(monkeypatch):
+    monkeypatch.setattr(settings, "google_allowed_domains", [])
+    auth_service.check_allowed_domain("someone@gmail.com")  # does not raise
+
+
+def test_register_local_user_accepts_any_domain_when_allowlist_is_empty(monkeypatch):
+    monkeypatch.setattr(settings, "google_allowed_domains", [])
+    with _db() as db:
+        user = auth_service.register_local_user(db, "someone@gmail.com", "supersecret")
+        assert user.email == "someone@gmail.com"
+
+
 def test_registered_user_is_queryable_by_email():
     with _db() as db:
         auth_service.register_local_user(db, "student@hcmus.edu.vn", "supersecret")

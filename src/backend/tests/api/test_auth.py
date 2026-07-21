@@ -82,6 +82,16 @@ def test_register_rejects_disallowed_domain(api_context, monkeypatch) -> None:
     assert response.status_code == 403
 
 
+def test_register_accepts_any_domain_by_default(api_context) -> None:
+    client, _, _ = api_context
+
+    response = client.post(
+        "/auth/register", json={"email": "student@gmail.com", "password": "supersecret"}
+    )
+
+    assert response.status_code == 201
+
+
 def test_register_rejects_short_password(api_context, monkeypatch) -> None:
     client, _, _ = api_context
     monkeypatch.setattr(settings, "google_allowed_domains", ["hcmus.edu.vn"])

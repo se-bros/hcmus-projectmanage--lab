@@ -27,7 +27,8 @@ class Settings(BaseSettings):
     google_client_id: str | None = None
     google_client_secret: str | None = None
     google_redirect_uri: str | None = None
-    google_allowed_domains: list[str] = ["hcmus.edu.vn"]
+    # Empty list = no domain restriction (any email allowed) for register + Google login.
+    google_allowed_domains: list[str] = []
     frontend_base_url: str = "http://localhost:5173"
 
 

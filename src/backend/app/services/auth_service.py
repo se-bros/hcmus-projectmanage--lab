@@ -12,8 +12,11 @@ DEFAULT_ROLE = "reader"
 
 
 def check_allowed_domain(email: str) -> None:
-    if not any(email.lower().endswith(f"@{domain}") for domain in settings.google_allowed_domains):
-        allowed = ", ".join(f"@{domain}" for domain in settings.google_allowed_domains)
+    allowed_domains = settings.google_allowed_domains
+    if not allowed_domains:
+        return
+    if not any(email.lower().endswith(f"@{domain}") for domain in allowed_domains):
+        allowed = ", ".join(f"@{domain}" for domain in allowed_domains)
         raise ForbiddenError(f"Only {allowed} accounts are allowed.")
 
 
