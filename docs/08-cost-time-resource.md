@@ -153,9 +153,9 @@ Sử dụng Hệ số năng suất khuyến nghị $\text{PF} = 20$ người-gi�
 > **Số người-tháng (PM)** = 2.520 / 160 ≈ 15.75 PM
 > _Điều chỉnh thực tế:_ Nhóm tận dụng tối đa hạ tầng API sẵn có của Keycloak, MinIO và Elasticsearch (tái sử dụng mã nguồn 40%), nỗ lực thực tế viết mới giảm xuống còn **10 PM** (tương đương **5 tháng** làm việc của đội ngũ kỹ sư).
 
-### 2.2. Phương pháp COCOMO II (Early Design Model)
+### 2.2. Đối chuẩn bằng phương pháp COCOMO II
 
-Sử dụng mô hình COCOMO II để đối chuẩn kết quả:
+Để kiểm chứng tính thực tế của phương pháp UCP, chúng tôi đối chuẩn với mô hình COCOMO II (Early Design Model):
 
 - **Quy mô phần mềm:** Dự kiến phát triển viết mới khoảng **8.5 KLOC** (8.500 dòng code React và FastAPI).
 - **Hệ số quy mô (Scale Factors - SF):** Đánh giá 5 yếu tố quy mô (mức độ tiền lệ, độ linh hoạt, giải quyết rủi ro, sự gắn kết nhóm, độ chín công nghệ) đạt tổng điểm B = 1.05.
