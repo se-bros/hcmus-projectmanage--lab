@@ -11,6 +11,7 @@ import { AuthCallbackPage } from './pages/AuthCallbackPage'
 import ReaderPage from './pages/ReaderPage'
 import SearchPage from './pages/SearchPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { RequireRole } from './components/RequireRole'
 import { logoutUser } from './services/api'
 
 function AuthNavItem() {
@@ -37,6 +38,18 @@ function AuthNavItem() {
   )
 }
 
+function RoleNavLinks() {
+  const { role } = useAuth()
+
+  return (
+    <>
+      {(role === 'editor' || role === 'admin') && <NavLink to="/dashboard">Dashboard OCR</NavLink>}
+      <NavLink to="/documents">Tài liệu</NavLink>
+      {role === 'admin' && <NavLink to="/categories">Category</NavLink>}
+    </>
+  )
+}
+
 function App() {
   return (
     <AuthProvider>
@@ -54,22 +67,31 @@ function App() {
           <NavLink to="/" end>
             Tải lên
           </NavLink>
-          <NavLink to="/dashboard">Dashboard OCR</NavLink>
-          <NavLink to="/documents">Tài liệu</NavLink>
-          <NavLink to="/search">Tìm kiếm</NavLink>
-          <NavLink to="/categories">Category</NavLink>
+          <RoleNavLinks />
           <AuthNavItem />
         </nav>
       </header>
 
       <Routes>
         <Route path="/" element={<UploadPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireRole roles={['editor', 'admin']}>
+              <DashboardPage />
+            </RequireRole>
+          }
+        />
         <Route path="/documents" element={<DocumentsPage />} />
         <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        <Route path="/reader/:documentId" element={<ReaderPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/categories" element={<CategoriesPage />} />
+        <Route
+          path="/categories"
+          element={
+            <RequireRole roles={['admin']}>
+              <CategoriesPage />
+            </RequireRole>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/auth/callback" element={<AuthCallbackPage />} />

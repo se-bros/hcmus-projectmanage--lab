@@ -2,6 +2,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-libra
 import { MemoryRouter, Route, Routes } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DocumentViewerPage } from './DocumentViewerPage'
+import { AuthProvider } from '../context/AuthContext'
 
 const fetchMock = vi.fn<typeof fetch>()
 
@@ -12,17 +13,30 @@ function response(body: object, status = 200): Response {
   })
 }
 
+function fakeToken(payload: Record<string, unknown>): string {
+  const base64url = (value: string) =>
+    btoa(value).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  const header = base64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
+  const body = base64url(JSON.stringify(payload))
+  return `${header}.${body}.signature`
+}
+
 describe('DocumentViewerPage', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', fetchMock)
     fetchMock.mockReset()
     fetchMock.mockResolvedValue(response([]))
+    window.localStorage.setItem(
+      'ldms_token',
+      fakeToken({ sub: 'admin-user', role: 'admin', email: 'admin@hcmus.edu.vn' }),
+    )
   })
 
   afterEach(() => {
     cleanup()
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
+    window.localStorage.clear()
   })
 
   it('loads a dynamic document route and switches scan/text pages together', async () => {
@@ -55,11 +69,13 @@ describe('DocumentViewerPage', () => {
       )
 
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     await act(async () => Promise.resolve())
 
@@ -129,11 +145,13 @@ describe('DocumentViewerPage', () => {
     )
 
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     expect(await screen.findByDisplayValue('Old title')).toBeInTheDocument()
 
@@ -207,11 +225,13 @@ describe('DocumentViewerPage', () => {
       )
 
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     await screen.findByRole('heading', { name: 'Metadata tài liệu' })
     fireEvent.click(screen.getByRole('button', { name: 'Lưu metadata' }))
@@ -250,11 +270,13 @@ describe('DocumentViewerPage', () => {
       () => new Promise<Response>((resolve) => (resolveSave = resolve)),
     )
     const view = render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
 
     const editor = await screen.findByLabelText('Nội dung OCR trang 1')
@@ -282,11 +304,13 @@ describe('DocumentViewerPage', () => {
       .mockResolvedValueOnce(response(job))
       .mockResolvedValueOnce(response([]))
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     await waitFor(() =>
       expect(screen.getByLabelText('Nội dung OCR trang 1')).toHaveValue('Corrected text'),
@@ -322,11 +346,13 @@ describe('DocumentViewerPage', () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValueOnce(true)
 
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     fireEvent.change(await screen.findByLabelText('Nội dung OCR trang 1'), {
       target: { value: 'Unsaved' },
@@ -366,16 +392,150 @@ describe('DocumentViewerPage', () => {
       .mockResolvedValueOnce(response({ detail: 'Page update failed.' }, 500))
 
     render(
-      <MemoryRouter initialEntries={['/documents/doc-1']}>
-        <Routes>
-          <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
-        </Routes>
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
     )
     fireEvent.change(await screen.findByLabelText('Nội dung OCR trang 1'), {
       target: { value: 'Changed' },
     })
     fireEvent.click(screen.getByRole('button', { name: 'Lưu trang' }))
     expect(await screen.findByText('Page update failed.')).toBeInTheDocument()
+  })
+
+  it('hides the metadata form and page-text editor for a reader, but still shows read-only content', async () => {
+    window.localStorage.setItem(
+      'ldms_token',
+      fakeToken({ sub: 'reader-user', role: 'reader', email: 'reader@hcmus.edu.vn' }),
+    )
+    fetchMock
+      .mockResolvedValueOnce(
+        response({
+          id: 'doc-1',
+          original_filename: 'scan.pdf',
+          content_type: 'application/pdf',
+          status: 'ocr_completed',
+          title: 'Book',
+          author: 'Author',
+          shelf_location: null,
+          category_id: null,
+          epub_object_key: null,
+          owner_id: 'editor-owner',
+          created_at: '2026-07-16T08:00:00Z',
+        }),
+      )
+      .mockResolvedValueOnce(
+        response([{ page_number: 1, text_content: 'Read-only OCR text', has_image: true }]),
+      )
+      .mockResolvedValueOnce(
+        response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
+      )
+      .mockResolvedValueOnce(response([]))
+
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(await screen.findByText('Read-only OCR text')).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Metadata tài liệu' })).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Nội dung OCR trang 1')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Lưu trang' })).not.toBeInTheDocument()
+  })
+
+  it('hides the metadata form and page-text editor for an editor who does not own the document', async () => {
+    window.localStorage.setItem(
+      'ldms_token',
+      fakeToken({ sub: 'editor-user', role: 'editor', email: 'editor@hcmus.edu.vn' }),
+    )
+    fetchMock
+      .mockResolvedValueOnce(
+        response({
+          id: 'doc-1',
+          original_filename: 'scan.pdf',
+          content_type: 'application/pdf',
+          status: 'ocr_completed',
+          title: 'Book',
+          author: 'Author',
+          shelf_location: null,
+          category_id: null,
+          epub_object_key: null,
+          owner_id: 'someone-else',
+          created_at: '2026-07-16T08:00:00Z',
+        }),
+      )
+      .mockResolvedValueOnce(
+        response([{ page_number: 1, text_content: 'Not my document', has_image: true }]),
+      )
+      .mockResolvedValueOnce(
+        response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
+      )
+      .mockResolvedValueOnce(response([]))
+
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(await screen.findByText('Not my document')).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Metadata tài liệu' })).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Nội dung OCR trang 1')).not.toBeInTheDocument()
+  })
+
+  it('shows the metadata form and page-text editor for an editor who owns the document', async () => {
+    window.localStorage.setItem(
+      'ldms_token',
+      fakeToken({ sub: 'editor-user', role: 'editor', email: 'editor@hcmus.edu.vn' }),
+    )
+    fetchMock
+      .mockResolvedValueOnce(
+        response({
+          id: 'doc-1',
+          original_filename: 'scan.pdf',
+          content_type: 'application/pdf',
+          status: 'ocr_completed',
+          title: 'Book',
+          author: 'Author',
+          shelf_location: null,
+          category_id: null,
+          epub_object_key: null,
+          owner_id: 'editor-user',
+          created_at: '2026-07-16T08:00:00Z',
+        }),
+      )
+      .mockResolvedValueOnce(
+        response([{ page_number: 1, text_content: 'My document', has_image: true }]),
+      )
+      .mockResolvedValueOnce(
+        response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
+      )
+      .mockResolvedValueOnce(response([]))
+
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(await screen.findByRole('heading', { name: 'Metadata tài liệu' })).toBeInTheDocument()
+    expect(screen.getByLabelText('Nội dung OCR trang 1')).toHaveValue('My document')
   })
 })

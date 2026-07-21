@@ -12,6 +12,7 @@ export type DocumentDetail = {
   shelf_location: string | null
   category_id: string | null
   epub_object_key: string | null
+  owner_id: string | null
   created_at: string
 }
 

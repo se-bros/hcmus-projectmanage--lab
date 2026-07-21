@@ -11,9 +11,11 @@ import {
   updateDocumentMetadata,
 } from '../services/api'
 import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
+import { useAuth } from '../context/AuthContext'
 
 export function DocumentViewerPage() {
   const { documentId } = useParams<{ documentId: string }>()
+  const { role, userId } = useAuth()
   const [document, setDocument] = useState<DocumentDetail | null>(null)
   const [pages, setPages] = useState<DocumentPage[]>([])
   const [job, setJob] = useState<OcrJob | null>(null)
@@ -77,6 +79,9 @@ export function DocumentViewerPage() {
       cancelled = true
     }
   }, [documentId])
+
+  const canEdit =
+    role === 'admin' || (role === 'editor' && document !== null && document.owner_id === userId)
 
   const selectedPage = pages.find((page) => page.page_number === selectedPageNumber) ?? null
   const hasUnsavedPageText = selectedPage !== null && draftText !== selectedPage.text_content
@@ -212,58 +217,60 @@ export function DocumentViewerPage() {
         </div>
       </section>
 
-      <section className="metadata-editor" aria-labelledby="metadata-heading">
-        <div>
-          <p className="section-kicker">LDMS-011</p>
-          <h2 id="metadata-heading">Metadata tài liệu</h2>
-          <p>Title và author là bắt buộc trước khi xuất bản.</p>
-        </div>
-        <form onSubmit={saveMetadata}>
-          <label>
-            Title
-            <input value={title} onChange={(event) => setTitle(event.target.value)} />
-          </label>
-          <label>
-            Author
-            <input value={author} onChange={(event) => setAuthor(event.target.value)} />
-          </label>
-          <label>
-            Vị trí kệ (không bắt buộc)
-            <input
-              value={shelfLocation}
-              onChange={(event) => setShelfLocation(event.target.value)}
-            />
-          </label>
-          <label>
-            Category (không bắt buộc)
-            <select value={categoryId} onChange={(event) => setCategoryId(event.target.value)}>
-              <option value="">Chưa gán category</option>
-              {categories.map((category) => (
-                <optgroup label={category.name} key={category.id}>
-                  <option value={category.id}>{category.name} — cấp 1</option>
-                  {category.children.map((child) => (
-                    <option value={child.id} key={child.id}>
-                      {child.name} — cấp 2
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </select>
-          </label>
-          <div className="metadata-save-row">
-            <button type="submit" disabled={metadataSaveState === 'saving'}>
-              {metadataSaveState === 'saving' ? 'Đang lưu…' : 'Lưu metadata'}
-            </button>
-            <span
-              className={metadataSaveState === 'error' ? 'save-state error-text' : 'save-state'}
-              role="status"
-            >
-              {metadataSaveState === 'saved' && 'Đã lưu metadata.'}
-              {metadataSaveState === 'error' && (metadataError || 'Lưu metadata thất bại.')}
-            </span>
+      {canEdit && (
+        <section className="metadata-editor" aria-labelledby="metadata-heading">
+          <div>
+            <p className="section-kicker">LDMS-011</p>
+            <h2 id="metadata-heading">Metadata tài liệu</h2>
+            <p>Title và author là bắt buộc trước khi xuất bản.</p>
           </div>
-        </form>
-      </section>
+          <form onSubmit={saveMetadata}>
+            <label>
+              Title
+              <input value={title} onChange={(event) => setTitle(event.target.value)} />
+            </label>
+            <label>
+              Author
+              <input value={author} onChange={(event) => setAuthor(event.target.value)} />
+            </label>
+            <label>
+              Vị trí kệ (không bắt buộc)
+              <input
+                value={shelfLocation}
+                onChange={(event) => setShelfLocation(event.target.value)}
+              />
+            </label>
+            <label>
+              Category (không bắt buộc)
+              <select value={categoryId} onChange={(event) => setCategoryId(event.target.value)}>
+                <option value="">Chưa gán category</option>
+                {categories.map((category) => (
+                  <optgroup label={category.name} key={category.id}>
+                    <option value={category.id}>{category.name} — cấp 1</option>
+                    {category.children.map((child) => (
+                      <option value={child.id} key={child.id}>
+                        {child.name} — cấp 2
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </label>
+            <div className="metadata-save-row">
+              <button type="submit" disabled={metadataSaveState === 'saving'}>
+                {metadataSaveState === 'saving' ? 'Đang lưu…' : 'Lưu metadata'}
+              </button>
+              <span
+                className={metadataSaveState === 'error' ? 'save-state error-text' : 'save-state'}
+                role="status"
+              >
+                {metadataSaveState === 'saved' && 'Đã lưu metadata.'}
+                {metadataSaveState === 'error' && (metadataError || 'Lưu metadata thất bại.')}
+              </span>
+            </div>
+          </form>
+        </section>
+      )}
 
       {pages.length === 0 ? (
         <section className="viewer-empty">
@@ -323,39 +330,47 @@ export function DocumentViewerPage() {
                   <span>Văn bản OCR</span>
                   <strong>{draftText.length} ký tự</strong>
                 </header>
-                <div className="page-text-editor">
-                  <label className="sr-only" htmlFor="page-text-content">
-                    Nội dung OCR trang {selectedPage.page_number}
-                  </label>
-                  <textarea
-                    id="page-text-content"
-                    value={draftText}
-                    placeholder="Trang này chưa có nội dung OCR."
-                    onChange={(event) => {
-                      setDraftText(event.target.value)
-                      setPageSaveState('idle')
-                      setPageSaveError('')
-                    }}
-                  />
-                  <footer className="page-save-row">
-                    <button
-                      type="button"
-                      disabled={pageSaveState === 'saving'}
-                      onClick={() => void savePageText()}
-                    >
-                      {pageSaveState === 'saving' ? 'Đang lưu…' : 'Lưu trang'}
-                    </button>
-                    <span
-                      className={pageSaveState === 'error' ? 'save-state error-text' : 'save-state'}
-                      role="status"
-                    >
-                      {pageSaveState === 'saved' && 'Đã lưu trang.'}
-                      {pageSaveState === 'error' &&
-                        (pageSaveError || 'Lưu nội dung trang thất bại.')}
-                      {pageSaveState === 'idle' && hasUnsavedPageText && 'Có thay đổi chưa lưu.'}
-                    </span>
-                  </footer>
-                </div>
+                {canEdit ? (
+                  <div className="page-text-editor">
+                    <label className="sr-only" htmlFor="page-text-content">
+                      Nội dung OCR trang {selectedPage.page_number}
+                    </label>
+                    <textarea
+                      id="page-text-content"
+                      value={draftText}
+                      placeholder="Trang này chưa có nội dung OCR."
+                      onChange={(event) => {
+                        setDraftText(event.target.value)
+                        setPageSaveState('idle')
+                        setPageSaveError('')
+                      }}
+                    />
+                    <footer className="page-save-row">
+                      <button
+                        type="button"
+                        disabled={pageSaveState === 'saving'}
+                        onClick={() => void savePageText()}
+                      >
+                        {pageSaveState === 'saving' ? 'Đang lưu…' : 'Lưu trang'}
+                      </button>
+                      <span
+                        className={
+                          pageSaveState === 'error' ? 'save-state error-text' : 'save-state'
+                        }
+                        role="status"
+                      >
+                        {pageSaveState === 'saved' && 'Đã lưu trang.'}
+                        {pageSaveState === 'error' &&
+                          (pageSaveError || 'Lưu nội dung trang thất bại.')}
+                        {pageSaveState === 'idle' && hasUnsavedPageText && 'Có thay đổi chưa lưu.'}
+                      </span>
+                    </footer>
+                  </div>
+                ) : (
+                  <div className="page-text-editor page-text-readonly">
+                    <p>{draftText || 'Trang này chưa có nội dung OCR.'}</p>
+                  </div>
+                )}
               </article>
             </section>
           )}

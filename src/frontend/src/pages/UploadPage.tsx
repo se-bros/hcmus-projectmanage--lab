@@ -3,8 +3,11 @@ import type { FormEvent } from 'react'
 import { OcrStatusPanel } from '../components/OcrStatusPanel'
 import { getDocument, uploadDocument } from '../services/api'
 import type { DocumentDetail } from '../services/api'
+import { useAuth } from '../context/AuthContext'
 
 export function UploadPage() {
+  const { role } = useAuth()
+  const canUpload = role === 'editor' || role === 'admin'
   const [file, setFile] = useState<File | null>(null)
   const [document, setDocument] = useState<DocumentDetail | null>(null)
   const [isUploading, setIsUploading] = useState(false)
@@ -39,30 +42,36 @@ export function UploadPage() {
           <p className="intro">Chọn bản scan PDF hoặc hình ảnh để lưu vào kho tài liệu số.</p>
         </header>
 
-        <form onSubmit={handleSubmit}>
-          <label className="file-field">
-            <span>File tài liệu</span>
-            <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-              onChange={(event) => {
-                setFile(event.target.files?.[0] ?? null)
-                setError('')
-              }}
-            />
-            <small>Định dạng gợi ý: PDF, JPG, JPEG hoặc PNG</small>
-          </label>
+        {canUpload ? (
+          <form onSubmit={handleSubmit}>
+            <label className="file-field">
+              <span>File tài liệu</span>
+              <input
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+                onChange={(event) => {
+                  setFile(event.target.files?.[0] ?? null)
+                  setError('')
+                }}
+              />
+              <small>Định dạng gợi ý: PDF, JPG, JPEG hoặc PNG</small>
+            </label>
 
-          {file && (
-            <p className="selected-file">
-              Đã chọn <strong>{file.name}</strong>
-            </p>
-          )}
+            {file && (
+              <p className="selected-file">
+                Đã chọn <strong>{file.name}</strong>
+              </p>
+            )}
 
-          <button type="submit" disabled={!file || isUploading}>
-            {isUploading ? 'Đang tải lên…' : 'Tải tài liệu lên'}
-          </button>
-        </form>
+            <button type="submit" disabled={!file || isUploading}>
+              {isUploading ? 'Đang tải lên…' : 'Tải tài liệu lên'}
+            </button>
+          </form>
+        ) : (
+          <p className="message error" role="alert">
+            Bạn không có quyền tải lên tài liệu. Liên hệ quản trị viên nếu cần quyền editor.
+          </p>
+        )}
 
         {error && (
           <p className="message error" role="alert">
