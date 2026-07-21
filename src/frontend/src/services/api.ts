@@ -245,3 +245,68 @@ export function loginUser(email: string, password: string): Promise<AuthResponse
 export function logoutUser(): Promise<void> {
   return request('/auth/logout', { method: 'POST' })
 }
+
+export type UserProfile = {
+  id: string
+  email: string | null
+  username: string | null
+  role: 'reader' | 'editor' | 'admin'
+  auth_provider: string
+  has_password: boolean
+}
+
+export function getProfile(): Promise<UserProfile> {
+  return request('/auth/me')
+}
+
+export function updateProfile(username: string): Promise<UserProfile> {
+  return request('/auth/me', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username }),
+  })
+}
+
+export function changePassword(
+  currentPassword: string | null,
+  newPassword: string,
+): Promise<UserProfile> {
+  return request('/auth/change-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ current_password: currentPassword, new_password: newPassword }),
+  })
+}
+
+export type RoleRequestStatus = 'pending' | 'approved' | 'rejected'
+
+export type RoleRequestDetail = {
+  id: string
+  user_id: string
+  user_email: string
+  user_username: string | null
+  requested_role: string
+  status: RoleRequestStatus
+  created_at: string
+  decided_at: string | null
+}
+
+export function createRoleRequest(): Promise<RoleRequestDetail> {
+  return request('/role-requests', { method: 'POST' })
+}
+
+export function getMyRoleRequest(): Promise<RoleRequestDetail | null> {
+  return request('/role-requests/me')
+}
+
+export function listRoleRequests(): Promise<RoleRequestDetail[]> {
+  return request('/role-requests')
+}
+
+export function approveRoleRequest(requestId: string): Promise<RoleRequestDetail> {
+  return request(`/role-requests/${requestId}/approve`, { method: 'POST' })
+}
+
+export function declineRoleRequest(requestId: string): Promise<RoleRequestDetail> {
+  return request(`/role-requests/${requestId}/decline`, { method: 'POST' })
+}

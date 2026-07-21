@@ -57,7 +57,7 @@ describe('App nav', () => {
     expect(screen.queryByRole('link', { name: 'Category' })).not.toBeInTheDocument()
   })
 
-  it('shows Dashboard OCR and Category for an admin', () => {
+  it('shows Dashboard OCR, Category and Yêu cầu for an admin', () => {
     window.localStorage.setItem('ldms_token', fakeToken({ sub: 'u1', role: 'admin' }))
     render(
       <MemoryRouter initialEntries={['/']}>
@@ -66,6 +66,17 @@ describe('App nav', () => {
     )
     expect(screen.getByRole('link', { name: 'Dashboard OCR' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Category' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Yêu cầu' })).toBeInTheDocument()
+  })
+
+  it('hides Yêu cầu for an editor', () => {
+    window.localStorage.setItem('ldms_token', fakeToken({ sub: 'u1', role: 'editor' }))
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+    expect(screen.queryByRole('link', { name: 'Yêu cầu' })).not.toBeInTheDocument()
   })
 
   it('hides Dashboard OCR and Category for a logged-out guest', () => {
@@ -92,6 +103,16 @@ describe('App nav', () => {
     window.localStorage.setItem('ldms_token', fakeToken({ sub: 'u1', role: 'editor' }))
     render(
       <MemoryRouter initialEntries={['/categories']}>
+        <App />
+      </MemoryRouter>,
+    )
+    expect(screen.getByRole('heading', { name: 'Tải tài liệu scan' })).toBeInTheDocument()
+  })
+
+  it('redirects away from /requests for an editor navigating directly', () => {
+    window.localStorage.setItem('ldms_token', fakeToken({ sub: 'u1', role: 'editor' }))
+    render(
+      <MemoryRouter initialEntries={['/requests']}>
         <App />
       </MemoryRouter>,
     )
