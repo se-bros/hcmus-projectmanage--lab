@@ -4,11 +4,13 @@ JWT issuance/verification shared by Mock dev-token and Google OAuth, plus
 FastAPI dependencies for optional/required auth and role-based guards.
 """
 
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
+import bcrypt
 import jwt
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -17,6 +19,14 @@ from app.core.config import settings
 from app.core.exceptions import ForbiddenError, UnauthorizedError
 
 _bearer_scheme = HTTPBearer(auto_error=False)
+
+
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+def verify_password(password: str, password_hash: str) -> bool:
+    return bcrypt.checkpw(password.encode("utf-8"), password_hash.encode("utf-8"))
 
 
 @dataclass
@@ -71,3 +81,11 @@ def require_roles(*roles: str) -> Callable[..., AuthenticatedUser]:
         return user
 
     return dependency
+
+
+def ensure_document_editable(owner_id: uuid.UUID | None, user: AuthenticatedUser) -> None:
+    if user.role == "admin":
+        return
+    if user.role == "editor" and owner_id is not None and str(owner_id) == user.sub:
+        return
+    raise ForbiddenError("You do not have permission to edit this document.")

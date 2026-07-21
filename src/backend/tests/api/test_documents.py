@@ -1,8 +1,10 @@
 import uuid
 
+import jwt as pyjwt
 import pytest
 from sqlalchemy import func, select
 
+from app.core.config import settings
 from app.models.document import Document
 from app.models.ocr_job import OcrJob
 
@@ -19,6 +21,11 @@ def test_upload_creates_document_and_pending_ocr_job(api_context, editor_headers
 
     assert response.status_code == 201
     document_id = response.json()["document_id"]
+    uploader_sub = pyjwt.decode(
+        editor_headers["Authorization"].split(" ", 1)[1],
+        settings.jwt_secret,
+        algorithms=[settings.jwt_algorithm],
+    )["sub"]
     with testing_session() as db:
         document = db.get(Document, uuid.UUID(document_id))
         job = db.scalar(select(OcrJob))
@@ -27,6 +34,7 @@ def test_upload_creates_document_and_pending_ocr_job(api_context, editor_headers
         assert document.content_type == "application/pdf"
         assert document.status == "ocr_pending"
         assert document.is_public is False
+        assert str(document.owner_id) == uploader_sub
         assert job is not None
         assert job.document_id == document.id
         assert job.attempt == 1

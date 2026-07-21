@@ -8,7 +8,8 @@ from dataclasses import dataclass
 from authlib.integrations.httpx_client import OAuth2Client
 
 from app.core.config import settings
-from app.core.exceptions import ForbiddenError, UnauthorizedError
+from app.core.exceptions import UnauthorizedError
+from app.services.auth_service import check_allowed_domain
 
 AUTHORIZATION_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth"
 TOKEN_ENDPOINT = "https://oauth2.googleapis.com/token"
@@ -23,6 +24,7 @@ _pending_states: dict[str, float] = {}
 class GoogleUser:
     sub: str
     email: str
+    name: str | None = None
 
 
 def _new_client() -> OAuth2Client:
@@ -55,7 +57,7 @@ def exchange_code_for_user(code: str, state: str | None) -> GoogleUser:
     response.raise_for_status()
     payload = response.json()
     email = payload.get("email", "")
-    if not any(email.lower().endswith(f"@{domain}") for domain in settings.google_allowed_domains):
-        allowed = ", ".join(f"@{domain}" for domain in settings.google_allowed_domains)
-        raise ForbiddenError(f"Only {allowed} accounts are allowed.")
-    return GoogleUser(sub=payload.get("sub", str(uuid.uuid4())), email=email)
+    check_allowed_domain(email)
+    return GoogleUser(
+        sub=payload.get("sub", str(uuid.uuid4())), email=email, name=payload.get("name")
+    )

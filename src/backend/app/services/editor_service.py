@@ -2,6 +2,9 @@ import uuid
 
 from sqlalchemy.orm import Session
 
+from app.core.exceptions import NotFoundError
+from app.core.security import AuthenticatedUser, ensure_document_editable
+from app.models.document import Document
 from app.models.page import Page
 from app.services.ocr_service import get_page
 
@@ -15,7 +18,12 @@ def update_page_text(
     document_id: uuid.UUID,
     page_number: int,
     text_content: str,
+    user: AuthenticatedUser,
 ) -> Page:
+    document = db.get(Document, document_id)
+    if document is None:
+        raise NotFoundError("Document not found.")
+    ensure_document_editable(document.owner_id, user)
     page = get_page(db, document_id, page_number)
     page.text_content = text_content
     db.commit()

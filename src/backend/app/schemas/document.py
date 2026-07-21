@@ -65,6 +65,7 @@ class DocumentDetail(BaseModel):
     shelf_location: str | None
     category_id: uuid.UUID | None
     epub_object_key: str | None
+    owner_id: uuid.UUID | None
     created_at: datetime
 
 

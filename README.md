@@ -140,8 +140,14 @@ author và thứ tự text trong spine trước khi cập nhật document thành
 
 ## Xác thực & Phân quyền (LDMS-009, LDMS-010, LDMS-018)
 
-`AUTH_MODE` trong `.env` chọn cơ chế xác thực: `mock` (mặc định, dev) hoặc `google`. Ở chế độ
-`mock`, lấy token nhanh theo role:
+Hệ thống hỗ trợ song song 2 cách đăng nhập, dùng chung một bảng `users` và một
+tập role (`reader` | `editor` | `admin`): đăng ký/đăng nhập bằng email+mật khẩu,
+và đăng nhập Google OAuth. Tài khoản mới (dù tạo qua cách nào) đều mặc định
+role `reader`; nâng quyền lên `editor`/`admin` hiện là thao tác thủ công trên
+DB (`UPDATE users SET role = 'editor' WHERE email = '...'`).
+
+`ENABLE_MOCK_AUTH` trong `.env` (mặc định `true`) bật/tắt endpoint dev-token
+dùng riêng cho test RBAC nhanh, độc lập với đăng nhập thật:
 
 ```bash
 curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: application/json' \
@@ -152,15 +158,43 @@ curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: applica
   -d '{"role":"admin"}'
 ```
 
-Gắn token vào header `Authorization: Bearer <token>`. `POST /documents` và `POST
-/documents/{id}/publish` yêu cầu role `editor` hoặc `admin`; role `reader` hoặc không có token
-đều bị từ chối (`403`/`401`). RBAC hiện chỉ áp trên hai endpoint ghi tiêu biểu theo AC (`upload`,
-`publish`); các endpoint ghi khác (`PUT .../pages/{n}`, `PUT .../metadata`, `/categories`) chưa
-có guard — ghi nhận là gap còn lại cho các module tương ứng bổ sung sau.
+Đăng ký / đăng nhập bằng email + mật khẩu (mặc định nhận mọi domain email —
+xem `GOOGLE_ALLOWED_DOMAINS` bên dưới; mật khẩu tối thiểu 8 ký tự):
 
-Document có field `is_public` (mặc định `false`). Guest (không token) chỉ đọc được document
-`is_public = true`; ngược lại `GET /documents/{id}` và `.../source` trả `401`. Đặt một document
-thành public để test thủ công:
+```bash
+curl -fsS -X POST http://localhost:8000/auth/register -H 'Content-Type: application/json' \
+  -d '{"email":"student@hcmus.edu.vn","password":"supersecret"}'
+curl -fsS -X POST http://localhost:8000/auth/login -H 'Content-Type: application/json' \
+  -d '{"email":"student@hcmus.edu.vn","password":"supersecret"}'
+curl -fsS -X POST http://localhost:8000/auth/logout
+```
+
+`POST /auth/logout` không giữ trạng thái phía server — trả `204`, việc "đăng
+xuất" thực tế là FE xoá token khỏi `localStorage`.
+
+Gắn token vào header `Authorization: Bearer <token>`. RBAC theo role:
+
+* **`reader`**: chỉ đọc. Mọi endpoint ghi (`POST /documents`, `POST
+  .../ocr`, `PUT .../metadata`, `PUT .../pages/{n}`, `POST /documents/{id}/publish`,
+  `POST/PATCH/DELETE /categories`) trả `403`.
+* **`editor`**: `POST /documents` (upload) và `POST .../ocr` (chạy/chạy lại
+  OCR) cho phép trên mọi document. `PUT .../metadata` và `PUT .../pages/{n}`
+  chỉ cho phép trên document do chính editor đó upload (`document.owner_id`
+  khớp `sub` trong JWT) — document của người khác trả `403` giống hệt
+  reader. `/categories` (tạo/sửa/xoá) vẫn `403` với editor.
+* **`admin`**: full access mọi endpoint, không bị ràng buộc ownership.
+
+Không có token (guest) → `401` trên mọi endpoint ghi. `GET /categories` là
+ngoại lệ luôn mở, không cần token, vì đây chỉ là dữ liệu tham chiếu cho
+dropdown category trong metadata form.
+
+Document được set `owner_id` = `sub` của người upload tại thời điểm tạo;
+document tạo trước khi có field này có `owner_id = NULL` nên chỉ `admin` sửa
+được.
+
+Document có field `is_public` (mặc định `false`). Guest (không token) chỉ đọc
+được document `is_public = true`; ngược lại `GET /documents/{id}` và
+`.../source` trả `401`. Đặt một document thành public để test thủ công:
 
 ```bash
 docker compose exec postgres psql -U ldms -d ldms \
@@ -169,26 +203,48 @@ docker compose exec postgres psql -U ldms -d ldms \
 
 ### Google OAuth 2.0 (LDMS-018)
 
-Đặt `AUTH_MODE=google` cùng `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
-`GOOGLE_REDIRECT_URI=http://localhost:8000/auth/callback/google` trong `.env` (lấy từ [Google
-Cloud Console](https://console.cloud.google.com/apis/credentials) — thêm redirect URI trên vào
-danh sách Authorized redirect URIs của OAuth Client). Khi bật `google`, `POST /auth/dev-token`
-trả `404` — chỉ dùng được đăng nhập qua `/login` trên FE.
+Đặt `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
+`GOOGLE_REDIRECT_URI=http://localhost:8000/auth/callback/google` trong `.env`
+(lấy từ [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+— thêm redirect URI trên vào danh sách Authorized redirect URIs của OAuth
+Client) để bật `/auth/login/google`. Không cần tắt gì khác — Google OAuth và
+đăng nhập email/mật khẩu luôn chạy song song; thiếu 1 trong 3 biến trên thì
+`/auth/login/google` trả `404`.
 
 Luồng: mở `http://localhost:5173/login` → bấm "Đăng nhập với Google" → consent screen Google →
-callback về BE → BE redirect FE tới `/auth/callback?token=...` → FE lưu token vào
-`localStorage`. Email không thuộc một trong các domain liệt kê ở `GOOGLE_ALLOWED_DOMAINS` (JSON
-array, mặc định `["hcmus.edu.vn"]`, có thể thêm domain khoa/chương trình khác — vd.
-`["hcmus.edu.vn","clc.fitus.edu.vn"]`) bị từ chối với `403`.
+callback về BE → BE tìm hoặc tạo user theo email (role mặc định `reader` nếu
+là user mới) → redirect FE tới `/auth/callback?token=...` → FE lưu token vào
+`localStorage`.
 
-Mọi tài khoản Google đăng nhập thành công đều được gán role `editor` mặc định (đủ quyền
-upload/publish) — chưa có phân biệt admin hay bậc quyền cao hơn giữa các tài khoản Google.
-"Guest" (không có token — không đăng nhập) chỉ đọc được document `is_public = true`; đây là ranh
-giới quyền thấp nhất của hệ thống, không phải role `reader` (role `reader` vẫn tồn tại và chỉ dùng
-khi cấp qua `/auth/dev-token` ở chế độ mock để test kịch bản RBAC từ chối ghi).
+`GOOGLE_ALLOWED_DOMAINS` (JSON array trong `.env`) giới hạn domain email được
+phép — áp dụng cho cả Google login lẫn đăng ký email/mật khẩu. Mặc định `[]`
+(rỗng) = **không giới hạn**, mọi email public (gmail.com, ...) đều đăng
+ký/đăng nhập được. Đặt vd. `["hcmus.edu.vn","clc.fitus.edu.vn"]` nếu muốn chỉ
+chấp nhận email trường — email ngoài danh sách bị từ chối với `403`.
 
-**Bảo mật:** `GOOGLE_CLIENT_SECRET`/`JWT_SECRET` chỉ đọc từ `.env` (gitignored), không hardcode
-trong repo.
+Nếu một email đã đăng ký bằng mật khẩu trước đó đăng nhập lại bằng Google (hoặc
+ngược lại), hệ thống dùng lại đúng identity/role cũ — không tạo user trùng.
+
+**Bảo mật:** `GOOGLE_CLIENT_SECRET`/`JWT_SECRET` chỉ đọc từ `.env` (gitignored),
+không hardcode trong repo.
+
+### Hồ sơ cá nhân & Yêu cầu nâng quyền
+
+`GET /auth/me` trả profile (`email`, `username`, `role`, `auth_provider`,
+`has_password`); `PATCH /auth/me` đổi `username`; `POST /auth/change-password`
+đổi mật khẩu (`current_password` bắt buộc nếu tài khoản đã có mật khẩu —
+tài khoản Google-only chưa có mật khẩu thì bỏ qua field này). Tài khoản đăng
+nhập qua `/auth/dev-token` (mock) không có bản ghi `users` thật nên `GET
+/auth/me` trả profile "tổng hợp" từ JWT (`username = null`, `has_password =
+false`), còn `PATCH /auth/me`/`change-password` trả `404`.
+
+`POST /role-requests` cho phép role `reader` gửi yêu cầu nâng lên `editor`
+(chặn nếu đã có request `pending`). `GET /role-requests/me` xem request gần
+nhất của chính mình. `GET /role-requests` (admin) liệt kê tất cả; `POST
+/role-requests/{id}/approve` hoặc `.../decline` (admin) quyết định — approve
+sẽ cập nhật `role` của user đó ngay trong DB, nhưng JWT cũ của họ vẫn giữ role
+cũ cho tới lần đăng nhập kế tiếp (giới hạn cố hữu của JWT stateless, giống
+hành vi role Google hiện tại).
 
 ## Cấu trúc thư mục
 

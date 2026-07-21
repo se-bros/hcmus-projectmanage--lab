@@ -17,6 +17,7 @@ class DocumentRepository:
         object_key: str,
         content_type: str,
         status: str = "uploaded",
+        owner_id: uuid.UUID | None = None,
     ) -> Document:
         document = Document(
             id=document_id,
@@ -24,6 +25,7 @@ class DocumentRepository:
             object_key=object_key,
             content_type=content_type,
             status=status,
+            owner_id=owner_id,
         )
         self.db.add(document)
         return document

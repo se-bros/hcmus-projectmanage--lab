@@ -4,10 +4,12 @@
 """
 
 import uuid
+from typing import Annotated
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app.api.dependencies import DbSession
+from app.core.security import AuthenticatedUser, require_roles
 from app.schemas.document import PageDetail, PageTextUpdate
 from app.services.editor_service import get_document_page, update_page_text
 
@@ -30,8 +32,9 @@ def replace_page_text(
     page_number: int,
     payload: PageTextUpdate,
     db: DbSession,
+    user: Annotated[AuthenticatedUser, Depends(require_roles("editor", "admin"))],
 ) -> PageDetail:
-    page = update_page_text(db, document_id, page_number, payload.text_content)
+    page = update_page_text(db, document_id, page_number, payload.text_content, user)
     return PageDetail(
         page_number=page.page_number,
         text_content=page.text_content,
