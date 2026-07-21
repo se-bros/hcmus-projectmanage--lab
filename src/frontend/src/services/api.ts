@@ -48,6 +48,12 @@ type ApiErrorBody = {
   detail?: string | { message?: string } | Array<{ loc?: Array<string | number>; msg?: string }>
 }
 
+export type AuthResponse = {
+  access_token: string
+  token_type: string
+  role: 'reader' | 'editor' | 'admin'
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const token = window.localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)
   const headers = new Headers(init?.headers)
@@ -217,4 +223,24 @@ export function getPageImageUrl(documentId: string, pageNumber: number): string 
 
 export function retryOcr(documentId: string): Promise<OcrJob> {
   return request(`/documents/${documentId}/ocr`, { method: 'POST' })
+}
+
+export function registerUser(email: string, password: string): Promise<AuthResponse> {
+  return request('/auth/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  })
+}
+
+export function loginUser(email: string, password: string): Promise<AuthResponse> {
+  return request('/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  })
+}
+
+export function logoutUser(): Promise<void> {
+  return request('/auth/logout', { method: 'POST' })
 }
