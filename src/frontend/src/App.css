@@ -1814,33 +1814,49 @@ dd {
   background: #e7f4ee;
 }
 
+.settings-modal {
+  width: min(100%, 680px);
+}
+
 .settings-modal-body {
-  padding: 22px 26px 28px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: start;
 }
 
 .settings-tabs {
   display: flex;
-  gap: 6px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e5ede9;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 12px 28px 26px;
+  border-right: 1px solid #e5ede9;
 }
 
 .settings-tabs button {
-  padding: 10px 4px;
+  padding: 10px 14px;
   border: 0;
-  border-bottom: 2px solid transparent;
-  border-radius: 0;
+  border-radius: 9px;
   color: #82928c;
   background: transparent;
   box-shadow: none;
+  text-align: left;
   font-size: 0.86rem;
   font-weight: 750;
   cursor: pointer;
 }
 
+.settings-tabs button:hover {
+  color: #176048;
+  background: #e7f4ee;
+}
+
 .settings-tabs button.active {
-  color: #14372d;
-  border-bottom-color: #1b6f56;
+  color: #176048;
+  background: #d9eee5;
+}
+
+.settings-tab-content {
+  padding: 22px 26px 28px;
 }
 
 .settings-profile-tab section {
@@ -1915,4 +1931,21 @@ dd {
   padding: 7px 12px;
   box-shadow: none;
   font-size: 0.76rem;
+}
+
+@media (max-width: 560px) {
+  .settings-modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-tabs {
+    flex-direction: row;
+    padding: 16px 16px 0;
+    border-right: 0;
+    border-bottom: 1px solid #e5ede9;
+  }
+
+  .settings-tab-content {
+    padding: 20px 16px 24px;
+  }
 }
