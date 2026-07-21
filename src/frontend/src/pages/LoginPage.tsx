@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import type { FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { loginUser } from '../services/api'
+import { useAuth } from '../context/AuthContext'
+
 const API_BASE = '/api'
 
 function GoogleIcon() {
@@ -30,6 +36,29 @@ const HIGHLIGHTS = [
 ]
 
 export function LoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const { setToken } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setError('')
+
+    try {
+      const { access_token: accessToken } = await loginUser(email, password)
+      setToken(accessToken)
+      navigate('/', { replace: true })
+    } catch (loginError) {
+      setError(loginError instanceof Error ? loginError.message : 'Không thể kết nối đến máy chủ.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <main className="auth-shell">
       <section className="auth-hero">
@@ -61,8 +90,46 @@ export function LoginPage() {
           <header>
             <p className="eyebrow">Đăng nhập</p>
             <h2 id="login-title">Chào mừng trở lại</h2>
-            <p className="intro">Đăng nhập bằng tài khoản Google trường để tiếp tục.</p>
+            <p className="intro">Đăng nhập bằng email hoặc tài khoản Google trường.</p>
           </header>
+
+          <form className="local-auth-form" onSubmit={handleSubmit}>
+            <label>
+              Email
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </label>
+            <label>
+              Mật khẩu
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </label>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Đang đăng nhập…' : 'Đăng nhập'}
+            </button>
+          </form>
+
+          {error && (
+            <p className="message error" role="alert">
+              {error}
+            </p>
+          )}
+
+          <p className="login-hint">
+            Chưa có tài khoản? <Link to="/register">Đăng ký</Link>
+          </p>
+
+          <div className="auth-divider" role="separator">
+            <span>hoặc</span>
+          </div>
 
           <a className="google-button" href={`${API_BASE}/auth/login/google`}>
             <GoogleIcon />
