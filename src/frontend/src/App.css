@@ -1720,9 +1720,11 @@ dd {
   cursor: pointer;
 }
 
-.profile-menu-trigger:hover {
+.site-header .profile-menu-trigger:hover {
   color: #176048;
   background: #e7f4ee;
+  box-shadow: none;
+  transform: none;
 }
 
 .profile-menu-caret {
