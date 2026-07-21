@@ -1781,9 +1781,7 @@ dd {
 }
 
 .settings-modal-header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1815,17 +1813,23 @@ dd {
 }
 
 .settings-modal {
+  display: flex;
+  flex-direction: column;
   width: min(100%, 680px);
+  max-height: min(84vh, 640px);
+  overflow: hidden;
 }
 
 .settings-modal-body {
   display: grid;
+  flex: 1 1 auto;
   grid-template-columns: 180px 1fr;
-  align-items: start;
+  min-height: 0;
 }
 
 .settings-tabs {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   gap: 4px;
   padding: 22px 12px 28px 26px;
@@ -1856,7 +1860,9 @@ dd {
 }
 
 .settings-tab-content {
+  min-height: 0;
   padding: 22px 26px 28px;
+  overflow-y: auto;
 }
 
 .settings-profile-tab section {
@@ -1936,6 +1942,7 @@ dd {
 @media (max-width: 560px) {
   .settings-modal-body {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
   }
 
   .settings-tabs {

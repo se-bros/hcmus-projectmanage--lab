@@ -1,13 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext'
-import { logoutUser } from '../services/api'
+import { getProfile, logoutUser } from '../services/api'
 
 export function ProfileMenu({ onOpenSettings }: { onOpenSettings: () => void }) {
-  const { clearToken } = useAuth()
+  const { token, clearToken } = useAuth()
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
+  const [displayName, setDisplayName] = useState('user')
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    getProfile()
+      .then((profile) => {
+        if (!cancelled) setDisplayName(profile.username || 'user')
+      })
+      .catch(() => {
+        if (!cancelled) setDisplayName('user')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [token])
 
   useEffect(() => {
     if (!isOpen) return
@@ -37,7 +52,7 @@ export function ProfileMenu({ onOpenSettings }: { onOpenSettings: () => void }) 
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
-        Tài khoản
+        {displayName}
         <span aria-hidden="true" className="profile-menu-caret">
           ▾
         </span>
