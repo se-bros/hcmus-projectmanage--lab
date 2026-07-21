@@ -172,12 +172,25 @@ curl -fsS -X POST http://localhost:8000/auth/logout
 `POST /auth/logout` không giữ trạng thái phía server — trả `204`, việc "đăng
 xuất" thực tế là FE xoá token khỏi `localStorage`.
 
-Gắn token vào header `Authorization: Bearer <token>`. `POST /documents` và `POST
-/documents/{id}/publish` yêu cầu role `editor` hoặc `admin`; role `reader` hoặc
-không có token đều bị từ chối (`403`/`401`). RBAC hiện chỉ áp trên hai endpoint
-ghi tiêu biểu theo AC (`upload`, `publish`); các endpoint ghi khác (`PUT
-.../pages/{n}`, `PUT .../metadata`, `/categories`) chưa có guard — ghi nhận là
-gap còn lại cho các module tương ứng bổ sung sau.
+Gắn token vào header `Authorization: Bearer <token>`. RBAC theo role:
+
+* **`reader`**: chỉ đọc. Mọi endpoint ghi (`POST /documents`, `POST
+  .../ocr`, `PUT .../metadata`, `PUT .../pages/{n}`, `POST /documents/{id}/publish`,
+  `POST/PATCH/DELETE /categories`) trả `403`.
+* **`editor`**: `POST /documents` (upload) và `POST .../ocr` (chạy/chạy lại
+  OCR) cho phép trên mọi document. `PUT .../metadata` và `PUT .../pages/{n}`
+  chỉ cho phép trên document do chính editor đó upload (`document.owner_id`
+  khớp `sub` trong JWT) — document của người khác trả `403` giống hệt
+  reader. `/categories` (tạo/sửa/xoá) vẫn `403` với editor.
+* **`admin`**: full access mọi endpoint, không bị ràng buộc ownership.
+
+Không có token (guest) → `401` trên mọi endpoint ghi. `GET /categories` là
+ngoại lệ luôn mở, không cần token, vì đây chỉ là dữ liệu tham chiếu cho
+dropdown category trong metadata form.
+
+Document được set `owner_id` = `sub` của người upload tại thời điểm tạo;
+document tạo trước khi có field này có `owner_id = NULL` nên chỉ `admin` sửa
+được.
 
 Document có field `is_public` (mặc định `false`). Guest (không token) chỉ đọc
 được document `is_public = true`; ngược lại `GET /documents/{id}` và

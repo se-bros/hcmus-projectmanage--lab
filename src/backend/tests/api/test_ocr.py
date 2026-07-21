@@ -18,7 +18,7 @@ def _document() -> Document:
     )
 
 
-def test_get_failed_job_and_retry_creates_next_attempt(api_context) -> None:
+def test_get_failed_job_and_retry_creates_next_attempt(api_context, editor_headers) -> None:
     client, testing_session, _ = api_context
     with testing_session() as db:
         document = _document()
@@ -38,7 +38,7 @@ def test_get_failed_job_and_retry_creates_next_attempt(api_context) -> None:
     assert status_response.json()["status"] == "failed"
     assert status_response.json()["error_message"] == "tesseract timed out"
 
-    retry = client.post(f"/documents/{document_id}/ocr")
+    retry = client.post(f"/documents/{document_id}/ocr", headers=editor_headers)
     assert retry.status_code == 202
     assert retry.json()["attempt"] == 2
     assert retry.json()["status"] == "pending"
@@ -51,11 +51,11 @@ def test_get_failed_job_and_retry_creates_next_attempt(api_context) -> None:
         assert [job.status for job in jobs] == ["failed", "pending"]
         assert db.get(Document, document_id).status == "ocr_pending"
 
-    duplicate = client.post(f"/documents/{document_id}/ocr")
+    duplicate = client.post(f"/documents/{document_id}/ocr", headers=editor_headers)
     assert duplicate.status_code == 409
 
 
-def test_completed_job_cannot_be_restarted(api_context) -> None:
+def test_completed_job_cannot_be_restarted(api_context, editor_headers) -> None:
     client, testing_session, _ = api_context
     with testing_session() as db:
         document = _document()
@@ -64,9 +64,34 @@ def test_completed_job_cannot_be_restarted(api_context) -> None:
         db.add(OcrJob(id=uuid.uuid4(), document_id=document.id, attempt=1, status="completed"))
         db.commit()
         document_id = document.id
-    response = client.post(f"/documents/{document_id}/ocr")
+    response = client.post(f"/documents/{document_id}/ocr", headers=editor_headers)
     assert response.status_code == 409
     assert "completed" in response.json()["detail"]
+
+
+def test_ocr_trigger_rejected_for_reader_role(api_context) -> None:
+    client, testing_session, _ = api_context
+    with testing_session() as db:
+        document = _document()
+        db.add(document)
+        db.commit()
+        document_id = document.id
+    token = client.post("/auth/dev-token", json={"role": "reader"}).json()["access_token"]
+    response = client.post(
+        f"/documents/{document_id}/ocr", headers={"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 403
+
+
+def test_ocr_trigger_rejected_without_token(api_context) -> None:
+    client, testing_session, _ = api_context
+    with testing_session() as db:
+        document = _document()
+        db.add(document)
+        db.commit()
+        document_id = document.id
+    response = client.post(f"/documents/{document_id}/ocr")
+    assert response.status_code == 401
 
 
 def test_pages_are_ordered_and_preview_is_streamed(api_context) -> None:

@@ -4,6 +4,7 @@ JWT issuance/verification shared by Mock dev-token and Google OAuth, plus
 FastAPI dependencies for optional/required auth and role-based guards.
 """
 
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
@@ -80,3 +81,11 @@ def require_roles(*roles: str) -> Callable[..., AuthenticatedUser]:
         return user
 
     return dependency
+
+
+def ensure_document_editable(owner_id: uuid.UUID | None, user: AuthenticatedUser) -> None:
+    if user.role == "admin":
+        return
+    if user.role == "editor" and owner_id is not None and str(owner_id) == user.sub:
+        return
+    raise ForbiddenError("You do not have permission to edit this document.")

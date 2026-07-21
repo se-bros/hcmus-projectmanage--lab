@@ -26,14 +26,14 @@ router = APIRouter(prefix="/documents", tags=["documents"])
     "",
     response_model=DocumentUploadResponse,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(require_roles("editor", "admin"))],
 )
 def create_document(
     background_tasks: BackgroundTasks,
     db: DbSession,
+    user: Annotated[AuthenticatedUser, Depends(require_roles("editor", "admin"))],
     file: UploadFile = File(...),
 ) -> DocumentUploadResponse:
-    document, job = upload_document(db, file)
+    document, job = upload_document(db, file, owner_id=uuid.UUID(user.sub))
     background_tasks.add_task(run_ocr_job, job.id)
     return DocumentUploadResponse(document_id=document.id)
 

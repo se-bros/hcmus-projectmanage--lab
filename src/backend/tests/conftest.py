@@ -58,3 +58,10 @@ def editor_headers(api_context) -> dict[str, str]:
     client, _, _ = api_context
     token = client.post("/auth/dev-token", json={"role": "editor"}).json()["access_token"]
     return {"Authorization": f"Bearer {token}"}
+
+
+@pytest.fixture
+def admin_headers(api_context) -> dict[str, str]:
+    client, _, _ = api_context
+    token = client.post("/auth/dev-token", json={"role": "admin"}).json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}

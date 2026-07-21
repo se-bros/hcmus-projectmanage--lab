@@ -3,12 +3,13 @@
 import uuid
 from collections.abc import Iterator
 
-from fastapi import APIRouter, BackgroundTasks, Query, status
+from fastapi import APIRouter, BackgroundTasks, Depends, Query, status
 from fastapi.responses import StreamingResponse
 
 from app.api.dependencies import DbSession
 from app.core.config import settings
 from app.core.exceptions import NotFoundError
+from app.core.security import require_roles
 from app.core.storage import minio_client
 from app.schemas.document import OcrDashboardItem, OcrJobAccepted, OcrJobDetail, PageSummary
 from app.services.ocr_service import (
@@ -60,6 +61,7 @@ def read_ocr_dashboard(
     "/{document_id}/ocr",
     response_model=OcrJobAccepted,
     status_code=status.HTTP_202_ACCEPTED,
+    dependencies=[Depends(require_roles("editor", "admin"))],
 )
 def start_ocr(
     document_id: uuid.UUID,

@@ -64,6 +64,7 @@ def upload_document(
     db: Session,
     file: UploadFile,
     storage_client: StorageClient | None = None,
+    owner_id: uuid.UUID | None = None,
 ) -> tuple[Document, OcrJob]:
     original_filename, content_type, length = _validate_upload(file)
     document_id = uuid.uuid4()
@@ -85,6 +86,7 @@ def upload_document(
             object_key=object_key,
             content_type=content_type,
             status="ocr_pending",
+            owner_id=owner_id,
         )
         job = OcrJob(id=uuid.uuid4(), document_id=document_id, attempt=1, status="pending")
         db.add(job)

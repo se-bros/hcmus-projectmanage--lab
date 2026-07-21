@@ -32,6 +32,7 @@ class Document(Base):
         ForeignKey("categories.id", ondelete="RESTRICT"), nullable=True, index=True
     )
     epub_object_key: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    owner_id: Mapped[uuid.UUID | None] = mapped_column(nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     ocr_jobs: Mapped[list[OcrJob]] = relationship(
