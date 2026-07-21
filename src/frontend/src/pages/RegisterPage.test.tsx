@@ -1,8 +1,8 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router'
+import { MemoryRouter, Route, Routes } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { RegisterPage } from './RegisterPage'
-import { AuthProvider, useAuth } from '../context/AuthContext'
+import { AuthProvider } from '../context/AuthContext'
 
 const fetchMock = vi.fn<typeof fetch>()
 
@@ -11,11 +11,6 @@ function response(body: object, status = 200): Response {
     status,
     headers: { 'Content-Type': 'application/json' },
   })
-}
-
-function TokenProbe() {
-  const { token } = useAuth()
-  return <span data-testid="token">{token ?? 'none'}</span>
 }
 
 describe('RegisterPage', () => {
@@ -31,16 +26,18 @@ describe('RegisterPage', () => {
     window.localStorage.clear()
   })
 
-  it('registers with matching passwords and stores the token', async () => {
+  it('registers with matching passwords and redirects to login without storing a token', async () => {
     fetchMock.mockResolvedValueOnce(
       response({ access_token: 'new-token', token_type: 'bearer', role: 'reader' }, 201),
     )
 
     render(
       <AuthProvider>
-        <MemoryRouter>
-          <RegisterPage />
-          <TokenProbe />
+        <MemoryRouter initialEntries={['/register']}>
+          <Routes>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<div data-testid="login-page" />} />
+          </Routes>
         </MemoryRouter>
       </AuthProvider>,
     )
@@ -56,7 +53,7 @@ describe('RegisterPage', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: 'Đăng ký' }))
 
-    await waitFor(() => expect(screen.getByTestId('token').textContent).toBe('new-token'))
+    await waitFor(() => expect(screen.getByTestId('login-page')).toBeInTheDocument())
     expect(fetchMock).toHaveBeenCalledWith(
       '/api/auth/register',
       expect.objectContaining({
@@ -64,6 +61,7 @@ describe('RegisterPage', () => {
         body: JSON.stringify({ email: 'student@hcmus.edu.vn', password: 'supersecret' }),
       }),
     )
+    expect(window.localStorage.getItem('ldms_token')).toBeNull()
   })
 
   it('shows an error and does not call the API when passwords do not match', () => {

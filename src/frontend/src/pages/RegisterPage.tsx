@@ -2,7 +2,6 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { registerUser } from '../services/api'
-import { useAuth } from '../context/AuthContext'
 
 export function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -10,7 +9,6 @@ export function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
-  const { setToken } = useAuth()
   const navigate = useNavigate()
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -24,9 +22,8 @@ export function RegisterPage() {
     setError('')
 
     try {
-      const { access_token: accessToken } = await registerUser(email, password)
-      setToken(accessToken)
-      navigate('/', { replace: true })
+      await registerUser(email, password)
+      navigate('/login', { replace: true })
     } catch (registerError) {
       setError(
         registerError instanceof Error ? registerError.message : 'Không thể kết nối đến máy chủ.',
