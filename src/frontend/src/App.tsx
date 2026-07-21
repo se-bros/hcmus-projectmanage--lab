@@ -11,6 +11,7 @@ import { AuthCallbackPage } from './pages/AuthCallbackPage'
 import ReaderPage from './pages/ReaderPage'
 import SearchPage from './pages/SearchPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { logoutUser } from './services/api'
 
 function AuthNavItem() {
   const { token, clearToken } = useAuth()
@@ -25,8 +26,10 @@ function AuthNavItem() {
       type="button"
       className="nav-logout"
       onClick={() => {
-        clearToken()
-        navigate('/login')
+        void logoutUser().finally(() => {
+          clearToken()
+          navigate('/login')
+        })
       }}
     >
       Đăng xuất
