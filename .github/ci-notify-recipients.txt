@@ -1,0 +1,7 @@
+# Emails notified after every merge to main.
+# One email per line. Lines starting with # are ignored.
+tuananh835.nta@gmail.com
+23127148@student.hcmus.edu.vn
+anhkhoa515.dev@gmail.com
+trieuvanbd123@gmail.com
+machquoctan2005@gmail.com
