@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -10,6 +11,8 @@ import httpx
 
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 RECIPIENTS_FILE = Path(__file__).resolve().parents[4] / ".github" / "ci-notify-recipients.txt"
+
+STATUS_EMOJI = {"success": "✅", "failure": "❌", "cancelled": "⚠️", "skipped": "⏭️"}
 
 
 def parse_recipients(text: str) -> list[str]:
@@ -20,6 +23,14 @@ def parse_recipients(text: str) -> list[str]:
             continue
         recipients.append(line)
     return recipients
+
+
+def compute_overall_status(job_statuses: dict[str, str]) -> str:
+    if not job_statuses:
+        return "unknown"
+    if all(status == "success" for status in job_statuses.values()):
+        return "success"
+    return "failure"
 
 
 def build_payload(
@@ -33,17 +44,26 @@ def build_payload(
     commit_author: str,
     commit_url: str,
     run_url: str,
+    job_statuses: dict[str, str],
 ) -> dict:
     short_sha = commit_sha[:7]
     first_line = commit_message.splitlines()[0] if commit_message else short_sha
-    subject = f"[{repo}] Merged to {branch}: {first_line}"
+    overall_status = compute_overall_status(job_statuses)
+    subject = f"[{repo}] {STATUS_EMOJI.get(overall_status, '')} Merged to {branch}: {first_line}"
+
+    job_rows = "".join(
+        f"<li>{job}: {STATUS_EMOJI.get(status, '')} {status}</li>"
+        for job, status in job_statuses.items()
+    )
     html_content = (
         f"<p><strong>{repo}</strong> vừa merge vào <strong>{branch}</strong>.</p>"
         "<ul>"
         f'<li>Commit: <a href="{commit_url}">{short_sha}</a></li>'
-        f"<li>Tác giả: {commit_author}</li>"
+        f"<li>Author: {commit_author}</li>"
         f"<li>Message: {commit_message}</li>"
         f'<li>Workflow run: <a href="{run_url}">{run_url}</a></li>'
+        f"<li>Job run:<ul>{job_rows}</ul></li>"
+        f"<li>Status: {STATUS_EMOJI.get(overall_status, '')} {overall_status}</li>"
         "</ul>"
     )
     return {
@@ -74,6 +94,7 @@ def main() -> int:
     commit_author = os.environ.get("COMMIT_AUTHOR", "")
     server_url = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
     run_id = os.environ.get("GITHUB_RUN_ID", "")
+    job_statuses = json.loads(os.environ.get("JOB_STATUSES", "{}"))
 
     recipients = parse_recipients(RECIPIENTS_FILE.read_text())
     if not recipients:
@@ -90,6 +111,7 @@ def main() -> int:
         commit_author=commit_author,
         commit_url=f"{server_url}/{repo}/commit/{commit_sha}",
         run_url=f"{server_url}/{repo}/actions/runs/{run_id}",
+        job_statuses=job_statuses,
     )
     send_email(api_key, payload)
     print(f"Sent merge notification to {len(recipients)} recipient(s).")
