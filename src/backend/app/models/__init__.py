@@ -7,4 +7,13 @@ from app.models.publish_job import PublishJob
 from app.models.role_request import RoleRequest
 from app.models.user import User
 
-__all__ = ["Bookmark", "Category", "Document", "OcrJob", "Page", "PublishJob", "RoleRequest", "User"]
+__all__ = [
+    "Bookmark",
+    "Category",
+    "Document",
+    "OcrJob",
+    "Page",
+    "PublishJob",
+    "RoleRequest",
+    "User",
+]
