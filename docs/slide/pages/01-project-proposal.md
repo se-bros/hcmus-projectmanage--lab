@@ -1,14 +1,22 @@
-# PHẦN 1: PROJECT PROPOSAL
-## Đề Xuất Dự Án HCMUS-LDMS
+---
+layout: default
+class: bg-slate-50
+---
 
-<div class="mt-6 text-sm text-slate-700">
-  <p class="text-base font-semibold text-emerald-900 mb-2">Đề Xuất Dự Án HCMUS-LDMS</p>
-  <p class="text-slate-600">Đánh giá bối cảnh, 3 nỗi đau thực tế, giải pháp Scan-to-EPUB 3.0 & Phân tích MOAT kinh doanh.</p>
-</div>
-
-<div class="mt-8 flex gap-3">
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">HCMUS-LDMS</span>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">Phần 1: Proposal</span>
+<div class="relative flex flex-col justify-center h-full p-8 overflow-hidden">
+  <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[15rem] font-extrabold leading-none select-none pointer-events-none opacity-[0.08] font-mono text-emerald-900">01</div>
+  <div class="z-10">
+    <div class="text-xs uppercase tracking-widest text-amber-600 font-extrabold mb-2 font-mono">Phần 01</div>
+    <h1 class="text-4xl font-black text-slate-900 leading-tight mb-4">Project Proposal</h1>
+    <div class="w-16 h-1 bg-emerald-600 rounded mb-6"></div>
+    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Trình bày lý do đầu tư, so sánh với đối thủ cạnh tranh và phương án ghép công cụ sẵn có, phân tích các bên liên quan và chi phí – lợi ích.</p>
+    <div class="flex gap-2 flex-wrap">
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Ý tưởng đầu tư</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Lợi thế cạnh tranh</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Chi phí – Lợi ích</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Bên liên quan</span>
+    </div>
+  </div>
 </div>
 
 ---
@@ -21,33 +29,18 @@
   <div class="flex items-center gap-2 border-b border-red-200 pb-2">
     <strong class="text-red-900 text-sm">Sinh viên Nguyễn Văn Linh (CS Linh Trung)</strong>
   </div>
-  <p class="text-slate-700 italic">"Em phải đi 15km mất gần 3 tiếng từ Linh Trung về Quận 5 chỉ để mượn 1 cuốn giáo trình độc bản. File PDF scan trên mạng thì bị đen, co giãn không được, đọc trên điện thoại mỏi mắt không học nổi!"</p>
-  <div class="text-red-800 font-semibold text-[11px]">→ Giảm 80% hiệu suất học tập khi tra cứu xa.</div>
+  <p class="text-slate-700 italic">"Em phải đi quãng đường xa giữa hai cơ sở chỉ để mượn 1 cuốn giáo trình độc bản. File PDF scan trên mạng thì bị đen, co giãn không được, đọc trên điện thoại mỏi mắt không học nổi!"</p>
+  <div class="text-red-800 font-semibold text-[11px]">→ Giảm hiệu suất học tập khi tra cứu xa.</div>
 </div>
 
 <div class="p-4 rounded-xl bg-orange-50/80 border border-orange-200 shadow-sm space-y-2">
   <div class="flex items-center gap-2 border-b border-orange-200 pb-2">
     <strong class="text-orange-900 text-sm">Thủ thư Mai (CS Quận 5)</strong>
   </div>
-  <p class="text-slate-700 italic">"Kho sách 100% diện tích đã quá tải. 85% thời gian thủ thư dành để đi tìm sách và ghi sổ thủ công. Nhìn giáo trình quý rách hỏng từng ngày mà không có bản lưu trữ số an toàn."</p>
+  <p class="text-slate-700 italic">"Kho sách đã quá tải diện tích. Phần lớn thời gian thủ thư dành để đi tìm sách và ghi sổ thủ công. Nhìn giáo trình quý rách hỏng từng ngày mà không có bản lưu trữ số an toàn."</p>
   <div class="text-orange-800 font-semibold text-[11px]">→ Nguy cơ rách hỏng và mất mát tài liệu vĩnh viễn.</div>
 </div>
 
-</div>
-
-<div class="grid grid-cols-3 gap-4 mt-6 text-center text-xs">
-  <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
-    <div class="text-emerald-700 font-black text-2xl">40%</div>
-    <div class="text-slate-700 font-bold mt-0.5">Giáo trình cũ xuống cấp</div>
-  </div>
-  <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
-    <div class="text-emerald-700 font-black text-2xl">100%</div>
-    <div class="text-slate-700 font-bold mt-0.5">Kho bãi quá tải diện tích</div>
-  </div>
-  <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
-    <div class="text-emerald-700 font-black text-2xl">92%</div>
-    <div class="text-slate-700 font-bold mt-0.5">SV muốn đọc số mobile</div>
-  </div>
 </div>
 
 ---
@@ -58,24 +51,24 @@
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
   <h4 class="font-bold text-emerald-900 text-sm mb-2 border-b border-slate-200 pb-2">1. Xuống Cấp Vật Lý Tri Thức</h4>
-  <p class="text-slate-700">Hàng ngàn cuốn giáo trình nội bộ độc bản xuất bản trước 2010 bị giòn mục, rách trang do thời tiết nóng ẩm và tần suất mượn đọc cao.</p>
+  <p class="text-slate-700">Giáo trình nội bộ độc bản bị giòn mục, rách trang do thời tiết nóng ẩm và tần suất mượn đọc cao.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
   <h4 class="font-bold text-emerald-900 text-sm mb-2 border-b border-slate-200 pb-2">2. Quá Tải Hạ Tầng Lưu Trữ</h4>
-  <p class="text-slate-700">Diện tích kho bãi chiếm 100% không gian thư viện Q.5, không còn diện tích mở rộng không gian tự học Smart Learning Space cho sinh viên.</p>
+  <p class="text-slate-700">Diện tích kho bãi đã quá tải công suất thiết kế, hạn chế không gian mở rộng không gian tự học Smart Learning Space cho sinh viên.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <h4 class="font-bold text-emerald-900 text-sm mb-2 border-b border-slate-200 pb-2">3. Chiến Lược Đại Học Số</h4>
-  <p class="text-slate-700">Phù hợp Chiến lược Phát triển Đại học số ĐHQG-HCM giai đoạn 2026–2030 (đạt mốc số hóa >90% toàn bộ học liệu trọng yếu).</p>
+  <h4 class="font-bold text-emerald-900 text-sm mb-2 border-b border-slate-200 pb-2">3. Trải Nghiệm Đọc Kém</h4>
+  <p class="text-slate-700">Ảnh quét PDF tĩnh không hỗ trợ thay đổi cỡ chữ/dòng (non-responsive) trên thiết bị di động, gây khó khăn cho việc tự học của sinh viên.</p>
 </div>
 
 </div>
 
-<div class="mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-slate-800 text-xs shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">Tuyên Bố Giá Trị Cốt Lõi (Value Proposition):</strong>
-  <em>"Bảo tồn tri thức học thuật giấy tĩnh sang học liệu số reflowable thông qua quy trình số hóa khép kín tự động, kết hợp kiểm soát bản quyền DRM Signed URL 15 phút an toàn tuyệt đối."</em>
+<div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm">
+  <strong class="text-emerald-900 text-sm block mb-1">Tuyên Bố Giá Trị Cốt Lõi:</strong>
+  <em>"Bảo tồn tri thức học thuật giấy tĩnh sang học liệu số tương thích động thông qua quy trình số hóa khép kín tự động, kết hợp kiểm soát bản quyền đường dẫn bảo mật 15 phút an toàn tuyệt đối."</em>
 </div>
 
 ---
@@ -84,49 +77,127 @@
 
 ```mermaid
 graph LR
-    A[Scan 300 DPI] --> B[Tesseract OCR]
-    B --> C[Split-screen Editor]
-    C --> D[Pandoc EPUB 3.0]
-    D --> E[PostgreSQL FTS]
-    E --> F[Web Reader + DRM]
+    A[1. Quét tài liệu] --> B[2. Nhận dạng OCR]
+    B --> C[3. Soạn thảo soát lỗi]
+    C --> D[4. Đóng gói EPUB]
+    D --> E[5. Lập chỉ mục FTS]
+    E --> F[6. Đọc bảo mật DRM]
+
+    classDef default fill:#f8fafc,stroke:#cbd5e1,stroke-width:1px,color:#1e293b,font-size:11px,font-weight:bold;
+    classDef start fill:#f0fdf4,stroke:#bbf7d0,stroke-width:1.5px,color:#166534,font-weight:bold;
+    classDef main fill:#ecfdf5,stroke:#a7f3d0,stroke-width:1.5px,color:#065f46,font-weight:bold;
+    classDef endNode fill:#fffbeb,stroke:#fef3c7,stroke-width:1.5px,color:#92400e,font-weight:bold;
+
+    class A start;
+    class B,C,D,E main;
+    class F endNode;
 ```
 
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+<div class="grid grid-cols-2 gap-4 mt-2 text-xs">
 
 <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-2">Trải Nghiệm Đọc Linh Hoạt (Reflowable)</strong>
+  <strong class="text-emerald-900 text-sm block mb-2 font-bold">Trải Nghiệm Đọc Linh Hoạt (Tương Thích Động)</strong>
   <ul class="space-y-1.5 list-disc pl-4 text-slate-700">
-    <li>Tự động co giãn dòng chữ (80% – 200%) vừa vặn mọi màn hình di động/tablet.</li>
-    <li>Tùy chọn font chữ (Roboto/Inter/OpenDyslexic) và 3 chế độ nền Light/Sepia/Dark.</li>
-    <li>Tìm kiếm toàn văn FTS tức thì đến từng câu, từng đoạn sách.</li>
+    <li>Tự động co giãn dòng chữ (80% – 200%) vừa vặn mọi màn hình di động/máy tính bảng.</li>
+    <li>Tùy chọn kiểu chữ và 3 chế độ nền Sáng/Vàng nhạt/Tối.</li>
+    <li>Tìm kiếm toàn văn tức thì đến từng câu, từng đoạn sách.</li>
   </ul>
 </div>
 
 <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-2">Bảo Vệ Bản Quyền Nghiêm Ngặt (DRM)</strong>
+  <strong class="text-emerald-900 text-sm block mb-2 font-bold">Bảo Vệ Bản Quyền Nghiêm Ngặt</strong>
   <ul class="space-y-1.5 list-disc pl-4 text-slate-700">
-    <li>Không có nút lưu/tải xuống file EPUB gốc về máy cá nhân.</li>
-    <li>Cấp quyền truy cập tạm thời qua MinIO Signed URL (tự hủy sau 15 phút).</li>
-    <li>Chặn thao tác chuột phải, bôi đen copy đoạn văn bản số lượng lớn.</li>
+    <li>Không có nút lưu/tải xuống file sách gốc về máy cá nhân.</li>
+    <li>Cấp quyền truy cập tạm thời qua đường dẫn bảo mật tự hủy sau 15 phút.</li>
+    <li>Chặn thao tác chuột phải, bôi đen sao chép văn bản số lượng lớn.</li>
   </ul>
 </div>
 
+</div>
+
+<div class="mt-2 text-[10px] text-slate-500 leading-normal">
+  • <strong>FTS (Full-Text Search):</strong> Lập chỉ mục tìm kiếm toàn văn, cho phép người dùng tra cứu từ khóa chính xác đến từng từ trong toàn bộ nội dung sách.<br>
+  • <strong>EPUB (Electronic Publication):</strong> Định dạng sách điện tử chuẩn mã nguồn mở, hỗ trợ tự co giãn văn bản (reflowable) để tối ưu hiển thị trên mọi kích thước màn hình thiết bị di động.
 </div>
 
 ---
 
-# So Sánh Với Đối Thủ Cạnh Tranh (Giải Pháp Thương Mại)
+# So Sánh Với Đối Thủ Cạnh Tranh
 
-| Tiêu Chí So Sánh | Giải Pháp Thương Mại (Lạc Việt, DSpace) | HCMUS-LDMS (Đề Xuất) |
-| :--- | :--- | :--- |
-| **Chi Phí Khởi Tạo (CapEx)** | 300 triệu – hơn 1 tỷ VNĐ | **75.000.000 – 95.000.000 VNĐ** (Tiết kiệm > 200 triệu) |
-| **Biên Tập OCR Split-screen** | Rất khó / Không hỗ trợ soát lỗi | **Hỗ trợ giao diện Split-screen chuyên dụng** |
-| **Bảo Mật DRM Signed URL** | Không hỗ trợ (chỉ chặn IP cơ bản) | **Tích hợp MinIO Temporary Signed URL 15m** |
-| **Mã Nguồn & Hạ Tầng** | Phụ thuộc vendor (Vendor lock-in) | **Làm chủ 100% mã nguồn & hạ tầng On-premise** |
+<table class="w-full text-left border-collapse mt-2 border border-slate-200 rounded-lg overflow-hidden">
+  <thead>
+    <tr class="border-b border-slate-200 bg-slate-50">
+      <th class="py-1 px-2 text-[10px] font-bold text-slate-800 border-r border-slate-200 w-1/4">Tiêu Chí So Sánh</th>
+      <th class="py-1 px-2 text-[10px] font-bold text-slate-800 border-r border-slate-200 w-2/5">Giải Pháp Khác <br> (Lạc Việt, DSpace)</th>
+      <th class="py-1 px-2 text-[10px] font-bold text-slate-800 w-1/3">HCMUS-LDMS (Đề Xuất)</th>
+    </tr>
+  </thead>
+  <tbody class="text-[10px] text-slate-700 bg-white">
+    <tr class="border-b border-slate-200">
+      <td class="py-1.5 px-2 font-semibold text-slate-900 border-r border-slate-200 text-[10px]">Chi Phí Khởi Tạo (Ban đầu)</td>
+      <td class="py-1.5 px-2 border-r border-slate-200 text-[10px]">Mức giá thương mại rất cao</td>
+      <td class="py-1.5 px-2 font-bold text-emerald-800 bg-emerald-50/30 text-[10px]">Tối ưu (Sử dụng công nghệ mã nguồn mở và thuê máy chủ đám mây Cloud VPS chi phí thấp)</td>
+    </tr>
+    <tr class="border-b border-slate-200">
+      <td class="py-1.5 px-2 font-semibold text-slate-900 border-r border-slate-200 text-[10px]">Biên Tập nhận dạng chữ</td>
+      <td class="py-1.5 px-2 border-r border-slate-200 text-[10px]">Rất khó / Không hỗ trợ soát lỗi</td>
+      <td class="py-1.5 px-2 font-bold text-emerald-800 bg-emerald-50/30 text-[10px]">Hỗ trợ giao diện chia đôi màn hình chuyên dụng</td>
+    </tr>
+    <tr class="border-b border-slate-200">
+      <td class="py-1.5 px-2 font-semibold text-slate-900 border-r border-slate-200 text-[10px]">Bảo Mật Đường Dẫn DRM</td>
+      <td class="py-1.5 px-2 border-r border-slate-200 text-[10px]">Không hỗ trợ (chỉ chặn IP cơ bản)</td>
+      <td class="py-1.5 px-2 font-bold text-emerald-800 bg-emerald-50/30 text-[10px]">Tích hợp đường dẫn bảo mật tự hủy sau 15 phút</td>
+    </tr>
+    <tr>
+      <td class="py-1.5 px-2 font-semibold text-slate-900 border-r border-slate-200 text-[10px]">Mã Nguồn & Hạ Tầng</td>
+      <td class="py-1.5 px-2 border-r border-slate-200 text-[10px]">Phụ thuộc nhà cung cấp</td>
+      <td class="py-1.5 px-2 font-bold text-emerald-800 bg-emerald-50/30 text-[10px]">Làm chủ 100% mã nguồn & hạ tầng máy chủ ảo độc lập</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs flex justify-between items-center text-slate-800 shadow-sm">
-  <span><strong>Lợi thế cạnh tranh:</strong> Làm chủ công nghệ và tối ưu ngân sách cho nhà trường mà không bị phụ thuộc bản quyền phần mềm ngoài.</span>
-  <span class="badge bg-emerald-700 text-white font-bold px-2 py-1 rounded shrink-0 whitespace-nowrap">Tiết kiệm > 200M</span>
+<div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1.5">
+  <strong>* Chú thích các từ viết tắt:</strong><br>
+  • <strong>HCMUS-LDMS:</strong> Hệ thống Quản lý và Số hóa Tài liệu Thư viện Trường ĐH KHTN.<br>
+  • <strong>DRM (Digital Rights Management):</strong> Quản lý bản quyền số, ngăn chặn hành vi sao chép và tải tệp tin trái phép.<br>
+  • <strong>DSpace:</strong> Nền tảng nguồn mở chuyên dùng cho việc lưu trữ và phân phối tài liệu số học thuật.<br>
+  • <strong>Lạc Việt Vebrary:</strong> Phần mềm quản lý thư viện tích hợp thương mại phổ biến tại Việt Nam.
+</div>
+
+---
+
+# Quy Trình Thủ Công: Ghép Công Cụ Rời Rạc
+
+```mermaid
+graph LR
+    A[1. Quét sách bằng máy văn phòng] --> B[2. Nhận dạng Abbyy FineReader]
+    B --> C[3. Soát lỗi thủ công trên Word]
+    C --> D[4. Đóng gói bằng Calibre]
+    D --> E[5. Chia sẻ qua Google Drive]
+
+    classDef default fill:#f1f5f9,stroke:#cbd5e1,stroke-width:1px,color:#475569,font-size:11px,font-weight:bold;
+    classDef step fill:#fff5f5,stroke:#feb2b2,stroke-width:1.5px,color:#9b2c2c,font-weight:bold;
+
+    class A,B,C,D,E step;
+```
+
+<div class="grid grid-cols-3 gap-4 mt-2 text-xs">
+
+<div class="p-3 bg-red-50/50 border border-red-200 rounded-lg shadow-sm">
+  <strong class="text-red-950 font-bold block mb-1">Quy Trình Rời Rạc</strong>
+  <span class="text-slate-700">Thủ thư phải tự di chuyển dữ liệu thủ công qua lại giữa 4-5 công cụ ngoại tuyến khác nhau.</span>
+</div>
+
+<div class="p-3 bg-red-50/50 border border-red-200 rounded-lg shadow-sm">
+  <strong class="text-red-950 font-bold block mb-1">Tốn Nhiều Công Sức</strong>
+  <span class="text-slate-700">Mất từ 2-3 giờ lao động thủ công cho mỗi đầu sách để định dạng lại và soát lỗi.</span>
+</div>
+
+<div class="p-3 bg-red-50/50 border border-red-200 rounded-lg shadow-sm">
+  <strong class="text-red-950 font-bold block mb-1">Không Có Bảo Mật</strong>
+  <span class="text-slate-700">Tệp tin chia sẻ qua Drive dễ dàng bị tải xuống trực tiếp và phát tán bất hợp pháp.</span>
+</div>
+
 </div>
 
 ---
@@ -136,20 +207,20 @@ graph LR
 <div class="grid grid-cols-2 gap-6 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-red-50/80 border border-red-200 shadow-sm space-y-2">
-  <h3 class="text-red-900 font-bold text-sm mb-2 border-b border-red-200 pb-2">Phương Án Ghép Công Cụ Rời Rạc (Abbyy + Drive)</h3>
+  <h3 class="text-red-900 font-bold text-sm mb-2 border-b border-red-200 pb-2">Phương Án Ghép Công Cụ Rời Rạc <br><span class="text-[10px] font-normal text-red-700">(Quét VP → Abbyy FineReader → Calibre → Google Drive)</span></h3>
   <ul class="space-y-2 text-slate-700">
-    <li><strong>Rời rạc & Tốn công:</strong> Mất 2-3 giờ lao động thủ công chuyển qua lại giữa 4 phần mềm offline.</li>
-    <li><strong>Rủi ro pháp lý cao:</strong> Google Drive không chặn tải file gốc, nguy cơ phát tán sách tràn lan.</li>
-    <li><strong>Tra cứu kém:</strong> Không hỗ trợ tìm kiếm toàn văn FTS đến từng trang sách.</li>
+    <li><strong>Rời rạc & Tốn công:</strong> Tốn nhiều giờ lao động thủ công chuyển qua lại giữa nhiều phần mềm ngoại tuyến độc lập.</li>
+    <li><strong>Rủi ro pháp lý cao:</strong> Lưu trữ đám mây thông thường không chặn tải file gốc, nguy cơ phát tán sách tràn lan.</li>
+    <li><strong>Tra cứu kém:</strong> Không hỗ trợ tìm kiếm toàn văn đến từng trang sách.</li>
   </ul>
 </div>
 
 <div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-2">
   <h3 class="text-emerald-900 font-bold text-sm mb-2 border-b border-emerald-200 pb-2">Hệ Thống HCMUS-LDMS Khép Kín</h3>
   <ul class="space-y-2 text-slate-700">
-    <li><strong>Tự động hóa 100%:</strong> Luồng Scan $\rightarrow$ OCR $\rightarrow$ Editor $\rightarrow$ EPUB diễn ra trên 1 giao diện web.</li>
-    <li><strong>Bảo mật Signed URL 15m:</strong> Khóa tải xuống, phân quyền SSO Google OAuth trường.</li>
-    <li><strong>Tìm kiếm FTS dưới 3s:</strong> Lập chỉ mục toàn văn PostgreSQL FTS tức thì.</li>
+    <li><strong>Tự động hóa cao:</strong> Quy trình từ Quét → Soát lỗi → Biên tập → Xuất bản diễn ra trên 1 giao diện web thống nhất.</li>
+    <li><strong>Bảo mật đường dẫn 15 phút:</strong> Khóa tải xuống, phân quyền định danh trường nội bộ.</li>
+    <li><strong>Tìm kiếm toàn văn siêu tốc:</strong> Lập chỉ mục nội dung tìm kiếm tức thì.</li>
   </ul>
 </div>
 
@@ -157,202 +228,75 @@ graph LR
 
 ---
 
-# Lợi Thế Cạnh Tranh Bền Vững (MOAT Analysis)
+# Lợi Thế Cạnh Tranh Bền Vững (MOAT)
 
 <div class="grid grid-cols-3 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">1. Exclusive Content (Độc Quyền 5/5)</strong>
-  <p class="text-slate-700">Sở hữu độc quyền kho giáo trình và đề thi nội bộ HCMUS mà các nền tảng thương mại bên ngoài không bao giờ có được.</p>
+  <strong class="text-emerald-900 text-sm block mb-1">1. Nội dung độc quyền (Độc Quyền)</strong>
+  <p class="text-slate-700">Sở hữu độc quyền kho giáo trình và học liệu nội bộ HCMUS mà các nền tảng thương mại bên ngoài không bao giờ có được.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">2. Switching Cost Cao (Mức Độ 5/5)</strong>
-  <p class="text-slate-700">Toàn bộ thói quen tra cứu, ghi chú và lịch sử đọc của sinh viên/giảng viên được gắn liền với tài khoản SSO trường.</p>
+  <strong class="text-emerald-900 text-sm block mb-1">2. Chi phí chuyển đổi cao</strong>
+  <p class="text-slate-700">Toàn bộ thói quen tra cứu, ghi chú và lịch sử đọc của sinh viên/giảng viên được gắn liền với tài khoản định danh trường.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">3. Lợi Thế Chi Phí (Mức Độ 4/5)</strong>
-  <p class="text-slate-700">Tận dụng 100% công nghệ mã nguồn mở (FastAPI, PostgreSQL, MinIO, Docker) loại bỏ hoàn toàn phí bản quyền hàng năm.</p>
+  <strong class="text-emerald-900 text-sm block mb-1">3. Lợi thế chi phí tối ưu</strong>
+  <p class="text-slate-700">Tận dụng công nghệ mã nguồn mở (FastAPI, PostgreSQL, MinIO, Docker) loại bỏ hoàn toàn phí bản quyền hàng năm.</p>
 </div>
 
 </div>
 
-<div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">Kết Luận Phòng Thủ Strategical MOAT:</strong>
-  Đối thủ thương mại có công nghệ nhưng <strong>không có Exclusive Content</strong> của HCMUS. Phương án ghép công cụ rời rạc <strong>không có bất kỳ MOAT nào</strong> để bảo vệ tri thức trường.
+<div class="mt-2 p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm">
+  <strong class="text-emerald-900 text-sm block mb-1">Kết Luận Phòng Thủ Chiến Lược:</strong>
+  Đối thủ thương mại có công nghệ nhưng <strong>không có Nội dung độc quyền</strong> của HCMUS. Phương án ghép công cụ rời rạc <strong>không có lợi thế bền vững nào</strong> để bảo vệ tri thức trường.
+</div>
+
+<div class="mt-2 text-[10px] text-slate-500 leading-normal">
+  * <strong>MOAT (Hào nước bảo vệ thành):</strong> Thuật ngữ ẩn dụ trong kinh doanh, chỉ lợi thế cạnh tranh độc quyền bền vững giúp bảo vệ dự án khỏi sự thay thế hoặc sao chép của đối thủ khác.
 </div>
 
 ---
 
-# Phân Tích Các Bên Liên Quan (Stakeholders & RACI)
+# Phân Tích Các Bên Liên Quan (Các Bên Liên Quan & RACI)
 
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Cơ Cấu Stakeholders Dự Án</strong>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Cơ Cấu Các Bên Liên Quan Dự Án</strong>
   <ul class="space-y-1.5 text-slate-700">
-    <li><strong>Sponsor:</strong> Ban Giám hiệu HCMUS (Phê duyệt chủ trương & ngân sách)</li>
-    <li><strong>Client Nghiệp vụ:</strong> Ban Giám đốc Thư viện (Kiểm soát OCR & Biên tập)</li>
-    <li><strong>Client Kỹ thuật:</strong> Phòng CNTT (Hạ tầng vSphere, OAuth, FTS)</li>
-    <li><strong>Cố vấn Pháp lý:</strong> Bộ phận Pháp chế (Thẩm định quy chế SHTT)</li>
+    <li><strong>Nhà tài trợ dự án:</strong> Ban Giám hiệu HCMUS (Phê duyệt chủ trương & ngân sách)</li>
+    <li><strong>Bên thụ hưởng nghiệp vụ:</strong> Ban Giám đốc Thư viện (Kiểm soát soát lỗi & Biên tập)</li>
+    <li><strong>Bên thụ hưởng kỹ thuật:</strong> Phòng Công nghệ Thông tin (Hạ tầng mạng, định danh, tra cứu)</li>
+    <li><strong>Cố vấn Pháp lý:</strong> Bộ phận Pháp chế (Thẩm định quy chế sở hữu trí tuệ)</li>
   </ul>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Phân Phối Bảng RACI Rút Gọn</strong>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Phân Phối Ma Trận Trách Nhiệm Rút Gọn</strong>
   <ul class="space-y-1.5 text-slate-700">
-    <li><strong>WP1 Khảo sát & Pháp lý:</strong> Thư viện (Accountable), Pháp chế (Consulted)</li>
-    <li><strong>WP2 Hạ tầng & Storage:</strong> Phòng CNTT (Accountable), Thư viện (Informed)</li>
-    <li><strong>WP3 Core Development:</strong> Phòng CNTT (Accountable), Dev Team (Responsible)</li>
-    <li><strong>WP4 Số hóa 2.500 sách:</strong> Thư viện (Accountable), CTV (Responsible)</li>
+    <li><strong>WP1 Khảo sát & Pháp lý:</strong> Thư viện (Trách nhiệm chính), Pháp chế (Tham vấn ý kiến)</li>
+    <li><strong>WP2 Hạ tầng & Lưu trữ:</strong> Phòng CNTT (Trách nhiệm chính), Thư viện (Nhận thông tin)</li>
+    <li><strong>WP3 Phát triển cốt lõi:</strong> Phòng CNTT (Trách nhiệm chính), Đội ngũ lập trình (Thực hiện trực tiếp)</li>
+    <li><strong>WP4 Số hóa tài liệu:</strong> Thư viện (Trách nhiệm chính), Cộng tác viên (Thực hiện trực tiếp)</li>
   </ul>
 </div>
 
 </div>
 
----
-
-# Phân Tích Chi Phí – Lợi Ích & Điểm Hòa Vốn
-
-<div class="grid grid-cols-3 gap-4 mt-4 text-center text-xs">
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <span class="text-slate-600 font-bold block">Ngân Sách CapEx</span>
-  <span class="text-emerald-700 font-black text-2xl block mt-1">75 – 95 Tr VNĐ</span>
-  <span class="text-[10px] text-slate-500">Mua 2 máy scan V-shaped + Server</span>
+<div class="mt-2 p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm">
+  <strong class="text-emerald-900 text-sm block mb-1">Khả Thi Thực Tế Từ Góc Độ Các Bên Liên Quan:</strong>
+  <ul class="grid grid-cols-3 gap-2 list-none p-0 m-0 text-slate-700 text-[11px]">
+    <li><strong>Pháp lý:</strong> Có bộ phận Pháp chế thẩm định bản quyền và điều khoản sử dụng sớm (Gói 1).</li>
+    <li><strong>Kỹ thuật:</strong> Phòng CNTT chịu trách nhiệm chính (A) phát triển và triển khai máy chủ Cloud VPS.</li>
+    <li><strong>Vận hành:</strong> Thư viện chủ trì nghiệp vụ kết hợp nhân lực CTV sinh viên giải quyết nút thắt số hóa.</li>
+  </ul>
 </div>
 
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <span class="text-slate-600 font-bold block">Chi Phí Vận Hành OpEx</span>
-  <span class="text-emerald-700 font-black text-2xl block mt-1">15 – 30 Tr/năm</span>
-  <span class="text-[10px] text-slate-500">Điện đạm, bảo trì & thù lao CTV</span>
+<div class="mt-2 text-[10px] text-slate-500 leading-normal">
+  • <strong>WP (Work Package):</strong> Gói công việc nhỏ nhất trong cấu trúc phân rã công việc dự án.<br>
+  • <strong>RACI:</strong> Ma trận phân định trách nhiệm (Thực hiện trực tiếp - R, Trách nhiệm chính - A, Tham vấn ý kiến - C, Nhận thông tin - I).
 </div>
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
-  <span class="text-slate-600 font-bold block">Tiết Kiệm (Cost Avoidance)</span>
-  <span class="text-emerald-700 font-black text-2xl block mt-1">35 Tr/năm</span>
-  <span class="text-[10px] text-slate-500">Tiết kiệm kho bãi + Giờ công thủ thư</span>
-</div>
-
-</div>
-
-<div class="mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm flex items-center justify-between">
-  <div>
-    <strong class="text-emerald-900 text-sm block">Thời Gian Hoàn Vốn (Payback Period): 2.5 – 3.8 Năm</strong>
-    <p class="text-slate-700 mt-0.5">Lợi ích định tính: bảo tồn 100% học liệu gốc, nâng cao chỉ số Đại học số ĐHQG-HCM, làm chủ 100% công nghệ.</p>
-  </div>
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1.5 text-xs rounded-full shrink-0 whitespace-nowrap">Hiệu Quả Cao</span>
-</div>
-
----
-
-# Lộ Trình Triển Khai Cấp Cao (Roadmap 20 Tuần)
-
-<div class="space-y-3 mt-4 text-xs">
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <div>
-    <strong class="text-emerald-900 text-sm">Giai Đoạn 0 (Tuần 1–2): Khảo Sát & Bản Quyền</strong>
-    <p class="text-slate-700">Khảo sát 2.500 đầu sách, ban hành Quy chế bảo mật bản quyền số nội bộ.</p>
-  </div>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-1 rounded shrink-0 whitespace-nowrap">Gate 0</span>
-</div>
-
-<div class="p-3 bg-emerald-50/80 rounded-lg border border-emerald-200 flex items-center justify-between shadow-sm">
-  <div>
-    <strong class="text-emerald-900 text-sm">Giai Đoạn 1 (Tuần 3–12): Phát Triển MVP & Thí Điểm Khoa CNTT</strong>
-    <p class="text-slate-700">Hoàn thiện Core System, số hóa thí điểm 500 giáo trình CNTT trọng yếu.</p>
-  </div>
-  <span class="badge bg-emerald-700 text-white font-bold px-2.5 py-1 rounded shrink-0 whitespace-nowrap">Gate 1 (MVP)</span>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <div>
-    <strong class="text-emerald-900 text-sm">Giai Đoạn 2 (Tuần 13–18): Số Hóa Diện Rộng</strong>
-    <p class="text-slate-700">Huy động CTV mở rộng số hóa 2.000 đầu sách thuộc các Khoa Tự nhiên còn lại.</p>
-  </div>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-1 rounded shrink-0 whitespace-nowrap">Gate 2</span>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <div>
-    <strong class="text-emerald-900 text-sm">Giai Đoạn 3 (Tuần 19–20): UAT & Go-Live Toàn Trường</strong>
-    <p class="text-slate-700">Kiểm thử UAT, Pentest bảo mật DRM, bàn giao chính thức cho Thư viện vận hành.</p>
-  </div>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-1 rounded shrink-0 whitespace-nowrap">Gate 3 (Go-Live)</span>
-</div>
-
-</div>
-
----
-
-# Quy Trình AI-Assisted (Human-in-the-loop)
-
-```mermaid
-graph LR
-    A[Quét Sách 300 DPI] --> B[FastAPI BackgroundTasks]
-    B --> C[Tesseract OCR Engine]
-    C --> D[Split-screen Editor]
-    D -->|CTV Soát Lỗi| E[Thủ Thư Phê Duyệt]
-    E --> F[Xuất Bản EPUB 3.0]
-```
-
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
-
-<div class="p-4 bg-blue-50/80 rounded-xl border border-blue-200 shadow-sm">
-  <strong class="text-blue-900 text-sm block mb-1">AI / Automation Xử Lý (Tesseract + Async)</strong>
-  <p class="text-slate-700">Đảm nhận 80% khối lượng công việc lặp lại: nhận dạng ký tự tiếng Việt, bóc tách bảng biểu, tự động canh lề và tạo cấu trúc HTML thô.</p>
-</div>
-
-<div class="p-4 bg-orange-50/80 rounded-xl border border-orange-200 shadow-sm">
-  <strong class="text-orange-900 text-sm block mb-1">Con Người Kiểm Duyệt (Human Verification)</strong>
-  <p class="text-slate-700">Biên tập viên/CTV soát lỗi trực quan qua màn hình Split-screen. Thủ thư giữ quyền quyết định duyệt xuất bản cuối cùng (100% chuẩn học thuật).</p>
-</div>
-
-</div>
-
----
-
-# Danh Mục Rủi Ro Kinh Doanh & Biện Pháp Giảm Thiểu
-
-| Loại Rủi Ro | Mức Độ | Biện Pháp Giảm Thiểu (Mitigation Strategy) |
-| :--- | :--- | :--- |
-| **Bản Quyền & Pháp Lý** | **Cao** | Chỉ số hóa giáo trình nội bộ HCMUS, phân quyền SSO Google OAuth, khóa tải xuống. |
-| **Chất Lượng OCR Tiếng Việt** | **Trung Bình** | Tiền xử lý ảnh (Deskew/Bin) + Giao diện Split-screen cho CTV sửa lỗi nhanh. |
-| **Rò Rỉ File Gốc** | **Trung Bình** | Dùng MinIO Temporary Signed URL tự hủy sau 15 phút, chặn chuột phải & Copy. |
-| **Nguồn Nhân Lực Quá Tải** | **Trung Bình** | Đội ngũ cam kết 50% thời gian chính thức, tuyển CTV sinh viên theo giờ công. |
-
----
-
-# Kết Luận & Khuyến Nghị Hành Động (Next Steps)
-
-<div class="space-y-4 mt-4 text-sm">
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm flex items-start gap-4">
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">BƯỚC 1</span>
-  <div>
-    <strong class="text-emerald-900 text-base">Phê Duyệt Chủ Trương & Ngân Sách Khởi Động</strong>
-    <p class="text-xs text-slate-700 mt-0.5">Thông qua đề xuất dự án & cấp kinh phí CapEx đợt 1 (75.000.000 VNĐ) để triển khai Giai đoạn 0.</p>
-  </div>
-</div>
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm flex items-start gap-4">
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">BƯỚC 2</span>
-  <div>
-    <strong class="text-emerald-900 text-base">Ban Hành Quy Châu Bản Quyền Số Nội Bộ</strong>
-    <p class="text-xs text-slate-700 mt-0.5">Phòng Pháp chế phối hợp Thư viện ban hành quy chế sử dụng tài liệu số hóa trước Tuần 3.</p>
-  </div>
-</div>
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm flex items-start gap-4">
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">BƯỚC 3</span>
-  <div>
-    <strong class="text-emerald-900 text-base">Triển Khai Thí Điểm MVP Khoa CNTT</strong>
-    <p class="text-xs text-slate-700 mt-0.5">Hoàn thành số hóa 500 giáo trình CNTT đúng tiến độ Tuần 12 trước khai giảng năm học mới.</p>
-  </div>
-</div>
-
-</div>
-
 

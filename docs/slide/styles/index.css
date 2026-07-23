@@ -202,15 +202,24 @@
   word-break: keep-all !important;
 }
 
-/* Hide Slidev Dev Navigation Drawer / Goto dialog */
+/* Hide Slidev Dev Navigation Drawer / Goto dialog / Nav controls */
 #slidev-goto-dialog,
 .autocomplete-list,
 .slidev-nav-drawer,
 .slidev-toc-drawer,
 .slidev-side-nav,
-.slidev-drawer {
+.slidev-drawer,
+.slidev-nav {
   display: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide default 'Slidev' branding text in bottom-left footer */
+.foot > span:first-child,
+.slidev-layout .foot > span:first-child {
+  display: none !important;
+  opacity: 0 !important;
   visibility: hidden !important;
 }
