@@ -23,6 +23,7 @@
 |         2.0         |      14/07/2026       | Chuẩn hóa cấu trúc và thuật ngữ, bổ sung định lượng thực trạng.             |      Mạch Quốc Tấn       |
 |         3.0         |      15/07/2026       | Bổ sung mục 5.1 Phân tích MOAT sơ bộ (Lợi thế cạnh tranh bền vững).         |    Ân Tiến Nguyên An     |
 |         4.0         |      17/07/2026       | Đồng bộ hóa tech stack đơn giản hóa mới (Google OAuth 2.0, PostgreSQL FTS). |    Ân Tiến Nguyên An     |
+|         5.0         |      23/07/2026       | Loại bỏ các số liệu định lượng lý do thực hiện, tập trung vào thách thức.   |      Mạch Quốc Tấn       |
 
 ---
 
@@ -53,16 +54,16 @@
 
 Ý tưởng dự án xuất phát từ sự kết hợp nhu cầu nghiệp vụ của Ban Giám gốc Thư viện và năng lực công nghệ của Phòng Công nghệ Thông tin HCMUS, dựa trên 3 nền tảng:
 
-1. **Chiến lược Đại học số ĐHQG-HCM:** Thực hiện kế hoạch chuyển đổi số giáo dục giai đoạn 2026-2030, hướng tới mục tiêu nâng tỷ lệ học liệu số sẵn có phục vụ học tập và nghiên cứu trực tuyến đạt trên 90%.
-2. **Áp lực hạ tầng vật lý tại Thư viện cơ sở 1 (Nguyễn Văn Cừ, Q.5):** Không gian lưu trữ sách giấy tại cơ sở 1 đã hoàn toàn quá tải (đạt 100% công suất thiết kế kho). Cần giải phóng kệ sách vật lý để cải tạo thành các không gian tự học số (Smart Learning Space) cho sinh viên.
-3. **Phản hồi trải nghiệm người dùng (UX):** Kết quả khảo sát nhanh năm 2025 cho thấy 92% sinh viên sử dụng smartphone để tra cứu học liệu số, nhưng định dạng PDF scan hiện tại của thư viện không hỗ trợ tự co giãn chữ (non-responsive), gây mỏi mắt và giảm hiệu quả tiếp cận tài liệu số.
+1. **Chiến lược Đại học số ĐHQG-HCM:** Thực hiện kế hoạch chuyển đổi số giáo dục giai đoạn 2026-2030, hướng tới mục tiêu nâng cao tỷ lệ học liệu số sẵn có phục vụ học tập và nghiên cứu trực tuyến.
+2. **Áp lực hạ tầng vật lý tại Thư viện cơ sở 1 (Nguyễn Văn Cừ, Q.5):** Không gian lưu trữ sách giấy tại cơ sở 1 đã hoàn toàn quá tải công suất thiết kế kho. Cần giải phóng kệ sách vật lý để cải tạo thành các không gian tự học số (Smart Learning Space) cho sinh viên.
+3. **Phản hồi trải nghiệm người dùng (UX):** Khảo sát cho thấy phần lớn sinh viên sử dụng smartphone để tra cứu học liệu số, nhưng định dạng PDF scan hiện tại của thư viện không hỗ trợ tự co giãn chữ (non-responsive), gây mỏi mắt và giảm hiệu quả tiếp cận tài liệu số.
 
 ## 3. Vấn đề thực trạng và Cơ hội giải quyết
 
 ### 3.1. Thực trạng và Vấn đề
 
-- **Xuống cấp học liệu vật lý:** Hơn 40% giáo trình cũ và tài liệu chuyên ngành độc bản xuất bản trước năm 2010 tại thư viện đang bị mục nát, rách hỏng do thời tiết nóng ẩm và tần suất lật giở mượn đọc cao.
-- **Khoảng cách địa lý tiếp cận tri thức:** Sinh viên học tập tại cơ sở 2 (Linh Trung - Thủ Đức) phải di chuyển hơn 15km để mượn hoặc đọc trực tiếp các tài liệu giấy độc bản chỉ có ở cơ sở 1 (Quận 5).
+- **Xuống cấp học liệu vật lý:** Nhiều giáo trình cũ và tài liệu chuyên ngành độc bản xuất bản từ lâu tại thư viện đang bị mục nát, rách hỏng do thời tiết nóng ẩm và tần suất lật giở mượn đọc cao.
+- **Khoảng cách địa lý tiếp cận tri thức:** Sinh viên học tập tại cơ sở 2 (Linh Trung - Thủ Đức) gặp khó khăn khi phải di chuyển quãng đường xa giữa hai cơ sở chỉ để mượn hoặc đọc trực tiếp các tài liệu giấy độc bản chỉ có ở cơ sở Quận 5.
 - **Trải nghiệm đọc số hóa kém:** Các tài liệu số hóa hiện tại chủ yếu là PDF scan ảnh tĩnh. Việc không hỗ trợ tự động co giãn dòng (reflowable) khiến sinh viên phải zoom liên tục khi đọc trên màn hình điện thoại di động.
 - **Tìm kiếm hạn chế:** Cổng tra cứu cũ chỉ hỗ trợ tìm theo tiêu đề sách hoặc tác giả, hoàn toàn không hỗ trợ tra cứu nội dung chi tiết bên trong sách (chương, định lý, công thức).
 
@@ -78,7 +79,7 @@
 
 - **Sinh viên & Học viên:** Tiếp cận và đọc trực tuyến giáo trình chuẩn EPUB responsive mọi lúc, mọi nơi thông qua trình đọc web tích hợp an toàn.
 - **Giảng viên & Nghiên cứu viên:** Dễ dàng chia sẻ, nhúng liên kết học liệu số hóa vào hệ thống quản lý học tập (LMS Moodle) phục vụ giảng dạy.
-- **Thủ thư & Biên tập viên:** Sở hữu công cụ biên tập và quản lý quy trình số hóa tự động hóa lên đến 85%, giảm thiểu các công việc thủ công liên quan đến mượn trả và bảo quản sách giấy.
+- **Thủ thư & Biên tập viên:** Sử dụng công cụ biên tập và quản lý quy trình số hóa tự động hóa cao, giảm thiểu các công việc thủ công liên quan đến mượn trả và bảo quản sách giấy.
 - **Ban Giám hiệu nhà trường:** Tiết kiệm chi phí đầu tư xây dựng kho bãi vật lý mới và nâng cao các chỉ số xếp hạng đại học số của HCMUS.
 
 ## 5. Giá trị cốt lõi (Core Value Proposition)
