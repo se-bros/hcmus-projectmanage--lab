@@ -373,9 +373,7 @@ Một bản kế hoạch dự án đầy đủ không chỉ là "làm gì" mà c
 
 </div>
 
-<div class="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
-  <strong>Hành động khắc phục:</strong> Nhắc các thành viên còn thiếu bổ sung log cho 10 công việc chưa ghi nhận, để số liệu báo cáo phản ánh đúng 100% công sức và chi phí AI đã thực sự bỏ ra.
-</div>
+
 
 ---
 
