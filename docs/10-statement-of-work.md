@@ -198,15 +198,16 @@ Dự án được thực hiện trong **20 tuần**, chia thành 4 giai đoạn 
 
 ### 7.1. Tổng ngân sách đầu tư một lần (CapEx)
 
-| Hạng mục                        |        Khoảng giá (VNĐ)        |
-| :------------------------------ | :----------------------------: |
-| Số hóa & Biên tập EPUB (CTV SV) |    30.000.000 – 40.000.000     |
-| Phát triển phần mềm             |    25.000.000 – 35.000.000     |
-| Thiết bị scan & Server          |    10.000.000 – 12.000.000     |
-| Đào tạo & Triển khai            |     2.000.000 – 4.000.000      |
-| **Chi phí AI Tools (hạn mức)**  |        **≤ 5.000.000**         |
-| Dự phòng rủi ro (~15%)          |     5.000.000 – 10.000.000     |
-| **TỔNG CAPEX**                  | **≈ 77.000.000 – 106.000.000** |
+| Hạng mục                        |        Khoảng giá (VNĐ)        | Ghi chú chi tiết thù lao / lương nhân lực |
+| :------------------------------ | :----------------------------: | :---------------------------------------- |
+| Số hóa & Biên tập EPUB (CTV SV) |    30.000.000 – 40.000.000     | Thù lao CTV sinh viên: 30.000 VNĐ/giờ (hoặc 12.000 VNĐ/cuốn 200 trang đã sửa lỗi OCR). |
+| Phát triển phần mềm (Nhóm Dev)  |    25.000.000 – 35.000.000     | Phụ cấp khoán nỗ lực cho 6 thành viên nhóm Dev (trung bình 4.5 - 6 triệu VNĐ/người/dự án). |
+| Phụ cấp Cán bộ Thư viện         |     4.000.000 – 6.000.000      | Phụ cấp kiêm nhiệm kiểm duyệt cho 02 thủ thư (1.000.000 VNĐ/người/tháng x 3 tháng). |
+| Thiết bị scan & Server          |    10.000.000 – 12.000.000     | 02 máy quét chữ V + RAM/SSD nâng cấp server VMware. |
+| Đào tạo & Triển khai            |     2.000.000 – 4.000.000      | Tài liệu, video hướng dẫn và tập huấn cán bộ. |
+| **Chi phí AI Tools (hạn mức)**  |        **≤ 5.000.000**         | Hạn mức chi trả API/Token AI (Claude, Antigravity, v.v.). |
+| Dự phòng rủi ro (~15%)          |     5.000.000 – 10.000.000     | Phát sinh ngoài dự kiến. |
+| **TỔNG CAPEX**                  | **≈ 77.000.000 – 106.000.000** | |
 
 ### 7.2. Chi phí vận hành định kỳ (OpEx/năm)
 
@@ -224,21 +225,25 @@ Dự án được thực hiện trong **20 tuần**, chia thành 4 giai đoạn 
 
 ## 8. Nguồn lực nhân sự và Vai trò AI Assistants
 
-### 8.1. Nhân sự dự án
+### 8.1. Nhân sự dự án và Cơ chế Thù lao / Lương
 
-| #   | Họ và tên             | MSSV     | Email liên hệ                 | Vai trò trong dự án        | Phân bổ thời gian |
-| --- | :-------------------- | :------- | :---------------------------- | :------------------------- | :---------------- |
-| 1   | Ngô Nguyễn Thế Khoa   | 23127065 | 23127065@student.hcmus.edu.vn | Frontend Developer         | Kiêm nhiệm        |
-| 2   | Mạch Quốc Tấn         | 23127115 | 23127115@student.hcmus.edu.vn | Project Manager            | Kiêm nhiệm        |
-| 3   | Nguyễn Quang Thái     | 23127116 | 23127116@student.hcmus.edu.vn | Devops / QA                | Kiêm nhiệm        |
-| 4   | Ân Tiến Nguyên An     | 23127148 | 23127148@student.hcmus.edu.vn | Backend Developer          | Kiêm nhiệm        |
-| 5   | Nguyễn Tuấn Anh       | 23127152 | 23127152@student.hcmus.edu.vn | DevOps / Backend Developer | Kiêm nhiệm        |
-| 6   | Nguyễn Lê Hồ Anh Khoa | 23127211 | 23127211@student.hcmus.edu.vn | Frontend Developer         | Kiêm nhiệm        |
+#### A. Nhóm Phát triển Dự án (Bên A - Kỹ sư CNTT / Sinh viên Dev)
 
-**Nhân sự hỗ trợ (Bên B cung cấp):**
+| #   | Họ và tên             | MSSV     | Email liên hệ                 | Vai trò trong dự án        | Phân bổ thời gian | Mức phụ cấp khoán (VNĐ) |
+| --- | :-------------------- | :------- | :---------------------------- | :------------------------- | :---------------- | :---------------------- |
+| 1   | Mạch Quốc Tấn         | 23127115 | 23127115@student.hcmus.edu.vn | Project Manager            | Kiêm nhiệm (50%)  | 6.000.000 VNĐ           |
+| 2   | Ân Tiến Nguyên An     | 23127148 | 23127148@student.hcmus.edu.vn | Backend Developer (Lead)   | Kiêm nhiệm (50%)  | 5.500.000 VNĐ           |
+| 3   | Ngô Nguyễn Thế Khoa   | 23127065 | 23127065@student.hcmus.edu.vn | Frontend Developer (Lead)  | Kiêm nhiệm (50%)  | 5.500.000 VNĐ           |
+| 4   | Nguyễn Tuấn Anh       | 23127152 | 23127152@student.hcmus.edu.vn | DevOps / Backend Developer | Kiêm nhiệm (50%)  | 5.000.000 VNĐ           |
+| 5   | Nguyễn Quang Thái     | 23127116 | 23127116@student.hcmus.edu.vn | DevOps / QA                | Kiêm nhiệm (50%)  | 4.500.000 VNĐ           |
+| 6   | Nguyễn Lê Hồ Anh Khoa | 23127211 | 23127211@student.hcmus.edu.vn | Frontend Developer         | Kiêm nhiệm (50%)  | 4.500.000 VNĐ           |
 
-- 02 cán bộ Thư viện phụ trách kiểm duyệt chất lượng.
-- 10–15 sinh viên CTV bán thời gian sửa lỗi OCR.
+#### B. Nhân sự Vận hành Thư viện & Cộng tác viên (Bên B - Thư viện HCMUS)
+
+- **Cán bộ Thủ thư (Kiểm duyệt):** 02 người — Phụ cấp kiêm nhiệm kiểm duyệt chất lượng sách & thẩm định bản quyền **1.000.000 VNĐ/tháng/người** (trong 3 tháng cao điểm).
+- **Sinh viên CTV (Scan & OCR):** 10–15 người — Thù lao **30.000 VNĐ/giờ** (hoặc khoán **12.000 VNĐ/cuốn 200 trang** đã nghiệm thu không lỗi chính tả OCR).
+
+
 
 ### 8.2. Vai trò của AI Coding Assistants
 

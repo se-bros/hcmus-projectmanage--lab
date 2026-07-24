@@ -198,41 +198,46 @@ Tài liệu này đối chiếu và trả lời trực tiếp từng câu hỏi 
 ### 5.1. Giải thích các ước lượng về thời gian, tài nguyên và chi phí của dự án với sự trợ giúp của AI Assistants
 - **Trạng thái:** ĐÃ CÓ TRONG TÀI LIỆU.
 - **Trích dẫn chi tiết:**
-  - [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L70-L178) — **Mục 2. Phương pháp luận ước lượng nỗ lực phần mềm (UCP & COCOMO II)**:
+  - [08-cost-time-resource.md](file:///d:/Project/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L70-L178) — **Mục 2. Phương pháp luận ước lượng nỗ lực phần mềm (UCP & COCOMO II)**:
     > - Mô hình UCP: UAW = 12, UUCW = 130 $\rightarrow$ UUCP = 142. TCF = 1.13, ECF = 0.785 $\rightarrow$ AUCP = 126 points. Nỗ lực quy đổi = 2.520 người-giờ ($\approx 15.75 \text{ PM}$). Tái sử dụng mã nguồn mở giúp nỗ lực thực tế viết mới giảm xuống **10.0 PM** ($\approx$ 5 tháng làm việc của 4 kỹ sư kiêm nhiệm 50%).  
     > - Mô hình COCOMO II: Viết mới 3.5 KLOC $\rightarrow \text{Effort\_New} \approx \mathbf{10.4\text{ PM}}$ (Khớp hoàn toàn với UCP).
-  - [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L183-L202) — **Mục 3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)**:
-    > CapEx đầu tư ban đầu: 75.000.000 VNĐ – 95.000.000 VNĐ. OpEx duy trì định kỳ: 15.000.000 VNĐ – 30.000.000 VNĐ / năm.
-  - [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L273-L314) — **Mục 5.3. Snapshot tiến độ thực tế & Chi phí AI Token**:
-    > Ghi nhận dữ liệu thực tế Tuần 1: Dùng 440.000 tokens AI $\approx$ 300.000 VNĐ (chiếm 6% hạn mức CapEx AI Tools). Dự báo tốc độ Throughput $T = 12 \text{ stories/tuần} \rightarrow$ Hoàn thành các stories còn lại trong 2–4 tuần tiếp theo.
+  - [08-cost-time-resource.md](file:///d:/Project/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L183-L202) — **Mục 3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)**:
+    > CapEx đầu tư ban đầu: 75.000.000 VNĐ – 95.000.000 VNĐ. OpEx duy trì định kỳ: 15.000.000 VNĐ – 30.000.000 VNĐ / năm. Chi phí AI Tools thuộc CapEx được đặt hạn mức $\le 5.000.000\text{ VNĐ}$.
+  - [08-cost-time-resource.md](file:///d:/Project/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L273-L314) & [09-ai-development-workflow-report.md](file:///d:/Project/hcmus-projectmanage--lab/docs/09-ai-development-workflow-report.md#L44-L60) — **Mục 5.3 & Báo cáo Workflow AI**:
+    > Phân tích dữ liệu thực tế thu thập từ `project_log.md`: Đã log 5 phiên làm việc với 690.000 AI tokens (chiếm ~9.3% hạn mức ngân sách AI 5 triệu VNĐ). Dự báo tiến độ theo Throughput ($T = 12\text{ stories/tuần}$ ở tuần đầu) giúp ước lượng khoảng hoàn thành (optimistic – pessimistic: 2–4 tuần).
 
 ---
 
 ### 5.2. Giải thích bản kế hoạch của dự án
 - **Trạng thái:** ĐÃ CÓ TRONG TÀI LIỆU.
 - **Trích dẫn chi tiết:**
-  - [05-project-charter.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/05-project-charter.md#L103-L113) — **Mục 7. Cấu trúc phân rã công việc (WBS) và Tiến độ**:
+  - [05-project-charter.md](file:///d:/Project/hcmus-projectmanage--lab/docs/05-project-charter.md#L103-L113) — **Mục 7. Cấu trúc phân rã công việc (WBS) và Tiến độ**:
     > Phân rã 6 gói công việc WBS (WP1 đến WP6) triển khai cuốn chiếu trong 20 tuần, go-live phiên bản MVP ở tuần 12.
-  - [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L50-L67) — **Mục 1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)**:
+  - [08-cost-time-resource.md](file:///d:/Project/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L50-L67) — **Mục 1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)**:
     > - Lộ trình 4 Giai đoạn: GĐ 0 (Khảo sát Tuần 1-2), GĐ 1 (MVP Tuần 3-12), GĐ 2 (Số hóa diện rộng Tuần 13-18), GĐ 3 (Nghiệm thu Tuần 19-20).  
     > - Đường găng (Critical Path): **Gói công việc WP4 (Số hóa tài liệu)** là đường găng dự án do khâu scan và rà soát lỗi OCR phụ thuộc lớn vào năng suất con người.
 
 ---
 
 ### 5.3. Giải thích ý nghĩa của tài liệu phát biểu công việc (Statement of Work - SOW)
-- **Trạng thái:** [CHƯA CÓ TRONG 8 TÀI LIỆU GỐC - ĐỂ TRỐNG ĐỂ BỔ SUNG]
-- *(Ghi chú: Tài liệu 03 có Scope Statement và tài liệu 05/08 có WBS, nhưng chưa có mục riêng định nghĩa và giải thích ý nghĩa của SOW trong 8 file gốc).*
-- **Nội dung bổ sung / Giải thích SOW:**
-  - 
+- **Trạng thái:** ĐÃ CÓ TRONG TÀI LIỆU CHÍNH THỨC (`10-statement-of-work.md`).
+- **Trích dẫn chi tiết:**
+  - [10-statement-of-work.md](file:///d:/Project/hcmus-projectmanage--lab/docs/10-statement-of-work.md#L53-L65) — **Mục 1. Mục đích và Ý nghĩa tài liệu**:
+    > "Tài liệu Phát biểu Công việc (Statement of Work — SOW) là văn bản pháp lý đánh dấu sự kết thúc của giai đoạn Project Planning... SOW ghi nhận sự đồng thuận cuối cùng giữa Bên yêu cầu (Client — Ban Giám đốc Thư viện và Ban Giám hiệu) và Bên thực hiện (Nhóm phát triển) về Phạm vi công việc, Ngăn xếp công nghệ đã thống nhất (Google OAuth 2.0, PostgreSQL FTS, FastAPI BackgroundTasks), Sản phẩm bàn giao, Chi phí CapEx/OpEx, và Vai trò của AI Coding Assistants."
+  - [10-statement-of-work.md](file:///d:/Project/hcmus-projectmanage--lab/docs/10-statement-of-work.md#L243-L250) — **Mục 8.2. Vai trò của AI Coding Assistants trong SOW**:
+    > SOW ràng buộc chính thức quy chế sử dụng AI: Minh bạch chi phí qua `project_log.md`, hạn mức chi phí AI $\le 5.000.000\text{ VNĐ}$, con người kiểm duyệt 100% mã nguồn AI sinh ra và khẳng định quyền sở hữu trí tuệ của dự án đối với code do AI hỗ trợ tạo ra.
 
 ---
 
 ### 5.4. Demo việc thu thập dữ liệu dùng để báo cáo tình trạng dự án
-- **Trạng thái:** ĐÃ CÓ MÔ HÌNH DỮ LIỆU / [THAO TÁC DEMO TRỰC TIẾP ĐỂ TRỐNG ĐỂ BỔ SUNG].
-- **Trích dẫn mô hình dữ liệu:**
-  - [08-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Lab/W5/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L225-L271) — **Mục 5.1 & 5.2. Bộ chỉ số Giám sát & Cơ chế Session Logging**:
-    > Sau mỗi phiên làm việc với AI, developer ghi 1 dòng log vào `project_log.md`: `[Ngày | Dev | Story ID | Tên Story | Thời gian | Token AI | Ghi chú]`. PM thu thập dữ liệu này để tính toán Throughput $T$ (số story Done/tuần), Cycle time và Velocity-based Forecast thời gian còn lại $N / T$.
+- **Trạng thái:** ĐÃ CÓ MÔ HÌNH DỮ LIỆU VÀ BÁO CÁO THỰC TẾ (`project_log.md` & `09-ai-development-workflow-report.md`).
+- **Trích dẫn mô hình dữ liệu & báo cáo:**
+  - [08-cost-time-resource.md](file:///d:/Project/hcmus-projectmanage--lab/docs/08-cost-time-resource.md#L225-L271) — **Mục 5.1 & 5.2. Bộ chỉ số Giám sát & Cơ chế Session Logging**:
+    > Sau mỗi phiên làm việc với AI Assistants, developer ghi 1 dòng log vào `project_log.md` theo định dạng: `[Ngày | Dev | Story ID | Tên Story | Thời gian | Token AI | Ghi chú]`.
+  - [09-ai-development-workflow-report.md](file:///d:/Project/hcmus-projectmanage--lab/docs/09-ai-development-workflow-report.md#L44-L60) — **Mục 1 & 3. Kết quả tổng hợp dữ liệu thực tế**:
+    > PM thu thập dữ liệu từ `project_log.md` qua 5 phiên làm việc (từ 16/07 đến 22/07/2026), tổng hợp được 12g05m dev time và 690.000 tokens AI. Phân tích đối chiếu giữa log và codebase cho thấy 26/26 story đã hoàn thành trên code nhưng 10 story chưa được ghi log đầy đủ, giúp phát hiện khoảng trống ghi log (DoD mục 5) và điều chỉnh quy trình báo cáo.
 - **Nội dung bổ sung / Thao tác Demo thu thập dữ liệu trực tiếp:**
-  - 
+  - Kịch bản demo: (1) Developer thực hiện câu lệnh commit/merge story $\rightarrow$ (2) Chạy skill/tool ghi nhận 1 dòng log vào [`project_log.md`](file:///d:/Project/hcmus-projectmanage--lab/project_log.md) $\rightarrow$ (3) PM chạy script/tổng hợp bảng Throughput, Token AI và Cycle time cho báo cáo tuần.
 
 ---
+
