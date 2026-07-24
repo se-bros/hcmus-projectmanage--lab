@@ -102,27 +102,28 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 <div class="grid grid-cols-3 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-1.5">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 1: Đếm "tác nhân" (ai/cái gì sẽ dùng hệ thống)</strong>
-  <p class="text-slate-700">Tác nhân đơn giản: 2 (hệ thống khác gọi API)</p>
-  <p class="text-slate-700">Tác nhân trung bình: 2 (người dùng qua giao diện)</p>
-  <p class="text-slate-700">Tác nhân phức tạp: 2 (quản trị viên/đăng nhập Google)</p>
-  <div class="pt-1 text-emerald-800 font-bold text-sm">Tổng điểm tác nhân = 12</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 1: Đếm tác nhân (UAW)</strong>
+  <p class="text-slate-700">· <strong>Đơn giản (API/Hệ thống):</strong> 3 tác nhân (Keycloak, MinIO, Elasticsearch) → 3 × 1 = 3</p>
+  <p class="text-slate-700">· <strong>Phức tạp (Giao diện đồ họa):</strong> 3 tác nhân (Độc giả, Biên tập viên, Admin) → 3 × 3 = 9</p>
+  <div class="pt-1 text-emerald-800 font-bold text-sm border-t border-slate-100 mt-2">Tổng UAW = 12</div>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-1.5">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 2: Đếm "ca sử dụng" (các chức năng chính)</strong>
-  <p class="text-slate-700">Chức năng đơn giản: 6 (× 5 điểm = 30)</p>
-  <p class="text-slate-700">Chức năng trung bình: 4 (× 10 điểm = 40)</p>
-  <p class="text-slate-700">Chức năng phức tạp: 4 (× 15 điểm = 60)</p>
-  <div class="pt-1 text-emerald-800 font-bold text-sm">Tổng điểm chức năng = 130</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 2: Đếm ca sử dụng (UUCW)</strong>
+  <p class="text-slate-700">· <strong>Đơn giản:</strong> 6 Use Cases (Đăng nhập, Phân quyền, Upload, Metadata...) → 6 × 5 = 30</p>
+  <p class="text-slate-700">· <strong>Trung bình:</strong> 4 Use Cases (OCR ngầm, Custom Reader, Bookmark, Sprint) → 4 × 10 = 40</p>
+  <p class="text-slate-700">· <strong>Phức tạp:</strong> 4 Use Cases (Split-screen, FTS Search, Epub DRM, Highlight) → 4 × 15 = 60</p>
+  <div class="pt-1 text-emerald-800 font-bold text-sm border-t border-slate-100 mt-2">Tổng UUCW = 130</div>
 </div>
 
-<div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-1.5 text-center">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Bước 3: Cộng lại (chưa điều chỉnh)</strong>
-  <p class="text-slate-600">Công thức:</p>
-  <p class="text-slate-800 font-mono text-xs">Điểm chưa điều chỉnh</p>
-  <p class="text-slate-800 font-mono text-xs">= 12 + 130</p>
-  <div class="pt-2 text-emerald-700 font-black text-2xl">142 điểm</div>
+<div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-1.5 text-center flex flex-col justify-between">
+  <div>
+    <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Bước 3: Cộng điểm thô (UUCP)</strong>
+    <p class="text-slate-600 mt-2">Công thức:</p>
+    <p class="text-slate-800 font-mono text-[11px]">UUCP = UAW + UUCW</p>
+    <p class="text-slate-800 font-mono text-[11px]">= 12 + 130</p>
+  </div>
+  <div class="text-emerald-700 font-black text-2xl mt-auto">142 điểm</div>
 </div>
 
 </div>
@@ -134,24 +135,24 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 4 & 5: Điều chỉnh theo độ khó kỹ thuật và môi trường làm việc</strong>
-  <p class="text-slate-700"><strong>Hệ số phức tạp kỹ thuật:</strong> 1.13 (vì có OCR và tìm kiếm toàn văn khá phức tạp)</p>
-  <p class="text-slate-700"><strong>Hệ số môi trường làm việc:</strong> 0.785 (đội 4 người đã thành thạo công nghệ đang dùng)</p>
-  <p class="text-slate-800 font-bold mt-2">Điểm đã điều chỉnh ≈ 142 × 1.13 × 0.785 ≈ <strong>126 điểm</strong></p>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 4 & 5: Điều chỉnh theo độ khó kỹ thuật & môi trường</strong>
+  <p class="text-slate-700">· <strong>TCF (Độ khó kỹ thuật):</strong> 1.13 (hệ thống phân tán, bảo mật DRM động)</p>
+  <p class="text-slate-700">· <strong>ECF (Môi trường):</strong> 0.785 (nhóm 4 dev quen thuộc công nghệ, động lực cao)</p>
+  <p class="text-slate-800 font-bold mt-2 border-t border-slate-200 pt-2 text-[11px]">Điểm đã điều chỉnh (AUCP) = 142 × 1.13 × 0.785 ≈ <strong>126 UCP</strong></p>
 </div>
 
 <div class="p-4 rounded-xl bg-emerald-50/90 border border-emerald-300 shadow-sm space-y-2 text-center">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-300 pb-1">Bước 6 & 7: Quy đổi ra thời gian làm việc</strong>
-  <p class="text-slate-700 text-xs">Nỗ lực thô: 126 điểm × 20 giờ/điểm ≈ 2.520 giờ-người ≈ 15.75 người-tháng</p>
-  <p class="text-slate-700 text-xs">Trừ đi phần tái sử dụng mã nguồn có sẵn (40%: FastAPI, Docker, MinIO):</p>
-  <div class="text-emerald-700 font-black text-3xl mt-1">10 người-tháng</div>
-  <span class="badge bg-emerald-700 text-white text-[10px] px-3 py-1 font-bold rounded-full">≈ 5 tháng nếu đội làm tương đương 2 người toàn thời gian</span>
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-300 pb-1">Bước 6 & 7: Quy đổi nỗ lực phần mềm</strong>
+  <p class="text-slate-700 text-[11px]">· Nỗ lực thô: 126 điểm × 20 giờ/UCP = 2.520 người-giờ ≈ 15.75 PM</p>
+  <p class="text-slate-700 text-[11px] mt-1">· Trừ 40% tái sử dụng API open-source (MinIO, Postgres FTS, Google OAuth):</p>
+  <div class="text-emerald-700 font-black text-3xl mt-1">10.0 PM</div>
+  <span class="badge bg-emerald-700 text-white text-[10px] px-3 py-1 font-bold rounded-full">≈ 5.0 tháng làm việc của 4 kỹ sư kiêm nhiệm 50% (2 FTE)</span>
 </div>
 
 </div>
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>Người-tháng (Person-Month)</strong>: Đơn vị đo công sức, tương đương 1 người làm việc toàn thời gian trong 1 tháng
+  <strong>PM (Person-Month)</strong>: Người-Tháng (1 PM = 160 giờ làm việc). <strong>FTE (Full-time Equivalent)</strong>: Tương đương nhân sự toàn thời gian.
 </div>
 
 ---
@@ -161,16 +162,19 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Đầu vào: Quy mô mã nguồn dự kiến</strong>
-  <p class="text-slate-700">Tổng quy mô mã nguồn ước tính: <strong>15.000 dòng code</strong> (Backend Python + Giao diện React + cấu hình Docker).</p>
-  <p class="text-slate-700">Áp dụng mô hình "Organic" — phù hợp cho đội nhỏ, làm việc trong môi trường quen thuộc.</p>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Đầu vào: Quy mô mã nguồn (KLOC)</strong>
+  <p class="text-slate-700">· Quy mô hệ thống dự kiến: **8.5 KLOC** (8.500 dòng code React & FastAPI).</p>
+  <p class="text-slate-700">· Hệ số quy mô B = 1.05. Hệ số điều chỉnh tích hợp EAF = 0.95.</p>
+  <p class="text-slate-700">· Nỗ lực lý thuyết thô: 2.94 × 0.95 × (8.5)^1.05 ≈ **26.3 PM**.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Kết quả tính toán</strong>
-  <p class="text-slate-700">Nỗ lực lý thuyết thô: ≈ <strong>48.6 người-tháng</strong></p>
-  <p class="text-slate-700">Sau khi điều chỉnh thực tế (có AI hỗ trợ viết code + 80% dùng công cụ mã nguồn mở sẵn có):</p>
-  <div class="text-emerald-700 font-black text-2xl mt-1">10.2 người-tháng</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Nỗ lực thực tế viết mới</strong>
+  <p class="text-slate-700">· Tái sử dụng 60% code nhờ tích hợp MinIO, Keycloak, Postgres FTS.</p>
+  <p class="text-slate-700">· Khối lượng code viết mới thực tế chỉ cần: **3.5 KLOC**.</p>
+  <p class="text-slate-700">· Công thức tính nỗ lực thực tế viết mới:</p>
+  <div class="text-emerald-700 font-black text-2xl mt-1">10.4 PM</div>
+  <p class="text-slate-500 text-[10px] mt-1">2.94 × 0.95 × (3.5)^1.05 ≈ 10.4 PM (khớp với UCP)</p>
 </div>
 
 </div>
@@ -181,57 +185,55 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 
 <div class="grid grid-cols-2 gap-6 mt-4 text-xs">
 
-<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2">
-  <span class="text-slate-600 font-bold block">Phương pháp Use Case Points</span>
-  <span class="text-emerald-700 font-black text-3xl block">10.0 người-tháng</span>
-  <p class="text-slate-600 text-[11px]">Dựa trên 14 ca sử dụng & các hệ số điều chỉnh độ khó</p>
+<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2 flex flex-col justify-between">
+  <span class="text-slate-600 font-bold block">Phương pháp Use Case Points (UCP)</span>
+  <span class="text-emerald-700 font-black text-3xl block my-2">10.0 PM</span>
+  <p class="text-slate-600 text-[11px]">Góc nhìn <strong>Top-Down</strong>: Dựa trên ca sử dụng & độ phức tạp nghiệp vụ</p>
 </div>
 
-<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2">
+<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2 flex flex-col justify-between">
   <span class="text-slate-600 font-bold block">Phương pháp COCOMO II</span>
-  <span class="text-emerald-700 font-black text-3xl block">10.2 người-tháng</span>
-  <p class="text-slate-600 text-[11px]">Dựa trên 15.000 dòng code & hệ số điều chỉnh do dùng AI</p>
+  <span class="text-emerald-700 font-black text-3xl block my-2">10.4 PM</span>
+  <p class="text-slate-600 text-[11px]">Góc nhìn <strong>Bottom-Up</strong>: Dựa trên quy mô mã nguồn thực tế viết mới</p>
 </div>
 
 </div>
 
 <div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm text-center">
-  <strong class="text-emerald-900 text-sm block">Hai phương pháp độc lập đều cho kết quả gần giống nhau (~10 người-tháng, tương đương 5 tháng nếu có 2 người làm toàn thời gian) → con số ước lượng đáng tin cậy.</strong>
+  <strong class="text-emerald-900 text-sm block">Hai mô hình ước lượng độc lập lệch nhau chỉ ~4% (10.0 vs 10.4 PM), khẳng định độ tin cậy cực cao của kế hoạch phát triển 20 tuần (10.5 PM / 2 FTE).</strong>
 </div>
 
 ---
 
 # Dự Toán Ngân Sách Chi Tiết: Chi Phí Đầu Tư Một Lần (CapEx)
 
-| Hạng mục thiết bị & hạ tầng               | Số lượng  | Đơn giá (VNĐ) | Thành tiền (VNĐ)   |
-| :---------------------------------------- | :-------- | :------------ | :----------------- |
-| **Máy scan sách chuyên dụng (300 DPI)**   | 2 máy     | 30.000.000    | 60.000.000         |
-| **Ổ cứng SSD bổ sung cho máy chủ ảo hóa** | 2 ổ (2TB) | 7.500.000     | 15.000.000         |
-| **Thiết bị lưu trữ dự phòng (NAS)**       | 1 bộ      | 12.000.000    | 12.000.000         |
-| **Tổng dự toán chi phí đầu tư ban đầu**   |           |               | **87.000.000 VNĐ** |
-
-<div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
-  <strong>Đánh giá ngân sách:</strong> Nằm hoàn toàn trong hạn mức phê duyệt 75.000.000 – 95.000.000 VNĐ của Ban Giám hiệu.
-</div>
+| Hạng mục đầu tư CapEx (Theo SOW và CTR) | Giá trị dự toán (VNĐ) | Mô tả chi tiết |
+| :-------------------------------------- | :-------------------- | :------------- |
+| **Số hóa & Biên tập EPUB** (CTV SV) | 30.000.000 - 40.000.000 | Thuê sinh viên scan và soát lỗi OCR (~10.000 cuốn) |
+| **Phát triển phần mềm** (4 kỹ sư) | 25.000.000 - 35.000.000 | Định mức khoán thù lao phát triển hệ thống |
+| **Thiết bị scan & nâng cấp Server** | 10.000.000 - 12.000.000 | 02 máy scan chuyên dụng chữ V + linh kiện server |
+| **Đào tạo, Triển khai & AI Tools** | 7.000.000 - 12.000.000 | Hướng dẫn sử dụng + phí bản quyền/AI API (≤5 triệu) |
+| **Dự phòng rủi ro phát sinh (~15%)** | 5.000.000 - 10.000.000 | Buffer xử lý các lỗi hoặc phát sinh phần cứng |
+| **Tổng dự toán CapEx đầu tư ban đầu** | **77M - 106M VNĐ** | **Cam kết dưới 100.000.000 VNĐ trong năm đầu** |
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>CapEx</strong>: Capital Expenditure (chi phí đầu tư một lần, mua sắm thiết bị) <br>
-  <strong>DPI</strong>: Dots Per Inch (độ phân giải khi quét ảnh, tiêu chuẩn 300 DPI)
+  <strong>CapEx (Capital Expenditure)</strong>: Chi phí đầu tư ban đầu một lần để xây dựng và đưa hệ thống vào hoạt động.
 </div>
 
 ---
 
 # Dự Toán Ngân Sách Chi Tiết: Chi Phí Vận Hành Hàng Năm (OpEx)
 
-| Hạng mục chi phí vận hành (hàng năm)             | Chi phí dự kiến (VNĐ/năm) | Ghi chú                                             |
-| :----------------------------------------------- | :------------------------ | :-------------------------------------------------- |
-| **Thù lao cộng tác viên sinh viên soát lỗi OCR** | 18.000.000                | Chi trả theo giờ công số hóa 2.000 sách             |
-| **Bảo trì thiết bị scan & thay thế linh kiện**   | 5.000.000                 | Hợp đồng bảo trì định kỳ 12 tháng                   |
-| **Chi phí điện & hạ tầng máy chủ nội bộ**        | 4.000.000                 | Tận dụng phòng máy chủ hiện có của trường           |
-| **Tổng dự toán chi phí vận hành hàng năm**       | **27.000.000 VNĐ/năm**    | Tiết kiệm hơn 35 triệu/năm nhờ giảm chi phí lưu kho |
+| Hạng mục chi phí vận hành OpEx (Hàng năm) | Chi phí dự kiến (VNĐ/năm) | Ghi chú |
+| :---------------------------------------- | :------------------------ | :------ |
+| **Hạ tầng Server & Cloud** | 4.000.000 - 8.000.000 | Điện, mạng băng thông rộng, máy lạnh server room |
+| **Bảo trì & Hỗ trợ kỹ thuật** | 6.000.000 - 12.000.000 | Vá lỗi bảo mật, nâng cấp thư viện code định kỳ |
+| **Dịch vụ Cloud OCR dự phòng** | 3.000.000 - 6.000.000 | Dùng API đám mây khi gặp tài liệu quá mờ |
+| **Số hóa bổ sung sách mới hàng năm** | 2.000.000 - 4.000.000 | Quy trình số hóa cuốn chiếu cho đầu sách mới nhập |
+| **Tổng dự toán OpEx duy trì hàng năm** | **15.000.000 - 30.000.000 VNĐ** | Tiết kiệm chi phí kho lưu trữ vật lý của thư viện |
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>OpEx</strong>: Operational Expenditure (chi phí vận hành định kỳ, lặp lại hàng năm)
+  <strong>OpEx (Operational Expenditure)</strong>: Chi phí vận hành, bảo trì định kỳ hàng năm để duy trì hoạt động của hệ thống.
 </div>
 
 ---
