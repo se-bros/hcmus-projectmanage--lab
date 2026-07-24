@@ -7,6 +7,12 @@ highlighter: shiki
 drawings:
   persist: false
 transition: slide-left
+mermaid:
+  theme: base
+  themeVariables:
+    edgeLabelBackground: '#ffffff'
+    labelBackground: '#ffffff'
+    primaryTextColor: '#475569'
 ---
 
 <style>
@@ -89,12 +95,12 @@ layout: default
 
 ---
 src: ./pages/01-project-proposal.md
-hide: false
+hide: true
 ---
 
 ---
 src: ./pages/02-vision-charter-backlog.md
-hide: false
+hide: true
 ---
 
 ---
@@ -104,7 +110,7 @@ hide: true
 
 ---
 src: ./pages/04-development-method.md
-hide: true
+hide: false
 ---
 
 ---

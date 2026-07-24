@@ -71,14 +71,20 @@ async function auditSlides() {
   await page.goto(`http://localhost:${PORT}/1`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(2000);
 
-  // Find total slides
-  let totalSlides = 26;
-  const slideCountElem = await page.$('.slidev-page-no');
-  if (slideCountElem) {
-    const text = await slideCountElem.innerText();
-    const match = text.match(/\/ (\d+)/);
-    if (match) totalSlides = parseInt(match[1], 10);
-  }
+  // Find total slides dynamically
+  const totalSlides = await page.evaluate(() => {
+    if (window.__slidev__ && window.__slidev__.nav && window.__slidev__.nav.total) {
+      return window.__slidev__.nav.total;
+    }
+    const els = document.querySelectorAll('*');
+    for (const el of els) {
+      if (el.innerText && el.innerText.includes(' / ')) {
+        const match = el.innerText.match(/\d+\s*\/\s*(\d+)/);
+        if (match) return parseInt(match[1], 10);
+      }
+    }
+    return 64;
+  });
 
   console.log(`Detected total slides: ${totalSlides}`);
   const report = [];

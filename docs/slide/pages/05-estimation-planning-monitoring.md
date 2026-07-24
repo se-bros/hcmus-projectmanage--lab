@@ -1,15 +1,22 @@
-# PHẦN 5: ESTIMATION, PLANNING & MONITORING
-## Ước Lượng Nỗ Lực · Lập Kế Hoạch · Giám Sát Dự Án
+---
+layout: default
+class: bg-slate-50
+---
 
-<div class="mt-6 text-sm text-slate-700">
-  <p class="text-base font-semibold text-emerald-900 mb-2">Ước Lượng Nỗ Lực · Lập Kế Hoạch · Giám Sát Dự Án</p>
-  <p class="text-slate-600">Ước lượng UCP vs COCOMO II (10 PM), dự báo Throughput thực tế, AI Session Logging và Gating Checkpoints.</p>
-</div>
-
-<div class="mt-8 flex gap-3">
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">UCP & COCOMO II</span>
-  <span class="badge bg-emerald-700 text-white font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">Throughput Forecast</span>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-3 py-1 text-xs rounded-full shrink-0 whitespace-nowrap">AI Session Logging</span>
+<div class="relative flex flex-col justify-center h-full p-8 overflow-hidden">
+  <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[15rem] font-extrabold leading-none select-none pointer-events-none opacity-[0.08] font-mono text-emerald-900">05</div>
+  <div class="z-10">
+    <div class="text-xs uppercase tracking-widest text-amber-600 font-extrabold mb-2 font-mono">Phần 05</div>
+    <h1 class="text-4xl font-black text-slate-900 leading-tight mb-4">Estimation, Planning & Monitoring</h1>
+    <div class="w-16 h-1 bg-emerald-600 rounded mb-6"></div>
+    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Trình bày phương pháp ước lượng UCP/COCOMO II, kế hoạch chi phí – tiến độ, ý nghĩa tài liệu phát biểu công việc và cơ chế giám sát báo cáo.</p>
+    <div class="flex gap-2 flex-wrap">
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">UCP & COCOMO II</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">WBS & Critical Path</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Statement of Work</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Monitoring Metrics</span>
+    </div>
+  </div>
 </div>
 
 ---
