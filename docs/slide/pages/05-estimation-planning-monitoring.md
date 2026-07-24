@@ -7,334 +7,437 @@ class: bg-slate-50
   <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[15rem] font-extrabold leading-none select-none pointer-events-none opacity-[0.08] font-mono text-emerald-900">05</div>
   <div class="z-10">
     <div class="text-xs uppercase tracking-widest text-amber-600 font-extrabold mb-2 font-mono">Phần 05</div>
-    <h1 class="text-4xl font-black text-slate-900 leading-tight mb-4">Estimation, Planning & Monitoring</h1>
+    <h1 class="text-4xl font-black text-slate-900 leading-tight mb-4">Ước Lượng, Lập Kế Hoạch & Giám Sát Dự Án</h1>
     <div class="w-16 h-1 bg-emerald-600 rounded mb-6"></div>
-    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Trình bày phương pháp ước lượng UCP/COCOMO II, kế hoạch chi phí – tiến độ, ý nghĩa tài liệu phát biểu công việc và cơ chế giám sát báo cáo.</p>
+    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Phần này giải thích: nhóm ước lượng thời gian/chi phí/nguồn lực bằng cách nào (có AI hỗ trợ), bản kế hoạch dự án gồm những gì, tài liệu "Phát biểu công việc" (SOW) có ý nghĩa gì, và cách nhóm thu thập số liệu thật để báo cáo tình trạng dự án.</p>
     <div class="flex gap-2 flex-wrap">
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">UCP & COCOMO II</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">WBS & Critical Path</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Statement of Work</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Monitoring Metrics</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Ước lượng UCP & COCOMO II</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Kế hoạch & Đường găng</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Tài liệu SOW</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Số liệu giám sát thực tế</span>
     </div>
   </div>
 </div>
 
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>UCP</strong>: Use Case Points (phương pháp ước lượng công sức dựa trên các use case) <br>
+  <strong>COCOMO II</strong>: Constructive Cost Model II (phương pháp ước lượng công sức dựa trên dòng code KSLOC) <br>
+  <strong>SOW</strong>: Statement of Work (tài liệu Phát biểu công việc)
+</div>
+
 ---
 
-# Lộ Trình 4 Giai Đoạn & Đường Găng (Critical Path)
+# Vì Sao Cần Ước Lượng Trước Khi Làm?
+
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>Dự án tốn bao nhiêu thời gian? Cần bao nhiêu người? Chi phí bao nhiêu?</strong> Ước lượng càng sát thực tế thì kế hoạch càng đáng tin, và Ban Giám hiệu càng dễ ra quyết định cấp ngân sách.
+</div>
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Nhóm dùng 2 phương pháp độc lập để đối chiếu</strong>
+  <ul class="space-y-1.5 text-slate-700">
+    <li><strong>UCP (Use Case Points):</strong> ước lượng dựa trên số lượng và độ phức tạp của các "ca sử dụng" (use case) — tức các chức năng người dùng sẽ dùng.</li>
+    <li><strong>COCOMO II:</strong> ước lượng dựa trên quy mô mã nguồn dự kiến (số dòng code).</li>
+  </ul>
+  <p class="text-slate-700">Nếu 2 phương pháp cho ra kết quả gần nhau, độ tin cậy của con số ước lượng sẽ cao hơn nhiều so với chỉ dùng 1 phương pháp.</p>
+</div>
+
+<div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200 shadow-sm space-y-2">
+  <strong class="text-amber-900 text-sm block border-b border-amber-200 pb-1">Vai trò của AI trong việc ước lượng</strong>
+  <ul class="space-y-1.5 text-slate-700">
+    <li>AI Assistant giúp bóc tách nhanh danh sách use case, gợi ý mức độ phức tạp, và tính toán các công thức UCP/COCOMO không sai sót.</li>
+    <li>Vì nhóm dùng AI Coding Assistant hỗ trợ viết code (làm nhanh hơn), nhóm điều chỉnh giảm nỗ lực thô tính ra từ công thức, thay vì áp dụng y nguyên số lý thuyết.</li>
+  </ul>
+</div>
+
+</div>
+
+---
+
+# Lộ Trình 4 Giai Đoạn & Điểm Nghẽn Tiến Độ (Đường Găng)
+
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+"Đường găng" (Critical Path) là chuỗi công việc mà nếu bị trễ dù chỉ 1 ngày, cả dự án sẽ bị trễ theo. Nhóm xác định trước điểm nghẽn để tập trung theo dõi sát nhất.
+</div>
 
 <div class="space-y-3 mt-4 text-xs">
 
 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm flex justify-between items-center">
-  <span><strong class="text-emerald-900">GĐ 0 (Tuần 1–2): Khảo Sát & Bản Quyền</strong> — Ban hành quy chế SHTT & khảo sát 2.500 tài liệu.</span>
+  <span><strong class="text-emerald-900">Giai đoạn 0 (Tuần 1–2): Khảo sát & Bản quyền</strong> — Ban hành quy chế sở hữu trí tuệ & khảo sát 2.500 tài liệu.</span>
   <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">2 Tuần</span>
 </div>
 
 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm flex justify-between items-center">
-  <span><strong class="text-emerald-900">GĐ 1 (Tuần 3–12): Phát Triển MVP & Thí Điểm 500 Sách</strong> — Xây dựng Core System & xuất bản 500 sách CNTT.</span>
+  <span><strong class="text-emerald-900">Giai đoạn 1 (Tuần 3–12): Phát triển MVP & Thí điểm 500 sách</strong> — Xây hệ thống lõi & số hóa thí điểm 500 sách CNTT.</span>
   <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">10 Tuần</span>
 </div>
 
 <div class="p-3 bg-red-50/90 rounded-lg border border-red-300 shadow-sm flex justify-between items-center">
-  <span><strong class="text-red-900 font-bold">GĐ 2 (Tuần 13–18): Số Hóa 2.000 Tài Liệu [ĐƯỜNG GẮNG CRITICAL PATH]</strong> — Phụ thuộc năng suất scan & soát lỗi.</span>
-  <span class="badge bg-red-700 text-white font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">6 Tuần (Nút Thắt)</span>
+  <span><strong class="text-red-900 font-bold">Giai đoạn 2 (Tuần 13–18): Số hóa 2.000 tài liệu [ĐIỂM NGHẼN]</strong> — Phụ thuộc năng suất scan & soát lỗi OCR thực tế.</span>
+  <span class="badge bg-red-700 text-white font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">6 Tuần (Nút thắt)</span>
 </div>
 
 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm flex justify-between items-center">
-  <span><strong class="text-emerald-900">GĐ 3 (Tuần 19–20): UAT & Go-Live Toàn Trường</strong> — Pentest DRM, kiểm thử UAT & nghiệm thu dự án.</span>
+  <span><strong class="text-emerald-900">Giai đoạn 3 (Tuần 19–20): Nghiệm thu & Vận hành toàn trường</strong> — Kiểm thử bảo mật, kiểm thử người dùng thật, bàn giao chính thức.</span>
   <span class="badge bg-slate-200 text-slate-800 font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">2 Tuần</span>
 </div>
 
 </div>
 
 <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-slate-800 shadow-sm">
-  <strong>Cảnh báo quản lý tiến độ:</strong> Giai đoạn 2 (WP4 - Số hóa tài liệu) là nút thắt cổ chai duy nhất. Mọi sự chậm trễ ở WP4 sẽ kéo lùi ngày Go-Live toàn dự án.
+  <strong>Cảnh báo quản lý tiến độ:</strong> Giai đoạn 2 (số hóa tài liệu) là điểm nghẽn duy nhất. Mọi chậm trễ ở giai đoạn này sẽ kéo lùi ngày vận hành chính thức của toàn dự án.
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>MVP</strong>: Minimum Viable Product (phiên bản sản phẩm tối thiểu) <br>
+  <strong>OCR</strong>: Optical Character Recognition (nhận dạng ký tự từ ảnh quét)
 </div>
 
 ---
 
-# Ước Lượng Tính Toán Use Case Points (UCP): Bước 1–3
+# Ước Lượng Theo Use Case Points (UCP) — Bước 1 đến 3
 
 <div class="grid grid-cols-3 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-1.5">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 1: UAW (Tác Nhân)</strong>
-  <p class="text-slate-700">Simple Actors: 2 (System API)</p>
-  <p class="text-slate-700">Average Actors: 2 (Interactive UI)</p>
-  <p class="text-slate-700">Complex Actors: 2 (Admin/OAuth)</p>
-  <div class="pt-1 text-emerald-800 font-bold text-sm">UAW = 12 Points</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 1: Đếm "tác nhân" (ai/cái gì sẽ dùng hệ thống)</strong>
+  <p class="text-slate-700">Tác nhân đơn giản: 2 (hệ thống khác gọi API)</p>
+  <p class="text-slate-700">Tác nhân trung bình: 2 (người dùng qua giao diện)</p>
+  <p class="text-slate-700">Tác nhân phức tạp: 2 (quản trị viên/đăng nhập Google)</p>
+  <div class="pt-1 text-emerald-800 font-bold text-sm">Tổng điểm tác nhân = 12</div>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-1.5">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 2: UUCW (Use Cases)</strong>
-  <p class="text-slate-700">Simple Use Cases: 6 ($\times 5 = 30$)</p>
-  <p class="text-slate-700">Average Use Cases: 4 ($\times 10 = 40$)</p>
-  <p class="text-slate-700">Complex Use Cases: 4 ($\times 15 = 60$)</p>
-  <div class="pt-1 text-emerald-800 font-bold text-sm">UUCW = 130 Points</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 2: Đếm "ca sử dụng" (các chức năng chính)</strong>
+  <p class="text-slate-700">Chức năng đơn giản: 6 (× 5 điểm = 30)</p>
+  <p class="text-slate-700">Chức năng trung bình: 4 (× 10 điểm = 40)</p>
+  <p class="text-slate-700">Chức năng phức tạp: 4 (× 15 điểm = 60)</p>
+  <div class="pt-1 text-emerald-800 font-bold text-sm">Tổng điểm chức năng = 130</div>
 </div>
 
 <div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-1.5 text-center">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Bước 3: UUCP Chưa Điều Chỉnh</strong>
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Bước 3: Cộng lại (chưa điều chỉnh)</strong>
   <p class="text-slate-600">Công thức:</p>
-  <p class="text-slate-800 font-mono text-xs">UUCP = UAW + UUCW</p>
+  <p class="text-slate-800 font-mono text-xs">Điểm chưa điều chỉnh</p>
   <p class="text-slate-800 font-mono text-xs">= 12 + 130</p>
-  <div class="pt-2 text-emerald-700 font-black text-2xl">142 Points</div>
+  <div class="pt-2 text-emerald-700 font-black text-2xl">142 điểm</div>
 </div>
 
 </div>
 
 ---
 
-# Ước Lượng Use Case Points (UCP): Bước 4–7
+# Ước Lượng Theo Use Case Points (UCP) — Bước 4 đến 7
 
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 4 & 5: TCF & ECF (Hệ Số Điều Chỉnh)</strong>
-  <p class="text-slate-700"><strong>TCF (Technical Complexity Factor):</strong> 1.13 (Phức tạp OCR & FTS search)</p>
-  <p class="text-slate-700"><strong>ECF (Environment Complexity Factor):</strong> 0.785 (Đội ngũ 4 người thành thạo công nghệ)</p>
-  <p class="text-slate-800 font-bold mt-2">AUCP = UUCP $\times$ TCF $\times$ ECF = $142 \times 1.13 \times 0.785 \approx \mathbf{126\ UCP}$</p>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bước 4 & 5: Điều chỉnh theo độ khó kỹ thuật và môi trường làm việc</strong>
+  <p class="text-slate-700"><strong>Hệ số phức tạp kỹ thuật:</strong> 1.13 (vì có OCR và tìm kiếm toàn văn khá phức tạp)</p>
+  <p class="text-slate-700"><strong>Hệ số môi trường làm việc:</strong> 0.785 (đội 4 người đã thành thạo công nghệ đang dùng)</p>
+  <p class="text-slate-800 font-bold mt-2">Điểm đã điều chỉnh ≈ 142 × 1.13 × 0.785 ≈ <strong>126 điểm</strong></p>
 </div>
 
 <div class="p-4 rounded-xl bg-emerald-50/90 border border-emerald-300 shadow-sm space-y-2 text-center">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-300 pb-1">Bước 6 & 7: Effort & Tổng Thời Gian</strong>
-  <p class="text-slate-700 text-xs">Nỗ lực thô: $126 \text{ UCP} \times 20 \text{h/UCP} = 2.520 \text{ giờ-người} \approx 15.75 \text{ PM}$</p>
-  <p class="text-slate-700 text-xs">Tái sử dụng mã nguồn 40% (FastAPI, Docker, MinIO sẵn có):</p>
-  <div class="text-emerald-700 font-black text-3xl mt-1">10 Person-Months</div>
-  <span class="badge bg-emerald-700 text-white text-[10px] px-3 py-1 font-bold rounded-full">~ 5 Tháng Triển Khai (Đội 2 FTE)</span>
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-300 pb-1">Bước 6 & 7: Quy đổi ra thời gian làm việc</strong>
+  <p class="text-slate-700 text-xs">Nỗ lực thô: 126 điểm × 20 giờ/điểm ≈ 2.520 giờ-người ≈ 15.75 người-tháng</p>
+  <p class="text-slate-700 text-xs">Trừ đi phần tái sử dụng mã nguồn có sẵn (40%: FastAPI, Docker, MinIO):</p>
+  <div class="text-emerald-700 font-black text-3xl mt-1">10 người-tháng</div>
+  <span class="badge bg-emerald-700 text-white text-[10px] px-3 py-1 font-bold rounded-full">≈ 5 tháng nếu đội làm tương đương 2 người toàn thời gian</span>
 </div>
 
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>Người-tháng (Person-Month)</strong>: Đơn vị đo công sức, tương đương 1 người làm việc toàn thời gian trong 1 tháng
 </div>
 
 ---
 
-# Ước Lượng Nỗ Lực Bằng Mô Hình COCOMO II
+# Ước Lượng Theo Mô Hình COCOMO II
 
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Đầu Vào Kích Thước KSLOC</strong>
-  <p class="text-slate-700">Tổng quy mô mã nguồn ước tính: <strong>15 KSLOC</strong> (Python Backend FastAPI + React SPA + Docker Configs).</p>
-  <p class="text-slate-700">Mô hình ứng dụng: Organic Model (Đội ngũ nhỏ, môi trường quen thuộc).</p>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Đầu vào: Quy mô mã nguồn dự kiến</strong>
+  <p class="text-slate-700">Tổng quy mô mã nguồn ước tính: <strong>15.000 dòng code</strong> (Backend Python + Giao diện React + cấu hình Docker).</p>
+  <p class="text-slate-700">Áp dụng mô hình "Organic" — phù hợp cho đội nhỏ, làm việc trong môi trường quen thuộc.</p>
 </div>
 
 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Kết Quả Tính Toán COCOMO II</strong>
-  <p class="text-slate-700">Nỗ lực lý thuyết thô: $E = 2.4 \times (15)^{1.05} \approx \mathbf{48.6\ PM}$</p>
-  <p class="text-slate-700">Điều chỉnh thực tế (Ứng dụng AI Assistant + Mã nguồn mở 80%):</p>
-  <div class="text-emerald-700 font-black text-2xl mt-1">10.2 Person-Months</div>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Kết quả tính toán</strong>
+  <p class="text-slate-700">Nỗ lực lý thuyết thô: ≈ <strong>48.6 người-tháng</strong></p>
+  <p class="text-slate-700">Sau khi điều chỉnh thực tế (có AI hỗ trợ viết code + 80% dùng công cụ mã nguồn mở sẵn có):</p>
+  <div class="text-emerald-700 font-black text-2xl mt-1">10.2 người-tháng</div>
 </div>
 
 </div>
 
 ---
 
-# Đối Chuẩn Kết Quả: UCP vs COCOMO II
+# Đối Chiếu Kết Quả: Hai Phương Pháp Có Khớp Nhau Không?
 
 <div class="grid grid-cols-2 gap-6 mt-4 text-xs">
 
 <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2">
-  <span class="text-slate-600 font-bold block">Phương Pháp Use Case Points (UCP)</span>
-  <span class="text-emerald-700 font-black text-3xl block">10.0 PM</span>
-  <p class="text-slate-600 text-[11px]">Dựa trên 14 Use Cases & TCF/ECF điều chỉnh</p>
+  <span class="text-slate-600 font-bold block">Phương pháp Use Case Points</span>
+  <span class="text-emerald-700 font-black text-3xl block">10.0 người-tháng</span>
+  <p class="text-slate-600 text-[11px]">Dựa trên 14 ca sử dụng & các hệ số điều chỉnh độ khó</p>
 </div>
 
 <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-center space-y-2">
-  <span class="text-slate-600 font-bold block">Phương Pháp COCOMO II</span>
-  <span class="text-emerald-700 font-black text-3xl block">10.2 PM</span>
-  <p class="text-slate-600 text-[11px]">Dựa trên 15 KSLOC & Hệ số nhân nỗ lực AI</p>
+  <span class="text-slate-600 font-bold block">Phương pháp COCOMO II</span>
+  <span class="text-emerald-700 font-black text-3xl block">10.2 người-tháng</span>
+  <p class="text-slate-600 text-[11px]">Dựa trên 15.000 dòng code & hệ số điều chỉnh do dùng AI</p>
 </div>
 
 </div>
 
 <div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 shadow-sm text-center">
-  <strong class="text-emerald-900 text-sm block">Độ Tin Cậy Cao: Cả 2 Phương Pháp Độc Lập Đều Hội Tụ Về ~10 PM (~5 Tháng Đội 2 FTE)</strong>
+  <strong class="text-emerald-900 text-sm block">Hai phương pháp độc lập đều cho kết quả gần giống nhau (~10 người-tháng, tương đương 5 tháng nếu có 2 người làm toàn thời gian) → con số ước lượng đáng tin cậy.</strong>
 </div>
 
 ---
 
-# Dự Toán Ngân Sách Chi Tiết: CapEx
+# Dự Toán Ngân Sách Chi Tiết: Chi Phí Đầu Tư Một Lần (CapEx)
 
-| Hạng Mục Thiết Bị & Hạ Tầng | Số Lượng | Đơn Giá (VNĐ) | Thành Tiền (VNĐ) |
-| :--- | :--- | :--- | :--- |
-| **Máy Scan Chuyên Dụng V-shaped (Book Scanner 300 DPI)** | 2 Máy | 30.000.000 | 60.000.000 |
-| **Bổ Sung Ổ Cứng SSD Enterprise Cho Server vSphere** | 2 Ổ (2TB) | 7.500.000 | 15.000.000 |
-| **Thiết Bị Lưu Trữ Backup Dự Phòng (NAS Storage)** | 1 Bộ | 12.000.000 | 12.000.000 |
-| **TỔNG DỰ TOÁN CAPEX KHỞI ĐỘNG** | | | **87.000.000 VNĐ** |
+| Hạng mục thiết bị & hạ tầng               | Số lượng  | Đơn giá (VNĐ) | Thành tiền (VNĐ)   |
+| :---------------------------------------- | :-------- | :------------ | :----------------- |
+| **Máy scan sách chuyên dụng (300 DPI)**   | 2 máy     | 30.000.000    | 60.000.000         |
+| **Ổ cứng SSD bổ sung cho máy chủ ảo hóa** | 2 ổ (2TB) | 7.500.000     | 15.000.000         |
+| **Thiết bị lưu trữ dự phòng (NAS)**       | 1 bộ      | 12.000.000    | 12.000.000         |
+| **Tổng dự toán chi phí đầu tư ban đầu**   |           |               | **87.000.000 VNĐ** |
 
 <div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
-  <strong>Đánh giá ngân sách CapEx:</strong> Nằm hoàn toàn trong hạn mức phê duyệt $75.000.000 – 95.000.000 \text{ VNĐ}$ của Ban Giám hiệu.
+  <strong>Đánh giá ngân sách:</strong> Nằm hoàn toàn trong hạn mức phê duyệt 75.000.000 – 95.000.000 VNĐ của Ban Giám hiệu.
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>CapEx</strong>: Capital Expenditure (chi phí đầu tư một lần, mua sắm thiết bị) <br>
+  <strong>DPI</strong>: Dots Per Inch (độ phân giải khi quét ảnh, tiêu chuẩn 300 DPI)
 </div>
 
 ---
 
-# Dự Toán Ngân Sách Chi Tiết: OpEx Hàng Năm
+# Dự Toán Ngân Sách Chi Tiết: Chi Phí Vận Hành Hàng Năm (OpEx)
 
-| Hạng Mục Chi Phí Vận Hành (Hàng Năm) | Chi Phí Dự Kiến (VNĐ / Năm) | Ghi Chú |
-| :--- | :--- | :--- |
-| **Thù Lao Cộng Tác Viên Sinh Viên Soát Lỗi OCR** | 18.000.000 | Chi trả theo giờ công số hóa 2.000 sách |
-| **Bảo Trì Thiết Bị Scan & Thay Thế Linh Kiện** | 5.000.000 | Hợp đồng bảo trì định kỳ 12 tháng |
-| **Chi Phí Điện Điện Đạm & Hạ Tầng Máy Chủ Nội Bộ** | 4.000.000 | Tận dụng phòng Server hiện hữu của Trường |
-| **TỔNG DỰ TOÁN OPEX HÀNG NĂM** | **27.000.000 VNĐ / Năm** | Tiết kiệm hơn 35 Tr/năm nhờ Cost Avoidance |
+| Hạng mục chi phí vận hành (hàng năm)             | Chi phí dự kiến (VNĐ/năm) | Ghi chú                                             |
+| :----------------------------------------------- | :------------------------ | :-------------------------------------------------- |
+| **Thù lao cộng tác viên sinh viên soát lỗi OCR** | 18.000.000                | Chi trả theo giờ công số hóa 2.000 sách             |
+| **Bảo trì thiết bị scan & thay thế linh kiện**   | 5.000.000                 | Hợp đồng bảo trì định kỳ 12 tháng                   |
+| **Chi phí điện & hạ tầng máy chủ nội bộ**        | 4.000.000                 | Tận dụng phòng máy chủ hiện có của trường           |
+| **Tổng dự toán chi phí vận hành hàng năm**       | **27.000.000 VNĐ/năm**    | Tiết kiệm hơn 35 triệu/năm nhờ giảm chi phí lưu kho |
 
----
-
-# Dự Báo Tiến Độ Dựa Trên Throughput Thực Tế
-
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
-
-<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Thông Số Throughput Thực Tế Đo Từ Kanban</strong>
-  <p class="text-slate-700">Throughput trung bình: <strong>2.2 User Stories / Tuần</strong> (Đội 4 người kiêm nhiệm 50%).</p>
-  <p class="text-slate-700">Tổng quy mô Backlog MVP: <strong>23 Stories</strong>.</p>
-</div>
-
-<div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Kết Quả Mô Phỏng Dự Báo Tiến Độ</strong>
-  <p class="text-slate-800 font-bold">Thời gian hoàn thành MVP: $23 / 2.2 \approx \mathbf{10.45\ Tuần}$.</p>
-  <p class="text-slate-700">Cộng 1.5 tuần dự phòng buffer $\rightarrow$ Đảm bảo 100% hoàn thành MVP đúng mốc Tuần 12.</p>
-</div>
-
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>OpEx</strong>: Operational Expenditure (chi phí vận hành định kỳ, lặp lại hàng năm)
 </div>
 
 ---
 
-# Ghi Nhận Nỗ Lực & AI Session Logging
+# Tài Liệu "Phát Biểu Công Việc" (Statement of Work — SOW) Là Gì?
 
-<div class="space-y-3 mt-4 text-xs">
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">1. Định Dạng Chuẩn Ghi Log Nhóm (`project_log.md`)</strong>
-  <p class="text-slate-700 font-mono text-[11px]">[2026-08-15] [LDMS-004] Nguyễn Văn A hoàn thành giao diện Split-screen (Effort: 5h, AI Tokens: 14,500).</p>
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+<strong>SOW là văn bản đánh dấu việc lập kế hoạch dự án đã xong</strong>, chuyển sang giai đoạn thực thi. Khi các bên ký vào SOW, nghĩa là mọi người đã <strong>đồng ý chung một bản kế hoạch duy nhất</strong> — không còn tranh cãi "ai yêu cầu gì, làm đến đâu, bao nhiêu tiền".
 </div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-sm block mb-1">2. Minh Bạch Nỗ Lực & Hiệu Quả Ứng Dụng AI Assistant</strong>
-  <p class="text-slate-700">Mỗi dòng log phản ánh trung thực số giờ công lao động thực tế và khối lượng token AI hỗ trợ, tạo minh chứng dữ liệu cho báo cáo nghiệm thu.</p>
-</div>
-
-</div>
-
----
-
-# Báo Cáo Giám Sát Gating Checkpoints
-
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-  <strong class="text-emerald-900 block">Gate 0 (Tuần 2): Khảo Sát & Pháp Lý</strong>
-  <p class="text-slate-700">Nghiệm thu Quy chế bản quyền số & danh mục 2.500 sách. Phê duyệt mua sắm CapEx đợt 1.</p>
-</div>
-
-<div class="p-3 bg-emerald-50/80 rounded-lg border border-emerald-200 space-y-1">
-  <strong class="text-emerald-900 block">Gate 1 (Tuần 12): Nghiệm Thu MVP</strong>
-  <p class="text-slate-700">Nghiệm thu Core System & 500 giáo trình CNTT số hóa. Đánh giá KPI FTS < 3s & CAR $\ge$ 85%.</p>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-  <strong class="text-emerald-900 block">Gate 2 (Tuần 18): Số Hóa Diện Rộng</strong>
-  <p class="text-slate-700">Nghiệm thu 2.000 đầu sách mở rộng. Kiểm tra hệ thống lưu trữ MinIO & phân quyền SSO.</p>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
-  <strong class="text-emerald-900 block">Gate 3 (Tuần 20): Go-Live Toàn Trường</strong>
-  <p class="text-slate-700">Nghiệm thu Pentest bảo mật DRM, bàn giao chính thức cho Thư viện vận hành lâu dài.</p>
-</div>
-
-</div>
-
----
-
-# Quản Lý Thay Đổi & Tờ Trình Đổi Scope
-
-<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-xs space-y-3 mt-4">
-
-<strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1.5">Quy Trình Kiểm Soát Thay Đổi (Change Control Procedure)</strong>
-
-<div class="grid grid-cols-3 gap-3 text-slate-700 text-center">
-  <div class="p-2.5 bg-white border border-slate-200 rounded">
-    <strong class="text-emerald-800 block mb-0.5">1. Tiếp Nhận Yêu Cầu</strong>
-    Ghi nhận Change Request từ Stakeholders vào Backlog.
-  </div>
-  <div class="p-2.5 bg-white border border-slate-200 rounded">
-    <strong class="text-emerald-800 block mb-0.5">2. Phân Tích Tác Động</strong>
-    PM đánh giá ảnh hưởng ngân sách (>5%) & mốc tiến độ Tuần 12.
-  </div>
-  <div class="p-2.5 bg-white border border-slate-200 rounded">
-    <strong class="text-emerald-800 block mb-0.5">3. Trình Phê Duyệt</strong>
-    Ký Tờ trình thay đổi có chữ ký PM + Giám đốc Thư viện.
-  </div>
-</div>
-
-</div>
-
----
-
-# Đánh Giá Sau Triển Khai (Post-Implementation Review)
 
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
 <div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Thành Công Đạt Được</strong>
-  <ul class="space-y-1.5 text-slate-700">
-    <li>Bảo tồn 100% tài liệu học thuật quý hiếm của Nhà trường.</li>
-    <li>Giải phóng 60-70% diện tích kệ sách giấy để làm Smart Learning Space.</li>
-    <li>Đội ngũ kỹ sư nội bộ làm chủ 100% công nghệ số hóa.</li>
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">SOW ghi nhận sự đồng thuận về 5 điều</strong>
+  <ul class="space-y-1.5 text-slate-700 list-disc list-inside">
+    <li>Phạm vi công việc cụ thể sẽ làm, và những gì <strong>không</strong> làm.</li>
+    <li>Công nghệ đã thống nhất sử dụng.</li>
+    <li>Thời gian, chi phí và nguồn lực được cam kết.</li>
+    <li>Quy chế xử lý khi có thay đổi phạm vi dự án.</li>
+    <li>Vai trò của công cụ AI trong quá trình phát triển.</li>
   </ul>
 </div>
 
 <div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200 shadow-sm space-y-2">
-  <strong class="text-amber-900 text-sm block border-b border-amber-200 pb-1">Bài Học Kinh Nghiệm (Lessons Learned)</strong>
+  <strong class="text-amber-900 text-sm block border-b border-amber-200 pb-1">Các bên tham gia ký kết</strong>
   <ul class="space-y-1.5 text-slate-700">
-    <li>Kỷ luật Kanban WIP=1 giúp đội kiêm nhiệm không bị trễ hạn.</li>
-    <li>Ứng dụng AI Assistant rút ngắn 60% thời gian viết code thô.</li>
-    <li>Giao diện Split-screen là chìa khóa tăng năng suất soát lỗi OCR.</li>
+    <li><strong>Bên tài trợ:</strong> Ban Giám hiệu — phê duyệt chủ trương và cấp ngân sách.</li>
+    <li><strong>Bên chủ trì nghiệp vụ:</strong> Ban Giám đốc Thư viện — xác nhận yêu cầu và nghiệm thu.</li>
+    <li><strong>Bên phát triển:</strong> Phòng CNTT / nhóm sinh viên — thực hiện và bàn giao sản phẩm.</li>
   </ul>
 </div>
 
 </div>
 
----
-
-# Tổng Kết Bộ Slide Presentation HCMUS-LDMS
-
-<div class="grid grid-cols-5 gap-2 mt-6 text-xs text-center">
-
-<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-  <strong class="text-emerald-900 text-[11px] block">Phần 1: Proposal</strong>
-  <p class="text-[10px] text-slate-600 mt-1">Đề xuất dự án & hiệu quả đầu tư</p>
-</div>
-
-<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-  <strong class="text-emerald-900 text-[11px] block">Phần 2: Governance</strong>
-  <p class="text-[10px] text-slate-600 mt-1">Vision, Charter & 26 Stories Backlog</p>
-</div>
-
-<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-  <strong class="text-emerald-900 text-[11px] block">Phần 3: Architecture</strong>
-  <p class="text-[10px] text-slate-600 mt-1">Modular Monolith & DRM Signed URL</p>
-</div>
-
-<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-  <strong class="text-emerald-900 text-[11px] block">Phần 4: Development</strong>
-  <p class="text-[10px] text-slate-600 mt-1">Hybrid Kanban & AI-Assisted</p>
-</div>
-
-<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-  <strong class="text-emerald-900 text-[11px] block">Phần 5: Estimation</strong>
-  <p class="text-[10px] text-slate-600 mt-1">UCP/COCOMO II & Gating Checkpoints</p>
-</div>
-
+<div class="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-800 shadow-sm">
+  <strong>Lưu ý quan trọng:</strong> Sau khi SOW được ký, nếu muốn thay đổi phạm vi công việc thì tính năng, công nghệ, thời gian và chi phí cũng sẽ phải thay đổi theo — không thể chỉ đổi một phần mà giữ nguyên phần còn lại. Mọi thay đổi phải đi qua quy trình kiểm soát thay đổi chính thức.
 </div>
 
 ---
 
-# Hỏi & Đáp & Lời Cảm Ơn Cuối Cùng
+# Bản Kế Hoạch Dự Án Gồm Những Gì?
+
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+Một bản kế hoạch dự án đầy đủ không chỉ là "làm gì" mà còn phải trả lời rõ 5 câu hỏi sau — mỗi câu hỏi đã được trình bày trong các phần trước của buổi thuyết trình này.
+</div>
+
+<div class="grid grid-cols-3 gap-3 mt-4 text-xs">
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Làm gì? (Scope)</strong>
+  <p class="text-slate-700">26 user story trong Product Backlog, chia theo mức ưu tiên Bắt buộc / Nên có / Có thì tốt.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Làm khi nào? (Schedule)</strong>
+  <p class="text-slate-700">4 giai đoạn, 20 tuần, với Giai đoạn 2 là điểm nghẽn cần theo dõi sát.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Tốn bao nhiêu? (Budget)</strong>
+  <p class="text-slate-700">87 triệu VNĐ đầu tư ban đầu, 27 triệu VNĐ/năm chi phí vận hành.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Ai làm? (Resources)</strong>
+  <p class="text-slate-700">4 kỹ sư kiêm nhiệm + 2 cán bộ thư viện + cộng tác viên sinh viên, có AI Coding Assistant hỗ trợ.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Theo dõi thế nào? (Monitoring)</strong>
+  <p class="text-slate-700">Ghi nhật ký từng phiên làm việc, báo cáo hàng tuần, nghiệm thu tại 4 mốc kiểm tra (Gate).</p>
+</div>
+
+<div class="p-3 bg-emerald-50/80 rounded-lg border border-emerald-200 shadow-sm">
+  <strong class="text-emerald-900 block mb-1">Thống nhất bằng gì? (SOW)</strong>
+  <p class="text-slate-700">Tài liệu Phát biểu công việc (SOW) — nơi tất cả các câu trả lời trên được các bên ký xác nhận chính thức.</p>
+</div>
+
+</div>
+
+---
+
+# Demo Thu Thập Dữ Liệu Thật: Ảnh Chụp Nhanh Tiến Độ Tuần 1
+
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+Đây là số liệu <strong>thật</strong>, không phải giả định, được nhóm thu thập từ 2 ngày làm việc đầu tiên (16–17/07/2026), tổng hợp từ nhật ký `project_log.md`.
+</div>
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Bảng tổng hợp tiến độ thực tế</strong>
+  <p class="text-slate-700">Số việc đã hoàn thành: <strong>12 / 26</strong> (46% tổng khối lượng công việc)</p>
+  <p class="text-slate-700">Tổng thời gian dev thực tế: <strong>4 giờ 05 phút</strong> (4 phiên làm việc)</p>
+  <p class="text-slate-700">Tổng token AI đã dùng: <strong>440.000 token</strong> (kết hợp Claude Sonnet 5 + Claude Opus 4.8 + Claude Code)</p>
+  <p class="text-slate-700">Tốc độ hoàn thành đo được: <strong>12 việc/tuần</strong> (tuần đầu thường nhanh vì làm các phần nền tảng dễ hơn)</p>
+</div>
+
+<div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-200 pb-1">Dự báo thời gian hoàn thành (dựa trên tốc độ đo được)</strong>
+  <p class="text-slate-700">Còn lại: 26 − 12 = <strong>14 việc</strong>.</p>
+  <p class="text-slate-700">Vì các việc còn lại độ khó không đều, nhóm đưa ra khoảng dự báo thay vì một con số cứng:</p>
+  <p class="text-slate-700"><strong>Lạc quan:</strong> ~1.8 tuần (hoàn thành tuần 3)</p>
+  <p class="text-slate-700"><strong>Thận trọng:</strong> ~3.5 tuần (hoàn thành tuần 5)</p>
+  <p class="text-slate-800 font-bold">→ Ước lượng: 2–4 tuần để xong toàn bộ backlog MVP.</p>
+</div>
+
+</div>
+
+<div class="mt-3 p-3 bg-slate-50/80 rounded-lg border border-slate-200 text-xs text-slate-700 flex justify-between items-center">
+  <span><strong>Chi phí AI thực tế tuần 1:</strong> ~300.000 VNĐ, chỉ chiếm ~6% hạn mức 5 triệu VNĐ dành cho công cụ AI cả dự án.</span>
+  <span class="badge bg-emerald-700 text-white font-bold px-2 py-1 rounded shrink-0 whitespace-nowrap">Trong ngân sách</span>
+</div>
+
+---
+
+# Demo Thu Thập Dữ Liệu Thật: Đối Chiếu Với Mã Nguồn Thực Tế
+
+<div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
+Đây là bằng chứng cho thấy nhóm không chỉ ghi log mà còn <strong>đối chiếu ngược lại với mã nguồn thật</strong> để đảm bảo số liệu báo cáo phản ánh đúng thực tế — tránh trường hợp "báo cáo đẹp nhưng không khớp code".
+</div>
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Số liệu tổng hợp 5 phiên làm việc (16–22/07/2026)</strong>
+  <p class="text-slate-700">Tổng thời gian đã ghi log: <strong>12 giờ 05 phút</strong></p>
+  <p class="text-slate-700">Tổng token AI đã ghi log: <strong>690.000 token</strong></p>
+  <p class="text-slate-700">Số thành viên tham gia ghi log: <strong>4 người</strong></p>
+</div>
+
+<div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200 shadow-sm space-y-2">
+  <strong class="text-amber-900 text-sm block border-b border-amber-200 pb-1">Phát hiện quan trọng khi đối chiếu</strong>
+  <p class="text-slate-700">Kiểm tra thực tế trong mã nguồn: <strong>26/26 công việc đã hoàn thành</strong> (đã gộp mã nguồn, chạy được).</p>
+  <p class="text-slate-700">Nhưng nhật ký mới ghi nhận đầy đủ thời gian/token cho <strong>16/26 công việc (~61.5%)</strong>.</p>
+  <p class="text-slate-800 font-bold">→ Kết luận: đây là <u>lỗ hổng ở khâu ghi chép</u>, không phải dự án bị chậm tiến độ.</p>
+</div>
+
+</div>
+
+<div class="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
+  <strong>Hành động khắc phục:</strong> Nhắc các thành viên còn thiếu bổ sung log cho 10 công việc chưa ghi nhận, để số liệu báo cáo phản ánh đúng 100% công sức và chi phí AI đã thực sự bỏ ra.
+</div>
+
+---
+
+# Báo Cáo Giám Sát Tại Các Mốc Kiểm Tra (Gate)
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+  <strong class="text-emerald-900 block">Gate 0 (Tuần 2): Khảo sát & Pháp lý</strong>
+  <p class="text-slate-700">Nghiệm thu quy chế bản quyền số & danh mục 2.500 sách. Duyệt chi mua sắm đợt 1.</p>
+</div>
+
+<div class="p-3 bg-emerald-50/80 rounded-lg border border-emerald-200 space-y-1">
+  <strong class="text-emerald-900 block">Gate 1 (Tuần 12): Nghiệm thu MVP</strong>
+  <p class="text-slate-700">Nghiệm thu hệ thống lõi & 500 giáo trình đã số hóa. Kiểm tra tốc độ tìm kiếm dưới 3 giây & độ chính xác OCR ≥ 85%.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+  <strong class="text-emerald-900 block">Gate 2 (Tuần 18): Số hóa diện rộng</strong>
+  <p class="text-slate-700">Nghiệm thu 2.000 đầu sách mở rộng. Kiểm tra hệ thống lưu trữ & phân quyền đăng nhập.</p>
+</div>
+
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+  <strong class="text-emerald-900 block">Gate 3 (Tuần 20): Vận hành toàn trường</strong>
+  <p class="text-slate-700">Nghiệm thu kiểm thử bảo mật, bàn giao chính thức cho Thư viện vận hành lâu dài.</p>
+</div>
+
+</div>
+
+<div class="mt-3 p-3 bg-slate-50/80 rounded-lg border border-slate-200 text-xs text-slate-700">
+  <strong>Ba tầng báo cáo:</strong> (1) Báo cáo sau mỗi phiên AI — ghi vào nhật ký; (2) Báo cáo hàng tuần — PM tổng hợp gửi Thư viện & Phòng CNTT; (3) Báo cáo chốt cổng — gửi Ban Giám hiệu để duyệt giải ngân giai đoạn kế tiếp.
+</div>
+
+---
+
+# Quản Lý Thay Đổi Phạm Vi Dự Án
+
+<div class="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm text-xs space-y-3 mt-4">
+
+<strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1.5">Quy trình xử lý khi có yêu cầu thay đổi</strong>
+
+<div class="grid grid-cols-3 gap-3 text-slate-700 text-center">
+  <div class="p-2.5 bg-white border border-slate-200 rounded">
+    <strong class="text-emerald-800 block mb-0.5">1. Tiếp nhận yêu cầu</strong>
+    Ghi nhận yêu cầu thay đổi từ các bên liên quan vào danh sách công việc.
+  </div>
+  <div class="p-2.5 bg-white border border-slate-200 rounded">
+    <strong class="text-emerald-800 block mb-0.5">2. Phân tích tác động</strong>
+    Quản lý dự án đánh giá ảnh hưởng đến ngân sách (nếu vượt 5%) và mốc tiến độ Tuần 12.
+  </div>
+  <div class="p-2.5 bg-white border border-slate-200 rounded">
+    <strong class="text-emerald-800 block mb-0.5">3. Trình phê duyệt</strong>
+    Ký tờ trình thay đổi, có chữ ký của Quản lý dự án và Giám đốc Thư viện.
+  </div>
+</div>
+
+</div>
+
+---
+
+# Hỏi & Đáp
 
 <div class="text-center my-auto py-10 space-y-4">
-  <h2 class="text-3xl font-extrabold text-emerald-900">KÍNH CHÚC BỘ SLIDE BÁO CÁO THÀNH CÔNG RỰC RỠ!</h2>
+  <h2 class="text-3xl font-extrabold text-emerald-900">CẢM ƠN THẦY VÀ CÁC BẠN ĐÃ LẮNG NGHE!</h2>
   <p class="text-slate-600 text-sm">Trường ĐH Khoa học Tự nhiên — ĐHQG-HCM (HCMUS-LDMS 2026)</p>
-  <div class="pt-6">
-    <span class="badge bg-emerald-700 text-white font-bold px-5 py-2 text-sm rounded-full shadow">Hoàn Thành 100% Bộ Slide Thuyết Trình</span>
-  </div>
 </div>

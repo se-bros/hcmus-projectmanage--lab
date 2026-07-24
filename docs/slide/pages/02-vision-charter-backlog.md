@@ -326,8 +326,9 @@ class: bg-slate-50
   </tbody>
 </table>
 
-<div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1.5">
-  • <strong>DRM (Digital Rights Management):</strong> Quản lý bản quyền số, ngăn chặn tải lậu sách gốc. • <strong>FTS (Full-Text Search):</strong> Tìm kiếm toàn văn trong nội dung sách.
+<div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>DRM</strong>: Digital Rights Management (quản lý bản quyền số, ngăn chặn tải lậu sách gốc) <br>
+  <strong>FTS</strong>: Full-Text Search (tìm kiếm toàn văn trong nội dung sách)
 </div>
 
 ---
@@ -383,12 +384,11 @@ class: bg-slate-50
 </table>
 
 <div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>WP (Work Package):</strong> gói công việc chính trong cơ cấu phân rã công việc (Work Breakdown Structure).
-  <br>
-  <strong>R (Responsible):</strong> Bộ phận thực hiện. <br>
-  <strong>A (Accountable):</strong> Bộ phận chịu trách nhiệm giải trình cuối cùng (chỉ 1 chủ thể / gói). <br>
-  <strong>C (Consulted):</strong> Được tham vấn. <br>
-  <strong>I (Informed):</strong> Được thông báo. 
+  <strong>WP</strong>: Work Package (gói công việc chính trong cơ cấu phân rã WBS) <br>
+  <strong>R</strong>: Responsible (bộ phận thực hiện) <br>
+  <strong>A</strong>: Accountable (bộ phận chịu trách nhiệm giải trình cuối cùng, 1 chủ thể/gói) <br>
+  <strong>C</strong>: Consulted (được tham vấn) <br>
+  <strong>I</strong>: Informed (được thông báo)
 </div>
 
 ---
@@ -417,7 +417,7 @@ class: bg-slate-50
 </table>
 
 <div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  Chiến lược ứng xử: Power cao/Interest cao → <em>quản trị sát sao</em>; Power cao/Interest vừa → <em>giữ hài lòng</em>; Power thấp/Interest cao → <em>thông báo đầy đủ</em>. Cột "Khả năng tiếp cận" và cột cuối là nội dung <strong>bổ sung</strong> — xem mục Khoảng trống tài liệu.
+  <strong>Chiến lược ứng xử</strong>: Power cao/Interest cao (quản trị sát sao), Power cao/Interest vừa (giữ hài lòng), Power thấp/Interest cao (thông báo đầy đủ).
 </div>
 
 ---
@@ -561,7 +561,7 @@ class: bg-slate-50
 </table>
 
 <div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  Mọi AC đều theo nguyên tắc: quan sát/verify được qua API hoặc UI, có kịch bản lỗi (edge-case) đi kèm kịch bản thành công. Nguồn: Product Backlog v4.0 §2.
+  <strong>Nguyên tắc Acceptance Criteria (AC)</strong>: verify được qua API hoặc UI, có kịch bản lỗi đi kèm kịch bản thành công.
 </div>
 
 ---

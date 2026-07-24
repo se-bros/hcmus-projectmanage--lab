@@ -156,12 +156,11 @@ graph LR
   </tbody>
 </table>
 
-<div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1.5">
-  <strong>* Chú thích các từ viết tắt:</strong><br>
-  • <strong>HCMUS-LDMS:</strong> Hệ thống Quản lý và Số hóa Tài liệu Thư viện Trường ĐH KHTN.<br>
-  • <strong>DRM (Digital Rights Management):</strong> Quản lý bản quyền số, ngăn chặn hành vi sao chép và tải tệp tin trái phép.<br>
-  • <strong>DSpace:</strong> Nền tảng nguồn mở chuyên dùng cho việc lưu trữ và phân phối tài liệu số học thuật.<br>
-  • <strong>Lạc Việt Vebrary:</strong> Phần mềm quản lý thư viện tích hợp thương mại phổ biến tại Việt Nam.
+<div class="mt-2 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>HCMUS-LDMS</strong>: Hệ thống Quản lý và Số hóa Tài liệu Thư viện Trường ĐH KHTN <br>
+  <strong>DRM</strong>: Digital Rights Management (quản lý bản quyền số, ngăn chặn sao chép và tải trái phép) <br>
+  <strong>DSpace</strong>: Nền tảng nguồn mở chuyên dùng cho việc lưu trữ và phân phối tài liệu số học thuật <br>
+  <strong>Lạc Việt Vebrary</strong>: Phần mềm quản lý thư viện tích hợp thương mại phổ biến tại Việt Nam
 </div>
 
 ---

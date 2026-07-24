@@ -14,7 +14,7 @@ class: bg-slate-50
       <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Bảng Kanban + Trợ lý AI</span>
       <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Nhật ký làm việc</span>
       <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Quy tắc nhánh Git</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Ghi nhận thực tế Tuần 1</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Ghi nhận thực tế 5 phiên làm việc</span>
     </div>
   </div>
 </div>
@@ -38,8 +38,8 @@ class: bg-slate-50
   <h3 class="text-emerald-900 font-bold text-xs border-b border-emerald-200 pb-1">Tầng vi mô: Bảng Kanban vận hành hàng tuần</h3>
   <ul class="space-y-1 text-slate-700 list-disc list-inside">
     <li>Vận hành Kanban linh hoạt cho đội ngũ làm việc kiêm nhiệm.</li>
-    <li>Thiết lập giới hạn WIP = 1 để tránh làm dở dang nhiều việc cùng lúc.</li>
-    <li>Đo throughput thực tế hàng tuần để forecast tiến độ chính xác.</li>
+    <li>Thiết lập giới hạn 1 việc/người tại một thời điểm để tránh làm dở dang nhiều việc cùng lúc.</li>
+    <li>Đo số việc hoàn thành thực tế hàng tuần để dự báo tiến độ chính xác.</li>
   </ul>
 </div>
 
@@ -48,20 +48,26 @@ class: bg-slate-50
 <div class="grid grid-cols-3 gap-4 mt-3 text-[11px]">
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-xs block mb-1">1. Giới hạn WIP (WIP = 1)</strong>
-  <p class="text-slate-700 leading-relaxed">Mỗi thành viên chỉ nhận 1 thẻ công việc cùng lúc. Hoàn thành hoặc báo bị vướng (Block) mới được nhận việc mới.</p>
+  <strong class="text-emerald-900 text-xs block mb-1">1. Giới hạn 1 việc/lúc (WIP = 1)</strong>
+  <p class="text-slate-700 leading-relaxed">Mỗi thành viên chỉ nhận 1 thẻ công việc cùng lúc. Hoàn thành hoặc báo bị vướng mới được nhận việc mới.</p>
 </div>
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-xs block mb-1">2. Định nghĩa Sẵn sàng (DoR)</strong>
-  <p class="text-slate-700 leading-relaxed">Có mã số công việc rõ ràng, tiêu chí hoàn thành cụ thể, việc phụ thuộc đã xong và khối lượng không quá 2 ngày (Size S/M).</p>
+  <strong class="text-emerald-900 text-xs block mb-1">2. Điều kiện để bắt đầu làm (DoR)</strong>
+  <p class="text-slate-700 leading-relaxed">Có mã số công việc rõ ràng, tiêu chí hoàn thành cụ thể, việc phụ thuộc đã xong, khối lượng không quá 2 ngày.</p>
 </div>
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-xs block mb-1">3. Định nghĩa Hoàn thành (DoD)</strong>
-  <p class="text-slate-700 leading-relaxed">Đạt 100% tiêu chí AC, code đã review/merge qua PR, chạy tốt local, cập nhật tài liệu và ghi nhật ký thời gian/AI token.</p>
+  <strong class="text-emerald-900 text-xs block mb-1">3. Điều kiện để coi là xong (DoD)</strong>
+  <p class="text-slate-700 leading-relaxed">Đạt 100% tiêu chí, mã nguồn đã được review & gộp qua Pull Request, chạy tốt trên máy local, cập nhật tài liệu và ghi nhật ký thời gian/token AI.</p>
 </div>
 
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>WIP</strong>: Work In Progress (số việc đang làm dở cùng lúc) <br>
+  <strong>DoR</strong>: Definition of Ready (điều kiện để bắt đầu làm) <br>
+  <strong>DoD</strong>: Definition of Done (điều kiện để coi là xong)
 </div>
 
 ---
@@ -88,7 +94,7 @@ class: bg-slate-50
 </div>
 
 <div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
-  <strong>Quy tắc kiểm tra mã nguồn:</strong> Mọi yêu cầu gộp mã nguồn (Pull Request) từ nhánh tính năng vào nhánh `develop` bắt buộc phải được ít nhất 1 Trưởng nhóm kỹ thuật (Tech Lead) xem lại, và phải vượt qua toàn bộ bài kiểm thử tự động.
+  <strong>Quy tắc kiểm tra mã nguồn:</strong> Mọi yêu cầu gộp mã nguồn (Pull Request) từ nhánh tính năng vào nhánh `develop` bắt buộc phải được ít nhất 1 Trưởng nhóm kỹ thuật (Solution Architect) xem lại trong vòng 24 giờ, và phải vượt qua toàn bộ bài kiểm thử tự động. Nhánh `main` chỉ được gộp khi có phê duyệt của Trưởng nhóm kỹ thuật hoặc Quản lý dự án.
 </div>
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
@@ -98,7 +104,7 @@ class: bg-slate-50
 
 ---
 
-# Phát Triển Với AI, Ghi Nhật Ký & Kiểm Thử Tự Động
+# Quy Trình Phát Triển Với Sự Hỗ Trợ Của AI
 
 ```mermaid
 graph LR
@@ -118,49 +124,159 @@ graph LR
     class F endNode;
 ```
 
-<div class="grid grid-cols-3 gap-4 mt-3 text-[10.5px]">
+<div class="grid grid-cols-2 gap-4 mt-3 text-[10.5px]">
 
 <div class="p-3 bg-blue-50/80 rounded-xl border border-blue-200 shadow-sm space-y-1">
-  <strong class="text-blue-900 text-xs block">1. Quy trình phát triển với AI</strong>
-  <p class="text-slate-700 leading-normal">AI tự động viết khung code lặp lại, cấu hình Docker và sinh unit test nhanh hơn 3 lần. Kỹ sư con người trực tiếp review logic và bảo đảm cấu trúc Modular Monolith.</p>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-xl border border-slate-200 shadow-sm space-y-1">
-  <strong class="text-emerald-900 text-xs block">2. Nhật ký effort (project_log.md)</strong>
-  <p class="text-slate-700 leading-normal">Bắt buộc ghi nhận sau mỗi session hoàn thành: <code>[Ngày] [Mã_Story] Dev (Thời gian thực tế, Lượng Token AI đã dùng)</code> để phục vụ giám sát tiến độ.</p>
+  <strong class="text-blue-900 text-xs block">AI hỗ trợ những việc gì?</strong>
+  <p class="text-slate-700 leading-normal">Tự động viết khung mã nguồn lặp lại, hỗ trợ cấu hình Docker, gợi ý hàm xử lý dữ liệu, và viết bài kiểm thử nhanh hơn khoảng 3 lần so với viết tay.</p>
 </div>
 
 <div class="p-3 bg-emerald-50/80 rounded-xl border border-emerald-200 shadow-sm space-y-1">
-  <strong class="text-emerald-900 text-xs block">3. Kiểm thử tự động & Đảm bảo chất lượng</strong>
-  <p class="text-slate-700 leading-normal">Kiểm thử từng phần (Unit Test đạt ≥ 95% độc lập), kiểm thử toàn trình (Playwright E2E giả lập trình duyệt) và tự động rà soát lỗ hổng bảo mật.</p>
+  <strong class="text-emerald-900 text-xs block">Con người vẫn phải kiểm soát điều gì?</strong>
+  <p class="text-slate-700 leading-normal">Đọc hiểu và review toàn bộ mã do AI sinh ra trước khi gộp; đảm bảo đúng kiến trúc Modular Monolith; và phải giải thích được đoạn mã đó khi được hỏi.</p>
 </div>
 
 </div>
 
-<div class="mt-3 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>Token AI</strong>: đơn vị đo lượng "chữ" mà công cụ AI đã xử lý — dùng để ước tính chi phí/công sức sử dụng AI <br>
-  <strong>E2E</strong>: End-to-End (kiểm thử toàn bộ luồng sử dụng từ đầu đến cuối, giả lập người dùng thật)
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>AI Coding Assistant</strong>: công cụ trí tuệ nhân tạo hỗ trợ viết mã — trong dự án này con người luôn là người ra quyết định cuối cùng, AI chỉ là công cụ hỗ trợ
 </div>
 
 ---
 
-# Bảng Chú Giải Thuật Ngữ & Từ Viết Tắt
+# Minh Chứng Thực Tế: 2 Cách Nhóm Đang Dùng AI Coding Assistant
 
-<div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-4 text-xs text-slate-700">
+<div class="p-3 bg-slate-50 border border-slate-200 shadow-sm rounded-lg text-xs text-slate-700 leading-relaxed">
+    Đây là số liệu <strong>tổng hợp từ nhật ký làm việc thực tế</strong> của nhóm, Nhóm quan sát được 2 cách làm việc khác nhau, tùy thói quen từng thành viên — không có cách nào "đúng duy nhất", miễn là qua được bước con người kiểm tra lại.
+</div>
 
-<div><strong>Kanban</strong> — phương pháp quản lý công việc bằng bảng thẻ, chia theo cột trạng thái (Sẵn sàng / Đang làm / Hoàn thành).</div>
-<div><strong>WIP</strong> — Work In Progress: số công việc đang được làm dở cùng một lúc.</div>
-<div><strong>DoR</strong> — Definition of Ready: điều kiện để một công việc đủ điều kiện bắt đầu làm.</div>
-<div><strong>DoD</strong> — Definition of Done: điều kiện để một công việc được coi là hoàn thành.</div>
-<div><strong>GitFlow</strong> — quy ước đặt tên và tổ chức các nhánh mã nguồn trong Git.</div>
-<div><strong>PR</strong> — Pull Request: yêu cầu gộp mã nguồn từ nhánh riêng vào nhánh chung, có bước người khác kiểm tra lại.</div>
-<div><strong>UAT</strong> — User Acceptance Testing: kiểm thử nghiệm thu bởi người dùng thật.</div>
-<div><strong>CI/CD</strong> — Continuous Integration / Continuous Deployment: tự động kiểm tra và triển khai mã nguồn mỗi khi có thay đổi.</div>
-<div><strong>AI Coding Assistant</strong> — công cụ trí tuệ nhân tạo hỗ trợ viết, gợi ý và kiểm tra mã nguồn.</div>
-<div><strong>Token</strong> — đơn vị đo lượng dữ liệu chữ mà công cụ AI xử lý, dùng để ước tính công sức/chi phí dùng AI.</div>
-<div><strong>Unit Test</strong> — bài kiểm thử cho từng phần nhỏ, độc lập của phần mềm.</div>
-<div><strong>E2E Test</strong> — End-to-End: kiểm thử toàn bộ luồng sử dụng, từ đầu đến cuối.</div>
-<div><strong>MVP</strong> — Minimum Viable Product: phiên bản sản phẩm tối thiểu, đủ dùng để đánh giá.</div>
-<div><strong>Modular Monolith</strong> — kiến trúc một hệ thống duy nhất nhưng chia rõ thành nhiều module độc lập bên trong.</div>
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
+<div class="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">Cách 1 — Chuyển tiếp giữa 2 model (Khoa Nguyễn, phiên 16/07 & 18/07)</strong>
+  <p class="text-slate-700">Dùng <strong>Claude Sonnet 5</strong> để đọc yêu cầu, phân tích tiêu chí hoàn thành và chia nhỏ công việc trước — sau đó chuyển sang <strong>Claude Opus 4.8</strong> để viết mã nguồn thật. Cách này giống như "một người lên kế hoạch, một người thi công".</p>
+</div>
+
+<div class="p-4 rounded-xl bg-emerald-50/90 border border-emerald-300 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-emerald-300 pb-1">Cách 2 — Một trợ lý AI làm liên tục (Tuấn Anh, phiên 17/07 & 22/07)</strong>
+  <p class="text-slate-700">Dùng <strong>Claude Sonnet 5 chạy trong Claude Code</strong> (công cụ AI dùng trực tiếp trên dòng lệnh), để một model xử lý liên tục từ đọc yêu cầu → viết mã → chạy kiểm thử trong cùng một phiên làm việc, không đổi model giữa chừng.</p>
+</div>
+
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>Claude Code</strong>: công cụ dùng Claude trực tiếp trên dòng lệnh (CLI) để lập trình
+</div>
+
+---
+
+# Minh Chứng Thực Tế: Số Liệu Từng Phiên Làm Việc Với AI
+
+<table class="w-full text-left border-collapse text-[9px] mt-2 leading-tight">
+  <thead>
+    <tr class="bg-slate-900 text-white font-bold">
+      <th class="p-1.5 border border-slate-700 text-center whitespace-nowrap">Phiên</th>
+      <th class="p-1.5 border border-slate-700 whitespace-nowrap">Ngày</th>
+      <th class="p-1.5 border border-slate-700 whitespace-nowrap">Người làm</th>
+      <th class="p-1.5 border border-slate-700 whitespace-nowrap">Công việc (Story ID)</th>
+      <th class="p-1.5 border border-slate-700 text-center whitespace-nowrap">Thời gian</th>
+      <th class="p-1.5 border border-slate-700 text-right whitespace-nowrap">Token AI</th>
+      <th class="p-1.5 border border-slate-700 whitespace-nowrap">Nội dung thực hiện</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="bg-white">
+      <td class="p-1.5 border border-slate-200 text-center">1</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">16/07</td>
+      <td class="p-1.5 border border-slate-200 text-slate-900 font-semibold">Khoa Nguyễn</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700 font-mono text-[9px]">LDMS-008/026</td>
+      <td class="p-1.5 border border-slate-200 text-center">2h</td>
+      <td class="p-1.5 border border-slate-200 text-right text-emerald-800 font-semibold">40K</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">Trang danh sách tài liệu & khung Tìm kiếm/Đọc sách</td>
+    </tr>
+    <tr class="bg-slate-50">
+      <td class="p-1.5 border border-slate-200 text-center">2</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">16/07</td>
+      <td class="p-1.5 border border-slate-200 text-slate-900 font-semibold">Khoa Ngô & Thái</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700 font-mono text-[9px]">LDMS-003/004/007/013/022</td>
+      <td class="p-1.5 border border-slate-200 text-center">45p</td>
+      <td class="p-1.5 border border-slate-200 text-right text-emerald-800 font-semibold">280K</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">Quy trình số hóa & xuất bản sách</td>
+    </tr>
+    <tr class="bg-white">
+      <td class="p-1.5 border border-slate-200 text-center">3</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">17/07</td>
+      <td class="p-1.5 border border-slate-200 text-slate-900 font-semibold">Tuấn Anh</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700 font-mono text-[9px]">LDMS-001/009/010/018</td>
+      <td class="p-1.5 border border-slate-200 text-center">1h 20p</td>
+      <td class="p-1.5 border border-slate-200 text-right text-emerald-800 font-semibold">120K</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">Đăng nhập, phân quyền, đăng nhập Google + giao diện</td>
+    </tr>
+    <tr class="bg-slate-50">
+      <td class="p-1.5 border border-slate-200 text-center">4</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">22/07</td>
+      <td class="p-1.5 border border-slate-200 text-slate-900 font-semibold">Tuấn Anh</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700 font-mono text-[9px]">LDMS-001/009/010/018 (mở rộng)</td>
+      <td class="p-1.5 border border-slate-200 text-center">2h</td>
+      <td class="p-1.5 border border-slate-200 text-right text-emerald-800 font-semibold">150K</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">Hoàn thiện đăng nhập, phân quyền theo vai trò</td>
+    </tr>
+    <tr class="bg-white">
+      <td class="p-1.5 border border-slate-200 text-center">5</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">18/07</td>
+      <td class="p-1.5 border border-slate-200 text-slate-900 font-semibold">Khoa Nguyễn</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700 font-mono text-[9px]">LDMS-008/014/015/016/019/020/026</td>
+      <td class="p-1.5 border border-slate-200 text-center">6h</td>
+      <td class="p-1.5 border border-slate-200 text-right text-emerald-800 font-semibold">100K</td>
+      <td class="p-1.5 border border-slate-200 text-slate-700">Trải nghiệm Tìm kiếm & Đọc sách</td>
+    </tr>
+    <tr class="bg-emerald-50/80 text-emerald-900 font-bold">
+      <td class="p-1.5 border border-slate-200 text-center">Tổng</td>
+      <td class="p-1.5 border border-slate-200"></td>
+      <td class="p-1.5 border border-slate-200"></td>
+      <td class="p-1.5 border border-slate-200"></td>
+      <td class="p-1.5 border border-slate-200 text-center">12h 05p</td>
+      <td class="p-1.5 border border-slate-200 text-right">690K</td>
+      <td class="p-1.5 border border-slate-200"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700">
+  <strong>Nhận xét thực tế:</strong> Phiên 2 dùng nhiều token nhất (280K, ~40% tổng token) dù chỉ làm trong 45 phút — vì xử lý cùng lúc 5 công việc thuộc quy trình số hóa/OCR. Ngược lại, phiên 5 mất nhiều thời gian nhất (6 giờ) nhưng chỉ dùng 100K token — cho thấy phần lớn thời gian là thao tác thủ công và kiểm thử giao diện, không phải "chat" liên tục với AI.
+</div>
+
+---
+
+# Nhật Ký Phiên AI & Quy Trình Kiểm Thử Đảm Bảo Chất Lượng
+
+<div class="grid grid-cols-2 gap-4 mt-3 text-xs">
+
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">1. Ghi nhận nhật ký phiên AI (project_log.md)</strong>
+  <p class="text-slate-700">Mỗi khi hoàn thành công việc, thành viên ghi lại một dòng theo mẫu thật sau:</p>
+  <div class="p-2.5 bg-slate-800 text-emerald-400 font-mono text-[9px] rounded leading-tight">
+    [2026-07-18] [LDMS-008/014/015/016/019/020/026] Khoa Nguyễn hoàn thành Search & Reader experience (Thời gian: 6h, Token AI: 100.000).
+  </div>
+  <ul class="space-y-1 text-slate-700 list-disc list-inside mt-2 text-[11px]">
+    <li>Theo dõi chính xác thời gian thực tế so với ước tính.</li>
+    <li>Đo lường mức độ AI đã giúp ích cho công việc.</li>
+    <li>Làm minh chứng dữ liệu nghiệm thu tại các mốc Gate.</li>
+  </ul>
+</div>
+
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2 text-[11px]">
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">2. Kiểm thử tự động & Đảm bảo chất lượng</strong>
+  <ul class="space-y-2 text-slate-700">
+    <li><strong>Kiểm thử từng phần (Unit Test):</strong> Kiểm tra độc lập từng chức năng nhỏ (Đăng nhập, OCR, Link bảo mật). Tỷ lệ đạt tối thiểu từ 95% trở lên.</li>
+    <li><strong>Kiểm thử toàn trình (Playwright E2E):</strong> Tự động giả lập thao tác của người dùng thật trên trình duyệt để kiểm tra hiển thị giao diện.</li>
+    <li><strong>Rà soát bảo mật:</strong> Tự động quét các lỗ hổng bảo mật, kiểm tra cơ chế hết hạn của link đọc sách và phân quyền truy cập.</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>Token AI</strong>: đơn vị đo lượng "chữ" mà công cụ AI đã xử lý — dùng để ước tính chi phí/công sức sử dụng AI <br>
+  <strong>E2E</strong>: End-to-End (kiểm thử toàn bộ luồng sử dụng từ đầu đến cuối, giống như người dùng thật sử dụng)
 </div>

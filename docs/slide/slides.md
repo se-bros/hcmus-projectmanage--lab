@@ -95,17 +95,17 @@ layout: default
 
 ---
 src: ./pages/01-project-proposal.md
-hide: true
+hide: false
 ---
 
 ---
 src: ./pages/02-vision-charter-backlog.md
-hide: true
+hide: false
 ---
 
 ---
 src: ./pages/03-architecture-poc.md
-hide: true
+hide: false
 ---
 
 ---
@@ -115,6 +115,6 @@ hide: false
 
 ---
 src: ./pages/05-estimation-planning-monitoring.md
-hide: true
+hide: false
 ---
 
