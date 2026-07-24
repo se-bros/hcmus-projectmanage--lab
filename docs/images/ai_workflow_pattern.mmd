@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph A["Mẫu hình A — Relay 2 model (Khoa Nguyễn)"]
+        A1[Đọc User Story + AC<br/>trong Product Backlog] --> A2["Claude Sonnet 5<br/>Phân tích spec, chia nhỏ task"]
+        A2 --> A3["Claude Opus 4.8<br/>Code implementation"]
+        A3 --> A4[Self-review + chạy local]
+        A4 --> A5[Log effort + token<br/>vào project_log.md]
+    end
+    subgraph B["Mẫu hình B — Single-agent CLI (Tuấn Anh)"]
+        B1[Đọc User Story + AC<br/>trong Product Backlog] --> B2["Claude Sonnet 5 (Claude Code)<br/>Spec → Code → Test trong 1 session"]
+        B2 --> B3[Self-review + chạy local]
+        B3 --> B4[Log effort + token<br/>vào project_log.md]
+    end
