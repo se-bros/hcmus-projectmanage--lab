@@ -9,11 +9,11 @@ class: bg-slate-50
     <div class="text-xs uppercase tracking-widest text-amber-600 font-extrabold mb-2 font-mono">Phần 04</div>
     <h1 class="text-4xl font-black text-slate-900 leading-tight mb-4">Phương Pháp Thực Hiện Dự Án</h1>
     <div class="w-16 h-1 bg-emerald-600 rounded mb-6"></div>
-    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Phần này giải thích nhóm tổ chức công việc hàng tuần như thế nào (Kanban), cách dùng AI hỗ trợ viết mã nguồn, cách ghi lại nhật ký làm việc, và cách các thành viên gộp mã nguồn với nhau (GitFlow).</p>
+    <p class="text-slate-600 text-sm max-w-xl leading-relaxed mb-6 font-semibold">Phần này giải thích nhóm tổ chức công việc hàng tuần như thế nào (Kanban theo hướng Spec-Driven, mỗi người sở hữu 1 Epic), cách dùng AI hỗ trợ viết mã nguồn, cách ghi lại nhật ký làm việc, và cách các thành viên gộp mã nguồn với nhau (Git Trunk-based).</p>
     <div class="flex gap-2 flex-wrap">
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Bảng Kanban + Trợ lý AI</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Nhật ký làm việc</span>
-      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Quy tắc nhánh Git</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Kanban theo Epic + Trợ lý AI</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Spec-Driven Development</span>
+      <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Git Trunk-based</span>
       <span class="text-[10px] font-bold text-slate-800 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">Ghi nhận thực tế 5 phiên làm việc</span>
     </div>
   </div>
@@ -21,7 +21,7 @@ class: bg-slate-50
 
 ---
 
-# Phương Pháp Vận Hành: Kết Hợp Gating & Kỷ Luật Kanban
+# Phương Pháp Vận Hành: Gating + Kanban Spec-Driven Theo Epic
 
 <div class="grid grid-cols-2 gap-4 mt-2 text-[11px]">
 
@@ -35,11 +35,10 @@ class: bg-slate-50
 </div>
 
 <div class="p-3 rounded-lg bg-emerald-50/80 border border-emerald-200 shadow-sm space-y-1.5">
-  <h3 class="text-emerald-900 font-bold text-xs border-b border-emerald-200 pb-1">Tầng vi mô: Bảng Kanban vận hành hàng tuần</h3>
+  <h3 class="text-emerald-900 font-bold text-xs border-b border-emerald-200 pb-1">Tầng vi mô: Kanban Spec-Driven, mỗi người own 1 Epic</h3>
   <ul class="space-y-1 text-slate-700 list-disc list-inside">
-    <li>Vận hành Kanban linh hoạt cho đội ngũ làm việc kiêm nhiệm.</li>
-    <li>Thiết lập giới hạn 1 việc/người tại một thời điểm để tránh làm dở dang nhiều việc cùng lúc.</li>
-    <li>Đo số việc hoàn thành thực tế hàng tuần để dự báo tiến độ chính xác.</li>
+    <li>Mỗi thành viên nhận toàn quyền sở hữu <strong>1 Epic</strong> (A/B/C/D), gồm nhiều User Story liên quan — không chia lẻ story ngẫu nhiên giữa các thành viên.</li>
+    <li>Trong phạm vi Epic của mình, làm theo quy trình <strong>Spec-Driven</strong> (đặc tả yêu cầu → lập kế hoạch → chia task → triển khai) trước khi code, thay vì code trực tiếp theo cảm tính.</li>
   </ul>
 </div>
 
@@ -48,8 +47,8 @@ class: bg-slate-50
 <div class="grid grid-cols-3 gap-4 mt-3 text-[11px]">
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-xs block mb-1">1. Giới hạn 1 việc/lúc (WIP = 1)</strong>
-  <p class="text-slate-700 leading-relaxed">Mỗi thành viên chỉ nhận 1 thẻ công việc cùng lúc. Hoàn thành hoặc báo bị vướng mới được nhận việc mới.</p>
+  <strong class="text-emerald-900 text-xs block mb-1">1. Giới hạn 1 việc/lúc trong Epic (WIP = 1)</strong>
+  <p class="text-slate-700 leading-relaxed">Mỗi thành viên nhận 1 Epic đã xác định trước các user story. Thành viên tự lên kế hoạch hoàn thành hoặc báo bị vướng.</p>
 </div>
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
@@ -58,13 +57,15 @@ class: bg-slate-50
 </div>
 
 <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 shadow-sm">
-  <strong class="text-emerald-900 text-xs block mb-1">3. Điều kiện để coi là xong (DoD)</strong>
-  <p class="text-slate-700 leading-relaxed">Đạt 100% tiêu chí, mã nguồn đã được review & gộp qua Pull Request, chạy tốt trên máy local, cập nhật tài liệu và ghi nhật ký thời gian/token AI.</p>
+  <strong class="text-emerald-900 text-xs block mb-1">3. Điều kiện để coi là xong (DoD theo Epic)</strong>
+  <p class="text-slate-700 leading-relaxed">Người sở hữu Epic định nghĩa & chịu trách nhiệm DoD cho toàn bộ Epic đó: từng story con đạt 100% tiêu chí, mã nguồn review & gộp qua Pull Request, chạy tốt trên máy local, cập nhật tài liệu và ghi nhật ký thời gian/token AI — Epic chỉ "Done" khi mọi story con trong Epic đều đạt.</p>
 </div>
 
 </div>
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
+  <strong>Epic</strong>: nhóm User Story lớn theo cùng một mảng nghiệp vụ (VD: Epic B — Số hóa & Xuất bản), do 1 thành viên sở hữu xuyên suốt <br>
+  <strong>Spec-Driven</strong>: quy trình viết đặc tả (spec) và kế hoạch trước khi code, dùng công cụ Spec Kit (specify → plan → tasks → implement) <br>
   <strong>WIP</strong>: Work In Progress (số việc đang làm dở cùng lúc) <br>
   <strong>DoR</strong>: Definition of Ready (điều kiện để bắt đầu làm) <br>
   <strong>DoD</strong>: Definition of Done (điều kiện để coi là xong)
@@ -72,33 +73,32 @@ class: bg-slate-50
 
 ---
 
-# Quy Ước Đặt Tên Nhánh Mã Nguồn (Git) Cho Đội 4 Người
+# Quy Ước Nhánh Git Trunk-based Cho Đội 4 Người
+
+<div class="p-3 bg-slate-50 border border-slate-200 shadow-sm rounded-lg text-xs text-slate-700 leading-relaxed mb-3">
+  Nhóm dùng <strong>Trunk-based Development</strong>: chỉ có 1 nhánh chính (`main`), không dùng nhánh `develop` trung gian như GitFlow. Mọi nhánh Epic/story đều tách ra từ `main`, tồn tại trong thời gian ngắn, và gộp thẳng trở lại `main` qua Pull Request đã review + qua CI.
+</div>
 
 <div class="space-y-3 mt-4 text-xs">
 
 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <span><strong class="text-emerald-900">Nhánh `main`:</strong> Nhánh chính thức của sản phẩm — mọi mã nguồn ở đây đều đã được kiểm thử người dùng (UAT) và sẵn sàng đưa vào sử dụng thật.</span>
+  <span><strong class="text-emerald-900">Nhánh `main` (trunk):</strong> Nhánh duy nhất, luôn ở trạng thái deploy được — mọi Epic/story sau khi merge vào đây coi như đã tích hợp xong, không có nhánh tích hợp trung gian.</span>
   <span class="badge bg-emerald-700 text-white font-bold px-2 py-0.5 rounded shrink-0 whitespace-nowrap">Được bảo vệ</span>
 </div>
 
 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <span><strong class="text-emerald-900">Nhánh `develop`:</strong> Nơi gộp chung các tính năng mới đã hoàn thành trong tuần, trước khi đưa lên nhánh chính thức.</span>
-  <span class="badge bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded shrink-0 whitespace-nowrap">Tích hợp liên tục</span>
-</div>
-
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
-  <span><strong class="text-emerald-900">Nhánh `feature/LDMS-xxx`:</strong> Nhánh riêng cho từng công việc cụ thể (theo mã số công việc trên bảng Kanban), tồn tại trong thời gian ngắn rồi được gộp lại.</span>
+  <span><strong class="text-emerald-900">Nhánh `epic/xxx` hoặc `feature/LDMS-xxx`:</strong> Nhánh ngắn hạn cho từng Epic hoặc từng story cụ thể (theo mã số công việc trên bảng Kanban), tách trực tiếp từ `main` và gộp thẳng lại `main` — không đi qua bước trung gian nào.</span>
   <span class="badge bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded shrink-0 whitespace-nowrap">Ngắn hạn</span>
 </div>
 
 </div>
 
 <div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-slate-800 shadow-sm">
-  <strong>Quy tắc kiểm tra mã nguồn:</strong> Mọi yêu cầu gộp mã nguồn (Pull Request) từ nhánh tính năng vào nhánh `develop` bắt buộc phải được ít nhất 1 Trưởng nhóm kỹ thuật (Solution Architect) xem lại trong vòng 24 giờ, và phải vượt qua toàn bộ bài kiểm thử tự động. Nhánh `main` chỉ được gộp khi có phê duyệt của Trưởng nhóm kỹ thuật hoặc Quản lý dự án.
+  <strong>Quy tắc kiểm tra mã nguồn:</strong> Mọi yêu cầu gộp mã nguồn (Pull Request) từ nhánh Epic/feature <strong>gộp thẳng vào `main`</strong> bắt buộc phải được ít nhất 1 Trưởng nhóm kỹ thuật (Solution Architect) xem lại trong vòng 24 giờ, và phải vượt qua toàn bộ bài kiểm thử tự động (CI). Merge thường xuyên, từng phần nhỏ để tránh nhánh sống quá lâu và xung đột mã nguồn lớn.
 </div>
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
-  <strong>UAT</strong>: User Acceptance Testing (kiểm thử nghiệm thu, do người dùng thật xác nhận sản phẩm đạt yêu cầu) <br>
+  <strong>Trunk-based Development</strong>: mô hình nhánh Git chỉ dùng 1 nhánh chính (trunk/`main`), nhánh phụ tồn tại ngắn hạn và merge trực tiếp vào trunk — khác GitFlow (vốn có thêm nhánh `develop`, `release` trung gian) <br>
   <strong>Pull Request (PR)</strong>: yêu cầu đưa mã nguồn từ nhánh riêng vào nhánh chung, kèm bước người khác kiểm tra lại trước khi gộp
 </div>
 
