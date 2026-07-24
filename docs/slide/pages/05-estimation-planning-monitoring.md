@@ -369,7 +369,6 @@ Một bản kế hoạch dự án đầy đủ không chỉ là "làm gì" mà c
   <strong class="text-amber-900 text-sm block border-b border-amber-200 pb-1">Phát hiện quan trọng khi đối chiếu</strong>
   <p class="text-slate-700">Kiểm tra thực tế trong mã nguồn: <strong>26/26 công việc đã hoàn thành</strong> (đã gộp mã nguồn, chạy được).</p>
   <p class="text-slate-700">Nhưng nhật ký mới ghi nhận đầy đủ thời gian/token cho <strong>16/26 công việc (~61.5%)</strong>.</p>
-  <p class="text-slate-800 font-bold">→ Kết luận: đây là <u>lỗ hổng ở khâu ghi chép</u>, không phải dự án bị chậm tiến độ.</p>
 </div>
 
 </div>
