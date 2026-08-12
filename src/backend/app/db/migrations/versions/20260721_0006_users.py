@@ -1,7 +1,7 @@
 """create users table
 
 Revision ID: 20260721_0006
-Revises: 20260716_0005
+Revises: 20260717_0007
 Create Date: 2026-07-21
 """
 
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 from alembic import op
 
 revision: str = "20260721_0006"
-down_revision: str | None = "20260716_0005"
+down_revision: str | None = "20260717_0007"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 

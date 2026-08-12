@@ -1226,6 +1226,144 @@ dd {
   grid-column: 1 / -1;
 }
 
+.tags-section {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+  gap: 32px;
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid #dbe5e1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.tags-section h2 {
+  margin: 0;
+  color: #25483d;
+  font-size: 1.15rem;
+}
+
+.tags-section > div > p:last-child {
+  margin: 8px 0 0;
+  color: #71857e;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-height: 38px;
+}
+
+.no-tags {
+  margin: 0;
+  color: #71857e;
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid #c6dcd3;
+  border-radius: 999px;
+  background: #eaf4f0;
+  color: #1b4e3e;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.tag-badge:hover {
+  background: #deeee7;
+  border-color: #b2d2c4;
+}
+
+.tag-badge .tag-hash {
+  color: #588e7d;
+  font-weight: 800;
+}
+
+.remove-tag-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(27, 78, 62, 0.12);
+  color: #1b4e3e;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.remove-tag-btn:hover {
+  background: #d9534f;
+  color: #ffffff;
+}
+
+.add-tag-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-tag-form input {
+  flex: 1;
+  max-width: 280px;
+  padding: 8px 14px;
+  border: 1px solid #c6dcd3;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  background: #ffffff;
+  color: #25483d;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.add-tag-form input:focus {
+  outline: none;
+  border-color: #237a5c;
+  box-shadow: 0 0 0 3px rgba(35, 122, 92, 0.15);
+}
+
+.add-tag-form button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #176048;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.add-tag-form button:hover:not(:disabled) {
+  background: #114c39;
+}
+
+.add-tag-form button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
 .categories-page {
   width: min(100% - 32px, 980px);
 }
@@ -1563,7 +1701,8 @@ dd {
     grid-template-columns: 1fr;
   }
 
-  .metadata-editor {
+  .metadata-editor,
+  .tags-section {
     grid-template-columns: 1fr;
   }
 

@@ -9,6 +9,9 @@ import {
   getPageImageUrl,
   updatePageText,
   updateDocumentMetadata,
+  getDocumentTags,
+  addDocumentTag,
+  deleteDocumentTag,
 } from '../services/api'
 import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
 import { useAuth } from '../context/AuthContext'
@@ -35,6 +38,11 @@ export function DocumentViewerPage() {
   const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [pageSaveError, setPageSaveError] = useState('')
 
+  const [tags, setTags] = useState<string[]>([])
+  const [newTag, setNewTag] = useState('')
+  const [tagError, setTagError] = useState('')
+  const [isAddingTag, setIsAddingTag] = useState(false)
+
   useEffect(() => {
     let cancelled = false
     if (!documentId) {
@@ -46,10 +54,11 @@ export function DocumentViewerPage() {
     async function loadDocument() {
       try {
         const detail = await getDocument(documentId!)
-        const [documentPages, ocrJob, categoryTree] = await Promise.all([
+        const [documentPages, ocrJob, categoryTree, docTags] = await Promise.all([
           getDocumentPages(documentId!),
           getOcrStatus(documentId!),
           getCategories().catch(() => []),
+          getDocumentTags(documentId!).catch(() => []),
         ])
         if (cancelled) return
         setDocument(detail)
@@ -60,6 +69,7 @@ export function DocumentViewerPage() {
         setPages(documentPages)
         setJob(ocrJob)
         setCategories(categoryTree)
+        setTags(docTags)
         setSelectedPageNumber(documentPages[0]?.page_number ?? null)
         setDraftText(documentPages[0]?.text_content ?? '')
         setError('')
@@ -150,6 +160,33 @@ export function DocumentViewerPage() {
     } catch (saveError) {
       setMetadataSaveState('error')
       setMetadataError(saveError instanceof Error ? saveError.message : 'Không thể lưu metadata.')
+    }
+  }
+
+  async function handleAddTag(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!documentId || !newTag.trim()) return
+    setIsAddingTag(true)
+    setTagError('')
+    try {
+      const updatedTags = await addDocumentTag(documentId, newTag)
+      setTags(updatedTags)
+      setNewTag('')
+    } catch (tagAddError) {
+      setTagError(tagAddError instanceof Error ? tagAddError.message : 'Không thể thêm tag.')
+    } finally {
+      setIsAddingTag(false)
+    }
+  }
+
+  async function handleRemoveTag(tagName: string) {
+    if (!documentId) return
+    setTagError('')
+    try {
+      const updatedTags = await deleteDocumentTag(documentId, tagName)
+      setTags(updatedTags)
+    } catch (tagRemoveError) {
+      setTagError(tagRemoveError instanceof Error ? tagRemoveError.message : 'Không thể xóa tag.')
     }
   }
 
@@ -271,6 +308,59 @@ export function DocumentViewerPage() {
           </form>
         </section>
       )}
+
+      <section className="tags-section" aria-labelledby="tags-heading">
+        <div>
+          <p className="section-kicker">LDMS-023</p>
+          <h2 id="tags-heading">Tags tài liệu</h2>
+          <p>Gắn tag linh hoạt để hỗ trợ phân loại và tìm kiếm nhanh.</p>
+        </div>
+        <div className="tags-container">
+          <div className="tags-list">
+            {tags.length === 0 ? (
+              <p className="no-tags">Chưa có tag nào.</p>
+            ) : (
+              tags.map((tag) => (
+                <span key={tag} className="tag-badge">
+                  <span className="tag-hash">#</span>
+                  {tag}
+                  {canEdit && (
+                    <button
+                      type="button"
+                      aria-label={`Xóa tag ${tag}`}
+                      className="remove-tag-btn"
+                      onClick={() => handleRemoveTag(tag)}
+                    >
+                      ×
+                    </button>
+                  )}
+                </span>
+              ))
+            )}
+          </div>
+          {canEdit && (
+            <form onSubmit={handleAddTag} className="add-tag-form">
+              <input
+                type="text"
+                placeholder="Nhập tag mới (ví dụ: lịch sử)..."
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+                aria-label="Tên tag mới"
+              />
+              <button type="submit" disabled={isAddingTag || !newTag.trim()}>
+                {isAddingTag ? 'Đang thêm…' : 'Thêm tag'}
+              </button>
+            </form>
+          )}
+          {tagError && (
+            <p className="message error" role="alert">
+              {tagError}
+            </p>
+          )}
+        </div>
+      </section>
+
+
 
       {pages.length === 0 ? (
         <section className="viewer-empty">

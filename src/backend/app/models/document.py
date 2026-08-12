@@ -11,6 +11,7 @@ from app.db.base import Base
 
 if TYPE_CHECKING:
     from app.models.category import Category
+    from app.models.document_tag import DocumentTag
     from app.models.ocr_job import OcrJob
     from app.models.page import Page
     from app.models.publish_job import PublishJob
@@ -42,6 +43,9 @@ class Document(Base):
         back_populates="document", cascade="all, delete-orphan"
     )
     publish_jobs: Mapped[list[PublishJob]] = relationship(
+        back_populates="document", cascade="all, delete-orphan"
+    )
+    tags: Mapped[list[DocumentTag]] = relationship(
         back_populates="document", cascade="all, delete-orphan"
     )
     category: Mapped[Category | None] = relationship(back_populates="documents")
