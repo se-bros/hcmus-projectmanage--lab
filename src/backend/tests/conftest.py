@@ -9,7 +9,7 @@ os.environ.setdefault("JWT_SECRET", "test-secret-do-not-use-in-prod-min-32-bytes
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
@@ -28,6 +28,15 @@ def api_context(monkeypatch):
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
+
+    @event.listens_for(engine, "connect")
+    def enforce_foreign_keys(dbapi_connection, connection_record) -> None:
+        """SQLite bỏ qua ON DELETE CASCADE trừ khi bật pragma này, nên nếu không
+        có nó thì ràng buộc FK trong test lỏng hơn PostgreSQL thật."""
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
+
     Base.metadata.create_all(engine)
     testing_session = sessionmaker(bind=engine, expire_on_commit=False)
     storage = InMemoryStorage()
@@ -64,4 +73,20 @@ def editor_headers(api_context) -> dict[str, str]:
 def admin_headers(api_context) -> dict[str, str]:
     client, _, _ = api_context
     token = client.post("/auth/dev-token", json={"role": "admin"}).json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+
+
+@pytest.fixture
+def reader_headers(api_context) -> dict[str, str]:
+    client, _, _ = api_context
+    token = client.post("/auth/dev-token", json={"role": "reader"}).json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+
+
+@pytest.fixture
+def second_reader_headers(api_context) -> dict[str, str]:
+    """User thứ hai — `/auth/dev-token` sinh `sub` ngẫu nhiên mỗi lần gọi nên
+    fixture này tự nhiên là một user khác `reader_headers`."""
+    client, _, _ = api_context
+    token = client.post("/auth/dev-token", json={"role": "reader"}).json()["access_token"]
     return {"Authorization": f"Bearer {token}"}

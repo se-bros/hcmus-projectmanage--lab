@@ -214,6 +214,51 @@ export function saveBookmark(documentId: string, location: string): Promise<Book
   })
 }
 
+export type Highlight = {
+  id: string
+  document_id: string
+  cfi_range: string
+  selected_text: string
+  note: string | null
+  created_at: string
+  updated_at: string
+}
+
+export const MAX_NOTE_LENGTH = 2000
+
+export function getHighlights(documentId: string): Promise<Highlight[]> {
+  return request(`/documents/${documentId}/highlights`)
+}
+
+export function createHighlight(
+  documentId: string,
+  cfiRange: string,
+  selectedText: string,
+  note: string | null = null,
+): Promise<Highlight> {
+  return request(`/documents/${documentId}/highlights`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cfi_range: cfiRange, selected_text: selectedText, note }),
+  })
+}
+
+export function deleteHighlight(documentId: string, highlightId: string): Promise<void> {
+  return request(`/documents/${documentId}/highlights/${highlightId}`, { method: 'DELETE' })
+}
+
+export function updateHighlightNote(
+  documentId: string,
+  highlightId: string,
+  note: string | null,
+): Promise<Highlight> {
+  return request(`/documents/${documentId}/highlights/${highlightId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ note }),
+  })
+}
+
 export function getDocumentSourceUrl(documentId: string): string {
   return `${API_BASE}/documents/${documentId}/source`
 }
