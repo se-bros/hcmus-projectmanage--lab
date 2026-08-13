@@ -67,6 +67,8 @@ describe('DocumentViewerPage', () => {
           error_message: null,
         }),
       )
+      .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
 
     render(
       <AuthProvider>
@@ -138,6 +140,7 @@ describe('DocumentViewerPage', () => {
           },
         ]),
       )
+      .mockResolvedValueOnce(response([]))
 
     let resolveSave!: (value: Response) => void
     fetchMock.mockImplementationOnce(
@@ -217,6 +220,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
       .mockResolvedValueOnce(
         response(
           { detail: [{ loc: ['body', 'title'], msg: 'must not be empty or whitespace' }] },
@@ -264,6 +268,7 @@ describe('DocumentViewerPage', () => {
       )
       .mockResolvedValueOnce(response(job))
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
 
     let resolveSave!: (value: Response) => void
     fetchMock.mockImplementationOnce(
@@ -302,6 +307,7 @@ describe('DocumentViewerPage', () => {
         response([{ page_number: 1, text_content: 'Corrected text', has_image: true }]),
       )
       .mockResolvedValueOnce(response(job))
+      .mockResolvedValueOnce(response([]))
       .mockResolvedValueOnce(response([]))
     render(
       <AuthProvider>
@@ -342,6 +348,7 @@ describe('DocumentViewerPage', () => {
       .mockResolvedValueOnce(
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
+      .mockResolvedValueOnce(response([]))
       .mockResolvedValueOnce(response([]))
     const confirm = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValueOnce(true)
 
@@ -389,6 +396,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
       .mockResolvedValueOnce(response({ detail: 'Page update failed.' }, 500))
 
     render(
@@ -435,6 +443,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
 
     render(
       <AuthProvider>
@@ -480,6 +489,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
 
     render(
       <AuthProvider>
@@ -524,6 +534,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
 
     render(
       <AuthProvider>
@@ -537,5 +548,57 @@ describe('DocumentViewerPage', () => {
 
     expect(await screen.findByRole('heading', { name: 'Metadata tài liệu' })).toBeInTheDocument()
     expect(screen.getByLabelText('Nội dung OCR trang 1')).toHaveValue('My document')
+  })
+
+  it('allows adding and removing tags for authorized user (LDMS-023)', async () => {
+    const detail = {
+      id: 'doc-1',
+      original_filename: 'scan.pdf',
+      content_type: 'application/pdf',
+      status: 'ocr_completed',
+      title: 'Book',
+      author: 'Author',
+      shelf_location: null,
+      category_id: null,
+      epub_object_key: null,
+      owner_id: 'admin-user',
+      created_at: '2026-07-16T08:00:00Z',
+    }
+    fetchMock
+      .mockResolvedValueOnce(response(detail))
+      .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(
+        response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
+      )
+      .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response(['history']))
+
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(await screen.findByText('history')).toBeInTheDocument()
+
+    // Add tag
+    fetchMock.mockResolvedValueOnce(response(['history', 'science']))
+    const input = screen.getByPlaceholderText(/Nhập tag mới/)
+    fireEvent.change(input, { target: { value: ' Science ' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Thêm tag' }))
+
+    expect(await screen.findByText('science')).toBeInTheDocument()
+
+    // Remove tag
+    fetchMock.mockResolvedValueOnce(response(['science']))
+    fireEvent.click(screen.getByRole('button', { name: 'Xóa tag history' }))
+
+    await waitFor(() => {
+      expect(screen.queryByText('history')).not.toBeInTheDocument()
+    })
   })
 })

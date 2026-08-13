@@ -12,8 +12,6 @@ COMPOSE=(
 )
 
 FRONTEND_PID=""
-COMPOSE_TOUCHED=false
-COMPOSE_WAS_RUNNING=false
 
 log() {
   printf '[run] %s\n' "$*"
@@ -28,6 +26,11 @@ require_command() {
   command -v "$1" >/dev/null 2>&1 || die "Required command not found: $1"
 }
 
+stop_running_services() {
+  log "Stopping any existing containers for this project..."
+  "${COMPOSE[@]}" down --remove-orphans >/dev/null 2>&1 || true
+}
+
 cleanup() {
   local exit_code=$?
   trap - EXIT INT TERM
@@ -39,12 +42,12 @@ cleanup() {
     wait "$FRONTEND_PID" 2>/dev/null
   fi
 
-  if [[ "$COMPOSE_TOUCHED" == true && "$COMPOSE_WAS_RUNNING" == false ]]; then
-    log "Stopping API, PostgreSQL, and MinIO..."
-    "${COMPOSE[@]}" down
-  elif [[ "$COMPOSE_WAS_RUNNING" == true ]]; then
-    log "Compose services were already present; leaving them running."
+  if command -v fuser >/dev/null 2>&1; then
+    fuser -k 5173/tcp >/dev/null 2>&1 || true
   fi
+
+  log "Stopping API, PostgreSQL, and MinIO..."
+  "${COMPOSE[@]}" down
 
   exit "$exit_code"
 }
@@ -73,12 +76,9 @@ if [[ ! -f "$FRONTEND_DIR/node_modules/.package-lock.json" ]] || \
   (cd "$FRONTEND_DIR" && npm ci)
 fi
 
-if [[ -n "$("${COMPOSE[@]}" ps --all -q 2>/dev/null)" ]]; then
-  COMPOSE_WAS_RUNNING=true
-fi
+stop_running_services
 
 log "Starting API, PostgreSQL, and MinIO..."
-COMPOSE_TOUCHED=true
 "${COMPOSE[@]}" up -d --build
 
 log "Waiting for the API health check..."

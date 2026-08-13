@@ -112,6 +112,25 @@ export function updateDocumentMetadata(
   })
 }
 
+export function getDocumentTags(documentId: string): Promise<string[]> {
+  return request(`/documents/${documentId}/tags`)
+}
+
+export function addDocumentTag(documentId: string, name: string): Promise<string[]> {
+  return request(`/documents/${documentId}/tags`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name }),
+  })
+}
+
+export function deleteDocumentTag(documentId: string, name: string): Promise<string[]> {
+  return request(`/documents/${documentId}/tags/${encodeURIComponent(name)}`, {
+    method: 'DELETE',
+  })
+}
+
+
 export type Category = {
   id: string
   name: string
