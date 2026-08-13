@@ -1,5 +1,5 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter, Route, Routes } from 'react-router'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter, Route, Routes, useNavigate } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import ReaderPage from './ReaderPage'
 import type { Highlight } from '../services/api'
@@ -53,9 +53,19 @@ function highlight(id: string, text: string): Highlight {
   }
 }
 
-function renderReader() {
+function DocumentSwitcher() {
+  const navigate = useNavigate()
+  return (
+    <button type="button" onClick={() => navigate('/reader/doc-2')}>
+      đổi sách
+    </button>
+  )
+}
+
+function renderReader({ withSwitcher = false } = {}) {
   return render(
     <MemoryRouter initialEntries={['/reader/doc-1']}>
+      {withSwitcher && <DocumentSwitcher />}
       <Routes>
         <Route path="/reader/:documentId" element={<ReaderPage />} />
       </Routes>
@@ -102,6 +112,25 @@ describe('ReaderPage highlights', () => {
     expect(await screen.findByText('Đánh dấu (1)')).toBeInTheDocument()
     expect(screen.getByText('Đánh dấu không còn định vị được (1)')).toBeInTheDocument()
     expect(screen.getByText('vị trí đã hỏng')).toBeInTheDocument()
+  })
+
+  it('drops the previous book highlights as soon as the document changes', async () => {
+    vi.mocked(api.getHighlights).mockResolvedValueOnce([highlight('a', 'đoạn sách cũ')])
+    renderReader({ withSwitcher: true })
+    expect(await screen.findByText('đoạn sách cũ')).toBeInTheDocument()
+
+    // Sách mới: getHighlights chưa trả về, sidebar không được giữ dữ liệu cũ.
+    let resolveSecond: (value: Highlight[]) => void = () => {}
+    vi.mocked(api.getHighlights).mockReturnValueOnce(
+      new Promise<Highlight[]>((resolve) => {
+        resolveSecond = resolve
+      }),
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'đổi sách' }))
+
+    await waitFor(() => expect(screen.queryByText('đoạn sách cũ')).not.toBeInTheDocument())
+    resolveSecond([])
   })
 
   it('still renders the book when highlights cannot be loaded', async () => {

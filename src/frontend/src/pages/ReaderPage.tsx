@@ -49,6 +49,23 @@ function renderAnnotation(rendition: Rendition, highlight: Highlight): boolean {
   }
 }
 
+/** Quy đổi toạ độ vùng chọn từ hệ toạ độ của iframe epub.js sang hệ toạ độ
+ * trang chính. Bỏ qua bước này thì popover lệch đúng bằng offset của iframe —
+ * càng rõ khi reader không nằm sát mép trên/trái hoặc khi trang đã cuộn. */
+function popoverPosition(
+  selection: Selection | null,
+  frameWindow: Window,
+): { top: number; left: number } {
+  const range = selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : null
+  if (!range) return { top: 0, left: 0 }
+  const rect = range.getBoundingClientRect()
+  const frameRect = frameWindow.frameElement?.getBoundingClientRect()
+  return {
+    top: rect.bottom + (frameRect?.top ?? 0) + window.scrollY,
+    left: rect.left + (frameRect?.left ?? 0) + window.scrollX,
+  }
+}
+
 function readStoredFontSize(): number {
   const stored = Number(window.localStorage.getItem(FONT_KEY))
   return Number.isFinite(stored) && stored >= 80 && stored <= 200 ? stored : 100
@@ -85,6 +102,13 @@ function ReaderPage() {
     setLoading(true)
     setError(null)
     setContent(null)
+    // Dọn ngay khi đổi document, không đợi getHighlights trả về — nếu không,
+    // sidebar còn hiện highlight của sách trước trong lúc chờ.
+    setAnchored([])
+    setOrphaned([])
+    setPending(null)
+    setSelectedId(null)
+    setNoteError(null)
     lastCfiRef.current = null
 
     getReaderContent(id)
@@ -111,12 +135,11 @@ function ReaderPage() {
           const selection = contents.window.getSelection()
           const text = selection?.toString().trim() ?? ''
           if (!text) return
-          const rect = selection?.getRangeAt(0).getBoundingClientRect()
           setHighlightError(null)
           setPending({
             cfiRange,
             text,
-            position: { top: (rect?.bottom ?? 0) + window.scrollY, left: rect?.left ?? 0 },
+            position: popoverPosition(selection, contents.window),
           })
         })
 
@@ -149,9 +172,6 @@ function ReaderPage() {
 
     return () => {
       cancelled = true
-      setAnchored([])
-      setOrphaned([])
-      setPending(null)
       const cfi = lastCfiRef.current
       const token = window.localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)
       if (cfi && token) {
