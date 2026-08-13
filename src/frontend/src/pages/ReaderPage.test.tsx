@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import ReaderPage from './ReaderPage'
 import type { Highlight } from '../services/api'
 
@@ -67,6 +67,10 @@ describe('ReaderPage highlights', () => {
   beforeEach(() => {
     annotationsAdd.mockReset()
     vi.mocked(api.getHighlights).mockReset()
+  })
+
+  afterEach(() => {
+    cleanup()
   })
 
   it('paints every stored highlight when the book opens', async () => {

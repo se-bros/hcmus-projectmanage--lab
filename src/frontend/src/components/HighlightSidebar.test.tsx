@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import HighlightSidebar from './HighlightSidebar'
 import type { Highlight } from '../services/api'
 
@@ -33,6 +33,10 @@ function renderSidebar(overrides: Overrides = {}) {
 }
 
 describe('HighlightSidebar', () => {
+  afterEach(() => {
+    cleanup()
+  })
+
   it('shows an empty state when there is nothing marked', () => {
     renderSidebar()
     expect(screen.getByText('Chưa có đánh dấu nào.')).toBeInTheDocument()

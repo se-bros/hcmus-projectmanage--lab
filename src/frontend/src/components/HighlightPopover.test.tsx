@@ -1,8 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import HighlightPopover from './HighlightPopover'
 
 describe('HighlightPopover', () => {
+  afterEach(() => {
+    cleanup()
+  })
+
   it('shows the selected excerpt and creates a highlight on confirm', () => {
     const onCreate = vi.fn()
     const onDismiss = vi.fn()
