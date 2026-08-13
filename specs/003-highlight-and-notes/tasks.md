@@ -75,7 +75,7 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 - [x] **T018** [US1] Nối vào `src/frontend/src/pages/ReaderPage.tsx`: bắt `rendition.on('selected', (cfiRange, contents) => …)` để mở popover và lấy `selected_text` từ `contents.window.getSelection()`; sau khi tạo thì `rendition.annotations.add('highlight', cfiRange, { id }, onClick, className, styles)`. Khi mở sách, gọi `getHighlights` rồi add lần lượt. *(phụ thuộc T016, T017)*
 - [x] **T019** [US1] Tạo `src/frontend/src/components/HighlightSidebar.tsx` — danh sách mọi highlight, **tách hai nhóm**: dựng được, và "Đánh dấu không còn định vị được" (FR-011). Phân loại tại chỗ bằng `book.spine.get(cfi_range)` trả `null` hoặc `annotations.add` ném lỗi (`research.md` R4), hiển thị nhóm hỏng bằng `selected_text`. Sidebar là đường thao tác **chính thức và luôn đầy đủ** — bấm trực tiếp trên sách chỉ là lối tắt, vì khi nhiều vùng chồng khít thì cú bấm chỉ trúng annotation trên cùng. *(phụ thuộc T018)*
 - [x] **T020** [P] [US1] Thêm style highlight vào `src/frontend/src/index.css`, gồm `mix-blend-mode: multiply` để phần giao của các vùng chồng lấn tự đậm hơn (FR-004), và style cho nhóm "không định vị được".
-- [ ] **T021** [P] [US1] Test FE: `HighlightPopover.test.tsx` (hiện popover khi có selection) và `ReaderPage.test.tsx` (chưa tồn tại — tạo mới; mock `services/api` và epub.js rendition, kiểm gọi `annotations.add` đúng số lần theo số highlight trả về).
+- [x] **T021** [P] [US1] Test FE: `HighlightPopover.test.tsx` (hiện popover khi có selection) và `ReaderPage.test.tsx` (chưa tồn tại — tạo mới; mock `services/api` và epub.js rendition, kiểm gọi `annotations.add` đúng số lần theo số highlight trả về).
 
 **Checkpoint**: AC 1 xong. Đây là **mốc MVP** — dừng ở đây vẫn giao được giá trị thật: độc giả đánh dấu được đoạn quan trọng và thấy lại sau khi mở lại sách.
 
@@ -99,7 +99,7 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 - [x] **T026** [P] [US2] Thêm `updateHighlightNote(documentId, highlightId, note)` vào `src/frontend/src/services/api.ts`.
 - [x] **T027** [US2] Thêm ô nhập ghi chú vào `src/frontend/src/components/HighlightPopover.tsx` và `HighlightSidebar.tsx`: hiện "chưa có ghi chú" khi trống (US2 scenario 3), đếm ký tự còn lại khi gần 2.000 (FR-009), giữ nguyên nội dung đang gõ khi server trả `422` để người dùng tự cắt ngắn. *(phụ thuộc T026)*
 - [x] **T028** [US2] Hiện ghi chú cho cả highlight trong nhóm "không còn định vị được" ở `HighlightSidebar.tsx` (FR-011a) — đây là lý do tồn tại của quyết định giữ bản ghi thay vì xóa. *(phụ thuộc T027)*
-- [ ] **T029** [P] [US2] Test FE: sửa/gỡ ghi chú, hiện cảnh báo khi vượt 2.000 ký tự, và hai highlight chồng lấn hiện đúng ghi chú của từng cái (US2 scenario 8).
+- [x] **T029** [P] [US2] Test FE: sửa/gỡ ghi chú, hiện cảnh báo khi vượt 2.000 ký tự, và hai highlight chồng lấn hiện đúng ghi chú của từng cái (US2 scenario 8).
 
 **Checkpoint**: AC 1 + AC 2 xong, mỗi cái vẫn kiểm độc lập được.
 
@@ -121,7 +121,7 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 - [x] **T032** [US3] Thêm `DELETE /documents/{document_id}/highlights/{highlight_id}` trả `204` không body vào `src/backend/app/api/highlights.py`. *(phụ thuộc T031)*
 - [x] **T033** [P] [US3] Thêm `deleteHighlight(documentId, highlightId)` vào `src/frontend/src/services/api.ts`.
 - [x] **T034** [US3] Thêm thao tác xóa vào `HighlightPopover.tsx` và `HighlightSidebar.tsx`; gọi `rendition.annotations.remove(cfiRange, 'highlight')` để gỡ khỏi trang ngay. Xóa được **cả** bản ghi trong nhóm "không còn định vị được" (FR-011b) — nhóm này không có annotation để gỡ nên chỉ cập nhật danh sách. *(phụ thuộc T033)*
-- [ ] **T035** [P] [US3] Test FE: xóa highlight ngoài thì highlight chồng lấn bên trong còn nguyên kèm ghi chú (US3 scenario 7), và xóa được bản ghi trong nhóm hỏng.
+- [x] **T035** [P] [US3] Test FE: xóa highlight ngoài thì highlight chồng lấn bên trong còn nguyên kèm ghi chú (US3 scenario 7), và xóa được bản ghi trong nhóm hỏng.
 
 **Checkpoint**: Cả 3 AC xong, mỗi story vẫn độc lập kiểm được.
 
@@ -132,7 +132,7 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 - [ ] **T036** Chạy kịch bản FR-011 ở `quickstart.md` §4: tạo highlight + ghi chú, publish lại document để sinh EPUB có cấu trúc chương khác, mở lại Reader. Kỳ vọng **SC-008**: đếm số bản ghi trước và sau bằng nhau — không mất bản ghi nào, ghi chú còn nguyên trong nhóm "không định vị được". Đây là hành vi không có test tự động nào phủ được (cần EPUB thật), nên phải kiểm tay.
 - [ ] **T037** Kiểm hai tiêu chí hiệu năng: **SC-006** — tạo 50 highlight trên một document, đo thời điểm sách đọc được so với khi không có highlight nào, chênh lệch phải < 1s (nếu trượt, nghi can đầu tiên là số lần gọi `annotations.add` lúc mở sách ở T018); **SC-005** — đo từ lúc thả chuột hết vùng chọn tới lúc thấy đoạn được tô, phải < 3s và không rời khỏi trang đang đọc.
 - [ ] **T040** Kiểm **FR-014 + FR-005a** theo `quickstart.md` §4 bước 6: tạo một highlight trải qua nhiều trang trong cùng một chương, rồi bấm `A+`/`A−` đổi cỡ chữ để nội dung dàn lại trang — highlight phải bám đúng đoạn văn cũ, không trôi sang đoạn khác (US1 scenario 9). Đây là điểm dễ vỡ nhất của feature: CFI range gặp text reflow thì hoặc đúng, hoặc hỏng thầm lặng mà không báo lỗi gì. Không test tự động nào phủ được vì cần EPUB thật render trong trình duyệt.
-- [ ] **T038** Chạy đủ gate trước khi mở PR: `cd src/backend && uv run ruff format . && uv run ruff check . && uv run pytest`; `cd src/frontend && npm run format && npm run lint && npm test`.
+- [x] **T038** Chạy đủ gate trước khi mở PR: `cd src/backend && uv run ruff format . && uv run ruff check . && uv run pytest`; `cd src/frontend && npm run format && npm run lint && npm test`.
 - [ ] **T039** Trong mô tả PR, nêu rõ merge revision ở T001 là **dọn nợ có sẵn** (`20260717_0007` và `20260721_0008` cùng tách nhánh từ `20260716_0005` từ trước feature này), để reviewer không nhầm là thay đổi ngoài phạm vi.
 
 ---
