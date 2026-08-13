@@ -125,7 +125,7 @@ export function addDocumentTag(documentId: string, name: string): Promise<string
 }
 
 export function deleteDocumentTag(documentId: string, name: string): Promise<string[]> {
-  return request(`/documents/${encodeURIComponent(documentId)}/tags/${encodeURIComponent(name)}`, {
+  return request(`/documents/${documentId}/tags/${encodeURIComponent(name)}`, {
     method: 'DELETE',
   })
 }
