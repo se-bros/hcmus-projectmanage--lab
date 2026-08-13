@@ -27,11 +27,7 @@ require_command() {
 }
 
 stop_running_services() {
-  log "Stopping any existing containers and frontend processes..."
-  if command -v fuser >/dev/null 2>&1; then
-    fuser -k 5173/tcp >/dev/null 2>&1 || true
-  fi
-  pkill -f "vite" >/dev/null 2>&1 || true
+  log "Stopping any existing containers for this project..."
   "${COMPOSE[@]}" down --remove-orphans >/dev/null 2>&1 || true
 }
 
