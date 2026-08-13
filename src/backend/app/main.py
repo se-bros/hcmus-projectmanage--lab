@@ -11,6 +11,7 @@ from app.api import (
     documents,
     editor,
     health,
+    highlights,
     metadata,
     ocr,
     publish,
@@ -86,5 +87,6 @@ app.include_router(metadata.router)
 app.include_router(metadata.category_router)
 app.include_router(publish.router)
 app.include_router(reader.router)
+app.include_router(highlights.router)
 app.include_router(search.router)
 app.include_router(role_requests.router)
