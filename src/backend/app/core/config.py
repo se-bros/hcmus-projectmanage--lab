@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     minio_access_key: str
     minio_secret_key: str
     minio_bucket: str = "ldms"
+    minio_secure: bool = False
     cors_origins: list[str] = ["http://localhost:5173"]
     ocr_dpi: int = 300
     ocr_language: str = "vie+eng"
