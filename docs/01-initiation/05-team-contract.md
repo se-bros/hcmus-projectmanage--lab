@@ -25,33 +25,7 @@
 
 ## Mục lục
 
-- [1. Mục đích Hợp đồng Nhóm](#1-mục-đích-hợp-đồng-nhóm)
-- [2. Thông tin thành viên và Mục tiêu](#2-thông-tin-thành-viên-và-mục-tiêu)
-  - [2.1. Danh sách thành viên](#21-danh-sách-thành-viên)
-  - [2.2. Mục tiêu chung của nhóm](#22-mục-tiêu-chung-của-nhóm)
-  - [2.3. Mục tiêu cá nhân](#23-mục-tiêu-cá-nhân)
-- [3. Phân vai và Trách nhiệm (Roles & Responsibilities)](#3-phân-vai-và-trách-nhiệm-roles--responsibilities)
-  - [3.1. Ma trận phân vai](#31-ma-trận-phân-vai)
-  - [3.2. Nguyên tắc phân công công việc](#32-nguyên-tắc-phân-công-công-việc)
-- [4. Phương pháp làm việc (Work Methodology)](#4-phương-pháp-làm-việc-work-methodology)
-  - [4.1. Kanban và WIP Limit](#41-kanban-và-wip-limit)
-  - [4.2. Định nghĩa Hoàn thành (Definition of Done — DoD)](#42-định-nghĩa-hoàn-thành-definition-of-done--dod)
-  - [4.3. Đo lường Throughput và Forecast](#43-đo-lường-throughput-và-forecast)
-- [5. Quy tắc Giao tiếp (Communication Norms)](#5-quy-tắc-giao-tiếp-communication-norms)
-  - [5.1. Kênh giao tiếp chính thức](#51-kênh-giao-tiếp-chính-thức)
-  - [5.2. Lịch họp nhóm](#52-lịch-họp-nhóm)
-  - [5.3. Quy tắc phản hồi](#53-quy-tắc-phản-hồi)
-- [6. Quy trình sử dụng AI Coding Assistants](#6-quy-trình-sử-dụng-ai-coding-assistants)
-  - [6.1. AI Tools được phép sử dụng](#61-ai-tools-được-phép-sử-dụng)
-  - [6.2. Quy tắc sử dụng AI](#62-quy-tắc-sử-dụng-ai)
-  - [6.3. Ghi nhận Session Log](#63-ghi-nhận-session-log)
-- [7. Quản lý mã nguồn (Source Control)](#7-quản-lý-mã-nguồn-source-control)
-- [8. Giải quyết xung đột (Conflict Resolution)](#8-giải-quyết-xung-đột-conflict-resolution)
-- [9. Cam kết và Kỷ luật (Accountability & Consequences)](#9-cam-kết-và-kỷ-luật-accountability--consequences)
-  - [9.1. Cam kết chung](#91-cam-kết-chung)
-  - [9.2. Xử lý vi phạm](#92-xử-lý-vi-phạm)
-- [10. Điều khoản sửa đổi](#10-điều-khoản-sửa-đổi)
-- [11. Chữ ký cam kết (Signatures)](#11-chữ-ký-cam-kết-signatures)
+
 
 ---
 
@@ -87,7 +61,7 @@ Hợp đồng Nhóm (Team Contract) là thỏa thuận nội bộ giữa tất c
 1. Hoàn thành toàn bộ **16 Must-have User Stories** trước tuần 12 (MVP go-live).
 2. Bàn giao đầy đủ sản phẩm theo cam kết SOW (tài liệu 10).
 3. Đạt điểm cao trong môn học Quản lý Dự án thông qua chất lượng tài liệu và sản phẩm phần mềm.
-4. Mỗi thành viên đều có đóng góp thực tế, được ghi nhận qua `project_log.md`.
+4. Mỗi thành viên đều có đóng góp thực tế, được ghi nhận qua `../03-execution-monitoring/02-project-log.md`.
 
 ### 2.3. Mục tiêu cá nhân
 
@@ -112,7 +86,7 @@ Mỗi thành viên cam kết theo đuổi ít nhất **1 mục tiêu phát tri�
 
 | Vai trò                          | Trách nhiệm chính                                                                                                                      | Thành viên phụ trách                       |
 | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
-| **Project Manager (PM)**         | Lập kế hoạch, theo dõi tiến độ throughput, kiểm soát rủi ro, điều phối nhóm, tổng hợp báo cáo Weekly Review, duy trì `project_log.md`. | Mạch Quốc Tấn                              |
+| **Project Manager (PM)**         | Lập kế hoạch, theo dõi tiến độ throughput, kiểm soát rủi ro, điều phối nhóm, tổng hợp báo cáo Weekly Review, duy trì `../03-execution-monitoring/02-project-log.md`. | Mạch Quốc Tấn                              |
 | **Solution Architect (SA) / BE** | Thiết kế kiến trúc Modular Monolith, lập trình API FastAPI, tích hợp OCR/Pandoc, review code chất lượng và phê duyệt Pull Request.     | Ân Tiến Nguyên An                          |
 | **Backend Developer**            | Phát triển các API nghiệp vụ FastAPI, truy vấn PostgreSQL Full-Text Search và thiết lập lưu trữ MinIO.                                 | Ân Tiến Nguyên An, Nguyễn Tuấn Anh         |
 | **Frontend Developer**           | Lập trình UI React (Dashboard, Split-screen Editor, Reader), tích hợp Epub.js và xử lý state management.                               | Ngô Nguyễn Thế Khoa, Nguyễn Lê Hồ Anh Khoa |
@@ -167,7 +141,7 @@ Một User Story chỉ được coi là **Done** khi đáp ứng đủ **5 tiêu
 | 2   | **Code merge** | Mã nguồn merge vào nhánh chính qua Pull Request (self-review checklist OK). |
 | 3   | **Chạy local** | Chạy được trên môi trường local (`docker compose up` + `npm run dev`).      |
 | 4   | **README**     | Endpoint hoặc trang mới có ghi trong README module.                         |
-| 5   | **Log effort** | Ghi nhận thời gian thực hiện và token AI vào `project_log.md`.              |
+| 5   | **Log effort** | Ghi nhận thời gian thực hiện và token AI vào `../03-execution-monitoring/02-project-log.md`.              |
 
 ### 4.3. Đo lường Throughput và Forecast
 
@@ -225,7 +199,7 @@ Một User Story chỉ được coi là **Done** khi đáp ứng đủ **5 tiêu
 
 ### 6.3. Ghi nhận Session Log
 
-Sau **mỗi phiên làm việc** với AI Coding Assistant, thành viên **bắt buộc** ghi nhận một dòng log vào file `project_log.md` với các trường:
+Sau **mỗi phiên làm việc** với AI Coding Assistant, thành viên **bắt buộc** ghi nhận một dòng log vào file `../03-execution-monitoring/02-project-log.md` với các trường:
 
 | Trường           | Bắt buộc | Mô tả                                          |
 | :--------------- | :------: | :--------------------------------------------- |
@@ -270,7 +244,7 @@ Nhóm thống nhất áp dụng **Lý thuyết Y của Douglas McGregor (Theory 
 1. **Tự chọn Task (Self-Selection):**
    - Thành viên chủ động kéo card từ cột `Ready` sang `In Progress` trên Kanban Board dựa theo thế mạnh, mong muốn phát triển cá nhân và năng lực bản thân, thay vì chờ PM phân công cứng nhắc.
 2. **Tự báo cáo Trạng thái (Self-Reporting & Autonomy):**
-   - Thành viên tự chịu trách nhiệm cập nhật trạng thái công việc (WIP), chủ động ghi nhận effort/token vào `project_log.md` sau mỗi phiên làm việc, và tự báo cáo các nút thắt (blocker) tại các buổi Daily Standup.
+   - Thành viên tự chịu trách nhiệm cập nhật trạng thái công việc (WIP), chủ động ghi nhận effort/token vào `../03-execution-monitoring/02-project-log.md` sau mỗi phiên làm việc, và tự báo cáo các nút thắt (blocker) tại các buổi Daily Standup.
 3. **Phát huy Năng lực Tự quản (Self-Direction):**
    - Nhóm tạo không gian sáng tạo kỹ thuật cho từng cá nhân, coi sai sót nhỏ là cơ hội học tập và hoàn thiện, không áp đặt tâm lý quản lý vi mô (micromanagement) hay nghi ngờ thái độ làm việc của thành viên.
 
@@ -278,7 +252,7 @@ Nhóm thống nhất áp dụng **Lý thuyết Y của Douglas McGregor (Theory 
 
 Để ngăn chặn xung đột từ sớm thay vì chờ sự cố xảy ra mới giải quyết, nhóm thiết lập các **Chính sách Tiền lệ (Policies)** bắt buộc tuân thủ:
 
-- **Policy 1 — Minh bạch Tiến độ & Nhật ký (Log Policy):** Mọi công việc và phiên dùng AI phải được log vào `project_log.md` trong vòng 12h. Việc minh bạch giúp loại bỏ rủi ro nghi ngờ đóng góp của nhau.
+- **Policy 1 — Minh bạch Tiến độ & Nhật ký (Log Policy):** Mọi công việc và phiên dùng AI phải được log vào `../03-execution-monitoring/02-project-log.md` trong vòng 12h. Việc minh bạch giúp loại bỏ rủi ro nghi ngờ đóng góp của nhau.
 - **Policy 2 — Độc lập Branch & Code Review (Git Policy):** 100% code mới phải qua Pull Request và có ít nhất 1 thành viên review. Không tự ý sửa code của người khác trên branch cá nhân.
 - **Policy 3 — Quy tắc Đặt lịch & Báo bận (Availability Policy):** Thành viên bận việc đột xuất hoặc có lịch thi cử phải thông báo lên nhóm Zalo/Discord trước tối thiểu **24 giờ** để nhóm chủ động hỗ trợ.
 
@@ -305,7 +279,7 @@ Tất cả thành viên cam kết:
 
 1. **Hoàn thành công việc đúng hạn:** Mỗi story được giao phải hoàn thành trong thời gian size quy định (S ≤ 1 ngày, M ≤ 2 ngày). Nếu dự kiến trễ, phải báo PM **trước** deadline.
 2. **Tham gia đầy đủ các buổi họp:** Daily Standup, Weekly Review và Gating Review. Vắng mặt phải báo trước ≥ 12 giờ.
-3. **Ghi nhận session log:** Bắt buộc ghi vào `project_log.md` sau mỗi phiên làm việc với AI.
+3. **Ghi nhận session log:** Bắt buộc ghi vào `../03-execution-monitoring/02-project-log.md` sau mỗi phiên làm việc với AI.
 4. **Code quality:** Mã nguồn phải pass self-review checklist trước khi tạo Pull Request.
 5. **Tôn trọng lẫn nhau:** Giao tiếp chuyên nghiệp, không gây ảnh hưởng tiêu cực đến tinh thần nhóm.
 6. **Trung thực:** Không khai gian thời gian, token AI hoặc mạo nhận công việc của người khác.

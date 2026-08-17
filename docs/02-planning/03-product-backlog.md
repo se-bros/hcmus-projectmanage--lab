@@ -29,16 +29,7 @@
 
 ## Mục lục
 
-- [1. Định nghĩa Hoàn thành và Quy tắc tổ chức](#1-định-nghĩa-hoàn-thành-và-quy-tắc-tổ-chức)
-  - [1.1. Quy tắc Kanban và Forecast](#11-quy-tắc-kanban-và-forecast)
-  - [1.2. Định nghĩa Hoàn thành (Definition of Done - DoD)](#12-định-nghĩa-hoàn-thành-definition-of-done---dod)
-  - [1.3. Thang đo độ ưu tiên MoSCoW](#13-thang-đo-độ-ưu-tiên-moscow)
-- [2. Chi tiết Product Backlog — User Story & Acceptance Criteria](#2-chi-tiết-product-backlog--user-story--acceptance-criteria)
-  - [EPIC D — Nền tảng triển khai (Platform)](#epic-d--nền-tảng-triển-khai-platform)
-  - [EPIC A — Xác thực & Phân quyền (Identity & Access)](#epic-a--xác-thực--phân-quyền-identity--access)
-  - [EPIC B — Số hóa & Xuất bản (Digitization & Publish)](#epic-b--số-hóa--xuất-bản-digitization--publish)
-  - [EPIC C — Tra cứu & Đọc sách (Search & Reader UX)](#epic-c--tra-cứu--đọc-sách-search--reader-ux)
-- [3. Bản đồ triển khai (Implementation Map)](#3-bản-đồ-triển-khai-implementation-map)
+
 
 ---
 
@@ -46,7 +37,7 @@
 
 ### 1.1. Quy tắc Kanban và Forecast
 
-Nhóm phát triển áp dụng **Kanban**: làm **từng card backlog** (WIP = 1 card / người), gom theo **module** (M0–M8, xem [06-architecture.md](06-architecture.md)).
+Nhóm phát triển áp dụng **Kanban**: làm **từng card backlog** (WIP = 1 card / người), gom theo **module** (M0–M8, xem [02-architecture.md](02-architecture.md)).
 
 **Definition of Ready (DoR):** Card chỉ được kéo vào _In Progress_ khi có ID, AC rõ ràng, `depends_on` đã Done (nếu có), size S hoặc M (≤ 2 ngày). Card quá to phải tách trước.
 
@@ -95,7 +86,7 @@ Mỗi story có: **ID** (`LDMS-xxx`), **Module**, **Size**, **depends_on**, **Mo
 **Module:** M0 Platform · M1 Documents & Storage · M2 OCR · M3 Editor · M4 Metadata · M5 Publish EPUB · M6 Reader · M7 Search · M8 Identity.
 **Module:** M0 Platform · M1 Documents & Storage · M2 OCR · M3 Editor · M4 Metadata · M5 Publish EPUB · M6 Reader · M7 Search · M8 Identity.
 
-**Lưu ý tech stack (so với [06-architecture.md](06-architecture.md)):**
+**Lưu ý tech stack (so với [02-architecture.md](02-architecture.md)):**
 
 - **Auth MVP:** Mock JWT → Google OAuth 2.0 (thay Keycloak, không cần self-host).
 - **Search MVP:** PostgreSQL Full-Text Search (thay Elasticsearch, không cần service riêng).
@@ -450,4 +441,4 @@ Mục tiêu: _Tags, highlight, citation, search nâng cao._
 
 ---
 
-_Hết Product Backlog. Architecture & design: [06-architecture.md](06-architecture.md)._
+_Hết Product Backlog. Architecture & design: [02-architecture.md](02-architecture.md)._

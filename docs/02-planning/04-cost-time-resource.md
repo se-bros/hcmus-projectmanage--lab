@@ -27,22 +27,7 @@
 
 ## Mục lục
 
-- [1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)](#1-kế-hoạch-thời-gian-và-tiến-độ-thực-hiện-time--schedule-plan)
-  - [1.1. Lộ trình triển khai 4 Giai đoạn](#11-lộ-trình-triển-khai-4-giai-đoạn)
-  - [1.2. Phân rã gói công việc (WBS) và Đường găng (Critical Path)](#12-phân-rã-gói-công-việc-wbs-và-đường-găng-critical-path)
-- [2. Phương pháp luận ước lượng nỗ lực phần mềm (Estimation)](#2-phương-pháp-luận-ước-lượng-nỗ-lực-phần-mềm-estimation)
-  - [2.1. Phương pháp Điểm trường hợp sử dụng (Use Case Points - UCP)](#21-phương-pháp-điểm-trường-hợp-sử-dụng-use-case-points---ucp)
-  - [2.2. Phương pháp COCOMO II (Early Design Model)](#22-phương-pháp-cocomo-ii-early-design-model)
-  - [2.3. Đối chiếu và Kết luận nỗ lực thực tế](#23-đối-chiếu-và-kết-luận-nỗ-lực-thực-tế)
-- [3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)](#3-dự-toán-chi-phí-và-phân-bổ-ngân-sách-dự-án-cost--budget-plan)
-  - [3.1. Dự toán chi phí đầu tư ban đầu (CapEx)](#31-dự-toán-chi-phí-đầu-tư-ban-đầu-capex)
-  - [3.2. Dự toán chi phí vận hành định kỳ (OpEx)](#32-dự-toán-chi-phí-vận-hành-định-kỳ-opex)
-- [4. Kế hoạch phân bổ nguồn lực nhân sự và Thiết bị](#4-kế-hoạch-phân-bổ-nguồn-lực-nhân-sự-và-thiết-bi)
-- [5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)](#5-kế-hoạch-giám-sát--báo-cáo-tình-trạng-dự-án-monitoring--status-reporting)
-  - [5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)](#51-bộ-chỉ-số-giám-sát--đo-lường-monitoring-metrics)
-  - [5.2. Cơ chế thu thập Metrics từ AI Session (Session Logging)](#52-cơ-chế-thu-thập-metrics-từ-ai-session-session-logging)
-  - [5.3. Snapshot tiến độ thực tế — Tuần 1 (16–17/07/2026)](#53-snapshot-tiến-độ-thực-tế--tuần-1-1617072026)
-  - [5.4. Quy chế Báo cáo định kỳ (Status Reporting)](#54-quy-chế-báo-cáo-định-kỳ-status-reporting)
+
 
 ---
 
@@ -62,7 +47,7 @@ Dự án HCMUS-LDMS được hoạch định thực hiện trong vòng **20 tu�
 - **WP1 — Khảo sát & Bản quyền (Tuần 1–3):** Phỏng vấn độc giả; hoàn thành quy chế số hóa.
 - **WP2 — Cơ sở dữ liệu & Backend (Tuần 4–7):** Cấu hình ảo hóa VMware; cài đặt PostgreSQL, MinIO, Keycloak và code API CRUD.
 - **WP3 — Giao diện & Trình đọc (Tuần 8–11):** Code React UI; tích hợp Epub.js, Tesseract, Pandoc và Elasticsearch.
-- **WP4 — Số hóa tài liệu (Tuần 12–17) [Đường găng - Critical Path]:** Quét sách giấy; chạy OCR; biên tập Split-screen; đóng gói EPUB. Khâu scan sách và soát sửa lỗi chính tả chiếm thời gian dài nhất và phụ thuộc lớn vào năng suất của con người. Sự chậm trễ ở WP4 sẽ trực tiếp kéo lùi ngày bàn giao dự án.
+- **WP4 — Số hóa tài liệu (Tuần 12–17) (Đường găng - Critical Path):** Quét sách giấy; chạy OCR; biên tập Split-screen; đóng gói EPUB. Khâu scan sách và soát sửa lỗi chính tả chiếm thời gian dài nhất và phụ thuộc lớn vào năng suất của con người. Sự chậm trễ ở WP4 sẽ trực tiếp kéo lùi ngày bàn giao dự án.
 - **WP5 — Kiểm thử & UAT (Tuần 18–19):** Pentest bảo mật; nghiệm thu UAT với thủ thư và sinh viên mẫu.
 - **WP6 — Triển khai & Vận hành (Tuần 20):** Triển khai Docker Compose; đào tạo cán bộ; truyền thông ra mắt.
 
@@ -222,7 +207,7 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 ## 5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)
 
-Để quản lý tiến độ và kiểm soát chi phí phát triển với sự hỗ trợ của AI Coding Assistants, dự án thiết lập hệ thống giám sát định kỳ dựa trên dữ liệu thực tế được ghi nhận tại file [`project_log.md`](../project_log.md).
+Để quản lý tiến độ và kiểm soát chi phí phát triển với sự hỗ trợ của AI Coding Assistants, dự án thiết lập hệ thống giám sát định kỳ dựa trên dữ liệu thực tế được ghi nhận tại file [`../03-execution-monitoring/02-project-log.md`](../03-execution-monitoring/02-project-log.md).
 
 ### 5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)
 
@@ -239,7 +224,7 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 | Chỉ số                     | Cách đo                                                                | Mục tiêu                                       |
 | :------------------------- | :--------------------------------------------------------------------- | :--------------------------------------------- |
-| **Token AI tiêu thụ**      | Tổng token sử dụng mỗi phiên làm việc (ghi vào `project_log.md`).      | ≤ 300K tokens/session trung bình.              |
+| **Token AI tiêu thụ**      | Tổng token sử dụng mỗi phiên làm việc (ghi vào `../03-execution-monitoring/02-project-log.md`).      | ≤ 300K tokens/session trung bình.              |
 | **Chi phí AI tích lũy**    | Quy đổi token ra VNĐ theo bảng giá API từng model, cộng dồn theo tuần. | Tổng ≤ 5.000.000 VNĐ (hạn mức CapEx).          |
 | **AI Productivity Factor** | Số stories Done / Tổng token AI đã dùng (hiệu suất sử dụng AI).        | Theo dõi xu hướng để phát hiện lãng phí token. |
 
@@ -255,7 +240,7 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 ### 5.2. Cơ chế thu thập Metrics từ AI Session (Session Logging)
 
-Sau mỗi phiên làm việc với AI Coding Assistant (Claude Code, Copilot, v.v.), thành viên nhóm **bắt buộc** ghi nhận một dòng log vào file [`project_log.md`](../project_log.md) theo định dạng:
+Sau mỗi phiên làm việc với AI Coding Assistant (Claude Code, Copilot, v.v.), thành viên nhóm **bắt buộc** ghi nhận một dòng log vào file [`../03-execution-monitoring/02-project-log.md`](../03-execution-monitoring/02-project-log.md) theo định dạng:
 
 | Trường           | Mô tả                                                                                      | Ví dụ                                      |
 | :--------------- | :----------------------------------------------------------------------------------------- | :----------------------------------------- |
@@ -267,7 +252,7 @@ Sau mỗi phiên làm việc với AI Coding Assistant (Claude Code, Copilot, v.
 | Token AI đã dùng | Số token AI tiêu thụ trong session (lấy từ dashboard API hoặc ước tính từ giao diện chat). | `40.000`                                   |
 | Ghi chú          | Model AI sử dụng và ghi chú đặc biệt.                                                      | `Claude Sonnet 5 (spec) + Opus 4.8 (impl)` |
 
-PM tổng hợp dữ liệu từ file `project_log.md` mỗi cuối tuần để tính toán các chỉ số Monitoring ở mục 5.1.
+PM tổng hợp dữ liệu từ file `../03-execution-monitoring/02-project-log.md` mỗi cuối tuần để tính toán các chỉ số Monitoring ở mục 5.1.
 
 ---
 
@@ -317,7 +302,7 @@ Phương pháp: Đếm số stories **đã deploy & đáp ứng Acceptance Crite
 
 #### A. Báo cáo Session (Sau mỗi phiên AI)
 
-Ngay sau khi kết thúc một phiên làm việc với AI Coding Assistant, dev ghi nhận vào `project_log.md`:
+Ngay sau khi kết thúc một phiên làm việc với AI Coding Assistant, dev ghi nhận vào `../03-execution-monitoring/02-project-log.md`:
 
 - Nội dung đã hoàn thành (Story IDs).
 - Token AI đã dùng trong phiên.
@@ -326,7 +311,7 @@ Ngay sau khi kết thúc một phiên làm việc với AI Coding Assistant, dev
 
 #### B. Báo cáo Weekly Review (Mỗi tuần)
 
-PM tổng hợp từ `project_log.md` và gửi báo cáo cho Ban Giám đốc Thư viện và Trưởng phòng CNTT, gồm:
+PM tổng hợp từ `../03-execution-monitoring/02-project-log.md` và gửi báo cáo cho Ban Giám đốc Thư viện và Trưởng phòng CNTT, gồm:
 
 - Throughput tuần (số stories Done) và Cycle Time trung bình.
 - Tổng chi phí AI tích lũy so với hạn mức CapEx.

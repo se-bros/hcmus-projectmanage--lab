@@ -25,28 +25,7 @@
 
 ## Mục lục
 
-- [1. Mục đích và Ý nghĩa tài liệu](#1-mục-đích-và-ý-nghĩa-tài-liệu)
-- [2. Các bên tham gia Hợp đồng](#2-các-bên-tham-gia-hợp-đồng)
-- [3. Phạm vi công việc (Scope of Work)](#3-phạm-vi-công-việc-scope-of-work)
-  - [3.1. Phạm vi bao gồm (In-Scope)](#31-phạm-vi-bao-gồm-in-scope)
-  - [3.2. Phạm vi loại trừ (Out-of-Scope)](#32-phạm-vi-loại-trừ-out-of-scope)
-- [4. Ngăn xếp công nghệ thống nhất (Agreed Technology Stack)](#4-ngăn-xếp-công-nghệ-thống-nhất-agreed-technology-stack)
-  - [4.1. Tech Stack chính thức (MVP)](#41-tech-stack-chính-thức-mvp)
-  - [4.2. Lý do đơn giản hóa Tech Stack](#42-lý-do-đơn-giản-hóa-tech-stack)
-  - [4.3. Roadmap công nghệ mở rộng](#43-roadmap-công-nghệ-mở-rộng)
-- [5. Sản phẩm bàn giao (Deliverables)](#5-sản-phẩm-bàn-giao-deliverables)
-- [6. Tiến độ và Các mốc thời gian (Schedule & Milestones)](#6-tiến-độ-và-các-mốc-thời-gian-schedule--milestones)
-- [7. Chi phí và Ngân sách thống nhất (Agreed Cost & Budget)](#7-chi-phí-và-ngân-sách-thống-nhất-agreed-cost--budget)
-- [8. Nguồn lực nhân sự và Vai trò AI Assistants](#8-nguồn-lực-nhân-sự-và-vai-trò-ai-assistants)
-  - [8.1. Nhân sự dự án](#81-nhân-sự-dự-án)
-  - [8.2. Vai trò của AI Coding Assistants](#82-vai-trò-của-ai-coding-assistants)
-- [9. Tiêu chí nghiệm thu (Acceptance Criteria)](#9-tiêu-chí-nghiệm-thu-acceptance-criteria)
-- [10. Quy chế Kiểm soát Thay đổi (Change Control)](#10-quy-chế-kiểm-soát-thay-đổi-change-control)
-  - [10.1. Nguyên tắc liên động Scope–Feature–Resource](#101-nguyên-tắc-liên-động-scopefeatureresource)
-  - [10.2. Quy trình xử lý yêu cầu thay đổi](#102-quy-trình-xử-lý-yêu-cầu-thay-đổi)
-- [11. Các giả định và Ràng buộc](#11-các-giả-định-và-ràng-buộc)
-- [12. Quản lý rủi ro liên quan đến nguồn lực](#12-quản-lý-rủi-ro-liên-quan-đến-nguồn-lực)
-- [13. Chữ ký phê duyệt (Signatures)](#13-chữ-ký-phê-duyệt-signatures)
+
 
 ---
 
@@ -249,7 +228,7 @@ Dự án được thực hiện trong **20 tuần**, chia thành 4 giai đoạn 
 
 Các bên thống nhất rằng nhóm phát triển được phép sử dụng các **AI Coding Assistants** chính (bao gồm **Claude**, **Antigravity**, **Cursor** và các công cụ tương đương) trong quá trình phát triển phần mềm, với các điều kiện:
 
-1. **Minh bạch chi phí:** Mọi phiên làm việc với AI phải ghi nhận số token tiêu thụ, model sử dụng và thời gian vào file `project_log.md`.
+1. **Minh bạch chi phí:** Mọi phiên làm việc với AI phải ghi nhận số token tiêu thụ, model sử dụng và thời gian vào file `../03-execution-monitoring/02-project-log.md`.
 2. **Hạn mức ngân sách AI:** Tổng chi phí AI Tools không vượt quá **5.000.000 VNĐ** trong toàn bộ vòng đời dự án (thuộc hạng mục CapEx).
 3. **Kiểm soát chất lượng:** Mọi mã nguồn do AI sinh ra đều phải được con người review, kiểm tra Acceptance Criteria và deploy thành công trước khi tính là Done.
 4. **Bản quyền mã nguồn:** Mã nguồn do AI hỗ trợ sinh ra thuộc sở hữu trí tuệ của dự án HCMUS-LDMS, tuân theo giấy phép mã nguồn mở được chọn cho dự án.

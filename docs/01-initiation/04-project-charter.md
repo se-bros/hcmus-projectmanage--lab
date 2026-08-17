@@ -27,17 +27,7 @@
 
 ## Mục lục
 
-- [1. Tuyên bố ủy quyền chính thức](#1-tuyên-bố-ủy-quyền-chính-thức)
-- [2. Danh sách kiểm tra dự án (Project Checklist)](#2-danh-sách-kiểm-tra-dự-án-project-checklist)
-- [3. Cơ cấu quản lý và Quản trị dự án (Governance)](#3-cơ-cấu-quản-lý-và-quản-trị-dự-án-governance)
-- [4. Cơ sở vật chất và Tài nguyên được ủy quyền](#4-cơ-sở-vật-chất-và-tài-nguyên-được-ủy-quyền)
-- [5. Phân tích các bên liên quan và Tác động (Stakeholder Analysis)](#5-phân-tích-các-bên-liên-quan-và-tác-động-stakeholder-analysis)
-- [6. Ma trận trách nhiệm (RACI Matrix)](#6-ma-trận-trách-nhiệm-raci-matrix)
-- [7. Cấu trúc phân rã công việc (WBS) và Tiến độ](#7-cấu-trúc-phân-rã-công-việc-wbs-và-tiến-độ)
-- [8. Tiêu chí thành công và Chỉ số KPIs](#8-tiêu-chí-thành-công-và-chỉ-số-kpis)
-- [9. Phương pháp luận và Quy tắc phối hợp làm việc](#9-phương-pháp-luận-và-quy-tắc-phối-hợp-làm-việc)
-- [10. Các giả định, Ràng buộc và Quy chế kiểm soát thay đổi](#10-các-giả-định-ràng-buộc-và-quy-chế-kiểm-soát-thay-đổi)
-- [11. Chữ ký phê duyệt (Signatures)](#11-chữ-ký-phê-duyệt-signatures)
+
 
 ---
 
@@ -107,7 +97,7 @@ Hệ thống được thiết kế triển khai trong **20 tuần** với phươ
 - **WP1 — Khảo sát & Bản quyền (Tuần 1–3):** Phỏng vấn độc giả; hoàn thiện quy chế bản quyền số hóa nội bộ; thiết kế mockup UI.
 - **WP2 — Cơ sở dữ liệu & Backend (Tuần 4–7):** Thiết lập hạ tầng ảo hóa VMware; cài đặt PostgreSQL, MinIO và phát triển các API CRUD, RBAC, Mock Auth.
 - **WP3 — Giao diện & Trình đọc (Tuần 8–11):** Code React Frontend; tích hợp Epub.js, Tesseract OCR, Pandoc; cấu hình PostgreSQL FTS.
-- **WP4 — Số hóa tài liệu (Tuần 12–17) [Đường găng - Critical Path]:** Quét sách giấy; chạy OCR background; biên tập Split-screen; đóng gói EPUB. Số hóa thí điểm 500 cuốn sách CNTT đưa vào sử dụng ở tuần 12.
+- **WP4 — Số hóa tài liệu (Tuần 12–17) (Đường găng - Critical Path):** Quét sách giấy; chạy OCR background; biên tập Split-screen; đóng gói EPUB. Số hóa thí điểm 500 cuốn sách CNTT đưa vào sử dụng ở tuần 12.
 - **WP5 — Kiểm thử & UAT (Tuần 18–19):** Pentest bảo mật Signed URL; nghiệm thu UAT với thủ thư và sinh viên mẫu.
 - **WP6 — Triển khai & Vận hành (Tuần 20):** Triển khai production Docker Compose (API + Postgres + MinIO); đào tạo cán bộ; truyền thông ra mắt.
 

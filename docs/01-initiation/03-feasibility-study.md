@@ -27,17 +27,7 @@
 
 ## Mục lục
 
-- [1. Mục đích báo cáo (Purpose)](#1-mục-đích-báo-cáo-purpose)
-- [2. Lý do thực hiện (Reason)](#2-lý-do-thực-hiện-reason)
-- [3. Thông tin cơ bản (Background Information)](#3-thông-tin-cơ-bản-background-information)
-- [4. Các tiêu chí đánh giá (Evaluation Criteria)](#4-các-tiêu-chí-đánh-giá-evaluation-criteria)
-- [5. Kết quả nghiên cứu khả thi (Study Findings)](#5-kết-quả-nghiên-cứu-khả-thi-study-findings)
-  - [5.1. Đánh giá 8 khía cạnh khả thi](#51-đánh-giá-8-khía-cạnh-khả-thi)
-  - [5.2. Phân tích SWOT](#52-phân-tích-swot)
-  - [5.3. Đối chuẩn hệ thống (Benchmarking)](#53-đối-chuẩn-hệ-thống-benchmarking)
-  - [5.4. Mô hình kinh tế tài chính và Thời gian hòa vốn](#54-mô-hình-kinh-tế-tài-chính-và-thời-gian-hòa-vốn)
-  - [5.5. Đánh giá quản trị rủi ro](#55-đánh-giá-quản-trị-rủi-ro)
-- [6. Khuyến nghị báo cáo (Recommendations)](#6-khuyến-nghị-báo-cáo-recommendations)
+
 
 ---
 

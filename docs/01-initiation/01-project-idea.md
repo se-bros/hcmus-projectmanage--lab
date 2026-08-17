@@ -29,17 +29,7 @@
 
 ## Mục lục
 
-- [1. Tên ý tưởng và Tóm tắt tổng quan](#1-tên-ý-tưởng-và-tóm-tắt-tổng-quan)
-- [2. Nguồn gốc hình thành ý tưởng (Origin)](#2-nguồn-gốc-hình-thành-ý-tưởng-origin)
-- [3. Vấn đề thực trạng và Cơ hội giải quyết](#3-vấn-đề-thực-trạng-và-cơ-hội-giải-quyết)
-  - [3.1. Thực trạng và Vấn đề](#31-thực-trạng-và-vấn-đề)
-  - [3.2. Cơ hội nâng cấp](#32-cơ-hội-nâng-cấp)
-- [4. Đối tượng hưởng lợi dự kiến](#4-đối-tượng-hưởng-lợi-dự-kiến)
-- [5. Giá trị cốt lõi (Core Value Proposition)](#5-giá-trị-cốt-lõi-core-value-proposition)
-  - [5.1. Lợi thế cạnh tranh bền vững sơ bộ (Preliminary MOAT Analysis)](#51-lợi-thế-cạnh-tranh-bền-vững-sơ-bộ-preliminary-moat-analysis)
-- [6. Các giả định quan trọng và Ràng buộc khả thi](#6-các-giả-định-quan-trọng-và-ràng-buộc-khả-thi)
-- [7. Mức độ ưu tiên và Khẩn cấp sơ bộ](#7-mức-độ-ưu-tiên-và-khẩn-cấp-sơ-bộ)
-- [8. Các bước tiếp theo đề xuất (Next Steps)](#8-các-bước-tiếp-theo-đề-xuất-next-steps)
+
 
 ---
 

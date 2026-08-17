@@ -253,7 +253,7 @@ graph LR
 <div class="grid grid-cols-2 gap-4 mt-3 text-xs">
 
 <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm space-y-2">
-  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">1. Ghi nhận nhật ký phiên AI (project_log.md)</strong>
+  <strong class="text-emerald-900 text-sm block border-b border-slate-200 pb-1">1. Ghi nhận nhật ký phiên AI (../../03-execution-monitoring/02-project-log.md)</strong>
   <p class="text-slate-700">Mỗi khi hoàn thành công việc, thành viên ghi lại một dòng theo mẫu thật sau:</p>
   <div class="p-2.5 bg-slate-800 text-emerald-400 font-mono text-[9px] rounded leading-tight">
     [2026-07-18] [LDMS-008/014/015/016/019/020/026] Khoa Nguyễn hoàn thành Search & Reader experience (Thời gian: 6h, Token AI: 100.000).

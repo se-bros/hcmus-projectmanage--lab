@@ -75,7 +75,7 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 </div>
 
 <div class="p-3 bg-red-50/90 rounded-lg border border-red-300 shadow-sm flex justify-between items-center">
-  <span><strong class="text-red-900 font-bold">Giai đoạn 2 (Tuần 13–18): Số hóa 2.000 tài liệu [ĐIỂM NGHẼN]</strong> — Phụ thuộc năng suất scan & soát lỗi OCR thực tế.</span>
+  <span><strong class="text-red-900 font-bold">Giai đoạn 2 (Tuần 13–18): Số hóa 2.000 tài liệu (ĐIỂM NGHẼN)</strong> — Phụ thuộc năng suất scan & soát lỗi OCR thực tế.</span>
   <span class="badge bg-red-700 text-white font-bold px-2.5 py-0.5 rounded shrink-0 whitespace-nowrap">6 Tuần (Nút thắt)</span>
 </div>
 
@@ -319,7 +319,7 @@ Một bản kế hoạch dự án đầy đủ không chỉ là "làm gì" mà c
 # Demo Thu Thập Dữ Liệu Thật: Ảnh Chụp Nhanh Tiến Độ Tuần 1
 
 <div class="mt-2 text-[12px] text-slate-900 leading-normal border-t border-slate-200 pt-1">
-Đây là số liệu <strong>thật</strong>, không phải giả định, được nhóm thu thập từ 2 ngày làm việc đầu tiên (16–17/07/2026), tổng hợp từ nhật ký `project_log.md`.
+Đây là số liệu <strong>thật</strong>, không phải giả định, được nhóm thu thập từ 2 ngày làm việc đầu tiên (16–17/07/2026), tổng hợp từ nhật ký `../../03-execution-monitoring/02-project-log.md`.
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-4 text-xs">

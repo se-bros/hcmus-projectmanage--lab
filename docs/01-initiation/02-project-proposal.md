@@ -30,28 +30,7 @@
 
 ## Mục lục
 
-- [1. Tóm tắt điều hành](#1-tóm-tắt-điều-hành)
-- [2. Lý do đầu tư và Bối cảnh thực tế](#2-lý-do-đầu-tư-và-bối-cảnh-thực-tế)
-  - [2.1. Hành trình từ "Nỗi đau" vật lý đến rào cản tri thức của Độc giả](#21-hành-trình-từ-nỗi-đau-vật-lý-đến-rào-cản-tri-thức-của-độc-giả)
-  - [2.2. Sự chuyển mình đột phá qua ý tưởng số hóa tích hợp](#22-sự-chuyển-mình-đột-phá-qua-ý-tưởng-số-hóa-tích-hợp)
-  - [2.3. Phân tích đối chuẩn: Đối thủ cạnh tranh và Phương án kết hợp công cụ sẵn có](#23-phân-tích-đối-chuẩn-đối-thủ-cạnh-tranh-và-phương-án-kết-hợp-công-cụ-sẵn-có)
-  - [2.4. Phân tích Lợi thế cạnh tranh bền vững](#24-phân-tích-lợi-thế-cạnh-tranh-bền-vững)
-- [3. Giải pháp đề xuất và Định hướng công nghệ](#3-giải-pháp-đề-xuất-và-định-hướng-công-nghệ)
-  - [3.1. Mô tả tổng quan giải pháp](#31-mô-tả-tổng-quan-giải-pháp)
-  - [3.2. Định hướng kiến trúc công nghệ](#32-định-hướng-kiến-trúc-công-nghệ)
-  - [3.3. Phạm vi loại trừ cấp cao](#33-phạm-vi-loại-trừ-cấp-cao)
-- [4. Phân tích Chi phí – Lợi ích](#4-phân-tích-chi-phí--lợi-ích)
-  - [4.1. Bảng phân tích lợi ích định lượng và định tính](#41-bảng-phân-tích-lợi-ích-định-lượng-và-định-tính)
-  - [4.2. Ước lượng chi phí đầu tư ban đầu](#42-ước-lượng-chi-phí-đầu-tư-ban-đầu)
-  - [4.3. Ước lượng chi phí vận hành định kỳ](#43-ước-lượng-chi-phí-vận-hành-định-kỳ)
-  - [4.4. Mô hình kinh tế tránh chi phí và Điểm hòa vốn](#44-mô-hình-kinh-tế-tránh-chi-phí-và-điểm-hòa-vốn)
-- [5. Phân tích các bên liên quan và Phân vai](#5-phân-tích-các-bên-liên-quan-và-phân-vai)
-  - [5.1. Danh sách các bên liên quan](#51-danh-sách-các-bên-liên-quan)
-  - [5.2. Ma trận phân định trách nhiệm](#52-ma-trận-phân-định-trách-nhiệm)
-  - [5.3. Đánh giá tính khả thi từ góc độ quản lý các bên liên quan](#53-đánh-giá-tính-khả-thi-từ-góc-độ-quản-lý-các-bên-liên-quan)
-- [6. Lộ trình triển khai cấp cao](#6-lộ-trình-triển-khai-cấp-cao)
-- [7. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu](#7-danh-mục-rủi-ro-kinh-doanh-và-biện-pháp-giảm-thiểu)
-- [8. Kết luận và Khuyến nghị hành động](#8-kết-luận-và-khuyến-nghị-hành-động)
+
 
 ---
 
@@ -112,7 +91,7 @@ Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản 
 
 | Tiêu chí đối chuẩn                     | Giải pháp tự xây dựng (HCMUS-LDMS)                                                                                         | Giải pháp thương mại (Ví dụ: Lạc Việt Vebrary)                                                                          | Giải pháp nguồn mở sẵn có (Ví dụ: DSpace)                                                                          | Phương án ghép công cụ rời rạc (Abbyy + Calibre + Drive)                                                           |
 | :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| **Chi phí bản quyền & Vận hành**       | **Tối ưu**<br>Sử dụng công nghệ mã nguồn mở và thuê máy chủ đám mây (Cloud VPS) chi phí thấp. | **Rất cao**<br>Chi phí bản quyền ban đầu lớn và phí duy trì nâng cấp hàng năm cao.                                      | **Trung bình**<br>Miễn phí bản quyền nhưng tốn chi phí thuê ngoài tùy biến.                                        | **Thấp**<br>Tận dụng các công cụ có sẵn nhưng tốn chi phí giờ công vận hành thủ công rất lớn.                      |
+| **Chi phí bản quyền & Vận hành**       | **Tối ưu**<br>Sử dụng công nghệ mã nguồn mở và thuê máy chủ đám mây (Cloud VPS) chi phí thấp.                              | **Rất cao**<br>Chi phí bản quyền ban đầu lớn và phí duy trì nâng cấp hàng năm cao.                                      | **Trung bình**<br>Miễn phí bản quyền nhưng tốn chi phí thuê ngoài tùy biến.                                        | **Thấp**<br>Tận dụng các công cụ có sẵn nhưng tốn chi phí giờ công vận hành thủ công rất lớn.                      |
 | **Quy trình nhận dạng chữ & Soát lỗi** | **Khép kín & Tự động**<br>Tích hợp nhận dạng chữ OCR và giao diện soạn thảo chia đôi màn hình soát lỗi trực tiếp trên Web. | **Không tích hợp sẵn**<br>Không có quy trình soát lỗi chuyên biệt cho tiếng Việt chuyên ngành, phải dùng công cụ ngoài. | **Không hỗ trợ**<br>Chỉ đóng vai trò là kho lưu trữ tệp tĩnh, không có quy trình biên tập và chuyển đổi định dạng. | **Rời rạc & Thủ công**<br>Mất nhiều giờ chuyển đổi thủ công qua lại giữa các phần mềm ngoại tuyến độc lập.         |
 | **Bảo mật và Bản quyền số**            | **Chặt chẽ (Đường dẫn bảo mật DRM)**<br>Chỉ cho đọc trực tuyến, tự động hết hạn liên kết sau 15 phút, chặn tải lậu.        | **Hạn chế**<br>Chỉ phân quyền tải tệp PDF thông thường, dễ bị sao chép và phát tán trái phép.                           | **Cơ bản**<br>Chỉ hỗ trợ phân quyền truy cập thư mục, thiếu cơ chế chống sao chụp nâng cao.                        | **Rủi ro cực cao**<br>Lưu trữ đám mây không chặn tải tệp gốc, không chặn chuột phải sao chép, dễ bị phát tán sách. |
 | **Tìm kiếm toàn văn**                  | **Siêu tốc (Dưới 3 giây)**<br>Lập chỉ mục tìm kiếm toàn văn sâu đến từng trang sách và highlight kết quả theo ngữ cảnh.    | **Cơ bản**<br>Chỉ tìm kiếm theo từ khóa thư mục (tiêu đề, tác giả) thông thường.                                        | **Trung bình**<br>Hỗ trợ tìm kiếm cơ bản nhưng khó tối ưu hóa cho tiếng Việt chuyên ngành.                         | **Kém**<br>Không hỗ trợ tìm kiếm sâu trong nội dung sách trên diện rộng.                                           |
@@ -136,13 +115,13 @@ Thuật ngữ **MOAT** (Hào nước bảo vệ thành trì) là một ẩn dụ
 
 #### 2.4.1. Bảng tổng hợp Lợi thế cạnh tranh
 
-| Yếu tố lợi thế cạnh tranh       | Mức độ phòng thủ | Cơ chế vận hành                                                                                                                                                                                             | Chiến lược gia cố                                                                                                                                        |
-| :------------------------------ | :--------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. Nội dung độc quyền**       |    Cực kỳ cao    | Kho tài liệu vật lý của Thư viện HCMUS bao gồm giáo trình tự soạn của giảng viên, tài liệu chuyên ngành độc bản và luận văn nội bộ. Đây là nguồn nội dung gốc độc quyền duy nhất HCMUS sở hữu.              | • Ưu tiên số hóa tài liệu độc bản, giáo trình tự soạn trước.<br>• Vận động giảng viên đóng góp giáo trình số mới trực tiếp lên hệ thống.                 |
-| **2. Chi phí chuyển đổi cao**   |    Cực kỳ cao    | Hệ thống tích hợp sâu vào hạ tầng định danh trường, quy trình nghiệp vụ số hóa hàng ngày của thủ thư và kho dữ liệu sách điện tử tìm kiếm toàn văn. Chi phí chuyển đổi sang hệ thống khác cực kỳ lớn.       | • Tiếp tục mở rộng tích hợp với hệ thống quản lý học tập Moodle và cổng thông tin đào tạo của trường.                                                    |
-| **3. Hiệu ứng mạng lưới**       |       Cao        | Thêm tài liệu số hóa → Tăng giá trị tra cứu cho sinh viên → Thu hút thêm sinh viên cộng tác viên tình nguyện biên tập nhận dạng chữ → Đẩy nhanh tốc độ số hóa học liệu. | • Thiết kế hệ thống khuyến khích thi đua đóng góp cho sinh viên cộng tác viên.<br>• Cho phép giảng viên nhúng liên kết học liệu trực tiếp vào bài giảng. |
-| **4. Lợi thế chi phí**          |       Cao        | Tổng chi phí đầu tư ban đầu cực kỳ thấp nhờ sử dụng công nghệ mã nguồn mở, Cloud VPS và thù lao cộng tác viên sinh viên tối ưu.                                                                             | • Duy trì cam kết sử dụng công nghệ mã nguồn mở.<br>• Ghi nhận tài liệu kỹ thuật đầy đủ để nội bộ tự làm chủ và kế thừa.                                 |
-| **5. Lợi thế dữ liệu tích lũy** |    Cực kỳ cao    | Kho sách tương thích động cùng chỉ mục tìm kiếm toàn văn là tài sản dữ liệu tích lũy dần theo thời gian, tạo khoảng cách ngày càng lớn mà đối thủ mới không thể bắt kịp.                                    | • Liên tục mở rộng kho bằng chương trình số hóa giáo trình hàng năm.                                                                                     |
+| Yếu tố lợi thế cạnh tranh       | Mức độ phòng thủ | Cơ chế vận hành                                                                                                                                                                                       | Chiến lược gia cố                                                                                                                                        |
+| :------------------------------ | :--------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Nội dung độc quyền**       |    Cực kỳ cao    | Kho tài liệu vật lý của Thư viện HCMUS bao gồm giáo trình tự soạn của giảng viên, tài liệu chuyên ngành độc bản và luận văn nội bộ. Đây là nguồn nội dung gốc độc quyền duy nhất HCMUS sở hữu.        | • Ưu tiên số hóa tài liệu độc bản, giáo trình tự soạn trước.<br>• Vận động giảng viên đóng góp giáo trình số mới trực tiếp lên hệ thống.                 |
+| **2. Chi phí chuyển đổi cao**   |    Cực kỳ cao    | Hệ thống tích hợp sâu vào hạ tầng định danh trường, quy trình nghiệp vụ số hóa hàng ngày của thủ thư và kho dữ liệu sách điện tử tìm kiếm toàn văn. Chi phí chuyển đổi sang hệ thống khác cực kỳ lớn. | • Tiếp tục mở rộng tích hợp với hệ thống quản lý học tập Moodle và cổng thông tin đào tạo của trường.                                                    |
+| **3. Hiệu ứng mạng lưới**       |       Cao        | Thêm tài liệu số hóa → Tăng giá trị tra cứu cho sinh viên → Thu hút thêm sinh viên cộng tác viên tình nguyện biên tập nhận dạng chữ → Đẩy nhanh tốc độ số hóa học liệu.                               | • Thiết kế hệ thống khuyến khích thi đua đóng góp cho sinh viên cộng tác viên.<br>• Cho phép giảng viên nhúng liên kết học liệu trực tiếp vào bài giảng. |
+| **4. Lợi thế chi phí**          |       Cao        | Tổng chi phí đầu tư ban đầu cực kỳ thấp nhờ sử dụng công nghệ mã nguồn mở, Cloud VPS và thù lao cộng tác viên sinh viên tối ưu.                                                                       | • Duy trì cam kết sử dụng công nghệ mã nguồn mở.<br>• Ghi nhận tài liệu kỹ thuật đầy đủ để nội bộ tự làm chủ và kế thừa.                                 |
+| **5. Lợi thế dữ liệu tích lũy** |    Cực kỳ cao    | Kho sách tương thích động cùng chỉ mục tìm kiếm toàn văn là tài sản dữ liệu tích lũy dần theo thời gian, tạo khoảng cách ngày càng lớn mà đối thủ mới không thể bắt kịp.                              | • Liên tục mở rộng kho bằng chương trình số hóa giáo trình hàng năm.                                                                                     |
 
 #### 2.4.2. Đánh giá tổng hợp sức mạnh lợi thế cạnh tranh
 
@@ -249,6 +228,7 @@ _Chú thích các từ viết tắt trong mục:_
 ### 5.3. Đánh giá tính khả thi từ góc độ quản lý các bên liên quan
 
 Sự phân định rõ ràng vai trò của các bên liên quan là cơ sở vững chắc bảo đảm tính khả thi thực tế của dự án:
+
 1. **Tính khả thi về mặt pháp lý (Legal Feasibility):** Sự tham gia sớm của bộ phận Pháp chế (Gói 1) giúp xây dựng quy chế bản quyền và điều khoản sử dụng chặt chẽ, loại bỏ hoàn toàn các rủi ro pháp lý về sở hữu trí tuệ đối với tài liệu học tập.
 2. **Tính khả thi về kỹ thuật và nhân lực (Technical & Resource Feasibility):** Giao trách nhiệm chính (A) cho Phòng CNTT giúp tận dụng nguồn lực kỹ sư chuyên môn cao của trường để làm chủ công nghệ lõi. Đồng thời, việc huy động sinh viên cộng tác viên tham gia số hóa giúp giải quyết triệt để nút thắt về nhân sự vận hành của Thư viện.
 3. **Tính khả thi về mặt vận hành (Operational Feasibility):** Thư viện nắm vai trò chịu trách nhiệm chính (A) về quy trình số hóa và bàn giao vận hành (Gói 4, Gói 6) bảo đảm hệ thống mới tích hợp mượt mà vào nghiệp vụ hàng ngày của cán bộ thư viện mà không gây gián đoạn.

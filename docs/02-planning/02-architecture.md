@@ -27,37 +27,7 @@
 
 ## Mục lục
 
-- [1. Giới thiệu](#1-giới-thiệu)
-  - [1.1 Mục đích](#11-mục-đích)
-  - [1.2 Phạm vi tài liệu](#12-phạm-vi-tài-liệu)
-  - [1.3 Định nghĩa và thuật ngữ viết tắt](#13-định-nghĩa-và-thuật-ngữ-viết-tắt)
-- [2. Mục tiêu và Ràng buộc Kiến trúc](#2-mục-tiêu-và-ràng-buộc-kiến-trúc)
-  - [2.1 Mục tiêu kiến trúc](#21-mục-tiêu-kiến-trúc)
-  - [2.2 Ràng buộc kiến trúc](#22-ràng-buộc-kiến-trúc)
-- [3. Mô hình Use-Case hệ thống](#3-mô-hình-use-case-hệ-thống)
-- [4. Góc nhìn logic (Logical View - C4 Model)](#4-góc-nhìn-logic-logical-view---c4-model)
-  - [4.1 Phong cách kiến trúc hệ thống](#41-phong-cách-kiến-trúc-hệ-thống)
-  - [4.2 Ngăn xếp công nghệ chi tiết (Technology Stack)](#42-ngăn-xếp-công-nghệ-chi-tiết-technology-stack)
-  - [4.3 Sơ đồ bối cảnh hệ thống (C4 Context Diagram)](#43-sơ-đồ-bối-cảnh-hệ-thống-c4-context-diagram)
-  - [4.4 Giải thích các thành phần Kiến trúc logic chi tiết](#44-giải-thích-các-thành-phần-kiến-trúc-logic-chi-tiết)
-  - [4.5 Sơ đồ kiến trúc Container (C4 Container Diagram)](#45-sơ-đồ-kiến-trúc-container-c4-container-diagram)
-  - [4.6 Sơ đồ tuần tự xử lý số hóa và đọc sách (Sequence Diagram)](#46-sơ-đồ-tuần-tự-xử-lý-số-hóa-và-đọc-sách-sequence-diagram)
-  - [4.7 Chi tiết các luồng nghiệp vụ cốt lõi](#47-chi-tiết-các-luồng-nghiệp-vụ-cốt-lõi)
-- [5. Giải pháp bảo mật, Sao lưu và Khôi phục thảm họa](#5-giải-pháp-bảo-mật-sao-lưu-và-khôi-phục-thảm-họa)
-  - [5.1 Chiến lược bảo mật dữ liệu (Security Layers)](#51-chiến-lược-bảo-mật-dữ-liệu-security-layers)
-  - [5.2 Chiến lược sao lưu dữ liệu (Backup Strategy)](#52-chiến-lược-sao-lưu-dữ-liệu-backup-strategy)
-  - [5.3 Chỉ số khôi phục thảm họa (Disaster Recovery Targets)](#53-chỉ-số-khôi-phục-thảm-họa-disaster-recovery-targets)
-- [6. Góc nhìn Triển khai (Deployment View)](#6-góc-nhìn-triển-khai-deployment-view)
-- [7. Góc nhìn Thực thi (Implementation View)](#7-góc-nhìn-thực-thi-implementation-view)
-  - [7.1 Cấu trúc thư mục Frontend React](#71-cấu-trúc-thư-mục-frontend-react)
-  - [7.2 Cấu trúc thư mục Backend FastAPI](#72-cấu-trúc-thư-mục-backend-fastapi)
-  - [7.3 Lý do lựa chọn cấu trúc thư mục & Phân tích phản biện](#73-lý-do-lựa-chọn-cấu-trúc-thư-mục--phân-tích-phản-biện)
-- [8. Quản lý cấu hình phần mềm và Chiến lược Git (SCM)](#8-quản-lý-cấu-hình-phần-mềm-và-chiến-lược-git-scm)
-- [9. Minh chứng công nghệ (Proof of Concept - PoC) và Cấu trúc mã nguồn khung (Skeleton)](#9-minh-chứng-công-nghệ-proof-of-concept---poc-và-cấu-trúc-mã-nguồn-khung-skeleton)
-  - [9.1 Khái niệm và Mục tiêu của Proof of Concept (PoC)](#91-khái-niệm-và-mục-tiêu-của-proof-of-concept-poc)
-  - [9.2 PoC 1: Kiến trúc luồng xử lý OCR tiếng Việt bất đồng bộ (Hardest Core Feature)](#92-poc-1-kiến-trúc-luồng-xử-lý-ocr-tiếng-việt-bất-đồng-bộ-hardest-core-feature)
-  - [9.3 PoC 2: Kiểm chứng tích hợp liên thông Tech Stack E2E (End-to-End Integration Flow)](#93-poc-2-kiểm-chứng-tích-hợp-liên-thông-tech-stack-e2e-end-to-end-integration-flow)
-  - [9.4 Cấu trúc mã nguồn khung (Skeleton Project Layout)](#94-cấu-trúc-mã-nguồn-khung-skeleton-project-layout)
+
 
 ---
 

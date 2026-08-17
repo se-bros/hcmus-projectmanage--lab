@@ -28,9 +28,9 @@ Skill này KHÔNG tính velocity, KHÔNG dự báo tiến độ dự án, KHÔNG
 
 ### Bước 1 — Tìm hoặc tạo file
 
-- Tìm file `project_log.md` trong thư mục gốc của dự án.
+- Tìm file `02-project-log.md` tại `docs/03-execution-monitoring/02-project-log.md` (hoặc `project_log.md` trong thư mục gốc dự án).
 - **Nếu đã có:** mở và cập nhật trực tiếp file đó. Tuyệt đối không tạo file mới.
-- **Nếu chưa có:** sao chép từ template tại đường dẫn tương đối `.agents/skills/story-completion-tracker/templates/project_log.md`, đặt vào thư mục gốc dự án với đúng tên `project_log.md`.
+- **Nếu chưa có:** sao chép từ template tại đường dẫn tương đối `.agents/skills/story-completion-tracker/templates/project_log.md`, đặt vào `docs/03-execution-monitoring/02-project-log.md`.
 
 ### Bước 2 — Thu thập thông tin
 

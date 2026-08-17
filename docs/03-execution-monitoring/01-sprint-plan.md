@@ -9,7 +9,7 @@
 | **Mã tài liệu (Document ID)** | `HCMUS-LDMS-SPR1` |
 | **Tên tài liệu (Document Title)** | Kế hoạch Sprint 1 — Phân công công việc theo Epic |
 | **Dự án (Project Name)** | HCMUS-LDMS |
-| **Nguồn backlog** | `docs/07-product-backlog.md` (mọi story tham chiếu dưới đây được pick trực tiếp từ đó) |
+| **Nguồn backlog** | `../02-planning/03-product-backlog.md` (mọi story tham chiếu dưới đây được pick trực tiếp từ đó) |
 | **Nhóm phát triển** | Thái, Tuấn Anh, Khoa Ngô, Khoa Nguyễn (4 kỹ sư fullstack) |
 | **Trạng thái tài liệu (Status)** | Ready for Sprint |
 
@@ -39,7 +39,7 @@
 
 ## 3. Mốc 1 — Ngày 1–2: Bản chạy được đơn giản
 
-Ngày 1: thống nhất data model tối thiểu (`Document`, `Page`, `User`, `Category`) và cấu trúc thư mục monorepo `/frontend`, `/backend` theo `06-architecture.md` (§7.1–7.2).
+Ngày 1: thống nhất data model tối thiểu (`Document`, `Page`, `User`, `Category`) và cấu trúc thư mục monorepo `/frontend`, `/backend` theo `../02-planning/02-architecture.md` (§7.1–7.2).
 
 | Người | Story pick (bản rút gọn) | Việc làm cụ thể |
 | :--- | :--- | :--- |

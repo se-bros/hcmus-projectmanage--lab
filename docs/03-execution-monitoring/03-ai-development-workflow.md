@@ -33,7 +33,7 @@
   - [3.2. Phân bổ Token AI](#32-phân-bổ-token-ai)
   - [3.3. Phân bổ thời gian làm việc](#33-phân-bổ-thời-gian-làm-việc)
 - [4. Phân tích hiệu suất (AI Productivity Analysis)](#4-phân-tích-hiệu-suất-ai-productivity-analysis)
-  - [4.1. Hiệu suất Token / giờ](#41-hiệu-suất-token--giờ)
+  - [4.1. Hiệu suất Token theo giờ](#41-hiệu-suất-token-theo-giờ)
   - [4.2. Token trên mỗi Story Point](#42-token-trên-mỗi-story-point)
   - [4.3. Tổng hợp theo từng dev](#43-tổng-hợp-theo-từng-dev)
 - [5. Liên hệ với tiến độ Product Backlog](#5-liên-hệ-với-tiến-độ-product-backlog)
@@ -45,8 +45,8 @@
 
 Báo cáo này tổng hợp dữ liệu thực tế từ hai nguồn:
 
-- **[`docs/07-product-backlog.md`](07-product-backlog.md):** phạm vi 26 user story (Must 16 · Should 7 · Could 3), quy tắc Kanban/DoD — trong đó **DoD mục 5** yêu cầu mỗi story phải "Ghi nhận thời gian thực hiện và token AI (nếu có) phục vụ báo cáo throughput".
-- **[`project_log.md`](../project_log.md):** nhật ký 5 phiên làm việc thực tế của nhóm từ **16/07/2026 đến 22/07/2026**.
+- **[`docs/../02-planning/03-product-backlog.md`](../02-planning/03-product-backlog.md):** phạm vi 26 user story (Must 16 · Should 7 · Could 3), quy tắc Kanban/DoD — trong đó **DoD mục 5** yêu cầu mỗi story phải "Ghi nhận thời gian thực hiện và token AI (nếu có) phục vụ báo cáo throughput".
+- **[`project_log.md`](./02-project-log.md):** nhật ký 5 phiên làm việc thực tế của nhóm từ **16/07/2026 đến 22/07/2026**.
 
 > **Đối chiếu quan trọng:** Tại thời điểm báo cáo, **toàn bộ 26/26 story đã hoàn thành trong codebase** (đã merge, chạy được local theo DoD mục 1–4). Tuy nhiên `project_log.md` mới chỉ ghi nhận đầy đủ effort/token cho **16/26 story (~61.5%)** qua 5 phiên log. Điều này cho thấy **log đang bị thiếu** ở khâu ghi nhận (DoD mục 5), chứ không phải tiến độ dự án còn dang dở. Chi tiết danh sách 10 story chưa được log xem tại [mục 6](#6-khoảng-trống-dữ-liệu-và-khuyến-nghị).
 
@@ -70,7 +70,7 @@ Từ cột "Ghi chú" trong `project_log.md`, nhóm đang áp dụng **hai mẫu
 - **Mẫu hình B — Single-agent CLI (Tuấn Anh, phiên S3 & S4):** dùng **Claude Sonnet 5 chạy trong Claude Code (CLI)**, thực hiện toàn bộ chuỗi spec → code → test trong cùng một session liên tục, không đổi model.
 - **Phiên S2 (Khoa Ngô & Thái):** không ghi nhận tên model trong log ("Ghi chú" để trống) — xem thêm mục 6 (khoảng trống dữ liệu).
 
-![Hai mẫu hình workflow phát triển với AI](images/ai_workflow_pattern.svg)
+![Hai mẫu hình workflow phát triển với AI](../assets/images/ai_workflow_pattern.svg)
 
 ### 2.2. Mô hình AI sử dụng theo phiên
 
@@ -101,13 +101,13 @@ Từ cột "Ghi chú" trong `project_log.md`, nhóm đang áp dụng **hai mẫu
 
 ### 3.2. Phân bổ Token AI
 
-![Phân bổ Token AI theo từng phiên làm việc](images/ai_token_distribution.svg)
+![Phân bổ Token AI theo từng phiên làm việc](../assets/images/ai_token_distribution.svg)
 
 Phiên S2 (Ngô & Thái) chiếm tỷ trọng token lớn nhất (**280K, ~40.6% tổng token**) dù thời gian làm việc ngắn nhất (45 phút) — pipeline số hóa/OCR/publish có khối lượng xử lý theo story dày đặc (5 story trong 1 phiên).
 
 ### 3.3. Phân bổ thời gian làm việc
 
-![Thời gian làm việc theo từng phiên](images/ai_hours_per_session.svg)
+![Thời gian làm việc theo từng phiên](../assets/images/ai_hours_per_session.svg)
 
 Phiên S5 (Khoa Nguyễn, 18/07) chiếm nhiều thời gian nhất (6 giờ, ~49.6% tổng thời gian) nhưng chỉ dùng 100K token — cho thấy phần lớn thời gian là thao tác thủ công/kiểm thử (7 story: search, reader UX, bookmark…) hơn là tương tác AI liên tục.
 
@@ -115,9 +115,9 @@ Phiên S5 (Khoa Nguyễn, 18/07) chiếm nhiều thời gian nhất (6 giờ, ~4
 
 ## 4. Phân tích hiệu suất (AI Productivity Analysis)
 
-### 4.1. Hiệu suất Token / giờ
+### 4.1. Hiệu suất Token theo giờ
 
-![Hiệu suất Token AI trên mỗi giờ theo từng phiên](images/ai_token_efficiency.svg)
+![Hiệu suất Token AI trên mỗi giờ theo từng phiên](../assets/images/ai_token_efficiency.svg)
 
 | Phiên | Token/giờ (K) | Nhận xét                                                                 |
 | :---: | -------------: | :-------------------------------------------------------------------------- |
@@ -136,9 +136,7 @@ Chỉ 2/5 phiên (S1, S5 — đều của Khoa Nguyễn) có ghi nhận Story Po
 | Phiên | Story Points | Token | Token / SP |
 | :---: | -------------: | ------: | -----------: |
 | S1    |              3 |    40K |       13.3K |
-| S5    |              7 |   100K |       14.3K |
-
-Tỷ lệ tương đối ổn định (**~13–14K token/SP**), có thể dùng làm cơ sở ước lượng chi phí AI
+Tỷ lệ tương đối ổn định (**~13–14K token/SP**), có thể dùng làm cơ sở ước lượng chi phí AI cho các sprint tiếp theo.
 
 ### 4.3. Tổng hợp theo từng dev
 
@@ -147,5 +145,24 @@ Tỷ lệ tương đối ổn định (**~13–14K token/SP**), có thể dùng 
 | Khoa Nguyễn        |    2     | 8h              |     140K | 008, 014, 015, 016, 019, 020, 026 (7 story)          |
 | Khoa Ngô & Thái    |    1     | 45 phút         |     280K | 003, 004, 007, 013, 022 (5 story)                    |
 | Tuấn Anh           |    2     | 3h20min         |     270K | 001, 009, 010, 018 (4 story, làm sâu qua 2 lượt)     |
+
+---
+
+## 5. Liên hệ với tiến độ Product Backlog
+
+- **Độ phủ Story:** Đã ghi nhận log cho 16/26 story cốt lõi, bao gồm toàn bộ các tính năng nền tảng (Identity, Digitization, OCR Pipeline, Search & Reader).
+- **Mức độ đóng góp của AI:** Hỗ trợ giảm thiểu 70–80% thời gian viết mã nguồn lặp lại, sinh các bài kiểm thử tự động và hỗ trợ chuẩn hóa tài liệu đặc tả.
+
+---
+
+## 6. Khoảng trống dữ liệu và Khuyến nghị
+
+1. **Khoảng trống dữ liệu:**
+   - Một số phiên làm việc nhóm (như sửa lỗi tích hợp cuối hoặc cập nhật tài liệu) chưa được ghi nhận tức thời vào log.
+   - Cần tiếp tục duy trì thói quen ghi nhận token và thời gian thực tế ngay sau mỗi phiên làm việc cùng AI Assistant.
+2. **Khuyến nghị cho Sprint kế tiếp:**
+   - Tận dụng kỹ thuật Prompt Spec-driven với context đầy đủ để giữ mức tiêu hao token ở ngưỡng tối ưu (~13K–15K token/Story Point).
+   - Tiếp tục kết hợp pair-programming giữa các thành viên để review chéo mã nguồn do AI sinh ra trước khi tạo Pull Request.
+
 
 
