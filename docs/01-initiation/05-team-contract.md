@@ -203,13 +203,13 @@ Sau **mỗi phiên làm việc** với AI Coding Assistant, thành viên **bắt
 
 | Trường           | Bắt buộc | Mô tả                                          |
 | :--------------- | :------: | :--------------------------------------------- |
-| Ngày hoàn thành  |    ✅    | Ngày kết thúc session.                         |
-| Dev              |    ✅    | Tên thành viên thực hiện.                      |
-| Story ID         |    ✅    | Mã các stories hoàn thành trong session.       |
-| Tên Story        |    ✅    | Mô tả ngắn gọn công việc đã làm.               |
-| Thời gian làm    |    ✅    | Tổng thời gian thực tế (giờ hoặc phút).        |
-| Token AI đã dùng |    ✅    | Số token AI tiêu thụ trong session.            |
-| Ghi chú          |    ❌    | Model AI sử dụng và ghi chú đặc biệt (nếu có). |
+| Ngày hoàn thành  |        | Ngày kết thúc session.                         |
+| Dev              |        | Tên thành viên thực hiện.                      |
+| Story ID         |        | Mã các stories hoàn thành trong session.       |
+| Tên Story        |        | Mô tả ngắn gọn công việc đã làm.               |
+| Thời gian làm    |        | Tổng thời gian thực tế (giờ hoặc phút).        |
+| Token AI đã dùng |        | Số token AI tiêu thụ trong session.            |
+| Ghi chú          |        | Model AI sử dụng và ghi chú đặc biệt (nếu có). |
 
 > **Vi phạm:** Không ghi session log sẽ bị tính là vi phạm kỷ luật nhóm (mục 9.2).
 

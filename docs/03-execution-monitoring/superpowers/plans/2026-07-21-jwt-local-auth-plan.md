@@ -1273,7 +1273,7 @@ export function LoginPage() {
           <ul className="auth-hero-list">
             {HIGHLIGHTS.map((item) => (
               <li key={item}>
-                <span aria-hidden="true">✓</span>
+                <span aria-hidden="true"></span>
                 {item}
               </li>
             ))}

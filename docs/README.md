@@ -5,7 +5,7 @@
 
 ---
 
-## 🗺️ Cấu trúc Tài liệu theo Vòng đời Quản lý Dự án (PM Lifecycle)
+## Cấu trúc Tài liệu theo Vòng đời Quản lý Dự án (PM Lifecycle)
 
 ```
 docs/
@@ -18,7 +18,7 @@ docs/
 
 ---
 
-## 📌 Bảng Tra cứu Chi tiết Tài liệu
+## Bảng Tra cứu Chi tiết Tài liệu
 
 ### 1. Giai đoạn Khởi tạo Dự án (`01-initiation/`)
 *Mục tiêu: Định hình bài toán thực tế, đánh giá tính khả thi, xác lập điều lệ và cam kết nhóm.*

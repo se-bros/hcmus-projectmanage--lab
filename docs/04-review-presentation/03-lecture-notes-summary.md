@@ -4,7 +4,7 @@ Tài liệu này tóm tắt toàn bộ kiến thức, quy trình và bài tập 
 
 ---
 
-## 📌 Buổi 02: Khởi động & Kỹ thuật Prompt trong QLDA
+## Buổi 02: Khởi động & Kỹ thuật Prompt trong QLDA
 
 ### 1. Nhiệm vụ & Yêu cầu môn học
 * **Đăng ký nhóm**: Nhóm gồm 6 thành viên, yêu cầu tất cả đều đóng góp.
@@ -27,7 +27,7 @@ Tài liệu này tóm tắt toàn bộ kiến thức, quy trình và bài tập 
 
 ---
 
-## 📌 Buổi 03: Khởi tạo Dự án (Project Initiation)
+## Buổi 03: Khởi tạo Dự án (Project Initiation)
 
 Khởi tạo dự án tập trung vào việc trả lời các câu hỏi cốt lõi sau:
 
@@ -51,7 +51,7 @@ Khởi tạo dự án tập trung vào việc trả lời các câu hỏi cốt 
 
 ---
 
-## 📌 Buổi 04: Đánh giá Dự án & Project Charter (WHAT - HOW - WHO)
+## Buổi 04: Đánh giá Dự án & Project Charter (WHAT - HOW - WHO)
 
 ### 1. Cách tính điểm môn học
 Dựa trên 4 yếu tố:
@@ -78,7 +78,7 @@ Dựa trên 4 yếu tố:
 
 ---
 
-## 📌 Buổi 05: Quản lý và Lập kế hoạch Dự án (Project Planning & Execution)
+## Buổi 05: Quản lý và Lập kế hoạch Dự án (Project Planning & Execution)
 
 Môn học kéo dài trong 7 tuần. Từ tuần 5-7 sẽ tập trung làm đồ án nhóm và ôn thi giữa kỳ.
 
