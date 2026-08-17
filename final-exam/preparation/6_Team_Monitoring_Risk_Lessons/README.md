@@ -2,9 +2,9 @@
 
 - **Phạm vi phụ trách:** **Câu 16, Câu 17, Câu 18, Câu 19, Câu 21**
 - **Tài liệu tham chiếu chính trong dự án:**
-  - [`docs/01-initiation/05-team-contract.md`](../../docs/01-initiation/05-team-contract.md) (Lý thuyết Y & Chính sách phòng ngừa xung đột)
-  - [`docs/03-execution-monitoring/02-project-log.md`](../../docs/03-execution-monitoring/02-project-log.md) (Nhật ký thực thi & số liệu token)
-  - [`docs/03-execution-monitoring/03-ai-development-workflow.md`](../../docs/03-execution-monitoring/03-ai-development-workflow.md) (Báo cáo quy trình AI)
+  - [`docs/01-initiation/05-team-contract.md`](../../../docs/01-initiation/05-team-contract.md) (Lý thuyết Y & Chính sách phòng ngừa xung đột)
+  - [`docs/03-execution-monitoring/02-project-log.md`](../../../docs/03-execution-monitoring/02-project-log.md) (Nhật ký thực thi & số liệu token)
+  - [`docs/03-execution-monitoring/03-ai-development-workflow.md`](../../../docs/03-execution-monitoring/03-ai-development-workflow.md) (Báo cáo quy trình AI)
 - **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in file `05-team-contract.md`, `02-project-log.md` và `03-ai-development-workflow.md`.
 

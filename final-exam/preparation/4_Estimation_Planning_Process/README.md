@@ -2,9 +2,9 @@
 
 - **Phạm vi phụ trách:** **Câu 9, Câu 10, Câu 11**
 - **Tài liệu tham chiếu chính trong dự án:**
-  - [`docs/02-planning/04-cost-time-resource.md`](../../docs/02-planning/04-cost-time-resource.md)
-  - [`docs/03-execution-monitoring/01-sprint-plan.md`](../../docs/03-execution-monitoring/01-sprint-plan.md)
-  - [`docs/02-planning/03-product-backlog.md`](../../docs/02-planning/03-product-backlog.md) (Mục Quy trình Kanban & DoD)
+  - [`docs/02-planning/04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md)
+  - [`docs/03-execution-monitoring/01-sprint-plan.md`](../../../docs/03-execution-monitoring/01-sprint-plan.md)
+  - [`docs/02-planning/03-product-backlog.md`](../../../docs/02-planning/03-product-backlog.md) (Mục Quy trình Kanban & DoD)
 - **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in file `04-cost-time-resource.md` (mục UCP & COCOMO II) và `01-sprint-plan.md`.
 

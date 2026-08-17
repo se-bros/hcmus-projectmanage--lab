@@ -2,9 +2,9 @@
 
 - **Phạm vi phụ trách:** **Câu 5, Câu 6, Câu 7**
 - **Tài liệu tham chiếu chính trong dự án:**
-  - [`docs/02-planning/02-architecture.md`](../../docs/02-planning/02-architecture.md)
-  - Ảnh giao diện hệ thống trong [`docs/assets/images/`](../../docs/assets/images/)
-  - Mã nguồn chạy local trong [`src/`](../../src/)
+  - [`docs/02-planning/02-architecture.md`](../../../docs/02-planning/02-architecture.md)
+  - Ảnh giao diện hệ thống trong [`docs/assets/images/`](../../../docs/assets/images/)
+  - Mã nguồn chạy local trong [`src/`](../../../src/)
 - **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in Sơ đồ Kiến trúc hệ thống và Ảnh chụp màn hình Prototype (Editor split-screen + Reader).
 
@@ -37,7 +37,7 @@
 * **WHAT (Là gì?):** Là một bản cài đặt thử nghiệm tối giản nhằm kiểm chứng tính khả thi của công nghệ và chứng minh **bài toán khó nhất** trong dự án có thể giải quyết được trước khi bắt tay vào code toàn bộ hệ thống.
 * **HOW (Cách nhóm thực hiện):**
   1. *Xác định bài toán khó nhất:* Xử lý OCR tiếng Việt từ file scan chất lượng kém và tự động đóng gói sang chuẩn EPUB 3.0 mà không làm treo Web API.
-  2. *Triển khai PoC 1 (Pipeline OCR):* Tích hợp FastAPI BackgroundTasks + Tesseract OCR `vie+eng` + Poppler, thử nghiệm nhận dạng tài liệu 2 trang mẫu [`samples/two-page.pdf`](../../samples/two-page.pdf).
+  2. *Triển khai PoC 1 (Pipeline OCR):* Tích hợp FastAPI BackgroundTasks + Tesseract OCR `vie+eng` + Poppler, thử nghiệm nhận dạng tài liệu 2 trang mẫu [`samples/two-page.pdf`](../../../samples/two-page.pdf).
   3. *Triển khai PoC 2 (DRM Reader):* Kết hợp Epub.js + MinIO Presigned URL 15 phút, chứng minh độc giả đọc mượt mà nhưng không lấy được link tải trực tiếp.
 * **WHY (Tại sao cần làm?):** "Fail fast, learn fast" — khử bỏ các rủi ro kỹ thuật lớn nhất ngay từ giai đoạn đầu, tránh lãng phí công sức code giao diện khi công nghệ nền tảng chưa thông suốt.
 * **EVIDENCE (Minh chứng dự án):** Mục 5 & 6 trong `02-architecture.md`, kịch bản curl test mẫu chạy thành công trong `README.md`.

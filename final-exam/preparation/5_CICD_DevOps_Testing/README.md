@@ -2,9 +2,9 @@
 
 - **Phạm vi phụ trách:** **Câu 13, Câu 14, Câu 15, Câu 20**
 - **Tài liệu tham chiếu chính trong dự án:**
-  - [`docs/02-planning/02-architecture.md`](../../docs/02-planning/02-architecture.md) (Mục 8.2: GitFlow & Deploy)
-  - File cấu hình `docker-compose.yml`, Dockerfile trong [`src/backend/`](../../src/backend/)
-  - Bộ test suite trong [`src/backend/tests/`](../../src/backend/tests/)
+  - [`docs/02-planning/02-architecture.md`](../../../docs/02-planning/02-architecture.md) (Mục 8.2: GitFlow & Deploy)
+  - File cấu hình `docker-compose.yml`, Dockerfile trong [`src/backend/`](../../../src/backend/)
+  - Bộ test suite trong [`src/backend/tests/`](../../../src/backend/tests/)
 - **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in Sơ đồ Luồng GitFlow/CI/CD, File `docker-compose.yml` (profile `prod`) và Kết quả chạy test `pytest`.
 
