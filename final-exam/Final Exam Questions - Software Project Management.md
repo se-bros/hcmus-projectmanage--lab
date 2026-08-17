@@ -1,5 +1,7 @@
 # QUẢN LÝ DỰ ÁN PHẦN MỀM
+
 ## Câu hỏi vấn đáp cuối kỳ
+
 **GV. TS. Ngô Huy Biên. 2026.**
 
 ---
@@ -12,9 +14,10 @@ Tất cả các câu trả lời cần trình bày bằng giấy bút trên gi�
 
 ### 1. Đề xuất dự án (Project Proposal)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Đề xuất dự án (Project Proposal) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Đề xuất dự án của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Đề xuất dự án (Project Proposal) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Đề xuất dự án của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Đề xuất dự án là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Đề xuất dự án là gì?
 - Dựa vào những dữ liệu nào mà bản đề xuất được hình thành?
@@ -35,9 +38,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 2. Viễn cảnh và phạm vi dự án (Project Vision and Scope)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Viễn cảnh và phạm vi dự án (Project Vision and Scope) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Viễn cảnh và phạm vi dự án của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Viễn cảnh và phạm vi dự án (Project Vision and Scope) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Viễn cảnh và phạm vi dự án của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Viễn cảnh và phạm vi dự án là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Viễn cảnh và phạm vi dự án là gì?
 - Tài liệu Viễn cảnh và phạm vi dự án của nhóm đã được đánh giá thế nào?
@@ -48,9 +52,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 3. Ủy nhiệm dự án (Project Charter)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ủy nhiệm dự án (Project Charter) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Ủy nhiệm dự án của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ủy nhiệm dự án (Project Charter) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Ủy nhiệm dự án của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Ủy nhiệm dự án là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ủy nhiệm dự án là gì?
 - Tài liệu Ủy nhiệm dự án của nhóm đã được đánh giá thế nào?
@@ -61,9 +66,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 4. Yêu cầu phần mềm (Software Requirements / Product Backlog)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Yêu cầu phần mềm (Software Requirements, hay Product Backlog) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Yêu cầu phần mềm và bản in tài liệu Hướng dẫn sử dụng hệ thống của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Yêu cầu phần mềm (Software Requirements, hay Product Backlog) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Yêu cầu phần mềm và bản in tài liệu Hướng dẫn sử dụng hệ thống của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Yêu cầu phần mềm là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu tài liệu Yêu cầu phần mềm là gì?
 - Tài liệu Yêu cầu phần mềm của nhóm đã được đánh giá thế nào?
@@ -74,9 +80,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 5. Kiến trúc phần mềm (Software Architecture)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kiến trúc phần mềm (Software Architecture) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Kiến trúc phần mềm của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kiến trúc phần mềm (Software Architecture) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kiến trúc phần mềm của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Kiến trúc phần mềm là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kiến trúc phần mềm là gì?
 - Tài liệu Kiến trúc phần mềm của nhóm đã được đánh giá thế nào?
@@ -87,9 +94,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 6. Chứng minh ý tưởng (Proof of Concept)
 
-Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Chứng minh ý tưởng (Proof of Concept) của nhóm. *(Sinh viên nộp kèm bản in giao diện thể hiện đầu vào và đầu ra khi chạy mã nguồn Chứng minh ý tưởng của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Chứng minh ý tưởng (Proof of Concept) của nhóm. _(Sinh viên nộp kèm bản in giao diện thể hiện đầu vào và đầu ra khi chạy mã nguồn Chứng minh ý tưởng của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Sản phẩm Chứng minh ý tưởng (Proof of Concept) là gì?
 - Giải thích các phương pháp có thể dùng để chứng minh khả năng hoàn thành dự án về mặt kỹ thuật.
 - Nhóm chọn sản phẩm gì để Chứng minh ý tưởng?
@@ -101,9 +109,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm
 
 ### 7. Bản mẫu (Prototype)
 
-Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Bản mẫu (Prototype) của nhóm. *(Sinh viên nộp kèm bản in phác thảo giao diện ban đầu cho hệ thống của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Bản mẫu (Prototype) của nhóm. _(Sinh viên nộp kèm bản in phác thảo giao diện ban đầu cho hệ thống của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Sản phẩm Bản mẫu là gì?
 - Giải thích sự khác nhau giữa bản mẫu hệ thống và tập hợp các màn hình giao diện hệ thống.
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Bản mẫu là gì?
@@ -115,9 +124,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm
 
 ### 8. Báo cáo tính khả thi (Feasibility Study Report)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo tính khả thi (Feasibility Study Report) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Báo cáo tính khả thi của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo tính khả thi (Feasibility Study Report) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Báo cáo tính khả thi của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Báo cáo tính khả thi là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Báo cáo tính khả thi là gì?
 - Tài liệu Báo cáo tính khả thi của nhóm đã được đánh giá thế nào?
@@ -128,9 +138,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 9. Định nghĩa quy trình phát triển phần mềm (Software Process Definition)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Định nghĩa quy trình phát triển phần mềm (Software Process Definition) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Định nghĩa quy trình phát triển phần mềm (Software Process Definition) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Định nghĩa quy trình phát triển phần mềm là gì?
 - Mô hình cơ sở được lựa chọn để hiệu chỉnh là gì?
 - Thời gian dự kiến của từng giai đoạn là bao lâu?
@@ -146,9 +157,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 10. Ước lượng dự án (Project Estimate)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ước lượng dự án (Project Estimate) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Ước lượng dự án của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ước lượng dự án (Project Estimate) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Ước lượng dự án của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Ước lượng dự án là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ước lượng dự án là gì?
 - Tài liệu Ước lượng dự án của nhóm đã được đánh giá thế nào?
@@ -168,9 +180,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 11. Kế hoạch dự án (Project Plan)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch dự án (Project Plan) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Kế hoạch dự án của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch dự án (Project Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch dự án của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch dự án là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch dự án là gì?
 - Tài liệu Kế hoạch dự án của nhóm đã được đánh giá thế nào?
@@ -183,9 +196,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 12. Phát biểu công việc (Statement of Work)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Phát biểu công việc (Statement of Work) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Phát biểu công việc của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Phát biểu công việc (Statement of Work) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Phát biểu công việc của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Phát biểu công việc là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Phát biểu công việc là gì?
 - Tài liệu Phát biểu công việc của nhóm đã được đánh giá thế nào?
@@ -199,27 +213,28 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 13. Mô hình tích hợp liên tục (Continuous Integration)
 
-Vẽ và giải thích mô hình tích hợp liên tục (Continuous Integration) của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng hệ thống tích hợp liên tục cho dự án? *(Sinh viên nộp kèm bản in kịch bản build (build scripts), giao diện email nhận thông báo về kết quả build từ hệ thống build tự động, và bản in tài liệu Hướng dẫn cài đặt công cụ và biên dịch mã nguồn hệ thống cho máy tính của nhà phát triển của nhóm).*
+Vẽ và giải thích mô hình tích hợp liên tục (Continuous Integration) của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng hệ thống tích hợp liên tục cho dự án? _(Sinh viên nộp kèm bản in kịch bản build (build scripts), giao diện email nhận thông báo về kết quả build từ hệ thống build tự động, và bản in tài liệu Hướng dẫn cài đặt công cụ và biên dịch mã nguồn hệ thống cho máy tính của nhà phát triển của nhóm)._
 
 ---
 
 ### 14. Mô hình chuyển giao liên tục (Continuous Delivery)
 
-Vẽ và giải thích mô hình chuyển giao liên tục (Continuous Delivery) của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng hệ thống chuyển giao liên tục cho dự án? *(Sinh viên nộp kèm bản in kịch bản triển khai (deployment scripts), kịch bản cấu hình cơ sở dữ liệu, cấu hình các dịch vụ bên thứ ba, bản in giao diện email nhận thông báo về kết quả triển khai tự động, và bản in tài liệu Hướng dẫn triển khai hệ thống cho kỹ sư vận hành của nhóm.)*
+Vẽ và giải thích mô hình chuyển giao liên tục (Continuous Delivery) của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng hệ thống chuyển giao liên tục cho dự án? _(Sinh viên nộp kèm bản in kịch bản triển khai (deployment scripts), kịch bản cấu hình cơ sở dữ liệu, cấu hình các dịch vụ bên thứ ba, bản in giao diện email nhận thông báo về kết quả triển khai tự động, và bản in tài liệu Hướng dẫn triển khai hệ thống cho kỹ sư vận hành của nhóm.)_
 
 ---
 
 ### 15. Mô hình DevOps
 
-Vẽ và giải thích mô hình DevOps của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng quy trình DevOps cho dự án? Giải thích quy trình phát triển, triển khai và vận hành liên tục đồng thời nhiều phiên bản trên của dự án bằng cách áp dụng DevOps. *(Sinh viên nộp kèm bản in kịch bản khởi tạo và cấu hình tài nguyên hạ tầng cho việc triển khai hệ thống của nhóm, bản in hệ thống thư mục và tập tin hỗ trợ quản lý hạ tầng triển khai.)*
+Vẽ và giải thích mô hình DevOps của nhóm. Ghi chú trên mô hình các công cụ nhóm đã dùng cho từng thành phần. Tại sao cần sử dụng quy trình DevOps cho dự án? Giải thích quy trình phát triển, triển khai và vận hành liên tục đồng thời nhiều phiên bản trên của dự án bằng cách áp dụng DevOps. _(Sinh viên nộp kèm bản in kịch bản khởi tạo và cấu hình tài nguyên hạ tầng cho việc triển khai hệ thống của nhóm, bản in hệ thống thư mục và tập tin hỗ trợ quản lý hạ tầng triển khai.)_
 
 ---
 
 ### 16. Quản lý con người và phát triển nhóm
 
-Trình bày quá trình hình thành và phát triển nhóm mà nhóm đã trải qua. Liệt kê các vấn đề liên quan đến quản lý con người nhóm đã thực sự vướng phải. Trình bày cách nhóm đã giải quyết các vấn đề này và kết quả thu được (có thể thành công, có thể không thành công). *(Sinh viên nộp kèm bản in ảnh chụp chung các thành viên trong nhóm, bản in tài liệu quy định, quy chế, lịch làm việc của nhóm, bản in một biên bản họp của nhóm, bản in giao diện hệ thống liên lạc với dữ liệu thực tế của nhóm.)*
+Trình bày quá trình hình thành và phát triển nhóm mà nhóm đã trải qua. Liệt kê các vấn đề liên quan đến quản lý con người nhóm đã thực sự vướng phải. Trình bày cách nhóm đã giải quyết các vấn đề này và kết quả thu được (có thể thành công, có thể không thành công). _(Sinh viên nộp kèm bản in ảnh chụp chung các thành viên trong nhóm, bản in tài liệu quy định, quy chế, lịch làm việc của nhóm, bản in một biên bản họp của nhóm, bản in giao diện hệ thống liên lạc với dữ liệu thực tế của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Giải thích các giai đoạn phát triển nhóm.
 - Giải thích các loại hình tổ chức: Theo chức năng, theo dự án, ma trận yếu, ma trận cân bằng và ma trận mạnh.
 - Giải thích các mô hình quản lý nhóm: X, Y, Z.
@@ -231,31 +246,36 @@ Trình bày quá trình hình thành và phát triển nhóm mà nhóm đã tr�
 
 ### 17. Phân công, theo dõi, đánh giá, kiểm soát công việc và báo cáo tình trạng dự án
 
-Trình bày quá trình phân công, theo dõi, đánh giá, kiểm soát các công việc dự án, và báo cáo tình trạng dự án của nhóm. *(Sinh viên nộp kèm bản in giao diện hệ thống phân công, theo dõi công việc với dữ liệu thực tế của nhóm, bản in giao diện hệ thống quản lý thời gian đã dùng cho từng công việc với dữ liệu thực tế của nhóm, bản in bản cập nhật tài liệu Kế hoạch dự án theo dữ liệu thực tiễn, biểu đồ burndown của toàn dự án, tài liệu báo cáo tình trạng toàn bộ dự án của nhóm ở tuần trước tuần thi giữa học kỳ.)*
+Trình bày quá trình phân công, theo dõi, đánh giá, kiểm soát các công việc dự án, và báo cáo tình trạng dự án của nhóm. _(Sinh viên nộp kèm bản in giao diện hệ thống phân công, theo dõi công việc với dữ liệu thực tế của nhóm, bản in giao diện hệ thống quản lý thời gian đã dùng cho từng công việc với dữ liệu thực tế của nhóm, bản in bản cập nhật tài liệu Kế hoạch dự án theo dữ liệu thực tiễn, biểu đồ burndown của toàn dự án, tài liệu báo cáo tình trạng toàn bộ dự án của nhóm ở tuần trước tuần thi giữa học kỳ.)_
 
 **Các câu hỏi thường gặp:**
+
 - Làm sao để giải quyết vấn đề vượt phạm vi dự kiến (Scope Creep)?
 - Làm sao để giải quyết vấn đề vượt công sức dự kiến (Effort Creep)?
 - Làm sao để các thay đổi không trở nên bất ngờ và ảnh hưởng tiêu cực đến sự thành công của dự án?
 
 **Các câu hỏi thường gặp cho mô hình Scrum:**
+
 - Giải thích Sprint Backlogs, Sprint Boards, Sprint Tasks, Sprint Burndown Charts, Project Burndown Charts.
 - Phải xử lý thế nào khi kết thúc một Sprint mà nhóm không đưa ra được bản phân phối?
 - Phải xử lý thế nào khi kết quả của các Sprint chênh lệch một cách bất bình thường?
 
 **Các câu hỏi thường gặp cho mô hình Kanban:**
+
 - Giải thích Kanban Board, Development Workflow, WIP.
 
 **Các câu hỏi thường gặp cho mô hình Waterfall:**
+
 - Giải thích phương pháp cập nhật lịch trình, phương pháp tính toán thời gian, chi phí cần thiết để hoàn thành các công việc còn lại.
 
 ---
 
 ### 18. Kế hoạch quản lý rủi ro (Software Risk Management Plan)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý rủi ro của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý rủi ro của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý rủi ro là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý rủi ro là gì?
 - Tài liệu Kế hoạch quản lý rủi ro của nhóm đã được đánh giá thế nào?
@@ -266,9 +286,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 19. Kế hoạch quản lý chất lượng (Software Quality Management Plan)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý chất lượng (Software Quality Management Plan) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý chất lượng của nhóm, bản in định nghĩa hoàn thành (Definition of Done) của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in biên bản phản hồi từ khách hàng của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý chất lượng (Software Quality Management Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý chất lượng của nhóm, bản in định nghĩa hoàn thành (Definition of Done) của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in biên bản phản hồi từ khách hàng của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý chất lượng là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý chất lượng là gì?
 - Tài liệu Kế hoạch quản lý chất lượng của nhóm đã được đánh giá thế nào?
@@ -285,9 +306,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 20. Kế hoạch kiểm thử (Test Plan)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch kiểm thử (Test Plan) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Kế hoạch kiểm thử của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in giao diện hệ thống quản lý lỗi với dữ liệu thực tế của nhóm, bản in giao diện kết quả chạy mã nguồn kiểm thử đơn vị (Unit Tests) của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in báo cáo kết quả kiểm thử của nhóm, bản in biên bản phản hồi của khách hàng của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch kiểm thử (Test Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch kiểm thử của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in giao diện hệ thống quản lý lỗi với dữ liệu thực tế của nhóm, bản in giao diện kết quả chạy mã nguồn kiểm thử đơn vị (Unit Tests) của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in báo cáo kết quả kiểm thử của nhóm, bản in biên bản phản hồi của khách hàng của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch kiểm thử là gì?
 - Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch kiểm thử là gì?
 - Tài liệu Kế hoạch kiểm thử của nhóm đã được đánh giá thế nào?
@@ -298,9 +320,10 @@ Trình bày quá trình hình thành và phương pháp đánh giá tài liệu 
 
 ### 21. Báo cáo bài học kinh nghiệm (Lessons Learned Register)
 
-Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo bài học kinh nghiệm (Lessons Learned Register) của nhóm. *(Sinh viên nộp kèm bản in tài liệu Báo cáo bài học kinh nghiệm của nhóm.)*
+Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo bài học kinh nghiệm (Lessons Learned Register) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Báo cáo bài học kinh nghiệm của nhóm.)_
 
 **Các câu hỏi thường gặp:**
+
 - Quản lý dự án là gì?
 - Tại sao cần sự quản lý khi phát triển một dự án phần mềm?
 - Liệt kê các công việc cần thực hiện để quản lý một dự án và các sản phẩm tương ứng được tạo ra bởi từng công việc.
@@ -327,10 +350,10 @@ Xem phiếu câu hỏi mẫu ở trang kế tiếp.
 
 ## PHIẾU CÂU HỎI MẪU
 
-*Xem ví dụ khác ở trang kế tiếp.*
+_Xem ví dụ khác ở trang kế tiếp._
 
-> **Họ tên:** ___________________
-> **Mã số sinh viên:** ___________________
+> **Họ tên:** **\*\*\*\***\_\_\_**\*\*\*\***
+> **Mã số sinh viên:** **\*\*\*\***\_\_\_**\*\*\*\***
 >
 > **Câu hỏi 1.** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Đề xuất dự án (Project Proposal) của nhóm. (Sinh viên nộp kèm bản in tài liệu Đề xuất dự án của nhóm.)
 >
@@ -338,8 +361,8 @@ Xem phiếu câu hỏi mẫu ở trang kế tiếp.
 
 ---
 
-> **Họ tên:** ___________________
-> **Mã số sinh viên:** ___________________
+> **Họ tên:** **\*\*\*\***\_\_\_**\*\*\*\***
+> **Mã số sinh viên:** **\*\*\*\***\_\_\_**\*\*\*\***
 >
 > **Câu hỏi 2.** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Viễn cảnh và phạm vi dự án (Project Vision and Scope) của nhóm. (Sinh viên nộp kèm bản in tài liệu Viễn cảnh và phạm vi dự án của nhóm.)
 >

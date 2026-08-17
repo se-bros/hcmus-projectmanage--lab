@@ -1,59 +1,206 @@
-# ĐỀ CƯƠNG ÔN TẬP — NGƯỜI 3: KIẾN TRÚC, POC & BẢN MẪU PROTOTYPE
+# PHIẾU BÀI LÀM ÔN TẬP — NGƯỜI 3: KIẾN TRÚC, POC & BẢN MẪU PROTOTYPE
 
+- **Họ và tên thành viên:** Nguyễn Lê Hồ Anh Khoa
+- **Mã số sinh viên:** 23127211
 - **Phạm vi phụ trách:** **Câu 5, Câu 6, Câu 7**
-- **Tài liệu tham chiếu chính trong dự án:**
-  - [`docs/02-planning/02-architecture.md`](../../../docs/02-planning/02-architecture.md)
+- **Hạn chót hoàn thành (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
+- **Lưu ý quan trọng khi sửa `docs/`:** Nếu bạn chỉnh sửa hoặc tạo mới file trong thư mục `docs/`, **bắt buộc phải ghi lại bảng Document Revision History** ở đầu file và **ghi 1 dòng log công việc** vào file [`docs/03-execution-monitoring/02-project-log.md`](../../../docs/03-execution-monitoring/02-project-log.md).
+- **Tài liệu tham chiếu trong dự án (thực hành):**
+  - [`docs/02-planning/02-architecture.md`](../../../docs/02-planning/02-architecture.md) (Kiến trúc hệ thống, PoC và Pipeline)
   - Ảnh giao diện hệ thống trong [`docs/assets/images/`](../../../docs/assets/images/)
   - Mã nguồn chạy local trong [`src/`](../../../src/)
-- **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
-- **Bản in cần nộp kèm khi thi:** Bản in Sơ đồ Kiến trúc hệ thống và Ảnh chụp màn hình Prototype (Editor split-screen + Reader).
+- **Tài liệu lý thuyết tham chiếu (từ bài giảng):**
+  - [`materials/04_01_software_development_models.md`](../../../materials/04_01_software_development_models.md) (Các mô hình phát triển phần mềm, Prototyping, Proof of Concept)
+  - [`materials/04_02_scrum_development_process.md`](../../../materials/04_02_scrum_development_process.md) (Quy trình Scrum, Sprint, Incremental Delivery)
+- **Ghi chú bài giảng trên lớp ([`note.md`](../../../note.md)):**
+  - **Buổi 05 & 10:** Hai loại PoC bắt buộc: (1) Tính năng **khó nhất** chưa từng làm (Pipeline OCR tiếng Việt bất đồng bộ + Pandoc EPUB); (2) Tính năng đơn giản nhất nhưng **bao quát toàn bộ tech stack chủ lực** (OAuth $\rightarrow$ DB $\rightarrow$ MinIO Signed URL $\rightarrow$ Epub.js Reader). PoC không cần UI đẹp, tốn ít token, chỉ cần chứng minh chạy được input $\rightarrow$ output.
+  - **Buổi 05:** Prototype thể hiện 1 workflow từ text $\rightarrow$ diagram $\rightarrow$ giao diện tương tác; Modular Monolith sạch ưu tiên tech stack quen thuộc.
+- **Đọc chéo liên kết:** Nên đọc thêm phần của **Người 2** (Câu 4: Product Backlog) vì Kiến trúc được thiết kế dựa trên Backlog, và phần của **Người 5** (Câu 13-15: CI/CD) vì Architecture quyết định cách build/deploy.
+- **Checklist bản in nộp kèm khi thi:**
+  - [ ] Bản in tài liệu Kiến trúc phần mềm (`02-architecture.md`) -- đánh dấu số câu hỏi "5" ở góc trên phải.
+  - [ ] Bản in giao diện thể hiện đầu vào và đầu ra khi chạy mã nguồn PoC (log OCR + EPUB) -- **CẦN CHUẨN BỊ**: chạy PoC, screenshot terminal output -- đánh dấu "6".
+  - [ ] Bản in phác thảo giao diện ban đầu (Prototype UI: Màn hình Split-screen Editor và Web Reader) -- **CẦN CHUẨN BỊ**: screenshot giao diện thực tế hoặc wireframe ban đầu -- đánh dấu "7".
+- **Chiến lược 10 phút viết giấy A4:** Phút 1-2: Viết tiêu đề câu + dàn ý WHAT-HOW-WHY-EVIDENCE. Phút 3-7: Triển khai mỗi mục 3-4 dòng ngắn gọn, ưu tiên HOW (các bước nhóm đã làm) và EVIDENCE (số liệu cụ thể). Phút 8-9: Vẽ 1 sơ đồ nhỏ minh họa. Phút 10: Rà soát, bổ sung từ khóa quan trọng còn thiếu.
 
 ---
 
 ## CÂU 5: KIẾN TRÚC PHẦN MỀM (SOFTWARE ARCHITECTURE)
 
-> **Câu hỏi chính:** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kiến trúc phần mềm của nhóm.
+> **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kiến trúc phần mềm (Software Architecture) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kiến trúc phần mềm của nhóm.)_
 
-### 1. Dàn ý trả lời 4 câu hỏi vàng:
-* **WHAT (Là gì?):** Là tài liệu đặc tả cấu trúc mức cao của hệ thống, các quyết định công nghệ (Tech Stack Choices), mô hình dữ liệu (Data Models), phân chia tầng (Layered Architecture) và các cơ chế bảo mật (Signed URL, RBAC).
-* **HOW (Cách nhóm thực hiện):**
-  1. *Lựa chọn Tech Stack:*
-     - **Backend:** FastAPI (Python 3.11, quản lý bằng `uv`) — hiệu năng cao, hỗ trợ Async background task xử lý OCR.
-     - **Frontend:** React 19 + TypeScript + Vite — phản hồi nhanh, modular component.
-     - **Lưu trữ:** MinIO Object Storage (lưu PDF scan và EPUB xuất bản), PostgreSQL (Metadata, Full-text Search FTS).
-     - **Core Engines:** Tesseract OCR `vie+eng`, Pandoc chuyển đổi Markdown sang EPUB, Poppler render PDF preview.
-  2. *Mô hình Kiến trúc:* Áp dụng mô hình **4+1 Architectural Views** (Logical, Process, Development, Physical + Use Cases).
-  3. *Thiết kế Bảo mật:* DRM Reader bảo vệ bản quyền — EPUB không mở public link, mà sinh **MinIO Signed URL có hiệu lực 15 phút** cho độc giả.
-* **WHY (Tại sao cần làm?):** Đảm bảo hệ thống vận hành đúng yêu cầu phi chức năng (hiệu năng, mở rộng, bảo mật), tránh việc code chắp vá không kiểm soát.
-* **EVIDENCE (Minh chứng dự án):** File `02-architecture.md` mã tài liệu `HCMUS-LDMS-07`, sơ đồ kiến trúc `docs/assets/images/system_architecture.svg`.
+### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
+- **Tài liệu đối chiếu:** `02-architecture.md` (Mã HCMUS-LDMS-07).
+- **Từ khóa:** Tech Stack (FastAPI, React 19, MinIO, PostgreSQL FTS, Tesseract, Pandoc), Mô hình 4+1 Architectural Views (Logical, Process, Development, Physical + Use Cases), Cơ chế bảo mật DRM (Signed URL 15 phút, RBAC).
+
+### 2. Không gian tự biên soạn câu trả lời:
+
+#### A. Dàn ý trình bày trên giấy A4 (WHAT - HOW - WHY - EVIDENCE)
+
+- **WHAT (Là gì?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **HOW (Cách nhóm lựa chọn công nghệ và thiết kế tầng):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **WHY (Tại sao cần tài liệu Kiến trúc phần mềm?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **EVIDENCE (Minh chứng trong dự án):**
+  _Viết câu trả lời của bạn vào đây:_
+
+#### B. Sơ đồ Kiến trúc Tổng thể Hệ thống HCMUS-LDMS
+
+```mermaid
+flowchart TD
+    %% Tự vẽ sơ đồ kiến trúc hệ thống
+    Frontend["React 19 Frontend"] -->|REST API| Backend["FastAPI Backend"]
+    Backend --> DB[(PostgreSQL FTS)]
+    Backend --> Storage[(MinIO Object Storage)]
+    Backend --> Engine["OCR & Pandoc Engines"]
+```
+
+#### C. Trả lời chi tiết 100% Bộ câu hỏi thường gặp của Giảng viên
+
+1. **Các câu hỏi chính cần trả lời trong tài liệu Kiến trúc phần mềm là gì?**
+   - _Trả lời:_
+
+2. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kiến trúc phần mềm là gì?**
+   - _Trả lời:_
+
+3. **Tài liệu Kiến trúc phần mềm của nhóm đã được đánh giá thế nào?**
+   - _Trả lời:_
+
+4. **Tại sao cần tạo tài liệu Kiến trúc phần mềm?**
+   - _Trả lời:_
+
+5. **Tài liệu Kiến trúc phần mềm của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+   - _Trả lời:_
+
+6. **Giải thích chi tiết 5 góc nhìn trong Mô hình 4+1 Views của Philippe Kruchten:**
+   - _Trả lời:_
 
 ---
 
 ## CÂU 6: CHỨNG MINH Ý TƯỞNG (PROOF OF CONCEPT — POC)
 
-> **Câu hỏi chính:** Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Chứng minh ý tưởng (PoC) của nhóm.
+> **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Chứng minh ý tưởng (Proof of Concept) của nhóm. _(Sinh viên nộp kèm bản in giao diện thể hiện đầu vào và đầu ra khi chạy mã nguồn PoC của nhóm.)_
 
-### 1. Dàn ý trả lời 4 câu hỏi vàng:
-* **WHAT (Là gì?):** Là một bản cài đặt thử nghiệm tối giản nhằm kiểm chứng tính khả thi của công nghệ và chứng minh **bài toán khó nhất** trong dự án có thể giải quyết được trước khi bắt tay vào code toàn bộ hệ thống.
-* **HOW (Cách nhóm thực hiện):**
-  1. *Xác định bài toán khó nhất:* Xử lý OCR tiếng Việt từ file scan chất lượng kém và tự động đóng gói sang chuẩn EPUB 3.0 mà không làm treo Web API.
-  2. *Triển khai PoC 1 (Pipeline OCR):* Tích hợp FastAPI BackgroundTasks + Tesseract OCR `vie+eng` + Poppler, thử nghiệm nhận dạng tài liệu 2 trang mẫu [`samples/two-page.pdf`](../../../samples/two-page.pdf).
-  3. *Triển khai PoC 2 (DRM Reader):* Kết hợp Epub.js + MinIO Presigned URL 15 phút, chứng minh độc giả đọc mượt mà nhưng không lấy được link tải trực tiếp.
-* **WHY (Tại sao cần làm?):** "Fail fast, learn fast" — khử bỏ các rủi ro kỹ thuật lớn nhất ngay từ giai đoạn đầu, tránh lãng phí công sức code giao diện khi công nghệ nền tảng chưa thông suốt.
-* **EVIDENCE (Minh chứng dự án):** Mục 5 & 6 trong `02-architecture.md`, kịch bản curl test mẫu chạy thành công trong `README.md`.
+### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
+- **Tài liệu đối chiếu:** Mục 5 & 6 trong `02-architecture.md`.
+- **Từ khóa:** Bài toán khó nhất (Xử lý OCR tiếng Việt và đóng gói EPUB không nghẽn Web API), PoC 1 (Pipeline OCR Async BackgroundTasks), PoC 2 (DRM Reader với Signed URL 15m), Thử nghiệm file mẫu [`samples/two-page.pdf`](../../../samples/two-page.pdf), "Fail fast, learn fast".
+
+### 2. Không gian tự biên soạn câu trả lời:
+
+#### A. Dàn ý trình bày trên giấy A4 (WHAT - HOW - WHY - EVIDENCE)
+
+- **WHAT (Là gì?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **HOW (Cách nhóm cài đặt và đo đạc PoC):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **WHY (Tại sao cần tạo sản phẩm PoC?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **EVIDENCE (Minh chứng trong dự án):**
+  _Viết câu trả lời của bạn vào đây:_
+
+#### B. Sơ đồ Luồng Kỹ thuật PoC Pipeline OCR
+
+```mermaid
+sequenceDiagram
+    %% Tự vẽ sơ đồ sequence PoC OCR
+    participant User as Người dùng
+    participant API as FastAPI
+    participant Worker as Background Task
+    participant OCR as Tesseract OCR
+    participant S3 as MinIO
+    User->>API: Upload PDF
+    API->>Worker: Dispatch Job
+    Worker->>OCR: Trích xuất Text
+    Worker->>S3: Lưu EPUB
+```
+
+#### C. Trả lời chi tiết 100% Bộ câu hỏi thường gặp của Giảng viên
+
+1. **Sản phẩm Chứng minh ý tưởng (Proof of Concept) là gì?**
+   - _Trả lời:_
+
+2. **Giải thích các phương pháp có thể dùng để chứng minh khả năng hoàn thành dự án về mặt kỹ thuật (Spike solution, Tracer bullet, Benchmark...):**
+   - _Trả lời:_
+
+3. **Nhóm chọn sản phẩm gì để Chứng minh ý tưởng? Tại sao lại chọn sản phẩm đó?**
+   - _Trả lời:_
+
+4. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Chứng minh ý tưởng là gì?**
+   - _Trả lời:_
+
+5. **Tại sao cần tạo sản phẩm Chứng minh ý tưởng?**
+   - _Trả lời:_
+
+6. **Sản phẩm Chứng minh ý tưởng của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+   - _Trả lời:_
 
 ---
 
 ## CÂU 7: BẢN MẪU (PROTOTYPE)
 
-> **Câu hỏi chính:** Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Bản mẫu (Prototype) của nhóm.
+> **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Bản mẫu (Prototype) của nhóm. _(Sinh viên nộp kèm bản in phác thảo giao diện ban đầu cho hệ thống của nhóm.)_
 
-### 1. Dàn ý trả lời 4 câu hỏi vàng:
-* **WHAT (Là gì?):** Là bản dựng giao diện trực quan cho phép người dùng và thủ thư trải nghiệm luồng nghiệp vụ cốt lõi trước khi hoàn thiện 100% tính năng phụ.
-* **HOW (Cách nhóm thực hiện):**
-  1. *Màn hình Quản trị & Upload (`/documents`):* Cho phép kéo thả file scan PDF, hiển thị tiến độ OCR nền.
-  2. *Màn hình Biên tập Split-screen (`/documents/:id`):* Chia đôi màn hình — bên trái hiển thị ảnh scan gốc theo từng trang, bên phải là textarea sửa lỗi chính tả OCR, đồng bộ cuộn và chuyển trang.
-  3. *Màn hình Đọc sách (`/reader`):* Đọc sách EPUB responsive với Epub.js, tùy chỉnh font chữ, cỡ chữ, chế độ sáng/tối.
-  4. *Đánh giá Prototype:* Cho thủ thư dùng thử trực tiếp để lấy phản hồi về độ tiện dụng của giao diện Split-screen.
-* **WHY (Tại sao cần làm?):** Giúp người dùng hình dung rõ ràng sản phẩm, phát hiện sớm các bất tiện trong trải nghiệm UX trước khi đóng băng thiết kế.
-* **EVIDENCE (Minh chứng dự án):** Mã nguồn frontend React chạy thực tế tại `http://localhost:5173/documents` và `/reader`.
+### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
+- **Tài liệu đối chiếu:** Các màn hình React trong `src/frontend/` và tài liệu User Guide.
+- **Từ khóa:** Evolutionary Prototype (Bản mẫu tiến hóa trên React + Tailwind), Màn hình Split-screen Editor (ảnh scan song song text OCR), Màn hình Reader với Epub.js, Phản hồi của Thủ thư thực tế.
+
+### 2. Không gian tự biên soạn câu trả lời:
+
+#### A. Dàn ý trình bày trên giấy A4 (WHAT - HOW - WHY - EVIDENCE)
+
+- **WHAT (Là gì?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **HOW (Cách nhóm xây dựng và đánh giá Prototype):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **WHY (Tại sao cần tạo bản mẫu Prototype?):**
+  _Viết câu trả lời của bạn vào đây:_
+
+- **EVIDENCE (Minh chứng trong dự án):**
+  _Viết câu trả lời của bạn vào đây:_
+
+#### B. Sơ đồ So sánh Prototype (tiến hóa) vs UI Mockups (tĩnh)
+
+```mermaid
+flowchart TD
+    %% Tự hoàn thiện sơ đồ so sánh tại đây
+    subgraph Proto["Prototype (Evolutionary)"]
+        P1["Bản mẫu v1"] -->|Phản hồi người dùng| P2["Bản mẫu v2"]
+        P2 -->|Tinh chỉnh| P3["Sản phẩm cuối"]
+    end
+    subgraph Mock["UI Mockups / Wireframes"]
+        M1["Wireframe tĩnh"] --> M2["Thiết kế High-Fidelity"]
+        M2 --> M3["Chỉ tham khảo, không chạy được"]
+    end
+```
+
+#### C. Trả lời chi tiết 100% Bộ câu hỏi thường gặp của Giảng viên
+
+1. **Sản phẩm Bản mẫu là gì?**
+   - _Trả lời:_
+
+2. **Giải thích sự khác nhau giữa Bản mẫu hệ thống (Prototype) và Tập hợp các màn hình giao diện (UI Mockups / Wireframes):**
+   - _Trả lời:_
+
+3. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Bản mẫu là gì?**
+   - _Trả lời:_
+
+4. **Sản phẩm Bản mẫu của nhóm đã được đánh giá thế nào?**
+   - _Trả lời:_
+
+5. **Tại sao cần tạo sản phẩm Bản mẫu?**
+   - _Trả lời:_
+
+6. **Sản phẩm Bản mẫu của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+   - _Trả lời:_
