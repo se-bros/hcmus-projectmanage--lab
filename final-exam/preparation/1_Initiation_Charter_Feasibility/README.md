@@ -6,6 +6,7 @@
   - [`docs/01-initiation/02-project-proposal.md`](../../docs/01-initiation/02-project-proposal.md)
   - [`docs/01-initiation/03-feasibility-study.md`](../../docs/01-initiation/03-feasibility-study.md)
   - [`docs/01-initiation/04-project-charter.md`](../../docs/01-initiation/04-project-charter.md)
+- **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in file `02-project-proposal.md` và `04-project-charter.md`.
 
 ---

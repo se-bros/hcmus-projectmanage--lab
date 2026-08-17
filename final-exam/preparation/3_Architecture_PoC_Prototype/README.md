@@ -5,6 +5,7 @@
   - [`docs/02-planning/02-architecture.md`](../../docs/02-planning/02-architecture.md)
   - Ảnh giao diện hệ thống trong [`docs/assets/images/`](../../docs/assets/images/)
   - Mã nguồn chạy local trong [`src/`](../../src/)
+- **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in Sơ đồ Kiến trúc hệ thống và Ảnh chụp màn hình Prototype (Editor split-screen + Reader).
 
 ---

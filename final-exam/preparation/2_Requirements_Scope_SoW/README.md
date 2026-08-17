@@ -5,6 +5,7 @@
   - [`docs/02-planning/01-vision-and-scope.md`](../../docs/02-planning/01-vision-and-scope.md)
   - [`docs/02-planning/03-product-backlog.md`](../../docs/02-planning/03-product-backlog.md)
   - [`docs/02-planning/05-statement-of-work.md`](../../docs/02-planning/05-statement-of-work.md)
+- **Hạn chót hoàn thành đề cương (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
 - **Bản in cần nộp kèm khi thi:** Bản in file `01-vision-and-scope.md` và `03-product-backlog.md`.
 
 ---

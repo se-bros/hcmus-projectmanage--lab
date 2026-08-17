@@ -5,6 +5,14 @@ Tài liệu này chi tiết hóa việc phân chia công việc chuẩn bị cho
 
 ---
 
+## MỐC THỜI GIAN VÀ DEADLINE QUAN TRỌNG
+
+- **Hạn chót hoàn thành soạn đề cương cá nhân (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
+- **Hạn chót đọc chéo và góp ý (Bước 2):** 20:00, Thứ Bảy (22/08/2026)
+- **Họp phỏng vấn thử Mock Interview (Bước 3):** Chủ Nhật (23/08/2026)
+
+---
+
 ## DANH SÁCH PHÂN CHIA CÔNG VIỆC CHO 6 THÀNH VIÊN
 
 | Thành viên | Chủ đề phụ trách | Phạm vi câu hỏi | Nội dung & Trọng tâm cần chuẩn bị | Thư mục chi tiết |
@@ -43,16 +51,16 @@ Tài liệu này chi tiết hóa việc phân chia công việc chuẩn bị cho
 
 ```mermaid
 gantt
-    title Kế hoạch Chuẩn bị và Ôn thi Vấn đáp
+    title Ke hoach Chuan bi va On thi Van dap
     dateFormat  YYYY-MM-DD
-    section Bước 1: Soạn thảo
-    Soạn đề cương & Chuẩn bị bản in     :active, p1, 2026-08-18, 4d
-    section Bước 2: Review chéo
-    Đọc chéo & Góp ý câu trả lời        :p2, 2026-08-22, 2d
-    section Bước 3: Phỏng vấn thử
-    Mock Interview vấn đáp 1-1          :p3, 2026-08-24, 2d
+    section Buoc 1: Soan thao de cuong
+    Hoan thanh bien soan de cuong ca nhan (Deadline 20h00 Thu 5) :active, p1, 2026-08-18, 2026-08-20
+    section Buoc 2: Review cheo
+    Doc cheo & gop y cau tra loi :p2, 2026-08-21, 2026-08-22
+    section Buoc 3: Phong van thu
+    Mock Interview van dap 1-1 :p3, 2026-08-23, 2026-08-24
 ```
 
-- **Bước 1 — Soạn thảo đề cương cá nhân & In tài liệu:** Mỗi người tự hoàn thiện file `README.md` trong thư mục `preparation/` của mình và in toàn bộ tài liệu liên quan.
-- **Bước 2 — Review chéo:** Các cặp thành viên đọc chéo đề cương của nhau để phát hiện các lỗ hổng kiến thức hoặc số liệu chưa khớp.
-- **Bước 3 — Mock Interview:** Nhóm tổ chức 1 buổi họp Online/Offline mô phỏng đúng quy trình thi (10 phút viết ra giấy A4 + Giảng viên hỏi xoáy 5-10 phút).
+- **Bước 1 — Soạn thảo đề cương cá nhân & In tài liệu (Hạn chót: 20:00, Thứ Năm 20/08/2026):** Mỗi người tự hoàn thiện file `README.md` trong thư mục `preparation/` của mình và chuẩn bị các bản in tài liệu liên quan.
+- **Bước 2 — Review chéo (Hạn chót: 20:00, Thứ Bảy 22/08/2026):** Các cặp thành viên đọc chéo đề cương của nhau để phát hiện các lỗ hổng kiến thức hoặc số liệu chưa khớp.
+- **Bước 3 — Mock Interview (Chủ Nhật 23/08/2026):** Nhóm tổ chức 1 buổi họp mô phỏng đúng quy trình thi (10 phút viết ra giấy A4 + Giảng viên hỏi xoáy 5-10 phút).
