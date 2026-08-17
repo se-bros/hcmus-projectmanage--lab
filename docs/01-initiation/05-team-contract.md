@@ -25,10 +25,38 @@
 
 ## Mục lục
 
-
+- [1. Mục đích Hợp đồng Nhóm](#1-mục-đích-hợp-đồng-nhóm)
+- [2. Thông tin thành viên và Mục tiêu](#2-thông-tin-thành-viên-và-mục-tiêu)
+  - [2.1. Danh sách thành viên](#21-danh-sách-thành-viên)
+  - [2.2. Mục tiêu chung của nhóm](#22-mục-tiêu-chung-của-nhóm)
+  - [2.3. Mục tiêu cá nhân](#23-mục-tiêu-cá-nhân)
+- [3. Phân vai và Trách nhiệm (Roles & Responsibilities)](#3-phân-vai-và-trách-nhiệm-roles-responsibilities)
+  - [3.1. Ma trận phân vai và Trách nhiệm](#31-ma-trận-phân-vai-và-trách-nhiệm)
+  - [3.2. Nguyên tắc phân công công việc](#32-nguyên-tắc-phân-công-công-việc)
+- [4. Phương pháp làm việc (Work Methodology)](#4-phương-pháp-làm-việc-work-methodology)
+  - [4.1. Kanban và WIP Limit](#41-kanban-và-wip-limit)
+  - [4.2. Định nghĩa Hoàn thành (Definition of Done — DoD)](#42-định-nghĩa-hoàn-thành-definition-of-done-dod)
+  - [4.3. Đo lường Throughput và Forecast](#43-đo-lường-throughput-và-forecast)
+- [5. Quy tắc Giao tiếp (Communication Norms)](#5-quy-tắc-giao-tiếp-communication-norms)
+  - [5.1. Kênh giao tiếp chính thức](#51-kênh-giao-tiếp-chính-thức)
+  - [5.2. Lịch họp nhóm](#52-lịch-họp-nhóm)
+  - [5.3. Quy tắc phản hồi](#53-quy-tắc-phản-hồi)
+- [6. Quy trình sử dụng AI Coding Assistants](#6-quy-trình-sử-dụng-ai-coding-assistants)
+  - [6.1. AI Tools được phép sử dụng](#61-ai-tools-được-phép-sử-dụng)
+  - [6.2. Quy tắc sử dụng AI](#62-quy-tắc-sử-dụng-ai)
+  - [6.3. Ghi nhận Session Log](#63-ghi-nhận-session-log)
+- [7. Quản lý mã nguồn (Source Control)](#7-quản-lý-mã-nguồn-source-control)
+- [8. Triết lý Quản trị & Giải quyết Xung đột (Theory Y & Policy-based Resolution)](#8-triết-lý-quản-trị-giải-quyết-xung-đột-theory-y-policy-based-resolution)
+  - [8.1. Triết lý Quản trị Lý thuyết Y (Theory Y Principles)](#81-triết-lý-quản-trị-lý-thuyết-y-theory-y-principles)
+  - [8.2. Chính sách Thiết lập Sớm để Phòng ngừa Xung đột (Proactive Policies)](#82-chính-sách-thiết-lập-sớm-để-phòng-ngừa-xung-đột-proactive-policies)
+  - [8.3. Quy trình Giải quyết Bất đồng Kỹ thuật & Nghiệp vụ](#83-quy-trình-giải-quyết-bất-đồng-kỹ-thuật-nghiệp-vụ)
+- [9. Cam kết và Kỷ luật (Accountability & Consequences)](#9-cam-kết-và-kỷ-luật-accountability-consequences)
+  - [9.1. Cam kết chung](#91-cam-kết-chung)
+  - [9.2. Xử lý vi phạm](#92-xử-lý-vi-phạm)
+- [10. Điều khoản sửa đổi](#10-điều-khoản-sửa-đổi)
+- [11. Chữ ký cam kết (Signatures)](#11-chữ-ký-cam-kết-signatures)
 
 ---
-
 ## 1. Mục đích Hợp đồng Nhóm
 
 Hợp đồng Nhóm (Team Contract) là thỏa thuận nội bộ giữa tất cả thành viên nhóm phát triển dự án **HCMUS-LDMS**, nhằm:

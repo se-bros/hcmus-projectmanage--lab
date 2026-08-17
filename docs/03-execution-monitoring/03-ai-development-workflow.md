@@ -24,10 +24,22 @@
 
 ## Mục lục
 
-
+- [1. Tổng quan báo cáo](#1-tổng-quan-báo-cáo)
+- [2. Quy trình phát triển với AI (AI-Assisted Workflow)](#2-quy-trình-phát-triển-với-ai-ai-assisted-workflow)
+  - [2.1. Hai mẫu hình quy trình quan sát được](#21-hai-mẫu-hình-quy-trình-quan-sát-được)
+  - [2.2. Mô hình AI sử dụng theo phiên](#22-mô-hình-ai-sử-dụng-theo-phiên)
+- [3. Số liệu thời gian và Token AI theo phiên làm việc](#3-số-liệu-thời-gian-và-token-ai-theo-phiên-làm-việc)
+  - [3.1. Bảng chi tiết theo phiên](#31-bảng-chi-tiết-theo-phiên)
+  - [3.2. Phân bổ Token AI](#32-phân-bổ-token-ai)
+  - [3.3. Phân bổ thời gian làm việc](#33-phân-bổ-thời-gian-làm-việc)
+- [4. Phân tích hiệu suất (AI Productivity Analysis)](#4-phân-tích-hiệu-suất-ai-productivity-analysis)
+  - [4.1. Hiệu suất Token theo giờ](#41-hiệu-suất-token-theo-giờ)
+  - [4.2. Token trên mỗi Story Point](#42-token-trên-mỗi-story-point)
+  - [4.3. Tổng hợp theo từng dev](#43-tổng-hợp-theo-từng-dev)
+- [5. Liên hệ với tiến độ Product Backlog](#5-liên-hệ-với-tiến-độ-product-backlog)
+- [6. Khoảng trống dữ liệu và Khuyến nghị](#6-khoảng-trống-dữ-liệu-và-khuyến-nghị)
 
 ---
-
 ## 1. Tổng quan báo cáo
 
 Báo cáo này tổng hợp dữ liệu thực tế từ hai nguồn:

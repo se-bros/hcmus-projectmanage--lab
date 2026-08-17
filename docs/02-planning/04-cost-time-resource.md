@@ -27,10 +27,26 @@
 
 ## Mục lục
 
-
+- [1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)](#1-kế-hoạch-thời-gian-và-tiến-độ-thực-hiện-time-schedule-plan)
+  - [1.1. Lộ trình triển khai 4 Giai đoạn](#11-lộ-trình-triển-khai-4-giai-đoạn)
+  - [1.2. Phân rã gói công việc (WBS) và Đường găng (Critical Path)](#12-phân-rã-gói-công-việc-wbs-và-đường-găng-critical-path)
+- [2. Phương pháp luận ước lượng nỗ lực phần mềm (Estimation)](#2-phương-pháp-luận-ước-lượng-nỗ-lực-phần-mềm-estimation)
+  - [2.1. Phương pháp Điểm trường hợp sử dụng (Use Case Points - UCP)](#21-phương-pháp-điểm-trường-hợp-sử-dụng-use-case-points-ucp)
+  - [2.2. Đối chuẩn bằng phương pháp COCOMO II](#22-đối-chuẩn-bằng-phương-pháp-cocomo-ii)
+  - [2.3. Đối chiếu và Kết luận nỗ lực thực tế](#23-đối-chiếu-và-kết-luận-nỗ-lực-thực-tế)
+- [3. Dự toán chi phí và Phân bổ ngân sách dự án (Cost & Budget Plan)](#3-dự-toán-chi-phí-và-phân-bổ-ngân-sách-dự-án-cost-budget-plan)
+  - [3.1. Dự toán chi phí đầu tư ban đầu (CapEx)](#31-dự-toán-chi-phí-đầu-tư-ban-đầu-capex)
+  - [3.2. Dự toán chi phí vận hành định kỳ (OpEx)](#32-dự-toán-chi-phí-vận-hành-định-kỳ-opex)
+- [4. Kế hoạch phân bổ nguồn lực nhân sự và Thiết bị](#4-kế-hoạch-phân-bổ-nguồn-lực-nhân-sự-và-thiết-bị)
+  - [4.1. Phân bổ nhân sự (Human Resources)](#41-phân-bổ-nhân-sự-human-resources)
+  - [4.2. Phân bổ thiết bị & Server ảo hóa](#42-phân-bổ-thiết-bị-server-ảo-hóa)
+- [5. Kế hoạch Giám sát & Báo cáo Tình trạng Dự án (Monitoring & Status Reporting)](#5-kế-hoạch-giám-sát-báo-cáo-tình-trạng-dự-án-monitoring-status-reporting)
+  - [5.1. Bộ chỉ số Giám sát & Đo lường (Monitoring Metrics)](#51-bộ-chỉ-số-giám-sát-đo-lường-monitoring-metrics)
+  - [5.2. Cơ chế thu thập Metrics từ AI Session (Session Logging)](#52-cơ-chế-thu-thập-metrics-từ-ai-session-session-logging)
+  - [5.3. Snapshot tiến độ thực tế — Tuần 1 (16–17/07/2026)](#53-snapshot-tiến-độ-thực-tế-tuần-1-1617072026)
+  - [5.4. Quy chế Báo cáo định kỳ (Status Reporting)](#54-quy-chế-báo-cáo-định-kỳ-status-reporting)
 
 ---
-
 ## 1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)
 
 Dự án HCMUS-LDMS được hoạch định thực hiện trong vòng **20 tuần** (5 tháng), chia làm 4 giai đoạn lớn kết hợp kiểm soát chốt cổng (Gating Checkpoints):

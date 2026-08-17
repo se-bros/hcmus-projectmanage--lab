@@ -27,10 +27,21 @@
 
 ## Mục lục
 
-
+- [1. Tuyên bố ủy quyền chính thức](#1-tuyên-bố-ủy-quyền-chính-thức)
+- [2. Danh sách kiểm tra dự án (Project Checklist)](#2-danh-sách-kiểm-tra-dự-án-project-checklist)
+- [3. Cơ cấu quản lý và Quản trị dự án (Governance)](#3-cơ-cấu-quản-lý-và-quản-trị-dự-án-governance)
+- [4. Cơ sở vật chất và Tài nguyên được ủy quyền](#4-cơ-sở-vật-chất-và-tài-nguyên-được-ủy-quyền)
+- [5. Phân tích các bên liên quan và Tác động (Stakeholder Analysis)](#5-phân-tích-các-bên-liên-quan-và-tác-động-stakeholder-analysis)
+  - [5.1. Ma trận Tác nhân và Tác động As-is vs To-be](#51-ma-trận-tác-nhân-và-tác-động-as-is-vs-to-be)
+  - [5.2. Bản đồ Stakeholder (Power/Interest Grid)](#52-bản-đồ-stakeholder-powerinterest-grid)
+- [6. Ma trận trách nhiệm (RACI Matrix)](#6-ma-trận-trách-nhiệm-raci-matrix)
+- [7. Cấu trúc phân rã công việc (WBS) và Tiến độ](#7-cấu-trúc-phân-rã-công-việc-wbs-và-tiến-độ)
+- [8. Tiêu chí thành công và Chỉ số KPIs](#8-tiêu-chí-thành-công-và-chỉ-số-kpis)
+- [9. Phương pháp luận và Quy tắc phối hợp làm việc](#9-phương-pháp-luận-và-quy-tắc-phối-hợp-làm-việc)
+- [10. Các giả định, Ràng buộc và Quy chế kiểm soát thay đổi](#10-các-giả-định-ràng-buộc-và-quy-chế-kiểm-soát-thay-đổi)
+- [11. Chữ ký phê duyệt (Signatures)](#11-chữ-ký-phê-duyệt-signatures)
 
 ---
-
 ## 1. Tuyên bố ủy quyền chính thức
 
 Ban Giám hiệu Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM chính thức phê duyệt thành lập dự án **Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)**. Điều lệ dự án này trao quyền chính thức cho Trưởng phòng Công nghệ Thông tin làm Quản lý Dự án (PM) đại diện nhà trường điều phối nguồn lực, mua sắm thiết bị scan chuyên dụng chữ V, sử dụng hạ tầng ảo hóa máy chủ VMware sẵn có và phối hợp chặt chẽ với Ban Giám đốc Thư viện để triển khai dự án theo đúng kế hoạch.

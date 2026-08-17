@@ -30,10 +30,30 @@
 
 ## Mục lục
 
-
+- [1. Tóm tắt điều hành](#1-tóm-tắt-điều-hành)
+- [2. Lý do đầu tư và Bối cảnh thực tế](#2-lý-do-đầu-tư-và-bối-cảnh-thực-tế)
+  - [2.1. Hành trình từ "Nỗi đau" vật lý đến rào cản tri thức của Độc giả](#21-hành-trình-từ-nỗi-đau-vật-lý-đến-rào-cản-tri-thức-của-độc-giả)
+  - [2.2. Sự chuyển mình đột phá qua ý tưởng số hóa tích hợp](#22-sự-chuyển-mình-đột-phá-qua-ý-tưởng-số-hóa-tích-hợp)
+  - [2.3. Phân tích đối chuẩn: Đối thủ cạnh tranh và Phương án kết hợp công cụ sẵn có](#23-phân-tích-đối-chuẩn-đối-thủ-cạnh-tranh-và-phương-án-kết-hợp-công-cụ-sẵn-có)
+  - [2.4. Phân tích Lợi thế cạnh tranh bền vững (MOAT Analysis)](#24-phân-tích-lợi-thế-cạnh-tranh-bền-vững-moat-analysis)
+- [3. Giải pháp đề xuất và Định hướng công nghệ](#3-giải-pháp-đề-xuất-và-định-hướng-công-nghệ)
+  - [3.1. Mô tả tổng quan giải pháp](#31-mô-tả-tổng-quan-giải-pháp)
+  - [3.2. Định hướng kiến trúc công nghệ](#32-định-hướng-kiến-trúc-công-nghệ)
+  - [3.3. Phạm vi loại trừ cấp cao](#33-phạm-vi-loại-trừ-cấp-cao)
+- [4. Phân tích Chi Phí – Lợi Ích (Cost-Benefit Analysis)](#4-phân-tích-chi-phí-lợi-ích-cost-benefit-analysis)
+  - [4.1. Bảng phân tích lợi ích định lượng và định tính](#41-bảng-phân-tích-lợi-ích-định-lượng-và-định-tính)
+  - [4.2. Ước lượng chi phí đầu tư ban đầu](#42-ước-lượng-chi-phí-đầu-tư-ban-đầu)
+  - [4.3. Ước lượng chi phí vận hành định kỳ](#43-ước-lượng-chi-phí-vận-hành-định-kỳ)
+  - [4.4. Mô hình kinh tế tránh chi phí và Điểm hòa vốn](#44-mô-hình-kinh-tế-tránh-chi-phí-và-điểm-hòa-vốn)
+- [5. Phân tích các bên liên quan và Phân vai](#5-phân-tích-các-bên-liên-quan-và-phân-vai)
+  - [5.1. Danh sách các bên liên quan](#51-danh-sách-các-bên-liên-quan)
+  - [5.2. Ma trận phân định trách nhiệm](#52-ma-trận-phân-định-trách-nhiệm)
+  - [5.3. Đánh giá tính khả thi từ góc độ quản lý các bên liên quan](#53-đánh-giá-tính-khả-thi-từ-góc-độ-quản-lý-các-bên-liên-quan)
+- [6. Lộ trình triển khai cấp cao](#6-lộ-trình-triển-khai-cấp-cao)
+- [7. Danh mục rủi ro kinh doanh và Biện pháp giảm thiểu](#7-danh-mục-rủi-ro-kinh-doanh-và-biện-pháp-giảm-thiểu)
+- [8. Kết luận và Khuyến nghị hành động](#8-kết-luận-và-khuyến-nghị-hành-động)
 
 ---
-
 ## 1. Tóm tắt điều hành
 
 Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản lý hàng chục ngàn tài liệu học thuật cứng độc bản. Việc lưu trữ vật lý này đang đối mặt với các thách thức lớn về quá tải diện tích kho bãi, xuống cấp tài liệu và rào cản địa lý tiếp cận thông tin đối với sinh viên tại cơ sở Linh Trung (Thủ Đức). Các tệp tin ảnh quét PDF tĩnh hiện tại không hỗ trợ tự co giãn dòng và cực kỳ khó đọc trên các thiết bị di động.

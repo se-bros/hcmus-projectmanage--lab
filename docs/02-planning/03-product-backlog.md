@@ -29,10 +29,29 @@
 
 ## Mục lục
 
-
+- [1. Định nghĩa Hoàn thành và Quy tắc tổ chức](#1-định-nghĩa-hoàn-thành-và-quy-tắc-tổ-chức)
+  - [1.1. Quy tắc Kanban và Forecast](#11-quy-tắc-kanban-và-forecast)
+  - [1.2. Định nghĩa Hoàn thành (Definition of Done - DoD)](#12-định-nghĩa-hoàn-thành-definition-of-done-dod)
+  - [1.2. Định nghĩa Hoàn thành (Definition of Done - DoD)](#12-định-nghĩa-hoàn-thành-definition-of-done-dod)
+  - [1.3. Thang đo độ ưu tiên MoSCoW](#13-thang-đo-độ-ưu-tiên-moscow)
+  - [1.3. Thang đo độ ưu tiên MoSCoW](#13-thang-đo-độ-ưu-tiên-moscow)
+- [2. Chi tiết Product Backlog — User Story & Acceptance Criteria](#2-chi-tiết-product-backlog-user-story-acceptance-criteria)
+  - [EPIC D — Nền tảng triển khai (Platform)](#epic-d-nền-tảng-triển-khai-platform)
+  - [EPIC A — Xác thực & Phân quyền (Identity & Access)](#epic-a-xác-thực-phân-quyền-identity-access)
+  - [EPIC A — Xác thực & Phân quyền (Identity & Access)](#epic-a-xác-thực-phân-quyền-identity-access)
+  - [EPIC B — Số hóa & Xuất bản (Digitization & Publish)](#epic-b-số-hóa-xuất-bản-digitization-publish)
+  - [EPIC C — Tra cứu & Đọc sách (Search & Reader UX)](#epic-c-tra-cứu-đọc-sách-search-reader-ux)
+- [3. Bản đồ triển khai (Implementation Map)](#3-bản-đồ-triển-khai-implementation-map)
+- [3. Bản đồ triển khai (Implementation Map)](#3-bản-đồ-triển-khai-implementation-map)
+  - [Giai đoạn 1 — Nền tảng & Luồng dữ liệu](#giai-đoạn-1-nền-tảng-luồng-dữ-liệu)
+  - [Giai đoạn 2 — Biên tập & Xuất bản](#giai-đoạn-2-biên-tập-xuất-bản)
+  - [Giai đoạn 3 — Xác thực & Tra cứu](#giai-đoạn-3-xác-thực-tra-cứu)
+  - [Giai đoạn 4 — Nâng cao trải nghiệm](#giai-đoạn-4-nâng-cao-trải-nghiệm)
+  - [Giai đoạn 5 — Hoàn thiện](#giai-đoạn-5-hoàn-thiện)
+  - [Tham chiếu Epic → stories](#tham-chiếu-epic-stories)
+  - [Tổng backlog](#tổng-backlog)
 
 ---
-
 ## 1. Định nghĩa Hoàn thành và Quy tắc tổ chức
 
 ### 1.1. Quy tắc Kanban và Forecast

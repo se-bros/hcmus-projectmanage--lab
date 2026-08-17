@@ -27,10 +27,41 @@
 
 ## Mục lục
 
-
+- [1. Giới thiệu](#1-giới-thiệu)
+  - [1.1 Tài liệu tham khảo](#11-tài-liệu-tham-khảo)
+- [2. Định vị sản phẩm](#2-định-vị-sản-phẩm)
+  - [2.1 Phát biểu bài toán](#21-phát-biểu-bài-toán)
+  - [2.2 Phát biểu định vị sản phẩm](#22-phát-biểu-định-vị-sản-phẩm)
+  - [2.3 Phân tích Quy trình Hiện tại (As-Is) và Quy trình Tương lai (To-Be)](#23-phân-tích-quy-trình-hiện-tại-as-is-và-quy-trình-tương-lai-to-be)
+- [3. Mô tả các bên liên quan và Người dùng](#3-mô-tả-các-bên-liên-quan-và-người-dùng)
+  - [3.1 Tóm tắt về các bên liên quan](#31-tóm-tắt-về-các-bên-liên-quan)
+  - [3.2 Tóm tắt về người dùng](#32-tóm-tắt-về-người-dùng)
+  - [3.3 Môi trường người dùng](#33-môi-trường-người-dùng)
+  - [3.4 Tóm tắt nhu cầu cốt lõi của các bên liên quan hoặc Người dùng](#34-tóm-tắt-nhu-cầu-cốt-lõi-của-các-bên-liên-quan-hoặc-người-dùng)
+  - [3.5 Các phương án thay thế và Đối thủ cạnh tranh](#35-các-phương-án-thay-thế-và-đối-thủ-cạnh-tranh)
+  - [3.6 So sánh đối chuẩn quy trình nghiệp vụ (Workflow Benchmarking)](#36-so-sánh-đối-chuẩn-quy-trình-nghiệp-vụ-workflow-benchmarking)
+- [4. Tổng quan sản phẩm](#4-tổng-quan-sản-phẩm)
+  - [4.1 Góc nhìn sản phẩm](#41-góc-nhìn-sản-phẩm)
+  - [4.2 Các giả định và Sự phụ thuộc](#42-các-giả-định-và-sự-phụ-thuộc)
+- [5. Các tính năng của sản phẩm](#5-các-tính-năng-của-sản-phẩm)
+  - [5.1 Tính năng chính (MVP)](#51-tính-năng-chính-mvp)
+  - [5.2 Tính năng mở rộng](#52-tính-năng-mở-rộng)
+- [6. Các yêu cầu phi chức năng](#6-các-yêu-cầu-phi-chức-năng)
+  - [6.1 Yêu cầu về nền tảng và phần cứng](#61-yêu-cầu-về-nền-tảng-và-phần-cứng)
+  - [6.2 Yêu cầu về hiệu năng](#62-yêu-cầu-về-hiệu-năng)
+  - [6.3 Yêu cầu về khả năng sử dụng (UI/UX)](#63-yêu-cầu-về-khả-năng-sử-dụng-uiux)
+  - [6.4 Độ tin cậy, Tính bền vững và Khả năng chịu lỗi](#64-độ-tin-cậy-tính-bền-vững-và-khả-năng-chịu-lỗi)
+  - [6.5 Yêu cầu về bảo mật](#65-yêu-cầu-về-bảo-mật)
+  - [6.6 Khả năng mở rộng và Dễ bảo trì](#66-khả-năng-mở-rộng-và-dễ-bảo-trì)
+  - [6.7 Khả năng quốc tế hóa](#67-khả-năng-quốc-tế-hóa)
+  - [6.8 Yêu cầu về tài liệu hướng dẫn](#68-yêu-cầu-về-tài-liệu-hướng-dẫn)
+  - [6.9 Các ràng buộc bên ngoài](#69-các-ràng-buộc-bên-ngoài)
+- [7. Khai báo phạm vi chi tiết (Scope Statement & Deliverables)](#7-khai-báo-phạm-vi-chi-tiết-scope-statement-deliverables)
+- [8. Thiết kế giao diện và Thử nghiệm công nghệ](#8-thiết-kế-giao-diện-và-thử-nghiệm-công-nghệ)
+  - [8.1 Thiết kế giao diện (Mockups)](#81-thiết-kế-giao-diện-mockups)
+  - [8.2 Thử nghiệm công nghệ (Proof of Concept - PoC)](#82-thử-nghiệm-công-nghệ-proof-of-concept-poc)
 
 ---
-
 ## 1. Giới thiệu
 
 Tài liệu Tầm nhìn và Phạm vi này đặc tả hệ thống **HCMUS-LDMS** (Library Document Management & Digitization System). Hệ thống hướng tới việc xây dựng một quy trình số hóa tài liệu học thuật tự động hóa, chuyển đổi từ các trang giáo trình in sang định dạng sách điện tử responsive chuẩn EPUB 3.0, đáp ứng trải nghiệm đọc di động mọi lúc mọi nơi cho sinh viên và bảo vệ bản quyền số của nhà trường.
