@@ -134,7 +134,7 @@ flowchart TD
 
 ### 5.4 Ghi chú Bài giảng Thực chiến trên Lớp (`note.md`)
 
-- [`note.md`](../note.md): Tổng hợp toàn bộ lời dặn dò, bí kíp thực chiến, nhận xét đồ án và hướng dẫn trực tiếp từ Thầy Ngô Huy Biên và Thầy Huỳnh Tuấn Anh qua các Buổi 01 đến 10:
+- [`note.md`](../note.md): Tổng hợp toàn bộ lời dặn dò, bí kíp thực chiến, nhận xét đồ án và hướng dẫn trực tiếp từ Thầy Ngô Huy Biên qua các Buổi 01 đến 10:
   - **Buổi 02-04:** Kỹ thuật Prompt RACFT, Context Engineering cực đoan, giải quyết nỗi đau người dùng (Pain point), khái niệm MOAT và đối chuẩn đối thủ.
   - **Buổi 05 & 10:** Hai loại PoC bắt buộc (Tính năng khó nhất vs Tính năng bao quát tech stack chủ lực), thiết kế Prototype.
   - **Buổi 06 & 08:** Quản lý nhóm (Tuckman, McGregor Y, Maslow), kiểm soát xung đột bằng chính sách sớm, quản lý rủi ro RAID log.
