@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Instructions
 
-- Stack: React 18+ & TypeScript (Vite) for frontend, FastAPI (Python 3.11, `uv`) for backend. See `.specify/memory/constitution.md` and `docs/06-architecture.md` for full architecture/tech constraints.
+- Stack: React 18+ & TypeScript (Vite) for frontend, FastAPI (Python 3.11, `uv`) for backend. See `.specify/memory/constitution.md` and `docs/02-planning/02-architecture.md` for full architecture/tech constraints.
 - Frontend: after generating/editing code, run `npm run format` and `npm run lint` inside `src/frontend`.
 - Backend: after generating/editing code, run `uv run ruff format .` and `uv run ruff check .` inside `src/backend`; run `uv run pytest` when tests are in scope.
 - Use `npm` for frontend package management and scripts; `uv` for backend.

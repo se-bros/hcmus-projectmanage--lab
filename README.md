@@ -290,7 +290,7 @@ Quy ước:
 - Test backend: `uv run pytest`.
 - Regression frontend: `npm test && npm run lint && npm run build`.
 - Kiểm tra migration PostgreSQL: `cd src/backend && docker compose exec api uv run --no-dev alembic upgrade head`.
-- Nhánh Git theo GitFlow (`feature/*` → `develop` → `release/*` → `main`), xem `docs/06-architecture.md` §8.2.
+- Nhánh Git theo GitFlow (`feature/*` → `develop` → `release/*` → `main`), xem `docs/02-planning/02-architecture.md` §8.2.
 
 ## Triển khai kiểu production-like (Nginx + TLS, buffer §8.2)
 
@@ -305,7 +305,7 @@ cd src/backend && docker compose --profile prod up -d --build
 
 Không ảnh hưởng luồng dev mặc định (`docker compose up` không có `--profile prod` giữ nguyên 3
 service API + PostgreSQL + MinIO theo LDMS-001 AC1). Cert self-signed chỉ phục vụ demo — production
-thật trên VMware cần CA cert hợp lệ, xem `docs/06-architecture.md` §5.1.
+thật trên VMware cần CA cert hợp lệ, xem `docs/02-planning/02-architecture.md` §5.1.
 
 ## Sao lưu dữ liệu (buffer §5.2)
 
@@ -316,9 +316,9 @@ cho vị trí lưu trữ off-site). Cả hai ghi vào `.backups/` (gitignored) h
 đặt biến môi trường trỏ tới NAS/máy chủ dự phòng thật.
 
 Đây là bản MVP thay thế PgBackRest/Restic — cùng tinh thần đơn giản hóa tech stack như Postgres
-FTS thay Elasticsearch (`docs/07-product-backlog.md`). Roadmap khi triển khai thật trên VMware:
+FTS thay Elasticsearch (`docs/02-planning/03-product-backlog.md`). Roadmap khi triển khai thật trên VMware:
 PgBackRest (incremental + AES-256) và Restic (encrypted off-site sync), xem
-`docs/06-architecture.md` §5.2.
+`docs/02-planning/02-architecture.md` §5.2.
 
 ## Bảo mật đọc sách (LDMS-014)
 
@@ -333,10 +333,13 @@ Epub.js dùng URL tạm thời này để tải nội dung; UI không có nút t
 - Người dùng luôn có thể chụp màn hình từng trang đang hiển thị.
 
 Đây là cơ chế **giảm rủi ro**, không phải chống sao chép tuyệt đối — đúng tinh thần
-`docs/06-architecture.md` §5.1.
+`docs/02-planning/02-architecture.md` §5.1.
 
 ## Tài liệu liên quan
 
-- `docs/07-product-backlog.md` — backlog & AC
-- `docs/06-architecture.md` — kiến trúc & tech stack
-- `docs/09-plan.md` — phân công
+- [`docs/README.md`](docs/README.md) — Tổng mục lục tra cứu toàn bộ tài liệu dự án
+- [`docs/02-planning/03-product-backlog.md`](docs/02-planning/03-product-backlog.md) — Backlog & Acceptance Criteria
+- [`docs/02-planning/02-architecture.md`](docs/02-planning/02-architecture.md) — Kiến trúc hệ thống & tech stack
+- [`docs/03-execution-monitoring/01-sprint-plan.md`](docs/03-execution-monitoring/01-sprint-plan.md) — Kế hoạch phân công Sprint
+
+
