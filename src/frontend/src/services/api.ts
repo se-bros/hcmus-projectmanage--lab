@@ -130,7 +130,6 @@ export function deleteDocumentTag(documentId: string, name: string): Promise<str
   })
 }
 
-
 export type Category = {
   id: string
   name: string
