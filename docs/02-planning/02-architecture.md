@@ -17,11 +17,12 @@
 
 ### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                                                                                                                                | Người thực hiện (Author) |
-| :-----------------: | :-------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------: |
-|         1.0         |      07/07/2026       | Khởi tạo tài liệu kiến trúc ban đầu.                                                                                                                                                                                                                  |      Mạch Quốc Tấn       |
-|         2.0         |      14/07/2026       | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi.                                                                                     |      Mạch Quốc Tấn       |
-|         3.0         |      15/07/2026       | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL. |     Nhóm phát triển      |
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                                                                                                                                                                                                                                              | Người thực hiện (Author) |
+| :-----------------: | :-------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------: |
+|         1.0         |      07/07/2026       | Khởi tạo tài liệu kiến trúc ban đầu.                                                                                                                                                                                                                                                                                                                                |      Mạch Quốc Tấn       |
+|         2.0         |      14/07/2026       | Cập nhật cấu trúc phân lớp logic, tích hợp các sơ đồ C4 PlantUML (Context, Container, Deployment), sơ đồ tuần tự, sơ đồ Use Case và phân tích phản biện thực thi.                                                                                                                                                                                                   |      Mạch Quốc Tấn       |
+|         3.0         |      15/07/2026       | Cập nhật tech stack phù hợp đồ án sinh viên: Google OAuth 2.0 thay Keycloak, PostgreSQL FTS thay Elasticsearch, FastAPI BackgroundTasks thay Celery/Redis. Cập nhật toàn bộ sơ đồ C4, Sequence, Deployment. Giữ Modular Monolith và MinIO Signed URL.                                                                                                               |     Nhóm phát triển      |
+|         3.1         |      19/08/2026       | Đồng bộ tài liệu với mã nguồn thực tế: xóa đoạn 4.7.1 tồn dư của v2.0 (còn ghi Keycloak SSO, hàng đợi Celery, index Elasticsearch); hiệu chỉnh mục 9.2 theo cơ chế đã hiện thực (`BackgroundTasks` + threadpool của Starlette thay vì `loop.run_in_executor`, tên hàm `run_ocr_job`, endpoint `POST /documents/{id}/ocr`) và bổ sung bước kiểm soát lỗi/chạy trùng. |  Nguyễn Lê Hồ Anh Khoa   |
 
 ---
 
@@ -62,6 +63,7 @@
   - [9.4. Cấu trúc mã nguồn khung (Skeleton Project Layout)](#94-cấu-trúc-mã-nguồn-khung-skeleton-project-layout)
 
 ---
+
 ## 1. Giới thiệu
 
 Tài liệu này trình bày tổng quan cấu trúc thiết kế kiến trúc của hệ thống **HCMUS-LDMS**. Báo cáo làm rõ sự phân chia các tầng trách nhiệm, định hướng công nghệ lựa chọn và cách thức các module tương tác để hiện thực hóa luồng số hóa tự động hóa khép kín.
@@ -368,15 +370,6 @@ Frontend -> Reader: Hiển thị sách trên Epub.js Web Reader (DRM Bảo mật
 #### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
 
 1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
-2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống qua Keycloak SSO, tải file PDF lên và nhập siêu dữ liệu Dublin Core.
-3. **OCR nhận dạng chữ:** Backend FastAPI đưa PDF vào hàng đợi Celery, chạy OCR Tesseract nhận dạng tiếng Việt bất đồng bộ để trích xuất văn bản thô.
-4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả, gán Heading và chèn ảnh minh họa.
-5. **Phân loại & Phân quyền:** Gán Category hình cây, nhãn Tag và thiết lập quyền truy cập (Public/Internal/Restricted).
-6. **Đóng gói & Xuất bản:** Hệ thống gọi Pandoc biên dịch văn bản sang EPUB 3.0, lưu vào MinIO, lưu metadata vào PostgreSQL và index toàn văn sang Elasticsearch.
-
-#### 4.7.1. Quy trình Số hóa và Xuất bản (Thủ thư & Biên tập viên)
-
-1. **Scan sách:** Thủ thư quét sách giấy vật lý thành tệp PDF chất lượng cao (300 DPI, thẳng hàng).
 2. **Tải lên & Khai báo:** Thủ thư đăng nhập hệ thống (bằng Google OAuth hoặc Mock Auth), tải file PDF lên và nhập siêu dữ liệu Dublin Core.
 3. **OCR nhận dạng chữ:** Backend FastAPI tạo job OCR, chạy background qua `FastAPI BackgroundTasks` để trích xuất văn bản thô.
 4. **Biên tập Split-screen:** Biên tập viên sử dụng màn hình chia đôi so sánh ảnh scan trang sách gốc và văn bản OCR, sửa lỗi chính tả và lưu lại.
@@ -564,11 +557,12 @@ Mục tiêu kiểm chứng: Xác nhận khả năng tích hợp thư viện bọ
 
 #### Nguyên lý thiết kế luồng xử lý:
 
-1. **Tiếp nhận Yêu cầu (Request Acceptance):** Trình duyệt gửi tệp ảnh/PDF trang sách lên API Endpoint `/api/documents/{id}/ocr`.
-2. **Chuyển tác vụ chạy ngầm (Delegation):** FastAPI tiếp nhận, ghi file thô vào vùng đệm tạm thời (hoặc MinIO Storage), sau đó đăng ký một hàm xử lý `run_ocr_task` vào `BackgroundTasks` của hệ thống.
+1. **Tiếp nhận Yêu cầu (Request Acceptance):** Trình duyệt gửi tệp ảnh/PDF trang sách lên API Endpoint `POST /documents/{id}/ocr`.
+2. **Chuyển tác vụ chạy ngầm (Delegation):** FastAPI tạo bản ghi `OcrJob` ở trạng thái `pending`, sau đó đăng ký hàm xử lý `run_ocr_job` vào `BackgroundTasks` của hệ thống (`background_tasks.add_task(run_ocr_job, job.id)`).
 3. **Phản hồi tức thì (Instant Response):** API Endpoint lập tức trả về mã trạng thái `202 Accepted` kèm JSON thông báo tác vụ đã được đưa vào hàng đợi chạy ngầm. Người dùng không cần treo màn hình chờ đợi.
-4. **Xử lý bất đồng bộ trong Thread Pool (Async CPU Execution):** Hàm `run_ocr_task` gọi engine Tesseract. Do thao tác OCR là tác vụ ngốn CPU (CPU-bound), hệ thống ứng dụng cơ chế `loop.run_in_executor` của Python asyncio để đẩy việc chạy sang ThreadPoolExecutor độc lập, ngăn chặn hoàn toàn việc block Event Loop chính của ứng dụng.
-5. **Cập nhật trạng thái:** Sau khi hoàn tất, kết quả trích xuất văn bản được lưu lại vào PostgreSQL và cập nhật trạng thái tài liệu thành `Processed`.
+4. **Xử lý bất đồng bộ trong Thread Pool (Async CPU Execution):** Hàm `run_ocr_job` gọi engine Tesseract. Do thao tác OCR là tác vụ ngốn CPU (CPU-bound), nó được khai báo là hàm đồng bộ (`def`) — nhờ đó Starlette tự động thực thi tác vụ nền này trong **threadpool** (`run_in_threadpool`) thay vì trên Event Loop, ngăn chặn hoàn toàn việc block Event Loop chính của ứng dụng mà không cần tự quản lý executor.
+5. **Cập nhật trạng thái:** Sau khi hoàn tất, văn bản trích xuất được lưu vào PostgreSQL (bảng `pages`), ảnh preview từng trang được đẩy lên MinIO, job chuyển sang `completed` và trạng thái tài liệu thành `ocr_completed`.
+6. **Kiểm soát lỗi và chạy trùng:** Job mang cột `attempt` để đếm số lần thử lại; `create_ocr_job` khóa dòng bằng `SELECT ... FOR UPDATE` và trả `409 Conflict` nếu đã có job đang chạy; hàm `recover_interrupted_ocr_jobs()` đánh dấu `failed` cho các job bị ngắt khi API khởi động lại — đây là giới hạn đã biết của việc dùng `BackgroundTasks` in-process ở giai đoạn MVP.
 
 ---
 
