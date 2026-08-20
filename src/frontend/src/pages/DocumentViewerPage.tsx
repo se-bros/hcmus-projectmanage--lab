@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import {
-  getDocument,
+  addDocumentTag,
+  deleteDocumentTag,
   getCategories,
+  getDocument,
   getDocumentPages,
   getDocumentSourceUrl,
+  getDocumentTags,
   getOcrStatus,
   getPageImageUrl,
-  getPublishStatus,
-  publishDocument,
-  updatePageText,
   updateDocumentMetadata,
+  updatePageText,
 } from '../services/api'
 import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
 import { useAuth } from '../context/AuthContext'
@@ -36,11 +37,10 @@ export function DocumentViewerPage() {
   const [draftText, setDraftText] = useState('')
   const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [pageSaveError, setPageSaveError] = useState('')
-  const [publishJob, setPublishJob] = useState<PublishJob | null>(null)
-  const [publishState, setPublishState] = useState<'idle' | 'starting' | 'polling' | 'error'>(
-    'idle',
-  )
-  const [publishError, setPublishError] = useState('')
+  const [tags, setTags] = useState<string[]>([])
+  const [newTag, setNewTag] = useState('')
+  const [isAddingTag, setIsAddingTag] = useState(false)
+  const [tagError, setTagError] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -358,8 +358,6 @@ export function DocumentViewerPage() {
           )}
         </div>
       </section>
-
-
 
       {pages.length === 0 ? (
         <section className="viewer-empty">
