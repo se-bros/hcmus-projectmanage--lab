@@ -74,6 +74,8 @@ Write-Host "  🔌 API Server (FastAPI):       http://localhost:8000" -Foregroun
 Write-Host "  📖 API Interactive Docs:       http://localhost:8000/docs" -ForegroundColor White
 Write-Host "  📦 MinIO Object Storage UI:    http://localhost:9003  (ldms / ldms12345)" -ForegroundColor White
 Write-Host "  ✉️  Mock Mail Server (MailHog): http://localhost:8025" -ForegroundColor White
+Write-Host "  📊 Grafana Dashboards:         http://localhost:3000  (admin / admin)" -ForegroundColor White
+Write-Host "  📈 Prometheus Metrics Engine:   http://localhost:9090" -ForegroundColor White
 Write-Host "----------------------------------------------------------------------" -ForegroundColor Gray
 Write-Host "  🔑 DEFAULT DEMO ACCOUNTS:" -ForegroundColor Yellow
 Write-Host "     • Admin:     admin@hcmus.edu.vn     / Admin@123456" -ForegroundColor Yellow
