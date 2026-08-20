@@ -531,6 +531,7 @@ describe('DocumentViewerPage', () => {
         response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
       )
       .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
       .mockResolvedValueOnce(
         response(
           { publish_job_id: 'publish-1', attempt: 1, status: 'pending', error_message: null },
@@ -569,7 +570,7 @@ describe('DocumentViewerPage', () => {
       await Promise.resolve()
     })
     expect(fetchMock).toHaveBeenNthCalledWith(
-      5,
+      6,
       '/api/documents/doc-1/publish',
       expect.objectContaining({ method: 'POST' }),
     )
@@ -582,8 +583,8 @@ describe('DocumentViewerPage', () => {
       await Promise.resolve()
     })
 
-    expect(fetchMock.mock.calls[5]?.[0]).toBe('/api/documents/doc-1/publish')
-    expect(fetchMock.mock.calls[6]?.[0]).toBe('/api/documents/doc-1')
+    expect(fetchMock.mock.calls[6]?.[0]).toBe('/api/documents/doc-1/publish')
+    expect(fetchMock.mock.calls[7]?.[0]).toBe('/api/documents/doc-1')
     expect(screen.getByText('Tài liệu đã xuất bản.')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Mở Reader →' })).toHaveAttribute(
       'href',

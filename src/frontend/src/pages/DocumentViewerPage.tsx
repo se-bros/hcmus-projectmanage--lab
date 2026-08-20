@@ -10,10 +10,18 @@ import {
   getDocumentTags,
   getOcrStatus,
   getPageImageUrl,
+  getPublishStatus,
+  publishDocument,
   updateDocumentMetadata,
   updatePageText,
 } from '../services/api'
-import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
+import type {
+  CategoryTree,
+  DocumentDetail,
+  DocumentPage,
+  OcrJob,
+  PublishJob,
+} from '../services/api'
 import { useAuth } from '../context/AuthContext'
 
 export function DocumentViewerPage() {
@@ -41,6 +49,11 @@ export function DocumentViewerPage() {
   const [newTag, setNewTag] = useState('')
   const [isAddingTag, setIsAddingTag] = useState(false)
   const [tagError, setTagError] = useState('')
+  const [publishJob, setPublishJob] = useState<PublishJob | null>(null)
+  const [publishState, setPublishState] = useState<'idle' | 'starting' | 'polling' | 'error'>(
+    'idle',
+  )
+  const [publishError, setPublishError] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -68,7 +81,7 @@ export function DocumentViewerPage() {
         setPages(documentPages)
         setJob(ocrJob)
         setCategories(categoryTree)
-        setTags(docTags)
+        setTags(Array.isArray(docTags) ? docTags : [])
         setSelectedPageNumber(documentPages[0]?.page_number ?? null)
         setDraftText(documentPages[0]?.text_content ?? '')
         setError('')
@@ -104,6 +117,40 @@ export function DocumentViewerPage() {
     window.addEventListener('beforeunload', warnBeforeUnload)
     return () => window.removeEventListener('beforeunload', warnBeforeUnload)
   }, [hasUnsavedPageText])
+
+  useEffect(() => {
+    if (publishState !== 'polling' || !documentId) return
+    let cancelled = false
+    const interval = window.setInterval(() => {
+      void (async () => {
+        try {
+          const job = await getPublishStatus(documentId)
+          if (cancelled) return
+          setPublishJob(job)
+          if (job.status === 'completed') {
+            const updated = await getDocument(documentId)
+            if (cancelled) return
+            setDocument(updated)
+            setPublishState('idle')
+          } else if (job.status === 'failed') {
+            setPublishState('error')
+            setPublishError(job.error_message || 'Xuất bản thất bại.')
+          }
+        } catch (pollError) {
+          if (!cancelled) {
+            setPublishState('error')
+            setPublishError(
+              pollError instanceof Error ? pollError.message : 'Không thể lấy trạng thái xuất bản.',
+            )
+          }
+        }
+      })()
+    }, 2000)
+    return () => {
+      cancelled = true
+      window.clearInterval(interval)
+    }
+  }, [publishState, documentId])
 
   function selectPage(pageNumber: number) {
     if (
@@ -169,7 +216,7 @@ export function DocumentViewerPage() {
     setTagError('')
     try {
       const updatedTags = await addDocumentTag(documentId, newTag)
-      setTags(updatedTags)
+      setTags(Array.isArray(updatedTags) ? updatedTags : [])
       setNewTag('')
     } catch (tagAddError) {
       setTagError(tagAddError instanceof Error ? tagAddError.message : 'Không thể thêm tag.')
@@ -183,9 +230,27 @@ export function DocumentViewerPage() {
     setTagError('')
     try {
       const updatedTags = await deleteDocumentTag(documentId, tagName)
-      setTags(updatedTags)
+      setTags(Array.isArray(updatedTags) ? updatedTags : [])
     } catch (tagRemoveError) {
       setTagError(tagRemoveError instanceof Error ? tagRemoveError.message : 'Không thể xóa tag.')
+    }
+  }
+
+  async function handlePublish() {
+    if (!documentId) return
+    setPublishState('starting')
+    setPublishError('')
+    try {
+      const job = await publishDocument(documentId)
+      setPublishJob(job)
+      setPublishState('polling')
+    } catch (publishStartError) {
+      setPublishState('error')
+      setPublishError(
+        publishStartError instanceof Error
+          ? publishStartError.message
+          : 'Không thể bắt đầu xuất bản.',
+      )
     }
   }
 
@@ -308,6 +373,44 @@ export function DocumentViewerPage() {
         </section>
       )}
 
+      {(canEdit || document.status === 'published') && (
+        <section className="metadata-editor" aria-labelledby="publish-heading">
+          <div>
+            <p className="section-kicker">LDMS-007</p>
+            <h2 id="publish-heading">Xuất bản EPUB</h2>
+            <p>Đóng gói nội dung đã soát lỗi thành EPUB để mở trong Reader.</p>
+          </div>
+          <div>
+            {document.status === 'published' ? (
+              <>
+                <p>Tài liệu đã xuất bản.</p>
+                <Link className="primary-link" to={`/reader/${documentId}`}>
+                  Mở Reader →
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  disabled={publishState === 'starting' || publishState === 'polling'}
+                  onClick={() => void handlePublish()}
+                >
+                  {publishState === 'starting' || publishState === 'polling'
+                    ? 'Đang xuất bản…'
+                    : 'Xuất bản EPUB'}
+                </button>
+                {publishJob && <p>Trạng thái: {publishJob.status}</p>}
+                {publishError && (
+                  <p className="message error" role="alert">
+                    {publishError}
+                  </p>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+      )}
+
       <section className="tags-section" aria-labelledby="tags-heading">
         <div>
           <p className="section-kicker">LDMS-023</p>
@@ -319,7 +422,7 @@ export function DocumentViewerPage() {
             {tags.length === 0 ? (
               <p className="no-tags">Chưa có tag nào.</p>
             ) : (
-              tags.map((tag) => (
+              tags.map((tag: string) => (
                 <span key={tag} className="tag-badge">
                   <span className="tag-hash">#</span>
                   {tag}
