@@ -43,6 +43,7 @@ services:
       FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:8080}
       SMTP_HOST: ${SMTP_HOST:-mailhog}
       SMTP_PORT: ${SMTP_PORT:-1025}
+      AUTO_SEED_DATA: ${AUTO_SEED_DATA:-true}
     depends_on:
       postgres:
         condition: service_healthy
