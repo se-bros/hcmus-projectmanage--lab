@@ -19,6 +19,7 @@ class Settings(BaseSettings):
             if v.startswith("postgresql://") and not v.startswith("postgresql+"):
                 return "postgresql+psycopg://" + v[len("postgresql://") :]
         return v
+
     @field_validator("cors_origins", mode="before")
     @classmethod
     def normalize_cors_origins(cls, v: object) -> list[str]:
@@ -41,7 +42,10 @@ class Settings(BaseSettings):
     minio_secret_key: str
     minio_bucket: str = "ldms"
     minio_secure: bool = False
-    cors_origins: list[str] = ["http://localhost:5173", "https://hcmus-projectmanage-lab.vercel.app"]
+    cors_origins: list[str] = [
+        "http://localhost:5173",
+        "https://hcmus-projectmanage-lab.vercel.app",
+    ]
     ocr_dpi: int = 300
     ocr_language: str = "vie+eng"
     ocr_timeout_seconds: int = 60
