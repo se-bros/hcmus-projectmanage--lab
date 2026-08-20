@@ -7,11 +7,10 @@ import {
   getDocumentSourceUrl,
   getOcrStatus,
   getPageImageUrl,
+  getPublishStatus,
+  publishDocument,
   updatePageText,
   updateDocumentMetadata,
-  getDocumentTags,
-  addDocumentTag,
-  deleteDocumentTag,
 } from '../services/api'
 import type { CategoryTree, DocumentDetail, DocumentPage, OcrJob } from '../services/api'
 import { useAuth } from '../context/AuthContext'
@@ -37,11 +36,11 @@ export function DocumentViewerPage() {
   const [draftText, setDraftText] = useState('')
   const [pageSaveState, setPageSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [pageSaveError, setPageSaveError] = useState('')
-
-  const [tags, setTags] = useState<string[]>([])
-  const [newTag, setNewTag] = useState('')
-  const [tagError, setTagError] = useState('')
-  const [isAddingTag, setIsAddingTag] = useState(false)
+  const [publishJob, setPublishJob] = useState<PublishJob | null>(null)
+  const [publishState, setPublishState] = useState<'idle' | 'starting' | 'polling' | 'error'>(
+    'idle',
+  )
+  const [publishError, setPublishError] = useState('')
 
   useEffect(() => {
     let cancelled = false
