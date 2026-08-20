@@ -1,3 +1,4 @@
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -8,11 +9,43 @@ class Settings(BaseSettings):
 
     app_env: str = "development"
     database_url: str
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def normalize_database_url(cls, v: str) -> str:
+        if isinstance(v, str):
+            if v.startswith("postgres://"):
+                return "postgresql+psycopg://" + v[len("postgres://") :]
+            if v.startswith("postgresql://") and not v.startswith("postgresql+"):
+                return "postgresql+psycopg://" + v[len("postgresql://") :]
+        return v
+
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def normalize_cors_origins(cls, v: object) -> list[str]:
+        if isinstance(v, str):
+            v_str = v.strip()
+            if v_str.startswith("[") and v_str.endswith("]"):
+                import json
+
+                try:
+                    return json.loads(v_str)
+                except Exception:
+                    pass
+            return [origin.strip() for origin in v_str.split(",") if origin.strip()]
+        if isinstance(v, list):
+            return [str(origin) for origin in v]
+        return ["http://localhost:5173"]
+
     minio_endpoint: str
     minio_access_key: str
     minio_secret_key: str
     minio_bucket: str = "ldms"
-    cors_origins: list[str] = ["http://localhost:5173"]
+    minio_secure: bool = False
+    cors_origins: list[str] = [
+        "http://localhost:5173",
+        "https://hcmus-projectmanage-lab.vercel.app",
+    ]
     ocr_dpi: int = 300
     ocr_language: str = "vie+eng"
     ocr_timeout_seconds: int = 60

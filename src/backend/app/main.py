@@ -3,6 +3,7 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -74,6 +75,9 @@ app = FastAPI(title="HCMUS-LDMS API", lifespan=lifespan)
 
 setup_cors(app)
 register_exception_handlers(app)
+
+# Prometheus metrics instrumentation (/metrics)
+Instrumentator().instrument(app).expose(app)
 
 
 # Sample

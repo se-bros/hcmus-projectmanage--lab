@@ -1,6 +1,6 @@
 import { AUTH_TOKEN_STORAGE_KEY } from '../context/AuthContext'
 
-const API_BASE = '/api'
+export const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') || '/api'
 
 export type DocumentDetail = {
   id: string
