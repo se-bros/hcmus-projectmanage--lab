@@ -11,34 +11,34 @@
 Sau bài học, người học có thể:
 
 - Giải thích được các khái niệm nền tảng để giao tiếp trong dự án (phần mềm, dự án, phạm vi).
-  *(Explain foundational concepts for communicating within a project — software, project, scope.)*
+  _(Explain foundational concepts for communicating within a project — software, project, scope.)_
 - Giải thích được vì sao dự án phần mềm thường thất bại.
-  *(Explain why software projects fail.)*
+  _(Explain why software projects fail.)_
 - Giải thích được các ràng buộc (constraints) của một dự án.
-  *(Explain project constraints.)*
+  _(Explain project constraints.)_
 - Đề xuất và đánh giá được một ý tưởng dự án.
-  *(Propose and evaluate a project idea.)*
+  _(Propose and evaluate a project idea.)_
 
 ## 2. Nội dung (Contents Overview)
 
-| # | Chủ đề (VI) | Topic (EN) |
-|---|---|---|
-| I | Phần mềm | Software |
-| II | Dự án | Project |
+| #   | Chủ đề (VI)                      | Topic (EN)                    |
+| --- | -------------------------------- | ----------------------------- |
+| I   | Phần mềm                         | Software                      |
+| II  | Dự án                            | Project                       |
 | III | Phạm vi dự án & phạm vi sản phẩm | Project scope & product scope |
-| IV | Các loại dự án | Project types |
-| V | Nguyên nhân dự án thất bại | Project failure reasons |
-| VI | Ràng buộc của dự án | Project constraints |
+| IV  | Các loại dự án                   | Project types                 |
+| V   | Nguyên nhân dự án thất bại       | Project failure reasons       |
+| VI  | Ràng buộc của dự án              | Project constraints           |
 
 ---
 
 ## I. Phần mềm (Software)
 
 Trước khi bàn về dự án, cần thống nhất khái niệm "phần mềm" và các loại phần mềm, vì đây là nền tảng để giao tiếp chung trong nhóm dự án.
-*(Before discussing projects, we must agree on what "software" means and its types, as this is the communication foundation for a project team.)*
+_(Before discussing projects, we must agree on what "software" means and its types, as this is the communication foundation for a project team.)_
 
 > Câu hỏi gợi mở: Tại sao phải quan tâm đến định nghĩa và các loại phần mềm?
-> *(Guiding question: Why care about the software definition and software types?)*
+> _(Guiding question: Why care about the software definition and software types?)_
 
 ---
 
@@ -47,39 +47,39 @@ Trước khi bàn về dự án, cần thống nhất khái niệm "phần mềm
 ### 2.1 Định nghĩa
 
 > Dự án là một nỗ lực tạm thời được thực hiện nhằm tạo ra một sản phẩm, dịch vụ hoặc kết quả duy nhất.
-> *(A project is a temporary endeavor undertaken to create a unique product, service, or result.)* \[1\]
+> _(A project is a temporary endeavor undertaken to create a unique product, service, or result.)_ \[1\]
 
 Hai đặc điểm cốt lõi của dự án:
 
 - **Tạm thời (Temporary):** có ngày bắt đầu và ngày kết thúc xác định.
-  *(Has a definite start date and end date.)*
+  _(Has a definite start date and end date.)_
 - **Kết quả duy nhất (Unique product, service, or result):** không lặp lại y hệt giữa các dự án.
 
 ### 2.2 Các thành phần cần quản lý của một dự án
 
-| Thành phần (VI) | Component (EN) | Diễn giải |
-|---|---|---|
-| Ngân sách | Budget | Chi phí được cấp phát cho dự án |
-| Cố gắng / Nỗ lực | Effort | Khối lượng công sức (nhân-giờ, nhân-tháng...) |
-| Khoảng thời gian | Duration | Từ ngày bắt đầu (Start Date) đến ngày kết thúc (End Date) |
-| Tài nguyên | Resource | Con người, công cụ, hạ tầng phục vụ dự án |
-| Sản phẩm, sản phẩm bàn giao | Products, Deliverables | Kết quả cụ thể phải giao nộp |
-| Yêu cầu, phạm vi | Requirements, Scope | Những gì dự án phải đáp ứng và giới hạn công việc |
-| Lịch trình | Schedule | Kế hoạch thời gian thực hiện |
-| Trị giá | Cost | Giá trị/chi phí thực tế phát sinh |
+| Thành phần (VI)             | Component (EN)         | Diễn giải                                                 |
+| --------------------------- | ---------------------- | --------------------------------------------------------- |
+| Ngân sách                   | Budget                 | Chi phí được cấp phát cho dự án                           |
+| Cố gắng / Nỗ lực            | Effort                 | Khối lượng công sức (nhân-giờ, nhân-tháng...)             |
+| Khoảng thời gian            | Duration               | Từ ngày bắt đầu (Start Date) đến ngày kết thúc (End Date) |
+| Tài nguyên                  | Resource               | Con người, công cụ, hạ tầng phục vụ dự án                 |
+| Sản phẩm, sản phẩm bàn giao | Products, Deliverables | Kết quả cụ thể phải giao nộp                              |
+| Yêu cầu, phạm vi            | Requirements, Scope    | Những gì dự án phải đáp ứng và giới hạn công việc         |
+| Lịch trình                  | Schedule               | Kế hoạch thời gian thực hiện                              |
+| Trị giá                     | Cost                   | Giá trị/chi phí thực tế phát sinh                         |
 
 ### 2.3 Phạm vi sản phẩm so với phạm vi dự án (Product Scope vs. Project Scope)
 
-Trong bối cảnh dự án, thuật ngữ *phạm vi (scope)* có thể chỉ hai điều khác nhau:
-*(In the project context, the term scope can refer to two different things:)*
+Trong bối cảnh dự án, thuật ngữ _phạm vi (scope)_ có thể chỉ hai điều khác nhau:
+_(In the project context, the term scope can refer to two different things:)_
 
 - **Phạm vi sản phẩm (Product scope):** các tính năng và chức năng mô tả đặc điểm của sản phẩm, dịch vụ hoặc kết quả.
-  *(The features and functions that characterize a product, service, or result.)*
+  _(The features and functions that characterize a product, service, or result.)_
 - **Phạm vi dự án (Project scope):** công việc được thực hiện để tạo ra sản phẩm, dịch vụ hoặc kết quả với các tính năng và chức năng được chỉ định.
-  *(The work performed to deliver a product, service, or result with the specified features and functions.)*
+  _(The work performed to deliver a product, service, or result with the specified features and functions.)_
 
 > Lưu ý: Thuật ngữ "phạm vi dự án" đôi khi được xem là đã bao gồm cả "phạm vi sản phẩm".
-> *(Note: "Project scope" is sometimes viewed as including "product scope".)*
+> _(Note: "Project scope" is sometimes viewed as including "product scope".)_
 
 ### 2.4 Cách quản lý dự án
 
@@ -89,23 +89,23 @@ Trong bối cảnh dự án, thuật ngữ *phạm vi (scope)* có thể chỉ h
 ### 2.5 Dự án đến từ đâu? (Where Do Projects Come From?) \[4\]
 
 - Các yêu cầu đề xuất (RFP) do cơ quan nhà nước và một số tổ chức công bố.
-  *(Requests for proposals (RFPs) published by government agencies and organizations.)*
+  _(Requests for proposals (RFPs) published by government agencies and organizations.)_
 - Dự án và sản phẩm từ nghiên cứu (Research projects and products).
 - Kinh nghiệm từ tài liệu/văn học chuyên ngành (Literature in the specific field).
 - Kinh nghiệm giải quyết vấn đề thực tế trong lĩnh vực — nguồn phổ biến nhất.
-  *(Experience of practical problems in the field — the most common source.)*
+  _(Experience of practical problems in the field — the most common source.)_
 - Ý tưởng cá nhân, chịu ảnh hưởng bởi nền tảng, văn hóa, giáo dục và trải nghiệm.
-  *(Personal ideas, influenced by background, culture, education, and experience.)*
+  _(Personal ideas, influenced by background, culture, education, and experience.)_
 
 **Yếu tố thường thấy trong một RFP:** ngân sách; nhu cầu từ quản lý, nhân viên, bán hàng, tiếp thị, hỗ trợ, dịch vụ khách hàng; tự động hóa quy trình kinh doanh, sửa lỗi, yêu cầu cụ thể; quan hệ với cơ quan/tổ chức chính phủ; kinh nghiệm trong lĩnh vực.
 
 ### 2.6 Hoạt động (Operations) và Dự án (Projects) \[2\]
 
-| Tiêu chí | Dự án (Project) | Hoạt động (Operations) |
-|---|---|---|
-| Thời gian | Tạm thời, có ngày bắt đầu/kết thúc xác định | Diễn ra liên tục, lặp lại |
-| Quy trình | Quy trình gốc/mới (original processes) | Quy trình lặp lại giống nhau |
-| Kết quả | Kết quả độc đáo, duy nhất | Kết quả tương tự nhau |
+| Tiêu chí  | Dự án (Project)                             | Hoạt động (Operations)       |
+| --------- | ------------------------------------------- | ---------------------------- |
+| Thời gian | Tạm thời, có ngày bắt đầu/kết thúc xác định | Diễn ra liên tục, lặp lại    |
+| Quy trình | Quy trình gốc/mới (original processes)      | Quy trình lặp lại giống nhau |
+| Kết quả   | Kết quả độc đáo, duy nhất                   | Kết quả tương tự nhau        |
 
 > Dự án có thể xuất phát từ chính nhu cầu cải tiến hoạt động (operations improvement).
 
@@ -121,16 +121,16 @@ Trong bối cảnh dự án, thuật ngữ *phạm vi (scope)* có thể chỉ h
 
 Theo khảo sát trên 100 dự án phần mềm tại một công ty Fortune 500 — một ví dụ về "hỗn hợp hiện đại" (a modern mix) các loại dự án:
 
-| Loại dự án (VI) | Project Type (EN) |
-|---|---|
-| Cải tiến hệ thống kế thừa | Legacy enhancements |
-| Phát triển mới | New development |
-| Sửa đổi ERP | ERP modifications |
-| Cải tạo hệ thống kế thừa | Legacy renovations |
-| Sửa đổi phần mềm COTS | COTS modifications |
-| Sửa đổi mã nguồn mở | Open-source modifications |
-| Sửa chữa hệ thống kế thừa | Legacy repairs |
-| Phục hồi sau tấn công mạng | Cyber-attack recovery |
+| Loại dự án (VI)            | Project Type (EN)         |
+| -------------------------- | ------------------------- |
+| Cải tiến hệ thống kế thừa  | Legacy enhancements       |
+| Phát triển mới             | New development           |
+| Sửa đổi ERP                | ERP modifications         |
+| Cải tạo hệ thống kế thừa   | Legacy renovations        |
+| Sửa đổi phần mềm COTS      | COTS modifications        |
+| Sửa đổi mã nguồn mở        | Open-source modifications |
+| Sửa chữa hệ thống kế thừa  | Legacy repairs            |
+| Phục hồi sau tấn công mạng | Cyber-attack recovery     |
 
 ### Dự án nghiên cứu (Research Project)
 
@@ -150,11 +150,11 @@ Ví dụ về hình thức tổ chức: 7 thành viên, 8 giờ/tuần mỗi th�
 
 ### 4.1 Dự án thành công và thất bại (Project Success and Failure)
 
-| Mức độ | Định nghĩa |
-|---|---|
-| **Thành công (Success)** | Hoàn thành đúng thời hạn, đúng ngân sách, đủ tính năng như đặc tả ban đầu, khách hàng hài lòng. |
+| Mức độ                         | Định nghĩa                                                                                         |
+| ------------------------------ | -------------------------------------------------------------------------------------------------- |
+| **Thành công (Success)**       | Hoàn thành đúng thời hạn, đúng ngân sách, đủ tính năng như đặc tả ban đầu, khách hàng hài lòng.    |
 | **Có thách thức (Challenged)** | Hoàn thành và vận hành được, nhưng vượt ngân sách, trễ hạn, và có ít tính năng hơn đặc tả ban đầu. |
-| **Thất bại (Failure)** | Bị hủy trước khi hoàn thành, hoặc bàn giao rồi nhưng không bao giờ được sử dụng. |
+| **Thất bại (Failure)**         | Bị hủy trước khi hoàn thành, hoặc bàn giao rồi nhưng không bao giờ được sử dụng.                   |
 
 ### 4.2 Nguyên nhân thất bại (Causes of Project Failure)
 
@@ -211,7 +211,7 @@ Nguồn ý tưởng gợi ý:
 - Phần mềm nguồn mở.
 - Trách nhiệm công việc hàng ngày của bạn.
 
-> Câu hỏi gợi mở: Trở ngại hiện tại của bạn là gì? *(What are your current obstacles?)*
+> Câu hỏi gợi mở: Trở ngại hiện tại của bạn là gì? _(What are your current obstacles?)_
 
 ### 6.2 Đánh giá ý tưởng dự án (Evaluating Project Ideas)
 
@@ -238,9 +238,9 @@ Mỗi nhóm cần trình bày các mục sau:
 
 ## Tài liệu tham khảo (References)
 
-1. Project Management Institute (2017). *A Guide to the Project Management Body of Knowledge*, 6th Edition.
-2. Kim Heldman (2018). *PMP Project Management Professional Study Guide*. Sybex.
-3. Capers Jones (2018). *Software Methodologies: A Quantitative Guide*. Auerbach Publications.
-4. William Trochim and James P. Donnelly (2007). *The Research Methods Knowledge Base*.
-5. Robert N. Charette (2005). *Why Software Fails*. IEEE Spectrum.
-6. Kathy Schwalbe (2017). *An Introduction to Project Management*, 6th Edition.
+1. Project Management Institute (2017). _A Guide to the Project Management Body of Knowledge_, 6th Edition.
+2. Kim Heldman (2018). _PMP Project Management Professional Study Guide_. Sybex.
+3. Capers Jones (2018). _Software Methodologies: A Quantitative Guide_. Auerbach Publications.
+4. William Trochim and James P. Donnelly (2007). _The Research Methods Knowledge Base_.
+5. Robert N. Charette (2005). _Why Software Fails_. IEEE Spectrum.
+6. Kathy Schwalbe (2017). _An Introduction to Project Management_, 6th Edition.
