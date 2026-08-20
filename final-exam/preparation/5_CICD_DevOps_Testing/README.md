@@ -13,29 +13,29 @@
   - Cấu hình Docker & Docker Compose (`src/backend/docker-compose.yml`, `src/backend/Dockerfile`)
   - Bộ test suite trong [`src/backend/tests/`](../../../src/backend/tests/)
   - File CI workflow: [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml)
-  - Scripts: [`scripts/run.sh`](../../../scripts/run.sh), [`scripts/deploy-prod.sh`](../../../scripts/deploy-prod.sh), [`scripts/backup-postgres.sh`](../../../scripts/backup-postgres.sh), [`scripts/backup-minio.sh`](../../../scripts/backup-minio.sh)
+  - Scripts: [`scripts/run.sh`](../../../scripts/run.sh), [`scripts/run-prod.sh`](../../../scripts/run-prod.sh), [`docker-compose.prod.yml`](../../../docker-compose.prod.yml), [`scripts/backup-postgres.sh`](../../../scripts/backup-postgres.sh), [`scripts/backup-minio.sh`](../../../scripts/backup-minio.sh)
 - **Tài liệu lý thuyết tham chiếu (từ bài giảng):**
   - [`materials/07_software_configuration_management.md`](../../../materials/07_software_configuration_management.md)
   - [`materials/11_software_quality_management.md`](../../../materials/11_software_quality_management.md)
   - [`materials/11_1_agile_quality_management.md`](../../../materials/11_1_agile_quality_management.md)
 - **Ghi chú bài giảng trên lớp ([`note.md`](../../../note.md)):**
   - **Buổi 06:** CI chạy tự động kiểm thử lint/test khi mở PR → gửi email thông báo kết quả.
-  - **Buổi 08:** 5 bài toán CD/DevOps — nhóm đã xử lý phần lớn (1) deploy script, (5) backup; chưa đủ (2) auto release URL, (3) Grafana/Prometheus.
+  - **Buổi 08:** 5 bài toán CD/DevOps — nhóm có `run-prod.sh` (1), Prometheus/Grafana trong compose prod (3), backup scripts (5); gap chính: (2) auto release URL / `cd.yml`.
   - **Buổi 10:** AI sinh test; Pytest/Vitest; ngưỡng coverage 80–90% là khuyến nghị — **CI hiện chưa bắt coverage %**.
 - **Đọc chéo liên kết:** Người 3 (Câu 5 Kiến trúc), Người 6 (Câu 19 Chất lượng).
 - **Checklist bản in nộp kèm khi thi:**
   - [ ] Bản in [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml) + screenshot PR checks — "13"
   - [ ] Bản in email Brevo / Actions notify — "13"
   - [ ] Bản in [`06-developer-guide.md`](../../../docs/03-execution-monitoring/06-developer-guide.md) — "13"
-  - [ ] Bản in [`scripts/deploy-prod.sh`](../../../scripts/deploy-prod.sh) + compose prod — "14" _(chưa có `cd.yml` auto — nói rõ Continuous Delivery thủ công)_
+  - [ ] Bản in [`scripts/run-prod.sh`](../../../scripts/run-prod.sh) + [`docker-compose.prod.yml`](../../../docker-compose.prod.yml) — "14" _(chưa có `cd.yml` auto — nói rõ Continuous Delivery thủ công)_
   - [ ] Bản in [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md) — "14"
-  - [ ] Bản in `docker-compose.yml` + Alembic / migration step — "14"
-  - [ ] Bản in `scripts/backup-*.sh` + sơ đồ hạ tầng — "15"
+  - [ ] Bản in cấu hình CSDL / seed + Postgres trong compose prod — "14"
+  - [ ] Bản in `scripts/backup-*.sh` + sơ đồ hạ tầng prod — "15"
   - [ ] Bản in [`09-test-plan.md`](../../../docs/02-planning/09-test-plan.md) — "20"
   - [ ] Bản in `pytest -v` output — "20"
   - [ ] Screenshot GitHub Issues + PR review — "19"/"20"
   - [ ] Biên bản UAT — phối hợp Người 6 — "19"/"20"
-- **Chiến lược 10 phút viết giấy A4:** Phút 1–2 khung WHAT-HOW-WHY-EVIDENCE; 3–7 triển khai + sơ đồ; 8–9 ghi tool trên sơ đồ; 10 rà từ khóa. **Nói đúng gap** (không có `cd.yml`, không multi-stage Dockerfile).
+- **Chiến lược 10 phút viết giấy A4:** Phút 1–2 khung WHAT-HOW-WHY-EVIDENCE; 3–7 triển khai + sơ đồ; 8–9 ghi tool trên sơ đồ; 10 rà từ khóa. **Nói đúng gap** (không có `cd.yml` auto-deploy VMware).
 
 ---
 
@@ -83,8 +83,8 @@ flowchart TD
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
-- **Đối chiếu:** `scripts/deploy-prod.sh`, `scripts/run.sh`, compose profile `prod`, Alembic, Deployment Guide.
-- **Từ khóa:** Continuous **Delivery** thủ công (sau CI, một lệnh người); **chưa** Continuous Deployment (`cd.yml` lên VMware). Dockerfile **single-stage** (không multi-stage).
+- **Đối chiếu:** `scripts/run-prod.sh`, `docker-compose.prod.yml`, `scripts/run.sh`, Deployment Guide.
+- **Từ khóa:** Continuous **Delivery** thủ công (`./scripts/run-prod.sh`); **chưa** Continuous Deployment (`cd.yml` lên VMware). Stack prod gồm Web/Nginx, API, Postgres, MinIO, MailHog, Prometheus, Grafana.
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -94,27 +94,26 @@ flowchart TD
 flowchart TD
     CI["CI xanh trên GitHub Actions"] --> Human["Kỹ sư chọn commit/tag"]
     Human --> DevDeploy["Dev: scripts/run.sh"]
-    Human --> ProdLike["Prod-like: scripts/deploy-prod.sh"]
-    DevDeploy --> Up1["compose up --build"]
-    ProdLike --> Cert["generate-dev-cert nếu thiếu"]
-    Cert --> Up2["compose --profile prod up -d --build"]
+    Human --> ProdLike["Prod: scripts/run-prod.sh"]
+    DevDeploy --> Up1["backend compose up --build"]
+    ProdLike --> Up2["docker-compose.prod.yml up -d --build"]
     Up1 --> Health["GET /health 200"]
     Up2 --> Health
-    Health --> Mig["alembic upgrade head"]
-    Mig --> Ready["Stack sẵn sàng"]
-    Health -->|Fail| Stop["Log + exit lỗi<br/>rollback: down + checkout tag cũ + deploy lại"]
+    Health --> Post["Dev: alembic upgrade<br/>Prod: seed_data"]
+    Post --> Ready["Stack sẵn sàng"]
+    Health -->|Fail| Stop["Log + exit lỗi<br/>rollback: compose down + checkout tag cũ + run-prod lại"]
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
 - **Giải thích luồng hoạt động CD:**
-  _Trả lời:_ Sau khi CI xác nhận build/test xanh, nhóm **chưa** tự động đẩy lên máy chủ VMware. Thay vào đó thực hiện Continuous Delivery thủ công: trên máy có Docker, chạy `./scripts/run.sh` (dev: API+Postgres+MinIO + Vite) hoặc `./scripts/deploy-prod.sh` (profile `prod`: thêm Nginx TLS, FE tĩnh). Script chờ health `http://localhost:8000/health`, rồi chạy Alembic trong container API. CSDL là PostgreSQL 16 trong Compose; schema chỉ đổi qua migration. Rollback MVP: `compose --profile prod down`, `git checkout` bản ổn định trước, chạy lại deploy; dữ liệu khôi phục từ backup nếu cần. **Không có** `.github/workflows/cd.yml` — đây là gap thẳng thắn khi thầy hỏi “commit xong user đã có URL production chưa?”.
+  _Trả lời:_ Sau khi CI xác nhận build/test xanh, nhóm **chưa** tự động đẩy lên máy chủ VMware. Continuous Delivery thủ công: trên máy có Docker chạy `./scripts/run.sh` (dev) hoặc `./scripts/run-prod.sh` (prod one-click qua `docker-compose.prod.yml`: Web/Nginx TLS, API, Postgres, MinIO, MailHog, Prometheus, Grafana). Script prod chờ `GET /health`, rồi seed dữ liệu demo. Rollback MVP: `docker compose -f docker-compose.prod.yml down`, checkout bản ổn định, chạy lại `run-prod.sh`; khôi phục data từ backup nếu cần. **Không có** `.github/workflows/cd.yml` — gap khi thầy hỏi “commit xong user đã có URL production chưa?”.
 
 - **Danh mục các công cụ nhóm đã sử dụng:**
-  _Trả lời:_ Docker & Docker Compose; Dockerfile Python 3.11-slim + uv (cài Tesseract/Pandoc/Poppler); Nginx (profile `prod`); Alembic; `curl` health check; script Bash `run.sh` / `deploy-prod.sh`; hướng dẫn [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
+  _Trả lời:_ Docker & Docker Compose; `docker-compose.prod.yml`; Dockerfile API; Nginx (`web`); MailHog; Prometheus; Grafana; `curl` health check; Bash/PowerShell `run-prod.sh` / `run-prod.ps1`; hướng dẫn [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
 
 - **Tại sao cần sử dụng hệ thống Chuyển giao liên tục cho dự án?**
-  _Trả lời:_ Stack LDMS gồm nhiều thành phần (API, DB, object storage, reverse proxy). Nếu mỗi máy “cài tay” khác nhau sẽ không tái lập được môi trường số hóa. Script + Compose giúp **một lệnh trên máy bất kỳ** dựng đủ hệ thống (bài toán 1 buổi 08). Migration gắn với bước deploy tránh lệch schema. CD đầy đủ (tag → auto URL production) là bước tiếp theo; hiện nhóm ưu tiên Delivery tái lập được trước khi gắn K8s/PaaS.
+  _Trả lời:_ Stack LDMS nhiều thành phần (API, DB, object storage, reverse proxy, mail, monitoring). Script one-click giúp **máy bất kỳ có Docker** dựng đủ hệ thống (bài toán 1 buổi 08). CD đầy đủ (tag → auto URL production) là bước tiếp theo; hiện nhóm đã có Delivery tái lập được + Monitor trong compose prod.
 
 ---
 
@@ -124,8 +123,8 @@ flowchart TD
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
-- **Đối chiếu:** scripts/, compose, backup MVP, CI, GitFlow.
-- **Từ khóa:** 8 giai đoạn DevOps; Dev vs prod-like; backup `pg_dump`/`mc mirror` (MVP thay PgBackRest/Restic).
+- **Đối chiếu:** `scripts/`, `docker-compose.prod.yml`, backup MVP, CI, GitFlow.
+- **Từ khóa:** 8 giai đoạn DevOps; Dev (`run.sh`) vs Prod (`run-prod.sh`); Monitor Grafana/Prometheus; backup `pg_dump`/`mc mirror`.
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -137,22 +136,22 @@ flowchart LR
     Code --> Build["Build<br/>Docker / Vite"]
     Build --> Test["Test<br/>CI Pytest Vitest"]
     Test --> Release["Release<br/>tag / release/*"]
-    Release --> Deploy["Deploy<br/>run.sh / deploy-prod"]
-    Deploy --> Operate["Operate<br/>Compose stack"]
-    Operate --> Monitor["Monitor<br/>/health + email<br/>(chưa Grafana)"]
+    Release --> Deploy["Deploy<br/>run.sh / run-prod.sh"]
+    Deploy --> Operate["Operate<br/>Compose prod stack"]
+    Operate --> Monitor["Monitor<br/>/health + Brevo<br/>+ Prometheus/Grafana"]
     Monitor --> Plan
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
 - **Chi tiết 8 giai đoạn và công cụ tương ứng:**
-  _Trả lời:_ (1) **Plan** — Product Backlog, Sprint plan, GitHub Issues. (2) **Code** — GitFlow `feature/*`→`develop`→`release/*`→`main`, PR review. (3) **Build** — Docker build API; `npm run build` trên CI. (4) **Test** — Ruff/ESLint + Pytest + Vitest trên Actions. (5) **Release** — quy ước tag/`release/*` (architecture §8.2); CI chạy trên nhánh release. (6) **Deploy** — `run.sh` / `deploy-prod.sh`. (7) **Operate** — Compose giữ API/Postgres/MinIO(/Nginx); backup `backup-postgres.sh` (`pg_dump -Fc`) và `backup-minio.sh` (`mc mirror`). (8) **Monitor** — health lúc deploy + email merge `main`; **chưa** Prometheus/Grafana.
+  _Trả lời:_ (1) **Plan** — Product Backlog, Sprint plan, GitHub Issues. (2) **Code** — GitFlow `feature/*`→`develop`→`release/*`→`main`, PR review. (3) **Build** — Docker build API/Web; `npm run build` trên CI. (4) **Test** — Ruff/ESLint + Pytest + Vitest trên Actions. (5) **Release** — quy ước tag/`release/*` (architecture §8.2); CI chạy trên nhánh release. (6) **Deploy** — `run.sh` (dev) / `run-prod.sh` (prod compose). (7) **Operate** — stack `docker-compose.prod.yml`; backup `backup-postgres.sh` / `backup-minio.sh`. (8) **Monitor** — health lúc deploy, email merge `main` (Brevo), Prometheus `:9090` + Grafana `:3000` trong prod stack.
 
 - **Tại sao cần sử dụng quy trình DevOps cho dự án?**
-  _Trả lời:_ DevOps rút ngắn vòng từ ý tưởng story đến stack chạy được và có bản sao lưu. Với thư viện số hóa, mất DB/MinIO là mất công biên tập; backup + hạ tầng-as-code (Compose/scripts) giảm rủi ro “chỉ chạy trên máy người viết”. CI gắn Dev với chất lượng trước khi Operate.
+  _Trả lời:_ DevOps rút ngắn vòng từ story đến stack chạy được, có seed demo, có giám sát và sao lưu. Với thư viện số hóa, mất DB/MinIO là mất công biên tập; Compose + scripts giảm rủi ro “chỉ chạy trên máy người viết”.
 
 - **Giải thích quy trình phát triển, triển khai và vận hành đồng thời nhiều môi trường (Dev vs Staging vs Prod):**
-  _Trả lời:_ **Dev:** compose mặc định + Vite 5173, có thể bật mock auth. **Prod-like local:** `--profile prod` + Nginx 8443 (cert self-signed). **Staging/Prod VMware:** mô tả trong Deployment View architecture (hai VM) — là **thiết kế mục tiêu**, chưa gắn pipeline CD trong repo. Không dùng chung `.env` secret yếu của dev cho máy coi là production. Nhiều “phiên bản” song song = nhiều nhánh Git (`develop` đang tích hợp vs `main` ổn định) + có thể checkout tag cũ để rollback stack.
+  _Trả lời:_ **Dev:** `run.sh` + compose backend + Vite 5173. **Prod-like:** `run-prod.sh` + `docker-compose.prod.yml` (Web 8080/8443, MailHog, Grafana…). **Staging/Prod VMware:** mô tả trong Deployment View — thiết kế mục tiêu, chưa gắn CD pipeline. Không dùng chung secret yếu của dev trên máy production.
 
 ---
 

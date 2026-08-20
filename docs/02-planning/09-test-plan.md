@@ -19,6 +19,7 @@
 | Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                         | Người thực hiện (Author) |
 | :-----------------: | :-------------------: | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------: |
 |         1.0         |      20/08/2026       | Khởi tạo Test Plan từ thực trạng codebase: Pytest (backend), Vitest (frontend), cổng CI GitHub Actions; ghi rõ khoảng trống. |    Nguyễn Tuấn Anh     |
+|         1.1         |      20/08/2026       | Smoke prod-like: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (sau rebase main). |    Nguyễn Tuấn Anh     |
 
 ---
 
@@ -139,7 +140,7 @@ flowchart BT
 | Bước | Cách làm |
 | ---- | -------- |
 | Khởi động stack | `./scripts/run.sh` — chờ `http://localhost:8000/health` trả thành công, chạy Alembic, mở Vite. |
-| Prod-like | `./scripts/deploy-prod.sh` hoặc `docker compose --profile prod` (xem Deployment Guide). |
+| Prod-like | `./scripts/run-prod.sh` + `docker-compose.prod.yml` (xem Deployment Guide). |
 | OCR smoke | Theo README: upload `samples/two-page.pdf`, poll job OCR. |
 
 ### 4.6 Acceptance / UAT
