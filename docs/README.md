@@ -43,6 +43,7 @@ docs/
 | 03 | [03-product-backlog.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/02-planning/03-product-backlog.md) | Toàn bộ 26 User Stories, Acceptance Criteria (AC) và Definition of Done (DoD). | `HCMUS-LDMS-08` |
 | 04 | [04-cost-time-resource.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/02-planning/04-cost-time-resource.md) | Ước lượng chi phí (COCOMO II, AI Assisted), thời gian và nguồn lực. | `HCMUS-LDMS-09` |
 | 05 | [05-statement-of-work.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/02-planning/05-statement-of-work.md) | Bản mô tả công việc (SoW) làm việc với khách hàng & đơn vị thụ hưởng. | `HCMUS-LDMS-10` |
+| 09 | [09-test-plan.md](./02-planning/09-test-plan.md) | Kế hoạch kiểm thử: Pytest/Vitest, kim tự tháp, cổng CI, khoảng trống E2E/coverage. | `LDMS_TSP_B1.0` |
 
 ---
 
@@ -54,6 +55,8 @@ docs/
 | 01 | [01-sprint-plan.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/01-sprint-plan.md) | Kế hoạch phân công công việc Sprint 1 theo Epic cho 4 thành viên. | `HCMUS-LDMS-SPR1` |
 | 02 | [02-project-log.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/02-project-log.md) | Nhật ký hoàn thành Story, thời gian thực tế và lượng token AI tiêu thụ. | `HCMUS-LDMS-LOG` |
 | 03 | [03-ai-development-workflow.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/03-ai-development-workflow.md) | Báo cáo chi tiết phương pháp lập trình cùng AI Coding Assistant. | `HCMUS-LDMS-AI` |
+| 06 | [06-developer-guide.md](./03-execution-monitoring/06-developer-guide.md) | Hướng dẫn cài đặt công cụ, chạy local, lệnh trùng CI cho lập trình viên. | `HCMUS-LDMS-DEVGUIDE` |
+| 07 | [07-deployment-guide.md](./03-execution-monitoring/07-deployment-guide.md) | Hướng dẫn triển khai Compose prod-like, migration, backup MVP, gap CD. | `HCMUS-LDMS-DEPLOY` |
 | - | [superpowers/](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/superpowers) | Thư mục chứa các bản đặc tả (specs) và kế hoạch (plans) chi tiết từng tính năng. | - |
 
 ---
