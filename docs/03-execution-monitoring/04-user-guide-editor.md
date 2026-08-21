@@ -57,15 +57,33 @@ Trong hệ thống HCMUS-LDMS, **Biên tập viên (Editor)** là lực lượng
 
 Biên tập viên vận hành theo mô hình **Human-in-the-Loop (AI OCR hỗ trợ + Con người kiểm định)**: Công nghệ OCR tự động nhận diện phần lớn văn bản, sau đó biên tập viên sử dụng trình biên tập màn hình đôi để rà soát, đối chiếu và chuẩn hóa nội dung trước khi xuất bản.
 
-```
-+-----------------------------------------------------------------------------------------+
-|                                    LUỒNG BIÊN TẬP VIÊN                                  |
-|                                                                                         |
-|  [Tải tệp PDF/Ảnh]  -->  [Theo dõi OCR Dashboard]  -->  [Split-screen: Đối chiếu & Sửa] |
-|                                                                     |                   |
-|                                                                     v                   |
-|  [Xem trước trên Reader] <-- [Đóng gói Xuất bản EPUB] <-- [Nhập Metadata & Gắn Tags]    |
-+-----------------------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F0F7FA
+skinparam ActivityBorderColor #007799
+skinparam ActivityFontColor #111111
+skinparam ArrowColor #007799
+
+start
+:Tải lên tệp PDF hoặc ảnh scan (300 DPI);
+:Hệ thống tự động kích hoạt Tesseract OCR;
+:Theo dõi tiến trình trên Dashboard OCR (Live Polling);
+if (Trạng thái OCR?) then (Thất bại)
+  :Nhấn nút "Thử lại" (Retry OCR);
+  detach
+else (Hoàn tất)
+  :Mở Trình biên tập đối chiếu Split-screen;
+  :Đối chiếu ảnh scan gốc với văn bản OCR & Soát lỗi;
+  :Nhập Metadata Dublin Core (Title, Author, Shelf, Category);
+  :Gán Thẻ linh hoạt (Tags #tag);
+  :Kích hoạt Đóng gói & Xuất bản EPUB 3.0 (Pandoc);
+  :Kiểm tra chất lượng sách trên giao diện Reader;
+  stop
+endif
+@enduml
 ```
 
 ### Bảng so sánh quyền hạn Biên tập viên (Editor) trong hệ thống
@@ -164,25 +182,32 @@ Nếu một tài liệu bị rơi vào trạng thái `failed` (ví dụ: máy ch
 
 Trình biên tập màn hình đôi (`DocumentViewerPage` tại `/documents/:documentId`) là công cụ quan trọng nhất giúp đảm bảo tính chính xác và chất lượng của tài liệu số hóa.
 
-```
-+-----------------------------------------------------------------------------+
-| TRÌNH BIÊN TẬP ĐỐI CHIẾU MÀN HÌNH ĐÔI (SPLIT-SCREEN EDITOR)                 |
-|                                                                             |
-| Trang: [ 1 ] [ (2) ] [ 3 ] [ 4 ] [ 5 ] ...                                  |
-| +------------------------------------+------------------------------------+ |
-| | KHUNG TRÁI: ẢNH SCAN GỐC           | KHUNG PHẢI: VĂN BẢN OCR HIỆU CHỈNH | |
-| |                                    |                                    | |
-| | +--------------------------------+ | +--------------------------------+ | |
-| | |                                | | | Chương 1: Giới hạn của dãy số  | | |
-| | |   Chương 1: Giới hạn của dãy số| | |                                | | |
-| | |                                | | | Định nghĩa 1.1: Cho dãy số     | | |
-| | |   Định nghĩa 1.1: Cho dãy số   | | | (x_n) xác định trên tập số...  | | |
-| | |   (x_n) xác định trên tập số...| | |                                | | |
-| | |                                | | |                                | | |
-| | +--------------------------------+ | +--------------------------------+ | |
-| |                                    | [ 1,420 ký tự ]     [ Lưu trang ]  | |
-| +------------------------------------+------------------------------------+ |
-+-----------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #007799
+
+package "Trình biên tập Split-screen (/documents/:id)" {
+  [Thanh chọn trang: Trang 1, 2, 3...] as PageBar
+  
+  package "Khung Trái: Scan Pane" {
+    [Ảnh scan gốc độ phân giải cao] as ScanImage
+    [Presigned URL MinIO bảo mật] as MinioUrl
+  }
+  
+  package "Khung Phải: Processed Pane" {
+    [Khung soạn thảo văn bản OCR] as TextEditor
+    [Bộ đếm ký tự & Nút Lưu trang] as SaveControls
+  }
+  
+  PageBar --> ScanImage : Chọn trang hiển thị
+  PageBar --> TextEditor : Tải văn bản trang tương ứng
+  ScanImage ..> MinioUrl : Tải ảnh trang
+  TextEditor --> SaveControls : Cập nhật độ dài & cảnh báo chưa lưu
+}
+@enduml
 ```
 
 ### 4.1 Bố cục không gian làm việc màn hình đôi

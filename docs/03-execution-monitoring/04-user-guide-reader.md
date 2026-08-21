@@ -62,15 +62,29 @@ Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (**HCMUS-LDM
 * **Học tập chủ động:** Bôi đen tạo highlight đoạn văn tâm đắc, viết ghi chú phân tích và quản lý trích dẫn dễ dàng.
 * **Tự động nhớ trang sách:** Hệ thống tự động ghi nhớ vị trí đọc dở chính xác theo đoạn văn bản (chuẩn EPUB CFI).
 
-```
-+-----------------------------------------------------------------------------+
-|                                LUỒNG ĐỘC GIẢ                                |
-|                                                                             |
-|  [Đăng nhập / SSO]  -->  [Tìm kiếm FTS / Kho sách]  -->  [Mở Reader EPUB]   |
-|                                                                 |           |
-|                                                                 v           |
-|  [Tự nhớ vị trí CFI] <-- [Tạo Highlight / Ghi chú] <-- [Chỉnh Cỡ chữ/Theme] |
-+-----------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam ActivityBackgroundColor #EBF4FA
+skinparam ActivityBorderColor #007799
+skinparam ActivityFontColor #111111
+skinparam ArrowColor #007799
+
+start
+:Đăng nhập hệ thống (Mật khẩu hoặc Google SSO);
+:Tìm kiếm FTS hoặc Duyệt danh mục tài liệu;
+:Mở Reader đọc sách EPUB (Signed URL 15 phút);
+fork
+  :Tùy chỉnh Cỡ chữ (80% - 200%) & Giao diện (Sáng/Tối);
+fork again
+  :Bôi đen đoạn văn để Tạo Highlight & Ghi chú;
+fork again
+  :Tự động ghi nhớ vị trí đọc dở (EPUB CFI);
+end fork
+stop
+@enduml
 ```
 
 ### Bảng tóm tắt quyền hạn của Độc giả (Reader Role)
@@ -179,7 +193,7 @@ Giao diện đọc sách được thiết kế tối giản, tập trung vào n�
   * Nút `← Về danh sách`: Quay lại kho tài liệu.
   * `Tiêu đề sách`: Tên cuốn sách đang mở.
   * Bộ công cụ cỡ chữ `A−` / `A+`.
-  * Bộ chuyển đổi màu nền `🌙 Nền tối` / `☀️ Nền sáng`.
+  * Bộ chuyển đổi màu nền `Nền tối` / `Nền sáng` (Theme Selector).
 * **Khung hiển thị nội dung sách (`Reader Body`):** Khung cuộn văn bản EPUB thích ứng hiển thị trung tâm, chiếm 70%–80% chiều cao màn hình.
 * **Thanh bên ghi chú (`Highlight Sidebar`):** Nằm ở cạnh phải, hỗ trợ theo dõi các trích đoạn đã lưu.
 
@@ -212,8 +226,8 @@ Giao diện đọc sách được thiết kế tối giản, tập trung vào n�
 
 ### 5.2 Chuyển đổi Giao diện Sáng / Tối (Light/Dark Theme)
 
-* Nhấn nút **`🌙 Nền tối`**: Chuyển sang giao diện Dark Mode với nền màu đen sẫm (`#141414`) và chữ màu xám sáng (`#e6e6e6`). Giúp bảo vệ mắt khi đọc sách vào ban đêm hoặc trong phòng thiếu sáng.
-* Nhấn nút **`☀️ Nền sáng`**: Chuyển sang giao diện Light Mode với nền trắng tinh khôi (`#ffffff`) và chữ màu than đen tiêu chuẩn (`#1a1a1a`). Phù hợp đọc tài liệu ban ngày.
+* Nhấn nút **`Nền tối (Dark Mode)`**: Chuyển sang giao diện Dark Mode với nền màu đen sẫm (`#141414`) và chữ màu xám sáng (`#e6e6e6`). Giúp bảo vệ mắt khi đọc sách vào ban đêm hoặc trong phòng thiếu sáng.
+* Nhấn nút **`Nền sáng (Light Mode)`**: Chuyển sang giao diện Light Mode với nền trắng tinh khôi (`#ffffff`) và chữ màu than đen tiêu chuẩn (`#1a1a1a`). Phù hợp đọc tài liệu ban ngày.
 
 ### 5.3 Cơ chế lưu trữ cấu hình cá nhân
 
@@ -234,15 +248,26 @@ Tính năng đánh dấu hỗ trợ độc giả trích dẫn và ghi chép họ
    * Bấm nút **"Lưu highlight"** (hoặc tạo highlight nhanh không cần ghi chú).
 4. Đoạn văn bản trong sách sẽ lập tức được phủ lớp màu vàng hổ phách nhạt (`#f5c518` độ mờ 40%), đồng thời được lưu vào cơ sở dữ liệu.
 
-```
-+--------------------------------------------------------------------+
-|  ...Các giải thuật di truyền mô phỏng quá trình tiến hóa...        |
-|     |===================================================|          |
-|     |  [Pop-over]                                       |          |
-|     |  Nhập ghi chú: "Xem lại công thức đột biến gen"   |          |
-|     |  [ Hủy ]                        [ Lưu highlight ] |          |
-|     +---------------------------------------------------+          |
-+--------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam shadowing false
+skinparam ArrowColor #007799
+skinparam ParticipantBackgroundColor #EBF4FA
+skinparam ParticipantBorderColor #007799
+
+actor "Độc giả (Reader)" as Reader
+boundary "Trình đọc EPUB\n(ReaderPage)" as ReaderUI
+control "Highlight Popover" as Popover
+database "PostgreSQL DB" as DB
+
+Reader -> ReaderUI : Bôi đen văn bản trên trang sách
+ReaderUI -> Popover : Kích hoạt Popover tại tọa độ vùng chọn
+Reader -> Popover : Nhập ghi chú (tùy chọn) & Bấm "Lưu highlight"
+Popover -> DB : Gọi API POST /highlights (cfi_range, text, note)
+DB --> ReaderUI : Trả về bản ghi Highlight mới
+ReaderUI -> ReaderUI : Render lớp phủ màu vàng (#f5c518)\nvà thêm vào Highlight Sidebar
+@enduml
 ```
 
 ### 6.2 Quản lý danh sách Highlight qua Thanh bên (Sidebar)

@@ -55,18 +55,26 @@ Trong hệ thống HCMUS-LDMS, **Quản trị viên (Administrator)** là ngư�
 3. **Bảo đảm chất lượng ấn phẩm số:** Giám sát toàn bộ tiến trình số hóa, can thiệp xử lý lỗi OCR và phê duyệt phát hành tài liệu chuẩn mực.
 4. **An toàn & Bảo mật hệ thống:** Thiết lập các chính sách bảo vệ tài nguyên học liệu số (DRM qua Signed URL, bảo mật JWT, giới hạn domain SSO).
 
-```
-+-----------------------------------------------------------------------------+
-|                            TRÁCH NHIỆM QUẢN TRỊ VIÊN                        |
-|                                                                             |
-|  [Cây Danh mục 2 cấp]     [Phê duyệt Nâng quyền]    [Giám sát Kho học liệu] |
-|   (/categories)             (/requests)               (/dashboard, /docs)   |
-|         |                        |                            |             |
-|         +------------------------+----------------------------+             |
-|                                  |                                          |
-|                                  v                                          |
-|                 [VẬN HÀNH AN TOÀN & BẢO MẬT HỆ THỐNG]                       |
-+-----------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam rectangleBackgroundColor #F2F7F9
+skinparam rectangleBorderColor #007799
+skinparam rectangleFontColor #111111
+
+rectangle "BẢNG ĐIỀU KHIỂN QUẢN TRỊ VIÊN (ADMIN)" {
+  rectangle "Quản trị Cây Danh mục 2 cấp\n(/categories)" as CatMgmt #EBF4FA
+  rectangle "Phê duyệt Nâng quyền Tài khoản\n(/requests)" as RoleMgmt #EBF4FA
+  rectangle "Giám sát & Quản lý Toàn bộ Kho Sách\n(/dashboard, /documents)" as DocMgmt #EBF4FA
+  rectangle "Cấu hình An ninh & Vận hành\n(SSO Domains, Presigned URL, Backup)" as SecMgmt #EBF4FA
+}
+
+CatMgmt -[hidden]down-> RoleMgmt
+RoleMgmt -[hidden]down-> DocMgmt
+DocMgmt -[hidden]down-> SecMgmt
+@enduml
 ```
 
 ---
@@ -77,17 +85,17 @@ Hệ thống HCMUS-LDMS áp dụng mô hình phân quyền dựa trên vai trò 
 
 | Chức năng / Màn hình | Đường dẫn Route | Reader | Editor (Chính chủ) | Editor (Khác chủ) | Admin (Quản trị viên) |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Trang chủ / Tải lên tài liệu** | `/` | ❌ Từ chối |  Cho phép |  Cho phép |  Cho phép |
-| **Dashboard theo dõi OCR** | `/dashboard` | ❌ Từ chối |  Cho phép |  Cho phép |  Cho phép |
-| **Duyệt danh sách tài liệu** | `/documents` |  Cho phép |  Cho phép |  Cho phép |  Cho phép |
-| **Split-screen Viewer (Xem)** | `/documents/:id` |  Chỉ đọc |  Toàn quyền |  Chỉ đọc |  Toàn quyền |
-| **Hiệu chỉnh văn bản OCR** | API `/pages/:page` | ❌ Từ chối |  Chỉnh sửa | ❌ Từ chối |  Chỉnh sửa |
-| **Sửa Metadata & Gắn Tags** | API `/documents/:id` | ❌ Từ chối |  Chỉnh sửa | ❌ Từ chối |  Chỉnh sửa |
-| **Xuất bản sách EPUB** | API `/publish` | ❌ Từ chối |  Thực hiện | ❌ Từ chối |  Thực hiện |
-| **Đọc sách EPUB trực tuyến** | `/reader/:id` |  Cho phép |  Cho phép |  Cho phép |  Cho phép |
-| **Tạo Highlight & Ghi chú** | API `/highlights` |  Cá nhân |  Cá nhân |  Cá nhân |  Cá nhân |
-| **Quản trị Cây Danh mục 2 cấp** | `/categories` | ❌ Từ chối | ❌ Từ chối | ❌ Từ chối |  Toàn quyền |
-| **Duyệt Yêu cầu Nâng quyền** | `/requests` | ❌ Từ chối | ❌ Từ chối | ❌ Từ chối |  Toàn quyền |
+| **Trang chủ / Tải lên tài liệu** | `/` | Không | Cho phép | Cho phép | Cho phép |
+| **Dashboard theo dõi OCR** | `/dashboard` | Không | Cho phép | Cho phép | Cho phép |
+| **Duyệt danh sách tài liệu** | `/documents` | Cho phép | Cho phép | Cho phép | Cho phép |
+| **Split-screen Viewer (Xem)** | `/documents/:id` | Chỉ đọc | Toàn quyền | Chỉ đọc | Toàn quyền |
+| **Hiệu chỉnh văn bản OCR** | API `/pages/:page` | Không | Chỉnh sửa | Không | Chỉnh sửa |
+| **Sửa Metadata & Gắn Tags** | API `/documents/:id` | Không | Chỉnh sửa | Không | Chỉnh sửa |
+| **Xuất bản sách EPUB** | API `/publish` | Không | Thực hiện | Không | Thực hiện |
+| **Đọc sách EPUB trực tuyến** | `/reader/:id` | Cho phép | Cho phép | Cho phép | Cho phép |
+| **Tạo Highlight & Ghi chú** | API `/highlights` | Cá nhân | Cá nhân | Cá nhân | Cá nhân |
+| **Quản trị Cây Danh mục 2 cấp** | `/categories` | Không | Không | Không | Toàn quyền |
+| **Duyệt Yêu cầu Nâng quyền** | `/requests` | Không | Không | Không | Toàn quyền |
 
 ---
 
@@ -95,21 +103,28 @@ Hệ thống HCMUS-LDMS áp dụng mô hình phân quyền dựa trên vai trò 
 
 Giao diện Quản trị Danh mục nằm tại đường dẫn `/categories` (bảo vệ bởi thành phần `RequireRole roles={['admin']}`).
 
-```
-+-----------------------------------------------------------------------------+
-| QUẢN LÝ CÂY DANH MỤC 2 CẤP (CATEGORIES MANAGEMENT)                          |
-|                                                                             |
-| [Tạo Category]                                                              |
-| Tên category: [ Kỹ thuật Phần mềm          ]                                |
-| Category cha: [ Khoa học Máy tính - Cấp 1 v]  [ Tạo category ]              |
-|                                                                             |
-| CÂY DANH MỤC HIỆN CÓ:                                                       |
-| * Khoa học Máy tính (Cấp 1)                     [ Đổi tên ]  [ Xóa ]        |
-|   ↳ Kỹ thuật Phần mềm (Cấp 2)                   [ Đổi tên ]  [ Xóa ]        |
-|   ↳ Trí tuệ Nhân tạo (Cấp 2)                    [ Đổi tên ]  [ Xóa ]        |
-| * Toán - Tin học (Cấp 1)                        [ Đổi tên ]  [ Xóa ]        |
-|   ↳ Giải tích & Đại số (Cấp 2)                  [ Đổi tên ]  [ Xóa ]        |
-+-----------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam shadowing false
+skinparam packageStyle folder
+skinparam folderBackgroundColor #F2F7F9
+skinparam folderBorderColor #007799
+skinparam rectangleBackgroundColor #EBF4FA
+skinparam rectangleBorderColor #007799
+
+folder "Cấp 1: Khoa học Máy tính" {
+  rectangle "Cấp 2: Kỹ thuật Phần mềm" as SE
+  rectangle "Cấp 2: Trí tuệ Nhân tạo" as AI
+  rectangle "Cấp 2: Hệ thống Thông tin" as IS
+}
+
+folder "Cấp 1: Toán - Tin học" {
+  rectangle "Cấp 2: Giải tích & Đại số" as Math1
+  rectangle "Cấp 2: Xác suất Thống kê" as Math2
+  rectangle "Cấp 2: Khoa học Dữ liệu" as DS
+}
+@enduml
 ```
 
 ### 3.1 Mô hình danh mục phân cấp 2 tầng
@@ -160,18 +175,34 @@ Khi một sinh viên hỗ trợ nghiên cứu hoặc giảng viên mới đăng 
 
 Yêu cầu này sẽ được đưa vào hàng đợi quản trị tại trang **"Yêu cầu nâng quyền"** (`/requests`).
 
-```
-+-----------------------------------------------------------------------------------------------+
-| DANH SÁCH YÊU CẦU NÂNG QUYỀN (ROLE REQUESTS)                                                  |
-|                                                                                               |
-| Người dùng                    Quyền yêu cầu    Trạng thái     Ngày gửi        Hành động       |
-| --------------------------------------------------------------------------------------------- |
-| levanb                        editor           Đang chờ       21/08/2026      [ Duyệt ]       |
-| levanb@student.hcmus.edu.vn                                                   [ Từ chối ]     |
-|                                                                                               |
-| tranvanc                      editor           Đã duyệt       20/08/2026      —               |
-| tranvanc@hcmus.edu.vn                                                                         |
-+-----------------------------------------------------------------------------------------------+
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam ArrowColor #007799
+skinparam ParticipantBackgroundColor #EBF4FA
+skinparam ParticipantBorderColor #007799
+
+actor "Độc giả (Reader)" as Reader
+boundary "Giao diện Cài đặt" as UserUI
+control "Hàng đợi Yêu cầu (/requests)" as RequestQueue
+actor "Quản trị viên (Admin)" as Admin
+database "Cơ sở dữ liệu (PostgreSQL)" as DB
+
+Reader -> UserUI : Bấm "Yêu cầu trở thành Editor"
+UserUI -> DB : Tạo bản ghi RoleRequest (status = 'pending')
+Admin -> RequestQueue : Mở trang /requests xem danh sách
+alt Phê duyệt (Approve)
+  Admin -> RequestQueue : Bấm nút "Duyệt"
+  RequestQueue -> DB : Cập nhật User (role = 'editor') & RoleRequest (status = 'approved')
+  RequestQueue --> Admin : Hiển thị trạng thái "Đã duyệt"
+else Từ chối (Decline)
+  Admin -> RequestQueue : Bấm nút "Từ chối"
+  RequestQueue -> DB : Cập nhật RoleRequest (status = 'rejected')
+  RequestQueue --> Admin : Hiển thị trạng thái "Đã từ chối"
+end
+@enduml
 ```
 
 ### 4.2 Thao tác Phê duyệt (Approve) và Từ chối (Decline)

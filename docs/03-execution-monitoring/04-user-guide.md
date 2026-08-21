@@ -38,12 +38,20 @@ Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (**HCMUS-LDM
 
 Để phục vụ tốt nhất cho từng đối tượng tương tác với hệ thống, bộ tài liệu hướng dẫn sử dụng được chia thành **3 cẩm nang chuyên sâu độc lập**:
 
-```
-docs/03-execution-monitoring/
-├── 04-user-guide.md            # [Tài liệu hiện tại] Tổng quan bộ cẩm nang
-├── 04-user-guide-reader.md     # Cẩm nang chuyên sâu dành cho ĐỘC GIẢ (Reader)
-├── 04-user-guide-editor.md     # Cẩm nang chuyên sâu dành cho BIÊN TẬP VIÊN (Editor)
-└── 04-user-guide-admin.md      # Cẩm nang chuyên sâu dành cho QUẢN TRỊ VIÊN (Admin)
+```plantuml
+@startuml
+skinparam defaultFontName "Segoe UI, Arial, sans-serif"
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam rectangleBackgroundColor #F2F7F9
+skinparam rectangleBorderColor #007799
+
+rectangle "BỘ CẨM NANG HƯỚNG DẪN SỬ DỤNG (HCMUS-LDMS)" {
+  rectangle "04-user-guide-reader.md\nCẩm nang Độc giả (Reader)" as UGReader #EBF4FA
+  rectangle "04-user-guide-editor.md\nCẩm nang Biên tập viên (Editor)" as UGEditor #EBF4FA
+  rectangle "04-user-guide-admin.md\nCẩm nang Quản trị viên (Admin)" as UGAdmin #EBF4FA
+}
+@enduml
 ```
 
 ---
@@ -97,10 +105,10 @@ docs/03-execution-monitoring/
 
 | Chức năng chính | Màn hình | Reader | Editor | Admin |
 | :--- | :--- | :---: | :---: | :---: |
-| Tra cứu FTS & Đọc sách EPUB | `/documents`, `/search`, `/reader/:id` |  |  |  |
-| Tùy chỉnh Cỡ chữ, Theme, Highlight | `/reader/:id` |  |  |  |
-| Tải lên tệp scan & Theo dõi OCR | `/`, `/dashboard` | ❌ |  |  |
-| Đối chiếu Split-screen & Sửa text | `/documents/:id` | ❌ (Chỉ đọc) |  (Sách sở hữu) |  (Toàn bộ) |
-| Nhập Metadata & Xuất bản EPUB | `/documents/:id` | ❌ |  (Sách sở hữu) |  (Toàn bộ) |
-| Quản lý Cây danh mục 2 cấp | `/categories` | ❌ | ❌ |  |
-| Duyệt Yêu cầu Nâng quyền | `/requests` | ❌ | ❌ |  |
+| Tra cứu FTS & Đọc sách EPUB | `/documents`, `/search`, `/reader/:id` | Cho phép | Cho phép | Cho phép |
+| Tùy chỉnh Cỡ chữ, Theme, Highlight | `/reader/:id` | Cho phép | Cho phép | Cho phép |
+| Tải lên tệp scan & Theo dõi OCR | `/`, `/dashboard` | Không | Cho phép | Cho phép |
+| Đối chiếu Split-screen & Sửa text | `/documents/:id` | Chỉ đọc | Cho phép (Sách sở hữu) | Toàn quyền |
+| Nhập Metadata & Xuất bản EPUB | `/documents/:id` | Không | Cho phép (Sách sở hữu) | Toàn quyền |
+| Quản lý Cây danh mục 2 cấp | `/categories` | Không | Không | Toàn quyền |
+| Duyệt Yêu cầu Nâng quyền | `/requests` | Không | Không | Toàn quyền |
