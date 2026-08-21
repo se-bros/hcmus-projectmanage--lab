@@ -36,6 +36,7 @@ describe('DocumentViewerPage', () => {
     cleanup()
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
+    vi.useRealTimers()
     window.localStorage.clear()
   })
 
@@ -504,6 +505,92 @@ describe('DocumentViewerPage', () => {
     expect(await screen.findByText('Not my document')).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Metadata tài liệu' })).not.toBeInTheDocument()
     expect(screen.queryByLabelText('Nội dung OCR trang 1')).not.toBeInTheDocument()
+  })
+
+  it('publishes a document and reveals the reader link once the job completes', async () => {
+    vi.useFakeTimers()
+    const detail = {
+      id: 'doc-1',
+      original_filename: 'scan.pdf',
+      content_type: 'application/pdf',
+      status: 'ocr_completed',
+      title: 'Book',
+      author: 'Author',
+      shelf_location: null,
+      category_id: null,
+      epub_object_key: null,
+      owner_id: 'admin-user',
+      created_at: '2026-07-16T08:00:00Z',
+    }
+    fetchMock
+      .mockResolvedValueOnce(response(detail))
+      .mockResolvedValueOnce(
+        response([{ page_number: 1, text_content: 'Page text', has_image: true }]),
+      )
+      .mockResolvedValueOnce(
+        response({ job_id: 'job-1', attempt: 1, status: 'completed', error_message: null }),
+      )
+      .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(response([]))
+      .mockResolvedValueOnce(
+        response(
+          { publish_job_id: 'publish-1', attempt: 1, status: 'pending', error_message: null },
+          202,
+        ),
+      )
+      .mockResolvedValueOnce(
+        response({
+          publish_job_id: 'publish-1',
+          attempt: 1,
+          status: 'completed',
+          error_message: null,
+        }),
+      )
+      .mockResolvedValueOnce(
+        response({
+          ...detail,
+          status: 'published',
+          epub_object_key: 'documents/doc-1/epub/publish-1.epub',
+        }),
+      )
+
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={['/documents/doc-1']}>
+          <Routes>
+            <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+    await act(async () => Promise.resolve())
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Xuất bản EPUB' }))
+      await Promise.resolve()
+    })
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      6,
+      '/api/documents/doc-1/publish',
+      expect.objectContaining({ method: 'POST' }),
+    )
+    expect(screen.getByRole('button', { name: 'Đang xuất bản…' })).toBeDisabled()
+    expect(screen.getByText('Trạng thái: pending')).toBeInTheDocument()
+
+    await act(async () => {
+      vi.advanceTimersByTime(2000)
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    expect(fetchMock.mock.calls[6]?.[0]).toBe('/api/documents/doc-1/publish')
+    expect(fetchMock.mock.calls[7]?.[0]).toBe('/api/documents/doc-1')
+    expect(screen.getByText('Tài liệu đã xuất bản.')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Mở Reader →' })).toHaveAttribute(
+      'href',
+      '/reader/doc-1',
+    )
+    expect(screen.queryByRole('button', { name: 'Xuất bản EPUB' })).not.toBeInTheDocument()
   })
 
   it('shows the metadata form and page-text editor for an editor who owns the document', async () => {

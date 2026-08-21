@@ -289,6 +289,23 @@ export function retryOcr(documentId: string): Promise<OcrJob> {
   return request(`/documents/${documentId}/ocr`, { method: 'POST' })
 }
 
+export type PublishStatus = 'pending' | 'publishing' | 'completed' | 'failed'
+
+export type PublishJob = {
+  publish_job_id: string
+  attempt: number
+  status: PublishStatus
+  error_message: string | null
+}
+
+export function publishDocument(documentId: string): Promise<PublishJob> {
+  return request(`/documents/${documentId}/publish`, { method: 'POST' })
+}
+
+export function getPublishStatus(documentId: string): Promise<PublishJob> {
+  return request(`/documents/${documentId}/publish`)
+}
+
 export function registerUser(email: string, password: string): Promise<AuthResponse> {
   return request('/auth/register', {
     method: 'POST',
