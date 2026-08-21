@@ -1310,7 +1310,9 @@ dd {
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .remove-tag-btn:hover {
@@ -1333,7 +1335,9 @@ dd {
   font-size: 0.88rem;
   background: #ffffff;
   color: #25483d;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .add-tag-form input:focus {
@@ -1362,7 +1366,6 @@ dd {
   opacity: 0.55;
   cursor: not-allowed;
 }
-
 
 .categories-page {
   width: min(100% - 32px, 980px);

@@ -112,6 +112,7 @@ flowchart TD
   - [`04-cost-time-resource.md`](../docs/02-planning/04-cost-time-resource.md): Ước lượng Use Case Points (126 UCP), COCOMO II (10.4 PM), 6 gói công việc WBS.
   - [`05-statement-of-work.md`](../docs/02-planning/05-statement-of-work.md): Phát biểu công việc SoW, quy trình Change Request.
   - [`09-test-plan.md`](../docs/02-planning/09-test-plan.md): Kế hoạch kiểm thử (Pytest/Vitest, CI gating, kim tự tháp).
+  - [`06-software-process-definition.md`](../docs/02-planning/06-software-process-definition.md): Quy trình Kanban, DoR, DoD, WIP limit và cơ chế đánh giá quy trình.
 - **Thực thi và Giám sát (`docs/03-execution-monitoring/`):**
   - [`01-sprint-plan.md`](../docs/03-execution-monitoring/01-sprint-plan.md): Kế hoạch thực thi Sprint 1.
   - [`02-project-log.md`](../docs/03-execution-monitoring/02-project-log.md): Nhật ký làm việc thực tế, đo lường nỗ lực và token AI.
