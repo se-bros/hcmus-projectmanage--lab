@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { loginUser } from '../services/api'
+import { API_BASE, loginUser } from '../services/api'
 import { useAuth } from '../context/AuthContext'
-
-const API_BASE = '/api'
 
 function GoogleIcon() {
   return (

@@ -360,8 +360,6 @@ export function DocumentViewerPage() {
         </div>
       </section>
 
-
-
       {pages.length === 0 ? (
         <section className="viewer-empty">
           <span aria-hidden="true">⌛</span>

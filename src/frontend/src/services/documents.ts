@@ -16,7 +16,7 @@ export interface SearchResult {
   snippet: string
 }
 
-const API_BASE = '/api'
+import { API_BASE } from './api'
 
 async function request<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`)

@@ -21,6 +21,4 @@ COPY alembic.ini ./
 
 RUN uv sync --frozen --no-dev
 
-EXPOSE 8000
-
-CMD ["uv", "run", "--no-dev", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uv run --no-dev alembic upgrade heads && if [ \"${AUTO_SEED_DATA:-true}\" = \"true\" ]; then uv run --no-dev python -m app.scripts.seed_data || true; fi && uv run --no-dev uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

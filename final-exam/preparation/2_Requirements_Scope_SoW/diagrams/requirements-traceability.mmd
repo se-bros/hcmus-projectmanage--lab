@@ -1,0 +1,18 @@
+flowchart TB
+    P["Pain point"] --> W["To-Be workflow"]
+    W --> E["Epic / Module"]
+    E --> U["User Story"]
+    U --> A["Acceptance Criteria"]
+    A --> T["Test / Deploy"]
+    T --> D["Done theo DoD"]
+
+    I["INVEST"] -. "đánh giá chất lượng" .-> U
+    R["DoR"] -. "đủ rõ để bắt đầu" .-> U
+    Q["5 điều kiện DoD"] -. "đủ bằng chứng kết thúc" .-> D
+
+    classDef source fill:#FFF8E7,stroke:#B7791F,color:#744210;
+    classDef requirement fill:#EBF4FF,stroke:#2B6CB0,color:#1A365D;
+    classDef evidence fill:#E6FFFA,stroke:#2C7A7B,color:#234E52;
+    class P,W source;
+    class E,U,A requirement;
+    class T,D,I,R,Q evidence;
