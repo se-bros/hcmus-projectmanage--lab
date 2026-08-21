@@ -1,0 +1,15 @@
+%%{init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF2FF', 'primaryTextColor': '#102A43', 'primaryBorderColor': '#3B82F6', 'lineColor': '#526D82', 'secondaryColor': '#FFF7D6', 'tertiaryColor': '#EAF8EF', 'fontFamily': 'Arial' } } }%%
+flowchart TB
+    FS["Feasibility Study"] --> T["Technical<br/>OCR 85% - Search dưới 3s"]
+    FS --> E["Economic<br/>CapEx - OpEx - Payback"]
+    FS --> L["Legal<br/>Bản quyền có điều kiện"]
+    FS --> O["Operational<br/>Quy trình và đào tạo"]
+    FS --> S["Schedule<br/>MVP 12 - Go-live 20 tuần"]
+    FS --> X["Mở rộng<br/>Market - Resource - Cultural"]
+    T --> R["Khuyến nghị<br/>Phê duyệt có điều kiện"]
+    E --> R
+    L --> R
+    O --> R
+    S --> R
+    X --> R
+
