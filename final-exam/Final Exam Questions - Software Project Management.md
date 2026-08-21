@@ -46,82 +46,53 @@ Tất cả các câu trả lời cần trình bày bằng giấy bút trên gi�
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Đề xuất dự án (Project Proposal) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Đề xuất dự án của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Đề xuất dự án là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Đề xuất dự án là gì?
-- Dựa vào những dữ liệu nào mà bản đề xuất được hình thành?
-- Các sản phẩm cạnh tranh trực tiếp với đề xuất là gì?
-- Tài liệu Đề xuất dự án của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Đề xuất dự án?
-- Tài liệu Đề xuất dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-- Dự án phần mềm là gì?
-- Phân biệt dự án (project) với hoạt động (operation), với chương trình (program), và với danh sách đầu tư (portfolio).
-- Dự án phần mềm đến từ đâu?
-- Phạm vi dự án là gì?
-- Các vai trò nào thường tham gia vào một dự án phần mềm?
-- Phân biệt các loại kết quả của một dự án.
-- Phân tích các nguyên nhân chính khiến một dự án phần mềm thất bại.
-- Các ràng buộc của một dự án có ý nghĩa gì?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ Dự án phần mềm là gì? (WHAT)**
-Dự án là một nỗ lực **tạm thời** được thực hiện nhằm tạo ra một sản phẩm, dịch vụ hoặc kết quả **duy nhất**. Hai đặc điểm cốt lõi: (1) Tạm thời — có ngày bắt đầu và kết thúc xác định; (2) Kết quả duy nhất — không lặp lại y hệt giữa các dự án.
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 49-57_
-
-**▸ Phân biệt Dự án / Hoạt động / Chương trình / Danh mục đầu tư (WHAT)**
-
-| Tiêu chí  | Dự án (Project)                    | Hoạt động (Operations) | Chương trình (Program) | Danh mục đầu tư (Portfolio) |
-| --------- | ---------------------------------- | ---------------------- | ---------------------- | --------------------------- |
-| Thời gian | Tạm thời, có ngày bắt đầu/kết thúc | Liên tục, lặp lại      | Nhóm dự án liên quan   | Tập hợp chương trình/dự án  |
-| Kết quả   | Duy nhất                           | Tương tự nhau          | Phối hợp quản lý       | Đáp ứng mục tiêu kinh doanh |
-
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 102-116_
-
-**▸ Dự án phần mềm đến từ đâu? (WHAT)**
-Từ: RFP của cơ quan/tổ chức; nghiên cứu; tài liệu chuyên ngành; kinh nghiệm giải quyết vấn đề thực tế (nguồn phổ biến nhất); ý tưởng cá nhân.
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 89-99_
-
-**▸ Phạm vi dự án là gì? (WHAT)**
-
-- **Phạm vi sản phẩm (Product scope):** các tính năng và chức năng mô tả đặc điểm sản phẩm.
-- **Phạm vi dự án (Project scope):** công việc được thực hiện để tạo ra sản phẩm với các tính năng đã chỉ định.
-  _Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 71-82_
-
-**▸ Các vai trò tham gia dự án phần mềm (WHAT)**
-Stakeholders (các bên liên quan): khách hàng, nhà tài trợ, tổ chức thực hiện, công chúng. Trong Scrum: Product Owner, Scrum Master, Development Team. Trong dự án truyền thống: PM, BA, Architect, Developer, Tester, QA/QC.
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 116; [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md) — dòng 108-131_
-
-**▸ Phân biệt các loại kết quả dự án (WHAT)**
-
-| Mức độ                         | Định nghĩa                                                          |
-| ------------------------------ | ------------------------------------------------------------------- |
-| **Thành công (Success)**       | Đúng hạn, đúng ngân sách, đủ tính năng, khách hàng hài lòng         |
-| **Có thách thức (Challenged)** | Hoàn thành nhưng vượt ngân sách, trễ hạn, ít tính năng hơn          |
-| **Thất bại (Failure)**         | Bị hủy trước khi hoàn thành, hoặc bàn giao nhưng không được sử dụng |
-
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 151-158_
-
-**▸ Nguyên nhân dự án phần mềm thất bại (WHY)**
-
-1. Mục tiêu không thực tế/không rõ ràng; 2. Giao tiếp kém; 3. Ước tính không chính xác; 4. Báo cáo kém; 5. Công nghệ chưa trưởng thành; 6. Không xử lý được sự phức tạp; 7. Thực tiễn phát triển cẩu thả; 8. Yêu cầu xác định sai; 9. Quản lý dự án kém; 10. Thay đổi liên tục yêu cầu; 11. Chính trị stakeholder; 12. Áp lực thương mại.
-   _Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 163-177_
-
-**▸ Ràng buộc dự án (WHAT)**
-Tam giác phát triển: **Thời gian – Chi phí – Phạm vi/Chất lượng** (Tốt – Nhanh – Rẻ, chỉ chọn tối đa 2 trong 3). Tăng một yếu tố phải đánh đổi yếu tố khác.
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 188-195_
-
-**▸ Các câu hỏi chính trong Đề xuất dự án (HOW)**
-Tài liệu cần trả lời: (1) Tên dự án; (2) Vấn đề (Problems) — NOT features; (3) Giải pháp (Solution) — trường hợp sử dụng kinh doanh cốt lõi; (4) Lý do giải quyết vấn đề; (5) Đối thủ cạnh tranh (tối thiểu 3); (6) Điểm khác biệt.
-_Nguồn: [02_software_project.md](../materials/02_software_project.md) — dòng 225-236_
-
-**▸ Tại sao cần tạo tài liệu Đề xuất dự án? (WHY)**
-Để xác định rõ ràng vấn đề cần giải quyết, đánh giá tính khả thi ban đầu, so sánh với đối thủ cạnh tranh, và làm cơ sở cho các bước tiếp theo (Vision & Scope, Charter, WBS...).
-
-**▸ Khi nào thực hiện? (WHEN)**
-Giai đoạn khởi đầu dự án (Project Initiation), trước khi tạo tài liệu Vision & Scope và Project Charter.
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 56-63_
+- **Các câu hỏi chính cần trả lời trong tài liệu Đề xuất dự án là gì?**
+  - **Trả lời:** Tên và bối cảnh dự án; vấn đề/cơ hội; người dùng và stakeholder; giải pháp/use case cốt lõi; giá trị dự kiến; dữ liệu làm căn cứ; đối thủ và điểm khác biệt; phạm vi sơ bộ; giả định, ràng buộc, rủi ro và đề nghị go/no-go.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Đề xuất dự án là gì?**
+  - **Trả lời:** Thu thập bằng chứng về vấn đề/người dùng → phân tích stakeholder và đối thủ → hình thành giải pháp/giá trị → xác định phạm vi, giả định, rủi ro sơ bộ → soạn Proposal → review và quyết định.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Dựa vào những dữ liệu nào mà bản đề xuất được hình thành?**
+  - **Trả lời:** Dùng dữ liệu về hiện trạng/vấn đề, khảo sát hoặc phỏng vấn người dùng, yêu cầu stakeholder, số liệu vận hành/chi phí, tài liệu chuyên ngành/quy định và thông tin đối thủ. Mỗi dữ liệu cần ghi nguồn, thời điểm và giới hạn.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các sản phẩm cạnh tranh trực tiếp với đề xuất là gì?**
+  - **Trả lời:** Xác định giải pháp phục vụ cùng người dùng và nhu cầu; nên so sánh ít nhất ba phương án theo chức năng, chi phí, triển khai, trải nghiệm, điểm mạnh/yếu. Nếu liên hệ nhóm, nêu đúng tên sản phẩm đã khảo sát trong Proposal.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Đề xuất dự án của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Review xem vấn đề có bằng chứng, giải pháp có đúng pain point, giá trị có hợp lý, đối thủ/điểm khác biệt có rõ và giả định/rủi ro có được nêu. Kết quả phải dẫn đến sửa đổi hoặc quyết định go/no-go.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tại sao cần tạo tài liệu Đề xuất dự án?**
+  - **Trả lời:** Để chứng minh vấn đề đáng giải quyết, thống nhất giá trị và sàng lọc ý tưởng trước khi đầu tư nhiều nguồn lực.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Đề xuất dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng làm đầu vào cho Vision & Scope, Feasibility và Charter; cập nhật khi bằng chứng vấn đề, giả định, đối thủ hoặc định hướng đầu tư thay đổi và ghi revision.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Dự án phần mềm là gì?**
+  - **Trả lời:** Dự án phần mềm là nỗ lực tạm thời, có bắt đầu/kết thúc, nhằm tạo sản phẩm, dịch vụ hoặc kết quả phần mềm duy nhất dưới các ràng buộc phạm vi, thời gian, chi phí và chất lượng.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Phân biệt dự án (project) với hoạt động (operation), với chương trình (program), và với danh sách đầu tư (portfolio).**
+  - **Trả lời:** Project tạm thời và tạo kết quả duy nhất; operation liên tục/lặp lại; program là nhóm dự án liên quan được điều phối để tạo lợi ích chung; portfolio là tập hợp dự án/chương trình được lựa chọn theo mục tiêu chiến lược.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Dự án phần mềm đến từ đâu?**
+  - **Trả lời:** Từ RFP/nhu cầu tổ chức, vấn đề thực tế, cơ hội kinh doanh, nghiên cứu/tài liệu chuyên ngành, yêu cầu pháp lý, phản hồi người dùng hoặc ý tưởng cá nhân; ý tưởng phải được kiểm chứng trước khi thành dự án.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Phạm vi dự án là gì?**
+  - **Trả lời:** Product scope là tính năng/đặc điểm sản phẩm; project scope là toàn bộ công việc để tạo ra sản phẩm đó. Cần nêu in-scope, out-of-scope, deliverable và tiêu chí nghiệm thu.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các vai trò nào thường tham gia vào một dự án phần mềm?**
+  - **Trả lời:** Các vai trò thường gồm sponsor/khách hàng, PM, Product Owner/BA, architect, developer, tester/QA và vận hành. Nhóm nhỏ có thể kiêm nhiệm nhưng quyền hạn, trách nhiệm và người quyết định phải rõ.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Phân biệt các loại kết quả của một dự án.**
+  - **Trả lời:** Có thể phân loại kết quả dự án thành Success: đúng hạn/ngân sách/phạm vi và được chấp nhận; Challenged: hoàn thành nhưng trễ, vượt chi phí hoặc giảm phạm vi; Failure: bị hủy hoặc bàn giao nhưng không sử dụng/không đạt mục tiêu.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Phân tích các nguyên nhân chính khiến một dự án phần mềm thất bại.**
+  - **Trả lời:** Mục tiêu/yêu cầu không rõ, scope creep, ước lượng sai, giao tiếp/báo cáo kém, quản lý yếu, công nghệ chưa trưởng thành, thiếu kiểm thử, phụ thuộc cá nhân và không xử lý rủi ro. Cần gắn mỗi nguyên nhân với tác động và biện pháp phòng ngừa.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các ràng buộc của một dự án có ý nghĩa gì?**
+  - **Trả lời:** Ràng buộc giới hạn cách thực hiện dự án, thường gồm phạm vi, thời gian, chi phí, chất lượng, nguồn lực và công nghệ. Thay đổi một yếu tố tạo trade-off với yếu tố khác nên phải phân tích tác động trước khi quyết định.
+    _Nguồn: [02_software_project.md](../materials/02_software_project.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
 
 ---
 
@@ -129,33 +100,23 @@ _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_i
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Viễn cảnh và phạm vi dự án (Project Vision and Scope) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Viễn cảnh và phạm vi dự án của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Viễn cảnh và phạm vi dự án là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Viễn cảnh và phạm vi dự án là gì?
-- Tài liệu Viễn cảnh và phạm vi dự án của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Viễn cảnh và phạm vi dự án?
-- Tài liệu Viễn cảnh và phạm vi dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Tài liệu Vision & Scope là gì?**
-Tài liệu mô tả tầm nhìn tổng thể của dự án (mục tiêu kinh doanh, đối tượng người dùng, bối cảnh) và xác định rõ phạm vi sản phẩm (các tính năng IN scope và OUT of scope). Được tạo từ Yêu cầu người dùng (User Requirements).
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 60-62; [03_1_business_requirements.md](../materials/03_1_business_requirements.md)_
-
-**▸ HOW — Các đầu vào và bước thực hiện?**
-
-1. Thu thập yêu cầu kinh doanh (Business Requirements) → Tóm tắt điều hành (Executive Summary).
-2. Thu thập yêu cầu người dùng (User Requirements) → Tầm nhìn và phạm vi.
-3. Xác định stakeholders, phân tích SWOT, benchmarking.
-4. Xác định phạm vi sản phẩm (Product Scope) vs phạm vi dự án (Project Scope).
-   _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 56-63; [03_2_user_requirements.md](../materials/03_2_user_requirements.md)_
-
-**▸ WHY — Tại sao cần tạo?**
-Để tất cả stakeholders có chung hiểu biết về mục tiêu và giới hạn dự án; làm cơ sở cho ước lượng, lập kế hoạch và kiểm soát phạm vi; tránh scope creep.
-
-**▸ WHEN — Khi nào thực hiện?**
-Giai đoạn Khởi tạo dự án (Initiation), sau khi có Đề xuất dự án, trước khi tạo Project Charter và bắt đầu lập kế hoạch chi tiết.
+- **Các câu hỏi chính cần trả lời trong tài liệu Viễn cảnh và phạm vi dự án là gì?**
+  - **Trả lời:** Bối cảnh, vision statement, mục tiêu kinh doanh, nhóm người dùng, nhu cầu chính, product scope/project scope, in-scope/out-of-scope, giả định, ràng buộc, tiêu chí thành công và cách kiểm soát thay đổi.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Viễn cảnh và phạm vi dự án là gì?**
+  - **Trả lời:** Dùng Proposal, business/user requirements → xác định vision/mục tiêu → phân tích người dùng/nhu cầu → tách product scope/project scope và in/out scope → đặt tiêu chí thành công → review và baseline.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)._
+- **Tài liệu Viễn cảnh và phạm vi dự án của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Đối chiếu business/user requirements; kiểm tra mục tiêu đo được, người dùng đúng, in/out scope rõ, không mâu thuẫn và đủ làm cơ sở cho backlog/WBS/estimate; stakeholder xác nhận trước baseline.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)._
+- **Tại sao cần tạo tài liệu Viễn cảnh và phạm vi dự án?**
+  - **Trả lời:** Để các bên có cùng mục tiêu và ranh giới, làm cơ sở cho yêu cầu, ước lượng, kế hoạch và kiểm soát scope creep.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)._
+- **Tài liệu Viễn cảnh và phạm vi dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng làm baseline cho requirements/backlog, WBS, estimate, plan; thay đổi phải được phân tích tác động, phê duyệt và cập nhật in/out scope.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)._
 
 ---
 
@@ -163,38 +124,23 @@ Giai đoạn Khởi tạo dự án (Initiation), sau khi có Đề xuất dự �
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ủy nhiệm dự án (Project Charter) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Ủy nhiệm dự án của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Ủy nhiệm dự án là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ủy nhiệm dự án là gì?
-- Tài liệu Ủy nhiệm dự án của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Ủy nhiệm dự án?
-- Tài liệu Ủy nhiệm dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Project Charter là gì?**
-Là tài liệu **chính thức cho phép** (formally authorizes) một dự án hoặc giai đoạn, ghi lại các yêu cầu ban đầu đáp ứng nhu cầu và mong đợi của các bên liên quan.
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 66-80_
-
-**▸ HOW — Nội dung chính của Project Charter:**
-
-1. Bối cảnh, ngữ cảnh, tổng quan (Background, Context, Overview).
-2. Quản lý và quản trị dự án — vai trò/tên/trách nhiệm.
-3. Cơ sở vật chất và tài nguyên dự án.
-4. Các cột mốc quan trọng (Milestones).
-5. Phân tích tác động (Impact Analysis).
-6. Giả định (Assumptions).
-7. Chữ ký phê duyệt (Signatures).
-
-**Danh sách kiểm tra:** Tại sao dự án này? Vấn đề là gì? Sản phẩm bàn giao là gì? Giải quyết như thế nào (kỹ thuật + quản lý)? Khi nào hoàn thành?
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 71-90_
-
-**▸ WHY — Tại sao cần?**
-Để chính thức hóa sự ủy quyền cho dự án, xác định rõ vai trò/trách nhiệm, cột mốc, giả định và làm cơ sở pháp lý cho việc sử dụng tài nguyên.
-
-**▸ WHEN — Khi nào?**
-Tạo trong giai đoạn Khởi tạo (Initiation), sau khi có Vision & Scope, trước khi thực hiện Kickoff Meeting.
+- **Các câu hỏi chính cần trả lời trong tài liệu Ủy nhiệm dự án là gì?**
+  - **Trả lời:** Bối cảnh/lý do kinh doanh; mục tiêu cấp cao; phạm vi và deliverable chính; milestone; nguồn lực/ngân sách sơ bộ; stakeholder, vai trò/quyền hạn; giả định, ràng buộc, rủi ro; cơ chế quản trị và chữ ký phê duyệt.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ủy nhiệm dự án là gì?**
+  - **Trả lời:** Tổng hợp Proposal, Vision & Scope, feasibility và thỏa thuận stakeholder → xác định mục tiêu, deliverable, milestone, nguồn lực, vai trò/quyền hạn → ghi giả định/rủi ro → review và xin sponsor phê duyệt.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Ủy nhiệm dự án của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra quyền phê duyệt, mục tiêu SMART, phạm vi/deliverable cấp cao, milestone, vai trò/quyền hạn, giả định/ràng buộc/rủi ro; sponsor xác nhận.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tại sao cần tạo tài liệu Ủy nhiệm dự án?**
+  - **Trả lời:** Để chính thức ủy quyền dự án, xác định người quyết định, quyền hạn, mục tiêu và cam kết nguồn lực cấp cao.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Ủy nhiệm dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng trong kickoff, phân quyền và xử lý tranh luận cấp cao; cập nhật khi mục tiêu, sponsor, quyền hạn, milestone hoặc nguồn lực cấp cao thay đổi được duyệt.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
 
 ---
 
@@ -202,37 +148,23 @@ Tạo trong giai đoạn Khởi tạo (Initiation), sau khi có Vision & Scope, 
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Yêu cầu phần mềm (Software Requirements, hay Product Backlog) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Yêu cầu phần mềm và bản in tài liệu Hướng dẫn sử dụng hệ thống của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Yêu cầu phần mềm là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu tài liệu Yêu cầu phần mềm là gì?
-- Tài liệu Yêu cầu phần mềm của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Yêu cầu phần mềm?
-- Tài liệu Yêu cầu phần mềm của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Yêu cầu phần mềm là gì?**
-Là việc suy luận, phân tích, đặc tả và xác nhận các yêu cầu đối với phần mềm. Bao gồm: Gợi ý yêu cầu → Phân tích & đàm phán → Đặc tả → Mô hình hóa → Xác thực → Quản lý yêu cầu.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 31-46_
-
-**Product Backlog** (trong Scrum) là danh sách toàn diện các chức năng và tính năng cần phát triển. Chỉ cần xác định rõ những gì cần làm cho Sprint tiếp theo.
-_Nguồn: [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md) — dòng 148-151_
-
-**▸ HOW — Các bước thực hiện:**
-
-1. Thu thập yêu cầu kinh doanh (Business Requirements) và yêu cầu người dùng.
-2. Phân tích, đàm phán và ưu tiên hóa yêu cầu.
-3. Đặc tả yêu cầu dưới dạng User Stories, Use Cases, hoặc SRS.
-4. Xác thực yêu cầu với stakeholders.
-5. Sản phẩm đầu ra: Từ điển thuật ngữ, Quy tắc kinh doanh, Product Backlog, User stories.
-   _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md)_
-
-**▸ WHY — Tại sao cần?**
-Yêu cầu xác định sai là một trong các nguyên nhân hàng đầu dẫn đến thất bại dự án. Tài liệu yêu cầu làm cơ sở cho thiết kế, phát triển, kiểm thử và nghiệm thu.
-
-**▸ WHEN — Khi nào?**
-Bắt đầu từ giai đoạn Initiation, liên tục cập nhật trong suốt dự án (đặc biệt trong Agile: mỗi Sprint cập nhật Product Backlog).
+- **Các câu hỏi chính cần trả lời trong tài liệu Yêu cầu phần mềm là gì?**
+  - **Trả lời:** Nguồn yêu cầu và stakeholder; yêu cầu chức năng/phi chức năng; epic, user story hoặc use case; độ ưu tiên; acceptance criteria; dependency; Definition of Ready/Done; quy tắc nghiệp vụ; traceability và quản lý thay đổi.
+    _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu tài liệu Yêu cầu phần mềm là gì?**
+  - **Trả lời:** Khơi gợi yêu cầu → phân tích/đàm phán → đặc tả bằng SRS, use case hoặc user story → ưu tiên → bổ sung acceptance criteria/NFR → xác thực với stakeholder → quản lý traceability/thay đổi.
+    _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tài liệu Yêu cầu phần mềm của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra yêu cầu đúng, đầy đủ, nhất quán, khả thi, ưu tiên được, không mơ hồ, truy vết và kiểm thử được; review user story/use case và acceptance criteria với stakeholder/PO.
+    _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tại sao cần tạo tài liệu Yêu cầu phần mềm?**
+  - **Trả lời:** Để thiết kế, phát triển, kiểm thử và nghiệm thu dựa trên cùng nhu cầu; giảm rework do hiểu sai hoặc thay đổi không kiểm soát.
+    _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tài liệu Yêu cầu phần mềm của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng cho thiết kế, coding, test, acceptance; backlog được refinement/reprioritize, còn thay đổi baseline phải có traceability/lịch sử quyết định.
+    _Nguồn: [03_1_business_requirements.md](../materials/03_1_business_requirements.md); [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
 
 ---
 
@@ -240,34 +172,23 @@ Bắt đầu từ giai đoạn Initiation, liên tục cập nhật trong suốt
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kiến trúc phần mềm (Software Architecture) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kiến trúc phần mềm của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Kiến trúc phần mềm là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kiến trúc phần mềm là gì?
-- Tài liệu Kiến trúc phần mềm của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Kiến trúc phần mềm?
-- Tài liệu Kiến trúc phần mềm của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Kiến trúc phần mềm là gì?**
-Thiết kế phần mềm là quy trình giải quyết vấn đề và lập kế hoạch cho giải pháp, bao gồm cả kiến trúc hệ thống (architectural view) và triển khai chi tiết. Câu hỏi cần trả lời: Tại sao chọn phong cách kiến trúc này? Tại sao chọn ngăn xếp công nghệ này? Tại sao chọn nền tảng/framework này?
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 49-58; [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 175-179_
-
-**▸ HOW — Các bước thực hiện:**
-
-1. Xem xét các hạng mục backlog được giao.
-2. Phân tích miền và cập nhật mô hình miền.
-3. Xác định các thay đổi cần thiết về kiến trúc.
-4. Tinh chỉnh kiến trúc để hỗ trợ bối cảnh mới.
-5. Tổ chức cuộc họp đánh giá thiết kế.
-   _Nguồn: [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 145-154_
-
-**▸ WHY — Tại sao cần?**
-Để đảm bảo hệ thống có cấu trúc rõ ràng, dễ mở rộng, bảo trì và đáp ứng các yêu cầu phi chức năng (hiệu suất, bảo mật, khả năng mở rộng).
-
-**▸ WHEN — Khi nào?**
-Sau khi có yêu cầu phần mềm ban đầu, trước khi bắt đầu triển khai (Construction). Trong Agile: tạo kiến trúc ban đầu trong Iteration 0, tinh chỉnh dần qua các Sprint.
+- **Các câu hỏi chính cần trả lời trong tài liệu Kiến trúc phần mềm là gì?**
+  - **Trả lời:** Architectural drivers; chức năng quan trọng và thuộc tính chất lượng; system context; component/container, interface, dữ liệu và deployment; technology stack; quyết định/trade-off; bảo mật, rủi ro và cách kiểm chứng.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kiến trúc phần mềm là gì?**
+  - **Trả lời:** Phân tích requirements/NFR/ràng buộc → xác định architectural drivers → chọn style/pattern/công nghệ → mô tả view, interface, dữ liệu, deployment → phân tích trade-off → PoC/review.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tài liệu Kiến trúc phần mềm của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Dùng architecture review, scenario thuộc tính chất lượng, traceability, phân tích trade-off và PoC cho quyết định rủi ro; ghi issue/quyết định cần sửa.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tại sao cần tạo tài liệu Kiến trúc phần mềm?**
+  - **Trả lời:** Để giảm rủi ro quyết định kỹ thuật, bảo đảm chức năng/thuộc tính chất lượng và hỗ trợ mở rộng, bảo trì.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tài liệu Kiến trúc phần mềm của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng hướng dẫn implementation, integration, deployment và review; cập nhật khi requirements/NFR, công nghệ hoặc quyết định kiến trúc thay đổi, kèm lý do/trade-off.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
 
 ---
 
@@ -275,33 +196,26 @@ Sau khi có yêu cầu phần mềm ban đầu, trước khi bắt đầu triể
 
 Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Chứng minh ý tưởng (Proof of Concept) của nhóm. _(Sinh viên nộp kèm bản in giao diện thể hiện đầu vào và đầu ra khi chạy mã nguồn Chứng minh ý tưởng của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Sản phẩm Chứng minh ý tưởng (Proof of Concept) là gì?
-- Giải thích các phương pháp có thể dùng để chứng minh khả năng hoàn thành dự án về mặt kỹ thuật.
-- Nhóm chọn sản phẩm gì để Chứng minh ý tưởng?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Chứng minh ý tưởng là gì?
-- Tại sao cần tạo sản phẩm Chứng minh ý tưởng?
-- Sản phẩm Chứng minh ý tưởng của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — PoC là gì?**
-Proof of Concept (PoC) là sản phẩm mã nguồn thực thi nhằm chứng minh tính khả thi kỹ thuật của giải pháp được đề xuất. PoC xác minh rằng nhóm có khả năng hoàn thành dự án về mặt công nghệ.
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 23-24_
-
-**▸ HOW — Phương pháp chứng minh:**
-
-1. Xác định các rủi ro kỹ thuật lớn nhất (công nghệ mới, thuật toán phức tạp, tích hợp bên thứ ba).
-2. Xây dựng mã nguồn thực thi nhỏ gọn (exercise source code) giải quyết các rủi ro đó.
-3. Demo đầu vào/đầu ra của PoC cho stakeholders.
-   _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md) — dòng 62-67 (Vòng 3 WBS cần xem lại PoC)_
-
-**▸ WHY — Tại sao cần?**
-Giảm thiểu rủi ro kỹ thuật sớm; xác nhận giải pháp khả thi trước khi đầu tư lớn; hỗ trợ tài liệu nghiên cứu khả thi (Feasibility Study).
-
-**▸ WHEN — Khi nào?**
-Giai đoạn Initiation, sau khi có yêu cầu ban đầu và kiến trúc sơ bộ, trước khi lập WBS chi tiết.
+- **Sản phẩm Chứng minh ý tưởng (Proof of Concept) là gì?**
+  - **Trả lời:** PoC là thử nghiệm nhỏ để kiểm chứng một giả định kỹ thuật/nghiệp vụ. Nó tập trung giảm bất định, không phải sản phẩm hoàn chỉnh hoặc production-ready.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Giải thích các phương pháp có thể dùng để chứng minh khả năng hoàn thành dự án về mặt kỹ thuật.**
+  - **Trả lời:** Dùng technical spike, prototype thử nghiệm, benchmark, thử tích hợp API/dịch vụ, mô phỏng, dữ liệu đại diện hoặc vertical slice. Mỗi thử nghiệm phải có giả định và success criteria đo được.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Nhóm chọn sản phẩm gì để Chứng minh ý tưởng?**
+  - **Trả lời:** Chọn phần có bất định/rủi ro kỹ thuật cao nhất và ảnh hưởng lớn đến tính khả thi. Khi liên hệ nhóm, nêu giả định, input/output, tiêu chí đạt và bằng chứng chạy thực tế; không suy đoán nếu chưa có dữ liệu.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Chứng minh ý tưởng là gì?**
+  - **Trả lời:** Chọn giả định kỹ thuật rủi ro cao → đặt tiêu chí thành công → chuẩn bị dữ liệu/môi trường → làm spike/prototype/benchmark hoặc thử tích hợp → đo kết quả → kết luận tiếp tục, đổi hướng hay dừng.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tại sao cần tạo sản phẩm Chứng minh ý tưởng?**
+  - **Trả lời:** Để kiểm chứng phần bất định/rủi ro nhất với chi phí nhỏ trước khi cam kết kiến trúc, lịch và nguồn lực lớn.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Sản phẩm Chứng minh ý tưởng của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng để chấp nhận/bác bỏ giả định, chọn công nghệ và cập nhật architecture/estimate/risk; lưu cả giới hạn, không coi mã thử là production-ready.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
 
 ---
 
@@ -309,30 +223,26 @@ Giai đoạn Initiation, sau khi có yêu cầu ban đầu và kiến trúc sơ 
 
 Trình bày quá trình hình thành và phương pháp đánh giá sản phẩm Bản mẫu (Prototype) của nhóm. _(Sinh viên nộp kèm bản in phác thảo giao diện ban đầu cho hệ thống của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Sản phẩm Bản mẫu là gì?
-- Giải thích sự khác nhau giữa bản mẫu hệ thống và tập hợp các màn hình giao diện hệ thống.
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Bản mẫu là gì?
-- Sản phẩm Bản mẫu của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo sản phẩm Bản mẫu?
-- Sản phẩm Bản mẫu của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Prototype là gì?**
-Bản mẫu (Prototype) là mô hình mô phỏng hệ thống cho phép người dùng tương tác, đánh giá giao diện và luồng công việc trước khi phát triển chính thức. Khác với tập hợp màn hình (mockup/wireframe):
-
-- **Prototype:** có tương tác, mô phỏng luồng nghiệp vụ (có thể click, chuyển trang).
-- **Mockup/Wireframe:** chỉ là hình ảnh tĩnh thiết kế giao diện, không có tương tác.
-  _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 21-22_
-
-**▸ WHY — Tại sao cần?**
-Để thu thập phản hồi sớm từ người dùng; làm rõ yêu cầu chưa rõ ràng; giảm rủi ro yêu cầu sai; hỗ trợ việc xem xét lại yêu cầu (WBS Vòng 2).
-_Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md) — dòng 61-62_
-
-**▸ WHEN — Khi nào?**
-Giai đoạn Initiation hoặc đầu giai đoạn phát triển, khi yêu cầu chưa rõ ràng.
+- **Sản phẩm Bản mẫu là gì?**
+  - **Trả lời:** Prototype là bản mẫu mô phỏng một phần sản phẩm để khám phá, giao tiếp và xác nhận yêu cầu hoặc trải nghiệm người dùng; có thể low-fidelity hoặc high-fidelity.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Giải thích sự khác nhau giữa bản mẫu hệ thống và tập hợp các màn hình giao diện hệ thống.**
+  - **Trả lời:** Prototype mô phỏng luồng/tương tác hoặc giả định cần kiểm chứng và được lặp theo phản hồi; tập màn hình tĩnh chỉ thể hiện phần nhìn, chưa chứng minh hành vi, dữ liệu, tích hợp hoặc tính khả thi.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo sản phẩm Bản mẫu là gì?**
+  - **Trả lời:** Chọn yêu cầu/luồng cần kiểm chứng → tạo low-fidelity rồi high-fidelity khi cần → cho người dùng/stakeholder thử → ghi phản hồi → sửa lặp → chuyển kết quả thành yêu cầu/quyết định thiết kế.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Sản phẩm Bản mẫu của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Cho người dùng/stakeholder thực hiện tác vụ đại diện; quan sát tính dễ hiểu, luồng/lỗi và mức đáp ứng yêu cầu; ghi phản hồi, sửa và xác nhận lại.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tại sao cần tạo sản phẩm Bản mẫu?**
+  - **Trả lời:** Để làm yêu cầu trừu tượng trở nên quan sát được, nhận phản hồi sớm và giảm chi phí sửa sau khi lập trình.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Sản phẩm Bản mẫu của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Chuyển phản hồi prototype thành yêu cầu, acceptance criteria và quyết định UI/UX; cập nhật qua vòng thử–nhận xét–sửa–xác nhận.
+    _Nguồn: [03_2_user_requirements.md](../materials/03_2_user_requirements.md); [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
 
 ---
 
@@ -340,32 +250,23 @@ Giai đoạn Initiation hoặc đầu giai đoạn phát triển, khi yêu cầu
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo tính khả thi (Feasibility Study Report) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Báo cáo tính khả thi của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Báo cáo tính khả thi là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Báo cáo tính khả thi là gì?
-- Tài liệu Báo cáo tính khả thi của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Báo cáo tính khả thi?
-- Tài liệu Báo cáo tính khả thi của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Nghiên cứu khả thi là gì?**
-Là đánh giá chi tiết về nhu cầu, giá trị, và tính thực tiễn của dự án được đề xuất. Các loại khả thi: Pháp lý, Thị trường, Kinh tế, Công nghệ & Hệ thống, Nguồn lực, Vận hành, Lập kế hoạch, Văn hóa.
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 105-124_
-
-**▸ HOW — Cấu trúc báo cáo:**
-
-1. Mục đích (Purpose); 2. Lý do (Reason); 3. Thông tin cơ bản; 4. Tiêu chí đánh giá; 5. Kết quả nghiên cứu; 6. Khuyến nghị.
-   Công cụ phân tích tài chính: Biểu đồ lợi nhuận, Phân tích Chi phí-Lợi ích, ROI.
-   _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 136-152_
-
-**▸ WHY — Tại sao cần?**
-Phân tích yêu cầu đầy đủ; xác định và lập kế hoạch rủi ro; phân tích chi phí/lợi ích; lập kế hoạch đào tạo.
-_Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md) — dòng 125-134_
-
-**▸ WHEN — Khi nào?**
-Giai đoạn Initiation, sau khi có Đề xuất dự án và Vision & Scope, trước khi quyết định tiến hành dự án.
+- **Các câu hỏi chính cần trả lời trong tài liệu Báo cáo tính khả thi là gì?**
+  - **Trả lời:** Mục tiêu và phương án đánh giá; giả định; tính khả thi Technical, Economic, Legal, Operational, Schedule; chi phí–lợi ích; rủi ro; điều kiện khả thi và khuyến nghị tiếp tục, điều chỉnh hoặc dừng.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Báo cáo tính khả thi là gì?**
+  - **Trả lời:** Thu thập Proposal, scope, công nghệ, chi phí, pháp lý, năng lực vận hành và deadline → đánh giá TELOS → so sánh phương án → ghi giả định/rủi ro → khuyến nghị có điều kiện.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Báo cáo tính khả thi của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Đánh giá từng mặt TELOS bằng dữ liệu/giả định minh bạch, chi phí–lợi ích và rủi ro; kết luận phải nêu điều kiện khả thi, không chỉ ghi “khả thi”.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tại sao cần tạo tài liệu Báo cáo tính khả thi?**
+  - **Trả lời:** Để tránh đầu tư vào phương án không thể thực hiện hoặc không đáng làm và xác định điều kiện/rủi ro cần xử lý.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
+- **Tài liệu Báo cáo tính khả thi của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng cho quyết định go/no-go, chọn phương án, ngân sách và risk plan; đánh giá lại khi công nghệ, chi phí, pháp lý, vận hành hoặc deadline thay đổi lớn.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md)._
 
 ---
 
@@ -373,40 +274,38 @@ Giai đoạn Initiation, sau khi có Đề xuất dự án và Vision & Scope, t
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Định nghĩa quy trình phát triển phần mềm (Software Process Definition) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Định nghĩa quy trình phát triển phần mềm là gì?
-- Mô hình cơ sở được lựa chọn để hiệu chỉnh là gì?
-- Thời gian dự kiến của từng giai đoạn là bao lâu?
-- Các vai trò nào từng thành viên trong nhóm sẽ đảm nhiệm?
-- Các sản phẩm nào dự kiến sẽ khởi tạo?
-- Quy trình để đưa ra một bản phân phối hoạt động là gì?
-- Ưu và khuyết điểm của mô hình nhóm lựa chọn là gì?
-- Tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Định nghĩa quy trình phát triển phần mềm?
-- Tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm đã được sử dụng và cập nhập trong quá trình thực hiện dự án như thế nào?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Mô hình SDLC là gì?**
-Mô hình vòng đời phần mềm (SDLCM) là đặc tính mô tả hoặc quy định của sự phát triển phần mềm, bao gồm: Giai đoạn, Hoạt động, Công việc, Sản phẩm, Vai trò, Mẫu, Tiêu chuẩn, Thực hành.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 101-129_
-
-**▸ HOW — Mô hình SDLC cần định nghĩa:**
-Vòng đời (giai đoạn phân cấp/chồng chéo) → Tiêu chí đầu vào → Đầu vào → Vai trò → Nhiệm vụ → Luồng quy trình → Sản phẩm bàn giao → Điểm kiểm tra → Đầu ra → Tiêu chí thoát.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 131-148_
-
-**Các mô hình phổ biến:** Waterfall, Iterative, Scrum/Agile. Mỗi mô hình có ưu/nhược riêng.
-
-- Scrum: Phù hợp môi trường phức tạp, nhiều thay đổi; Sprint 2-4 tuần.
-  _Nguồn: [04_01_software_development_models.md](../materials/04_01_software_development_models.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md) — dòng 280-301_
-
-**▸ WHY — Tại sao cần định nghĩa SDLCM?**
-Mô hình xác định rõ giúp đạt kết quả tốt và nhất quán, năng suất và chất lượng. Mô hình không xác định dẫn đến kết quả không nhất quán, gánh nặng tài liệu/cuộc họp không cần thiết.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 120-130, 153-158_
-
-**▸ WHEN — Khi nào?**
-Giai đoạn Initiation/Planning, trước khi bắt đầu phát triển.
+- **Các câu hỏi chính cần trả lời trong tài liệu Định nghĩa quy trình phát triển phần mềm là gì?**
+  - **Trả lời:** Mô hình vòng đời; vai trò/trách nhiệm; workflow; đầu vào/đầu ra từng hoạt động; công cụ; Definition of Ready/Done; review, test, quản lý cấu hình/thay đổi; metric và cơ chế cải tiến.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Mô hình cơ sở được lựa chọn để hiệu chỉnh là gì?**
+  - **Trả lời:** Không có một mô hình đúng cho mọi dự án. Chọn Waterfall khi yêu cầu ổn định/kiểm soát tài liệu cao; Agile/Scrum khi cần increment và phản hồi theo Sprint; Kanban khi cần tối ưu flow/WIP; sau đó tailor theo rủi ro và nguồn lực.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Thời gian dự kiến của từng giai đoạn là bao lâu?**
+  - **Trả lời:** Không có con số chung. Thời gian phải lấy từ estimate/WBS hoặc cadence Sprint, gồm cả review, test, sửa lỗi và dự phòng; ghi milestone/dependency và cập nhật bằng actual.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Các vai trò nào từng thành viên trong nhóm sẽ đảm nhiệm?**
+  - **Trả lời:** Gán vai trò theo năng lực và trách nhiệm của mô hình, ví dụ PO/PM, Scrum Master/điều phối, BA, architect, developer, tester/QA, DevOps. Một người có thể kiêm nhiệm nhưng phải tránh xung đột quyền và có RACI/owner rõ.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Các sản phẩm nào dự kiến sẽ khởi tạo?**
+  - **Trả lời:** Tối thiểu gồm requirements/backlog, architecture/design, source code, test cases/results, build/release artifact, deployment/configuration, user/operation documentation và các hồ sơ quản lý như plan, risk/issue/change log.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Quy trình để đưa ra một bản phân phối hoạt động là gì?**
+  - **Trả lời:** Chọn backlog item → làm rõ acceptance/DoD → thiết kế → coding → review → unit/integration/system test → tích hợp/build → demo/acceptance → version và đóng gói artifact → phát hành/triển khai theo phê duyệt.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Ưu và khuyết điểm của mô hình nhóm lựa chọn là gì?**
+  - **Trả lời:** Agile/Scrum phản hồi sớm, thích ứng và giao giá trị theo increment nhưng cần stakeholder tham gia, backlog tốt và kỷ luật Sprint; Waterfall dễ baseline/kiểm soát nhưng phản hồi muộn; Kanban linh hoạt flow nhưng khó dự báo nếu policy/WIP không rõ.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra vai trò, đầu vào/đầu ra, workflow, DoR/DoD, công cụ và điểm kiểm soát; chạy thử, đo flow/chất lượng, lấy phản hồi retrospective và tailor.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tại sao cần tạo tài liệu Định nghĩa quy trình phát triển phần mềm?**
+  - **Trả lời:** Để nhóm làm việc nhất quán, biết ai làm gì, đầu vào/đầu ra và tiêu chí hoàn thành; giảm phụ thuộc cá nhân và tạo cơ sở cải tiến.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
+- **Tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm đã được sử dụng và cập nhập trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng tổ chức board/workflow, review, test, release và governance; cập nhật qua retrospective khi có bottleneck, thiếu kiểm soát hoặc thủ tục thừa.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md)._
 
 ---
 
@@ -414,53 +313,50 @@ Giai đoạn Initiation/Planning, trước khi bắt đầu phát triển.
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ước lượng dự án (Project Estimate) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Ước lượng dự án của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Ước lượng dự án là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ước lượng dự án là gì?
-- Tài liệu Ước lượng dự án của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Ước lượng dự án?
-- Tài liệu Ước lượng dự án của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?
-- Giải thích các phương pháp phân rã một tính năng lớn thành các tính năng nhỏ.
-- Khi không có khả năng phân rã được các tính năng lớn của dự án, nhóm phải làm thế nào?
-- Ước lượng có thể sai lệch khoảng bao nhiêu lần ở giai đoạn đầu dự án?
-- Tại sao cần ước lượng ở giai đoạn đầu của dự án?
-- Ước lượng kích cỡ (Size) mang lại lợi ích gì cho dự án khi mối quan tâm chính của ban quản lý là khoảng thời gian (Duration) và chi phí (Cost) cần thiết để hoàn thành dự án?
-- Giải thích quy tắc "Đếm, Tính toán và Đánh giá" khi thực hiện ước lượng dự án?
-- Giải thích các kỹ thuật để tăng độ chính xác khi thực hiện việc ước lượng bằng đánh giá chủ quan?
-- Giải thích các kỹ thuật để tăng độ chính xác khi ước lượng bằng phương pháp "Phân rã và Kết hợp" ("Decomposition and Recomposition")?
-- Giải thích kỹ thuật ước lượng bằng các lá bài (Planning Poker).
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Ước lượng dự án là gì?**
-Là quá trình xác định kích cỡ (Size), nỗ lực (Effort = Staff × Time), thời gian (Duration) và chi phí (Cost) của dự án. Công thức WBS: Effort = Staff × Time.
-_Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md) — dòng 31-42; [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md)_
-
-**▸ HOW — Phương pháp phân rã WBS:**
-Các loại phân rã: Theo sản phẩm, Theo hệ thống, Theo tính năng, Theo use case, Theo pha, Theo hoạt động chung. WBS qua 3 vòng: Vòng 1 (phân rã sơ bộ) → Vòng 2 (thêm ước tính nỗ lực) → Vòng 3 (chi tiết sau khi có SRS).
-_Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md) — dòng 45-68, 71-188_
-
-**▸ Quy tắc "Đếm, Tính toán và Đánh giá" (Count, Compute, Judge):**
-
-- **Đếm (Count):** Đếm trực tiếp các yếu tố đo được (số use case, số màn hình, số bảng DB).
-- **Tính toán (Compute):** Dùng mô hình toán học (FPA, UCP, COCOMO) để tính.
-- **Đánh giá (Judge):** Khi không thể đếm/tính được, dùng đánh giá chuyên gia.
-  _Nguồn: [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md)_
-
-**▸ Planning Poker (WHAT + HOW):**
-Kỹ thuật ước lượng nhóm: Mỗi thành viên có bộ bài Fibonacci (1,2,3,5,8,13,21...). PM mô tả story → mọi người úp bài → lật cùng lúc → thảo luận sai biệt → lặp lại cho đến khi đồng thuận. Chìa khóa: **tính tương đối** — chọn 1 story quen thuộc cho 3 điểm, so sánh các story khác với nó.
-_Nguồn: [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 51-56_
-
-**▸ Khi không phân rã được (HOW):**
-Cần xem lại PoC (Proof of Concept), prototype hoặc nghiên cứu thêm để hiểu rõ hơn yêu cầu trước khi phân rã.
-_Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md) — dòng 61-67_
-
-**▸ Ước lượng Size mang lại lợi ích gì? (WHY)**
-Size là cơ sở để suy ra Duration và Cost: `Effort = f(Size)`, `Duration = f(Effort)`, `Cost = f(Duration, Resources)`. Không có Size thì không thể ước lượng chính xác hai yếu tố còn lại.
-
-**▸ WHY — Tại sao cần ước lượng sớm?**
-Dù sai lệch có thể lên đến 4x ở giai đoạn đầu, ước lượng sớm cần thiết để: xác định ngân sách ban đầu, lập kế hoạch phát hành, phân bổ tài nguyên, và đánh giá tính khả thi.
+- **Các câu hỏi chính cần trả lời trong tài liệu Ước lượng dự án là gì?**
+  - **Trả lời:** Phạm vi/giả định; đơn vị kích thước/effort; phương pháp và dữ liệu đầu vào; kết quả effort, thời lượng, chi phí, nguồn lực; mức bất định, dự phòng, rủi ro và lịch sử hiệu chỉnh.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ước lượng dự án là gì?**
+  - **Trả lời:** Phân rã phạm vi/WBS hoặc backlog → xác định giả định/đơn vị kích thước → chọn phương pháp → tính effort/thời lượng/chi phí → thêm dự phòng → kiểm tra chéo và cập nhật bằng actual.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Tài liệu Ước lượng dự án của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra phạm vi/giả định, cách đếm/công thức; so sánh historical data hoặc phương pháp thứ hai; nêu khoảng tin cậy/dự phòng và hiệu chỉnh bằng actual effort.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Tại sao cần tạo tài liệu Ước lượng dự án?**
+  - **Trả lời:** Để lập ngân sách, lịch, nguồn lực và quyết định phạm vi trên cơ sở minh bạch; quản lý bất định thay vì coi estimate là lời hứa.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Tài liệu Ước lượng dự án của nhóm đã được sử dụng trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng lập ngân sách, lịch, capacity và theo dõi sai lệch; re-estimate khi scope, giả định, productivity hoặc actual thay đổi.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Giải thích các phương pháp phân rã một tính năng lớn thành các tính năng nhỏ.**
+  - **Trả lời:** Có thể tách theo bước quy trình nghiệp vụ, loại người dùng, quy tắc nghiệp vụ, dữ liệu, happy path/exception, CRUD, giao diện/API hoặc mức độ hoàn thiện. Mỗi phần phải tạo giá trị hoặc kết quả kiểm chứng được và đủ nhỏ để ước lượng.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Khi không có khả năng phân rã được các tính năng lớn của dự án, nhóm phải làm thế nào?**
+  - **Trả lời:** Thực hiện spike/prototype để học thêm, dùng analogous/expert judgment hoặc khoảng ước lượng cho hạng mục lớn, ghi rõ bất định và contingency; chưa cam kết con số chi tiết, tiếp tục refinement rồi re-estimate.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Ước lượng có thể sai lệch khoảng bao nhiêu lần ở giai đoạn đầu dự án?**
+  - **Trả lời:** Theo Cone of Uncertainty, ở giai đoạn rất sớm thực tế có thể khoảng 1/4 đến 4 lần ước lượng ban đầu. Biên thu hẹp khi requirements, architecture và dữ liệu thực tế rõ hơn.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Tại sao cần ước lượng ở giai đoạn đầu của dự án?**
+  - **Trả lời:** Để sàng lọc tính khả thi, so sánh phương án, đặt ngân sách/lịch sơ bộ và nhận diện rủi ro. Phải trình bày dưới dạng khoảng và giả định, không xem là cam kết cố định.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Ước lượng kích cỡ (Size) mang lại lợi ích gì cho dự án khi mối quan tâm chính của ban quản lý là khoảng thời gian (Duration) và chi phí (Cost) cần thiết để hoàn thành dự án?**
+  - **Trả lời:** Size là đầu vào tương đối ổn định hơn để suy ra effort qua productivity, rồi suy ra duration/cost theo staffing/rate. Nó giúp kiểm tra chéo, so sánh dự án và hiệu chỉnh khi năng suất thực tế thay đổi.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Giải thích quy tắc "Đếm, Tính toán và Đánh giá" khi thực hiện ước lượng dự án?**
+  - **Trả lời:** Count: đếm đối tượng có thể quan sát như use case, story, function hoặc LOC. Compute: áp dụng trọng số/công thức để suy ra size/effort. Judge: dùng chuyên gia điều chỉnh theo độ phức tạp, rủi ro/bối cảnh và kiểm tra tính hợp lý.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Giải thích các kỹ thuật để tăng độ chính xác khi thực hiện việc ước lượng bằng đánh giá chủ quan?**
+  - **Trả lời:** Dùng nhiều chuyên gia ước lượng độc lập, Delphi/Wideband Delphi hoặc Planning Poker; cung cấp cùng giả định, tham chiếu dữ liệu lịch sử, dùng khoảng/three-point, thảo luận chênh lệch và ghi lý do trước khi hội tụ.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Giải thích các kỹ thuật để tăng độ chính xác khi ước lượng bằng phương pháp "Phân rã và Kết hợp" ("Decomposition and Recomposition")?**
+  - **Trả lời:** Phân rã theo deliverable/WBS đến work package đủ nhỏ, ước lượng độc lập từng phần, kiểm tra dependency/overhead/integration, cộng lại và thêm contingency; đối chiếu tổng bottom-up với top-down để phát hiện thiếu hoặc double-count.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
+- **Giải thích kỹ thuật ước lượng bằng các lá bài (Planning Poker).**
+  - **Trả lời:** PO/BA trình bày story và acceptance criteria; thành viên hỏi làm rõ; mọi người chọn đồng thời một lá theo dãy tương đối; người chọn cao/thấp giải thích; nhóm thảo luận và bỏ phiếu lại đến khi hội tụ. Kết quả là ước lượng tương đối, không phải số giờ.
+    _Nguồn: [05_1_work_breakdown_structure.md](../materials/05_1_work_breakdown_structure.md); [05_2_introduction_to_software_estimation.md](../materials/05_2_introduction_to_software_estimation.md); [05_3_agile_estimation.md](../materials/05_3_agile_estimation.md); [05_4_model_based_estimation.md](../materials/05_4_model_based_estimation.md)._
 
 ---
 
@@ -468,35 +364,29 @@ Dù sai lệch có thể lên đến 4x ở giai đoạn đầu, ước lượng
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch dự án (Project Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch dự án của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch dự án là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch dự án là gì?
-- Tài liệu Kế hoạch dự án của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Kế hoạch dự án?
-- Tài liệu Kế hoạch dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-- Một số mô hình cho phép không xác định rõ các kết quả cuối cùng của dự án, vậy có cần tạo tài liệu Kế hoạch dự án trong các trường hợp này hay không?
-- Tài liệu Kế hoạch dự án khác gì với tài liệu Định nghĩa quy trình phát triển phần mềm.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Kế hoạch dự án là gì?**
-Tài liệu mô tả cụ thể: kích thước dự án, thời gian, chi phí, lịch trình, phân công nguồn lực, cột mốc, và các hoạt động cần thực hiện. Trong Agile: Product Roadmap → Release Plan → Sprint Plan.
-_Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 75-99_
-
-**▸ HOW — Quy trình lập kế hoạch phát hành (Agile):**
-
-1. Tạo ước tính cấp cao (story points); 2. Tạo lộ trình sản phẩm; 3. Ưu tiên backlog; 4. Tạo Sprint Map; 5. Tạo kế hoạch phát hành sơ bộ; 6. Xác định ràng buộc phát hành; 7. Chi tiết kế hoạch; 8. Tính chi phí; 9. Tạo dự toán; 10. Chuẩn bị phát hành; 11. Tạo kiến trúc; 12. Iteration 0.
-   _Nguồn: [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 85-99_
-
-**▸ Kế hoạch dự án vs. Định nghĩa quy trình (WHAT):**
-
-- **Định nghĩa quy trình:** Mô tả **cách thức** (HOW) — mô hình, giai đoạn, vai trò, quy tắc chung.
-- **Kế hoạch dự án:** Mô tả **cụ thể** — lịch trình, nhân sự, ngân sách, cột mốc cho dự án này.
-
-**▸ WHY — Có cần kế hoạch trong Agile?**
-Có! Agile vẫn cần kế hoạch nhưng tập trung vào **quá trình lập kế hoạch** hơn là kế hoạch cố định. Kế hoạch dễ thay đổi, được cập nhật mỗi Sprint.
-_Nguồn: [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 41-50_
+- **Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch dự án là gì?**
+  - **Trả lời:** Mục tiêu/phạm vi/deliverable; WBS/backlog; lịch, dependency, milestone, đường găng; nguồn lực, trách nhiệm, chi phí; chất lượng, rủi ro, truyền thông, cấu hình/thay đổi; baseline và báo cáo.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch dự án là gì?**
+  - **Trả lời:** Dùng Charter, scope, requirements, WBS/backlog và estimate → xác định dependency, nguồn lực/lịch → phân công → lập kế hoạch con → thiết lập baseline/metric → review và phê duyệt.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tài liệu Kế hoạch dự án của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Review tính nhất quán scope–WBS–estimate–schedule–resource–cost; kiểm tra dependency, đường găng, trách nhiệm, rủi ro và tính khả thi baseline.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tại sao cần tạo tài liệu Kế hoạch dự án?**
+  - **Trả lời:** Để phối hợp công việc/nguồn lực, thiết lập baseline và phát hiện, kiểm soát sai lệch trong execution.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tài liệu Kế hoạch dự án của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng làm baseline thực thi, phân công/báo cáo; cập nhật qua change control/replanning khi scope, estimate, dependency, nguồn lực/rủi ro đổi.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Một số mô hình cho phép không xác định rõ các kết quả cuối cùng của dự án, vậy có cần tạo tài liệu Kế hoạch dự án trong các trường hợp này hay không?**
+  - **Trả lời:** Vẫn cần kế hoạch nhưng ở mức phù hợp: mục tiêu, nguồn lực, governance, rủi ro, cadence và tiêu chí giá trị; chi tiết theo rolling-wave/release/Sprint plan và cập nhật khi học thêm. Agile không đồng nghĩa không lập kế hoạch.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
+- **Tài liệu Kế hoạch dự án khác gì với tài liệu Định nghĩa quy trình phát triển phần mềm.**
+  - **Trả lời:** Project Plan trả lời dự án này sẽ đạt mục tiêu bằng phạm vi, lịch, nguồn lực, chi phí, rủi ro và baseline cụ thể; Process Definition trả lời nhóm phát triển theo workflow, vai trò, đầu vào/đầu ra, công cụ và tiêu chí hoàn thành nào. Plan là theo dự án; process có thể tái sử dụng/tailor.
+    _Nguồn: [06_software_project_planning.md](../materials/06_software_project_planning.md); [06_1_agile_planning.md](../materials/06_1_agile_planning.md)._
 
 ---
 
@@ -504,36 +394,32 @@ _Nguồn: [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòn
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Phát biểu công việc (Statement of Work) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Phát biểu công việc của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Phát biểu công việc là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Phát biểu công việc là gì?
-- Tài liệu Phát biểu công việc của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Phát biểu công việc?
-- Tài liệu Phát biểu công việc của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?
-- Giải thích sự khác nhau về thời gian và chi phí giữa các tài liệu: Đề xuất dự án, Ước lượng dự án, và Phát biểu công việc.
-- Các câu hỏi chính cần trả lời trong tài liệu Hợp đồng dự án phần mềm (Software Contract) là gì?
-- Giải thích sự khác nhau giữa Hợp đồng giá cố định và Hợp đồng theo nguyên vật liệu và thời gian.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — SOW là gì?**
-Statement of Work (SOW) là tài liệu mô tả chi tiết phạm vi công việc, sản phẩm bàn giao, tiến độ, chi phí cam kết chính thức với khách hàng. SOW là cơ sở cho hợp đồng (Contract).
-
-**▸ Sự khác biệt về thời gian và chi phí giữa Đề xuất / Ước lượng / SOW:**
-
-| Tài liệu            | Thời gian & Chi phí                   | Mức độ chính xác     |
-| ------------------- | ------------------------------------- | -------------------- |
-| **Đề xuất dự án**   | Sơ bộ, ước chừng                      | Thấp (có thể sai 4x) |
-| **Ước lượng dự án** | Chi tiết hơn, dựa trên WBS/FPA/UCP    | Trung bình           |
-| **SOW**             | Cam kết chính thức, ràng buộc pháp lý | Cao nhất             |
-
-**▸ Hợp đồng giá cố định vs. Hợp đồng T&M (WHAT):**
-
-- **Hợp đồng giá cố định (Fixed-Price):** Giá biết trước, phạm vi đóng băng. Ưu: Khách hàng an tâm chi phí. Nhược: Thay đổi tốn kém.
-- **Hợp đồng T&M (Time & Materials):** Thanh toán theo thời gian và vật liệu thực tế. Ưu: Linh hoạt. Nhược: Khách hàng cần quản lý vi mô.
-- **Hợp đồng Agile Fixed-Price:** Chia sẻ rủi ro, yêu cầu có thể thay đổi, giao phần mềm làm việc mỗi 2-3 tuần.
-  _Nguồn: [06_1_agile_planning.md](../materials/06_1_agile_planning.md) — dòng 175-209_
+- **Các câu hỏi chính cần trả lời trong tài liệu Phát biểu công việc là gì?**
+  - **Trả lời:** Bối cảnh, mục tiêu, phạm vi in/out, công việc, deliverable, milestone, trách nhiệm, nguồn lực, giả định/dependency, tiêu chuẩn, acceptance criteria, báo cáo, thanh toán nếu có và change control.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Phát biểu công việc là gì?**
+  - **Trả lời:** Dùng scope, requirements, estimate và thỏa thuận thương mại → mô tả công việc/deliverable/milestone → đặt acceptance criteria/trách nhiệm → quy định báo cáo, nghiệm thu, thay đổi → duyệt.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Tài liệu Phát biểu công việc của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Đối chiếu SOW với scope, requirements, estimate; kiểm tra deliverable/acceptance đo được, trách nhiệm/milestone rõ, change control và nghiệm thu đủ.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Tại sao cần tạo tài liệu Phát biểu công việc?**
+  - **Trả lời:** Để bên giao và bên nhận hiểu cùng phạm vi, deliverable, trách nhiệm và nghiệm thu; giảm tranh chấp/scope creep.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Tài liệu Phát biểu công việc của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào?**
+  - **Trả lời:** Dùng giao việc, theo dõi milestone, nghiệm thu, xử lý tranh chấp; thay đổi chỉ có hiệu lực sau change request, phân tích tác động và duyệt.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Giải thích sự khác nhau về thời gian và chi phí giữa các tài liệu: Đề xuất dự án, Ước lượng dự án, và Phát biểu công việc.**
+  - **Trả lời:** Proposal chỉ nêu ước tính sơ bộ để sàng lọc; Project Estimate tính effort/duration/cost bằng giả định/phương pháp; SOW biến phạm vi, deliverable, milestone và nghiệm thu thành cam kết nên phải nhất quán với estimate và change control.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Các câu hỏi chính cần trả lời trong tài liệu Hợp đồng dự án phần mềm (Software Contract) là gì?**
+  - **Trả lời:** Xác định các bên/thẩm quyền; SOW/phạm vi; deliverable và acceptance; lịch, giá/thanh toán; trách nhiệm; sở hữu trí tuệ, bảo mật/dữ liệu; warranty/support; change control; vi phạm, chấm dứt và giải quyết tranh chấp.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
+- **Giải thích sự khác nhau giữa Hợp đồng giá cố định và Hợp đồng theo nguyên vật liệu và thời gian.**
+  - **Trả lời:** Fixed-price chốt giá theo phạm vi: nhà cung cấp chịu rủi ro vượt chi phí cao, phù hợp yêu cầu ổn định. Time & Materials trả theo thời gian/nguồn lực: linh hoạt hơn nhưng khách hàng chịu rủi ro chi phí; cần rate, trần ngân sách và kiểm soát.
+    _Nguồn: [03_software_project_initiation.md](../materials/03_software_project_initiation.md); [06_software_project_planning.md](../materials/06_software_project_planning.md)._
 
 ---
 
@@ -601,49 +487,26 @@ Tự động hóa quy trình từ phát triển → triển khai → vận hành
 
 Trình bày quá trình hình thành và phát triển nhóm mà nhóm đã trải qua. Liệt kê các vấn đề liên quan đến quản lý con người nhóm đã thực sự vướng phải. Trình bày cách nhóm đã giải quyết các vấn đề này và kết quả thu được (có thể thành công, có thể không thành công). _(Sinh viên nộp kèm bản in ảnh chụp chung các thành viên trong nhóm, bản in tài liệu quy định, quy chế, lịch làm việc của nhóm, bản in một biên bản họp của nhóm, bản in giao diện hệ thống liên lạc với dữ liệu thực tế của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Giải thích các giai đoạn phát triển nhóm.
-- Giải thích các loại hình tổ chức: Theo chức năng, theo dự án, ma trận yếu, ma trận cân bằng và ma trận mạnh.
-- Giải thích các mô hình quản lý nhóm: X, Y, Z.
-- Giải thích nguyên tắc xử lý mâu thuẫn trong một nhóm.
-- Giải thích các phương pháp tăng năng suất làm việc của nhóm.
-- Giải thích mô hình tháp nhu cầu của Maslow.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ Các loại hình tổ chức (WHAT):**
-
-- **Tổ chức chức năng (Functional):** Nhóm theo phòng ban chuyên môn.
-- **Tổ chức dự án (Projectized):** Nhân sự toàn thời gian cho dự án, PM toàn quyền.
-- **Tổ chức ma trận (Matrix):** Kết hợp. Ma trận yếu (PM điều phối), Ma trận cân bằng, Ma trận mạnh (PM quyền lực cao).
-  _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 99-108_
-
-**▸ Nguyên tắc xử lý mâu thuẫn (HOW):**
-
-| Kỹ thuật                      | Mô tả                    | Hiệu quả                 |
-| ----------------------------- | ------------------------ | ------------------------ |
-| Rút lui/Tránh né              | Bỏ đi, từ chối thảo luận | Không giải quyết tận gốc |
-| Xoa dịu/Nhượng bộ             | Nhấn mạnh điểm chung     | Không lâu dài            |
-| Ép buộc/Áp đặt                | Dùng quyền lực áp đặt    | Tạm thời                 |
-| Thỏa hiệp/Hòa giải            | Mỗi bên từ bỏ một phần   | Trung dung               |
-| **Hợp tác/Giải quyết vấn đề** | Tìm sự thật, đồng thuận  | **Win-Win, lâu dài**     |
-
-_Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 141-153_
-
-**▸ Tháp nhu cầu Maslow (WHAT):**
-
-1. Sinh lý & An toàn → Mức độ sinh tồn (Survive).
-2. Xã hội, Tôn trọng & Khẳng định bản thân → Mức độ phát triển mạnh mẽ (Thrive).
-   _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 177-183_
-
-**▸ Phương pháp tăng năng suất (HOW):**
-Năng suất thực sự = đạt được nhiều hơn trong 1 giờ làm việc (English Theory), KHÔNG phải bóc lột (Spanish Theory). Cách tăng: Job Enrichment — giao nhiệm vụ mới thử thách, chuyên môn hóa, giảm kiểm soát, cung cấp thông tin trực tiếp.
-_Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 156-201_
-
-**▸ Định luật Brooks (WHY):**
-"Việc bổ sung nhân lực vào một dự án phần mềm muộn sẽ càng khiến dự án bị chậm trễ hơn" — do chi phí giao tiếp và đào tạo nhân sự mới tăng nhanh.
-_Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 244-248_
+- **Giải thích các giai đoạn phát triển nhóm.**
+  - **Trả lời:** Tuckman gồm Forming (hình thành), Storming (xung đột), Norming (thống nhất quy tắc), Performing (phối hợp hiệu quả), Adjourning (kết thúc/chuyển giao). Nhóm có thể quay lại giai đoạn trước khi thành viên/mục tiêu đổi.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
+- **Giải thích các loại hình tổ chức: Theo chức năng, theo dự án, ma trận yếu, ma trận cân bằng và ma trận mạnh.**
+  - **Trả lời:** Functional: quản lý chức năng có quyền cao; Projectized: PM có quyền cao; weak matrix nghiêng về functional manager; balanced matrix chia sẻ quyền; strong matrix nghiêng về PM. Cấu trúc ảnh hưởng phân bổ nguồn lực và tốc độ quyết định.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
+- **Giải thích các mô hình quản lý nhóm: X, Y, Z.**
+  - **Trả lời:** Theory X giả định cần kiểm soát/chỉ huy; Theory Y tin con người có thể tự định hướng/chịu trách nhiệm; Theory Z nhấn mạnh niềm tin, gắn bó và quyết định có sự tham gia. Nhóm tri thức thường phù hợp Y/Z khi trách nhiệm rõ.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
+- **Giải thích nguyên tắc xử lý mâu thuẫn trong một nhóm.**
+  - **Trả lời:** Làm rõ dữ kiện/lợi ích, lắng nghe, tập trung mục tiêu chung, tìm nguyên nhân thay vì quy lỗi, cùng chọn phương án, owner/deadline và theo dõi. Ưu tiên collaboration/problem solving; tránh né chỉ khi vấn đề nhỏ hoặc cần thêm thông tin.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
+- **Giải thích các phương pháp tăng năng suất làm việc của nhóm.**
+  - **Trả lời:** Giảm multitasking, chia nhỏ việc, giới hạn WIP, làm rõ DoD, loại blocker, tự động hóa kiểm tra, review sớm, chia sẻ tri thức và đo flow/quality. Không dùng số task đơn thuần để đánh giá năng suất.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
+- **Giải thích mô hình tháp nhu cầu của Maslow.**
+  - **Trả lời:** Maslow gồm nhu cầu sinh lý, an toàn, quan hệ, được tôn trọng và tự hiện thực hóa. Quản lý cần bảo đảm điều kiện làm việc/an toàn tâm lý, hợp tác, ghi nhận và cơ hội phát triển.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md)._
 
 ---
 
@@ -651,62 +514,41 @@ _Nguồn: [08_software_team_management.md](../materials/08_software_team_managem
 
 Trình bày quá trình phân công, theo dõi, đánh giá, kiểm soát các công việc dự án, và báo cáo tình trạng dự án của nhóm. _(Sinh viên nộp kèm bản in giao diện hệ thống phân công, theo dõi công việc với dữ liệu thực tế của nhóm, bản in giao diện hệ thống quản lý thời gian đã dùng cho từng công việc với dữ liệu thực tế của nhóm, bản in bản cập nhật tài liệu Kế hoạch dự án theo dữ liệu thực tiễn, biểu đồ burndown của toàn dự án, tài liệu báo cáo tình trạng toàn bộ dự án của nhóm ở tuần trước tuần thi giữa học kỳ.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Làm sao để giải quyết vấn đề vượt phạm vi dự kiến (Scope Creep)?
-- Làm sao để giải quyết vấn đề vượt công sức dự kiến (Effort Creep)?
-- Làm sao để các thay đổi không trở nên bất ngờ và ảnh hưởng tiêu cực đến sự thành công của dự án?
+- **Làm sao để giải quyết vấn đề vượt phạm vi dự kiến (Scope Creep)?**
+  - **Trả lời:** Ghi yêu cầu mới thành change request, phân tích tác động đến giá trị, scope, lịch, chi phí, chất lượng/rủi ro và xin phê duyệt. Chỉ cập nhật baseline/backlog sau quyết định; nguồn lực cố định thì phải trade-off.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
+- **Làm sao để giải quyết vấn đề vượt công sức dự kiến (Effort Creep)?**
+  - **Trả lời:** So sánh actual với estimate, tìm nguyên nhân như task lớn, dependency, rework/blocker; re-estimate phần còn lại và điều chỉnh scope/lịch/nguồn lực có phê duyệt. Không che giấu bằng cách chỉ kéo dài thời hạn.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
+- **Làm sao để các thay đổi không trở nên bất ngờ và ảnh hưởng tiêu cực đến sự thành công của dự án?**
+  - **Trả lời:** Duy trì baseline, board/log, risk/issue/change register; review/báo cáo định kỳ theo ngưỡng. Mỗi thay đổi phải có nguyên nhân, tác động, owner, deadline và quyết định để stakeholder biết sớm.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
 
 **Các câu hỏi thường gặp cho mô hình Scrum:**
 
-- Giải thích Sprint Backlogs, Sprint Boards, Sprint Tasks, Sprint Burndown Charts, Project Burndown Charts.
-- Phải xử lý thế nào khi kết thúc một Sprint mà nhóm không đưa ra được bản phân phối?
-- Phải xử lý thế nào khi kết quả của các Sprint chênh lệch một cách bất bình thường?
+- **Giải thích Sprint Backlogs, Sprint Boards, Sprint Tasks, Sprint Burndown Charts, Project Burndown Charts.**
+  - **Trả lời:** Sprint Backlog là Product Backlog items được chọn và kế hoạch thực hiện; Sprint Board hiển thị trạng thái; Sprint Task là việc kỹ thuật; Sprint Burndown biểu diễn công việc còn lại trong Sprint; Project/Release Burndown theo dõi toàn phạm vi/release.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
+- **Phải xử lý thế nào khi kết thúc một Sprint mà nhóm không đưa ra được bản phân phối?**
+  - **Trả lời:** Không coi increment là Done nếu chưa đạt DoD. Review nguyên nhân, đưa phần chưa xong về Product Backlog để PO ưu tiên lại, rồi cải thiện refinement, chia nhỏ item, capacity và xử lý blocker trong retrospective.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
+- **Phải xử lý thế nào khi kết quả của các Sprint chênh lệch một cách bất bình thường?**
+  - **Trả lời:** Kiểm tra scope, capacity, cách chia story, blocker, chất lượng và cách ước lượng; dùng dữ liệu nhiều Sprint, không kết luận từ một Sprint. Điều chỉnh refinement/capacity và xử lý dependency.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
 
 **Các câu hỏi thường gặp cho mô hình Kanban:**
 
-- Giải thích Kanban Board, Development Workflow, WIP.
+- **Giải thích Kanban Board, Development Workflow, WIP.**
+  - **Trả lời:** Kanban Board trực quan hóa workflow; Development Workflow là trạng thái/policy chuyển việc; WIP là số việc đang làm. Giới hạn WIP giảm multitasking, làm lộ bottleneck và ưu tiên hoàn tất trước khi kéo việc mới.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
 
 **Các câu hỏi thường gặp cho mô hình Waterfall:**
 
-- Giải thích phương pháp cập nhật lịch trình, phương pháp tính toán thời gian, chi phí cần thiết để hoàn thành các công việc còn lại.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ Scope Creep (HOW giải quyết):**
-Sử dụng quy trình kiểm soát thay đổi chính thức (Change Control Process): Yêu cầu thay đổi → Mô tả → Phân tích tác động → CCB phê duyệt → Cập nhật kế hoạch → Triển khai → Xác minh.
-_Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 99-131_
-
-**▸ Effort Creep (HOW giải quyết):**
-
-| Nguyên nhân          | Giải pháp                                      |
-| -------------------- | ---------------------------------------------- |
-| Ước tính thấp        | Dùng quỹ dự phòng rủi ro                       |
-| Thiết kế quá mức     | Yêu cầu hiểu rõ giải pháp trước khi triển khai |
-| Bùng nổ yêu cầu ngầm | Kiểm soát yêu cầu phái sinh                    |
-| Ranh giới mờ nhạt    | Xác định rõ phạm vi trong hợp đồng             |
-| Thiếu kỹ năng        | Tuyển dụng/đào tạo                             |
-
-_Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 85-96_
-
-**▸ EVM — Quản lý giá trị thu được (WHAT + HOW):**
-
-- PV (Planned Value), EV (Earned Value), AC (Actual Cost), BAC (Budget at Completion).
-- SV = EV - PV; SPI = EV/PV; CV = EV - AC; CPI = EV/AC.
-- EAC = BAC/CPI.
-  _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 165-192_
-
-**▸ Sprint (Scrum) — Các khái niệm:**
-
-- **Sprint Backlog:** Danh sách công việc nhóm phải giải quyết trong Sprint.
-- **Sprint Tasks:** Tính năng chia thành nhiệm vụ 4-16 giờ.
-- **Burndown Chart:** Cho thấy mỗi ngày còn bao nhiêu việc.
-- **Velocity:** Lượng công việc đã hoàn thành mỗi Sprint.
-  _Nguồn: [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md) — dòng 171-235_
-
-**▸ Khi Sprint không đưa ra bản phân phối (HOW):**
-Sử dụng iteration slack; đơn giản hóa/trì hoãn nhiệm vụ; giảm phạm vi (chia nhỏ/loại bỏ story). **Tuyệt đối không thay đổi deadline Sprint.**
-_Nguồn: [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md) — dòng 52-65_
+- **Giải thích phương pháp cập nhật lịch trình, phương pháp tính toán thời gian, chi phí cần thiết để hoàn thành các công việc còn lại.**
+  - **Trả lời:** Cập nhật % hoàn thành, duration/dependency còn lại; tính lại thời điểm sớm/muộn và critical path, so với baseline; dự báo thời gian/chi phí hoàn thành và thực hiện corrective action khi vượt ngưỡng.
+    _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile_project_monitoring_and_control.md)._
 
 ---
 
@@ -714,43 +556,23 @@ _Nguồn: [09_1_agile_project_monitoring_and_control.md](../materials/09_1_agile
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý rủi ro của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý rủi ro là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý rủi ro là gì?
-- Tài liệu Kế hoạch quản lý rủi ro của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Kế hoạch quản lý rủi ro?
-- Tài liệu Kế hoạch quản lý rủi ro của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Rủi ro là gì?**
-Rủi ro là khả năng xảy ra điều xấu ở tương lai. Phân biệt: **Rủi ro** (chưa xảy ra) vs. **Vấn đề** (đã xảy ra).
-_Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md) — dòng 36-47_
-
-**▸ HOW — Quy trình quản lý rủi ro:**
-
-1. **Xác định rủi ro:** Brainstorming, Risk taxonomies, Phân rã, Critical path, Phỏng vấn.
-2. **Phân tích rủi ro:** Xác suất × Tác động = Risk Exposure (RE).
-3. **Lập kế hoạch ứng phó:** Chấp nhận, Tránh né, Chuyển giao, Giảm thiểu.
-4. **Giám sát & Kiểm soát:** Theo dõi tiến trình, hành động khắc phục.
-   _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md) — dòng 52-57, 75-137, 202-224_
-
-**▸ Chiến lược ứng phó rủi ro (HOW):**
-
-- **Chấp nhận (Acceptance):** Thừa nhận nhưng không hành động phủ đầu.
-- **Tránh né (Avoidance):** Loại bỏ điều kiện cho phép rủi ro.
-- **Chuyển giao (Transfer):** Mua bảo hiểm, thuê ngoài.
-- **Giảm thiểu (Mitigation):** Chủ động giảm xác suất hoặc tác động.
-  _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md) — dòng 131-137_
-
-**▸ Agile Risk — Hệ số rủi ro (HOW):**
-Dùng Risk Multipliers: Mức cam kết 90% (nghiêm ngặt: ×1.8; rủi ro: ×4.0) để điều chỉnh vận tốc khi lập kế hoạch phát hành.
-_Nguồn: [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md) — dòng 55-78_
-
-**▸ WHY — Tại sao cần?**
-"Nếu bạn không chủ động tấn công rủi ro, rủi ro sẽ chủ động tấn công bạn" — Tom Gilb.
-_Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md) — dòng 223-224_
+- **Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý rủi ro là gì?**
+  - **Trả lời:** Phương pháp và thang xác suất/tác động; vai trò; risk register; nhận diện, phân tích, ưu tiên, ứng phó, theo dõi; trigger, contingency, owner, chu kỳ review và báo cáo.
+    _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md); [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý rủi ro là gì?**
+  - **Trả lời:** Nhận diện rủi ro → phân tích xác suất/tác động → ưu tiên → chọn response/owner → xác định trigger/contingency → theo dõi, báo cáo và đóng hoặc chuyển thành issue.
+    _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md); [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md)._
+- **Tài liệu Kế hoạch quản lý rủi ro của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra risk register có nguyên nhân–sự kiện–tác động, xác suất/mức độ, owner, trigger, response; review residual risk, action quá hạn và rủi ro mới.
+    _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md); [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md)._
+- **Tại sao cần tạo tài liệu Kế hoạch quản lý rủi ro?**
+  - **Trả lời:** Để chủ động giảm xác suất/tác động của đe dọa, tận dụng cơ hội và chuẩn bị trước khi rủi ro thành issue.
+    _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md); [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md)._
+- **Tài liệu Kế hoạch quản lý rủi ro của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.**
+  - **Trả lời:** Dùng trong planning/status review; cập nhật xác suất/tác động, action, owner, trigger và trạng thái sau review hoặc sự kiện.
+    _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_management.md); [10_1_agile_risk_management.md](../materials/10_1_agile_risk_management.md)._
 
 ---
 
@@ -758,52 +580,41 @@ _Nguồn: [10_software_risk_management.md](../materials/10_software_risk_managem
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch quản lý chất lượng (Software Quality Management Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch quản lý chất lượng của nhóm, bản in định nghĩa hoàn thành (Definition of Done) của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in biên bản phản hồi từ khách hàng của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý chất lượng là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý chất lượng là gì?
-- Tài liệu Kế hoạch quản lý chất lượng của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Kế hoạch quản lý chất lượng?
-- Tài liệu Kế hoạch quản lý chất lượng của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.
-- Giải thích sự hỗ trợ của các mô hình McCall, ISO 9126 trong việc kiểm soát chất lượng các sản phẩm của dự án?
-- Đo lường định tính khác gì đo lường định lượng (qualitative vs. quantitative measurement)?
-- Giải thích phương pháp đo lường chất lượng các sản phẩm, quy trình và con người trong một dự án.
-- Giải thích các phương pháp giúp hạn chế việc các tài liệu dự án không đúng với yêu cầu khách hàng đề ra.
-- Giải thích các phương pháp giúp hạn chế việc mã nguồn hệ thống không đúng với thiết kế đề ra.
-- Giải thích các phương pháp giúp hạn chế việc phần mềm hoạt động không đúng với yêu cầu khách hàng đề ra.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Chất lượng là gì?**
-Chất lượng là mức độ mà một tập hợp các đặc tính vốn có đáp ứng các yêu cầu. Mục tiêu: Đạt chất lượng và chi phí ở mức chấp nhận được.
-_Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md) — dòng 37-44, 71-72_
-
-**▸ McCall (11 yếu tố) vs. ISO 9126 (WHAT):**
-
-- **McCall:** Correctness, Reliability, Efficiency, Integrity, Usability, Maintainability, Testability, Flexibility, Portability, Reusability, Interoperability.
-- **ISO 9126:** Functionality, Reliability, Usability, Efficiency, Maintainability, Portability — mỗi nhóm có các đặc tính phụ chi tiết.
-  _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md) — dòng 74-100_
-
-**▸ Định tính vs. Định lượng (WHAT):**
-
-- **Định tính (Qualitative):** Mô tả bằng từ ngữ, không đo bằng số (màu sắc, đánh giá chủ quan).
-- **Định lượng (Quantitative):** Đo lường bằng số (thời gian, chi phí, số lỗi).
-  _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md) — dòng 112-116_
-
-**▸ QA vs. QC (WHAT):**
-
-- **QA (Quality Assurance):** Tập trung vào **Quy trình**, **ngăn ngừa** khiếm khuyết.
-- **QC (Quality Control):** Tập trung vào **Sản phẩm**, **phát hiện** khiếm khuyết.
-  _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md) — dòng 193-200_
-
-**▸ Hạn chế tài liệu sai (HOW):** Review/Walkthrough tài liệu với stakeholders; sử dụng Requirements Traceability Matrix.
-_Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 149-152_
-
-**▸ Hạn chế mã nguồn sai thiết kế (HOW):** Code Inspection (review mã nguồn); Coding Standards; Unit Testing.
-_Nguồn: [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md) — dòng 30-62_
-
-**▸ Hạn chế phần mềm sai yêu cầu (HOW):** Kiểm thử chức năng, kiểm thử chấp nhận (Acceptance Testing), phản hồi khách hàng, Sprint Review/Demo.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 79-87_
+- **Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch quản lý chất lượng là gì?**
+  - **Trả lời:** Mục tiêu/thuộc tính chất lượng; tiêu chuẩn; vai trò QA/QC; review, audit, coding standard, test, defect management; metric; Definition of Done; tiêu chí chấp nhận, công cụ và cải tiến.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý chất lượng là gì?**
+  - **Trả lời:** Chọn quality attributes/mục tiêu → đặt tiêu chuẩn/metric → thiết kế QA/QC → tích hợp review/test/audit vào quy trình → đo kết quả → corrective action và cải tiến.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tài liệu Kế hoạch quản lý chất lượng của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Đối chiếu quality objectives với requirements/NFR; kiểm tra metric, QA/QC, DoD, coding/review/test/defect workflow và trách nhiệm; dùng audit/dữ liệu lỗi để cải tiến.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tại sao cần tạo tài liệu Kế hoạch quản lý chất lượng?**
+  - **Trả lời:** Để xây chất lượng vào quy trình từ đầu, phòng ngừa/phát hiện sai lệch sớm và cân bằng chất lượng với chi phí.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tài liệu Kế hoạch quản lý chất lượng của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.**
+  - **Trả lời:** Dùng áp dụng tiêu chuẩn, DoD, review/audit/test và theo dõi metric; cập nhật khi defect trend, yêu cầu, công nghệ/rủi ro đổi.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Giải thích sự hỗ trợ của các mô hình McCall, ISO 9126 trong việc kiểm soát chất lượng các sản phẩm của dự án?**
+  - **Trả lời:** McCall và ISO 9126 cung cấp nhóm thuộc tính chất lượng để chọn tiêu chí kiểm soát. McCall có 11 yếu tố; ISO 9126 có Functionality, Reliability, Usability, Efficiency, Maintainability, Portability. Nhóm phải chuyển thuộc tính chọn thành metric/acceptance cụ thể.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Đo lường định tính khác gì đo lường định lượng (qualitative vs. quantitative measurement)?**
+  - **Trả lời:** Định tính mô tả nhận xét/đặc tính bằng ngôn ngữ; định lượng biểu diễn bằng số như response time, số lỗi, coverage, chi phí. Nên kết hợp vì số liệu cần bối cảnh và nhận xét cần kiểm chứng.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Giải thích phương pháp đo lường chất lượng các sản phẩm, quy trình và con người trong một dự án.**
+  - **Trả lời:** Sản phẩm: defect density, pass rate, performance, usability/acceptance. Quy trình: cycle time, review coverage, escaped defects, rework. Con người/nhóm: năng lực, hoàn thành cam kết, cộng tác/học tập; không dùng một metric đơn lẻ để xếp hạng cá nhân.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Giải thích các phương pháp giúp hạn chế việc các tài liệu dự án không đúng với yêu cầu khách hàng đề ra.**
+  - **Trả lời:** Dùng template/standard, review/walkthrough với stakeholder, version control, checklist, approval và traceability yêu cầu–tài liệu; khi yêu cầu đổi phải cập nhật tài liệu liên quan theo change control.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Giải thích các phương pháp giúp hạn chế việc mã nguồn hệ thống không đúng với thiết kế đề ra.**
+  - **Trả lời:** Dùng coding standard, architecture/design review, PR/code inspection, static analysis/lint, unit/integration test và traceability task–design–code; chỉ merge khi review/check tự động đạt.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Giải thích các phương pháp giúp hạn chế việc phần mềm hoạt động không đúng với yêu cầu khách hàng đề ra.**
+  - **Trả lời:** Liên kết yêu cầu với acceptance criteria/test case; review khách hàng, functional/non-functional, exploratory, regression và acceptance/UAT test; demo increment để nhận phản hồi sớm và retest lỗi trước đóng.
+    _Nguồn: [11_software_quality_management.md](../materials/11_software_quality_management.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
 
 ---
 
@@ -811,34 +622,23 @@ _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch kiểm thử (Test Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch kiểm thử của nhóm, bản in giao diện cấu hình đảm bảo Coding Standards cho mã nguồn của nhóm, bản in giao diện hệ thống quản lý lỗi với dữ liệu thực tế của nhóm, bản in giao diện kết quả chạy mã nguồn kiểm thử đơn vị (Unit Tests) của nhóm, bản in biên bản thanh tra mã nguồn của nhóm, bản in báo cáo kết quả kiểm thử của nhóm, bản in biên bản phản hồi của khách hàng của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch kiểm thử là gì?
-- Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch kiểm thử là gì?
-- Tài liệu Kế hoạch kiểm thử của nhóm đã được đánh giá thế nào?
-- Tại sao cần tạo tài liệu Kế hoạch kiểm thử?
-- Tài liệu Kế hoạch kiểm thử của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Kiểm thử phần mềm là gì?**
-Là các điều tra thực nghiệm để cung cấp cho stakeholders thông tin về chất lượng của sản phẩm, liên quan đến bối cảnh mà nó dự định hoạt động.
-_Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md) — dòng 79-87_
-
-**▸ HOW — Nội dung Kế hoạch kiểm thử:**
-
-1. Phạm vi kiểm thử (Scope); 2. Loại kiểm thử (Unit, Integration, System, Acceptance); 3. Tiêu chí đầu vào/đầu ra; 4. Môi trường kiểm thử; 5. Lịch trình; 6. Vai trò và trách nhiệm; 7. Tiêu chí chấp nhận.
-
-Trong Agile: Unit Testing + Exploratory Testing + Code Inspection + Sprint Review (demo cho khách hàng).
-_Nguồn: [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md) — dòng 41-53_
-
-**▸ Definition of Done (DoD) — ví dụ:**
-Coded to standards → Reviewed → Unit tested → 100% test automation → Integrated → Documented → Tested by other member → Accepted by PO.
-_Nguồn: [04_02_scrum_development_process.md](../materials/04_02_scrum_development_process.md) — dòng 200-226_
-
-**▸ WHY — Tại sao cần?**
-"Sửa lỗi trên giấy luôn dễ dàng và rẻ hơn so với xây dựng xong rồi mới sửa lỗi." Kiểm thử phải được lập kế hoạch và hỗ trợ xuyên suốt dự án.
-_Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 146_
+- **Các câu hỏi chính cần trả lời trong tài liệu Kế hoạch kiểm thử là gì?**
+  - **Trả lời:** Mục tiêu/phạm vi test; đối tượng test và không test; chiến lược, cấp độ/loại test; môi trường, dữ liệu, công cụ; vai trò/lịch; entry/exit criteria; defect workflow, metric và báo cáo.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch kiểm thử là gì?**
+  - **Trả lời:** Phân tích requirements/rủi ro → xác định scope/strategy → thiết kế test condition/case/dữ liệu → chuẩn bị môi trường → thực thi, ghi defect → retest/regression → đánh giá exit criteria và báo cáo.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tài liệu Kế hoạch kiểm thử của nhóm đã được đánh giá thế nào?**
+  - **Trả lời:** Kiểm tra traceability requirement–test, coverage theo rủi ro, môi trường/dữ liệu, entry/exit criteria, defect workflow; review pass/fail, lỗi mở và bằng chứng trước release.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tại sao cần tạo tài liệu Kế hoạch kiểm thử?**
+  - **Trả lời:** Để thống nhất cách kiểm chứng chất lượng, phân bổ test theo rủi ro và cung cấp bằng chứng cho nghiệm thu/release.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
+- **Tài liệu Kế hoạch kiểm thử của nhóm đã được sử dụng và cập nhật trong quá trình thực hiện dự án như thế nào.**
+  - **Trả lời:** Dùng chuẩn bị/thực thi test, quản lý defect và quyết định release; cập nhật khi requirement, build, môi trường, rủi ro/kết quả test đổi.
+    _Nguồn: [04_software_development_life_cycle_model.md](../materials/04_software_development_life_cycle_model.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [11_1_agile_quality_management.md](../materials/11_1_agile_quality_management.md)._
 
 ---
 
@@ -846,71 +646,29 @@ _Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_softwa
 
 Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Báo cáo bài học kinh nghiệm (Lessons Learned Register) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Báo cáo bài học kinh nghiệm của nhóm.)_
 
-**Các câu hỏi thường gặp:**
+**Các câu hỏi thường gặp — trả lời trọng tâm từng câu:**
 
-- Quản lý dự án là gì?
-- Tại sao cần sự quản lý khi phát triển một dự án phần mềm?
-- Liệt kê các công việc cần thực hiện để quản lý một dự án và các sản phẩm tương ứng được tạo ra bởi từng công việc.
-- Một nhóm phát triển phần mềm có thực sự cần một người chỉ chuyên tâm vào các công việc quản lý trong dự án hay không? Tại sao?
-- Quản lý một dự án dựa trên việc lên kế hoạch chặt chẽ có điểm gì giống và có điểm gì khác với quản lý một dự án dựa trên kinh nghiệm tích lũy dần và thích ứng với hoàn cảnh?
-- Quản lý dự án và kỹ nghệ phần mềm liên quan với nhau như thế nào?
-- Tại sao các công ty có quy mô lớn lại cần có Phòng quản lý dự án (Project Management Office)?
-
-#### ĐÁP ÁN LÝ THUYẾT
-
-**▸ WHAT — Quản lý dự án là gì?**
-Là việc áp dụng kiến thức, kỹ năng, công cụ và kỹ thuật vào các hoạt động dự án nhằm đáp ứng yêu cầu của dự án. Đảm bảo: trong chi phí, đúng hạn, đúng phạm vi, đúng chất lượng.
-_Nguồn: [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 33-48_
-
-**▸ WHY — Tại sao QLDA phần mềm khó?**
-Sản phẩm vô hình; thiếu tính chính xác tuyệt đối; tiêu chuẩn hóa chưa đồng bộ; phụ thuộc lớn vào con người.
-_Nguồn: [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 50-56_
-
-**▸ Các công việc quản lý dự án và sản phẩm tương ứng (HOW):**
-
-| Công việc            | Sản phẩm                   |
-| -------------------- | -------------------------- |
-| Đề xuất dự án        | Project Proposal           |
-| Tầm nhìn & Phạm vi   | Vision & Scope Document    |
-| Ủy nhiệm dự án       | Project Charter            |
-| Thu thập yêu cầu     | SRS / Product Backlog      |
-| Thiết kế kiến trúc   | Architecture Document      |
-| Ước lượng            | WBS, Estimation Document   |
-| Lập kế hoạch         | Project Plan, Release Plan |
-| Phát biểu công việc  | SOW, Contract              |
-| Quản lý cấu hình     | CM Plan                    |
-| Quản lý rủi ro       | Risk Management Plan       |
-| Quản lý chất lượng   | SQAP                       |
-| Kiểm thử             | Test Plan                  |
-| Giám sát & Kiểm soát | Status Reports, EVM        |
-| Đóng dự án           | Lessons Learned Register   |
-
-**▸ Có cần PM chuyên trách? (WHY)**
-Có. PM dành 80% thời gian giải quyết vấn đề con người (Human Dynamics), chỉ 20% cho kỹ thuật. PM hiểu cả góc nhìn kinh doanh lẫn kỹ thuật, dịch thuật giữa chúng. Thiếu PM → thiên kiến cá nhân, phe phái, lệch hướng dự án.
-_Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md) — dòng 77-78; [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 91-95_
-
-**▸ Ad-hoc vs. Process-driven (WHAT):**
-
-- **Giống nhau:** Cả hai đều nhằm hoàn thành dự án thành công.
-- **Khác nhau:**
-  - **Ad-hoc:** Linh hoạt, chi phí thấp, rủi ro cao (mất người = mất dự án).
-  - **Process-driven:** Văn bản hóa, giảm phụ thuộc cá nhân, chi phí thiết lập cao nhưng khả năng dự đoán tốt hơn.
-    _Nguồn: [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 129-138_
-
-**▸ QLDA vs. Kỹ nghệ phần mềm (WHAT):**
-
-- **Kỹ thuật phần mềm (SE):** Các hoạt động kỹ thuật xây dựng sản phẩm.
-- **Quản lý dự án (PM):** Tạo điều kiện thuận lợi cho SE, đảm bảo đúng hạn, tiết kiệm, đúng mục tiêu.
-- Hai khía cạnh liên kết lỏng lẻo nhưng bổ trợ lẫn nhau.
-  _Nguồn: [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 98-113_
-
-**▸ WHAT — Lessons Learned là gì?**
-Kiến thức thu được từ trải nghiệm thực tế (cả tích cực lẫn tiêu cực) để làm giàu kho tri thức tổ chức cho các dự án tương lai.
-_Nguồn: [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md) — dòng 224-226_
-
-**▸ Tại sao cần PMO? (WHY)**
-Khi tổ chức lớn lên, cách tiếp cận Ad-hoc không còn đáp ứng được. PMO cung cấp: quy trình chuẩn, công cụ, kho kiến thức, đào tạo và chuyên gia hỗ trợ — giảm thiểu phụ thuộc cá nhân, tăng khả năng dự đoán.
-_Nguồn: [12_software_project_management.md](../materials/12_software_project_management.md) — dòng 129-138_
+- **Quản lý dự án là gì?**
+  - **Trả lời:** Quản lý dự án là áp dụng kiến thức, kỹ năng, công cụ và kỹ thuật vào hoạt động dự án để đáp ứng yêu cầu trong các ràng buộc phạm vi, thời gian, chi phí và chất lượng.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Tại sao cần sự quản lý khi phát triển một dự án phần mềm?**
+  - **Trả lời:** Phần mềm vô hình, yêu cầu dễ đổi, ước lượng bất định và phụ thuộc con người. Quản lý giúp phối hợp scope–lịch–chi phí–chất lượng, xử lý stakeholder/rủi ro và tạo phản hồi để không lệch mục tiêu.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Liệt kê các công việc cần thực hiện để quản lý một dự án và các sản phẩm tương ứng được tạo ra bởi từng công việc.**
+  - **Trả lời:** Khởi tạo → Proposal, Vision & Scope, Charter; lập kế hoạch → Requirements/Backlog, Architecture, Estimate/WBS, Plan, SOW, Risk/Quality/Test Plan; thực thi/kiểm soát → sản phẩm, board/log, status/change/issue/risk report; đóng → acceptance, closeout, Lessons Learned.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Một nhóm phát triển phần mềm có thực sự cần một người chỉ chuyên tâm vào các công việc quản lý trong dự án hay không? Tại sao?**
+  - **Trả lời:** Không phải nhóm nào cũng cần PM toàn thời gian, nhưng luôn cần owner quản lý. Nhóm nhỏ có thể kiêm nhiệm; khi quy mô, dependency, stakeholder/rủi ro tăng, PM chuyên trách giúp bảo đảm điều phối, quyết định và kiểm soát.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Quản lý một dự án dựa trên việc lên kế hoạch chặt chẽ có điểm gì giống và có điểm gì khác với quản lý một dự án dựa trên kinh nghiệm tích lũy dần và thích ứng với hoàn cảnh?**
+  - **Trả lời:** Cả predictive và adaptive đều cần mục tiêu, kế hoạch, phản hồi và kiểm soát. Predictive baseline chi tiết sớm, phù hợp yêu cầu ổn định; adaptive lập kế hoạch vừa đủ và điều chỉnh theo increment, phù hợp bất định. Adaptive không phải không có kế hoạch.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Quản lý dự án và kỹ nghệ phần mềm liên quan với nhau như thế nào?**
+  - **Trả lời:** Kỹ nghệ phần mềm thực hiện phân tích, thiết kế, xây dựng, kiểm thử, bảo trì; quản lý dự án tổ chức phạm vi, người, lịch, chi phí, chất lượng, rủi ro/stakeholder để hoạt động kỹ thuật đạt mục tiêu. Hai bên bổ trợ và phụ thuộc nhau.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
+- **Tại sao các công ty có quy mô lớn lại cần có Phòng quản lý dự án (Project Management Office)?**
+  - **Trả lời:** PMO chuẩn hóa phương pháp/biểu mẫu/công cụ, đào tạo/hỗ trợ PM, tổng hợp báo cáo, quản trị danh mục và lưu bài học; giảm phụ thuộc cá nhân và tăng khả năng so sánh/dự báo. PMO có thể hỗ trợ, kiểm soát hoặc điều hành.
+    _Nguồn: [08_software_team_management.md](../materials/08_software_team_management.md); [09_software_project_monitoring_and_control.md](../materials/09_software_project_monitoring_and_control.md); [12_software_project_management.md](../materials/12_software_project_management.md)._
 
 ---
 
