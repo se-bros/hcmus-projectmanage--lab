@@ -52,12 +52,17 @@ docs/
 
 | STT | Tài liệu / Thư mục | Mô tả tóm tắt | Mã tài liệu |
 | :---: | :--- | :--- | :--- |
-| 01 | [01-sprint-plan.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/01-sprint-plan.md) | Kế hoạch phân công công việc Sprint 1 theo Epic cho 4 thành viên. | `HCMUS-LDMS-SPR1` |
-| 02 | [02-project-log.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/02-project-log.md) | Nhật ký hoàn thành Story, thời gian thực tế và lượng token AI tiêu thụ. | `HCMUS-LDMS-LOG` |
-| 03 | [03-ai-development-workflow.md](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/03-ai-development-workflow.md) | Báo cáo chi tiết phương pháp lập trình cùng AI Coding Assistant. | `HCMUS-LDMS-AI` |
+| 01 | [01-sprint-plan.md](./03-execution-monitoring/01-sprint-plan.md) | Kế hoạch phân công công việc Sprint 1 theo Epic cho 4 thành viên. | `HCMUS-LDMS-SPR1` |
+| 02 | [02-project-log.md](./03-execution-monitoring/02-project-log.md) | Nhật ký hoàn thành Story, thời gian thực tế và lượng token AI tiêu thụ. | `HCMUS-LDMS-LOG` |
+| 03 | [03-ai-development-workflow.md](./03-execution-monitoring/03-ai-development-workflow.md) | Báo cáo chi tiết phương pháp lập trình cùng AI Coding Assistant. | `HCMUS-LDMS-AI` |
+| 04 | [04-user-guide.md](./03-execution-monitoring/04-user-guide.md) | Bộ cẩm nang hướng dẫn sử dụng hệ thống (Độc giả, Biên tập viên, Quản trị viên). | `HCMUS-LDMS-UG` |
+| 04.1 | [04-user-guide-reader.md](./03-execution-monitoring/04-user-guide-reader.md) | Hướng dẫn sử dụng chi tiết dành cho Độc giả (FTS, EPUB Reader, Themes, Highlights). | `HCMUS-LDMS-UG-READER` |
+| 04.2 | [04-user-guide-editor.md](./03-execution-monitoring/04-user-guide-editor.md) | Hướng dẫn sử dụng chi tiết dành cho Biên tập viên (Upload, OCR, Split-screen, Metadata). | `HCMUS-LDMS-UG-EDITOR` |
+| 04.3 | [04-user-guide-admin.md](./03-execution-monitoring/04-user-guide-admin.md) | Hướng dẫn sử dụng chi tiết dành cho Quản trị viên (Category 2 cấp, Phân quyền RBAC, Duyệt yêu cầu). | `HCMUS-LDMS-UG-ADMIN` |
+| 05 | [05-lessons-learned-register.md](./03-execution-monitoring/05-lessons-learned-register.md) | Bảng ghi nhận bài học kinh nghiệm qua các giai đoạn phát triển dự án. | `HCMUS-LDMS-LLR` |
 | 06 | [06-developer-guide.md](./03-execution-monitoring/06-developer-guide.md) | Hướng dẫn cài đặt công cụ, chạy local, lệnh trùng CI cho lập trình viên. | `HCMUS-LDMS-DEVGUIDE` |
 | 07 | [07-deployment-guide.md](./03-execution-monitoring/07-deployment-guide.md) | Hướng dẫn triển khai Compose prod-like, migration, backup MVP, gap CD. | `HCMUS-LDMS-DEPLOY` |
-| - | [superpowers/](file:///g:/HCMUS/NAM3-HK3/Management/Final/hcmus-projectmanage--lab/docs/03-execution-monitoring/superpowers) | Thư mục chứa các bản đặc tả (specs) và kế hoạch (plans) chi tiết từng tính năng. | - |
+| - | [superpowers/](./03-execution-monitoring/superpowers) | Thư mục chứa các bản đặc tả (specs) và kế hoạch (plans) chi tiết từng tính năng. | - |
 
 ---
 
