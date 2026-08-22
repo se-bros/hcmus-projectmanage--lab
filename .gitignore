@@ -17,3 +17,10 @@ __pycache__/
 # Local-only generated artifacts
 src/backend/nginx/certs/
 .backups/
+
+# Terraform local state & binaries
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.exe
