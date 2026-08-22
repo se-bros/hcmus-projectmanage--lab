@@ -159,9 +159,9 @@ flowchart LR
   _Trả lời:_ Tự động hóa toàn diện từ mã nguồn, kiểm thử, cấp phát hạ tầng (IaaC) đến chuyển giao (CD). Loại bỏ sai sót thủ công, đảm bảo hạ tầng tái lập được 100% trên máy bất kỳ (`terraform apply` / `./scripts/run-prod.sh`), và phát hiện lỗi hồi quy sớm qua CI.
 
 - **Giải thích quy trình phát triển, triển khai và vận hành đồng thời các môi trường (Dev vs Prod):**
-  _Trả lời:_ 
-  * **Dev:** `scripts/run.sh` + SQLite/Docker backend + Vite dev server (`:5173`) phục vụ lập trình nhanh, bật mock auth.
-  * **Production:** Quản trị qua Terraform IaaC (`terraform/`) hoặc one-click `run-prod.sh` + `docker-compose.prod.yml` (Nginx TLS `:8080`/`:8443`, PostgreSQL, MinIO, MailHog, Grafana `:3000`). Bản live web tự động đồng bộ qua GitHub Actions CD.
+  _Trả lời:_
+  - **Dev:** `scripts/run.sh` + SQLite/Docker backend + Vite dev server (`:5173`) phục vụ lập trình nhanh, bật mock auth.
+  - **Production:** Quản trị qua Terraform IaaC (`terraform/`) hoặc one-click `run-prod.sh` + `docker-compose.prod.yml` (Nginx TLS `:8080`/`:8443`, PostgreSQL, MinIO, MailHog, Grafana `:3000`). Bản live web tự động đồng bộ qua GitHub Actions CD.
 
 ---
 
