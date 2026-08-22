@@ -9,6 +9,10 @@ from pathlib import Path
 
 import httpx
 
+# Ensure UTF-8 output on Windows consoles
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 ROOT_DIR = Path(__file__).resolve().parents[4]
 CD_RECIPIENTS_FILE = ROOT_DIR / ".github" / "cd-notify-recipients.txt"
@@ -106,10 +110,11 @@ def send_email(api_key: str, payload: dict) -> None:
 
 
 def main() -> int:
+    is_dry_run = "--dry-run" in sys.argv or os.environ.get("DRY_RUN", "").lower() == "true"
     api_key = os.environ.get("BREVO_API_KEY")
-    sender_email = os.environ.get("BREVO_SENDER_EMAIL")
+    sender_email = os.environ.get("BREVO_SENDER_EMAIL", "notification@brevosend.com")
 
-    if not api_key or not sender_email:
+    if not is_dry_run and (not api_key or not sender_email):
         print("Missing BREVO_API_KEY or BREVO_SENDER_EMAIL, skipping email.")
         return 0
 
@@ -117,12 +122,14 @@ def main() -> int:
     branch_or_tag = os.environ.get("GITHUB_REF_NAME", "main")
     deploy_env = os.environ.get("DEPLOY_ENV", "production")
     deploy_url = os.environ.get("DEPLOY_URL", "https://hcmus-projectmanage-lab.vercel.app")
-    commit_sha = os.environ.get("GITHUB_SHA", "")
-    commit_message = os.environ.get("COMMIT_MESSAGE", "")
-    commit_author = os.environ.get("COMMIT_AUTHOR", "")
+    commit_sha = os.environ.get("GITHUB_SHA", "8ec840e")
+    commit_message = os.environ.get("COMMIT_MESSAGE", "feat(cd): test deployment notification")
+    commit_author = os.environ.get("COMMIT_AUTHOR", "Nguyen Tuan Anh")
     server_url = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
-    run_id = os.environ.get("GITHUB_RUN_ID", "")
-    job_statuses = json.loads(os.environ.get("JOB_STATUSES", "{}"))
+    run_id = os.environ.get("GITHUB_RUN_ID", "123456789")
+    job_statuses = json.loads(
+        os.environ.get("JOB_STATUSES", '{"build-verify":"success","deploy":"success"}')
+    )
 
     recipients = get_recipients()
     if not recipients:
@@ -150,6 +157,16 @@ def main() -> int:
         run_url=run_url,
         job_statuses=job_statuses,
     )
+
+    if is_dry_run:
+        print("=== [DRY RUN] Deployment Email Payload ===")
+        print(f"Subject: {payload['subject']}")
+        print(f"Recipients ({len(recipients)}): {', '.join(recipients)}")
+        print(f"Live URL: {deploy_url}")
+        print("\n--- HTML Content ---")
+        print(payload["htmlContent"])
+        print("==========================================")
+        return 0
 
     try:
         send_email(api_key, payload)
