@@ -48,7 +48,7 @@
   place-items: center;
   color: #fff;
   background: #1b6f56;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -121,7 +121,7 @@
 .login-card h2 {
   margin: 0;
   color: #14372d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(1.5rem, 3vw, 1.9rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -303,7 +303,7 @@
 .auth-hero-title {
   margin: 0;
   color: #fff;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(2.1rem, 3.4vw, 2.9rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -383,7 +383,7 @@
 h1 {
   margin: 0;
   color: #14372d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(2rem, 7vw, 3.25rem);
   font-weight: 500;
   letter-spacing: -0.035em;
@@ -710,7 +710,7 @@ dd {
 
 .summary-card strong {
   color: #14372d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 2.25rem;
   font-weight: 500;
 }
@@ -1643,7 +1643,7 @@ dd {
   resize: none;
   color: #294b40;
   background: #fffefb;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -1661,7 +1661,7 @@ dd {
   padding: 28px;
   color: #294b40;
   white-space: pre-wrap;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 1rem;
   line-height: 1.75;
 }
