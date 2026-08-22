@@ -9,6 +9,8 @@ Khi người dùng yêu cầu viết, tạo, cập nhật hoặc biên soạn m�
 
 ## Quy trình Thực hiện
 
+**Quy chuẩn cỡ chữ:** Khi xuất PDF, cỡ chữ cơ bản của nội dung phải là **11pt**. Mỗi lần cập nhật tài liệu Markdown phải biên dịch lại PDF tương ứng với quy chuẩn này.
+
 1. **Khởi tạo và chỉnh sửa file Markdown (.md):**
    * Viết nội dung tài liệu đầy đủ, chuyên nghiệp, nghiêm túc bằng định dạng Markdown (.md) tại đường dẫn yêu cầu.
    * **Bắt buộc có Mục lục (Table of Contents):** Ngay dưới tiêu đề chính và thông tin phiên bản của tài liệu, phải chèn một phần **## Mục lục** chứa các liên kết nhảy (anchor links) đến các đề mục chính trong tài liệu để người đọc dễ dàng định vị nhanh thông tin.

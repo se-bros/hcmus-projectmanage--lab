@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Luồng tải tài liệu và xử lý OCR</title>
+  <desc id="desc">Trình tự giữa biên tập viên, giao diện, API, cơ sở dữ liệu, lưu trữ tệp và bộ xử lý nền.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#17365d"/></marker><style>text{font-family:Arial,sans-serif;fill:#10233f}.h{font-size:22px;font-weight:700}.t{font-size:16px}.box{fill:#eef4fb;stroke:#17365d;stroke-width:2;rx:8}.life{stroke:#7893b5;stroke-width:2;stroke-dasharray:7 6}.msg{stroke:#17365d;stroke-width:2;marker-end:url(#arrow)}.ret{stroke:#426b95;stroke-width:2;stroke-dasharray:6 5;marker-end:url(#arrow)}.note{fill:#fff7df;stroke:#c59424;stroke-width:1.5;rx:8}</style></defs>
+  <text x="600" y="36" text-anchor="middle" class="h">UPLOAD → OCR → HIỆU CHỈNH</text>
+  <g class="t" text-anchor="middle">
+    <rect class="box" x="25" y="60" width="150" height="52"/><text x="100" y="92">Biên tập viên</text>
+    <rect class="box" x="225" y="60" width="150" height="52"/><text x="300" y="92">Frontend</text>
+    <rect class="box" x="425" y="60" width="150" height="52"/><text x="500" y="92">FastAPI</text>
+    <rect class="box" x="625" y="60" width="150" height="52"/><text x="700" y="92">PostgreSQL</text>
+    <rect class="box" x="825" y="60" width="150" height="52"/><text x="900" y="92">MinIO / R2</text>
+    <rect class="box" x="1025" y="60" width="150" height="52"/><text x="1100" y="92">OCR Worker</text>
+  </g>
+  <g><line class="life" x1="100" y1="112" x2="100" y2="670"/><line class="life" x1="300" y1="112" x2="300" y2="670"/><line class="life" x1="500" y1="112" x2="500" y2="670"/><line class="life" x1="700" y1="112" x2="700" y2="670"/><line class="life" x1="900" y1="112" x2="900" y2="670"/><line class="life" x1="1100" y1="112" x2="1100" y2="670"/></g>
+  <g class="t">
+    <line class="msg" x1="100" y1="155" x2="300" y2="155"/><text x="200" y="146" text-anchor="middle">1. Chọn tệp</text>
+    <line class="msg" x1="300" y1="205" x2="500" y2="205"/><text x="400" y="196" text-anchor="middle">2. Upload + session</text>
+    <line class="msg" x1="500" y1="255" x2="900" y2="255"/><text x="700" y="246" text-anchor="middle">3. Lưu source bất biến</text>
+    <line class="ret" x1="900" y1="295" x2="500" y2="295"/><text x="700" y="286" text-anchor="middle">object key + hash</text>
+    <line class="msg" x1="500" y1="345" x2="700" y2="345"/><text x="600" y="336" text-anchor="middle">4. Tạo document + job pending</text>
+    <line class="ret" x1="500" y1="390" x2="300" y2="390"/><text x="400" y="381" text-anchor="middle">202 + document/job ID</text>
+    <line class="msg" x1="1100" y1="440" x2="700" y2="440"/><text x="900" y="431" text-anchor="middle">5. Claim job, attempt++</text>
+    <line class="msg" x1="1100" y1="490" x2="900" y2="490"/><text x="1000" y="481" text-anchor="middle">6. Đọc source</text>
+    <line class="msg" x1="1100" y1="540" x2="700" y2="540"/><text x="900" y="531" text-anchor="middle">7. Lưu text/trang + completed</text>
+    <line class="msg" x1="300" y1="590" x2="500" y2="590"/><text x="400" y="581" text-anchor="middle">8. Poll trạng thái</text>
+    <line class="ret" x1="500" y1="635" x2="300" y2="635"/><text x="400" y="626" text-anchor="middle">completed / failed + lỗi phù hợp</text>
+  </g>
+  <rect class="note" x="420" y="665" width="760" height="42"/><text x="800" y="691" text-anchor="middle" class="t">Timeout/restart: chuyển job sang recoverable; retry tạo attempt mới, không xóa evidence cũ.</text>
+</svg>
