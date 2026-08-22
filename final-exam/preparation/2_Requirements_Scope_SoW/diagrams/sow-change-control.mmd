@@ -1,0 +1,17 @@
+flowchart TD
+    CR["Lập Change Request"] --> IA["PM phân tích Scope · Feature · Tech · Time · Cost"]
+    IA --> S{"Mức tác động?"}
+    S -->|"≤ 5% budget hoặc ≤ 1 tuần"| SMALL["PM + Giám đốc Thư viện"]
+    S -->|"> 5% budget hoặc > 1 tuần"| LARGE["Đại diện Ban Giám hiệu"]
+    SMALL --> APPROVE{"Phê duyệt?"}
+    LARGE --> APPROVE
+    APPROVE -->|"Có"| UPDATE["Tạo SoW version mới"]
+    UPDATE --> BACKLOG["Cập nhật Product Backlog và kế hoạch"]
+    APPROVE -->|"Không"| BASELINE["Giữ nguyên baseline"]
+
+    classDef action fill:#EBF8FF,stroke:#2B6CB0,color:#1A365D;
+    classDef decision fill:#FFF5F5,stroke:#C53030,color:#742A2A;
+    classDef result fill:#F0FFF4,stroke:#2F855A,color:#22543D;
+    class CR,IA,SMALL,LARGE action;
+    class S,APPROVE decision;
+    class UPDATE,BACKLOG,BASELINE result;

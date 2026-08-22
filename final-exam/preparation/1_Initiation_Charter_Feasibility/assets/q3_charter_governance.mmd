@@ -1,0 +1,9 @@
+%%{init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF2FF', 'primaryTextColor': '#102A43', 'primaryBorderColor': '#3B82F6', 'lineColor': '#526D82', 'secondaryColor': '#FFF7D6', 'tertiaryColor': '#EAF8EF', 'fontFamily': 'Arial' } } }%%
+flowchart TB
+    I["Proposal + Feasibility<br/>Stakeholder + Scope"] --> S["Sponsor<br/>Ban Giám hiệu"]
+    S -->|"Phê duyệt và ủy quyền"| PM["Project Manager<br/>Trưởng phòng CNTT"]
+    PM --> TL["Technical Lead"]
+    PM --> LIB["Thư viện<br/>Client nghiệp vụ"]
+    PM --> DEV["Dev và DevOps<br/>4 kỹ sư CNTT"]
+    LIB --> CTV["2 biên tập viên<br/>10-15 CTV"]
+

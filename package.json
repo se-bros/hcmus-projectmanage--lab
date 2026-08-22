@@ -1,0 +1,13 @@
+{
+  "name": "hcmus-sw-testing-eshop-sut",
+  "private": true,
+  "scripts": {
+    "format:md": "prettier \"**/*.md\" --write",
+    "format:md:check": "prettier \"**/*.md\" --check",
+    "lint:md": "markdownlint-cli2 \"**/*.md\""
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.23.2",
+    "prettier": "^3.3.3"
+  }
+}

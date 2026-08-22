@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph ASIS["AS-IS — thủ công và rời rạc"]
+        direction LR
+        A1["Scan thủ công"] --> A2["PDF ảnh tĩnh"]
+        A2 --> A3["Drive / link trực tiếp"]
+        A3 --> A4["Khó tìm · khó đọc · không DRM"]
+    end
+
+    subgraph TOBE["TO-BE — số hóa khép kín"]
+        direction LR
+        B1["Scan 300 DPI"] --> B2["OCR tự động"]
+        B2 --> B3["Human review"]
+        B3 --> B4["EPUB 3.0"]
+        B4 --> B5["Full-text search"]
+        B5 --> B6["Reader bảo mật"]
+    end
+
+    A4 -. "Pain points định hướng thiết kế" .-> B1
+
+    classDef old fill:#FFF1F0,stroke:#C0392B,color:#641E16;
+    classDef future fill:#EAF7F0,stroke:#148F77,color:#0B5345;
+    class A1,A2,A3,A4 old;
+    class B1,B2,B3,B4,B5,B6 future;

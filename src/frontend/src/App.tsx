@@ -5,6 +5,7 @@ import { DashboardPage } from './pages/DashboardPage'
 import { CategoriesPage } from './pages/CategoriesPage'
 import { DocumentsPage } from './pages/DocumentsPage'
 import { DocumentViewerPage } from './pages/DocumentViewerPage'
+import ReaderPage from './pages/ReaderPage'
 import { RequestsPage } from './pages/RequestsPage'
 import { UploadPage } from './pages/UploadPage'
 import { LoginPage } from './pages/LoginPage'
@@ -78,6 +79,7 @@ function App() {
         />
         <Route path="/documents" element={<DocumentsPage />} />
         <Route path="/documents/:documentId" element={<DocumentViewerPage />} />
+        <Route path="/reader/:documentId" element={<ReaderPage />} />
         <Route
           path="/categories"
           element={
