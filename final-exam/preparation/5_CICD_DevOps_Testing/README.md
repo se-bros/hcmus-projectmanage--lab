@@ -27,6 +27,7 @@
   - [ ] Bản in [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml) + screenshot PR checks — "13"
   - [ ] Bản in email Brevo / Actions notify — "13"
   - [ ] Bản in [`.github/workflows/cd.yml`](../../../.github/workflows/cd.yml) + screenshot CD email notify & Live URL — "14"
+  - [ ] Bản in cấu hình Terraform IaaC ([`terraform/main.tf`](../../../terraform/main.tf), [`terraform/outputs.tf`](../../../terraform/outputs.tf)) + terminal plan — "15"
   - [ ] Bản in [`06-developer-guide.md`](../../../docs/03-execution-monitoring/06-developer-guide.md) — "13"
   - [ ] Bản in [`scripts/run-prod.sh`](../../../scripts/run-prod.sh) + [`docker-compose.prod.yml`](../../../docker-compose.prod.yml) — "14"
   - [ ] Bản in [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md) — "14"
@@ -120,35 +121,47 @@ flowchart TD
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
-- **Đối chiếu:** `scripts/`, `docker-compose.prod.yml`, backup MVP, CI, GitFlow.
-- **Từ khóa:** 8 giai đoạn DevOps; Dev (`run.sh`) vs Prod (`run-prod.sh`); Monitor Grafana/Prometheus; backup `pg_dump`/`mc mirror`.
+- **Đối chiếu:** `terraform/`, `.github/workflows/ci.yml`, `.github/workflows/cd.yml`, `docker-compose.prod.yml`, `scripts/`.
+- **Từ khóa:** **$\text{DevOps} = \text{IaaC (Terraform)} + \text{CI (GitHub Actions)} + \text{CD (GitHub Actions)}$**; 8 giai đoạn DevOps; Dev (`run.sh`) vs Prod (`run-prod.sh` / Terraform); Giám sát Prometheus/Grafana; backup `pg_dump`/`mc mirror`.
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
-#### A. Sơ đồ Vòng lặp DevOps 8 giai đoạn
+#### A. Sơ đồ Vòng lặp DevOps & Khung IaaC + CI + CD
 
 ```mermaid
 flowchart LR
-    Plan["Plan<br/>Backlog / Issues"] --> Code["Code<br/>GitFlow + PR"]
-    Code --> Build["Build<br/>Docker / Vite"]
-    Build --> Test["Test<br/>CI Pytest Vitest"]
-    Test --> Release["Release<br/>tag / release/*"]
-    Release --> Deploy["Deploy<br/>run.sh / run-prod.sh"]
-    Deploy --> Operate["Operate<br/>Compose prod stack"]
-    Operate --> Monitor["Monitor<br/>/health + Brevo<br/>+ Prometheus/Grafana"]
-    Monitor --> Plan
+    subgraph IaaC["IaaC (Terraform)"]
+        TF["terraform apply<br/>terraform/"] --> Infra["Provisioning Mạng,<br/>Volume, DB, MinIO, Grafana"]
+    end
+    subgraph CICD["CI/CD Pipeline (GitHub Actions)"]
+        Plan["Plan<br/>Backlog"] --> Code["Code<br/>GitFlow"]
+        Code --> Test["Test (CI)<br/>Ruff + Pytest"]
+        Test --> Release["Release<br/>tag / main"]
+        Release --> Deploy["Deploy (CD)<br/>Build + Live URL"]
+    end
+    subgraph Ops["Operate & Monitor"]
+        Deploy --> Operate["Operate<br/>Stack Docker"]
+        Operate --> Monitor["Monitor<br/>Brevo + Prometheus/Grafana"]
+        Monitor --> Plan
+    end
+    Infra -. Cung cấp hạ tầng .-> Deploy
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
-- **Chi tiết 8 giai đoạn và công cụ tương ứng:**
-  _Trả lời:_ (1) **Plan** — Product Backlog, Sprint plan, GitHub Issues. (2) **Code** — GitFlow `feature/*`→`develop`→`release/*`→`main`, PR review. (3) **Build** — Docker build API/Web; `npm run build` trên CI. (4) **Test** — Ruff/ESLint + Pytest + Vitest trên Actions. (5) **Release** — quy ước tag/`release/*` (architecture §8.2); CI chạy trên nhánh release. (6) **Deploy** — `run.sh` (dev) / `run-prod.sh` (prod compose). (7) **Operate** — stack `docker-compose.prod.yml`; backup `backup-postgres.sh` / `backup-minio.sh`. (8) **Monitor** — health lúc deploy, email merge `main` (Brevo), Prometheus `:9090` + Grafana `:3000` trong prod stack.
+- **Chi tiết các thành phần và công cụ tương ứng (DevOps = IaaC + CI + CD):**
+  _Trả lời:_ Mô hình DevOps của nhóm hoàn chỉnh 3 trụ cột:
+  1. **IaaC (Infrastructure as Code)**: Dùng **Terraform** (`terraform/main.tf`, `variables.tf`, `outputs.tf`) tự động khai báo hạ tầng mạng (`ldms_network`), persistent volume (`postgres_data`, `minio_data`), cấu hình CSDL PostgreSQL 16, MinIO S3, MailHog và cụm Prometheus/Grafana.
+  2. **CI (Continuous Integration)**: GitHub Actions (`ci.yml`) tự động hóa kiểm thử tĩnh (Ruff, ESLint) và kiểm thử động (Pytest 141 tests, Vitest) trên mọi Pull Request.
+  3. **CD (Continuous Delivery)**: GitHub Actions (`cd.yml`) tự động build bundle, phát hành ra Live URL (`https://hcmus-projectmanage-lab.vercel.app`) và gửi email thông báo Brevo cho toàn nhóm.
 
 - **Tại sao cần sử dụng quy trình DevOps cho dự án?**
-  _Trả lời:_ DevOps rút ngắn vòng từ story đến stack chạy được, có seed demo, có giám sát và sao lưu. Với thư viện số hóa, mất DB/MinIO là mất công biên tập; Compose + scripts giảm rủi ro “chỉ chạy trên máy người viết”.
+  _Trả lời:_ Tự động hóa toàn diện từ mã nguồn, kiểm thử, cấp phát hạ tầng (IaaC) đến chuyển giao (CD). Loại bỏ sai sót thủ công, đảm bảo hạ tầng tái lập được 100% trên máy bất kỳ (`terraform apply` / `./scripts/run-prod.sh`), và phát hiện lỗi hồi quy sớm qua CI.
 
-- **Giải thích quy trình phát triển, triển khai và vận hành đồng thời nhiều môi trường (Dev vs Staging vs Prod):**
-  _Trả lời:_ **Dev:** `run.sh` + compose backend + Vite 5173. **Prod-like:** `run-prod.sh` + `docker-compose.prod.yml` (Web 8080/8443, MailHog, Grafana…). **Staging/Prod VMware:** mô tả trong Deployment View — thiết kế mục tiêu, chưa gắn CD pipeline. Không dùng chung secret yếu của dev trên máy production.
+- **Giải thích quy trình phát triển, triển khai và vận hành đồng thời các môi trường (Dev vs Prod):**
+  _Trả lời:_
+  - **Dev:** `scripts/run.sh` + SQLite/Docker backend + Vite dev server (`:5173`) phục vụ lập trình nhanh, bật mock auth.
+  - **Production:** Quản trị qua Terraform IaaC (`terraform/`) hoặc one-click `run-prod.sh` + `docker-compose.prod.yml` (Nginx TLS `:8080`/`:8443`, PostgreSQL, MinIO, MailHog, Grafana `:3000`). Bản live web tự động đồng bộ qua GitHub Actions CD.
 
 ---
 

@@ -21,23 +21,25 @@
 |         1.0         |      20/08/2026       | Khởi tạo Deployment Guide (bản nháp gắn script tạm).                                                                                      |     Nguyễn Tuấn Anh      |
 |         1.1         |      20/08/2026       | Đồng bộ main: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (Web, MailHog, Prometheus, Grafana); bỏ tham chiếu `deploy-prod.sh`. |     Nguyễn Tuấn Anh      |
 |         1.2         |      22/08/2026       | Bổ sung workflow `.github/workflows/cd.yml` tự động build/deploy, xuất URL live và gửi email Brevo qua job notify.                        |    Ân Tiến Nguyên An     |
+|         1.3         |      22/08/2026       | Bổ sung mô-đun Infrastructure as Code (IaaC) dùng Terraform (`terraform/`) hoàn thiện bộ 3 DevOps (IaaC + CI + CD).                      |    Ân Tiến Nguyên An     |
 
 ---
 
 ## 1. Mục đích và Phạm vi thực tế
 
-Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Docker Compose và pipeline GitHub Actions CD trong repo.
+Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Terraform IaaC, Docker Compose và pipeline GitHub Actions CI/CD trong repo.
 
 | Đã có trong repo                                                                        | Chưa có (gap / roadmap)                          |
 | --------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | `scripts/run.sh` — one-shot **dev**                                                     | Tự động provisioning hạ tầng VMware              |
 | `scripts/run-prod.sh` + `docker-compose.prod.yml` — **prod one-click**                  | PgBackRest / Restic đầy đủ như architecture §5.2 |
+| `terraform/` (`main.tf`, `variables.tf`, `outputs.tf`) — **IaaC declarative stack**     | —                                                |
 | `.github/workflows/cd.yml` — **CD pipeline (Build, Deploy, URL output & Email notify)** | —                                                |
 | Health check + seed demo sau khi API lên                                                | —                                                |
 | Prometheus + Grafana + MailHog trong stack prod                                         | —                                                |
 | `backup-postgres.sh`, `backup-minio.sh`                                                 | —                                                |
 
-Theo tài liệu lý thuyết: nhóm hỗ trợ cả **Continuous Delivery tự động hóa qua GitHub Actions** (`.github/workflows/cd.yml` xuất Live URL và thông báo email) và **triển khai one-click tại chỗ** (`./scripts/run-prod.sh`).
+Theo tài liệu lý thuyết: nhóm đáp ứng trọn vẹn mô hình **$\text{DevOps} = \text{IaaC} + \text{CI} + \text{CD}$** qua Terraform (`terraform/`), GitHub Actions CI (`ci.yml`), GitHub Actions CD (`cd.yml`), và triển khai one-click tại chỗ (`./scripts/run-prod.sh`).
 
 ---
 
@@ -160,6 +162,36 @@ git checkout <commit-hoặc-tag-trước-đó>
 
 ---
 
+### 4.5 Khởi tạo hạ tầng bằng Terraform IaaC (`terraform/`)
+
+Để đảm bảo nguyên lý **Infrastructure as Code (IaaC)** chuẩn hóa theo công thức $\text{DevOps} = \text{IaaC} + \text{CI} + \text{CD}$, nhóm cung cấp cấu hình Terraform khai báo toàn bộ tài nguyên:
+
+1. **Khởi tạo và tải Docker provider**:
+   ```bash
+   cd terraform
+   terraform init
+   ```
+2. **Kiểm tra kế hoạch hạ tầng (Execution Plan)**:
+   ```bash
+   terraform plan
+   ```
+   *Output hiển thị 7 tài nguyên được khởi tạo tự động (`docker_network`, `docker_volume`, PostgreSQL, MinIO, MailHog, Prometheus, Grafana).*
+3. **Áp dụng hạ tầng**:
+   ```bash
+   terraform apply -auto-approve
+   ```
+4. **Xem các endpoint đầu ra**:
+   ```bash
+   terraform output
+   ```
+   *Output xuất Live URL, API Docs URL (`:8000/docs`), MinIO Console (`:9003`), Grafana Dashboard (`:3000`).*
+5. **Dọn dẹp hạ tầng khi kết thúc**:
+   ```bash
+   terraform destroy -auto-approve
+   ```
+
+---
+
 ## 5. Cấu hình CSDL
 
 - Engine: **PostgreSQL 16** (service `postgres` trong compose prod/dev).
@@ -224,5 +256,6 @@ Không dùng chung secret yếu / mock auth của dev trên máy coi là product
 - [`09-test-plan.md`](../02-planning/09-test-plan.md)
 - [`scripts/run-prod.sh`](../../scripts/run-prod.sh)
 - [`docker-compose.prod.yml`](../../docker-compose.prod.yml)
+- [`terraform/`](../../terraform/) — Cấu hình Terraform IaaC (`main.tf`, `variables.tf`, `outputs.tf`)
 - [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) — CI (tích hợp liên tục)
 - [`.github/workflows/cd.yml`](../../.github/workflows/cd.yml) — CD (chuyển giao liên tục + email notify)
