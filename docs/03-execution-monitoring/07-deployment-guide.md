@@ -20,22 +20,24 @@
 | :-----------------: | :-------------------: | :----------------------------------------------------------------------------------------------------- | :----------------------: |
 |         1.0         |      20/08/2026       | Khởi tạo Deployment Guide (bản nháp gắn script tạm).                                                   |    Nguyễn Tuấn Anh     |
 |         1.1         |      20/08/2026       | Đồng bộ main: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (Web, MailHog, Prometheus, Grafana); bỏ tham chiếu `deploy-prod.sh`. |    Nguyễn Tuấn Anh     |
+|         1.2         |      22/08/2026       | Bổ sung workflow `.github/workflows/cd.yml` tự động build/deploy, xuất URL live và gửi email Brevo qua job notify. |    Nguyễn Tuấn Anh     |
 
 ---
 
 ## 1. Mục đích và Phạm vi thực tế
 
-Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Docker Compose và script chính thức trong repo.
+Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Docker Compose và pipeline GitHub Actions CD trong repo.
 
 | Đã có trong repo | Chưa có (gap / roadmap) |
 | ---------------- | ----------------------- |
-| `scripts/run.sh` — one-shot **dev** | `.github/workflows/cd.yml` auto-deploy lên VMware |
-| `scripts/run-prod.sh` + `docker-compose.prod.yml` — **prod one-click** | Continuous Deployment không cần người |
-| Health check + seed demo sau khi API lên | PgBackRest / Restic đầy đủ như architecture §5.2 |
+| `scripts/run.sh` — one-shot **dev** | Tự động provisioning hạ tầng VMware |
+| `scripts/run-prod.sh` + `docker-compose.prod.yml` — **prod one-click** | PgBackRest / Restic đầy đủ như architecture §5.2 |
+| `.github/workflows/cd.yml` — **CD pipeline (Build, Deploy, URL output & Email notify)** | — |
+| Health check + seed demo sau khi API lên | — |
 | Prometheus + Grafana + MailHog trong stack prod | — |
 | `backup-postgres.sh`, `backup-minio.sh` | — |
 
-Theo tài liệu lý thuyết: nhóm đang ở mức **Continuous Delivery thủ công** (sau CI xanh, một người chạy `./scripts/run-prod.sh`), **không** phải Continuous Deployment.
+Theo tài liệu lý thuyết: nhóm hỗ trợ cả **Continuous Delivery tự động hóa qua GitHub Actions** (`.github/workflows/cd.yml` xuất Live URL và thông báo email) và **triển khai one-click tại chỗ** (`./scripts/run-prod.sh`).
 
 ---
 
@@ -193,12 +195,13 @@ Không dùng chung secret yếu / mock auth của dev trên máy coi là product
 
 ---
 
-## 8. Giám sát (Monitor)
-
+## 8. Giám sát (Monitor) & Thông báo
+ 
 | Hạng mục | Hiện trạng |
 | -------- | ---------- |
 | Health check lúc deploy | Có — `/health` trong `run.sh` và `run-prod.sh` |
-| Email sau merge `main` | Có — Brevo qua job CI `notify` |
+| Email sau merge `main` (CI) | Có — Brevo qua job CI `notify` (`send_merge_notification.py`) |
+| Email sau deploy (CD) | Có — Brevo qua job CD `notify` (`send_deploy_notification.py`) với Live URL |
 | Prometheus + Grafana | Có trong **stack prod** (`docker-compose.prod.yml`) |
 | Alert SLA / on-call đầy đủ | Tuỳ cấu hình dashboard — chưa mô tả runbook PagerDuty |
 
@@ -221,4 +224,5 @@ Không dùng chung secret yếu / mock auth của dev trên máy coi là product
 - [`09-test-plan.md`](../02-planning/09-test-plan.md)
 - [`scripts/run-prod.sh`](../../scripts/run-prod.sh)
 - [`docker-compose.prod.yml`](../../docker-compose.prod.yml)
-- [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) — CI (không deploy)
+- [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) — CI (tích hợp liên tục)
+- [`.github/workflows/cd.yml`](../../.github/workflows/cd.yml) — CD (chuyển giao liên tục + email notify)
