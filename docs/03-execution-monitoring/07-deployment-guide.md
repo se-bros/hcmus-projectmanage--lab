@@ -4,38 +4,40 @@
 
 ### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                         |
-| :----------------------------------------- | :-------------------------------------------------------------------- |
-| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-DEPLOY`                                                   |
-| **Tên tài liệu (Document Title)**          | Hướng dẫn Triển khai và Vận hành (Deployment Guide)                   |
-| **Dự án (Project Name)**                   | HCMUS-LDMS                                                            |
-| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                      |
-| **Đối tượng đọc**                          | Kỹ sư vận hành / DevOps thành viên nhóm                               |
-| **Cấp độ bảo mật (Security Class)**        | Internal                                                              |
-| **Trạng thái tài liệu (Status)**           | Active — Continuous Delivery **thủ công** qua `scripts/run-prod.sh`   |
+| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                       |
+| :----------------------------------------- | :------------------------------------------------------------------ |
+| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-DEPLOY`                                                 |
+| **Tên tài liệu (Document Title)**          | Hướng dẫn Triển khai và Vận hành (Deployment Guide)                 |
+| **Dự án (Project Name)**                   | HCMUS-LDMS                                                          |
+| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                    |
+| **Đối tượng đọc**                          | Kỹ sư vận hành / DevOps thành viên nhóm                             |
+| **Cấp độ bảo mật (Security Class)**        | Internal                                                            |
+| **Trạng thái tài liệu (Status)**           | Active — Continuous Delivery **thủ công** qua `scripts/run-prod.sh` |
 
 ### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                 | Người thực hiện (Author) |
-| :-----------------: | :-------------------: | :----------------------------------------------------------------------------------------------------- | :----------------------: |
-|         1.0         |      20/08/2026       | Khởi tạo Deployment Guide (bản nháp gắn script tạm).                                                   |    Nguyễn Tuấn Anh     |
-|         1.1         |      20/08/2026       | Đồng bộ main: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (Web, MailHog, Prometheus, Grafana); bỏ tham chiếu `deploy-prod.sh`. |    Nguyễn Tuấn Anh     |
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                    | Người thực hiện (Author) |
+| :-----------------: | :-------------------: | :---------------------------------------------------------------------------------------------------------------------------------------- | :----------------------: |
+|         1.0         |      20/08/2026       | Khởi tạo Deployment Guide (bản nháp gắn script tạm).                                                                                      |     Nguyễn Tuấn Anh      |
+|         1.1         |      20/08/2026       | Đồng bộ main: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (Web, MailHog, Prometheus, Grafana); bỏ tham chiếu `deploy-prod.sh`. |     Nguyễn Tuấn Anh      |
+|         1.2         |      22/08/2026       | Bổ sung workflow `.github/workflows/cd.yml` tự động build/deploy, xuất URL live và gửi email Brevo qua job notify.                        |    Ân Tiến Nguyên An     |
 
 ---
 
 ## 1. Mục đích và Phạm vi thực tế
 
-Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Docker Compose và script chính thức trong repo.
+Tài liệu hướng dẫn **triển khai tái lập được** stack HCMUS-LDMS bằng Docker Compose và pipeline GitHub Actions CD trong repo.
 
-| Đã có trong repo | Chưa có (gap / roadmap) |
-| ---------------- | ----------------------- |
-| `scripts/run.sh` — one-shot **dev** | `.github/workflows/cd.yml` auto-deploy lên VMware |
-| `scripts/run-prod.sh` + `docker-compose.prod.yml` — **prod one-click** | Continuous Deployment không cần người |
-| Health check + seed demo sau khi API lên | PgBackRest / Restic đầy đủ như architecture §5.2 |
-| Prometheus + Grafana + MailHog trong stack prod | — |
-| `backup-postgres.sh`, `backup-minio.sh` | — |
+| Đã có trong repo                                                                        | Chưa có (gap / roadmap)                          |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `scripts/run.sh` — one-shot **dev**                                                     | Tự động provisioning hạ tầng VMware              |
+| `scripts/run-prod.sh` + `docker-compose.prod.yml` — **prod one-click**                  | PgBackRest / Restic đầy đủ như architecture §5.2 |
+| `.github/workflows/cd.yml` — **CD pipeline (Build, Deploy, URL output & Email notify)** | —                                                |
+| Health check + seed demo sau khi API lên                                                | —                                                |
+| Prometheus + Grafana + MailHog trong stack prod                                         | —                                                |
+| `backup-postgres.sh`, `backup-minio.sh`                                                 | —                                                |
 
-Theo tài liệu lý thuyết: nhóm đang ở mức **Continuous Delivery thủ công** (sau CI xanh, một người chạy `./scripts/run-prod.sh`), **không** phải Continuous Deployment.
+Theo tài liệu lý thuyết: nhóm hỗ trợ cả **Continuous Delivery tự động hóa qua GitHub Actions** (`.github/workflows/cd.yml` xuất Live URL và thông báo email) và **triển khai one-click tại chỗ** (`./scripts/run-prod.sh`).
 
 ---
 
@@ -63,23 +65,23 @@ flowchart TB
 
 Chi tiết C4 Deployment View (VM Staging/Prod mục tiêu trên VMware): [`02-architecture.md`](../02-planning/02-architecture.md) §6.
 
-| File | Vai trò |
-| ---- | ------- |
-| `docker-compose.prod.yml` (gốc repo) | Stack production-like đầy đủ |
-| `src/backend/docker-compose.yml` | Stack **dev** (API + Postgres + MinIO; Nginx qua profile `prod` cũ nếu còn dùng) |
-| `scripts/run-prod.sh` / `scripts/run-prod.ps1` | One-click prod: build/up → health → seed |
+| File                                           | Vai trò                                                                          |
+| ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| `docker-compose.prod.yml` (gốc repo)           | Stack production-like đầy đủ                                                     |
+| `src/backend/docker-compose.yml`               | Stack **dev** (API + Postgres + MinIO; Nginx qua profile `prod` cũ nếu còn dùng) |
+| `scripts/run-prod.sh` / `scripts/run-prod.ps1` | One-click prod: build/up → health → seed                                         |
 
 ### Services trong `docker-compose.prod.yml`
 
-| Service | Vai trò |
-| ------- | ------- |
-| `web` | Nginx — FE tĩnh + TLS, cổng 8080/8443 |
-| `api` | FastAPI (`APP_ENV=production` mặc định) |
-| `postgres` | PostgreSQL 16 (volume `postgres_prod_data`) |
-| `minio` | Object storage (volume `minio_prod_data`) |
-| `mailhog` | SMTP mock + UI `:8025` |
-| `prometheus` | Metrics `:9090` |
-| `grafana` | Dashboard `:3000` (admin/admin mặc định) |
+| Service      | Vai trò                                     |
+| ------------ | ------------------------------------------- |
+| `web`        | Nginx — FE tĩnh + TLS, cổng 8080/8443       |
+| `api`        | FastAPI (`APP_ENV=production` mặc định)     |
+| `postgres`   | PostgreSQL 16 (volume `postgres_prod_data`) |
+| `minio`      | Object storage (volume `minio_prod_data`)   |
+| `mailhog`    | SMTP mock + UI `:8025`                      |
+| `prometheus` | Metrics `:9090`                             |
+| `grafana`    | Dashboard `:3000` (admin/admin mặc định)    |
 
 ---
 
@@ -132,16 +134,16 @@ docker compose -f docker-compose.prod.yml down
 
 ### 4.3 URL sau khi lên (theo output script)
 
-| URL | Ý nghĩa |
-| --- | ------- |
-| http://localhost:8080 | Web (HTTP) |
-| https://localhost:8443 | Web (HTTPS) |
-| http://localhost:8000 | API |
-| http://localhost:8000/docs | OpenAPI |
-| http://localhost:9003 | MinIO Console |
-| http://localhost:8025 | MailHog |
-| http://localhost:3000 | Grafana |
-| http://localhost:9090 | Prometheus |
+| URL                        | Ý nghĩa       |
+| -------------------------- | ------------- |
+| http://localhost:8080      | Web (HTTP)    |
+| https://localhost:8443     | Web (HTTPS)   |
+| http://localhost:8000      | API           |
+| http://localhost:8000/docs | OpenAPI       |
+| http://localhost:9003      | MinIO Console |
+| http://localhost:8025      | MailHog       |
+| http://localhost:3000      | Grafana       |
+| http://localhost:9090      | Prometheus    |
 
 Tài khoản demo (seed): xem banner cuối `run-prod.sh` (admin / librarian / reader `@hcmus.edu.vn`).
 
@@ -183,24 +185,25 @@ RPO/RTO thiết kế (architecture §5.3): RPO ≤ 24h, RTO ≤ 4h — phụ thu
 
 ## 7. Multi-environment
 
-| Môi trường | Cách nhóm hiện thực | Ghi chú |
-| ---------- | ------------------- | ------- |
-| **Dev** | `scripts/run.sh` + `src/backend/docker-compose.yml` + Vite | Mock auth có thể bật |
-| **Prod-like (local / demo máy bất kỳ)** | `scripts/run-prod.sh` + `docker-compose.prod.yml` | Đủ Web, mail, Grafana/Prometheus |
-| **Staging / Production VMware** | Deployment View architecture | Chưa gắn CD pipeline trong repo |
+| Môi trường                              | Cách nhóm hiện thực                                        | Ghi chú                          |
+| --------------------------------------- | ---------------------------------------------------------- | -------------------------------- |
+| **Dev**                                 | `scripts/run.sh` + `src/backend/docker-compose.yml` + Vite | Mock auth có thể bật             |
+| **Prod-like (local / demo máy bất kỳ)** | `scripts/run-prod.sh` + `docker-compose.prod.yml`          | Đủ Web, mail, Grafana/Prometheus |
+| **Staging / Production VMware**         | Deployment View architecture                               | Chưa gắn CD pipeline trong repo  |
 
 Không dùng chung secret yếu / mock auth của dev trên máy coi là production.
 
 ---
 
-## 8. Giám sát (Monitor)
+## 8. Giám sát (Monitor) & Thông báo
 
-| Hạng mục | Hiện trạng |
-| -------- | ---------- |
-| Health check lúc deploy | Có — `/health` trong `run.sh` và `run-prod.sh` |
-| Email sau merge `main` | Có — Brevo qua job CI `notify` |
-| Prometheus + Grafana | Có trong **stack prod** (`docker-compose.prod.yml`) |
-| Alert SLA / on-call đầy đủ | Tuỳ cấu hình dashboard — chưa mô tả runbook PagerDuty |
+| Hạng mục                    | Hiện trạng                                                                  |
+| --------------------------- | --------------------------------------------------------------------------- |
+| Health check lúc deploy     | Có — `/health` trong `run.sh` và `run-prod.sh`                              |
+| Email sau merge `main` (CI) | Có — Brevo qua job CI `notify` (`send_merge_notification.py`)               |
+| Email sau deploy (CD)       | Có — Brevo qua job CD `notify` (`send_deploy_notification.py`) với Live URL |
+| Prometheus + Grafana        | Có trong **stack prod** (`docker-compose.prod.yml`)                         |
+| Alert SLA / on-call đầy đủ  | Tuỳ cấu hình dashboard — chưa mô tả runbook PagerDuty                       |
 
 ---
 
@@ -221,4 +224,5 @@ Không dùng chung secret yếu / mock auth của dev trên máy coi là product
 - [`09-test-plan.md`](../02-planning/09-test-plan.md)
 - [`scripts/run-prod.sh`](../../scripts/run-prod.sh)
 - [`docker-compose.prod.yml`](../../docker-compose.prod.yml)
-- [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) — CI (không deploy)
+- [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) — CI (tích hợp liên tục)
+- [`.github/workflows/cd.yml`](../../.github/workflows/cd.yml) — CD (chuyển giao liên tục + email notify)

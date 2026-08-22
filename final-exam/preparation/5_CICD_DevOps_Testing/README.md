@@ -12,7 +12,7 @@
   - [`docs/03-execution-monitoring/07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md)
   - Cấu hình Docker & Docker Compose (`src/backend/docker-compose.yml`, `src/backend/Dockerfile`)
   - Bộ test suite trong [`src/backend/tests/`](../../../src/backend/tests/)
-  - File CI workflow: [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml)
+  - File CI/CD workflows: [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml), [`.github/workflows/cd.yml`](../../../.github/workflows/cd.yml)
   - Scripts: [`scripts/run.sh`](../../../scripts/run.sh), [`scripts/run-prod.sh`](../../../scripts/run-prod.sh), [`docker-compose.prod.yml`](../../../docker-compose.prod.yml), [`scripts/backup-postgres.sh`](../../../scripts/backup-postgres.sh), [`scripts/backup-minio.sh`](../../../scripts/backup-minio.sh)
 - **Tài liệu lý thuyết tham chiếu (từ bài giảng):**
   - [`materials/07_software_configuration_management.md`](../../../materials/07_software_configuration_management.md)
@@ -20,14 +20,15 @@
   - [`materials/11_1_agile_quality_management.md`](../../../materials/11_1_agile_quality_management.md)
 - **Ghi chú bài giảng trên lớp ([`note.md`](../../../note.md)):**
   - **Buổi 06:** CI chạy tự động kiểm thử lint/test khi mở PR → gửi email thông báo kết quả.
-  - **Buổi 08:** 5 bài toán CD/DevOps — nhóm có `run-prod.sh` (1), Prometheus/Grafana trong compose prod (3), backup scripts (5); gap chính: (2) auto release URL / `cd.yml`.
+  - **Buổi 08:** 5 bài toán CD/DevOps — nhóm có `cd.yml` tự động build/deploy xuất live URL + Brevo notify (2), `run-prod.sh` (1), Prometheus/Grafana trong compose prod (3), backup scripts (5).
   - **Buổi 10:** AI sinh test; Pytest/Vitest; ngưỡng coverage 80–90% là khuyến nghị — **CI hiện chưa bắt coverage %**.
 - **Đọc chéo liên kết:** Người 3 (Câu 5 Kiến trúc), Người 6 (Câu 19 Chất lượng).
 - **Checklist bản in nộp kèm khi thi:**
   - [ ] Bản in [`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml) + screenshot PR checks — "13"
   - [ ] Bản in email Brevo / Actions notify — "13"
+  - [ ] Bản in [`.github/workflows/cd.yml`](../../../.github/workflows/cd.yml) + screenshot CD email notify & Live URL — "14"
   - [ ] Bản in [`06-developer-guide.md`](../../../docs/03-execution-monitoring/06-developer-guide.md) — "13"
-  - [ ] Bản in [`scripts/run-prod.sh`](../../../scripts/run-prod.sh) + [`docker-compose.prod.yml`](../../../docker-compose.prod.yml) — "14" _(chưa có `cd.yml` auto — nói rõ Continuous Delivery thủ công)_
+  - [ ] Bản in [`scripts/run-prod.sh`](../../../scripts/run-prod.sh) + [`docker-compose.prod.yml`](../../../docker-compose.prod.yml) — "14"
   - [ ] Bản in [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md) — "14"
   - [ ] Bản in cấu hình CSDL / seed + Postgres trong compose prod — "14"
   - [ ] Bản in `scripts/backup-*.sh` + sơ đồ hạ tầng prod — "15"
@@ -35,7 +36,7 @@
   - [ ] Bản in `pytest -v` output — "20"
   - [ ] Screenshot GitHub Issues + PR review — "19"/"20"
   - [ ] Biên bản UAT — phối hợp Người 6 — "19"/"20"
-- **Chiến lược 10 phút viết giấy A4:** Phút 1–2 khung WHAT-HOW-WHY-EVIDENCE; 3–7 triển khai + sơ đồ; 8–9 ghi tool trên sơ đồ; 10 rà từ khóa. **Nói đúng gap** (không có `cd.yml` auto-deploy VMware).
+- **Chiến lược 10 phút viết giấy A4:** Phút 1–2 khung WHAT-HOW-WHY-EVIDENCE; 3–7 triển khai + sơ đồ; 8–9 ghi tool trên sơ đồ; 10 rà từ khóa.
 
 ---
 
@@ -83,8 +84,8 @@ flowchart TD
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
-- **Đối chiếu:** `scripts/run-prod.sh`, `docker-compose.prod.yml`, `scripts/run.sh`, Deployment Guide.
-- **Từ khóa:** Continuous **Delivery** thủ công (`./scripts/run-prod.sh`); **chưa** Continuous Deployment (`cd.yml` lên VMware). Stack prod gồm Web/Nginx, API, Postgres, MinIO, MailHog, Prometheus, Grafana.
+- **Đối chiếu:** `.github/workflows/cd.yml`, `scripts/run-prod.sh`, `docker-compose.prod.yml`, `docs/03-execution-monitoring/07-deployment-guide.md`.
+- **Từ khóa:** Continuous Delivery tự động qua GitHub Actions (`.github/workflows/cd.yml`); xuất URL live (`https://hcmus-projectmanage-lab.vercel.app`); gửi email thông báo Brevo sau khi deploy; hỗ trợ triển khai on-premise one-click qua `./scripts/run-prod.sh` (`docker-compose.prod.yml`).
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -92,28 +93,24 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    CI["CI xanh trên GitHub Actions"] --> Human["Kỹ sư chọn commit/tag"]
-    Human --> DevDeploy["Dev: scripts/run.sh"]
-    Human --> ProdLike["Prod: scripts/run-prod.sh"]
-    DevDeploy --> Up1["backend compose up --build"]
-    ProdLike --> Up2["docker-compose.prod.yml up -d --build"]
-    Up1 --> Health["GET /health 200"]
-    Up2 --> Health
-    Health --> Post["Dev: alembic upgrade<br/>Prod: seed_data"]
-    Post --> Ready["Stack sẵn sàng"]
-    Health -->|Fail| Stop["Log + exit lỗi<br/>rollback: compose down + checkout tag cũ + run-prod lại"]
+    Git["Push main / release/* / tag v*"] --> CD["GitHub Actions CD<br/>.github/workflows/cd.yml"]
+    CD --> Build["Job build-verify<br/>Build frontend & verify"]
+    Build --> Deploy["Job deploy<br/>Deploy môi trường target"]
+    Deploy --> URL["Xuất Live URL<br/>hcmus-projectmanage-lab.vercel.app"]
+    Deploy --> Mail["Job notify<br/>send_deploy_notification.py (Brevo)"]
+    Mail --> Inbox["Email gửi đến tất cả thành viên<br/>(Live URL + Commit + Job status)"]
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
 - **Giải thích luồng hoạt động CD:**
-  _Trả lời:_ Sau khi CI xác nhận build/test xanh, nhóm **chưa** tự động đẩy lên máy chủ VMware. Continuous Delivery thủ công: trên máy có Docker chạy `./scripts/run.sh` (dev) hoặc `./scripts/run-prod.sh` (prod one-click qua `docker-compose.prod.yml`: Web/Nginx TLS, API, Postgres, MinIO, MailHog, Prometheus, Grafana). Script prod chờ `GET /health`, rồi seed dữ liệu demo. Rollback MVP: `docker compose -f docker-compose.prod.yml down`, checkout bản ổn định, chạy lại `run-prod.sh`; khôi phục data từ backup nếu cần. **Không có** `.github/workflows/cd.yml` — gap khi thầy hỏi “commit xong user đã có URL production chưa?”.
+  _Trả lời:_ Khi có sự kiện push vào `main`, nhánh `release/**`, hoặc gắn thẻ phiên bản `v*` (hoặc kích hoạt thủ công qua `workflow_dispatch`), GitHub Actions khởi chạy `.github/workflows/cd.yml`. Pipeline trải qua 3 giai đoạn: (1) **Build & Verify** đóng gói frontend tĩnh và kiểm tra tính toàn vẹn; (2) **Deploy** tiến hành phát hành lên môi trường đích (Production/Staging), xuất Live URL (`https://hcmus-projectmanage-lab.vercel.app`); (3) **Notify** kích hoạt script `send_deploy_notification.py` gửi email Brevo tới toàn bộ nhóm trong `.github/ci-notify-recipients.txt` chứa Live URL và trạng thái deploy. Ngoài ra, nhóm duy trì script one-click `./scripts/run-prod.sh` cho môi trường máy chủ on-premise / Docker cục bộ.
 
 - **Danh mục các công cụ nhóm đã sử dụng:**
-  _Trả lời:_ Docker & Docker Compose; `docker-compose.prod.yml`; Dockerfile API; Nginx (`web`); MailHog; Prometheus; Grafana; `curl` health check; Bash/PowerShell `run-prod.sh` / `run-prod.ps1`; hướng dẫn [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
+  _Trả lời:_ GitHub Actions (`cd.yml`); Node 20 / Vite build; Brevo API (gửi email thông báo triển khai); Docker & Docker Compose (`docker-compose.prod.yml`); Nginx reverse proxy; hướng dẫn vận hành [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
 
 - **Tại sao cần sử dụng hệ thống Chuyển giao liên tục cho dự án?**
-  _Trả lời:_ Stack LDMS nhiều thành phần (API, DB, object storage, reverse proxy, mail, monitoring). Script one-click giúp **máy bất kỳ có Docker** dựng đủ hệ thống (bài toán 1 buổi 08). CD đầy đủ (tag → auto URL production) là bước tiếp theo; hiện nhóm đã có Delivery tái lập được + Monitor trong compose prod.
+  _Trả lời:_ Tự động hóa khâu đưa bản phát hành mới ra môi trường live ngay khi code được merge hoặc tạo release tag. Việc xuất Live URL và gửi email lập tức cho toàn đội ngũ giúp các bên liên quan (Product Owner, QA/Tester, Developers) kiểm thử nghiệm thu (UAT) ngay mà không cần can thiệp thủ công hoặc chờ đợi kỹ sư DevOps dựng môi trường.
 
 ---
 
