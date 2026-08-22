@@ -347,3 +347,68 @@ abbr {
   text-align: center;
   margin: 1.5em 0;
 }
+  border-radius: 6px;
+  padding: 12px 18px;
+  margin: 1.2em 0 1.6em 0;
+  page-break-inside: avoid;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.toc-container h2 {
+  font-size: 1.05em !important;
+  color: #0f3460 !important;
+  margin: 0 0 8px 0 !important;
+  padding-bottom: 5px !important;
+  border-bottom: 1.5px solid #cbd5e1 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.toc-container ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.toc-container > ul > li {
+  margin: 4px 0;
+  line-height: 1.45;
+  font-size: 9.5pt;
+}
+
+.toc-container > ul > li > a {
+  color: #0f3460 !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.toc-container ul ul {
+  padding-left: 1.2em !important;
+  margin: 2px 0 4px 0 !important;
+  border-left: 1px solid #cbd5e1;
+}
+
+.toc-container ul ul li {
+  margin: 2px 0;
+  line-height: 1.4;
+  font-size: 9pt;
+}
+
+.toc-container ul ul li a {
+  color: #334155 !important;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.toc-container a:hover {
+  color: #2563eb !important;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Mermaid Diagram Styling (if rendered)
+   ============================================================ */
+.mermaid {
+  text-align: center;
+  margin: 1.5em 0;
+}

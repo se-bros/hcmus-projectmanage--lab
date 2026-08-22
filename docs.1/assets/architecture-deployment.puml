@@ -1,0 +1,25 @@
+@startuml
+!include <C4/C4_Deployment>
+LAYOUT_LEFT_RIGHT()
+scale 0.72
+title Triển khai demo cloud HCMUS-LDMS
+
+Deployment_Node(vercel, "Vercel", "Nền tảng triển khai frontend") {
+  Container(web, "Frontend", "React và TypeScript", "Giao diện người dùng")
+}
+Deployment_Node(render, "Render", "Nền tảng triển khai backend") {
+  Container(api, "Backend API", "FastAPI", "API và nghiệp vụ")
+}
+Deployment_Node(neon, "Neon", "PostgreSQL trên nền tảng đám mây") {
+  ContainerDb(db, "Cơ sở dữ liệu", "PostgreSQL", "Dữ liệu quản lý và tìm kiếm")
+}
+Deployment_Node(cloudflare, "Cloudflare R2", "Kho đối tượng tương thích S3") {
+  ContainerDb(storage, "Kho tệp", "R2", "Tệp gốc và EPUB")
+}
+System_Ext(auth, "Dịch vụ xác thực", "Dữ liệu mô phỏng hoặc Google OAuth 2.0")
+Rel(web, api, "Gọi API")
+Rel(api, db, "Đọc và ghi")
+Rel(api, storage, "Đọc và ghi")
+Rel(api, auth, "Xác thực khi cần")
+SHOW_LEGEND()
+@enduml

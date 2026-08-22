@@ -27,23 +27,30 @@ def deflate_and_encode(plantuml_text):
     puml_encoded = b64_str.translate(translation_table).replace('=', '')
     return puml_encoded
 
-def replace_plantuml_blocks(md_text):
-    pattern = re.compile(r'```plantuml\s*\n(.*?)\n```', re.DOTALL)
-    
-    def replacer(match):
+def replace_diagram_blocks(md_text):
+    # 1. PlantUML blocks
+    puml_pattern = re.compile(r'```plantuml\s*\n(.*?)\n```', re.DOTALL)
+    def puml_replacer(match):
         puml_code = match.group(1).strip()
         try:
             encoded = deflate_and_encode(puml_code)
-            # Use SVG for crisp vector graphics in PDF
             url = f"https://www.plantuml.com/plantuml/svg/{encoded}"
             return f'\n\n<div class="diagram-container"><img src="{url}" class="plantuml-diagram" alt="PlantUML Diagram"></div>\n\n'
         except Exception as e:
             print(f"Failed to encode PlantUML: {e}")
             return match.group(0)
-            
-    return pattern.sub(replacer, md_text)
+    md_text = puml_pattern.sub(puml_replacer, md_text)
+    
+    # 2. Mermaid blocks
+    mermaid_pattern = re.compile(r'```mermaid\s*\n(.*?)\n```', re.DOTALL)
+    def mermaid_replacer(match):
+        mermaid_code = match.group(1).strip()
+        return f'\n\n<pre class="mermaid">\n{mermaid_code}\n</pre>\n\n'
+    md_text = mermaid_pattern.sub(mermaid_replacer, md_text)
+    
+    return md_text
 
-def convert_md_to_pdf(md_path, pdf_path):
+def get_styled_html(md_path, font_size="10pt"):
     # Read Markdown content
     with open(md_path, 'r', encoding='utf-8') as f:
         md_text = f.read()
@@ -54,11 +61,11 @@ def convert_md_to_pdf(md_path, pdf_path):
         if len(parts) >= 3:
             md_text = parts[2]
             
-    # Pre-process Markdown to convert PlantUML code blocks to interactive SVG URLs
-    md_text = replace_plantuml_blocks(md_text)
+    # Pre-process Markdown for diagrams
+    md_text = replace_diagram_blocks(md_text)
             
     # Convert Markdown to HTML
-    html_content = markdown.markdown(md_text, extensions=['tables', 'fenced_code', 'toc'])
+    html_content = markdown.markdown(md_text, extensions=['tables', 'fenced_code', 'toc', 'sane_lists'])
     
     # Try to load premium CSS from md-to-pdf skill
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -91,16 +98,6 @@ def convert_md_to_pdf(md_path, pdf_path):
                 padding-bottom: 0.3em;
                 margin-top: 0;
             }
-            h2 {
-                font-size: 1.5em;
-                border-bottom: 1px solid #ddd;
-                padding-bottom: 0.2em;
-                color: #005577;
-            }
-            h3 {
-                font-size: 1.25em;
-                color: #333;
-            }
             table {
                 width: 100%;
                 border-collapse: collapse;
@@ -113,105 +110,104 @@ def convert_md_to_pdf(md_path, pdf_path):
                 text-align: left;
                 vertical-align: top;
             }
-            th {
-                background-color: #f2f7f9;
-                color: #005577;
-                font-weight: 600;
-            }
-            tr:nth-child(even) {
-                background-color: #fafafa;
-            }
-            blockquote {
-                border-left: 4px solid #007799;
-                padding: 12px 20px;
-                margin: 20px 0;
-                background-color: #f9fbfd;
-                color: #444;
-            }
-            code {
-                font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-                background-color: #f4f4f4;
-                padding: 2px 6px;
-                border-radius: 4px;
-                font-size: 0.85em;
-                color: #d14;
-            }
-            pre {
-                background-color: #f6f8fa;
-                padding: 16px;
-                border-radius: 6px;
-                overflow-x: auto;
-                border: 1px solid #eaeef2;
-            }
-            pre code {
-                background-color: transparent;
-                padding: 0;
-                color: inherit;
-                font-size: 0.85em;
-            }
-            img {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin: 20px auto;
-            }
-            hr {
-                border: 0;
-                border-top: 1px solid #ddd;
-                margin: 30px 0;
-            }
         """
 
-    # Add style rules for diagram containers
-    css_content += "\n.diagram-container { text-align: center; margin: 25px 0; page-break-inside: avoid; }\n.plantuml-diagram { max-width: 75%; max-height: 450px; height: auto; border: 1px solid #eaeaea; border-radius: 6px; padding: 10px; background-color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }\n"
+    # Enforce the body font size and style diagrams.
+    css_content += f"\nbody {{ font-size: {font_size} !important; }}\n@media print {{ body {{ font-size: {font_size} !important; }} }}\n.diagram-container {{ text-align: center; margin: 25px 0; page-break-inside: avoid; }}\n.plantuml-diagram {{ max-width: 85%; max-height: 500px; height: auto; border: 1px solid #eaeaea; border-radius: 6px; padding: 10px; background-color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }}\n"
 
-    # Styled HTML
-    styled_html = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            {css_content}
-        </style>
-    </head>
-    <body>
-        {html_content}
-    </body>
-    </html>
-    """
-    
-    # Save temporary html file
+    # Mermaid JS script if mermaid diagrams exist
+    mermaid_script = ""
+    if 'class="mermaid"' in html_content:
+        mermaid_script = """
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+        </script>
+        """
+
+    # Extract title from markdown or filename
+    title = os.path.basename(md_path)
+    title_match = re.search(r'#\s+(.+)', md_text)
+    if title_match:
+        title = title_match.group(1).strip()
+
+    styled_html = f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{title}</title>
+    <style>
+        {css_content}
+    </style>
+    {mermaid_script}
+</head>
+<body>
+    {html_content}
+</body>
+</html>"""
+    return styled_html, ('class="mermaid"' in html_content)
+
+def convert_single_md(page, md_path, pdf_path):
+    styled_html, has_mermaid = get_styled_html(md_path)
     temp_html_path = md_path + '.temp.html'
+    
     with open(temp_html_path, 'w', encoding='utf-8') as f:
         f.write(styled_html)
         
     try:
-        # Run playwright to print pdf
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            # Convert file path to absolute URL
-            abs_html_path = os.path.abspath(temp_html_path)
-            file_url = f"file:///{abs_html_path.replace(os.sep, '/')}"
-            page.goto(file_url)
-            page.wait_for_load_state("networkidle")
-            page.pdf(
-                path=pdf_path, 
-                format="A4", 
-                margin={"top": "15mm", "bottom": "15mm", "left": "10mm", "right": "10mm"},
-                print_background=True
-            )
-            browser.close()
+        abs_html_path = os.path.abspath(temp_html_path)
+        file_url = f"file:///{abs_html_path.replace(os.sep, '/')}"
+        page.goto(file_url, wait_until="networkidle")
+        if has_mermaid:
+            page.wait_for_timeout(1500)
+            
+        os.makedirs(os.path.dirname(os.path.abspath(pdf_path)), exist_ok=True)
+        page.pdf(
+            path=pdf_path, 
+            format="A4", 
+            margin={"top": "15mm", "bottom": "15mm", "left": "15mm", "right": "15mm"},
+            print_background=True,
+            display_header_footer=True,
+            header_template='<div style="font-size: 8px; width: 100%; text-align: right; margin-right: 20px; color: #999;"><span class="title"></span></div>',
+            footer_template='<div style="font-size: 8px; width: 100%; text-align: center; color: #999;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></div>'
+        )
         print(f"Successfully generated PDF: {pdf_path}")
+        return True
+    except Exception as e:
+        print(f"Error generating PDF for {md_path}: {e}")
+        return False
     finally:
         if os.path.exists(temp_html_path):
-            os.remove(temp_html_path)
+            try:
+                os.remove(temp_html_path)
+            except Exception:
+                pass
+
+def convert_files(file_pairs):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        for md_path, pdf_path in file_pairs:
+            print(f"Processing: {md_path} -> {pdf_path}")
+            convert_single_md(page, md_path, pdf_path)
+        browser.close()
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python md_to_pdf.py <input.md> <output.pdf>")
+    if len(sys.argv) < 2:
+        print("Usage:")
+        print("  python md_to_pdf.py <input.md> <output.pdf>")
+        print("  python md_to_pdf.py --batch <file1.md> <file2.md> ...")
         sys.exit(1)
-    md_in = sys.argv[1]
-    pdf_out = sys.argv[2]
-    convert_md_to_pdf(md_in, pdf_out)
+        
+    if sys.argv[1] == "--batch":
+        md_files = sys.argv[2:]
+        file_pairs = [(f, os.path.splitext(f)[0] + ".pdf") for f in md_files if f.endswith(".md")]
+        convert_files(file_pairs)
+    elif len(sys.argv) == 3:
+        md_in = sys.argv[1]
+        pdf_out = sys.argv[2]
+        convert_files([(md_in, pdf_out)])
+    else:
+        md_files = [f for f in sys.argv[1:] if f.endswith(".md")]
+        file_pairs = [(f, os.path.splitext(f)[0] + ".pdf") for f in md_files]
+        convert_files(file_pairs)

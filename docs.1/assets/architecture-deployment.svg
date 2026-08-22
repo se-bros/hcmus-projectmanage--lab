@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Triển khai demo cloud HCMUS-LDMS</title>
+  <desc id="desc">Frontend trên Vercel gọi backend FastAPI trên Render. Backend kết nối Neon PostgreSQL, Cloudflare R2 và dịch vụ xác thực.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 24px Inter, Arial, sans-serif; fill: #0f172a; }
+      .node-title { font: 700 18px Inter, Arial, sans-serif; fill: #ffffff; }
+      .node-tech { font: italic 14px Inter, Arial, sans-serif; fill: #dbeafe; }
+      .node-desc { font: 14px Inter, Arial, sans-serif; fill: #e2e8f0; }
+      .label { font: 600 13px Inter, Arial, sans-serif; fill: #334155; }
+      .boundary { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; rx: 14; }
+      .service { fill: #2563eb; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .data { fill: #0f766e; stroke: #115e59; stroke-width: 2; rx: 10; }
+      .external { fill: #64748b; stroke: #475569; stroke-width: 2; rx: 10; }
+      .flow { fill: none; stroke: #475569; stroke-width: 2.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="960" height="560" fill="#ffffff"/>
+  <text class="title" x="480" y="42" text-anchor="middle">Triển khai demo cloud HCMUS-LDMS</text>
+
+  <rect class="boundary" x="40" y="90" width="210" height="170"/>
+  <text class="label" x="145" y="116" text-anchor="middle">Vercel</text>
+  <rect class="service" x="65" y="135" width="160" height="95"/>
+  <text class="node-title" x="145" y="166" text-anchor="middle">Frontend</text>
+  <text class="node-tech" x="145" y="188" text-anchor="middle">React + TypeScript</text>
+  <text class="node-desc" x="145" y="211" text-anchor="middle">Giao diện người dùng</text>
+
+  <rect class="boundary" x="375" y="90" width="210" height="170"/>
+  <text class="label" x="480" y="116" text-anchor="middle">Render</text>
+  <rect class="service" x="400" y="135" width="160" height="95"/>
+  <text class="node-title" x="480" y="166" text-anchor="middle">Backend API</text>
+  <text class="node-tech" x="480" y="188" text-anchor="middle">FastAPI</text>
+  <text class="node-desc" x="480" y="211" text-anchor="middle">API và nghiệp vụ</text>
+
+  <rect class="boundary" x="710" y="70" width="210" height="170"/>
+  <text class="label" x="815" y="96" text-anchor="middle">Neon</text>
+  <rect class="data" x="735" y="115" width="160" height="95"/>
+  <text class="node-title" x="815" y="146" text-anchor="middle">Cơ sở dữ liệu</text>
+  <text class="node-tech" x="815" y="168" text-anchor="middle">PostgreSQL</text>
+  <text class="node-desc" x="815" y="191" text-anchor="middle">Dữ liệu và tìm kiếm</text>
+
+  <rect class="boundary" x="710" y="320" width="210" height="170"/>
+  <text class="label" x="815" y="346" text-anchor="middle">Cloudflare R2</text>
+  <rect class="data" x="735" y="365" width="160" height="95"/>
+  <text class="node-title" x="815" y="396" text-anchor="middle">Kho đối tượng</text>
+  <text class="node-tech" x="815" y="418" text-anchor="middle">S3-compatible</text>
+  <text class="node-desc" x="815" y="441" text-anchor="middle">Tệp gốc và EPUB</text>
+
+  <rect class="external" x="385" y="385" width="190" height="90"/>
+  <text class="node-title" x="480" y="417" text-anchor="middle">Dịch vụ xác thực</text>
+  <text class="node-desc" x="480" y="442" text-anchor="middle">Google OAuth 2.0</text>
+
+  <path class="flow" d="M225 182 H395"/>
+  <text class="label" x="310" y="170" text-anchor="middle">HTTPS API</text>
+  <path class="flow" d="M560 170 C620 150 665 145 730 155"/>
+  <text class="label" x="646" y="133" text-anchor="middle">SQL/TLS</text>
+  <path class="flow" d="M560 205 C640 255 670 345 730 395"/>
+  <text class="label" x="655" y="304" text-anchor="middle">S3 API/TLS</text>
+  <path class="flow" d="M480 230 V380"/>
+  <text class="label" x="492" y="306">OAuth/OIDC</text>
+
+  <text class="label" x="480" y="535" text-anchor="middle">Môi trường demo; production/on-premise cần thiết kế và phê duyệt riêng.</text>
+</svg>
