@@ -62,12 +62,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/build-push-action@v5
+        id: push
         with:
           context: src/backend
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:${{ github.sha }}
+      - name: Log image link
+        run: |
+          echo "### Backend image published" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Docker Hub: https://hub.docker.com/r/${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api/tags" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Image: \`${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Digest: \`${{ steps.push.outputs.digest }}\`" >> "$GITHUB_STEP_SUMMARY"
 
   notify:
     needs: [backend, frontend, terraform]
