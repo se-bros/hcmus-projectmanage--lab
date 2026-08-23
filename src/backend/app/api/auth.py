@@ -30,6 +30,7 @@ from app.services.google_oauth_service import build_authorization_redirect, exch
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
+# Check if Google OAuth is configured
 def _google_configured() -> bool:
     return bool(
         settings.google_client_id and settings.google_client_secret and settings.google_redirect_uri
