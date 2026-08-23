@@ -105,7 +105,38 @@ Không chọn giao diện đẹp, ghi chú hay trích dẫn làm PoC vì chúng 
 | Kết luận                 | Đạt / Không đạt / Bị chặn                 |
 | Ảnh hưởng                | ADR, Estimate, Risk, Backlog cần cập nhật |
 
-Tại thời điểm phát hành tài liệu, chưa có giao diện đầu vào/đầu ra hoặc kết quả chạy được xác minh để chèn. Khi chạy, nhóm bổ sung ảnh chụp có build ID và che bí mật; không dùng hình thiết kế thay bằng chứng thực thi.
+### Evidence — Bản in giao diện đầu vào/đầu ra khi chạy mã nguồn PoC
+
+Các ảnh chụp dưới đây lấy từ lần chạy thực tế trên môi trường local Docker Compose.
+
+#### PoC-01: Nhận dạng ký tự (OCR Pipeline)
+
+| Bước | Ảnh chụp | Mô tả |
+|---|---|---|
+| Đầu vào | ![Input](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/input.png) | Tài liệu PDF được tải lên qua giao diện |
+| Xử lý | ![Processing](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/processing.png) | Job OCR đang chạy nền, UI không bị chặn |
+| Kết quả OCR | ![OCR Success](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/ocr-success.png) | Văn bản nhận dạng thành công |
+| Upload thành công | ![Upload](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/upload-success.png) | Source lưu trữ thành công trên MinIO |
+| Docker container | ![Docker](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/docker-container.png) | Các service đang chạy |
+| MinIO Console | ![MinIO](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/minio-console.png) | Object storage với source file |
+| RBAC Read-only | ![RBAC](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/rbac-read-only.png) | Phân quyền hoạt động đúng |
+| Split-screen | ![Split](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-1/split-screen-view.png) | Giao diện hiệu chỉnh chia đôi |
+
+#### PoC-02: Xuất bản EPUB và phân quyền
+
+| Bước | Ảnh chụp | Mô tả |
+|---|---|---|
+| EPUB exported | ![EPUB](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-2/epub-exported.png) | EPUB tạo thành công |
+| EPUB trên MinIO | ![MinIO EPUB](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-2/epub-minio.png) | File EPUB lưu trữ private |
+| Signed URL 900s | ![Expiry](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-2/epub-rexpire-900s.png) | URL tạm thời hết hạn sau 900 giây |
+| Metadata | ![Metadata](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-2/metadata.png) | Metadata đầy đủ |
+| RBAC OCR | ![RBAC OCR](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/poc-2/rbac-ocr.png) | Kiểm tra quyền khi truy cập |
+
+#### Kết quả kiểm thử tự động
+
+![Test Passed](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q6/test-passed.png)
+
+Các test liên quan đến luồng PoC đã chạy thành công trên CI.
 
 ## 6. Cách đánh giá và sử dụng kết quả
 

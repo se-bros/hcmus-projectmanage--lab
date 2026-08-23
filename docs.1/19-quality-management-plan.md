@@ -168,3 +168,38 @@ Sau mỗi mốc, nhóm chọn tối đa hai cải tiến dựa trên defect/rewo
 | UAT/release decision | QA + nghiệp vụ | Đại diện nghiệp vụ/PM theo phạm vi | Nhóm |
 
 Nguồn liên quan: [SRS](04-software-requirements.md), [Backlog](04-product-backlog.md), [Architecture](05-software-architecture.md), [Risk Register](18-risk-management-plan.md), [Process](09-software-process-definition.md), [Test/UAT Plan](20-test-plan.md), [SOW](12-statement-of-work.md) và [Operations–Security Plan](15-devops-and-operations.md).
+
+## Evidence — Bản in minh chứng quản lý chất lượng
+
+### Giao diện cấu hình Coding Standards
+
+Tài liệu quy chuẩn lập trình và cấu hình linter: [`03_coding_standards_and_linter_config.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/03_coding_standards_and_linter_config.md)
+
+Nội dung bao gồm:
+
+- Cấu hình **Ruff** (Python): `pyproject.toml` — line-length 100, target Python 3.11, bật rules E/F/I/UP
+- Cấu hình **Oxlint** (React/TypeScript): ESLint + Oxlint cho frontend
+- Cơ chế cưỡng chế: CI pipeline chặn merge tự động nếu phát hiện lỗi linter
+
+### Biên bản thanh tra mã nguồn (Code Inspection)
+
+Biên bản thanh tra PR #41: [`01_code_inspection_record_pr41.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/01_code_inspection_record_pr41.md)
+
+- **Pull Request:** `feat: highlight and note in reading books (LDMS-021)`
+- **Author:** Khoa Nguyễn
+- **Reviewer:** Nguyễn Tuấn Anh + GitHub Copilot AI
+- **Kết quả:** APPROVED & MERGED vào `main`
+- **Quy mô:** 27 files thay đổi
+
+### Biên bản phản hồi từ khách hàng (UAT Feedback)
+
+Biên bản UAT: [`02_uat_feedback_record.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/02_uat_feedback_record.md)
+
+- **Khách hàng:** Cô Nguyễn Thị Mai — Chuyên viên Thư viện ĐHKHTN
+- **Thời gian:** 16/08/2026, 09:30–11:30
+- **Kết quả:** 5/5 kịch bản ĐẠT (điểm trung bình 4.6/5)
+- **Phản hồi:** Yêu cầu bổ sung watermark chống chụp màn hình
+
+### Định nghĩa hoàn thành (Definition of Done)
+
+DoD được trích từ [Hợp đồng nhóm](16-team-contract.md) — Mục 4.4.

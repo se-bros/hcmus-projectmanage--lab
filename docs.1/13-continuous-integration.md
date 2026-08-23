@@ -86,14 +86,32 @@ Job `notify` chạy sau backend/frontend đối với push lên `main`, dù job 
 - Khi job lỗi: mở log, xác định bước/commit, sửa trên nhánh, chạy lại và liên kết run vào Evidence Index.
 - Không dùng cách bỏ test hoặc sửa expected result không căn cứ để làm pipeline xanh.
 
-## 7. Evidence và điểm chưa thống nhất
+## 7. Evidence — Bản in kịch bản build và thông báo kết quả
+
+### 7.1. Kịch bản build (Build Scripts)
+
+Kịch bản build chính: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) — có sẵn trong repository.
+
+### 7.2. GitHub Actions CI — Kết quả chạy thực tế
+
+![CI Pass](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q13/CI-pass.png)
+
+Ảnh chụp GitHub Actions cho thấy tất cả jobs (backend, frontend, terraform) đều pass.
+
+### 7.3. Email thông báo kết quả build
+
+![CI Email](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q13/Mail.png)
+
+Email được gửi tự động qua Brevo khi push lên `main`, kèm trạng thái từng job.
+
+### 7.4. Evidence chưa liên kết
 
 | Evidence cần nộp | Trạng thái |
 |---|---|
-| Bản in `.github/workflows/ci.yml` | Có nguồn trong repository |
-| GitHub Actions run cho backend/frontend | Chưa liên kết trong tài liệu |
-| Pull Request có checks và review | Chưa liên kết trong tài liệu |
-| Email thông báo kết quả | Chưa liên kết trong tài liệu |
+| Bản in `.github/workflows/ci.yml` | ✅ Có nguồn trong repository |
+| GitHub Actions run cho backend/frontend | ✅ Đã có ảnh chụp (`CI-pass.png`) |
+| Email thông báo kết quả | ✅ Đã có ảnh chụp (`Mail.png`) |
+| Pull Request có checks và review | Chưa liên kết — cần screenshot PR cụ thể |
 | Branch protection/rule set | Chưa xác minh |
 
 Cần quyết định có bỏ trigger `develop/release/hotfix` để khớp hoàn toàn Trunk-Based hay giữ cho tương thích. Mọi thay đổi workflow phải qua review và cập nhật [Process](09-software-process-definition.md), [Quality Plan](19-quality-management-plan.md) và [ADR](A1-decision-log-and-adr.md).

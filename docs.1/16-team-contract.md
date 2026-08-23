@@ -297,3 +297,25 @@ Khi chưa đủ 6/6 xác nhận, tài liệu không được ghi trạng thái *
 - [Ước lượng dự án](10-project-estimate.md)
 - [Bản mô tả công việc](12-statement-of-work.md)
 - [Nhật ký dự án](17-project-log.md)
+
+## Evidence — Bản in minh chứng quản lý nhóm
+
+### Ảnh chụp chung các thành viên trong nhóm
+
+![Ảnh chụp chung các thành viên](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/images/group3-photo.png)
+
+Ảnh chụp chung 6 thành viên nhóm dự án.
+
+### Giao diện hệ thống liên lạc (Discord)
+
+![Discord Communication](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/images/discord_communication.png)
+
+Ảnh chụp kênh Discord `#project` của nhóm SE Bros với dữ liệu trao đổi thực tế.
+
+### Biên bản họp nhóm
+
+Biên bản họp Sprint Planning có trong tài liệu `01-sprint-plan.md` trong thư mục `docs/03-execution-monitoring/`.
+
+### Tài liệu quy định, quy chế và lịch làm việc
+
+Hợp đồng nhóm (file này) chứa đầy đủ quy định về phương pháp làm việc, WIP, Definition of Ready/Done, lịch họp và quy chế xử lý vi phạm.

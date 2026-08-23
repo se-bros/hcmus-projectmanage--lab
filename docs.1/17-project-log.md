@@ -139,3 +139,25 @@ Forecast chỉ được cập nhật khi có ít nhất ba completion event đ�
 Các quyết định trên là quyết định cập nhật hồ sơ của nhóm; nội dung cần phê duyệt bên ngoài vẫn giữ trạng thái chờ xác nhận.
 
 Quyết định kỹ thuật có alternatives, consequences và verification conditions được quản lý trong [Nhật ký quyết định và ADR](A1-decision-log-and-adr.md). Project Log chỉ ghi event và liên kết ADR/Change Request tương ứng, không sao chép lịch sử quyết định theo cách có thể gây lệch phiên bản.
+
+## Evidence — Bản in minh chứng phân công, theo dõi và báo cáo dự án
+
+### Giao diện phân công và theo dõi công việc (Trello Kanban Board)
+
+![Trello Kanban Board](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/images/trello_kanban_board.png)
+
+Ảnh chụp Trello Board `LDMS-project` với dữ liệu phân công thực tế: các cột Kanban, card owner, label ưu tiên và trạng thái.
+
+### Biểu đồ Burndown toàn dự án
+
+![Burndown Chart](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/images/burndown_chart.png)
+
+Biểu đồ Burndown cho thấy tiến độ hoàn thành story theo thời gian so với kế hoạch.
+
+### Giao diện quản lý thời gian cho từng công việc (Trello)
+
+Nhóm dùng Trello với label thời gian và due date cho từng card. Bản in Trello Board (ảnh trên) thể hiện phân công, thời hạn và trạng thái từng task — dùng làm minh chứng quản lý thời gian.
+
+### Báo cáo tình trạng dự án tuần trước giữa kỳ
+
+Dùng [Nhật ký dự án](17-project-log.md) — bao gồm effort log, completion register và chỉ số Kanban — làm báo cáo tình trạng dự án. Bản in project-log.md kết hợp burndown chart thể hiện tiến độ so với kế hoạch.

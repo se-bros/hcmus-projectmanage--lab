@@ -68,6 +68,27 @@ Luồng đề xuất: Biên tập viên tải tài liệu → theo dõi OCR → 
 |---|---|---|---|---|---|
 | Chưa có buổi đánh giá được xác minh | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 
-## 7. Phân biệt bản mẫu và sản phẩm
+## 7. Evidence — Bản in phác thảo giao diện ban đầu
+
+Các ảnh chụp dưới đây là phác thảo giao diện từ bản mẫu thực tế của hệ thống, lấy từ lần chạy/thiết kế ban đầu.
+
+| Màn hình | Ảnh chụp |
+|---|---|
+| Dashboard OCR | ![Dashboard OCR](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/dashboard-ocr.png) |
+| Split-screen Editor | ![Split-screen Editor](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/split-screen-editor.png) |
+| Web Reader | ![Web Reader](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/web-reader.png) |
+| Metadata | ![Metadata](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/metadata.png) |
+| RBAC Read-only | ![RBAC](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/rbac-readonly.png) |
+| History Log | ![History](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/history-log.png) |
+| Test Prototype | ![Test](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/test-prototype.png) |
+
+Luồng nghiệp vụ phác thảo:
+
+| Sơ đồ | Ảnh |
+|---|---|
+| As-Is to To-Be Workflow | ![Workflow](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/as_is_to_be_workflow.svg) |
+| Submission Workflow | ![Submission](../final-exam/preparation/3_Architecture_PoC_Prototype/printouts/Q7/submission_workflow.svg) |
+
+## 8. Phân biệt bản mẫu và sản phẩm
 
 Bản mẫu SVG thể hiện cấu trúc và luồng, không phải ảnh chụp hệ thống chạy. Khi có giao diện thực tế, nhóm phải in ảnh có build/commit và môi trường, so sánh với bản mẫu, ghi khác biệt và phản hồi. Kết quả đánh giá bản mẫu được cập nhật vào [Backlog](04-product-backlog.md), [SRS](04-software-requirements.md), [Kế hoạch kiểm thử](20-test-plan.md) và [Bài học kinh nghiệm](21-lessons-learned.md).
