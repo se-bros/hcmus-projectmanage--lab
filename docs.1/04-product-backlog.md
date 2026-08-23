@@ -543,3 +543,10 @@ Các chức năng đã nêu trong phương án cạnh tranh hoặc tài liệu k
 - [Yêu cầu phần mềm](04-software-requirements.md)
 - [Tài liệu kiến trúc phần mềm](05-software-architecture.md)
 - [Nghiên cứu tính khả thi](08-feasibility-study.md)
+- [Hướng dẫn sử dụng hệ thống](04-user-guide.md)
+
+## 8. Tài liệu nộp kèm khi thi vấn đáp (Câu 4)
+
+Theo yêu cầu đề thi Câu 4, sinh viên nộp kèm:
+1. Bản in tài liệu **Yêu cầu phần mềm / Product Backlog** (file này hoặc [04-software-requirements.md](04-software-requirements.md)).
+2. Bản in tài liệu **Hướng dẫn sử dụng hệ thống** của nhóm: [04-user-guide.md](04-user-guide.md) (`HCMUS-LDMS-UG`).

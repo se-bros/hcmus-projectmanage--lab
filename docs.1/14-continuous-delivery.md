@@ -88,6 +88,10 @@ Kịch bản CD: [`.github/workflows/cd.yml`](../.github/workflows/cd.yml) — c
 
 Email Brevo gửi tự động sau khi deploy thành công, kèm live URL.
 
+### 6.4. Hướng dẫn triển khai hệ thống cho kỹ sư vận hành
+
+Tài liệu Deployment Guide của nhóm: [`07-deployment-guide.md`](../docs/03-execution-monitoring/07-deployment-guide.md) (Hướng dẫn triển khai hệ thống cho kỹ sư vận hành).
+
 ## 7. Trạng thái triển khai
 
 | Hạng mục | Trạng thái hiện tại |

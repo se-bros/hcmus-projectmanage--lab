@@ -104,13 +104,18 @@ Kịch bản build chính: [`.github/workflows/ci.yml`](../.github/workflows/ci.
 
 Email được gửi tự động qua Brevo khi push lên `main`, kèm trạng thái từng job.
 
-### 7.4. Evidence chưa liên kết
+### 7.4. Hướng dẫn cài đặt công cụ và biên dịch mã nguồn cho nhà phát triển
+
+Tài liệu Developer Guide của nhóm: [`06-developer-guide.md`](../docs/03-execution-monitoring/06-developer-guide.md) (Hướng dẫn cài đặt công cụ và biên dịch mã nguồn hệ thống cho máy tính của nhà phát triển).
+
+### 7.5. Evidence chưa liên kết
 
 | Evidence cần nộp | Trạng thái |
 |---|---|
 | Bản in `.github/workflows/ci.yml` | ✅ Có nguồn trong repository |
 | GitHub Actions run cho backend/frontend | ✅ Đã có ảnh chụp (`CI-pass.png`) |
 | Email thông báo kết quả | ✅ Đã có ảnh chụp (`Mail.png`) |
+| Hướng dẫn cài đặt và biên dịch | ✅ Có tài liệu Developer Guide (`06-developer-guide.md`) |
 | Pull Request có checks và review | Chưa liên kết — cần screenshot PR cụ thể |
 | Branch protection/rule set | Chưa xác minh |
 

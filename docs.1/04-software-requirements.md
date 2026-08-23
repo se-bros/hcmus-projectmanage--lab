@@ -223,3 +223,9 @@ Yêu cầu được quản lý theo Kanban. Khi có đề xuất thay đổi, nh
 - [Sổ đăng ký rủi ro](18-risk-management-plan.md)
 - [Kế hoạch quản lý chất lượng](19-quality-management-plan.md)
 - [Kế hoạch kiểm thử và UAT](20-test-plan.md)
+
+## 11. Tài liệu nộp kèm khi thi vấn đáp (Câu 4)
+
+Theo yêu cầu đề thi Câu 4, sinh viên nộp kèm:
+1. Bản in tài liệu **Yêu cầu phần mềm** (file này hoặc [04-product-backlog.md](04-product-backlog.md)).
+2. Bản in tài liệu **Hướng dẫn sử dụng hệ thống** của nhóm: [04-user-guide.md](04-user-guide.md) (`HCMUS-LDMS-UG`).
