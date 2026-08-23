@@ -238,3 +238,35 @@ Các ô chưa chọn phản ánh chưa có record kiểm chứng, không phải 
 | Production decision | Chưa thuộc MVP | Sponsor/owner có thẩm quyền | Nhóm kỹ thuật |
 
 Nguồn liên quan: [Architecture](05-software-architecture.md), [SRS](04-software-requirements.md), [Risk Register](18-risk-management-plan.md), [Quality Plan](19-quality-management-plan.md), [Test/UAT Plan](20-test-plan.md), [SOW](12-statement-of-work.md) và [Decision/ADR](A1-decision-log-and-adr.md).
+
+## Evidence — Bản in kịch bản hạ tầng và cấu hình triển khai
+
+### Infrastructure as Code (Terraform)
+
+| Evidence | Ảnh chụp |
+|---|---|
+| `main.tf` | ![main.tf](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/main-tf.png) |
+| `outputs.tf` | ![outputs.tf](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/outputs-tf.png) |
+| `terraform init` | ![terraform init](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/terraform-init.png) |
+| `terraform plan` | ![terraform plan](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/terraform-plan.png) |
+
+### CI/CD Pipeline cho IaC
+
+| Evidence | Ảnh chụp |
+|---|---|
+| CI Terraform PR checks | ![CI Terraform](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/ci-terraform-pr-checks-passed.png) |
+| CI Terraform Actions Summary | ![CI Summary](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/ci-terraform-actions-summary.png) |
+| CD Terraform Workflow | ![CD Terraform](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/cd-actions-terraform-workflow-summary.png) |
+| CD Email + Live URL | ![CD Email](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q15/cd-brevo-deploy-email-live-url-terraform.png) |
+
+### Hệ thống thư mục hỗ trợ hạ tầng triển khai
+
+Cấu trúc thư mục liên quan trong repository:
+
+- `terraform/` — Terraform configuration files (`main.tf`, `outputs.tf`)
+- `.github/workflows/ci.yml` — CI pipeline (lint + test + terraform validate)
+- `.github/workflows/cd.yml` — CD pipeline (deploy + notify)
+- `scripts/run-prod.sh` — Script chạy production profile
+- `docker-compose.prod.yml` — Docker Compose production profile
+- `scripts/backup-postgres.sh` — Backup PostgreSQL
+- `scripts/backup-minio.sh` — Backup MinIO object storage

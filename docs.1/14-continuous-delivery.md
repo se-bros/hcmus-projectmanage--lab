@@ -68,14 +68,38 @@ Tên biến môi trường và cấu hình schema được tài liệu hóa; gi�
 
 Evidence cần có: workflow/run ID, build/tag, deploy log, cấu hình biến theo tên, migration, smoke report, approval, rollback record nếu có và email thông báo thực tế. Hiện bộ hồ sơ chưa có run ID/deploy log/email nên không đánh dấu Đạt.
 
-## 6. Trạng thái triển khai
+## 6. Evidence — Bản in kịch bản triển khai và thông báo kết quả
+
+### 6.1. Kịch bản triển khai (Deployment Scripts)
+
+Kịch bản CD: [`.github/workflows/cd.yml`](../.github/workflows/cd.yml) — có sẵn trong repository.
+
+### 6.2. GitHub Actions CD — Kết quả triển khai thực tế
+
+| Evidence | Ảnh chụp |
+|---|---|
+| CD Workflow Deploy | ![CD Workflow](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q14/cd-workflow-deploy.png) |
+| CD Actions Terraform Summary | ![Terraform Summary](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q14/cd-actions-terraform-workflow-summary.png) |
+| Deploy Live URL | ![Live URL](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q14/cd-deploy-live-url.png) |
+
+### 6.3. Email thông báo kết quả triển khai
+
+![CD Email](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q14/cd-brevo-deploy-email-live-url-terraform.png)
+
+Email Brevo gửi tự động sau khi deploy thành công, kèm live URL.
+
+### 6.4. Hướng dẫn triển khai hệ thống cho kỹ sư vận hành
+
+Tài liệu Deployment Guide của nhóm: [`07-deployment-guide.md`](../docs/03-execution-monitoring/07-deployment-guide.md) (Hướng dẫn triển khai hệ thống cho kỹ sư vận hành).
+
+## 7. Trạng thái triển khai
 
 | Hạng mục | Trạng thái hiện tại |
 |---|---|
 | Docker Compose local | Có cấu hình trong repository; chưa xác minh bằng lần chạy trong tài liệu này |
-| CI | Có workflow; chưa liên kết run evidence |
-| CD workflow tự động | Chưa thấy cấu hình riêng trong repository |
-| Demo Vercel/Render/Neon/R2 | Kiến trúc dự kiến; chưa có smoke evidence trong `docs.1` |
+| CI | ✅ Có workflow và evidence run |
+| CD workflow tự động | ✅ Đã có `cd.yml` và evidence triển khai |
+| Demo Vercel/Render/Neon/R2 | ✅ Có live URL evidence |
 | Production deployment | Ngoài phạm vi |
 
 Tài liệu liên quan: [CI](13-continuous-integration.md), [DevOps và vận hành](15-devops-and-operations.md), [Quality Plan](19-quality-management-plan.md), [Test Plan](20-test-plan.md) và [Architecture](05-software-architecture.md).

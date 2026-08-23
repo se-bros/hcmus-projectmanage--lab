@@ -213,3 +213,29 @@ Nguồn yêu cầu: [SRS](04-software-requirements.md), [Backlog](04-product-bac
 | QA Lead | Nguyễn Quang Thái | Chờ xem xét kế hoạch | Chưa xác nhận |
 | Project Manager | Mạch Quốc Tấn | Chờ xem xét kế hoạch | Chưa xác nhận |
 | Đại diện nghiệp vụ Thư viện | Chưa chỉ định bằng tên | Chờ duyệt UAT | Chưa xác nhận |
+
+## Evidence — Bản in minh chứng kiểm thử
+
+### Kết quả chạy Unit Tests
+
+![Unit Test Results](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q20/run-test.png)
+
+Ảnh chụp terminal output khi chạy `pytest -v` trên backend, hiển thị danh sách test pass/fail.
+
+### Giao diện cấu hình Coding Standards
+
+Tham chiếu cùng tài liệu với Câu 19: [`03_coding_standards_and_linter_config.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/03_coding_standards_and_linter_config.md)
+
+CI pipeline chặn merge tự động khi Ruff (Python) hoặc Oxlint (TypeScript) phát hiện vi phạm.
+
+### Biên bản thanh tra mã nguồn (Code Inspection)
+
+Tham chiếu cùng tài liệu với Câu 19: [`01_code_inspection_record_pr41.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/01_code_inspection_record_pr41.md)
+
+PR #41 — `feat: highlight and note in reading books (LDMS-021)`, 27 files, APPROVED & MERGED.
+
+### Biên bản phản hồi khách hàng (UAT Feedback)
+
+Tham chiếu cùng tài liệu với Câu 19: [`02_uat_feedback_record.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/02_uat_feedback_record.md)
+
+5/5 kịch bản UAT đạt, điểm trung bình 4.6/5 từ Chuyên viên Thư viện ĐHKHTN.
