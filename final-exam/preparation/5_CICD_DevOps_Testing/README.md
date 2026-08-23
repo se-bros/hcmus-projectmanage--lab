@@ -48,7 +48,7 @@
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
 - **Tài liệu đối chiếu:** GitFlow §8.2, `.github/workflows/ci.yml`, Developer Guide.
-- **Từ khóa:** PR vào `main`/`develop`, Ruff, ESLint, Pytest (~141), Vitest, gating, Brevo notify khi push `main`.
+- **Từ khóa:** PR vào `main`/`develop`, Ruff, ESLint, Pytest (~141), Vitest, gating, publish Docker image lên Docker Hub, Brevo notify khi push `main`.
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -56,26 +56,30 @@
 
 ```mermaid
 flowchart TD
-    Dev["Dev: feature/*"] -->|Pull Request| GH["GitHub Repo<br/>main / develop"]
+    Dev["Dev: feature/*"] -->|Pull Request / Push| GH["GitHub Repo<br/>main / develop / release/** / hotfix/**"]
     GH --> BE["Job backend<br/>uv + Ruff + Pytest"]
     GH --> FE["Job frontend<br/>npm lint/build/test"]
-    BE --> Gate{Cả hai xanh?}
+    GH --> TF["Job terraform<br/>fmt + validate"]
+    BE --> Gate{Tất cả job xanh?}
     FE --> Gate
+    TF --> Gate
     Gate -->|Fail| Block["Chặn merge"]
     Gate -->|Pass| Merge["Cho phép merge"]
+    BE -->|push main / release/**| Publish["Job publish-backend-image<br/>docker build + push"]
+    Publish --> Hub[("Docker Hub<br/>anhnguyen835/hcmus-ldms-api<br/>tag :latest + :sha")]
     Merge -->|push main| Mail["Job notify<br/>Brevo email"]
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
 - **Giải thích luồng hoạt động CI:**
-  _Trả lời:_ Nhóm theo GitFlow. Khi mở PR vào `main` hoặc `develop` (hoặc push các nhánh `main`/`develop`/`release/**`/`hotfix/**`), GitHub Actions chạy file `.github/workflows/ci.yml`. Hai job song song: **backend** (`uv sync` → `ruff format --check` → `ruff check` → `pytest`) và **frontend** (`npm ci` → `lint` → `build` → `npm test` / Vitest). Chỉ khi cả hai thành công thì PR mới nên được merge. Riêng sau **push lên `main`**, job `notify` (luôn chạy `if: always()` khi điều kiện nhánh đúng) gọi `app.scripts.send_merge_notification` gửi email HTML qua Brevo tới danh sách trong `.github/ci-notify-recipients.txt`, kèm trạng thái từng job.
+  _Trả lời:_ Nhóm theo GitFlow. Khi mở PR vào `main` hoặc `develop` (hoặc push các nhánh `main`/`develop`/`release/**`/`hotfix/**`), GitHub Actions chạy file `.github/workflows/ci.yml`. Ba job song song: **backend** (`uv sync` → `ruff format --check` → `ruff check` → `pytest`), **frontend** (`npm ci` → `lint` → `build` → `npm test` / Vitest), và **terraform** (`fmt -check` → `init -backend=false` → `validate`). Chỉ khi cả ba thành công thì PR mới nên được merge. Riêng khi **push thật sự** (không phải PR) lên `main` hoặc `release/**` và job `backend` đã pass, job **`publish-backend-image`** build image từ `src/backend/Dockerfile`, login Docker Hub bằng secret `DOCKERHUB_TOKEN`, rồi push 2 tag: `anhnguyen835/hcmus-ldms-api:latest` và `:<commit-sha>` — đây chính là **artifact** mà CD sẽ dùng để deploy. Link Docker Hub + digest được ghi vào GitHub Actions Step Summary để dễ tra cứu. Sau **push lên `main`**, job `notify` gọi `app.scripts.send_merge_notification` gửi email HTML qua Brevo tới danh sách trong `.github/ci-notify-recipients.txt`, kèm trạng thái từng job.
 
 - **Danh mục các công cụ nhóm đã sử dụng cho từng khâu:**
-  _Trả lời:_ VCS/PR: GitHub. Orchestration: GitHub Actions. Python lint/format: Ruff. Backend test: Pytest + FastAPI TestClient. Frontend: Node 20, ESLint, Vite build, Vitest. Thông báo: Brevo API + secrets `BREVO_API_KEY`, `BREVO_SENDER_EMAIL`. Hướng dẫn cài/biên dịch: `docs/03-execution-monitoring/06-developer-guide.md` và `./scripts/run.sh`.
+  _Trả lời:_ VCS/PR: GitHub. Orchestration: GitHub Actions. Python lint/format: Ruff. Backend test: Pytest + FastAPI TestClient. Frontend: Node 20, ESLint, Vite build, Vitest. IaaC lint: `terraform fmt`/`validate`. Đóng gói & phân phối artifact: Docker + Docker Hub (`docker/login-action`, `docker/build-push-action`). Thông báo: Brevo API + secrets `BREVO_API_KEY`, `BREVO_SENDER_EMAIL`. Hướng dẫn cài/biên dịch: `docs/03-execution-monitoring/06-developer-guide.md` và `./scripts/run.sh`.
 
 - **Tại sao cần sử dụng hệ thống Tích hợp liên tục cho dự án?**
-  _Trả lời:_ Sáu thành viên (và AI coding) merge song song; OCR/auth/publish dễ regression. Không có CI thì lỗi format/test chỉ lộ khi ai đó chạy local — muộn và khó quy trách nhiệm. CI tạo **cổng chung**: cùng bộ Ruff/Pytest/Vitest trên `ubuntu-latest` trước khi vào `develop`/`main`. Email khi merge `main` giúp cả nhóm biết bản ổn định vừa vào nhánh production-ready mà không cần mở tab Actions mỗi ngày. Điều này khớp DoD “Code merge qua PR” trong team contract.
+  _Trả lời:_ Sáu thành viên (và AI coding) merge song song; OCR/auth/publish dễ regression. Không có CI thì lỗi format/test chỉ lộ khi ai đó chạy local — muộn và khó quy trách nhiệm. CI tạo **cổng chung**: cùng bộ Ruff/Pytest/Vitest trên `ubuntu-latest` trước khi vào `develop`/`main`. Ngoài ra CI còn là điểm **sinh artifact** duy nhất (Docker image) để CD/production tiêu thụ, tránh mỗi người build image thủ công khác nhau. Email khi merge `main` giúp cả nhóm biết bản ổn định vừa vào nhánh production-ready mà không cần mở tab Actions mỗi ngày. Điều này khớp DoD “Code merge qua PR” trong team contract.
 
 ---
 
@@ -85,8 +89,8 @@ flowchart TD
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
-- **Đối chiếu:** `.github/workflows/cd.yml`, `scripts/run-prod.sh`, `docker-compose.prod.yml`, `docs/03-execution-monitoring/07-deployment-guide.md`.
-- **Từ khóa:** Continuous Delivery tự động qua GitHub Actions (`.github/workflows/cd.yml`); xuất URL live (`https://hcmus-projectmanage-lab.vercel.app`); gửi email thông báo Brevo sau khi deploy; hỗ trợ triển khai on-premise one-click qua `./scripts/run-prod.sh` (`docker-compose.prod.yml`).
+- **Đối chiếu:** `.github/workflows/cd.yml`, `.github/workflows/ci.yml` (nguồn artifact), `scripts/run-prod.sh`, `docker-compose.prod.yml`, `docs/03-execution-monitoring/07-deployment-guide.md`.
+- **Từ khóa:** CD chạy **tuần tự sau CI** qua trigger `workflow_run` (không còn chạy song song); `docker pull` xác minh artifact từ Docker Hub; deploy thật diễn ra **ngoài** GitHub Actions (Render auto-pull image, Vercel auto-deploy frontend); gửi email thông báo Brevo; hỗ trợ triển khai on-premise one-click qua `./scripts/run-prod.sh` (`docker-compose.prod.yml`).
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -94,24 +98,35 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Git["Push main / release/* / tag v*"] --> CD["GitHub Actions CD<br/>.github/workflows/cd.yml"]
-    CD --> Build["Job build-verify<br/>Build frontend & verify"]
-    Build --> Deploy["Job deploy<br/>Deploy môi trường target"]
-    Deploy --> URL["Xuất Live URL<br/>hcmus-projectmanage-lab.vercel.app"]
+    CIrun["CI hoàn tất<br/>ci.yml (push main/release/**)"] -->|conclusion == success| Trigger["workflow_run trigger"]
+    Manual["workflow_dispatch<br/>(deploy thủ công)"] --> Trigger
+    Trigger --> CD["GitHub Actions CD<br/>.github/workflows/cd.yml"]
+    CD --> Build["Job build-verify<br/>Rebuild frontend"]
+    CD --> Infra["Job infra-verify<br/>terraform validate"]
+    Build --> Deploy["Job deploy"]
+    Infra --> Deploy
     Deploy --> Mail["Job notify<br/>send_deploy_notification.py (Brevo)"]
     Mail --> Inbox["Email gửi đến tất cả thành viên<br/>(Live URL + Commit + Job status)"]
+
+    subgraph Ngoai["Deploy thực tế — nằm NGOÀI GitHub Actions"]
+        Render["Render: Deploy from registry<br/>Auto-poll tag :latest -> tự pull + restart"]
+        Vercel["Vercel: Git integration<br/>tự build & deploy frontend"]
+    end
+    Hub[("Docker Hub<br/>image do CI push")] -.->|poll| Render
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
 - **Giải thích luồng hoạt động CD:**
-  _Trả lời:_ Khi có sự kiện push vào `main`, nhánh `release/**`, hoặc gắn thẻ phiên bản `v*` (hoặc kích hoạt thủ công qua `workflow_dispatch`), GitHub Actions khởi chạy `.github/workflows/cd.yml`. Pipeline trải qua 3 giai đoạn: (1) **Build & Verify** đóng gói frontend tĩnh và kiểm tra tính toàn vẹn; (2) **Deploy** tiến hành phát hành lên môi trường đích (Production/Staging), xuất Live URL (`https://hcmus-projectmanage-lab.vercel.app`); (3) **Notify** kích hoạt script `send_deploy_notification.py` gửi email Brevo tới toàn bộ nhóm trong `.github/ci-notify-recipients.txt` chứa Live URL và trạng thái deploy. Ngoài ra, nhóm duy trì script one-click `./scripts/run-prod.sh` cho môi trường máy chủ on-premise / Docker cục bộ.
+  _Trả lời:_ `cd.yml` **không còn** trigger song song trên `push` như trước — giờ dùng `workflow_run: workflows: ["CI"], types: [completed]`, nghĩa là CD chỉ khởi chạy **sau khi CI hoàn tất**, và các job chính (`build-verify`, `infra-verify`) có điều kiện `github.event.workflow_run.conclusion == 'success'` nên tự động **skip toàn bộ nếu CI fail**. Ngoài ra vẫn giữ `workflow_dispatch` để deploy thủ công, chọn môi trường Production/Staging. Vì trigger qua `workflow_run` không tự kế thừa đúng SHA/branch của commit gây ra CI, pipeline phải dùng `github.event.workflow_run.head_sha` / `head_branch` (thay vì `github.sha`/`github.ref` mặc định) ở mọi bước checkout, `docker pull`, và tên môi trường — nếu không sẽ deploy nhầm commit.
+  Pipeline có 4 job: (1) **build-verify** rebuild frontend để double-check; (2) **infra-verify** re-validate Terraform; (3) **deploy**: checkout đúng commit CI đã build, chạy `docker pull anhnguyen835/hcmus-ldms-api:<sha>` để **xác minh** image mà CI vừa push lên Docker Hub thực sự pull được, rồi ghi link Docker Hub + tên image vào GitHub Step Summary; (4) **notify** gọi `send_deploy_notification.py` gửi email Brevo tới `.github/ci-notify-recipients.txt` kèm Live URL và trạng thái từng job.
+  **Điểm quan trọng:** job `deploy` trong `cd.yml` **không tự SSH hay tự đẩy code vào server** — nó chỉ verify + thông báo. Deploy thật sự diễn ra **bên ngoài GitHub Actions**: (a) **Backend** — Render được cấu hình "Deploy an existing image from a registry" trỏ tới `anhnguyen835/hcmus-ldms-api:latest` với Auto-Deploy bật, nên Render tự poll Docker Hub và tự pull khi phát hiện digest mới (mô hình **pull-based CD**, artifact do CI publish); (b) **Frontend** — Vercel dùng Git integration để tự build & deploy khi có push mới (độc lập với `cd.yml`). Ngoài ra, nhóm còn duy trì script one-click `./scripts/run-prod.sh` cho môi trường máy chủ on-premise / Docker cục bộ, không phụ thuộc Render/Vercel.
 
 - **Danh mục các công cụ nhóm đã sử dụng:**
-  _Trả lời:_ GitHub Actions (`cd.yml`); Node 20 / Vite build; Brevo API (gửi email thông báo triển khai); Docker & Docker Compose (`docker-compose.prod.yml`); Nginx reverse proxy; hướng dẫn vận hành [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
+  _Trả lời:_ GitHub Actions (`cd.yml`, trigger `workflow_run`); Docker Hub (artifact registry, image do `ci.yml` push); Node 20 / Vite build (verify); Terraform (verify); Brevo API (gửi email thông báo triển khai); Render (deploy backend, pull-based từ Docker Hub); Vercel (deploy frontend); Docker & Docker Compose (`docker-compose.prod.yml`) cho phương án on-premise; hướng dẫn vận hành [`07-deployment-guide.md`](../../../docs/03-execution-monitoring/07-deployment-guide.md).
 
 - **Tại sao cần sử dụng hệ thống Chuyển giao liên tục cho dự án?**
-  _Trả lời:_ Tự động hóa khâu đưa bản phát hành mới ra môi trường live ngay khi code được merge hoặc tạo release tag. Việc xuất Live URL và gửi email lập tức cho toàn đội ngũ giúp các bên liên quan (Product Owner, QA/Tester, Developers) kiểm thử nghiệm thu (UAT) ngay mà không cần can thiệp thủ công hoặc chờ đợi kỹ sư DevOps dựng môi trường.
+  _Trả lời:_ Tách bạch rõ ràng CI (build + test + publish artifact) khỏi CD (verify + trigger delivery) giúp CD **không bao giờ chạy trên code chưa qua kiểm thử** — CD chỉ kích hoạt khi CI đã pass, loại bỏ rủi ro deploy song song với lúc image còn đang build. Việc xuất Live URL và gửi email lập tức cho toàn đội ngũ giúp các bên liên quan (Product Owner, QA/Tester, Developers) kiểm thử nghiệm thu (UAT) ngay mà không cần can thiệp thủ công hoặc chờ đợi kỹ sư DevOps dựng môi trường.
 
 ---
 
@@ -122,7 +137,7 @@ flowchart TD
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
 
 - **Đối chiếu:** `terraform/`, `.github/workflows/ci.yml`, `.github/workflows/cd.yml`, `docker-compose.prod.yml`, `scripts/`.
-- **Từ khóa:** **$\text{DevOps} = \text{IaaC (Terraform)} + \text{CI (GitHub Actions)} + \text{CD (GitHub Actions)}$**; 8 giai đoạn DevOps; Dev (`run.sh`) vs Prod (`run-prod.sh` / Terraform); Giám sát Prometheus/Grafana; backup `pg_dump`/`mc mirror`.
+- **Từ khóa:** **$\text{DevOps} = \text{IaaC (Terraform)} + \text{CI (GitHub Actions, publish artifact)} + \text{CD (GitHub Actions, verify)} + \text{Deploy (Render/Vercel, pull-based)}$**; 8 giai đoạn DevOps; Dev (`run.sh`) vs Prod (`run-prod.sh` / Terraform); Giám sát Prometheus/Grafana; backup `pg_dump`/`mc mirror`. **Lưu ý:** Terraform chỉ provision hạ tầng phụ trợ (DB/storage/monitoring), **không** quản lý container API/Web — 2 service này deploy trên Render/Vercel.
 
 ### 2. Không gian tự biên soạn câu trả lời:
 
@@ -130,38 +145,40 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph IaaC["IaaC (Terraform)"]
-        TF["terraform apply<br/>terraform/"] --> Infra["Provisioning Mạng,<br/>Volume, DB, MinIO, Grafana"]
+    subgraph IaaC["IaaC (Terraform) — hạ tầng phụ trợ"]
+        TF["terraform apply<br/>terraform/"] --> Infra["Postgres, MinIO, MailHog,<br/>Prometheus, Grafana<br/>(container local/VM)"]
     end
-    subgraph CICD["CI/CD Pipeline (GitHub Actions)"]
+    subgraph CICD["CI/CD Pipeline (GitHub Actions, tuần tự)"]
         Plan["Plan<br/>Backlog"] --> Code["Code<br/>GitFlow"]
-        Code --> Test["Test (CI)<br/>Ruff + Pytest"]
-        Test --> Release["Release<br/>tag / main"]
-        Release --> Deploy["Deploy (CD)<br/>Build + Live URL"]
+        Code --> Test["Test (CI)<br/>Ruff + Pytest + ESLint + Vitest"]
+        Test --> Publish["Publish (CI)<br/>docker push -> Docker Hub"]
+        Publish --> CDTrig["CD trigger<br/>workflow_run — chỉ khi CI pass"]
+        CDTrig --> Verify["Verify (CD)<br/>rebuild FE + terraform validate + docker pull"]
     end
-    subgraph Ops["Operate & Monitor"]
-        Deploy --> Operate["Operate<br/>Stack Docker"]
-        Operate --> Monitor["Monitor<br/>Brevo + Prometheus/Grafana"]
+    subgraph Ops["Operate & Monitor (ngoài GitHub Actions)"]
+        Verify --> Operate["Operate<br/>Render auto-pull image (BE)<br/>Vercel auto-deploy (FE)"]
+        Operate --> Monitor["Monitor<br/>Brevo notify + Prometheus/Grafana"]
         Monitor --> Plan
     end
-    Infra -. Cung cấp hạ tầng .-> Deploy
+    Infra -. Cung cấp DB/Storage cho .-> Operate
 ```
 
 #### B. Dàn ý giải thích trên giấy A4 & Trả lời các câu hỏi
 
-- **Chi tiết các thành phần và công cụ tương ứng (DevOps = IaaC + CI + CD):**
-  _Trả lời:_ Mô hình DevOps của nhóm hoàn chỉnh 3 trụ cột:
-  1. **IaaC (Infrastructure as Code)**: Dùng **Terraform** (`terraform/main.tf`, `variables.tf`, `outputs.tf`) tự động khai báo hạ tầng mạng (`ldms_network`), persistent volume (`postgres_data`, `minio_data`), cấu hình CSDL PostgreSQL 16, MinIO S3, MailHog và cụm Prometheus/Grafana.
-  2. **CI (Continuous Integration)**: GitHub Actions (`ci.yml`) tự động hóa kiểm thử tĩnh (Ruff, ESLint) và kiểm thử động (Pytest 141 tests, Vitest) trên mọi Pull Request.
-  3. **CD (Continuous Delivery)**: GitHub Actions (`cd.yml`) tự động build bundle, phát hành ra Live URL (`https://hcmus-projectmanage-lab.vercel.app`) và gửi email thông báo Brevo cho toàn nhóm.
+- **Chi tiết các thành phần và công cụ tương ứng (DevOps = IaaC + CI + CD + Deploy):**
+  _Trả lời:_ Mô hình DevOps của nhóm gồm 4 mảnh ghép:
+  1. **IaaC (Infrastructure as Code)**: Dùng **Terraform** (`terraform/main.tf`, `variables.tf`, `outputs.tf`), provider `kreuzwerker/docker`, khai báo hạ tầng mạng (`ldms_network`), persistent volume (`postgres_data`, `minio_data`, `grafana_data`), và 5 container **hạ tầng phụ trợ**: PostgreSQL 16, MinIO, MailHog, Prometheus, Grafana. Terraform **không** tạo container cho backend API hay frontend Web — 2 service ứng dụng này nằm ngoài phạm vi Terraform, deploy riêng qua Render/Vercel.
+  2. **CI (Continuous Integration)**: GitHub Actions (`ci.yml`) tự động hóa kiểm thử tĩnh (Ruff, ESLint), kiểm thử động (Pytest 141 tests, Vitest), validate Terraform, và **publish artifact**: build + push Docker image backend lên Docker Hub (`anhnguyen835/hcmus-ldms-api`) khi push vào `main`/`release/**`.
+  3. **CD (Continuous Delivery)**: GitHub Actions (`cd.yml`), trigger **tuần tự sau khi CI pass** (`workflow_run`, không còn song song), rebuild frontend + re-validate Terraform + `docker pull` xác minh image, rồi gửi email thông báo Brevo cho toàn nhóm.
+  4. **Deploy thực tế (pull-based, ngoài GitHub Actions)**: **Render** cấu hình deploy từ registry, auto-poll tag `:latest` trên Docker Hub và tự pull khi có digest mới cho backend; **Vercel** dùng Git integration tự build/deploy frontend. Đây là lý do CD job `deploy` chỉ cần "verify" chứ không cần tự SSH/push.
 
 - **Tại sao cần sử dụng quy trình DevOps cho dự án?**
-  _Trả lời:_ Tự động hóa toàn diện từ mã nguồn, kiểm thử, cấp phát hạ tầng (IaaC) đến chuyển giao (CD). Loại bỏ sai sót thủ công, đảm bảo hạ tầng tái lập được 100% trên máy bất kỳ (`terraform apply` / `./scripts/run-prod.sh`), và phát hiện lỗi hồi quy sớm qua CI.
+  _Trả lời:_ Tự động hóa toàn diện từ mã nguồn, kiểm thử, đóng gói artifact (Docker image), cấp phát hạ tầng (IaaC) đến chuyển giao (CD) và vận hành pull-based (Render/Vercel). Loại bỏ sai sót thủ công, đảm bảo hạ tầng phụ trợ tái lập được 100% trên máy bất kỳ (`terraform apply` / `./scripts/run-prod.sh`), và phát hiện lỗi hồi quy sớm qua CI trước khi artifact được publish.
 
 - **Giải thích quy trình phát triển, triển khai và vận hành đồng thời các môi trường (Dev vs Prod):**
   _Trả lời:_
   - **Dev:** `scripts/run.sh` + SQLite/Docker backend + Vite dev server (`:5173`) phục vụ lập trình nhanh, bật mock auth.
-  - **Production:** Quản trị qua Terraform IaaC (`terraform/`) hoặc one-click `run-prod.sh` + `docker-compose.prod.yml` (Nginx TLS `:8080`/`:8443`, PostgreSQL, MinIO, MailHog, Grafana `:3000`). Bản live web tự động đồng bộ qua GitHub Actions CD.
+  - **Production:** Hạ tầng phụ trợ (DB/storage/monitoring) quản trị qua Terraform IaaC (`terraform/`) hoặc one-click `run-prod.sh` + `docker-compose.prod.yml` (Nginx TLS `:8080`/`:8443`, PostgreSQL, MinIO, MailHog, Grafana `:3000`) cho phương án on-premise. Bản live web (Render backend + Vercel frontend) tự động cập nhật theo mô hình pull-based: CI publish artifact lên Docker Hub → CD verify → Render/Vercel tự pull & deploy.
 
 ---
 
