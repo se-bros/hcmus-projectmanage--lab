@@ -161,3 +161,7 @@ Nhóm dùng Trello với label thời gian và due date cho từng card. Bản i
 ### Báo cáo tình trạng dự án tuần trước giữa kỳ
 
 Dùng [Nhật ký dự án](17-project-log.md) — bao gồm effort log, completion register và chỉ số Kanban — làm báo cáo tình trạng dự án. Bản in project-log.md kết hợp burndown chart thể hiện tiến độ so với kế hoạch.
+
+### Bản cập nhật tài liệu Kế hoạch dự án theo dữ liệu thực tiễn
+
+Bản cập nhật kế hoạch dự án: [11-project-plan.md](11-project-plan.md) (`HCMUS-LDMS-PLAN`), được cập nhật đường cơ sở và WBS/lịch trình theo dữ liệu thực tế từ Kanban board và Project Log.
