@@ -68,6 +68,11 @@ jobs:
           echo "Deploying to environment: $ENV"
           echo "Frontend deployment URL: https://hcmus-projectmanage-lab.vercel.app"
           echo "Backend image pulled from Docker Hub; Render will auto-pull the updated ':latest' tag."
+      - name: Log image link
+        run: |
+          echo "### Backend image deployed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Docker Hub: https://hub.docker.com/r/${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api/tags" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Image: \`${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
 
   notify:
     name: Send CD Email Notification
