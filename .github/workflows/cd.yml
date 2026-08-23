@@ -61,7 +61,7 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - name: Pull backend image from Docker Hub
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}
+        run: docker pull anhnguyen835/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}
       - name: Deploy to Target Environment
         run: |
           ENV="${{ github.event.inputs.environment || ((github.event.workflow_run.head_branch || github.ref_name) == 'main' && 'production' || 'staging') }}"
@@ -71,8 +71,8 @@ jobs:
       - name: Log image link
         run: |
           echo "### Backend image deployed" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Docker Hub: https://hub.docker.com/r/${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api/tags" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Image: \`${{ secrets.DOCKERHUB_USERNAME }}/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Docker Hub: https://hub.docker.com/r/anhnguyen835/hcmus-ldms-api/tags" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Image: \`anhnguyen835/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
 
   notify:
     name: Send CD Email Notification
