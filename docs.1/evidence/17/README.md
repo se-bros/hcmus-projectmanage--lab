@@ -8,11 +8,11 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Nhật ký dự án (Project Log / Time Tracking)** | `Tài liệu in A4` | [17-project-log.pdf](./17-project-log.pdf) | [17-project-log.pdf](../../pdf/17-project-log.pdf) | Ghi nhận công việc thực tế, thời gian hoàn thành (Actual Effort), nhật ký cuộc họp và chỉ số luồng qua 11 tuần. |
-| 2 | **Bản in giao diện bảng Kanban theo dõi công việc thực tế** | `Ảnh chụp màn hình Kanban` | [trello_kanban_board.png](./trello_kanban_board.png) | N/A | Ảnh chụp bảng Kanban với đầy đủ các cards công việc, phân công người thực hiện và trạng thái di chuyển cột. |
-| 3 | **Bản in biểu đồ Burndown Chart toàn bộ dự án** | `Biểu đồ tiến độ` | [burndown_chart.png](./burndown_chart.png) | N/A | Biểu đồ Burn-down trực quan thể hiện đường tiến độ lý tưởng (Ideal Line) so với đường tiến độ thực tế (Actual Line). |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                               | Loại tài liệu              | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF                                 | Mô tả chi tiết                                                                                                       |
+| :-: | --------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Nhật ký dự án (Project Log / Time Tracking)** | `Tài liệu in A4`           | [17-project-log.pdf](./17-project-log.pdf)           | [17-project-log.pdf](../../pdf/17-project-log.pdf) | Ghi nhận công việc thực tế, thời gian hoàn thành (Actual Effort), nhật ký cuộc họp và chỉ số luồng qua 11 tuần.      |
+|  2  | **Bản in giao diện bảng Kanban theo dõi công việc thực tế**     | `Ảnh chụp màn hình Kanban` | [trello_kanban_board.png](./trello_kanban_board.png) | N/A                                                | Ảnh chụp bảng Kanban với đầy đủ các cards công việc, phân công người thực hiện và trạng thái di chuyển cột.          |
+|  3  | **Bản in biểu đồ Burndown Chart toàn bộ dự án**                 | `Biểu đồ tiến độ`          | [burndown_chart.png](./burndown_chart.png)           | N/A                                                | Biểu đồ Burn-down trực quan thể hiện đường tiến độ lý tưởng (Ideal Line) so với đường tiến độ thực tế (Actual Line). |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

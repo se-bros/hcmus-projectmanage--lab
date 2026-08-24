@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Báo cáo tính khả thi (Feasibility Study Report)** | `Tài liệu in A4` | [08-feasibility-study.pdf](./08-feasibility-study.pdf) | [08-feasibility-study.pdf](../../pdf/08-feasibility-study.pdf) | Đánh giá 8 loại khả thi theo khung TELOS, phân tích chi phí - lợi ích (CBA) và kết luận khả thi có điều kiện. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                   | Loại tài liệu    | Tệp đính kèm tại thư mục này                           | Nguồn tài liệu PDF                                             | Mô tả chi tiết                                                                                                |
+| :-: | ------------------------------------------------------------------- | ---------------- | ------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Báo cáo tính khả thi (Feasibility Study Report)** | `Tài liệu in A4` | [08-feasibility-study.pdf](./08-feasibility-study.pdf) | [08-feasibility-study.pdf](../../pdf/08-feasibility-study.pdf) | Đánh giá 8 loại khả thi theo khung TELOS, phân tích chi phí - lợi ích (CBA) và kết luận khả thi có điều kiện. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

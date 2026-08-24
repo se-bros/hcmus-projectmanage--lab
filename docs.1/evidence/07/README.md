@@ -8,11 +8,11 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in phác thảo giao diện Màn hình Biên tập OCR 2 cột** | `Ảnh chụp giao diện` | [split-screen-editor.png](./split-screen-editor.png) | N/A | Thiết kế biên tập 2 cột: cột trái xem trang scan gốc, cột phải trình soạn thảo văn bản nhận dạng. |
-| 2 | **Bản in phác thảo giao diện Trình đọc sách trực tuyến cho Độc giả** | `Ảnh chụp giao diện` | [web-reader.png](./web-reader.png) | N/A | Giao diện đọc sách EPUB tối ưu trải nghiệm đọc, tìm kiếm toàn văn và mục lục. |
-| 3 | **Bản in Dashboard OCR, Phân quyền RBAC và Lịch sử xử lý** | `Ảnh chụp giao diện` | [dashboard-ocr.png](./dashboard-ocr.png) | N/A | Màn hình quản lý tiến trình số hóa, phân quyền và lịch sử thao tác. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                    | Loại tài liệu        | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF | Mô tả chi tiết                                                                                    |
+| :-: | -------------------------------------------------------------------- | -------------------- | ---------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in phác thảo giao diện Màn hình Biên tập OCR 2 cột**           | `Ảnh chụp giao diện` | [split-screen-editor.png](./split-screen-editor.png) | N/A                | Thiết kế biên tập 2 cột: cột trái xem trang scan gốc, cột phải trình soạn thảo văn bản nhận dạng. |
+|  2  | **Bản in phác thảo giao diện Trình đọc sách trực tuyến cho Độc giả** | `Ảnh chụp giao diện` | [web-reader.png](./web-reader.png)                   | N/A                | Giao diện đọc sách EPUB tối ưu trải nghiệm đọc, tìm kiếm toàn văn và mục lục.                     |
+|  3  | **Bản in Dashboard OCR, Phân quyền RBAC và Lịch sử xử lý**           | `Ảnh chụp giao diện` | [dashboard-ocr.png](./dashboard-ocr.png)             | N/A                | Màn hình quản lý tiến trình số hóa, phân quyền và lịch sử thao tác.                               |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

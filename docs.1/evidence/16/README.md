@@ -8,11 +8,11 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Hợp đồng nhóm (Team Contract)** | `Tài liệu in A4` | [16-team-contract.pdf](./16-team-contract.pdf) | [16-team-contract.pdf](../../pdf/16-team-contract.pdf) | Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên. |
-| 2 | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros** | `Ảnh chụp thực tế` | [group3-photo.png](./group3-photo.png) | N/A | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án. |
-| 3 | **Bản in giao diện hệ thống liên lạc Discord thực tế của nhóm** | `Ảnh chụp màn hình liên lạc` | [discord_communication.png](./discord_communication.png) | N/A | Ảnh chụp không gian trao đổi công việc, thông báo họp và chia sẻ tài liệu trên Discord của nhóm. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                               | Loại tài liệu                | Tệp đính kèm tại thư mục này                             | Nguồn tài liệu PDF                                     | Mô tả chi tiết                                                                                                            |
+| :-: | --------------------------------------------------------------- | ---------------------------- | -------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Hợp đồng nhóm (Team Contract)**               | `Tài liệu in A4`             | [16-team-contract.pdf](./16-team-contract.pdf)           | [16-team-contract.pdf](../../pdf/16-team-contract.pdf) | Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên. |
+|  2  | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros**      | `Ảnh chụp thực tế`           | [group3-photo.png](./group3-photo.png)                   | N/A                                                    | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án.                                                   |
+|  3  | **Bản in giao diện hệ thống liên lạc Discord thực tế của nhóm** | `Ảnh chụp màn hình liên lạc` | [discord_communication.png](./discord_communication.png) | N/A                                                    | Ảnh chụp không gian trao đổi công việc, thông báo họp và chia sẻ tài liệu trên Discord của nhóm.                          |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
