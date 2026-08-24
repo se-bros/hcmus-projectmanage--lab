@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                 | Loại tài liệu    | Tệp đính kèm tại thư mục này                           | Nguồn tài liệu PDF                                             | Mô tả chi tiết                                                                                                                 |
-| :-: | ----------------------------------------------------------------- | ---------------- | ------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-|  1  | **Bản in tài liệu Bản mô tả công việc (Statement of Work - SOW)** | `Tài liệu in A4` | [12-statement-of-work.pdf](./12-statement-of-work.pdf) | [12-statement-of-work.pdf](../../pdf/12-statement-of-work.pdf) | Tài liệu cam kết phạm vi bàn giao, 5 nhóm sản phẩm bàn giao (Deliverables), tiêu chí nghiệm thu và quy trình quản lý thay đổi. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Bản mô tả công việc (Statement of Work - SOW)** | `Tài liệu in A4` | [12-statement-of-work.pdf](./12-statement-of-work.pdf) | [12-statement-of-work.pdf](../../pdf/12-statement-of-work.pdf) | Tài liệu cam kết phạm vi bàn giao, 5 nhóm sản phẩm bàn giao (Deliverables), tiêu chí nghiệm thu và quy trình quản lý thay đổi. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

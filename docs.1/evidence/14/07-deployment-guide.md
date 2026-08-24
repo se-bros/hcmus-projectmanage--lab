@@ -136,8 +136,8 @@ docker compose -f docker-compose.prod.yml down
 
 ### 4.3 URL sau khi lên (theo output script)
 
-| URL                          | Ý nghĩa       |
-| ---------------------------- | ------------- |
+| URL                        | Ý nghĩa       |
+| -------------------------- | ------------- |
 | `http://localhost:8080`      | Web (HTTP)    |
 | `https://localhost:8443`     | Web (HTTPS)   |
 | `http://localhost:8000`      | API           |

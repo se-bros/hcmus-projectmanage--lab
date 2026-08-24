@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                    | Loại tài liệu    | Tệp đính kèm tại thư mục này                       | Nguồn tài liệu PDF                                         | Mô tả chi tiết                                                                                                                                    |
-| :-: | ---------------------------------------------------- | ---------------- | -------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Ủy nhiệm dự án (Project Charter)** | `Tài liệu in A4` | [03-project-charter.pdf](./03-project-charter.pdf) | [03-project-charter.pdf](../../pdf/03-project-charter.pdf) | Tài liệu phê duyệt chính thức khởi động dự án, xác lập mục tiêu SMART, quyền hạn PM, ma trận RACI 6 thành viên, 6 mốc tiến độ chính (Milestones). |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Ủy nhiệm dự án (Project Charter)** | `Tài liệu in A4` | [03-project-charter.pdf](./03-project-charter.pdf) | [03-project-charter.pdf](../../pdf/03-project-charter.pdf) | Tài liệu phê duyệt chính thức khởi động dự án, xác lập mục tiêu SMART, quyền hạn PM, ma trận RACI 6 thành viên, 6 mốc tiến độ chính (Milestones). |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

@@ -138,14 +138,14 @@ docker compose -f docker-compose.prod.yml down
 
 | URL                        | Ý nghĩa       |
 | -------------------------- | ------------- |
-| http://localhost:8080      | Web (HTTP)    |
-| https://localhost:8443     | Web (HTTPS)   |
-| http://localhost:8000      | API           |
-| http://localhost:8000/docs | OpenAPI       |
-| http://localhost:9003      | MinIO Console |
-| http://localhost:8025      | MailHog       |
-| http://localhost:3000      | Grafana       |
-| http://localhost:9090      | Prometheus    |
+| `http://localhost:8080`      | Web (HTTP)    |
+| `https://localhost:8443`     | Web (HTTPS)   |
+| `http://localhost:8000`      | API           |
+| `http://localhost:8000/docs` | OpenAPI       |
+| `http://localhost:9003`      | MinIO Console |
+| `http://localhost:8025`      | MailHog       |
+| `http://localhost:3000`      | Grafana       |
+| `http://localhost:9090`      | Prometheus    |
 
 Tài khoản demo (seed): xem banner cuối `run-prod.sh` (admin / librarian / reader `@hcmus.edu.vn`).
 
@@ -167,25 +167,36 @@ git checkout <commit-hoặc-tag-trước-đó>
 Để đảm bảo nguyên lý **Infrastructure as Code (IaaC)** chuẩn hóa theo công thức $\text{DevOps} = \text{IaaC} + \text{CI} + \text{CD}$, nhóm cung cấp cấu hình Terraform khai báo toàn bộ tài nguyên:
 
 1. **Khởi tạo và tải Docker provider**:
+
    ```bash
    cd terraform
    terraform init
    ```
+
 2. **Kiểm tra kế hoạch hạ tầng (Execution Plan)**:
+
    ```bash
    terraform plan
    ```
+
    _Output hiển thị 7 tài nguyên được khởi tạo tự động (`docker_network`, `docker_volume`, PostgreSQL, MinIO, MailHog, Prometheus, Grafana)._
+
 3. **Áp dụng hạ tầng**:
+
    ```bash
    terraform apply -auto-approve
    ```
+
 4. **Xem các endpoint đầu ra**:
+
    ```bash
    terraform output
    ```
+
    _Output xuất Live URL, API Docs URL (`:8000/docs`), MinIO Console (`:9003`), Grafana Dashboard (`:3000`)._
+
 5. **Dọn dẹp hạ tầng khi kết thúc**:
+
    ```bash
    terraform destroy -auto-approve
    ```
@@ -243,7 +254,7 @@ Không dùng chung secret yếu / mock auth của dev trên máy coi là product
 
 - [ ] CI trên commit/tag định phát hành đang **xanh**.
 - [ ] Secret / `JWT_SECRET` / mock auth đã rà soát nếu demo gần production.
-- [ ] `./scripts/run-prod.sh` thành công; mở được https://localhost:8443 (hoặc URL máy chủ).
+- [ ] `./scripts/run-prod.sh` thành công; mở được `https://localhost:8443` (hoặc URL máy chủ).
 - [ ] Grafana `:3000` / Prometheus `:9090` phản hồi (xác nhận Monitor).
 - [ ] Đã chạy backup trước thao tác rủi ro trên dữ liệu thật.
 - [ ] Ghi nhận tag Git (ví dụ `v1.0.0-MVP`) trên commit đã deploy.

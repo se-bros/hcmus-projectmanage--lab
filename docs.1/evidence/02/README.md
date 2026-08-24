@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                  | Loại tài liệu    | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF                                           | Mô tả chi tiết                                                                                                                                                   |
-| :-: | ------------------------------------------------------------------ | ---------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Viễn cảnh và phạm vi (Vision & Scope Document)** | `Tài liệu in A4` | [02-vision-and-scope.pdf](./02-vision-and-scope.pdf) | [02-vision-and-scope.pdf](../../pdf/02-vision-and-scope.pdf) | Tài liệu mô tả tuyên bố viễn cảnh, người dùng mục tiêu, phân tích As-Is vs To-Be, ranh giới In-Scope (15 Bắt buộc, 6 Nên có) và Out-of-Scope (5 Có thể xem xét). |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Viễn cảnh và phạm vi (Vision & Scope Document)** | `Tài liệu in A4` | [02-vision-and-scope.pdf](./02-vision-and-scope.pdf) | [02-vision-and-scope.pdf](../../pdf/02-vision-and-scope.pdf) | Tài liệu mô tả tuyên bố viễn cảnh, người dùng mục tiêu, phân tích As-Is vs To-Be, ranh giới In-Scope (15 Bắt buộc, 6 Nên có) và Out-of-Scope (5 Có thể xem xét). |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

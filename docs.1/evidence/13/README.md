@@ -8,12 +8,12 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                             | Loại tài liệu                 | Tệp đính kèm tại thư mục này                     | Nguồn tài liệu PDF | Mô tả chi tiết                                                                                                         |
-| :-: | ----------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in kịch bản CI Build Scripts (.github/workflows/ci.yml)**               | `Kịch bản CI (Code printout)` | [ci.yml](./ci.yml)                               | N/A                | Kịch bản tự động hóa GitHub Actions thực hiện format check, linting, unit test backend/frontend và validate Terraform. |
-|  2  | **Bản in ảnh chụp GitHub Actions CI chạy thành công (CI-pass.png)**           | `Ảnh chụp màn hình`           | [CI-pass.png](./CI-pass.png)                     | N/A                | Ảnh chụp thực tế tất cả các jobs CI trên GitHub Actions đều pass 100%.                                                 |
-|  3  | **Bản in giao diện email nhận thông báo kết quả build tự động (Mail.png)**    | `Ảnh chụp giao diện email`    | [Mail.png](./Mail.png)                           | N/A                | Ảnh chụp email Brevo gửi tự động thông báo kết quả build sau mỗi lần merge vào nhánh main.                             |
-|  4  | **Bản in tài liệu Hướng dẫn cài đặt và biên dịch mã nguồn (Developer Guide)** | `Tài liệu in A4`              | [06-developer-guide.md](./06-developer-guide.md) | N/A                | Tài liệu chuẩn hóa các bước cài đặt môi trường dev, chạy Docker, cài thư viện và biên dịch mã nguồn.                   |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in kịch bản CI Build Scripts (.github/workflows/ci.yml)** | `Kịch bản CI (Code printout)` | [ci.yml](./ci.yml) | N/A | Kịch bản tự động hóa GitHub Actions thực hiện format check, linting, unit test backend/frontend và validate Terraform. |
+| 2 | **Bản in ảnh chụp GitHub Actions CI chạy thành công (CI-pass.png)** | `Ảnh chụp màn hình` | [CI-pass.png](./CI-pass.png) | N/A | Ảnh chụp thực tế tất cả các jobs CI trên GitHub Actions đều pass 100%. |
+| 3 | **Bản in giao diện email nhận thông báo kết quả build tự động (Mail.png)** | `Ảnh chụp giao diện email` | [Mail.png](./Mail.png) | N/A | Ảnh chụp email Brevo gửi tự động thông báo kết quả build sau mỗi lần merge vào nhánh main. |
+| 4 | **Bản in tài liệu Hướng dẫn cài đặt và biên dịch mã nguồn (Developer Guide)** | `Tài liệu in A4` | [06-developer-guide.md](./06-developer-guide.md) | N/A | Tài liệu chuẩn hóa các bước cài đặt môi trường dev, chạy Docker, cài thư viện và biên dịch mã nguồn. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

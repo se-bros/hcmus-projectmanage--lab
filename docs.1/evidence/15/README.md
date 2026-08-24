@@ -8,11 +8,11 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                                  | Loại tài liệu                  | Tệp đính kèm tại thư mục này                   | Nguồn tài liệu PDF | Mô tả chi tiết                                                                                                               |
-| :-: | ---------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in kịch bản khởi tạo tài nguyên hạ tầng Terraform (terraform_main.tf)**      | `Kịch bản IaC (Code printout)` | [terraform_main.tf](./terraform_main.tf)       | N/A                | Kịch bản Terraform định nghĩa toàn bộ tài nguyên Docker network, volume, container PostgreSQL, MinIO, Prometheus và Grafana. |
-|  2  | **Bản in biến và đầu ra Terraform (terraform_variables.tf, terraform_outputs.tf)** | `Kịch bản IaC`                 | [terraform_outputs.tf](./terraform_outputs.tf) | N/A                | Khai báo biến cấu hình hạ tầng và trích xuất tự động các Live URL endpoint sau khi apply.                                    |
-|  3  | **Bản in ảnh chụp kết quả chạy Terraform Init, Plan và CI Validation**             | `Ảnh chụp màn hình`            | [terraform-plan.png](./terraform-plan.png)     | N/A                | Ảnh chụp thực tế quá trình chạy terraform plan, terraform apply và kiểm tra tự động trong CI pipeline.                       |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in kịch bản khởi tạo tài nguyên hạ tầng Terraform (terraform_main.tf)** | `Kịch bản IaC (Code printout)` | [terraform_main.tf](./terraform_main.tf) | N/A | Kịch bản Terraform định nghĩa toàn bộ tài nguyên Docker network, volume, container PostgreSQL, MinIO, Prometheus và Grafana. |
+| 2 | **Bản in biến và đầu ra Terraform (terraform_variables.tf, terraform_outputs.tf)** | `Kịch bản IaC` | [terraform_outputs.tf](./terraform_outputs.tf) | N/A | Khai báo biến cấu hình hạ tầng và trích xuất tự động các Live URL endpoint sau khi apply. |
+| 3 | **Bản in ảnh chụp kết quả chạy Terraform Init, Plan và CI Validation** | `Ảnh chụp màn hình` | [terraform-plan.png](./terraform-plan.png) | N/A | Ảnh chụp thực tế quá trình chạy terraform plan, terraform apply và kiểm tra tự động trong CI pipeline. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

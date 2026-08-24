@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                      | Loại tài liệu    | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF                                           | Mô tả chi tiết                                                                                                              |
-| :-: | ------------------------------------------------------ | ---------------- | ---------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Ước lượng dự án (Project Estimate)** | `Tài liệu in A4` | [10-project-estimate.pdf](./10-project-estimate.pdf) | [10-project-estimate.pdf](../../pdf/10-project-estimate.pdf) | Ước lượng Bottom-up từ kết quả làm thử, áp dụng hệ số dự phòng 2,5, tính toán Demand 190 giờ và đối chiếu Capacity 198 giờ. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Ước lượng dự án (Project Estimate)** | `Tài liệu in A4` | [10-project-estimate.pdf](./10-project-estimate.pdf) | [10-project-estimate.pdf](../../pdf/10-project-estimate.pdf) | Ước lượng Bottom-up từ kết quả làm thử, áp dụng hệ số dự phòng 2,5, tính toán Demand 190 giờ và đối chiếu Capacity 198 giờ. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

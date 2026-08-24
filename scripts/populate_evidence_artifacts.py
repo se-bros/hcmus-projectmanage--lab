@@ -108,12 +108,15 @@ def main():
     # 16 - Team Contract & Members
     q16 = os.path.join(EVIDENCE_DIR, '16')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '16-team-contract.pdf'), q16)
+    copy_file(os.path.join(BASE_DIR, 'docs', '03-execution-monitoring', '01-sprint-plan.md'), q16, custom_name="01_meeting_minutes_sprint1.md")
     copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '6_Team_Monitoring_Risk_Lessons', 'images', 'group3-photo.png'), q16)
     copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '6_Team_Monitoring_Risk_Lessons', 'images', 'discord_communication.png'), q16)
 
     # 17 - Monitoring & Tracking
     q17 = os.path.join(EVIDENCE_DIR, '17')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '17-project-log.pdf'), q17)
+    copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '11-project-plan.pdf'), q17)
+    copy_file(os.path.join(BASE_DIR, 'docs', '04-review-presentation', '01-midterm-requirement.md'), q17, custom_name="01_midterm_status_report.md")
     copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '6_Team_Monitoring_Risk_Lessons', 'images', 'trello_kanban_board.png'), q17)
     copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '6_Team_Monitoring_Risk_Lessons', 'images', 'burndown_chart.png'), q17)
 

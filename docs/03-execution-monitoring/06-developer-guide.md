@@ -97,8 +97,8 @@ npm run dev
 
 | Service           | URL                   |
 | ----------------- | --------------------- |
-| Frontend (Vite)   | http://localhost:5173 |
-| API               | http://localhost:8000 |
+| Frontend (Vite)   | `http://localhost:5173` |
+| API               | `http://localhost:8000` |
 | PostgreSQL (host) | localhost:**5434**    |
 | MinIO API (host)  | localhost:**9002**    |
 | MinIO Console     | localhost:**9003**    |
@@ -204,7 +204,7 @@ Chi tiết luồng auth xem root README mục xác thực.
 
 ## 9. Cấu trúc thư mục liên quan dev
 
-```
+```text
 hcmus-projectmanage--lab/
 ├── scripts/run.sh                 # One-shot dev stack
 ├── .github/workflows/ci.yml       # Cổng CI

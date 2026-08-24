@@ -656,6 +656,14 @@ QUESTIONS_DATA = [
                 "desc": "Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên."
             },
             {
+                "name": "Bản in Biên bản họp nhóm chính thức (Meeting Minutes - Sprint 1)",
+                "type": "Biên bản in A4",
+                "local_file": "01_meeting_minutes_sprint1.md",
+                "source_md": "01_meeting_minutes_sprint1.md",
+                "source_pdf": "N/A",
+                "desc": "Biên bản họp Kick-off Sprint 1 (mã HCMUS-LDMS-MM01) thống nhất phân công 17 stories, cơ chế Kanban và biểu quyết đồng thuận 6/6."
+            },
+            {
                 "name": "Bản in ảnh chụp chung các thành viên trong nhóm Sebros",
                 "type": "Ảnh chụp thực tế",
                 "local_file": "group3-photo.png",
@@ -676,13 +684,13 @@ QUESTIONS_DATA = [
             "Mô hình phát triển nhóm Tuckman: Forming (Hình thành) → Storming (Sóng gió) → Norming (Ổn định) → Performing (Hiệu quả cao) → Adjourning (Đóng dự án).",
             "Xung đột thực tế: Thành viên trễ deadline do bận đồ án khác → Giải quyết bằng quy tắc báo trước 12h và giới hạn WIP ≤ 3.",
             "Quy tắc Team Contract: Họp tuần định kỳ, Pull Request bắt buộc 1 Tech Lead approve, xử lý vắng mặt công bằng.",
-            "Ảnh chụp nhóm 6 người và bằng chứng kênh liên lạc Discord thực tế."
+            "Ảnh chụp nhóm 6 người, Biên bản họp Sprint 1 và bằng chứng kênh liên lạc Discord thực tế."
         ],
         "blueprint": {
             "what": "Hoạt động tổ chức, điều phối, tạo động lực và giải quyết xung đột nhằm xây dựng một đội ngũ gắn kết và đạt hiệu suất cao.",
             "how": "Ký kết Team Contract ngay Tuần 1 → Thiết lập kênh Discord và lịch họp cố định → Áp dụng mô hình Tuckman nhận diện sóng gió → Thảo luận giải quyết qua Retrospective.",
             "why": "Con người là yếu tố quyết định 80% sự thành bại của dự án phần mềm.",
-            "evidence": "Chỉ vào Bản in Team Contract, Ảnh chụp 6 thành viên và Ảnh chụp kênh Discord thực tế."
+            "evidence": "Chỉ vào Bản in Team Contract, Bản in Biên bản họp Sprint 1, Ảnh chụp 6 thành viên và Ảnh chụp kênh Discord thực tế."
         },
         "related_links": [
             "[Tài liệu Hợp đồng nhóm (docs.1/md/16-team-contract.md)](../../md/16-team-contract.md)",
@@ -703,6 +711,22 @@ QUESTIONS_DATA = [
                 "source_md": "../../md/17-project-log.md",
                 "source_pdf": "../../pdf/17-project-log.pdf",
                 "desc": "Ghi nhận công việc thực tế, thời gian hoàn thành (Actual Effort), nhật ký cuộc họp và chỉ số luồng qua 11 tuần."
+            },
+            {
+                "name": "Bản in tài liệu Kế hoạch dự án cập nhật theo thực tiễn (Project Plan Actuals)",
+                "type": "Tài liệu in A4",
+                "local_file": "11-project-plan.pdf",
+                "source_md": "../../md/11-project-plan.md",
+                "source_pdf": "../../pdf/11-project-plan.pdf",
+                "desc": "Kế hoạch 11 tuần cập nhật tiến độ thực tế các mốc Milestones và phân rã công việc WBS."
+            },
+            {
+                "name": "Bản in Báo cáo tình trạng dự án tuần trước thi giữa kỳ (Midterm Status Report)",
+                "type": "Báo cáo in A4",
+                "local_file": "01_midterm_status_report.md",
+                "source_md": "01_midterm_status_report.md",
+                "source_pdf": "N/A",
+                "desc": "Báo cáo tình trạng tiến độ toàn bộ dự án tại mốc tuần trước thi giữa học kỳ."
             },
             {
                 "name": "Bản in giao diện bảng Kanban theo dõi công việc thực tế",
