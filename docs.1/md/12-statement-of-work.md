@@ -28,6 +28,7 @@
 |       3.3 | 24/08/2026 | Đồng bộ baseline 26 điểm, kết quả làm thử, hệ số dự phòng 2,5, kế hoạch 11 tuần và quy trình Pull Request.                                        | Mạch Quốc Tấn     |
 |       3.4 | 24/08/2026 | Đồng bộ phân công Technical Lead, Backend, DevOps và QA theo Hợp đồng nhóm.                                                                       | Mạch Quốc Tấn     |
 |       3.5 | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.                                                                            | Mạch Quốc Tấn     |
+|       3.6 | 24/08/2026 | Dẫn chiếu ma trận RACI tham khảo trong Ủy nhiệm dự án cho trường hợp dự án được mở rộng.                                                          | Mạch Quốc Tấn     |
 
 ## Mục lục
 
@@ -78,7 +79,7 @@ SOW không thay thế các tài liệu **Yêu cầu phần mềm**, **Danh mục
 | Ban Giám hiệu hoặc đơn vị tài trợ               | Xem xét chủ trương, nguồn lực và phạm vi triển khai nếu dự án được mở rộng.    |
 | Sinh viên, giảng viên, thủ thư và biên tập viên | Cung cấp nhu cầu và phản hồi về khả năng sử dụng trong một đợt đánh giá riêng. |
 
-Các bên trong Mục 2.2 không được xem là đã tham gia, phê duyệt hoặc nghiệm thu dự án hiện tại. Nếu dự án được mở rộng để triển khai thực tế, cần lập SOW mới, xác định đại diện cụ thể và ghi nhận sự chấp thuận phù hợp.
+Các bên trong Mục 2.2 không được xem là đã tham gia, phê duyệt hoặc nghiệm thu dự án hiện tại. Ma trận RACI tham khảo cho giai đoạn mở rộng được trình bày trong tài liệu **Ủy nhiệm dự án**. Khi triển khai thực tế, nhóm phải lập SOW mới, xác định đại diện cụ thể, xác nhận lại RACI và ghi nhận sự chấp thuận phù hợp.
 
 ## 3. Baseline và phạm vi
 

@@ -27,7 +27,7 @@ Mỗi tài liệu tập trung vào một mục đích riêng. Khi cần thông t
 | --- | ------------------------------- | ---------------------------------------------------------------------- |
 | 01  | Đề xuất dự án                   | Trình bày vấn đề, giá trị, giải pháp đề xuất và phạm vi ban đầu.       |
 | 02  | Viễn cảnh và phạm vi            | Xác định định hướng sản phẩm, người dùng và ranh giới phạm vi.         |
-| 03  | Ủy nhiệm dự án                  | Xác nhận mục tiêu, quyền hạn, nguồn lực, mốc và trách nhiệm chung.     |
+| 03  | Ủy nhiệm dự án                  | Xác nhận baseline, nguồn lực, mốc, trách nhiệm và RACI khi mở rộng.    |
 | 04  | Yêu cầu phần mềm                | Quy định các yêu cầu chức năng, phi chức năng, dữ liệu và truy vết.    |
 | 04  | Danh mục công việc              | Quản lý các hạng mục, mức ưu tiên, ước lượng và tiêu chí chấp nhận.    |
 | 04  | Hướng dẫn sử dụng               | Hướng dẫn người dùng thực hiện các luồng chức năng chính.              |
@@ -49,21 +49,21 @@ Tài liệu về tích hợp liên tục, chuyển giao liên tục và DevOps s
 
 ## 3. Nguồn chuẩn theo chủ đề
 
-| Chủ đề                         | Tài liệu chính                  | Tài liệu bổ trợ                               |
-| ------------------------------ | ------------------------------- | --------------------------------------------- |
-| Mục tiêu và giá trị            | Đề xuất dự án                   | Viễn cảnh và phạm vi; Nghiên cứu tính khả thi |
-| Phạm vi                        | Bản mô tả công việc             | Viễn cảnh và phạm vi; Danh mục công việc      |
-| Yêu cầu                        | Yêu cầu phần mềm                | Danh mục công việc                            |
-| Hạng mục và tiêu chí chấp nhận | Danh mục công việc              | Yêu cầu phần mềm                              |
-| Kiến trúc và công nghệ         | Kiến trúc phần mềm              | Nhật ký quyết định kiến trúc                  |
-| Quy trình làm việc             | Định nghĩa quy trình phát triển | Hợp đồng nhóm                                 |
-| Ước lượng và kế hoạch          | Ước lượng dự án; Kế hoạch dự án | Nhật ký dự án                                 |
-| Vai trò và trách nhiệm         | Hợp đồng nhóm                   | Kế hoạch dự án; Bản mô tả công việc           |
-| Rủi ro                         | Kế hoạch quản lý rủi ro         | Nghiên cứu tính khả thi; Bản mô tả công việc  |
-| Chất lượng                     | Kế hoạch quản lý chất lượng     | Quy trình phát triển; Kế hoạch kiểm thử       |
-| Kiểm thử                       | Kế hoạch kiểm thử               | Yêu cầu phần mềm; Danh mục công việc          |
-| Trạng thái thực tế             | Nhật ký dự án                   | Bảng công việc và kết quả kiểm thử            |
-| Bài học                        | Báo cáo bài học kinh nghiệm     | Nhật ký dự án                                 |
+| Chủ đề                         | Tài liệu chính                  | Tài liệu bổ trợ                                     |
+| ------------------------------ | ------------------------------- | --------------------------------------------------- |
+| Mục tiêu và giá trị            | Đề xuất dự án                   | Viễn cảnh và phạm vi; Nghiên cứu tính khả thi       |
+| Phạm vi                        | Bản mô tả công việc             | Viễn cảnh và phạm vi; Danh mục công việc            |
+| Yêu cầu                        | Yêu cầu phần mềm                | Danh mục công việc                                  |
+| Hạng mục và tiêu chí chấp nhận | Danh mục công việc              | Yêu cầu phần mềm                                    |
+| Kiến trúc và công nghệ         | Kiến trúc phần mềm              | Nhật ký quyết định kiến trúc                        |
+| Quy trình làm việc             | Định nghĩa quy trình phát triển | Hợp đồng nhóm                                       |
+| Ước lượng và kế hoạch          | Ước lượng dự án; Kế hoạch dự án | Nhật ký dự án                                       |
+| Vai trò và trách nhiệm         | Hợp đồng nhóm                   | Ủy nhiệm dự án; Kế hoạch dự án; Bản mô tả công việc |
+| Rủi ro                         | Kế hoạch quản lý rủi ro         | Nghiên cứu tính khả thi; Bản mô tả công việc        |
+| Chất lượng                     | Kế hoạch quản lý chất lượng     | Quy trình phát triển; Kế hoạch kiểm thử             |
+| Kiểm thử                       | Kế hoạch kiểm thử               | Yêu cầu phần mềm; Danh mục công việc                |
+| Trạng thái thực tế             | Nhật ký dự án                   | Bảng công việc và kết quả kiểm thử                  |
+| Bài học                        | Báo cáo bài học kinh nghiệm     | Nhật ký dự án                                       |
 
 Khi các tài liệu có nội dung mâu thuẫn, nhóm không tự chọn một nội dung để sử dụng. Thay đổi phải được xác nhận, ghi vào Nhật ký dự án và cập nhật đồng thời các tài liệu liên quan.
 

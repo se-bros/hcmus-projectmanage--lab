@@ -25,6 +25,7 @@
 |    3.0    |   15/07/2026   | Đồng bộ mục tiêu, phạm vi, phương pháp phát triển và các tiêu chí đánh giá.                                                                                                                                                                                                                                                 | Mạch Quốc Tấn   |
 |    4.0    |   21/08/2026   | Việt hóa toàn bộ, đồng bộ với Đề xuất dự án, Viễn cảnh và phạm vi, Nghiên cứu khả thi; điều chỉnh thời gian còn 11 tuần, nguồn lực thành nhóm 6 sinh viên, phương pháp quản lý theo Kanban, thống nhất tên tài liệu thành Ủy nhiệm dự án, bổ sung cách ghi ngân sách sơ bộ chưa xác định và hoàn thiện thông tin phê duyệt. | Mạch Quốc Tấn   |
 |    5.0    |   24/08/2026   | Đồng bộ mục đích học tập, xác nhận nội bộ, vai trò thành viên, các bên tham khảo và cách dẫn chiếu tài liệu dùng cho bản in.                                                                                                                                                                                                | Mạch Quốc Tấn   |
+|    5.1    |   24/08/2026   | Bổ sung ma trận RACI tham khảo cho trường hợp dự án được mở rộng và làm rõ điều kiện áp dụng.                                                                                                                                                                                                                               | Mạch Quốc Tấn   |
 
 ## Mục lục
 
@@ -34,6 +35,8 @@
 - [4. Mốc chính và thời gian thực hiện](#4-mốc-chính-và-thời-gian-thực-hiện)
 - [5. Thành phần tham gia và bên tham khảo](#5-thành-phần-tham-gia-và-bên-tham-khảo)
 - [6. Phân công trách nhiệm](#6-phân-công-trách-nhiệm)
+  - [6.1. Phân công trong dự án hiện tại](#61-phân-công-trong-dự-án-hiện-tại)
+  - [6.2. Ma trận RACI tham khảo khi dự án mở rộng](#62-ma-trận-raci-tham-khảo-khi-dự-án-mở-rộng)
 - [7. Nguồn lực được sử dụng](#7-nguồn-lực-được-sử-dụng)
 - [8. Phương pháp quản lý và phối hợp](#8-phương-pháp-quản-lý-và-phối-hợp)
 - [9. Giả định, ràng buộc và rủi ro](#9-giả-định-ràng-buộc-và-rủi-ro)
@@ -116,6 +119,8 @@ Mạch Quốc Tấn là đầu mối điều phối và Nguyễn Tuấn Anh là 
 
 ## 6. Phân công trách nhiệm
 
+### 6.1. Phân công trong dự án hiện tại
+
 | Thành viên            | Vai trò chính            | Trách nhiệm chính                                             |
 | :-------------------- | :----------------------- | :------------------------------------------------------------ |
 | Mạch Quốc Tấn         | Project Manager; Backend | Điều phối, baseline, tiến độ, rủi ro, tài liệu và hỗ trợ API. |
@@ -126,6 +131,43 @@ Mạch Quốc Tấn là đầu mối điều phối và Nguyễn Tuấn Anh là 
 | Nguyễn Lê Hồ Anh Khoa | Frontend                 | Giao diện và trình đọc tài liệu.                              |
 
 Phân công chi tiết và quy tắc phối hợp được trình bày trong **Hợp đồng nhóm**.
+
+### 6.2. Ma trận RACI tham khảo khi dự án mở rộng
+
+Ma trận dưới đây chỉ mô tả phương án phân công dự kiến nếu HCMUS-LDMS được phát triển thành dự án triển khai thực tế. Ma trận không làm phát sinh trách nhiệm hoặc thẩm quyền cho Nhà trường, Thư viện và các đơn vị được nhắc đến trong dự án học tập hiện tại. Khi mở rộng, các bên phải xác nhận lại phạm vi, người đảm nhiệm và thẩm quyền trong ủy nhiệm dự án cùng Bản mô tả công việc mới.
+
+Quy ước:
+
+- `R` — Trực tiếp thực hiện công việc.
+- `A` — Chịu trách nhiệm cuối cùng và phê duyệt kết quả. Mỗi hoạt động chỉ có một `A`.
+- `C` — Được tham vấn trước khi quyết định hoặc thực hiện.
+- `I` — Được thông báo về tiến độ hoặc kết quả.
+
+Vai trò viết tắt trong ma trận:
+
+- `CQ`: Đơn vị chủ quản hoặc nhà tài trợ dự án.
+- `PM`: Quản lý dự án.
+- `TV`: Đại diện nghiệp vụ Thư viện.
+- `TL`: Technical Lead.
+- `PT`: Nhóm phát triển.
+- `QA`: Người hoặc nhóm đảm bảo chất lượng.
+- `CNTT`: Đại diện Phòng Công nghệ Thông tin.
+- `PC`: Đại diện bộ phận Pháp chế.
+
+| Hoạt động chính                              | CQ  | PM  | TV  | TL  | PT  | QA  | CNTT | PC  |
+| :------------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :--: | :-: |
+| Phê duyệt chủ trương, ngân sách và mục tiêu  |  A  |  R  |  C  |  C  |  I  |  I  |  C   |  C  |
+| Xác định yêu cầu và phạm vi nghiệp vụ        |  I  |  R  |  A  |  C  |  C  |  C  |  C   |  C  |
+| Lập kế hoạch và điều phối dự án              |  I  | A/R |  C  |  C  |  I  |  I  |  I   |  I  |
+| Quyết định kiến trúc và công nghệ            |  I  |  C  |  C  | A/R |  C  |  C  |  C   |  I  |
+| Xác nhận quyền tài liệu và yêu cầu pháp lý   |  I  |  C  |  R  |  I  |  I  |  C  |  I   |  A  |
+| Phát triển và tích hợp hệ thống              |  I  |  I  |  C  |  A  |  R  |  C  |  C   |  I  |
+| Lập kế hoạch, thực hiện và báo cáo kiểm thử  |  I  |  I  |  C  |  C  |  C  | A/R |  C   |  I  |
+| Triển khai, bảo mật và tổ chức vận hành      |  I  |  C  |  C  |  C  |  C  |  C  | A/R  |  C  |
+| Nghiệm thu nghiệp vụ và bàn giao             |  A  |  R  |  R  |  C  |  I  |  C  |  C   |  I  |
+| Phê duyệt thay đổi baseline hoặc phạm vi lớn |  A  |  R  |  C  |  C  |  I  |  C  |  C   |  C  |
+
+Nếu một người kiêm nhiệm nhiều vai trò, trách nhiệm vẫn được xem xét theo từng vai trò trong ma trận. Mọi thay đổi đối với RACI phải được ghi nhận cùng quyết định thay đổi và thông báo cho các bên bị ảnh hưởng.
 
 ## 7. Nguồn lực được sử dụng
 
