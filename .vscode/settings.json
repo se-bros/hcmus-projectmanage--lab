@@ -1,4 +1,7 @@
 {
+  "markdown-preview-enhanced.plantumlServer": "https://kroki.io/plantuml/svg/",
+  "plantuml.server": "https://kroki.io/plantuml/svg/",
+  "plantuml.render": "PlantUMLServer",
   "markdown-pdf.styles": [".agents\\skills\\md-to-pdf\\resources\\markdown-pdf-premium.css"],
   "markdown-pdf.highlightStyle": "atom-one-dark.css",
   "markdown-pdf.displayHeaderFooter": true,

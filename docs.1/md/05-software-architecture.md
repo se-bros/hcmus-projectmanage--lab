@@ -1,224 +1,401 @@
-# TÀI LIỆU KIẾN TRÚC PHẦN MỀM
+# KIẾN TRÚC PHẦN MỀM
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
-### THÔNG TIN TÀI LIỆU
+### Thông tin tài liệu
 
-| Trường thông tin    | Nội dung                                            |
-| ------------------- | --------------------------------------------------- |
-| Mã tài liệu         | `HCMUS-LDMS-SAD`                                    |
-| Tên tài liệu        | Tài liệu kiến trúc phần mềm                         |
-| Dự án               | HCMUS-LDMS                                          |
-| Đơn vị soạn thảo    | Sebros – Nhóm sinh viên đề xuất dự án               |
-| Người thực hiện     | Mạch Quốc Tấn                                       |
-| Người xem xét       | Đại diện nhóm Sebros và Đại diện nghiệp vụ Thư viện |
-| Trạng thái tài liệu | Bản dự thảo để xem xét                              |
-| Phạm vi             | Phiên bản đầu tiên trong 11 tuần                    |
+| Trường thông tin    | Nội dung                                 |
+| ------------------- | ---------------------------------------- |
+| Mã tài liệu         | `HCMUS-LDMS-SAD`                         |
+| Tên tài liệu        | Kiến trúc phần mềm                       |
+| Đơn vị thực hiện    | Nhóm Sebros                              |
+| Người phụ trách     | Mạch Quốc Tấn — Đại diện nhóm Sebros     |
+| Người xem xét       | Các thành viên nhóm Sebros               |
+| Trạng thái          | Baseline nội bộ đã được nhóm xác nhận    |
+| Thời gian thực hiện | 11 tuần                                  |
+| Mục đích            | Phục vụ học tập và quản lý dự án môn học |
 
-### LỊCH SỬ PHIÊN BẢN
+### Lịch sử phiên bản
 
-| Phiên bản | Ngày       | Mô tả thay đổi                                                                                                                                                                                        | Người thực hiện |
-| --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| 1.0       | 21/08/2026 | Rà soát kiến trúc theo các tài liệu dự án; rút gọn nội dung dư thừa, thống nhất phạm vi phiên bản đầu tiên, Kanban 11 tuần và bổ sung các sơ đồ C4 bằng PlantUML với kích thước phù hợp khi xuất PDF. | Mạch Quốc Tấn   |
-| 2.0       | 22/08/2026 | Phân biệt local/demo/production, bổ sung vòng đời dữ liệu, xử lý job/recovery và đồng bộ SOW 11 tuần.                                                                                                 | Mạch Quốc Tấn   |
-| 3.0       | 22/08/2026 | Bổ sung sequence upload–OCR, state model, authorization model và liên kết ADR/operations/test.                                                                                                        | Mạch Quốc Tấn   |
+| Phiên bản | Ngày       | Mô tả thay đổi                                                                                        | Người thực hiện |
+| --------- | ---------- | ----------------------------------------------------------------------------------------------------- | --------------- |
+| 1.0       | 21/08/2026 | Khởi tạo kiến trúc logic, công nghệ và mô hình triển khai.                                            | Mạch Quốc Tấn   |
+| 2.0       | 22/08/2026 | Bổ sung vòng đời dữ liệu, xử lý tác vụ, phục hồi và mô hình phân quyền.                               | Mạch Quốc Tấn   |
+| 3.0       | 22/08/2026 | Bổ sung luồng xử lý, trạng thái tài liệu và truy vết yêu cầu.                                         | Mạch Quốc Tấn   |
+| 4.0       | 24/08/2026 | Viết lại theo baseline 15/6/5, đồng bộ hệ thống thực tế và loại bỏ nội dung ngoài mục đích kiến trúc. | Mạch Quốc Tấn   |
+| 4.1       | 24/08/2026 | Chuẩn hóa từ ngữ tiếng Việt, giải thích thuật ngữ kỹ thuật và làm rõ các câu có thể gây mơ hồ.        | Mạch Quốc Tấn   |
+| 4.2       | 24/08/2026 | Chuyển bốn sơ đồ cốt lõi sang PlantUML và rút gọn các góc nhìn trùng lặp.                             | Mạch Quốc Tấn   |
+| 4.3       | 24/08/2026 | Đồng bộ xử lý nền, dữ liệu cốt lõi và cấu hình Nginx với cách triển khai thực tế.                     | Mạch Quốc Tấn   |
 
 ## Mục lục
 
-- [Mục đích và phạm vi](#1-mục-đích-và-phạm-vi)
-- [Định hướng và ràng buộc kiến trúc](#2-định-hướng-và-ràng-buộc-kiến-trúc)
-- [Mô hình ca sử dụng](#3-mô-hình-ca-sử-dụng)
-- [Kiến trúc logic và công nghệ](#4-kiến-trúc-logic-và-công-nghệ)
-- [Bảo mật và dữ liệu](#5-bảo-mật-và-dữ-liệu)
-  - [Luồng upload và OCR](#55-luồng-upload-và-ocr)
-  - [Mô hình trạng thái tài liệu](#56-mô-hình-trạng-thái-tài-liệu)
-  - [Mô hình xác thực và phân quyền](#57-mô-hình-xác-thực-và-phân-quyền)
-- [Mô hình triển khai](#6-mô-hình-triển-khai)
-- [Kiểm chứng kỹ thuật](#7-kiểm-chứng-kỹ-thuật)
-- [Truy vết và tài liệu tham khảo](#8-truy-vết-và-tài-liệu-tham-khảo)
+- [1. Mục đích và phạm vi](#1-mục-đích-và-phạm-vi)
+- [2. Động lực và ràng buộc kiến trúc](#2-động-lực-và-ràng-buộc-kiến-trúc)
+- [3. Bối cảnh hệ thống](#3-bối-cảnh-hệ-thống)
+- [4. Kiến trúc tổng thể](#4-kiến-trúc-tổng-thể)
+- [5. Phân rã máy chủ theo mô-đun](#5-phân-rã-máy-chủ-theo-mô-đun)
+- [6. Luồng xử lý chính](#6-luồng-xử-lý-chính)
+- [7. Kiến trúc dữ liệu](#7-kiến-trúc-dữ-liệu)
+- [8. Bảo mật](#8-bảo-mật)
+- [9. Triển khai và vận hành](#9-triển-khai-và-vận-hành)
+- [10. Quyết định và truy vết kiến trúc](#10-quyết-định-và-truy-vết-kiến-trúc)
+- [11. Giới hạn và hướng mở rộng](#11-giới-hạn-và-hướng-mở-rộng)
+- [12. Tài liệu tham khảo](#12-tài-liệu-tham-khảo)
+
+---
 
 ## 1. Mục đích và phạm vi
 
-Tài liệu mô tả cách HCMUS-LDMS được phân chia thành các thành phần và cách các thành phần phối hợp để đáp ứng [Yêu cầu phần mềm](04-software-requirements.md). Tài liệu dùng làm cơ sở thống nhất cho thiết kế, lập trình, kiểm thử và bàn giao; không thay thế yêu cầu phần mềm hoặc hướng dẫn vận hành chính thức.
+Tài liệu mô tả cấu trúc của HCMUS-LDMS, trách nhiệm của từng thành phần, cách dữ liệu được trao đổi và các quyết định kỹ thuật chính. Tài liệu giải thích cách tổ chức hệ thống để đáp ứng **Yêu cầu phần mềm**; không thay thế **Product Backlog**, thiết kế giao diện, đặc tả giao diện lập trình ứng dụng (API) hoặc hướng dẫn vận hành.
 
-Phạm vi kiến trúc phiên bản đầu tiên gồm: đăng nhập và phân quyền, tải tài liệu, nhận dạng ký tự, hiệu chỉnh, nhập thông tin mô tả tài liệu, tạo EPUB, xuất bản, tìm kiếm toàn văn và đọc trực tuyến. Các chức năng lưu vị trí đọc, ghi chú, trích dẫn và mở rộng công cụ tìm kiếm chỉ được xem xét sau khi phạm vi bắt buộc ổn định.
+Dự án được thực hiện trước hết để phục vụ học tập. Vì vậy, kiến trúc ưu tiên việc dễ cài đặt, dễ kiểm thử, dễ truy vết và thuận tiện phối hợp trong nhóm sáu sinh viên; khả năng vận hành ở quy mô lớn chưa phải mục tiêu của phiên bản này.
 
-## 2. Định hướng và ràng buộc kiến trúc
+Baseline kiến trúc hỗ trợ 15 hạng mục Bắt buộc trong 11 tuần. Chức năng thuộc nhóm Nên có hoặc Có thể xem xét được bố trí trong mô-đun riêng và không được làm thay đổi luồng bắt buộc khi chưa được nhóm đưa vào phạm vi thực hiện.
 
-### 2.1. Định hướng
+## 2. Động lực và ràng buộc kiến trúc
 
-- Dùng một ứng dụng gồm nhiều mô-đun để phù hợp với nhóm 6 sinh viên và thời gian 11 tuần.
-- Tách giao diện, API, nghiệp vụ và dữ liệu để dễ phát triển, kiểm thử và thay đổi.
-- Tách tệp gốc và tệp EPUB khỏi dữ liệu quản lý; không ghi đè làm mất bản gốc.
-- Xử lý nhận dạng ký tự và tạo EPUB bằng tác vụ nền; giao diện luôn hiển thị trạng thái xử lý.
-- Kiểm tra quyền ở máy chủ trước các thao tác xem, sửa, xuất bản và quản trị.
+### 2.1. Động lực
+
+| Động lực                      | Ảnh hưởng đến kiến trúc                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------- |
+| Thời gian 11 tuần             | Chọn ứng dụng mô-đun thay vì nhiều dịch vụ độc lập.                                       |
+| Nhóm sáu sinh viên            | Dùng một quy trình cài đặt và một tập công nghệ thống nhất.                               |
+| Tệp và tác vụ xử lý dài       | Tách dữ liệu tệp khỏi cơ sở dữ liệu và xử lý OCR, tạo EPUB dưới dạng tác vụ nền.          |
+| Nội dung có giới hạn truy cập | Kiểm tra xác thực, vai trò, quyền sở hữu và trạng thái xuất bản tại máy chủ.              |
+| Yêu cầu bảo toàn tài liệu gốc | Không ghi đè tài liệu gốc; kết quả OCR và EPUB được lưu thành dữ liệu riêng.              |
+| Cần tìm kiếm nội dung         | Lưu văn bản OCR trong PostgreSQL và dùng tìm kiếm toàn văn cho baseline.                  |
+| Mục đích học tập              | Ưu tiên giải pháp dễ giải thích, dễ kiểm thử và có thể tái tạo trong môi trường của nhóm. |
 
 ### 2.2. Ràng buộc
 
-- Nhóm thực hiện gồm 6 sinh viên chuyên ngành Kỹ thuật phần mềm.
-- Phiên bản đầu tiên được thực hiện trong 11 tuần theo luồng Kanban, không chia theo Sprint.
-- Đây là dự án phục vụ môn học nên chưa có ngân sách sơ bộ cụ thể.
-- Môi trường local dùng Docker Compose, PostgreSQL và MinIO. Môi trường demo cloud có thể dùng Vercel, Render, Neon và Cloudflare R2 sau khi smoke test đạt. Production/on-premise ngoài phạm vi MVP và cần quyết định riêng.
-- Không tự đưa vào kiến trúc các công cụ hoặc chức năng chưa có trong yêu cầu phần mềm và danh mục công việc.
+- Giao diện sử dụng React và TypeScript.
+- Máy chủ sử dụng FastAPI và Python.
+- PostgreSQL lưu dữ liệu quan hệ và nội dung cần tìm kiếm.
+- Kho tệp tương thích S3 lưu tài liệu gốc, ảnh trang và EPUB; môi trường nội bộ sử dụng MinIO.
+- Tesseract thực hiện OCR; Pandoc tạo EPUB.
+- Môi trường baseline có thể khởi chạy bằng Docker Compose.
+- Khóa bí mật và chuỗi kết nối không được đưa vào mã nguồn hoặc giao diện.
+- Công cụ tìm kiếm riêng, hàng đợi phân tán và hạ tầng vận hành quy mô lớn không thuộc baseline.
 
-## 3. Mô hình ca sử dụng
+### 2.3. Thuật ngữ kỹ thuật
 
-![Các ca sử dụng chính của HCMUS-LDMS](assets/architecture-context.svg)
+| Thuật ngữ      | Cách hiểu trong tài liệu                                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------- |
+| API            | Giao diện lập trình ứng dụng; tập hợp điểm truy cập để giao diện web trao đổi dữ liệu với máy chủ.          |
+| OCR            | Nhận dạng ký tự quang học; chuyển chữ trong PDF hoặc ảnh quét thành văn bản có thể hiệu chỉnh.              |
+| EPUB           | Định dạng sách điện tử dùng để đóng gói và hiển thị nội dung đã xuất bản.                                   |
+| JWT            | Chuỗi thông tin xác thực có chữ ký, dùng để máy chủ xác định người dùng và vai trò trong thời hạn cho phép. |
+| S3             | Chuẩn giao tiếp với kho tệp dạng đối tượng; MinIO cung cấp cách giao tiếp tương thích chuẩn này.            |
+| JSON           | Định dạng văn bản có cấu trúc dùng để giao diện web và máy chủ trao đổi dữ liệu.                            |
+| HTTP/HTTPS     | Giao thức trao đổi dữ liệu giữa trình duyệt và máy chủ; HTTPS bổ sung mã hóa trong quá trình truyền.        |
+| Mô-đun         | Nhóm chức năng có cùng trách nhiệm trong một ứng dụng; không phải một dịch vụ được triển khai độc lập.      |
+| Khóa đối tượng | Mã dùng để xác định vị trí của một tệp trong kho tệp; mã này độc lập với tên tệp do người dùng cung cấp.    |
 
-Hệ thống có ba nhóm người dùng chính:
+## 3. Bối cảnh hệ thống
 
-- **Độc giả:** tìm kiếm tài liệu đã xuất bản và đọc trực tuyến theo quyền được cấp.
-- **Thủ thư hoặc biên tập viên:** tải tài liệu, theo dõi nhận dạng ký tự, hiệu chỉnh, nhập thông tin mô tả và xuất bản.
-- **Quản trị viên:** quản lý tài khoản, vai trò, quyền và danh mục dùng chung.
+```plantuml
+@startuml
+title C4 mức 1 - Bối cảnh HCMUS-LDMS
+left to right direction
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam rectangle {
+  RoundCorner 16
+  BorderColor #2F5597
+}
+actor "Độc giả" as reader
+actor "Thủ thư hoặc\nbiên tập viên" as editor
+actor "Quản trị viên" as admin
+rectangle "HCMUS-LDMS\n[System]\nSố hóa và cung cấp tài liệu" as ldms #438DD5
+rectangle "Dịch vụ xác thực\n[External System]" as identity #B3B3B3
+reader --> ldms : Tìm kiếm và đọc
+editor --> ldms : Số hóa và xuất bản
+admin --> ldms : Quản lý
+ldms --> identity : Xác thực qua HTTPS
+@enduml
+```
 
-## 4. Kiến trúc logic và công nghệ
+Góc nhìn C4 mức 1 cho biết ai sử dụng HCMUS-LDMS và hệ thống bên ngoài nào trao đổi dữ liệu với phần mềm. Trong sơ đồ, HCMUS-LDMS đại diện cho toàn bộ phần mềm do nhóm xây dựng. Dịch vụ xác thực bên ngoài chỉ hỗ trợ đăng nhập khi được cấu hình và không thuộc phần mềm do nhóm quản lý. Độc giả chỉ được tiếp cận tài liệu đã xuất bản trong phạm vi được phép. Đăng nhập bằng dữ liệu mô phỏng vẫn là cơ chế bắt buộc của môi trường học tập.
 
-### 4.1. Sơ đồ container và phân tầng logic
+## 4. Kiến trúc tổng thể
 
-![Các container chính của HCMUS-LDMS](assets/architecture-container.svg)
+Hệ thống sử dụng kiến trúc ứng dụng mô-đun gồm giao diện web, máy chủ cung cấp API, cơ sở dữ liệu và kho tệp. OCR và tạo EPUB được thực hiện dưới dạng tác vụ nền để giao diện không phải chờ cho đến khi toàn bộ quá trình hoàn tất.
 
-| Tầng      | Trách nhiệm                                                                     |
-| --------- | ------------------------------------------------------------------------------- |
-| Giao diện | Hiển thị khu vực quản lý, màn hình hiệu chỉnh, tìm kiếm và trình đọc EPUB.      |
-| API       | Tiếp nhận yêu cầu, kiểm tra dữ liệu, xác thực, phân quyền và trả kết quả.       |
-| Nghiệp vụ | Quản lý tài liệu, nhận dạng ký tự, hiệu chỉnh, tạo EPUB, xuất bản và tìm kiếm.  |
-| Dữ liệu   | Lưu tài khoản, vai trò, tài liệu, thông tin mô tả, trạng thái, nội dung và tệp. |
+```plantuml
+@startuml
+title C4 mức 2 - Các vùng chứa
+top to bottom direction
+skinparam shadowing false
+skinparam rectangle {
+  RoundCorner 12
+  BorderColor #2F5597
+}
+actor "Người dùng" as user
+rectangle "HCMUS-LDMS [System]" {
+  rectangle "Giao diện web\n[Container: React]" as web #438DD5
+  rectangle "Máy chủ ứng dụng\n[Container: FastAPI]\nBao gồm xử lý nền OCR và EPUB" as api #438DD5
+  database "Cơ sở dữ liệu\n[Container: PostgreSQL]" as db #438DD5
+  database "Kho tệp\n[Container: MinIO]" as storage #438DD5
+}
+user -down-> web : Sử dụng
+web -down-> api : JSON/HTTPS
+api -left-> db : Dữ liệu và trạng thái tác vụ
+api -right-> storage : Tệp gốc và kết quả xử lý
+@enduml
+```
 
-Việc dùng một ứng dụng gồm nhiều mô-đun giúp nhóm giảm số thành phần phải triển khai. Các mô-đun được tách theo trách nhiệm để sau này có thể thay đổi hoặc mở rộng khi có nhu cầu thực tế. DSpace, Lạc Việt Vebrary và phương án ghép công cụ chỉ là các phương án cạnh tranh trong đề xuất dự án, không phải thành phần phụ thuộc của kiến trúc này.
+Góc nhìn C4 mức 2 cho biết các ứng dụng và nơi lưu trữ có thể được triển khai hoặc vận hành riêng. “Vùng chứa” trong C4 là đơn vị chạy hoặc lưu trữ, không đồng nghĩa với Docker container.
 
-### 4.2. Công nghệ dự kiến
+### 4.1. Trách nhiệm các thành phần
 
-| Thành phần           | Công nghệ dự kiến                                                   | Vai trò                                                                    |
-| -------------------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Giao diện            | React và TypeScript                                                 | Xây dựng giao diện quản lý, hiệu chỉnh và đọc tài liệu.                    |
-| Trình đọc            | Epub.js                                                             | Hiển thị EPUB trực tuyến.                                                  |
-| Máy chủ API          | FastAPI                                                             | Cung cấp API và điều phối nghiệp vụ.                                       |
-| Cơ sở dữ liệu        | Neon PostgreSQL                                                     | Cung cấp cơ sở dữ liệu PostgreSQL trên nền tảng Neon.                      |
-| Nhận dạng ký tự      | Tesseract OCR                                                       | Chuyển ảnh hoặc PDF thành văn bản để hiệu chỉnh.                           |
-| Tạo EPUB             | Pandoc hoặc công cụ tương đương đã kiểm chứng                       | Tạo EPUB từ nội dung đã hiệu chỉnh.                                        |
-| Lưu trữ tệp          | Cloudflare R2                                                       | Lưu tệp gốc và tệp EPUB riêng biệt, truy cập qua giao diện tương thích S3. |
-| Xác thực             | Dữ liệu mô phỏng khi phát triển; Google OAuth 2.0 khi được cấu hình | Đăng nhập và tạo phiên làm việc.                                           |
-| Triển khai giao diện | Vercel                                                              | Xây dựng và phân phối frontend.                                            |
-| Triển khai máy chủ   | Render                                                              | Chạy backend và các tác vụ API của hệ thống.                               |
+| Thành phần              | Trách nhiệm                                                                                                                   |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Giao diện web           | Hiển thị đăng nhập, danh sách tài liệu, tải lên, hiệu chỉnh, tìm kiếm, đọc EPUB và trạng thái xử lý.                          |
+| API                     | Tiếp nhận yêu cầu từ giao diện, kiểm tra dữ liệu, gọi chức năng nghiệp vụ và trả kết quả theo cấu trúc thống nhất.            |
+| Xác thực và phân quyền  | Xác minh phiên, vai trò, quyền sở hữu và quyền truy cập tài liệu.                                                             |
+| Mô-đun nghiệp vụ        | Điều phối tài liệu, OCR, hiệu chỉnh, thông tin mô tả, xuất bản, tìm kiếm và đọc.                                              |
+| Xử lý nền trong máy chủ | FastAPI thực hiện OCR hoặc tạo EPUB ở nền, cập nhật trạng thái và ghi lỗi mà không cần dịch vụ xử lý riêng.                   |
+| PostgreSQL              | Lưu người dùng, tài liệu, trang, thông tin mô tả, tác vụ, trạng thái và dữ liệu truy vết.                                     |
+| Kho tệp                 | Lưu tài liệu gốc, ảnh trang và EPUB bằng khóa đối tượng; thông tin bí mật để truy cập kho tệp chỉ nằm trong cấu hình máy chủ. |
+| Tesseract và Pandoc     | Thực hiện xử lý chuyên biệt dưới sự điều phối của bộ xử lý nền.                                                               |
 
-Các phiên bản thư viện và cấu hình cụ thể được chốt trong mã nguồn; bảng này không phải cam kết về phiên bản sản phẩm bên ngoài.
+### 4.2. Nguyên tắc phụ thuộc
 
-### 4.3. Luồng xử lý chính
+- Giao diện chỉ giao tiếp với máy chủ qua API; không truy cập trực tiếp cơ sở dữ liệu hoặc kho tệp riêng tư.
+- Lớp tiếp nhận API chuyển yêu cầu tới mô-đun nghiệp vụ; quy tắc nghiệp vụ không được đặt toàn bộ trong lớp định tuyến.
+- Mô-đun nghiệp vụ đọc và ghi dữ liệu thông qua lớp truy cập dữ liệu và thành phần quản lý kho tệp.
+- Xử lý nền chạy trong cùng máy chủ FastAPI bằng cơ chế tác vụ nền và sử dụng chung quy tắc nghiệp vụ, cấu trúc dữ liệu với phần tiếp nhận yêu cầu.
+- Tệp được nhận diện bằng khóa đối tượng; cơ sở dữ liệu chỉ lưu thông tin quản lý và quan hệ truy vết.
 
-1. Người có quyền tải tệp lên; máy chủ kiểm tra loại tệp và lưu bản gốc.
-2. Hệ thống tạo tác vụ nhận dạng ký tự, lưu trạng thái và thực hiện ở nền.
-3. Biên tập viên đối chiếu bản gốc với văn bản, sửa lỗi và lưu nội dung.
-4. Người có quyền nhập thông tin mô tả, phân loại và kiểm tra điều kiện xuất bản.
-5. Hệ thống tạo EPUB và chỉ cho phép xuất bản khi các điều kiện bắt buộc đạt.
-6. Độc giả tìm kiếm và đọc tài liệu đã xuất bản; máy chủ kiểm tra quyền trước khi cung cấp nội dung.
+## 5. Phân rã máy chủ theo mô-đun
 
-## 5. Bảo mật và dữ liệu
+Phần này không dùng thêm sơ đồ thành phần để tránh lặp lại góc nhìn vùng chứa. Bảng dưới đây mô tả cách máy chủ được chia thành các mô-đun nghiệp vụ, trách nhiệm của từng mô-đun và yêu cầu liên quan. Đây là cách phân chia trách nhiệm trong mã nguồn, không phải danh sách dịch vụ triển khai độc lập.
 
-### 5.1. Bảo mật
+| Mô-đun             | Trách nhiệm chính                                                                                  | Yêu cầu liên quan                      |
+| ------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Danh tính và quyền | Đăng nhập, JWT, vai trò, quyền sở hữu và kiểm tra truy cập.                                        | `YC-009`, `YC-010`, `YC-014`, `YC-018` |
+| Tài liệu           | Tải lên, lưu tài liệu gốc, danh sách và trạng thái tài liệu.                                       | `YC-002`, `YC-026`                     |
+| OCR                | Tạo tác vụ, nhận dạng, lưu kết quả theo trang, lỗi và xử lý lại.                                   | `YC-003`, `YC-004`, `YC-022`           |
+| Hiệu chỉnh         | Đọc, sửa, lưu và chuyển trang trong quá trình hiệu chỉnh.                                          | `YC-005`, `YC-006`, `YC-017`           |
+| Thông tin mô tả    | Quản lý tên tài liệu, tác giả, danh mục và dữ liệu mô tả khác.                                     | `YC-011`, `YC-012`                     |
+| Xuất bản           | Kiểm tra điều kiện, tạo EPUB, ghi trạng thái và cho phép người có quyền đọc bản đã xuất bản.       | `YC-007`, `YC-013`                     |
+| Tìm kiếm và đọc    | Tìm kiếm toàn văn bằng PostgreSQL, lọc theo quyền, trả kết quả và cung cấp nội dung cho trình đọc. | `YC-008`, `YC-015`, `YC-016`           |
+| Dữ liệu cá nhân    | Thiết lập đọc, vị trí đọc, đánh dấu và ghi chú khi hạng mục được đưa vào phạm vi.                  | `YC-019`, `YC-020`, `YC-021`           |
+| Nhật ký và mở rộng | Ghi thao tác quan trọng, tạo trích dẫn và tích hợp công cụ tìm kiếm mở rộng.                       | `YC-023`, `YC-024`, `YC-025`           |
 
-- Phiên đăng nhập và vai trò được kiểm tra ở phía máy chủ.
-- Tài liệu chưa xuất bản không xuất hiện trong kết quả tìm kiếm.
-- Tệp gốc và EPUB được lưu trong vùng không công khai.
-- Trình đọc không hiển thị nút tải tệp EPUB gốc; đây không phải cơ chế chống sao chép tuyệt đối.
-- Dữ liệu thử nghiệm được tách khỏi dữ liệu thật của Thư viện.
+Mỗi mô-đun tập hợp các chức năng có cùng trách nhiệm trong một ứng dụng. Các mô-đun không được triển khai thành những dịch vụ riêng. Nhóm chỉ xem xét việc tách dịch vụ khi số liệu tải, nhu cầu mở rộng hoặc yêu cầu vận hành cho thấy kiến trúc hiện tại không còn phù hợp.
 
-### 5.2. Nhóm dữ liệu
+## 6. Luồng xử lý chính
 
-| Nhóm dữ liệu             | Nội dung                                                          |
-| ------------------------ | ----------------------------------------------------------------- |
-| Tài khoản và vai trò     | Người dùng, vai trò, quyền và trạng thái.                         |
-| Tài liệu                 | Tệp gốc, trạng thái xử lý, người tạo và thời điểm cập nhật.       |
-| Thông tin mô tả tài liệu | Tên, tác giả, năm, thể loại, từ khóa và mô tả.                    |
-| Nội dung nhận dạng       | Văn bản theo tài liệu hoặc trang và trạng thái hiệu chỉnh.        |
-| Bản xuất bản             | Tệp EPUB, trạng thái xuất bản và người xác nhận.                  |
-| Tác vụ và nhật ký        | Loại tác vụ, trạng thái, lỗi chính, người thực hiện và thời điểm. |
+### 6.1. Số hóa và xuất bản
 
-Tệp gốc không bị ghi đè trong quá trình nhận dạng, hiệu chỉnh hoặc tạo EPUB. Với phạm vi học tập, nhóm lưu cấu hình, dữ liệu mẫu và hướng dẫn khôi phục; lịch sao lưu chính thức được xác định trong tài liệu vận hành khi triển khai thực tế.
+```plantuml
+@startuml
+title Trình tự số hóa và xuất bản
+skinparam responseMessageBelowArrow true
+actor "Thủ thư hoặc\nbiên tập viên" as Editor
+boundary "Giao diện" as UI
+control "Máy chủ" as API
+database "Cơ sở dữ liệu" as DB
+collections "Kho tệp" as Store
+control "Xử lý nền\ntrong máy chủ" as Worker
+Editor -> UI : Chọn tài liệu
+UI -> API : Gửi tệp
+API -> Store : Lưu tệp gốc
+API -> DB : Tạo tài liệu và tác vụ OCR
+API --> UI : Trả mã và trạng thái chờ
+Worker -> Store : Đọc tệp gốc
+Worker -> DB : Lưu văn bản theo trang
+UI -> API : Lưu văn bản đã sửa
+API -> DB : Cập nhật nội dung
+UI -> API : Yêu cầu xuất bản
+API -> DB : Tạo tác vụ xuất bản
+Worker -> Store : Lưu EPUB
+Worker -> DB : Ghi trạng thái đã xuất bản
+@enduml
+```
 
-### 5.3. Vòng đời và tính toàn vẹn
+Nếu tệp đã được lưu nhưng bản ghi quản lý không thể tạo, hệ thống phải ghi nhận lỗi để nhóm có thể tìm và xử lý tệp không còn liên kết với tài liệu. Nếu tác vụ bị gián đoạn, khi khởi động lại, hệ thống phải phát hiện tác vụ chưa hoàn tất và chuyển tác vụ sang trạng thái cho phép xử lý lại.
 
-- Tài liệu dùng các trạng thái tối thiểu: `ocr_pending`, `ocr_processing`, `ocr_completed`, `ocr_failed`, `publishing`, `published`, `publish_failed`.
-- Job OCR/publish lưu loại job, lần thử, trạng thái, thời điểm, lỗi và tài liệu liên quan.
-- Job `pending/processing` bị gián đoạn bởi restart phải được phát hiện và chuyển sang trạng thái có thể retry; không để treo vô hạn.
-- Retry tạo hoặc ghi nhận attempt mới, không xóa evidence của attempt cũ.
-- Publish chỉ thành công sau khi EPUB được kiểm tra cấu trúc và dữ liệu bắt buộc đạt.
-- Database và object storage phải giữ quan hệ truy vết bằng document/job/version ID.
+### 6.2. Tìm kiếm và đọc
 
-### 5.4. Xử lý nền và phục hồi
+1. Độc giả gửi từ khóa hoặc mở danh sách tài liệu.
+2. Máy chủ xác định danh tính và phạm vi quyền truy cập.
+3. PostgreSQL tìm theo thông tin mô tả và nội dung OCR.
+4. Máy chủ loại bỏ tài liệu chưa xuất bản hoặc ngoài phạm vi quyền.
+5. Giao diện hiển thị tên tài liệu, tác giả và đoạn nội dung liên quan đến từ khóa khi có dữ liệu.
+6. Khi độc giả mở tài liệu, máy chủ kiểm tra lại quyền trước khi trả nội dung hoặc tạo liên kết có thời hạn.
+7. Trình đọc Epub.js hiển thị EPUB; giao diện không cung cấp nút tải trực tiếp tệp gốc.
 
-Trong MVP, xử lý nền có thể chạy cùng backend nếu PoC chứng minh đáp ứng dữ liệu mẫu. Đây không phải hàng đợi bền vững cho production. Kiểm chứng bắt buộc gồm timeout, process restart, job thất bại, retry và bảo toàn source/corrected text. Khi tải hoặc concurrency vượt khả năng mô hình này, nhóm phải đánh giá worker/queue riêng bằng Change Request kiến trúc.
+### 6.3. Trạng thái tài liệu và tác vụ
 
-### 5.5. Luồng upload và OCR
+| Giai đoạn          | Trạng thái        | Chuyển tiếp chính                                 |
+| ------------------ | ----------------- | ------------------------------------------------- |
+| Tiếp nhận          | Đã tiếp nhận      | Tạo tác vụ OCR → Chờ OCR                          |
+| OCR                | Chờ OCR, Đang OCR | Hoàn tất → OCR hoàn tất; lỗi → OCR thất bại       |
+| Xử lý lại OCR      | OCR thất bại      | Người có quyền yêu cầu → Chờ OCR                  |
+| Xuất bản           | Đang xuất bản     | Thành công → Đã xuất bản; lỗi → Xuất bản thất bại |
+| Xử lý lại xuất bản | Xuất bản thất bại | Người có quyền yêu cầu → Đang xuất bản            |
 
-![Trình tự tải tài liệu và xử lý OCR](assets/architecture-sequence-upload-ocr.svg)
+Trạng thái nghiệp vụ của tài liệu và trạng thái từng tác vụ phải được phân biệt. Mỗi lần xử lý lại tăng số lần thử và giữ thông tin lỗi trước đó để truy vết.
 
-Luồng tách việc tiếp nhận HTTP khỏi xử lý dài. API chỉ trả kết quả tiếp nhận sau khi source đã được lưu và document/job record đã được tạo nhất quán. Worker claim job theo attempt; trạng thái và lỗi phù hợp được lưu để UI theo dõi. Các tình huống lưu object thành công nhưng tạo record thất bại, job treo và retry trùng phải được kiểm thử theo [Kế hoạch kiểm thử và UAT](20-test-plan.md).
+## 7. Kiến trúc dữ liệu
 
-### 5.6. Mô hình trạng thái tài liệu
+### 7.1. Mô hình dữ liệu khái niệm
 
-![Mô hình trạng thái tài liệu và các nhánh lỗi](assets/architecture-document-state.svg)
+```plantuml
+@startuml
+title Dữ liệu cốt lõi
+hide methods
+hide stereotypes
+entity "Người dùng" as User
+entity "Tài liệu" as Document
+entity "Trang" as Page
+entity "Tác vụ OCR" as OcrJob
+entity "Tác vụ xuất bản" as PublishJob
+User ||--o{ Document : sở hữu
+Document ||--o{ Page
+Document ||--o{ OcrJob
+Document ||--o{ PublishJob
+@enduml
+```
 
-Các trạng thái trong sơ đồ là baseline tối thiểu. `editing` thể hiện giai đoạn nghiệp vụ/UI giữa OCR và publish; triển khai có thể lưu bằng trường riêng hoặc suy ra từ version nội dung nhưng không được làm mất các trạng thái job chuẩn trong SRS. Mọi lần retry giữ attempt/error trước để phục vụ truy vết.
+Sơ đồ chỉ thể hiện các thực thể dữ liệu cốt lõi thuộc baseline. Danh mục, vị trí đọc, đánh dấu và ghi chú được bổ sung vào mô hình khi các hạng mục tương ứng được nhóm đưa vào phạm vi. Ràng buộc cột, chỉ mục, khóa ngoại và thay đổi lược đồ chi tiết được quản lý trong mã nguồn và đặc tả dữ liệu.
 
-### 5.7. Mô hình xác thực và phân quyền
+### 7.2. Quy tắc toàn vẹn
 
-![Mô hình xác thực, phân quyền phía máy chủ và truy cập tệp riêng tư](assets/architecture-authorization-model.svg)
+- Mỗi trang thuộc đúng một tài liệu và có số trang duy nhất trong tài liệu đó.
+- Mỗi tác vụ OCR hoặc xuất bản thuộc đúng một tài liệu và có số lần thử.
+- Khóa đối tượng của tài liệu gốc và EPUB được lưu riêng; tạo EPUB không thay đổi tài liệu gốc.
+- Xóa hoặc thay đổi danh mục không được làm mất nội dung tài liệu.
+- Tài liệu chỉ chuyển sang đã xuất bản sau khi thông tin mô tả bắt buộc, nội dung và EPUB hợp lệ.
+- Dữ liệu vị trí đọc, đánh dấu và ghi chú luôn gắn với người dùng sở hữu.
 
-Frontend không phải security boundary. Backend xác định actor, action và resource rồi mới truy vấn dữ liệu hoặc cấp URL object tạm thời. Search/list phải áp dụng bộ lọc quyền ngay tại phía máy chủ; không lấy dữ liệu trái quyền về client rồi mới ẩn. Chi tiết secrets, logging, incident và restore nằm trong [Kế hoạch vận hành và bảo mật](15-devops-and-operations.md).
+### 7.3. Phân chia nơi lưu trữ
 
-## 6. Mô hình triển khai
+| Nơi lưu trữ | Dữ liệu                                                                                            |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| PostgreSQL  | Người dùng, quyền, thông tin tài liệu, trang, văn bản OCR, trạng thái, tác vụ và dữ liệu truy vết. |
+| Kho tệp     | Tài liệu gốc, ảnh theo trang và tệp EPUB.                                                          |
+| Trình duyệt | Phiên giao diện và thiết lập hiển thị không nhạy cảm; không lưu khóa bí mật của máy chủ.           |
 
-![Mô hình triển khai demo cloud](assets/architecture-deployment.svg)
+## 8. Bảo mật
 
-Kiến trúc phân biệt ba profile:
+### 8.1. Phạm vi kiểm soát và mức độ tin cậy
 
-| Profile                | Thành phần                                                    | Mục đích/điều kiện                                                            |
-| ---------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Local development/test | Frontend local, FastAPI, PostgreSQL, MinIO qua Docker Compose | Nguồn chuẩn để phát triển và chạy kiểm tra local.                             |
-| Demo cloud             | Vercel, Render, Neon, Cloudflare R2                           | Chỉ tuyên bố sẵn sàng khi có smoke test và cấu hình được kiểm soát.           |
-| Production/on-premise  | Chưa chốt                                                     | Ngoài phạm vi; cần threat model, backup, monitoring, cost và phê duyệt riêng. |
+- Máy chủ không mặc nhiên tin cậy dữ liệu do trình duyệt hoặc người dùng gửi lên; mọi dữ liệu phải được kiểm tra trước khi xử lý.
+- Máy chủ chịu trách nhiệm xác thực, phân quyền và kiểm tra dữ liệu.
+- PostgreSQL và kho tệp chỉ được máy chủ truy cập bằng thông tin cấu hình phía máy chủ.
+- Liên kết tạm thời tới tệp không thay thế việc kiểm tra quyền trước khi cấp liên kết.
 
-Môi trường demo cloud dùng các dịch vụ dự kiến:
+### 8.2. Xác thực và phân quyền
 
-- **Vercel:** xây dựng và phân phối frontend.
-- **Render:** chạy backend, cung cấp API và điều phối tác vụ xử lý nền.
-- **Neon:** cung cấp cơ sở dữ liệu PostgreSQL.
-- **Cloudflare R2:** lưu tệp gốc và tệp EPUB; backend cấp quyền truy cập tạm thời khi người dùng đã được kiểm tra quyền.
+1. Máy chủ xác minh JWT và thời hạn phiên.
+2. Máy chủ xác định vai trò độc giả (`reader`), biên tập viên (`editor`) hoặc quản trị viên (`admin`).
+3. Máy chủ kiểm tra hành động, tài nguyên, quyền sở hữu và trạng thái xuất bản.
+4. Chỉ sau khi đạt các điều kiện trên, máy chủ mới đọc dữ liệu hoặc cấp quyền truy cập tệp.
 
-Frontend trên Vercel gọi API trên Render. Backend trên Render kết nối đến Neon, Cloudflare R2 và dịch vụ xác thực thông qua biến môi trường được quản lý riêng. Khóa bí mật, chuỗi kết nối và thông tin xác thực không được đưa vào mã nguồn hoặc frontend. Kết quả local không được dùng thay cho bằng chứng demo cloud.
+Giao diện có thể ẩn thao tác mà người dùng không được phép thực hiện để tránh nhầm lẫn. Tuy nhiên, máy chủ vẫn phải kiểm tra quyền vì việc ẩn thao tác trên giao diện không đủ để bảo vệ hệ thống.
 
-## 7. Kiểm chứng kỹ thuật
+### 8.3. Bảo vệ dữ liệu
 
-Nhóm thực hiện hai kiểm chứng nhỏ trước hoặc trong quá trình phát triển:
+- Kiểm tra loại tệp, kích thước và tên tệp trước khi tiếp nhận.
+- Sinh khóa đối tượng độc lập với tên tệp do người dùng cung cấp.
+- Không ghi khóa bí mật, mật khẩu hoặc nội dung nhạy cảm vào mã nguồn và nhật ký.
+- Không đưa tài liệu chưa xuất bản vào kết quả tìm kiếm công khai.
+- Không cung cấp liên kết công khai lâu dài cho tệp riêng tư.
+- Dữ liệu thử nghiệm phải được phân biệt với dữ liệu thật.
 
-1. **Kiểm chứng nhận dạng ký tự:** tải một tài liệu mẫu, tạo tác vụ nền, theo dõi trạng thái, lưu văn bản và mở lại kết quả.
-2. **Kiểm chứng luồng đọc:** đăng nhập bằng dữ liệu thử nghiệm, tìm tài liệu đã xuất bản, kiểm tra quyền và mở EPUB trên trình đọc.
+## 9. Triển khai và vận hành
 
-Mỗi kiểm chứng phải ghi môi trường, dữ liệu dùng thử, thao tác, kết quả mong đợi và kết quả thực tế. Không xem kiểm chứng là bằng chứng cho hiệu năng sản phẩm thật nếu chưa có bộ dữ liệu và phép đo phù hợp.
+### 9.1. Môi trường baseline
 
-Tại thời điểm cập nhật tài liệu, hai kiểm chứng vẫn ở trạng thái `Not Run` trong kế hoạch; không được diễn giải phần này là kết quả PoC đã đạt.
+| Nút triển khai              | Thành phần                     | Trao đổi chính                                    |
+| --------------------------- | ------------------------------ | ------------------------------------------------- |
+| Thiết bị người dùng         | Trình duyệt và giao diện React | HTTP hoặc HTTPS tới máy chủ                       |
+| Máy chạy Docker Compose     | FastAPI, PostgreSQL và MinIO   | Kết nối dữ liệu và trao đổi tệp trong mạng nội bộ |
+| Cấu hình triển khai mở rộng | Nginx                          | Chuyển tiếp HTTP/HTTPS tới FastAPI khi được bật   |
 
-## 8. Truy vết và tài liệu tham khảo
+Bảng triển khai cho biết các thành phần chạy ở đâu trong môi trường baseline. Cấu hình có thể tách giao diện và máy chủ sang các nền tảng khác, nhưng trách nhiệm và quan hệ giữa các vùng chứa vẫn giữ nguyên.
 
-| Quyết định kiến trúc                           | Yêu cầu liên quan                         |
-| ---------------------------------------------- | ----------------------------------------- |
-| Phân tách giao diện, API, nghiệp vụ và dữ liệu | YC-PN-07, YC-PN-09                        |
-| Kiểm tra phiên và quyền ở máy chủ              | YC-HT-01 đến YC-HT-04, YC-PN-01           |
-| Lưu tệp gốc riêng và không ghi đè              | YC-TL-03, YC-PN-08                        |
-| Tác vụ nhận dạng ký tự và tạo EPUB ở nền       | YC-ND-01, YC-ND-02, YC-PH-04, YC-PN-03    |
-| Tìm kiếm toàn văn và lọc theo quyền            | YC-TC-01 đến YC-TC-04, YC-PN-04           |
-| Kiểm tra điều kiện xuất bản và đọc trực tuyến  | YC-PH-01 đến YC-PH-06, YC-TC-05, YC-TC-06 |
+Docker Compose cung cấp FastAPI, PostgreSQL và MinIO trong môi trường phát triển. Nginx chỉ được sử dụng khi bật cấu hình triển khai tương ứng. Giao diện có thể chạy riêng bằng Vite hoặc được đóng gói cùng máy chủ web. Kiểm tra sức khỏe chỉ xác nhận thành phần sẵn sàng kết nối; không thay thế kiểm thử nghiệp vụ.
 
-Tài liệu tham khảo:
+### 9.2. Cấu hình
 
-- [Đề xuất dự án](01-project-proposal.md)
-- [Tài liệu viễn cảnh và phạm vi](02-vision-and-scope.md)
-- [Ủy nhiệm dự án](03-project-charter.md)
-- [Yêu cầu phần mềm](04-software-requirements.md)
-- [Danh mục công việc](04-product-backlog.md)
-- [Nghiên cứu tính khả thi](08-feasibility-study.md)
-- [Sổ đăng ký rủi ro](18-risk-management-plan.md)
-- [Kế hoạch quản lý chất lượng](19-quality-management-plan.md)
-- [Kế hoạch kiểm thử và UAT](20-test-plan.md)
-- [Nhật ký quyết định và ADR](A1-decision-log-and-adr.md)
-- [Kế hoạch vận hành và bảo mật](15-devops-and-operations.md)
+Các nhóm cấu hình chính gồm:
+
+- Kết nối PostgreSQL.
+- Địa chỉ truy cập, vùng lưu trữ (bucket) và thông tin xác thực kho tệp.
+- Địa chỉ giao diện được phép gửi yêu cầu đến API.
+- Ngôn ngữ, độ phân giải và thời hạn xử lý OCR.
+- Thời hạn tạo EPUB.
+- Khóa ký JWT, thời hạn phiên và chế độ xác thực.
+- Cấu hình Google OAuth 2.0 khi chức năng được bật.
+
+Môi trường học tập có thể dùng giá trị mô phỏng. Mọi môi trường chia sẻ hoặc mở rộng phải thay các giá trị mặc định, quản lý bí mật riêng và tắt cơ chế đăng nhập mô phỏng khi không còn phù hợp.
+
+### 9.3. Theo dõi và phục hồi
+
+- API cung cấp kiểm tra sức khỏe và số liệu kỹ thuật cơ bản.
+- Lỗi tác vụ lưu trạng thái và thông báo phù hợp để người có quyền theo dõi.
+- Khi máy chủ khởi động, tác vụ đang xử lý bị gián đoạn phải được đánh dấu thất bại hoặc đưa về trạng thái có thể xử lý lại.
+- Khôi phục dữ liệu cần xét đồng thời PostgreSQL và kho tệp để tránh mất quan hệ giữa bản ghi và đối tượng.
+- Ngưỡng cảnh báo, chu kỳ sao lưu và mục tiêu khôi phục chỉ được chốt khi có môi trường vận hành thực tế.
+
+### 9.4. Môi trường đám mây
+
+Giao diện, máy chủ, PostgreSQL và kho tệp có thể được triển khai trên các dịch vụ đám mây phù hợp. Đây là phương án triển khai thay thế và không làm thay đổi trách nhiệm của các thành phần hoặc quy tắc bảo mật. Một môi trường chỉ được xem là sẵn sàng sử dụng sau khi cấu hình đúng, chuyển dữ liệu thành công, các thành phần hoạt động, các luồng chính vượt qua kiểm thử và thông tin bí mật được bảo vệ.
+
+## 10. Quyết định và truy vết kiến trúc
+
+| Quyết định kiến trúc                              | Lý do chính                                                                    | Yêu cầu liên quan                                |
+| ------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------ |
+| Ứng dụng mô-đun thay vì nhiều dịch vụ độc lập     | Phù hợp thời gian, quy mô nhóm và khả năng kiểm thử.                           | `YC-001`, `YCP-09`, `YCP-10`                     |
+| React cho giao diện và FastAPI cho máy chủ        | Phù hợp năng lực nhóm và tách rõ giao diện với nghiệp vụ.                      | `YC-001`, `YC-005`, `YC-008`, `YC-026`           |
+| PostgreSQL cho dữ liệu và tìm kiếm trong baseline | Giảm số thành phần, hỗ trợ dữ liệu quan hệ và tìm kiếm toàn văn.               | `YC-011`, `YC-012`, `YC-015`, `YC-016`           |
+| Kho tệp tương thích S3 cho tài liệu và EPUB       | Tách tệp lớn khỏi dữ liệu quản lý và hỗ trợ truy cập có hạn.                   | `YC-002`, `YC-007`, `YC-014`, `YCP-03`, `YCP-04` |
+| OCR và tạo EPUB dưới dạng tác vụ nền              | Giúp API trả trạng thái sớm mà không chờ thao tác dài hoàn tất.                | `YC-003`, `YC-007`, `YC-022`, `YCP-07`           |
+| JWT và kiểm tra quyền tại máy chủ                 | Bảo đảm quyền vẫn được kiểm tra khi người dùng bỏ qua hoặc thay đổi giao diện. | `YC-009`, `YC-010`, `YC-014`, `YC-018`, `YCP-01` |
+| Bảo toàn tài liệu gốc                             | Cho phép đối chiếu, xử lý lại và phục hồi khi có lỗi.                          | `YC-002`, `YC-004`, `YC-005`, `YC-022`, `YCP-04` |
+| Mã yêu cầu dùng xuyên suốt tài liệu và kiểm thử   | Hỗ trợ truy vết phạm vi, kết quả và thay đổi.                                  | `YCP-10`                                         |
+
+Chi tiết lý do, phương án thay thế và quyết định thay đổi được trình bày trong tài liệu **Nhật ký quyết định kiến trúc**.
+
+## 11. Giới hạn và hướng mở rộng
+
+### 11.1. Giới hạn hiện tại
+
+- Xử lý nền chạy trong tiến trình FastAPI; hệ thống chưa có dịch vụ xử lý hoặc hàng đợi riêng có khả năng lưu và khôi phục tác vụ độc lập.
+- PostgreSQL là công cụ tìm kiếm trong baseline; nhóm chưa cam kết khả năng đáp ứng khi khối lượng dữ liệu lớn.
+- Không khẳng định độ chính xác OCR hoặc hiệu năng nếu chưa có dữ liệu đo.
+- Liên kết tạm thời và việc ẩn nút tải không thể ngăn tuyệt đối việc sao chép nội dung đã hiển thị.
+- Môi trường Docker Compose phù hợp phát triển và kiểm thử, không tự động đáp ứng yêu cầu vận hành thực tế.
+
+### 11.2. Điều kiện mở rộng
+
+Chỉ xem xét thay đổi kiến trúc khi có dữ liệu hoặc yêu cầu mới, ví dụ:
+
+- Tách bộ xử lý và hàng đợi khi tải đồng thời hoặc nhu cầu phục hồi vượt khả năng mô hình hiện tại.
+- Dùng công cụ tìm kiếm riêng khi số liệu chứng minh PostgreSQL không đáp ứng.
+- Bổ sung lưu trữ phiên bản nội dung khi cần lịch sử hiệu chỉnh chi tiết.
+- Bổ sung sao lưu, giám sát và mục tiêu khôi phục khi có môi trường vận hành thực tế.
+- Tích hợp hệ thống danh tính hoặc kho thư viện bên ngoài khi dự án được mở rộng.
+
+Mọi mở rộng phải được nhóm xác nhận, cập nhật baseline và truy vết tới **Yêu cầu phần mềm**, **Product Backlog**, **Kế hoạch kiểm thử** cùng các tài liệu bị ảnh hưởng.
+
+## 12. Tài liệu tham khảo
+
+- Đề xuất dự án.
+- Viễn cảnh và phạm vi.
+- Ủy nhiệm dự án.
+- Yêu cầu phần mềm.
+- Product Backlog.
+- Nghiên cứu tính khả thi.
+- Bản mô tả công việc.
+- Kế hoạch dự án.
+- Kế hoạch kiểm thử.
+- Kế hoạch quản lý chất lượng.
+- Kế hoạch quản lý rủi ro.
+- Kế hoạch vận hành và bảo mật.
+- Nhật ký dự án.
+- Nhật ký quyết định kiến trúc.
