@@ -42,6 +42,7 @@
 - [11. Chữ ký phê duyệt (Signatures)](#11-chữ-ký-phê-duyệt-signatures)
 
 ---
+
 ## 1. Tuyên bố ủy quyền chính thức
 
 Ban Giám hiệu Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM chính thức phê duyệt thành lập dự án **Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)**. Điều lệ dự án này trao quyền chính thức cho Trưởng phòng Công nghệ Thông tin làm Quản lý Dự án (PM) đại diện nhà trường điều phối nguồn lực, mua sắm thiết bị scan chuyên dụng chữ V, sử dụng hạ tầng ảo hóa máy chủ VMware sẵn có và phối hợp chặt chẽ với Ban Giám đốc Thư viện để triển khai dự án theo đúng kế hoạch.

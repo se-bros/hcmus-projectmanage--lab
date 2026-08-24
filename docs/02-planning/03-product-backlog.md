@@ -52,6 +52,7 @@
   - [Tổng backlog](#tổng-backlog)
 
 ---
+
 ## 1. Định nghĩa Hoàn thành và Quy tắc tổ chức
 
 ### 1.1. Quy tắc Kanban và Forecast

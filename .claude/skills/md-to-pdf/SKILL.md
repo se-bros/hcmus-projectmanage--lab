@@ -44,18 +44,18 @@ Or, add to your **workspace** `.vscode/settings.json` if you only want it for a 
 
 ## What the Premium CSS Includes
 
-| Feature | Description |
-|---------|-------------|
-| **Typography** | Clean font stack (Segoe UI / system fonts), comfortable line-height, justified text |
-| **Headings** | Styled hierarchy with colored left-border accent, bottom dividers for H1/H2 |
-| **Tables** | Dark gradient headers, alternating row colors, hover effects |
-| **Code Blocks** | Dark-themed (slate) with rounded corners and subtle shadow |
-| **Inline Code** | Light background with border, contrasting color |
-| **Blockquotes** | Blue left-border with tinted background |
-| **Links** | Blue color, URL shown in parentheses when printed |
-| **Images** | Centered with subtle shadow and rounded corners |
-| **Horizontal Rules** | Gradient line effect |
-| **Print Layout** | Page-break avoidance for headings, tables, code blocks |
+| Feature              | Description                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| **Typography**       | Clean font stack (Segoe UI / system fonts), comfortable line-height, justified text |
+| **Headings**         | Styled hierarchy with colored left-border accent, bottom dividers for H1/H2         |
+| **Tables**           | Dark gradient headers, alternating row colors, hover effects                        |
+| **Code Blocks**      | Dark-themed (slate) with rounded corners and subtle shadow                          |
+| **Inline Code**      | Light background with border, contrasting color                                     |
+| **Blockquotes**      | Blue left-border with tinted background                                             |
+| **Links**            | Blue color, URL shown in parentheses when printed                                   |
+| **Images**           | Centered with subtle shadow and rounded corners                                     |
+| **Horizontal Rules** | Gradient line effect                                                                |
+| **Print Layout**     | Page-break avoidance for headings, tables, code blocks                              |
 
 ## Customization
 
@@ -75,6 +75,7 @@ Create a second CSS file and add it after the premium CSS:
 ### Change Code Highlight Theme
 
 Available themes at [highlight.js demo](https://highlightjs.org/demo). Examples:
+
 - `"github-dark.css"` (default - dark code blocks)
 - `"github.css"` (light code blocks)
 - `"monokai.css"` (Monokai dark)

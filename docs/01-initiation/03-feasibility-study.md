@@ -40,6 +40,7 @@
 - [6. Khuyến nghị báo cáo (Recommendations)](#6-khuyến-nghị-báo-cáo-recommendations)
 
 ---
+
 ## 1. Mục đích báo cáo (Purpose)
 
 Báo cáo nghiên cứu khả thi này được lập nhằm thẩm định toàn diện tính khả thi của dự án **Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)** trước khi trình Ban Giám hiệu phê duyệt cấp ngân sách đầu tư thiết bị và phân bổ nhân sự chính thức. Báo cáo tập trung trả lời câu hỏi: _Liệu việc tự phát triển một phần mềm số hóa tài liệu custom tích hợp OCR và EPUB Reader có thực tiễn, kinh tế, an toàn pháp lý và khả thi trong điều kiện nguồn lực của HCMUS hiện tại hay không?_

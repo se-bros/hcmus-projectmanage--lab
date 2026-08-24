@@ -7,7 +7,7 @@
 
 **Bối cảnh**: Đây là bước "chính thức pick" (đủ AC) của Epic C — Search & Reader UX, tiếp nối bản scaffold fixture đã dựng ở `001-reader-search-placeholder`. Feature này thay dữ liệu giả bằng dữ liệu thật (PostgreSQL FTS, MinIO Signed URL, EPUB thật do LDMS-007 xuất bản), theo đúng cấu trúc route đã có sẵn (`/reader/:documentId`, `/search`) để không phải đổi lại FE structure.
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Đọc sách EPUB đã xuất bản (Priority: P1)
 
@@ -136,7 +136,7 @@ Là độc giả đã đăng nhập, tôi muốn hệ thống tự nhớ vị tr
 - Reload trang sau khi đổi font-size/theme → preference vẫn giữ nguyên trên cùng trình duyệt (US6 AC3); nhưng đổi sang trình duyệt/máy khác thì preference không tự đồng bộ (lưu local, ngoài phạm vi story này).
 - Reader cố tình chặn download nhưng người dùng vẫn có thể chụp màn hình/dùng DevTools để lấy nội dung — residual risk được ghi nhận trong README, không phải bug cần fix (US5 AC4).
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -154,12 +154,13 @@ Là độc giả đã đăng nhập, tôi muốn hệ thống tự nhớ vị tr
 - **FR-012**: System MUST lưu vị trí đọc dở của một user cho một document theo cặp `(user_id, document_id)`, và khôi phục đúng vị trí khi user đó mở lại cùng document (US7). Việc lưu chỉ cần xảy ra một lần khi user rời/đóng Reader (điều hướng đi hoặc đóng tab) — không yêu cầu tự động lưu định kỳ trong lúc đang đọc; mất tiến độ do trình duyệt crash/mất điện giữa phiên đọc là rủi ro chấp nhận được, ngoài phạm vi story này.
 - **FR-013**: Bookmark của một user MUST không hiển thị/áp dụng cho user khác mở cùng document (US7).
 
-*Ghi chú phạm vi (không phải NEEDS CLARIFICATION):*
+_Ghi chú phạm vi (không phải NEEDS CLARIFICATION):_
+
 - Route FE (`/reader/:documentId`, `/search`, danh sách tài liệu) đã tồn tại từ `001-reader-search-placeholder` — feature này thay nguồn dữ liệu từ fixture sang thật, không đổi cấu trúc route/trang.
 - Auth/RBAC nền tảng (LDMS-009/010) được giả định đã sẵn sàng khi US1/US5/US7 triển khai — feature này dùng, không xây lại cơ chế đăng nhập/phân quyền.
 - EPUB thật (LDMS-007/Pandoc) và OCR/metadata thật (LDMS-004/011) là input đầu vào cần có trước khi US1/US3 kiểm thử được với dữ liệu thật — nếu chưa sẵn sàng, có thể kiểm thử tạm với 1 document mẫu đã publish thủ công.
 
-### Key Entities *(include if feature involves data)*
+### Key Entities _(include if feature involves data)_
 
 - **Document**: tài liệu thư viện — `id`, tiêu đề, tác giả, `status` (draft/published), ngày tạo. Nguồn dữ liệu thật từ PostgreSQL (không còn fixture).
 - **EpubAsset**: file EPUB đã biên dịch gắn với một Document đã publish, lưu trên MinIO, truy cập qua Signed URL có thời hạn.
@@ -167,7 +168,7 @@ Là độc giả đã đăng nhập, tôi muốn hệ thống tự nhớ vị tr
 - **ReaderPreference**: tùy chọn hiển thị của độc giả — cỡ chữ, theme (light/dark), lưu theo trình duyệt (local), không gắn với tài khoản.
 - **Bookmark**: vị trí đọc dở — gắn với cặp `(user_id, document_id)`, lưu vị trí đọc gần nhất.
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 

@@ -4,22 +4,22 @@
 
 ### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                      |
-| :----------------------------------------- | :----------------------------------------------------------------- |
-| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-LLR`                                                   |
-| **Tên tài liệu (Document Title)**          | Báo cáo Bài học Kinh nghiệm (Lessons Learned Register)             |
-| **Dự án (Project Name)**                   | HCMUS-LDMS                                                         |
-| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                   |
-| **Người xem xét (Reviewer)**               | Mạch Quốc Tấn (Project Manager)                                    |
-| **Người phê duyệt (Approver)**             | Toàn bộ 6 thành viên nhóm (đồng thuận)                             |
+| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                       |
+| :----------------------------------------- | :------------------------------------------------------------------ |
+| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-LLR`                                                    |
+| **Tên tài liệu (Document Title)**          | Báo cáo Bài học Kinh nghiệm (Lessons Learned Register)              |
+| **Dự án (Project Name)**                   | HCMUS-LDMS                                                          |
+| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                    |
+| **Người xem xét (Reviewer)**               | Mạch Quốc Tấn (Project Manager)                                     |
+| **Người phê duyệt (Approver)**             | Toàn bộ 6 thành viên nhóm (đồng thuận)                              |
 | **Cấp độ bảo mật (Security Class)**        | Internal & Organizational Process Assets (Tài sản Quy trình Nội bộ) |
 | **Trạng thái tài liệu (Status)**           | Final Approved (Hoàn tất & Đóng dấu lưu trữ)                        |
 
 ### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                    | Người thực hiện (Author) |
-| :-----------------: | :-------------------: | :---------------------------------------------------------------------------------------------------------------------------------------- | :----------------------: |
-|         1.0         |      20/08/2026       | Tổng kết toàn bộ bài học kinh nghiệm sau khi hoàn thành dự án: Quy trình PDCA, 3 bài học đắt giá, đánh giá mô hình và khuyến nghị PMO.  |      Mạch Quốc Tấn       |
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                 | Người thực hiện (Author) |
+| :-----------------: | :-------------------: | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------: |
+|         1.0         |      20/08/2026       | Tổng kết toàn bộ bài học kinh nghiệm sau khi hoàn thành dự án: Quy trình PDCA, 3 bài học đắt giá, đánh giá mô hình và khuyến nghị PMO. |      Mạch Quốc Tấn       |
 
 ---
 
@@ -58,6 +58,7 @@ flowchart LR
 ```
 
 Nhóm áp dụng kỹ thuật **Sprint Retrospective** theo khung câu hỏi **"Start - Stop - Continue"**:
+
 1. **Start (Cần bắt đầu làm gì?):** Thiết lập linter tự động trên CI sớm hơn; bắt buộc viết unit test ngay khi code logic nghiệp vụ.
 2. **Stop (Cần dừng làm gì?):** Dừng việc nạp toàn bộ codebase lớn vào prompt AI khi chỉ cần sửa một hàm nhỏ (gây tốn token và loãng context).
 3. **Continue (Cần tiếp tục duy trì gì?):** Duy trì Daily Standup 15 phút, cập nhật nhật ký `project-log.md` đều đặn trong 12h, và duy trì văn hóa tự giác Lý thuyết Y.
@@ -66,19 +67,20 @@ Nhóm áp dụng kỹ thuật **Sprint Retrospective** theo khung câu hỏi **"
 
 ## 3. Bảng Đăng ký Bài học Kinh nghiệm Toàn diện (Lessons Learned Matrix)
 
-| Mã | Hạng mục | Tình huống phát sinh (Issue/Event) | Hậu quả / Tác động | Nguyên nhân gốc rễ (Root Cause) | Bài học kinh nghiệm & Khuyến nghị (Actionable Insight) |
-| :-: | :--- | :--- | :--- | :--- | :--- |
-| **LL-01** | **Phương pháp** | Dùng AI sinh code khi chưa chốt rõ Acceptance Criteria (AC). | AI sinh code sai nghiệp vụ, phải đập đi viết lại, tốn 120K token vô ích. | Thiếu đặc tả kỹ thuật (Spec) rõ ràng; dev ỷ lại hoàn toàn vào AI. | **Nguyên tắc "Spec-First":** Luôn viết rõ Product Backlog và tiêu chí AC trước khi bắt đầu phiên prompt AI. |
-| **LL-02** | **Kiến trúc** | Ban đầu dự định dựng Elasticsearch cluster và hệ thống Microservices. | Cấu hình quá phức tạp, máy dev 8GB RAM bị treo khi chạy Docker. | Xu hướng "Over-engineering", chọn công nghệ vượt quá quy mô dự án. | **Nguyên tắc "Đơn giản đủ dùng (KISS)":** Sử dụng PostgreSQL Full-Text Search và Modular Monolith; tiết kiệm 70% RAM mà tốc độ vẫn $< 200\text{ms}$. |
-| **LL-03** | **Quản trị nhóm** | Một số thành viên ngại báo cáo khi gặp blocker kỹ thuật ở tuần đầu. | Tiến độ story bị chậm 2 ngày so với kế hoạch ban đầu. | Tâm lý sợ bị đánh giá năng lực kém khi làm việc nhóm. | **Áp dụng Lý thuyết Y & Chính sách Không đổ lỗi (Blameless Culture):** Daily Standup tập trung gỡ khó, tạo môi trường cởi mở giúp báo blocker ngay trong 24h. |
-| **LL-04** | **Kiểm thử** | Chỉ test thủ công trên giao diện Web mà không viết Unit Test backend. | Sửa API này làm gãy ngầm API khác mà không phát hiện kịp thời. | Tâm lý "tiết kiệm thời gian" giai đoạn đầu dự án. | **Áp dụng Kim tự tháp Kiểm thử (Test Pyramid):** Yêu cầu AI sinh Pytest fixtures ngay khi viết endpoint; tích hợp CI tự động chặn merge nếu test fail. |
-| **LL-05** | **Khảo sát** | Tự suy diễn quy trình số hóa của thủ thư dựa trên tài liệu lý thuyết. | Thiết kế giao diện Editor ban đầu bị thủ thư chê khó dùng vì thiếu ảnh scan gốc. | Thiếu sự tham gia sớm của Stakeholder thực tế. | **Gặp gỡ Stakeholder sớm & Prototype tiến hóa:** Lên gặp trực tiếp cô thủ thư Mai, quan sát thao tác scan thực tế để thiết kế Split-screen Editor. |
+|    Mã     | Hạng mục          | Tình huống phát sinh (Issue/Event)                                    | Hậu quả / Tác động                                                               | Nguyên nhân gốc rễ (Root Cause)                                    | Bài học kinh nghiệm & Khuyến nghị (Actionable Insight)                                                                                                        |
+| :-------: | :---------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **LL-01** | **Phương pháp**   | Dùng AI sinh code khi chưa chốt rõ Acceptance Criteria (AC).          | AI sinh code sai nghiệp vụ, phải đập đi viết lại, tốn 120K token vô ích.         | Thiếu đặc tả kỹ thuật (Spec) rõ ràng; dev ỷ lại hoàn toàn vào AI.  | **Nguyên tắc "Spec-First":** Luôn viết rõ Product Backlog và tiêu chí AC trước khi bắt đầu phiên prompt AI.                                                   |
+| **LL-02** | **Kiến trúc**     | Ban đầu dự định dựng Elasticsearch cluster và hệ thống Microservices. | Cấu hình quá phức tạp, máy dev 8GB RAM bị treo khi chạy Docker.                  | Xu hướng "Over-engineering", chọn công nghệ vượt quá quy mô dự án. | **Nguyên tắc "Đơn giản đủ dùng (KISS)":** Sử dụng PostgreSQL Full-Text Search và Modular Monolith; tiết kiệm 70% RAM mà tốc độ vẫn $< 200\text{ms}$.          |
+| **LL-03** | **Quản trị nhóm** | Một số thành viên ngại báo cáo khi gặp blocker kỹ thuật ở tuần đầu.   | Tiến độ story bị chậm 2 ngày so với kế hoạch ban đầu.                            | Tâm lý sợ bị đánh giá năng lực kém khi làm việc nhóm.              | **Áp dụng Lý thuyết Y & Chính sách Không đổ lỗi (Blameless Culture):** Daily Standup tập trung gỡ khó, tạo môi trường cởi mở giúp báo blocker ngay trong 24h. |
+| **LL-04** | **Kiểm thử**      | Chỉ test thủ công trên giao diện Web mà không viết Unit Test backend. | Sửa API này làm gãy ngầm API khác mà không phát hiện kịp thời.                   | Tâm lý "tiết kiệm thời gian" giai đoạn đầu dự án.                  | **Áp dụng Kim tự tháp Kiểm thử (Test Pyramid):** Yêu cầu AI sinh Pytest fixtures ngay khi viết endpoint; tích hợp CI tự động chặn merge nếu test fail.        |
+| **LL-05** | **Khảo sát**      | Tự suy diễn quy trình số hóa của thủ thư dựa trên tài liệu lý thuyết. | Thiết kế giao diện Editor ban đầu bị thủ thư chê khó dùng vì thiếu ảnh scan gốc. | Thiếu sự tham gia sớm của Stakeholder thực tế.                     | **Gặp gỡ Stakeholder sớm & Prototype tiến hóa:** Lên gặp trực tiếp cô thủ thư Mai, quan sát thao tác scan thực tế để thiết kế Split-screen Editor.            |
 
 ---
 
 ## 4. Phân tích Chi tiết 3 Bài học Kinh nghiệm Đắt giá nhất
 
 ### 4.1. Bài học 1: Ứng dụng AI Coding phải đi đôi với Đặc tả Yêu cầu Chặt chẽ (Spec-Driven AI)
+
 - **Thực trạng:** Khi mới tiếp cận công cụ AI, dev thường có xu hướng "Vibe Coding" — mô tả ý tưởng chung chung cho AI tự suy diễn. Kết quả là mã nguồn sinh ra có vẻ chạy được nhưng lại không ăn khớp với cơ sở dữ liệu và vi phạm luồng nghiệp vụ.
 - **Giải pháp đắt giá:** Nhóm chuyển dịch sang mô hình **Spec-Driven AI Development**:
   1. Con người (Dev/PM) đầu tư thời gian suy nghĩ cấu trúc dữ liệu, viết rõ ràng User Story + Acceptance Criteria theo chuẩn INVEST.
@@ -88,6 +90,7 @@ Nhóm áp dụng kỹ thuật **Sprint Retrospective** theo khung câu hỏi **"
 - **Kết quả:** Giảm thời gian sửa lỗi từ vài giờ xuống còn vài phút, tỷ lệ token hữu ích tăng từ $40\%$ lên $> 90\%$.
 
 ### 4.2. Bài học 2: Đơn giản hóa Kiến trúc & Tránh Bẫy "Over-engineering"
+
 - **Thực trạng:** Giai đoạn lập đề xuất, nhóm bị cuốn vào các thuật ngữ công nghệ thời thượng như Microservices, Apache Kafka, Elasticsearch cluster. Tuy nhiên, khi bắt tay vào triển khai, chi phí tài nguyên phần cứng và độ trễ mạng khiến việc phát triển bị đình trệ.
 - **Giải pháp đắt giá:**
   - Tái cấu trúc thành **Modular Monolith** viết bằng **FastAPI** và **React 19**.
@@ -96,6 +99,7 @@ Nhóm áp dụng kỹ thuật **Sprint Retrospective** theo khung câu hỏi **"
 - **Kết quả:** Toàn bộ hệ thống chạy mượt mà trên 1 lệnh `docker compose up`, chiếm chưa tới 1.5GB RAM, chi phí hạ tầng = 0 VNĐ nhưng vẫn xử lý mượt mà hơn 500 tài liệu số hóa với tốc độ phản hồi $< 200\text{ms}$.
 
 ### 4.3. Bài học 3: Minh bạch Nhật ký Dùng AI & Quản trị Lòng tin theo Lý thuyết Y
+
 - **Thực trạng:** Việc sử dụng AI tạo ra sự hoài nghi ngầm trong nhóm: _"Ai làm nhiều hơn? Ai chỉ bấm nút cho AI làm?"_.
 - **Giải pháp đắt giá:** Nhóm thiết lập **Policy 1 — Minh bạch Nhật ký Dự án** (`02-project-log.md`):
   - Bắt buộc ghi nhận thời gian thực tế, số token AI đã tiêu thụ, model sử dụng và mã story hoàn thành sau mỗi phiên làm việc.
@@ -106,18 +110,19 @@ Nhóm áp dụng kỹ thuật **Sprint Retrospective** theo khung câu hỏi **"
 
 ## 5. So sánh Đối chuẩn: Quản lý theo Kế hoạch (Plan-driven) vs Quản lý Thích ứng (Agile)
 
-| Tiêu chí so sánh | Quản lý theo Kế hoạch Chặt chẽ (Plan-driven / Waterfall) | Quản lý Thích ứng theo Kinh nghiệm (Agile / Kanban) | Trải nghiệm thực tế tại Dự án HCMUS-LDMS |
-| :--- | :--- | :--- | :--- |
-| **Triết lý cốt lõi** | Lập kế hoạch toàn diện từ đầu; kiểm soát nghiêm ngặt sự thay đổi. | Chấp nhận sự thay đổi; học hỏi và tối ưu hóa qua từng vòng lặp ngắn. | Kết hợp hài hòa: Khởi tạo có Charter/SoW chặt chẽ, thực thi theo Kanban linh hoạt. |
-| **Xử lý yêu cầu mới** | Yêu cầu quy trình phê duyệt Change Request phức tạp, tăng chi phí. | Đưa vào Product Backlog, tái ưu tiên theo giá trị người dùng. | Dùng cơ chế Change Control trong SoW để bảo vệ ngân sách 100M và hạn chế Scope Creep. |
-| **Vai trò tài liệu** | Tài liệu đóng vai trò là hợp đồng pháp lý cố định, chi tiết hóa cao. | Tài liệu tinh gọn, chỉ tạo khi cần thiết và cập nhật liên tục. | Duy trì hệ thống tài liệu `docs/` sống động, cập nhật song song mã nguồn. |
-| **Đo lường tiến độ** | Dựa trên phần trăm hoàn thành kế hoạch (EVM: PV, EV, AC). | Dựa trên số lượng tính năng thực tế đã hoàn thành (Throughput, DoD). | Đo lường Throughput thực tế ($T = \text{stories Done / tuần}$) kết hợp theo dõi WBS. |
+| Tiêu chí so sánh      | Quản lý theo Kế hoạch Chặt chẽ (Plan-driven / Waterfall)             | Quản lý Thích ứng theo Kinh nghiệm (Agile / Kanban)                  | Trải nghiệm thực tế tại Dự án HCMUS-LDMS                                              |
+| :-------------------- | :------------------------------------------------------------------- | :------------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
+| **Triết lý cốt lõi**  | Lập kế hoạch toàn diện từ đầu; kiểm soát nghiêm ngặt sự thay đổi.    | Chấp nhận sự thay đổi; học hỏi và tối ưu hóa qua từng vòng lặp ngắn. | Kết hợp hài hòa: Khởi tạo có Charter/SoW chặt chẽ, thực thi theo Kanban linh hoạt.    |
+| **Xử lý yêu cầu mới** | Yêu cầu quy trình phê duyệt Change Request phức tạp, tăng chi phí.   | Đưa vào Product Backlog, tái ưu tiên theo giá trị người dùng.        | Dùng cơ chế Change Control trong SoW để bảo vệ ngân sách 100M và hạn chế Scope Creep. |
+| **Vai trò tài liệu**  | Tài liệu đóng vai trò là hợp đồng pháp lý cố định, chi tiết hóa cao. | Tài liệu tinh gọn, chỉ tạo khi cần thiết và cập nhật liên tục.       | Duy trì hệ thống tài liệu `docs/` sống động, cập nhật song song mã nguồn.             |
+| **Đo lường tiến độ**  | Dựa trên phần trăm hoàn thành kế hoạch (EVM: PV, EV, AC).            | Dựa trên số lượng tính năng thực tế đã hoàn thành (Throughput, DoD). | Đo lường Throughput thực tế ($T = \text{stories Done / tuần}$) kết hợp theo dõi WBS.  |
 
 ---
 
 ## 6. Vai trò của Văn phòng Quản lý Dự án (PMO) đối với Tài sản Quy trình Tổ chức (OPA)
 
 Trong các tổ chức phần mềm quy mô lớn, **Văn phòng Quản lý Dự án (Project Management Office - PMO)** đóng vai trò sống còn:
+
 1. **Chuẩn hóa & Quản trị Phương pháp luận:** Cung cấp các biểu mẫu chuẩn (Charter, SoW, Risk Register, Quality Plan) giúp các nhóm dự án triển khai nhanh chóng mà không phải tự xây dựng từ đầu.
 2. **Quản lý & Tái sử dụng Tài sản Quy trình (OPA):** Lưu trữ tập trung các Báo cáo Bài học Kinh nghiệm (Lessons Learned Register) từ hàng trăm dự án trong quá khứ để làm cơ sở dữ liệu ước lượng (Data Fitting) cho các dự án mới.
 3. **Điều phối Nguồn lực Dùng chung:** Tối ưu hóa việc phân bổ nhân sự chủ chốt (Solution Architect, DevOps Lead, Security Specialist) giữa các dự án khác nhau để tránh lãng phí ngân sách.

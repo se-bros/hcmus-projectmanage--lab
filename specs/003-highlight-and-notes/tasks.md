@@ -41,12 +41,12 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 **⚠️ CRITICAL**: Không story nào bắt đầu được trước khi phase này xong.
 
 - [x] **T002** [P] Tạo model `Highlight` trong `src/backend/app/models/highlight.py` theo `data-model.md`: `id`, `document_id` (FK CASCADE, index), `user_sub` (index), `cfi_range`, `selected_text`, `note` (nullable), `created_at`, `updated_at`, cộng `Index("ix_highlights_document_user", "document_id", "user_sub")`. **KHÔNG** thêm `UniqueConstraint` — vùng chồng lấn phải tạo được (FR-004).
-- [x] **T003** Export `Highlight` trong `src/backend/app/models/__init__.py` (import + thêm vào `__all__`). Bắt buộc, nếu không Alembic `--autogenerate` sẽ không thấy model. *(phụ thuộc T002)*
-- [x] **T004** Tạo migration `src/backend/app/db/migrations/versions/20260812_0010_highlights.py`, `down_revision = "20260812_0009"`, đối xứng với `20260717_0007_bookmarks.py`. Xác minh: `uv run alembic upgrade head` rồi `\d highlights` thấy đúng index và FK CASCADE, không có unique constraint. *(phụ thuộc T001, T003)*
+- [x] **T003** Export `Highlight` trong `src/backend/app/models/__init__.py` (import + thêm vào `__all__`). Bắt buộc, nếu không Alembic `--autogenerate` sẽ không thấy model. _(phụ thuộc T002)_
+- [x] **T004** Tạo migration `src/backend/app/db/migrations/versions/20260812_0010_highlights.py`, `down_revision = "20260812_0009"`, đối xứng với `20260717_0007_bookmarks.py`. Xác minh: `uv run alembic upgrade head` rồi `\d highlights` thấy đúng index và FK CASCADE, không có unique constraint. _(phụ thuộc T001, T003)_
 - [x] **T005** [P] Tạo `src/backend/app/schemas/highlight.py` với hằng `MAX_NOTE_LENGTH = 2000`, `MAX_SELECTED_TEXT_LENGTH = 5000` và schema `HighlightDetail` (không có trường `user_sub` — xem `contracts/highlights-api.md`).
 - [x] **T006** [P] Tạo `src/backend/app/services/highlight_service.py` với helper dùng chung `_get_owned_highlight(db, document_id, highlight_id, user_sub)`: đặt điều kiện `user_sub` **trong mệnh đề `WHERE`** của `select()`, không tìm thấy thì `raise NotFoundError("Không tìm thấy đánh dấu.")`. Đây là điểm chốt của FR-012 — tuyệt đối không lấy bản ghi trước rồi mới `if` kiểm chủ sở hữu.
-- [x] **T007** Tạo khung router `src/backend/app/api/highlights.py`: `APIRouter(prefix="/documents", tags=["highlights"])`, mọi endpoint dùng `Depends(get_current_user)` (**không** `get_optional_user` — FR-015). *(phụ thuộc T005, T006)*
-- [x] **T008** Đăng ký `highlights.router` trong `src/backend/app/main.py` cạnh các router M6 hiện có. *(phụ thuộc T007)*
+- [x] **T007** Tạo khung router `src/backend/app/api/highlights.py`: `APIRouter(prefix="/documents", tags=["highlights"])`, mọi endpoint dùng `Depends(get_current_user)` (**không** `get_optional_user` — FR-015). _(phụ thuộc T005, T006)_
+- [x] **T008** Đăng ký `highlights.router` trong `src/backend/app/main.py` cạnh các router M6 hiện có. _(phụ thuộc T007)_
 - [x] **T009** [P] Thêm fixture `reader_headers` và `second_reader_headers` vào `src/backend/tests/conftest.py` (hiện mới có `editor_headers`/`admin_headers`). Lưu ý `POST /auth/dev-token` sinh `sub` ngẫu nhiên mỗi lần gọi, nên hai fixture này tự nhiên là hai user khác nhau — đúng thứ cần cho test cô lập.
 - [x] **T010** [P] Thêm type `Highlight` vào `src/frontend/src/services/api.ts` (`id`, `document_id`, `cfi_range`, `selected_text`, `note`, `created_at`, `updated_at`). **Không** đụng `src/frontend/src/services/documents.ts` — đó là client thời fixture đã chết.
 
@@ -69,11 +69,11 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 
 - [x] **T013** [US1] Thêm `HighlightCreate` vào `src/backend/app/schemas/highlight.py` với validator **V1** (`selected_text` strip không rỗng), **V2** (≤ 5.000 ký tự), **V3** (bắt đầu bằng `epubcfi(`), **V4** (phần chung trước dấu `,` đầu tiên phải chứa `!` → cùng một chương). Thông báo lỗi tiếng Việt theo bảng trong `contracts/highlights-api.md`.
 - [x] **T014** [US1] Thêm `list_highlights` và `create_highlight` vào `src/backend/app/services/highlight_service.py`. **Cổng kiểm document (FR-001)**: cả hai hàm gọi `ensure_readable(get_document(db, document_id), user)`; riêng `create_highlight` kiểm thêm `if document.status != "published": raise ValidationError("Tài liệu chưa được xuất bản.")`. **Không** áp `published` cho đường đọc/sửa/xóa — highlight đã có phải sống sót khi document bị gỡ xuất bản, nếu không một vòng re-publish sẽ khoá độc giả khỏi ghi chú của chính họ. Xem bảng "Cổng kiểm document" trong `contracts/highlights-api.md`.
-- [x] **T015** [US1] Thêm `GET` và `POST /documents/{document_id}/highlights` vào `src/backend/app/api/highlights.py` (POST trả `201`). *(phụ thuộc T013, T014)*
+- [x] **T015** [US1] Thêm `GET` và `POST /documents/{document_id}/highlights` vào `src/backend/app/api/highlights.py` (POST trả `201`). _(phụ thuộc T013, T014)_
 - [x] **T016** [P] [US1] Thêm `getHighlights(documentId)` và `createHighlight(documentId, payload)` vào `src/frontend/src/services/api.ts`.
 - [x] **T017** [P] [US1] Tạo `src/frontend/src/components/HighlightPopover.tsx` — menu nổi hiện khi có vùng chọn, ở story này chỉ cần nút "Đánh dấu".
-- [x] **T018** [US1] Nối vào `src/frontend/src/pages/ReaderPage.tsx`: bắt `rendition.on('selected', (cfiRange, contents) => …)` để mở popover và lấy `selected_text` từ `contents.window.getSelection()`; sau khi tạo thì `rendition.annotations.add('highlight', cfiRange, { id }, onClick, className, styles)`. Khi mở sách, gọi `getHighlights` rồi add lần lượt. *(phụ thuộc T016, T017)*
-- [x] **T019** [US1] Tạo `src/frontend/src/components/HighlightSidebar.tsx` — danh sách mọi highlight, **tách hai nhóm**: dựng được, và "Đánh dấu không còn định vị được" (FR-011). Phân loại tại chỗ bằng `book.spine.get(cfi_range)` trả `null` hoặc `annotations.add` ném lỗi (`research.md` R4), hiển thị nhóm hỏng bằng `selected_text`. Sidebar là đường thao tác **chính thức và luôn đầy đủ** — bấm trực tiếp trên sách chỉ là lối tắt, vì khi nhiều vùng chồng khít thì cú bấm chỉ trúng annotation trên cùng. *(phụ thuộc T018)*
+- [x] **T018** [US1] Nối vào `src/frontend/src/pages/ReaderPage.tsx`: bắt `rendition.on('selected', (cfiRange, contents) => …)` để mở popover và lấy `selected_text` từ `contents.window.getSelection()`; sau khi tạo thì `rendition.annotations.add('highlight', cfiRange, { id }, onClick, className, styles)`. Khi mở sách, gọi `getHighlights` rồi add lần lượt. _(phụ thuộc T016, T017)_
+- [x] **T019** [US1] Tạo `src/frontend/src/components/HighlightSidebar.tsx` — danh sách mọi highlight, **tách hai nhóm**: dựng được, và "Đánh dấu không còn định vị được" (FR-011). Phân loại tại chỗ bằng `book.spine.get(cfi_range)` trả `null` hoặc `annotations.add` ném lỗi (`research.md` R4), hiển thị nhóm hỏng bằng `selected_text`. Sidebar là đường thao tác **chính thức và luôn đầy đủ** — bấm trực tiếp trên sách chỉ là lối tắt, vì khi nhiều vùng chồng khít thì cú bấm chỉ trúng annotation trên cùng. _(phụ thuộc T018)_
 - [x] **T020** [P] [US1] Thêm style highlight vào `src/frontend/src/index.css`, gồm `mix-blend-mode: multiply` để phần giao của các vùng chồng lấn tự đậm hơn (FR-004), và style cho nhóm "không định vị được".
 - [x] **T021** [P] [US1] Test FE: `HighlightPopover.test.tsx` (hiện popover khi có selection) và `ReaderPage.test.tsx` (chưa tồn tại — tạo mới; mock `services/api` và epub.js rendition, kiểm gọi `annotations.add` đúng số lần theo số highlight trả về).
 
@@ -95,10 +95,10 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 
 - [x] **T023** [US2] Thêm `HighlightNoteUpdate` vào `src/backend/app/schemas/highlight.py` với **V5** (≤ 2.000 ký tự, lỗi kèm số ký tự hiện tại) và **V6** (rỗng/toàn khoảng trắng → chuẩn hoá `NULL`). Áp V5 cho cả trường `note` của `HighlightCreate`.
 - [x] **T024** [US2] Thêm `update_note` vào `src/backend/app/services/highlight_service.py`, dùng lại `_get_owned_highlight` từ T006.
-- [x] **T025** [US2] Thêm `PATCH /documents/{document_id}/highlights/{highlight_id}` vào `src/backend/app/api/highlights.py`. Chỉ sửa ghi chú — `cfi_range` bất biến (`research.md` R6). *(phụ thuộc T023, T024)*
+- [x] **T025** [US2] Thêm `PATCH /documents/{document_id}/highlights/{highlight_id}` vào `src/backend/app/api/highlights.py`. Chỉ sửa ghi chú — `cfi_range` bất biến (`research.md` R6). _(phụ thuộc T023, T024)_
 - [x] **T026** [P] [US2] Thêm `updateHighlightNote(documentId, highlightId, note)` vào `src/frontend/src/services/api.ts`.
-- [x] **T027** [US2] Thêm ô nhập ghi chú vào `src/frontend/src/components/HighlightPopover.tsx` và `HighlightSidebar.tsx`: hiện "chưa có ghi chú" khi trống (US2 scenario 3), đếm ký tự còn lại khi gần 2.000 (FR-009), giữ nguyên nội dung đang gõ khi server trả `422` để người dùng tự cắt ngắn. *(phụ thuộc T026)*
-- [x] **T028** [US2] Hiện ghi chú cho cả highlight trong nhóm "không còn định vị được" ở `HighlightSidebar.tsx` (FR-011a) — đây là lý do tồn tại của quyết định giữ bản ghi thay vì xóa. *(phụ thuộc T027)*
+- [x] **T027** [US2] Thêm ô nhập ghi chú vào `src/frontend/src/components/HighlightPopover.tsx` và `HighlightSidebar.tsx`: hiện "chưa có ghi chú" khi trống (US2 scenario 3), đếm ký tự còn lại khi gần 2.000 (FR-009), giữ nguyên nội dung đang gõ khi server trả `422` để người dùng tự cắt ngắn. _(phụ thuộc T026)_
+- [x] **T028** [US2] Hiện ghi chú cho cả highlight trong nhóm "không còn định vị được" ở `HighlightSidebar.tsx` (FR-011a) — đây là lý do tồn tại của quyết định giữ bản ghi thay vì xóa. _(phụ thuộc T027)_
 - [x] **T029** [P] [US2] Test FE: sửa/gỡ ghi chú, hiện cảnh báo khi vượt 2.000 ký tự, và hai highlight chồng lấn hiện đúng ghi chú của từng cái (US2 scenario 8).
 
 **Checkpoint**: AC 1 + AC 2 xong, mỗi cái vẫn kiểm độc lập được.
@@ -118,9 +118,9 @@ Feature này **không thêm dependency nào** ở cả frontend lẫn backend (e
 ### Implementation for User Story 3
 
 - [x] **T031** [US3] Thêm `delete_highlight` vào `src/backend/app/services/highlight_service.py`, dùng lại `_get_owned_highlight`.
-- [x] **T032** [US3] Thêm `DELETE /documents/{document_id}/highlights/{highlight_id}` trả `204` không body vào `src/backend/app/api/highlights.py`. *(phụ thuộc T031)*
+- [x] **T032** [US3] Thêm `DELETE /documents/{document_id}/highlights/{highlight_id}` trả `204` không body vào `src/backend/app/api/highlights.py`. _(phụ thuộc T031)_
 - [x] **T033** [P] [US3] Thêm `deleteHighlight(documentId, highlightId)` vào `src/frontend/src/services/api.ts`.
-- [x] **T034** [US3] Thêm thao tác xóa vào `HighlightPopover.tsx` và `HighlightSidebar.tsx`; gọi `rendition.annotations.remove(cfiRange, 'highlight')` để gỡ khỏi trang ngay. Xóa được **cả** bản ghi trong nhóm "không còn định vị được" (FR-011b) — nhóm này không có annotation để gỡ nên chỉ cập nhật danh sách. *(phụ thuộc T033)*
+- [x] **T034** [US3] Thêm thao tác xóa vào `HighlightPopover.tsx` và `HighlightSidebar.tsx`; gọi `rendition.annotations.remove(cfiRange, 'highlight')` để gỡ khỏi trang ngay. Xóa được **cả** bản ghi trong nhóm "không còn định vị được" (FR-011b) — nhóm này không có annotation để gỡ nên chỉ cập nhật danh sách. _(phụ thuộc T033)_
 - [x] **T035** [P] [US3] Test FE: xóa highlight ngoài thì highlight chồng lấn bên trong còn nguyên kèm ghi chú (US3 scenario 7), và xóa được bản ghi trong nhóm hỏng.
 
 **Checkpoint**: Cả 3 AC xong, mỗi story vẫn độc lập kiểm được.

@@ -42,6 +42,7 @@
 - [8. Các bước tiếp theo đề xuất (Next Steps)](#8-các-bước-tiếp-theo-đề-xuất-next-steps)
 
 ---
+
 ## 1. Tên ý tưởng và Tóm tắt tổng quan
 
 - **Tên tiếng Việt:** Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS.

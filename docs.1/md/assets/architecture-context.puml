@@ -1,0 +1,18 @@
+@startuml
+!include <C4/C4_Context>
+LAYOUT_LEFT_RIGHT()
+scale 0.75
+title Bối cảnh hệ thống HCMUS-LDMS
+
+Person(reader, "Độc giả", "Tìm kiếm và đọc tài liệu")
+Person(librarian, "Thủ thư / Biên tập viên", "Tải, hiệu chỉnh và xuất bản")
+Person(admin, "Quản trị viên", "Quản lý tài khoản và danh mục")
+System(ldms, "HCMUS-LDMS", "Quản lý và số hóa tài liệu thư viện")
+System_Ext(auth, "Dịch vụ xác thực", "Dữ liệu mô phỏng hoặc Google OAuth 2.0")
+
+Rel(reader, ldms, "Tìm kiếm và đọc")
+Rel(librarian, ldms, "Tải, hiệu chỉnh và xuất bản")
+Rel(admin, ldms, "Quản lý tài khoản và danh mục")
+Rel(ldms, auth, "Xác thực khi cần")
+SHOW_LEGEND()
+@enduml

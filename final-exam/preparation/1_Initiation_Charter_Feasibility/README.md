@@ -11,10 +11,10 @@
 
 ### Lịch sử phiên bản
 
-| Phiên bản | Ngày | Tác giả | Nội dung thay đổi |
-| :---: | :---: | :--- | :--- |
-| 1.0 | 18/08/2026 | Nhóm dự án | Khởi tạo phiếu, câu hỏi và khung trả lời |
-| 2.0 | 20/08/2026 | Nguyễn Quang Thái | Hoàn thiện 3 dàn ý, 25 FAQ, 3 sơ đồ và chuẩn hóa dữ kiện theo tài liệu gốc |
+| Phiên bản |    Ngày    | Tác giả           | Nội dung thay đổi                                                          |
+| :-------: | :--------: | :---------------- | :------------------------------------------------------------------------- |
+|    1.0    | 18/08/2026 | Nhóm dự án        | Khởi tạo phiếu, câu hỏi và khung trả lời                                   |
+|    2.0    | 20/08/2026 | Nguyễn Quang Thái | Hoàn thiện 3 dàn ý, 25 FAQ, 3 sơ đồ và chuẩn hóa dữ kiện theo tài liệu gốc |
 
 ## Mục lục
 
@@ -71,14 +71,14 @@ Project Proposal là tài liệu trình bày lý do nên đầu tư vào một d
 
 #### EVIDENCE - Minh chứng của HCMUS-LDMS
 
-| Nhóm minh chứng | Dữ kiện sử dụng khi thi |
-| :--- | :--- |
-| Pain point | Kho Quận 5 quá tải; tài liệu cũ xuống cấp; sinh viên phải di chuyển giữa hai cơ sở; PDF scan không reflow trên điện thoại |
-| Giải pháp | Quy trình Scan-to-EPUB khép kín, Tesseract OCR, Split-screen Editor, PostgreSQL FTS, MinIO và Web Reader |
-| KPI kỹ thuật | OCR tối thiểu 85%; tìm kiếm toàn văn dưới 3 giây; Signed URL hết hạn sau 15 phút |
-| Đối chuẩn | Lạc Việt Vebrary, DSpace, Abbyy + Calibre + Drive |
-| Lợi thế | Nội dung độc quyền, switching cost, network effect, lợi thế chi phí và data MOAT |
-| Lịch sử | Proposal có 6 phiên bản từ 06/07 đến 23/07/2026; phiên bản mới đồng bộ PostgreSQL FTS và bổ sung đối chuẩn |
+| Nhóm minh chứng | Dữ kiện sử dụng khi thi                                                                                                   |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| Pain point      | Kho Quận 5 quá tải; tài liệu cũ xuống cấp; sinh viên phải di chuyển giữa hai cơ sở; PDF scan không reflow trên điện thoại |
+| Giải pháp       | Quy trình Scan-to-EPUB khép kín, Tesseract OCR, Split-screen Editor, PostgreSQL FTS, MinIO và Web Reader                  |
+| KPI kỹ thuật    | OCR tối thiểu 85%; tìm kiếm toàn văn dưới 3 giây; Signed URL hết hạn sau 15 phút                                          |
+| Đối chuẩn       | Lạc Việt Vebrary, DSpace, Abbyy + Calibre + Drive                                                                         |
+| Lợi thế         | Nội dung độc quyền, switching cost, network effect, lợi thế chi phí và data MOAT                                          |
+| Lịch sử         | Proposal có 6 phiên bản từ 06/07 đến 23/07/2026; phiên bản mới đồng bộ PostgreSQL FTS và bổ sung đối chuẩn                |
 
 ### 2.2. Sơ đồ hình thành và đánh giá Proposal
 
@@ -124,12 +124,12 @@ Dự án là một nỗ lực tạm thời nhằm tạo ra sản phẩm, dịch 
 
 #### 9. Phân biệt Project, Operation, Program và Portfolio
 
-| Khái niệm | Đặc điểm | Ví dụ HCMUS-LDMS |
-| :--- | :--- | :--- |
-| Project | Tạm thời, tạo kết quả duy nhất | Xây dựng và bàn giao HCMUS-LDMS |
-| Operation | Liên tục, lặp lại để duy trì hoạt động | Thủ thư vận hành, cập nhật và hỗ trợ hệ thống hằng ngày |
-| Program | Nhóm dự án liên quan được quản lý phối hợp để tạo lợi ích chung | Chương trình số hóa học liệu gồm LDMS, LMS và kho luận văn |
-| Portfolio | Tập hợp chương trình/dự án nhằm đạt mục tiêu chiến lược | Danh mục chuyển đổi số toàn trường |
+| Khái niệm | Đặc điểm                                                        | Ví dụ HCMUS-LDMS                                           |
+| :-------- | :-------------------------------------------------------------- | :--------------------------------------------------------- |
+| Project   | Tạm thời, tạo kết quả duy nhất                                  | Xây dựng và bàn giao HCMUS-LDMS                            |
+| Operation | Liên tục, lặp lại để duy trì hoạt động                          | Thủ thư vận hành, cập nhật và hỗ trợ hệ thống hằng ngày    |
+| Program   | Nhóm dự án liên quan được quản lý phối hợp để tạo lợi ích chung | Chương trình số hóa học liệu gồm LDMS, LMS và kho luận văn |
+| Portfolio | Tập hợp chương trình/dự án nhằm đạt mục tiêu chiến lược         | Danh mục chuyển đổi số toàn trường                         |
 
 #### 10. Dự án phần mềm đến từ đâu?
 
@@ -252,16 +252,16 @@ Feasibility Study là đánh giá chi tiết nhu cầu, giá trị và tính th�
 
 #### EVIDENCE - Minh chứng của HCMUS-LDMS
 
-| Khía cạnh | Kết quả và bằng chứng |
-| :--- | :--- |
-| Technical | React 18, FastAPI, Tesseract, Pandoc, PostgreSQL FTS, MinIO; OCR tối thiểu 85%; tìm kiếm dưới 3 giây |
-| Economic | CapEx cơ sở 75 triệu; OpEx cơ sở 15 triệu/năm; lợi ích quy đổi 35 triệu/năm; dòng tiết kiệm ròng 20 triệu/năm; hoàn vốn cơ sở 3,75 năm |
-| Legal | Khả thi có điều kiện; cần giới hạn tài liệu, quyền truy cập và được Pháp chế/chủ sở hữu quyền xác nhận |
-| Operational | 2 cán bộ thư viện, 4 kỹ sư, CTV; Split-screen Editor; dự kiến 2 buổi đào tạo |
-| Schedule | MVP phần mềm 12 tuần; go-live toàn trường trong 20 tuần; deliverable số hóa cần baseline lại |
-| Market | Báo cáo ghi nhận 92% người được phỏng vấn ủng hộ EPUB, nhưng chưa có dữ liệu khảo sát gốc trong repository |
-| Resource | Hạ tầng VMware on-premise; 4 kỹ sư kiêm nhiệm; 2 cán bộ thư viện; sinh viên CTV |
-| Cultural | Đối tượng người dùng quen công nghệ; cần đo lại bằng pilot/UAT thay vì chỉ dự báo |
+| Khía cạnh   | Kết quả và bằng chứng                                                                                                                  |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| Technical   | React 18, FastAPI, Tesseract, Pandoc, PostgreSQL FTS, MinIO; OCR tối thiểu 85%; tìm kiếm dưới 3 giây                                   |
+| Economic    | CapEx cơ sở 75 triệu; OpEx cơ sở 15 triệu/năm; lợi ích quy đổi 35 triệu/năm; dòng tiết kiệm ròng 20 triệu/năm; hoàn vốn cơ sở 3,75 năm |
+| Legal       | Khả thi có điều kiện; cần giới hạn tài liệu, quyền truy cập và được Pháp chế/chủ sở hữu quyền xác nhận                                 |
+| Operational | 2 cán bộ thư viện, 4 kỹ sư, CTV; Split-screen Editor; dự kiến 2 buổi đào tạo                                                           |
+| Schedule    | MVP phần mềm 12 tuần; go-live toàn trường trong 20 tuần; deliverable số hóa cần baseline lại                                           |
+| Market      | Báo cáo ghi nhận 92% người được phỏng vấn ủng hộ EPUB, nhưng chưa có dữ liệu khảo sát gốc trong repository                             |
+| Resource    | Hạ tầng VMware on-premise; 4 kỹ sư kiêm nhiệm; 2 cán bộ thư viện; sinh viên CTV                                                        |
+| Cultural    | Đối tượng người dùng quen công nghệ; cần đo lại bằng pilot/UAT thay vì chỉ dự báo                                                      |
 
 ### 4.2. Sơ đồ đánh giá TELOS
 
@@ -291,16 +291,16 @@ Kết quả khả thi được dùng để đặt ngân sách, KPI, nguồn lự
 
 ## 5. Bảng khóa dữ kiện trước khi thi
 
-| Nội dung | Dữ kiện dùng | Không dùng hoặc phải nói có điều kiện |
-| :--- | :--- | :--- |
-| Tìm kiếm | PostgreSQL FTS dưới 3 giây | Không dùng dưới 2 giây |
-| Chi phí | CapEx 75-95 triệu; OpEx 15-30 triệu/năm | Không dùng tổng 18,5 triệu hoặc 300 triệu khi không có nguồn hiện hành |
-| Hòa vốn | Kịch bản cơ sở 3,75 năm; tài liệu nêu khoảng 2,5-3,8 năm khi tính thêm lợi ích | Không khẳng định chắc chắn đạt dưới 3 năm |
-| Hạ tầng | VMware/on-premise theo Feasibility và Charter | Proposal còn Cloud VPS, cần cập nhật để đồng bộ |
-| Tiến độ | MVP phần mềm tuần 12; go-live toàn trường tuần 20 | Không khẳng định 500 sách hoàn thành tuần 12 khi WP4 kéo dài tuần 12-17 |
-| Phê duyệt | Tài liệu đang `Under Review` | Không nói Charter đã ký khi bảng chữ ký trống |
-| Khảo sát | “Feasibility Study ghi nhận 92%” | Không nói đã kiểm chứng nếu không có dữ liệu gốc |
-| Pháp lý | Khả thi có điều kiện, cần Pháp chế/chủ sở hữu quyền xác nhận | Không nói Signed URL tự động làm cho việc số hóa hợp pháp |
+| Nội dung  | Dữ kiện dùng                                                                   | Không dùng hoặc phải nói có điều kiện                                   |
+| :-------- | :----------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| Tìm kiếm  | PostgreSQL FTS dưới 3 giây                                                     | Không dùng dưới 2 giây                                                  |
+| Chi phí   | CapEx 75-95 triệu; OpEx 15-30 triệu/năm                                        | Không dùng tổng 18,5 triệu hoặc 300 triệu khi không có nguồn hiện hành  |
+| Hòa vốn   | Kịch bản cơ sở 3,75 năm; tài liệu nêu khoảng 2,5-3,8 năm khi tính thêm lợi ích | Không khẳng định chắc chắn đạt dưới 3 năm                               |
+| Hạ tầng   | VMware/on-premise theo Feasibility và Charter                                  | Proposal còn Cloud VPS, cần cập nhật để đồng bộ                         |
+| Tiến độ   | MVP phần mềm tuần 12; go-live toàn trường tuần 20                              | Không khẳng định 500 sách hoàn thành tuần 12 khi WP4 kéo dài tuần 12-17 |
+| Phê duyệt | Tài liệu đang `Under Review`                                                   | Không nói Charter đã ký khi bảng chữ ký trống                           |
+| Khảo sát  | “Feasibility Study ghi nhận 92%”                                               | Không nói đã kiểm chứng nếu không có dữ liệu gốc                        |
+| Pháp lý   | Khả thi có điều kiện, cần Pháp chế/chủ sở hữu quyền xác nhận                   | Không nói Signed URL tự động làm cho việc số hóa hợp pháp               |
 
 ## 6. Tài liệu tham chiếu
 

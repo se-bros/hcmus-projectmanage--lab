@@ -42,14 +42,14 @@ signs in with.
 
 New table `users`:
 
-| column | type | notes |
-|---|---|---|
-| `id` | UUID pk | |
-| `email` | string, unique, indexed | |
-| `password_hash` | string, nullable | null for Google-only accounts |
-| `role` | string | `reader` \| `editor` \| `admin`, default `reader` |
-| `auth_provider` | string | `local` \| `google` — how the account was first created |
-| `created_at` | timestamptz | server default now() |
+| column          | type                    | notes                                                   |
+| --------------- | ----------------------- | ------------------------------------------------------- |
+| `id`            | UUID pk                 |                                                         |
+| `email`         | string, unique, indexed |                                                         |
+| `password_hash` | string, nullable        | null for Google-only accounts                           |
+| `role`          | string                  | `reader` \| `editor` \| `admin`, default `reader`       |
+| `auth_provider` | string                  | `local` \| `google` — how the account was first created |
+| `created_at`    | timestamptz             | server default now()                                    |
 
 New Alembic migration `20260721_0006_users.py`, `down_revision =
 "20260716_0005"`, following the existing migration file style
@@ -86,14 +86,14 @@ Password rule: minimum 8 characters, enforced in the request schema.
 
 ## API — `app/api/auth.py`
 
-| Endpoint | Change |
-|---|---|
-| `POST /auth/register` | **New.** Body `{email, password}` → creates user, auto-issues JWT, returns `{access_token, token_type, role}` (reuses existing `DevTokenResponse` shape) |
-| `POST /auth/login` | **New.** Body `{email, password}` → verifies, returns JWT |
-| `POST /auth/logout` | **New.** No body, no auth required, returns `204` |
-| `GET /auth/login/google` | Behavior same; no longer gated by `auth_mode`, gated by whether Google credentials are configured |
-| `GET /auth/callback/google` | Now calls `find_or_create_google_user`; JWT role comes from the DB row, not a hardcoded literal |
-| `POST /auth/dev-token` | Unchanged logic; gate switches from `auth_mode != "mock"` to `not settings.enable_mock_auth` |
+| Endpoint                    | Change                                                                                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `POST /auth/register`       | **New.** Body `{email, password}` → creates user, auto-issues JWT, returns `{access_token, token_type, role}` (reuses existing `DevTokenResponse` shape) |
+| `POST /auth/login`          | **New.** Body `{email, password}` → verifies, returns JWT                                                                                                |
+| `POST /auth/logout`         | **New.** No body, no auth required, returns `204`                                                                                                        |
+| `GET /auth/login/google`    | Behavior same; no longer gated by `auth_mode`, gated by whether Google credentials are configured                                                        |
+| `GET /auth/callback/google` | Now calls `find_or_create_google_user`; JWT role comes from the DB row, not a hardcoded literal                                                          |
+| `POST /auth/dev-token`      | Unchanged logic; gate switches from `auth_mode != "mock"` to `not settings.enable_mock_auth`                                                             |
 
 ## Config — `app/core/config.py`
 
@@ -119,6 +119,7 @@ Password rule: minimum 8 characters, enforced in the request schema.
 ## Tests
 
 Rewrite `tests/api/test_auth.py`:
+
 - Replace `auth_mode` monkeypatches with direct
   `google_client_id`/`enable_mock_auth` monkeypatches.
 - New: register success, duplicate email, disallowed domain, weak password.

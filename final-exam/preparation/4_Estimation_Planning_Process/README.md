@@ -27,10 +27,10 @@
   - [ ] Bản in [`10-project-estimate.md`](./printouts/10-project-estimate.md) — đã có nhãn **"Câu 10"**.
   - [ ] Bản in [`11-project-plan-wbs.md`](./printouts/11-project-plan-wbs.md) — đã có nhãn **"Câu 11"**.
 - **Chiến lược 10 phút viết giấy A4:**
-  - *Phút 1–2:* Viết tiêu đề + Khung 4 phần (WHAT - HOW - WHY - EVIDENCE).
-  - *Phút 3–7:* Triển khai theo góc nhìn quản lý dự án (Thách thức $\rightarrow$ Quyết định $\rightarrow$ Kết quả số liệu).
-  - *Phút 8–9:* Vẽ nhanh sơ đồ Mermaid minh họa (Sơ đồ luồng 4 bước, Sơ đồ đối chuẩn 2 chiều, hoặc Mạng WBS đường găng).
-  - *Phút 10:* Rà soát các con số đắt giá và từ khóa kỹ thuật.
+  - _Phút 1–2:_ Viết tiêu đề + Khung 4 phần (WHAT - HOW - WHY - EVIDENCE).
+  - _Phút 3–7:_ Triển khai theo góc nhìn quản lý dự án (Thách thức $\rightarrow$ Quyết định $\rightarrow$ Kết quả số liệu).
+  - _Phút 8–9:_ Vẽ nhanh sơ đồ Mermaid minh họa (Sơ đồ luồng 4 bước, Sơ đồ đối chuẩn 2 chiều, hoặc Mạng WBS đường găng).
+  - _Phút 10:_ Rà soát các con số đắt giá và từ khóa kỹ thuật.
 
 ---
 
@@ -39,6 +39,7 @@
 > **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Định nghĩa quy trình phát triển phần mềm (Software Process Definition) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm.)_
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
 - **Tài liệu đối chiếu:** [`docs/02-planning/03-product-backlog.md`](../../../docs/02-planning/03-product-backlog.md) (Mục 1.1) và [`docs/03-execution-monitoring/01-sprint-plan.md`](../../../docs/03-execution-monitoring/01-sprint-plan.md).
 - **Từ khóa:** Mô hình Kanban Spec-driven kết hợp AI Coding, Quy tắc WIP limit = 1, Quy trình 4 bước (Spec $\rightarrow$ Prompt AI $\rightarrow$ Automated Test $\rightarrow$ Human Code Review), DoD 5 tiêu chí.
 
@@ -101,21 +102,21 @@ flowchart TD
 
 1. **Các câu hỏi chính cần trả lời trong tài liệu Định nghĩa quy trình phát triển phần mềm là gì?**
    - _Trả lời (Góc nhìn quản lý):_ Theo bài học quản lý NASA/SEL, tài liệu quy trình của nhóm trả lời 5 câu hỏi:
-     1. *Làm bước nào tiếp theo?* Luồng chuyển trạng thái card trên Kanban: `To-Do` $\rightarrow$ `In Progress` $\rightarrow$ `Review` $\rightarrow$ `Done`.
-     2. *Mất bao lâu?* Định mức kích thước trong Backlog: Story Size S $\le 1$ ngày, Story Size M $\le 2$ ngày.
-     3. *Thực hiện như thế nào?* Thực thi kỹ thuật Spec-Driven, Prompt RACFT và Pytest verification.
-     4. *Tạo ra hiện vật gì?* Schema DB, Mã nguồn FastAPI/React, File Test, Dockerfile, API Docs Swagger.
-     5. *Ai làm?* Ma trận phân công trách nhiệm rõ ràng cho 6 thành viên trong nhóm.
+     1. _Làm bước nào tiếp theo?_ Luồng chuyển trạng thái card trên Kanban: `To-Do` $\rightarrow$ `In Progress` $\rightarrow$ `Review` $\rightarrow$ `Done`.
+     2. _Mất bao lâu?_ Định mức kích thước trong Backlog: Story Size S $\le 1$ ngày, Story Size M $\le 2$ ngày.
+     3. _Thực hiện như thế nào?_ Thực thi kỹ thuật Spec-Driven, Prompt RACFT và Pytest verification.
+     4. _Tạo ra hiện vật gì?_ Schema DB, Mã nguồn FastAPI/React, File Test, Dockerfile, API Docs Swagger.
+     5. _Ai làm?_ Ma trận phân công trách nhiệm rõ ràng cho 6 thành viên trong nhóm.
 
 2. **Mô hình cơ sở được lựa chọn để hiệu chỉnh là gì?**
    - _Trả lời:_ Nhóm chọn **Agile Kanban** làm nền tảng vì tính linh hoạt theo dòng chảy (Flow-based), bổ sung **Spec-Driven Development** ở đầu vào và **AI Coding Assistant** ở khâu thực thi. Sau mỗi phiên, thành viên **ghi Session Log thủ công** vào `02-project-log.md` để nhóm tổng hợp effort và token.
 
 3. **Thời gian dự kiến của từng giai đoạn là bao lâu?**
    - _Trả lời:_ Nhóm đã lập kế hoạch tổng thể **20 tuần** chia làm 4 giai đoạn ([`04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md) §1.1):
-     - *Giai đoạn 0 (Tuần 1–2):* Khảo sát thực tế thư viện, đánh giá bản quyền và thiết lập hạ tầng ảo hóa.
-     - *Giai đoạn 1 (Tuần 3–12):* Xây dựng MVP cốt lõi (Auth, Upload, OCR, Pandoc, Reader, Search) và số hóa thí điểm 500 sách CNTT.
-     - *Giai đoạn 2 (Tuần 13–18):* Chuyển giao quy trình cho Thủ thư và 15 CTV số hóa diện rộng 2.000 giáo trình.
-     - *Giai đoạn 3 (Tuần 19–20):* Kiểm thử UAT, Pentest bảo mật, đào tạo cán bộ và Go-Live toàn trường.
+     - _Giai đoạn 0 (Tuần 1–2):_ Khảo sát thực tế thư viện, đánh giá bản quyền và thiết lập hạ tầng ảo hóa.
+     - _Giai đoạn 1 (Tuần 3–12):_ Xây dựng MVP cốt lõi (Auth, Upload, OCR, Pandoc, Reader, Search) và số hóa thí điểm 500 sách CNTT.
+     - _Giai đoạn 2 (Tuần 13–18):_ Chuyển giao quy trình cho Thủ thư và 15 CTV số hóa diện rộng 2.000 giáo trình.
+     - _Giai đoạn 3 (Tuần 19–20):_ Kiểm thử UAT, Pentest bảo mật, đào tạo cán bộ và Go-Live toàn trường.
 
 4. **Các vai trò nào từng thành viên trong nhóm sẽ đảm nhiệm?**
    - _Trả lời:_ Theo Hợp đồng nhóm ([`05-team-contract.md`](../../../docs/01-initiation/05-team-contract.md) §3.1), vai trò được phân công như sau:
@@ -134,8 +135,8 @@ flowchart TD
 
 7. **Ưu và khuyết điểm của mô hình nhóm lựa chọn là gì?**
    - _Trả lời (Đánh giá khách quan):_
-     - *Ưu điểm:* AI hỗ trợ tăng tốc các bước phù hợp; WIP=1 giúp lộ điểm nghẽn review; kiểm tra tự động và review của con người tạo hai lớp kiểm soát chất lượng.
-     - *Khuyết điểm:* Rất nhạy cảm với chất lượng Spec ban đầu (Spec sai thì AI code sai); đòi hỏi kỹ sư phải có tính kỷ luật cao, không được bỏ qua bước viết test.
+     - _Ưu điểm:_ AI hỗ trợ tăng tốc các bước phù hợp; WIP=1 giúp lộ điểm nghẽn review; kiểm tra tự động và review của con người tạo hai lớp kiểm soát chất lượng.
+     - _Khuyết điểm:_ Rất nhạy cảm với chất lượng Spec ban đầu (Spec sai thì AI code sai); đòi hỏi kỹ sư phải có tính kỷ luật cao, không được bỏ qua bước viết test.
 
 8. **Tài liệu Định nghĩa quy trình phát triển phần mềm của nhóm đã được đánh giá thế nào?**
    - _Trả lời:_ Nhóm đánh giá quy trình qua ba nguồn: (1) đối chiếu nội bộ với Backlog và Team Contract; (2) đo Throughput, Cycle Time và token từ Project Log; (3) cập nhật khi AC, tech stack hoặc luồng làm việc thay đổi.
@@ -153,6 +154,7 @@ flowchart TD
 > **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Ước lượng dự án (Project Estimate) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Ước lượng dự án của nhóm.)_
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
 - **Tài liệu đối chiếu:** [`docs/02-planning/04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md) (Mã HCMUS-LDMS-CTR).
 - **Từ khóa:** Đối chuẩn 2 chiều: Top-Down UCP (UAW=12, UUCW=130 $\rightarrow$ AUCP=126 UCP $\rightarrow$ 10.0 PM sau điều chỉnh tái sử dụng) vs Bottom-Up COCOMO II (3.5 KLOC tương đương viết mới $\rightarrow$ 10.4 PM), chọn baseline 10.5 PM cho 4 dev kiêm nhiệm (2 FTE), Cone of Uncertainty, Quy tắc Count-Compute-Judge.
 
@@ -161,25 +163,25 @@ flowchart TD
 #### A. Dàn ý trình bày trên giấy A4 (WHAT - HOW - WHY - EVIDENCE)
 
 - **WHAT (Là gì? — Góc nhìn lập kế hoạch):**
-  Ước lượng dự án (Project Estimation) giúp nhóm chuyển một **mục tiêu mong muốn** thành một **cam kết có căn cứ**. Nhóm áp dụng **Đối chuẩn Ước lượng Hai Chiều (Two-Way Calibration)**: **Top-Down Use Case Points (UCP)** và **Bottom-Up COCOMO II**, theo nguyên tắc *Đếm — Tính toán — Đánh giá (Count-Compute-Judge)*.
+  Ước lượng dự án (Project Estimation) giúp nhóm chuyển một **mục tiêu mong muốn** thành một **cam kết có căn cứ**. Nhóm áp dụng **Đối chuẩn Ước lượng Hai Chiều (Two-Way Calibration)**: **Top-Down Use Case Points (UCP)** và **Bottom-Up COCOMO II**, theo nguyên tắc _Đếm — Tính toán — Đánh giá (Count-Compute-Judge)_.
 
 - **HOW (Chi tiết cách tôi tính toán và đối chuẩn 2 mô hình):**
   1. **Mô hình 1: Top-Down Use Case Points (UCP):**
-     - *Đếm Tác nhân (UAW):* 3 Actor hệ thống đơn giản (Keycloak, MinIO, PostgreSQL FTS $\times 1$) + 3 Actor người dùng phức tạp (Độc giả, Thủ thư, Admin $\times 3$) $\rightarrow \mathbf{UAW = 12}$.
-     - *Đếm Use Case (UUCW):* 6 Simple ($\times 5$) + 4 Average ($\times 10$) + 4 Complex ($\times 15$) $\rightarrow \mathbf{UUCW = 130}$.
-     - *Điểm thô:* $\text{UUCP} = 12 + 130 = \mathbf{142\text{ điểm}}$.
-     - *Hệ số phức tạp:* $\text{TCF} = 0.6 + (0.01 \times 53) = \mathbf{1.13}$; $\text{ECF} = 1.4 + (-0.03 \times 20.5) = \mathbf{0.785}$.
-     - *Điểm điều chỉnh:* $\mathbf{AUCP = 142 \times 1.13 \times 0.785 \approx 126\text{ UCP}}$.
-     - *Nỗ lực UCP:* $126 \times 20\text{ giờ/UCP} = 2.520\text{ giờ} \approx 15.75\text{ PM}$. Giảm 40% nhờ tái sử dụng cho kết quả 9.45 PM; nhóm làm tròn bảo thủ lên $\mathbf{10.0\text{ PM}}$ theo baseline trong tài liệu dự án.
+     - _Đếm Tác nhân (UAW):_ 3 Actor hệ thống đơn giản (Keycloak, MinIO, PostgreSQL FTS $\times 1$) + 3 Actor người dùng phức tạp (Độc giả, Thủ thư, Admin $\times 3$) $\rightarrow \mathbf{UAW = 12}$.
+     - _Đếm Use Case (UUCW):_ 6 Simple ($\times 5$) + 4 Average ($\times 10$) + 4 Complex ($\times 15$) $\rightarrow \mathbf{UUCW = 130}$.
+     - _Điểm thô:_ $\text{UUCP} = 12 + 130 = \mathbf{142\text{ điểm}}$.
+     - _Hệ số phức tạp:_ $\text{TCF} = 0.6 + (0.01 \times 53) = \mathbf{1.13}$; $\text{ECF} = 1.4 + (-0.03 \times 20.5) = \mathbf{0.785}$.
+     - _Điểm điều chỉnh:_ $\mathbf{AUCP = 142 \times 1.13 \times 0.785 \approx 126\text{ UCP}}$.
+     - _Nỗ lực UCP:_ $126 \times 20\text{ giờ/UCP} = 2.520\text{ giờ} \approx 15.75\text{ PM}$. Giảm 40% nhờ tái sử dụng cho kết quả 9.45 PM; nhóm làm tròn bảo thủ lên $\mathbf{10.0\text{ PM}}$ theo baseline trong tài liệu dự án.
   2. **Mô hình 2: Bottom-Up COCOMO II (Early Design):**
      - Tổng quy mô hệ thống: $8.5\text{ KLOC}$; Tái sử dụng $60\%$ qua thư viện mã nguồn mở $\rightarrow$ Quy mô code viết mới thực tế: $\mathbf{3.5\text{ KLOC}}$.
      - Hệ số quy mô $B = 1.05$; Hệ số nỗ lực $\text{EAF} = 0.95$.
-     - *Nỗ lực COCOMO II:* $\mathbf{Effort = 2.94 \times 0.95 \times (3.5)^{1.05} \approx 10.4\text{ PM}}$.
+     - _Nỗ lực COCOMO II:_ $\mathbf{Effort = 2.94 \times 0.95 \times (3.5)^{1.05} \approx 10.4\text{ PM}}$.
   3. **Kết luận và quy đổi lộ trình:**
      - Hai mô hình độc lập hội tụ kỳ diệu ở mức $\mathbf{\approx 10.5\text{ PM}}$.
      - Với đội ngũ 4 kỹ sư làm việc kiêm nhiệm 50% thời gian ($= 2\text{ FTE}$):
        $$\text{Thời gian phát triển} = \frac{10.5\text{ PM}}{2\text{ FTE}} = 5.25\text{ tháng} \approx \mathbf{21\text{ tuần}}$$
-       *Con số này gần khớp với lộ trình 20 tuần và cho thấy kế hoạch đang ở cùng bậc quy mô; chênh lệch một tuần cần được theo dõi khi thực thi.*
+       _Con số này gần khớp với lộ trình 20 tuần và cho thấy kế hoạch đang ở cùng bậc quy mô; chênh lệch một tuần cần được theo dõi khi thực thi._
 
 - **WHY (Tại sao tôi bắt buộc phải làm đối chuẩn 2 chiều?):**
   - **Triệt tiêu "Căn bệnh lạc quan" (Best-Case Estimation Syndrome):** Kỹ sư thường ước tính trong điều kiện lý tưởng không bug, không trễ mạng; việc đối chuẩn 2 mô hình độc lập giúp tôi có góc nhìn đa chiều khách quan.
@@ -226,8 +228,8 @@ flowchart LR
 
 2. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Ước lượng dự án là gì?**
    - _Trả lời:_
-     - *Đầu vào:* Danh mục Use Case từ Backlog, bảng phân tích Actor, yêu cầu phi chức năng kỹ thuật, đánh giá kỹ năng đội ngũ và dữ liệu đối chuẩn từ hệ thống nguồn mở DSpace.
-     - *Các bước tôi chỉ đạo nhóm thực hiện:* (1) Phân loại và tính điểm UAW, UUCW $\rightarrow$ UUCP; (2) Chấm điểm 13 tiêu chí TCF và 8 tiêu chí ECF; (3) Tính AUCP và quy đổi ra PM; (4) Ước tính KLOC viết mới và tính COCOMO II; (5) Đối chiếu 2 kết quả và lập kế hoạch nhân sự.
+     - _Đầu vào:_ Danh mục Use Case từ Backlog, bảng phân tích Actor, yêu cầu phi chức năng kỹ thuật, đánh giá kỹ năng đội ngũ và dữ liệu đối chuẩn từ hệ thống nguồn mở DSpace.
+     - _Các bước tôi chỉ đạo nhóm thực hiện:_ (1) Phân loại và tính điểm UAW, UUCW $\rightarrow$ UUCP; (2) Chấm điểm 13 tiêu chí TCF và 8 tiêu chí ECF; (3) Tính AUCP và quy đổi ra PM; (4) Ước tính KLOC viết mới và tính COCOMO II; (5) Đối chiếu 2 kết quả và lập kế hoạch nhân sự.
 
 3. **Tài liệu Ước lượng dự án của nhóm đã được đánh giá thế nào?**
    - _Trả lời:_ Được đánh giá bằng phương pháp **Đối chuẩn Độc lập Hai Chiều (Cross-model calibration)**. Sự chênh lệch giữa UCP (10.0 PM) và COCOMO II (10.4 PM) khoảng $3.8\%$, cho thấy hai cách tính hội tụ gần nhau. Tài liệu hiện ở trạng thái **Under Review** bởi Trưởng phòng CNTT và Giám đốc Thư viện; chưa có bằng chứng phê duyệt chính thức.
@@ -239,7 +241,7 @@ flowchart LR
    - _Trả lời:_ Tôi dùng tài liệu này để định mức khối lượng công việc cho từng Sprint; theo dõi vận tốc hoàn thành (Throughput) thực tế để kịp thời phát hiện nguy cơ trôi tiến độ; và kiểm soát không cho chi phí token AI vượt trần ngân sách.
 
 6. **Giải thích các phương pháp phân rã một tính năng lớn thành các tính năng nhỏ:**
-   - _Trả lời:_ Tôi hướng dẫn nhóm 4 kỹ thuật phân rã: (1) *Theo quy trình nghiệp vụ* (Upload $\rightarrow$ OCR $\rightarrow$ Biên tập $\rightarrow$ Xuất bản); (2) *Theo lớp kiến trúc* (DB $\rightarrow$ API Backend $\rightarrow$ UI Frontend); (3) *Theo thao tác* (CRUD cơ bản tách khỏi xử lý nâng cao); (4) *Theo độ ưu tiên MoSCoW* (Must-have làm trước, Should-have làm sau).
+   - _Trả lời:_ Tôi hướng dẫn nhóm 4 kỹ thuật phân rã: (1) _Theo quy trình nghiệp vụ_ (Upload $\rightarrow$ OCR $\rightarrow$ Biên tập $\rightarrow$ Xuất bản); (2) _Theo lớp kiến trúc_ (DB $\rightarrow$ API Backend $\rightarrow$ UI Frontend); (3) _Theo thao tác_ (CRUD cơ bản tách khỏi xử lý nâng cao); (4) _Theo độ ưu tiên MoSCoW_ (Must-have làm trước, Should-have làm sau).
 
 7. **Khi không có khả năng phân rã được các tính năng lớn của dự án, nhóm phải làm thế nào?**
    - _Trả lời:_ Tôi áp dụng 3 giải pháp quản lý: (1) **Tạo Spike PoC:** Cho 1 kỹ sư làm thử nghiệm nhanh trong khung thời gian 1–2 ngày; (2) **Ước lượng theo tương tự (Analogy):** So sánh với module tương đương của DSpace/Calibre; (3) **Ước lượng theo dải giá trị (Range Estimation):** Dùng khoảng biến thiên an toàn với hệ số dự phòng rủi ro cao.
@@ -254,7 +256,7 @@ flowchart LR
     - _Trả lời:_ Kích cỡ (Size) là **thước đo khách quan, bất biến** của khối lượng phần mềm. Thời gian và Chi phí không tự sinh ra mà phụ thuộc vào Size: $\text{Effort} = \text{Size} / \text{Productivity}$, từ đó tính ra $\text{Duration} = \text{Effort} / \text{Headcount}$ và $\text{Cost} = \text{Effort} \times \text{Labor Rate}$. Không thể quản lý được Thời gian và Chi phí nếu không đo lường được Kích cỡ.
 
 11. **Giải thích quy tắc "Đếm, Tính toán và Đánh giá" (Count, Compute, Judge) khi thực hiện ước lượng dự án:**
-    - _Trả lời:_ (1) *Đếm (Count):* Đếm những gì cụ thể sớm nhất (14 Use Cases, 6 Actors, 8.5 KLOC); (2) *Tính toán (Compute):* Dùng công thức toán học mô hình chuẩn (UCP, COCOMO II); (3) *Đánh giá (Judge):* Chỉ dùng phán đoán chuyên gia có cấu trúc ở bước cuối cùng để tinh chỉnh hệ số phức tạp, loại bỏ hoàn toàn đoán mò cảm tính.
+    - _Trả lời:_ (1) _Đếm (Count):_ Đếm những gì cụ thể sớm nhất (14 Use Cases, 6 Actors, 8.5 KLOC); (2) _Tính toán (Compute):_ Dùng công thức toán học mô hình chuẩn (UCP, COCOMO II); (3) _Đánh giá (Judge):_ Chỉ dùng phán đoán chuyên gia có cấu trúc ở bước cuối cùng để tinh chỉnh hệ số phức tạp, loại bỏ hoàn toàn đoán mò cảm tính.
 
 12. **Giải thích các kỹ thuật để tăng độ chính xác khi thực hiện việc ước lượng bằng đánh giá chủ quan:**
     - _Trả lời:_ Cho chính lập trình viên trực tiếp làm task tham gia ước lượng; chia nhỏ nhiệm vụ $\le 2$ ngày; áp dụng công thức 3 điểm PERT: $\text{Expected} = (O + 4M + P)/6$; và dựa vào Luật Số Lớn từ 5–10 hạng mục để triệt tiêu sai số.
@@ -272,6 +274,7 @@ flowchart LR
 > **Đề bài:** Trình bày quá trình hình thành và phương pháp đánh giá tài liệu Kế hoạch dự án (Project Plan) của nhóm. _(Sinh viên nộp kèm bản in tài liệu Kế hoạch dự án và WBS của nhóm.)_
 
 ### 1. Gợi ý định hướng & Từ khóa cốt lõi:
+
 - **Tài liệu đối chiếu:** [`docs/02-planning/04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md) (Mục 1.2: WBS) và [`docs/03-execution-monitoring/01-sprint-plan.md`](../../../docs/03-execution-monitoring/01-sprint-plan.md).
 - **Từ khóa:** Phân rã 6 gói công việc WBS (WP1 đến WP6), Nhận diện Đường găng Critical Path (WP4: Số hóa tài liệu 6 tuần), Mốc bàn giao Milestones, Quản lý rủi ro đường găng.
 
@@ -300,7 +303,7 @@ flowchart LR
   - **Quản trị rủi ro chủ động:** Nếu tiến độ quét sách bị chậm, nhóm có thể đề xuất tăng cường CTV như một phương án rút ngắn WP4; đây là phương án dự kiến, chưa phải sự kiện đã thực hiện.
 
 - **EVIDENCE (Minh chứng số liệu thực tế trong dự án):**
-   - Cấu trúc WBS và việc đánh dấu WP4 là gói công việc găng tại [`docs/02-planning/04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md) (§1.2).
+  - Cấu trúc WBS và việc đánh dấu WP4 là gói công việc găng tại [`docs/02-planning/04-cost-time-resource.md`](../../../docs/02-planning/04-cost-time-resource.md) (§1.2).
   - Bản kế hoạch Sprint 1 phân rã 17 stories theo 2 mốc Milestone cụ thể tại [`docs/03-execution-monitoring/01-sprint-plan.md`](../../../docs/03-execution-monitoring/01-sprint-plan.md).
 
 #### B. Sơ đồ Tiến độ WBS và Gói công việc găng
@@ -328,8 +331,8 @@ flowchart LR
 
 2. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch dự án là gì?**
    - _Trả lời:_
-     - *Đầu vào:* Project Charter, Statement of Work (SoW), Product Backlog, Báo cáo ước lượng UCP/COCOMO II.
-     - *Các bước thực hiện:* (1) Phân rã công việc WBS thành 6 Work Packages; (2) Sắp xếp thứ tự và thời lượng dự kiến; (3) Đánh dấu WP4 là gói nhạy cảm nhất theo kế hoạch nguồn; (4) Phân bổ nguồn lực nhân sự và thiết bị; (5) Thiết lập các cổng kiểm soát (Gating checkpoints).
+     - _Đầu vào:_ Project Charter, Statement of Work (SoW), Product Backlog, Báo cáo ước lượng UCP/COCOMO II.
+     - _Các bước thực hiện:_ (1) Phân rã công việc WBS thành 6 Work Packages; (2) Sắp xếp thứ tự và thời lượng dự kiến; (3) Đánh dấu WP4 là gói nhạy cảm nhất theo kế hoạch nguồn; (4) Phân bổ nguồn lực nhân sự và thiết bị; (5) Thiết lập các cổng kiểm soát (Gating checkpoints).
 
 3. **Tài liệu Kế hoạch dự án của nhóm đã được đánh giá thế nào?**
    - _Trả lời:_ Kế hoạch được đánh giá bằng cách đối chiếu lộ trình bốn giai đoạn, WBS, Sprint Plan và nguồn lực để kiểm tra tính khả thi của 20 tuần. Tài liệu nguồn đánh dấu WP4 là gói công việc găng nhưng chưa có đủ earliest/latest time và slack để gọi là một phép tính CPM hoàn chỉnh. Tài liệu tổng thể hiện ở trạng thái **Under Review**.

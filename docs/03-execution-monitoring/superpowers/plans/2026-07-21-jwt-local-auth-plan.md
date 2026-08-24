@@ -26,11 +26,13 @@
 ## Task 1: `User` model + Alembic migration
 
 **Files:**
+
 - Create: `src/backend/app/models/user.py`
 - Modify: `src/backend/app/models/__init__.py`
 - Create: `src/backend/app/db/migrations/versions/20260721_0006_users.py`
 
 **Interfaces:**
+
 - Produces: `app.models.user.User` — SQLAlchemy model with `id: uuid.UUID`, `email: str`, `password_hash: str | None`, `role: str`, `auth_provider: str`, `created_at: datetime`. Later tasks construct it as `User(id=uuid.uuid4(), email=..., password_hash=..., role=..., auth_provider=...)`.
 
 - [ ] **Step 1: Write the model**
@@ -129,6 +131,7 @@ Expected: prints `CREATE TABLE users (...)` SQL for all pending revisions ending
 - [ ] **Step 5: Verify the model loads and creates a table under SQLite**
 
 Run (from `src/backend`):
+
 ```bash
 uv run python -c "
 from sqlalchemy import create_engine
@@ -139,6 +142,7 @@ Base.metadata.create_all(engine)
 print('users' in Base.metadata.tables)
 "
 ```
+
 Expected: prints `True`.
 
 - [ ] **Step 6: Format, lint, commit**
@@ -155,11 +159,13 @@ git commit -m "feat(backend): add users table for local + Google identity"
 ## Task 2: Password hashing helpers (bcrypt)
 
 **Files:**
+
 - Modify: `src/backend/app/core/security.py`
 - Modify: `src/backend/pyproject.toml` (via `uv add`)
 - Test: `src/backend/tests/core/test_security.py` (new)
 
 **Interfaces:**
+
 - Consumes: nothing new.
 - Produces: `hash_password(password: str) -> str`, `verify_password(password: str, password_hash: str) -> bool` in `app.core.security`. Task 3's `auth_service.py` imports both.
 
@@ -168,6 +174,7 @@ git commit -m "feat(backend): add users table for local + Google identity"
 ```bash
 cd src/backend && uv add bcrypt
 ```
+
 Expected: `pyproject.toml` gains a `bcrypt>=...` line under `dependencies`, `uv.lock` updates.
 
 - [ ] **Step 2: Write the failing test**
@@ -234,11 +241,13 @@ git commit -m "feat(backend): add bcrypt password hashing helpers"
 ## Task 3: `auth_service.py` (register/authenticate/find-or-create) + shared domain check
 
 **Files:**
+
 - Create: `src/backend/app/services/auth_service.py`
 - Modify: `src/backend/app/services/google_oauth_service.py`
 - Test: `src/backend/tests/services/test_auth_service.py` (new)
 
 **Interfaces:**
+
 - Consumes: `hash_password`/`verify_password` from Task 2, `User` model from Task 1, `settings.google_allowed_domains` from `app.core.config`.
 - Produces (used by Task 5's API layer):
   - `check_allowed_domain(email: str) -> None` — raises `ForbiddenError` if the email's domain isn't in `settings.google_allowed_domains`.
@@ -429,17 +438,21 @@ def find_or_create_google_user(db: Session, email: str) -> User:
 In `src/backend/app/services/google_oauth_service.py`:
 
 Change the import line:
+
 ```python
 from app.core.exceptions import UnauthorizedError
 ```
+
 (was `from app.core.exceptions import ForbiddenError, UnauthorizedError` — `ForbiddenError` is no longer raised directly in this file)
 
 Add a new import:
+
 ```python
 from app.services.auth_service import check_allowed_domain
 ```
 
 Replace the body of `exchange_code_for_user`:
+
 ```python
 def exchange_code_for_user(code: str, state: str | None) -> GoogleUser:
     _consume_state(state)
@@ -477,23 +490,28 @@ git commit -m "feat(backend): add local auth service, share domain check with Go
 ## Task 4: Config — replace `AUTH_MODE` with `ENABLE_MOCK_AUTH`
 
 **Files:**
+
 - Modify: `src/backend/app/core/config.py`
 - Modify: `src/backend/.env.example`
 - Modify: `src/backend/tests/conftest.py`
 
 **Interfaces:**
+
 - Produces: `settings.enable_mock_auth: bool` (default `True`). `settings.google_client_id`/`google_client_secret`/`google_redirect_uri` remain `str | None`, but are no longer validated at startup — Task 5's endpoints check them at request time instead.
 - Removes: `settings.auth_mode` and the `_validate_google_mode` validator.
 
 - [ ] **Step 1: Edit `config.py`**
 
 In `src/backend/app/core/config.py`, replace:
+
 ```python
     # Identity & Access (LDMS-009/010/018)
     auth_mode: str = "mock"  # "mock" | "google"
     jwt_secret: str
 ```
+
 with:
+
 ```python
     # Identity & Access (LDMS-009/010/018)
     enable_mock_auth: bool = True
@@ -501,6 +519,7 @@ with:
 ```
 
 Then delete the whole `_validate_google_mode` validator block:
+
 ```python
     @model_validator(mode="after")
     def _validate_google_mode(self) -> "Settings":
@@ -515,18 +534,23 @@ Then delete the whole `_validate_google_mode` validator block:
 ```
 
 Since `model_validator` is now unused in this file, remove it from the import line too — change:
+
 ```python
 from pydantic import model_validator
 ```
+
 to nothing (delete the line; `pydantic_settings` import for `BaseSettings`/`SettingsConfigDict` stays).
 
 - [ ] **Step 2: Update `.env.example`**
 
 In `src/backend/.env.example`, replace:
+
 ```
 AUTH_MODE=mock
 ```
+
 with:
+
 ```
 ENABLE_MOCK_AUTH=true
 ```
@@ -534,6 +558,7 @@ ENABLE_MOCK_AUTH=true
 - [ ] **Step 3: Update `conftest.py`**
 
 In `src/backend/tests/conftest.py`, remove this line (mock auth is now the default, no env var needed):
+
 ```python
 os.environ.setdefault("AUTH_MODE", "mock")
 ```
@@ -541,7 +566,7 @@ os.environ.setdefault("AUTH_MODE", "mock")
 - [ ] **Step 4: Verify the app still boots and existing tests still pass**
 
 Run: `cd src/backend && uv run pytest tests/ -v`
-Expected: all currently-passing tests still pass (some `test_auth.py` tests will now fail because they still reference `auth_mode` — that's expected and fixed in Task 5; if any *other* test file fails, stop and investigate before continuing).
+Expected: all currently-passing tests still pass (some `test_auth.py` tests will now fail because they still reference `auth_mode` — that's expected and fixed in Task 5; if any _other_ test file fails, stop and investigate before continuing).
 
 - [ ] **Step 5: Format, lint, commit**
 
@@ -557,11 +582,13 @@ git commit -m "feat(backend): replace AUTH_MODE with independent ENABLE_MOCK_AUT
 ## Task 5: API endpoints — register/login/logout + Google callback update + schemas
 
 **Files:**
+
 - Modify: `src/backend/app/schemas/auth.py`
 - Modify: `src/backend/app/api/auth.py`
 - Modify: `src/backend/tests/api/test_auth.py`
 
 **Interfaces:**
+
 - Consumes: `auth_service.register_local_user`/`authenticate_local_user`/`find_or_create_google_user` (Task 3), `settings.enable_mock_auth` (Task 4), `DbSession` from `app.api.dependencies` (existing).
 - Produces: `POST /auth/register`, `POST /auth/login`, `POST /auth/logout`, updated `GET /auth/login/google` / `GET /auth/callback/google`, renamed gate on `POST /auth/dev-token`.
 
@@ -898,6 +925,7 @@ git commit -m "feat(backend): add register/login/logout endpoints, unify Google 
 ## Task 6: README docs update
 
 **Files:**
+
 - Modify: `README.md`
 
 **Interfaces:** none (docs only).
@@ -906,7 +934,7 @@ git commit -m "feat(backend): add register/login/logout endpoints, unify Google 
 
 In `README.md`, replace lines 141–188 (from `## Xác thực & Phân quyền (LDMS-009, LDMS-010, LDMS-018)` through the paragraph ending `...khi cấp qua \`/auth/dev-token\` ở chế độ mock để test kịch bản RBAC từ chối ghi).`) with:
 
-```markdown
+````markdown
 ## Xác thực & Phân quyền (LDMS-009, LDMS-010, LDMS-018)
 
 Hệ thống hỗ trợ song song 2 cách đăng nhập, dùng chung một bảng `users` và một
@@ -926,6 +954,7 @@ curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: applica
 curl -fsS -X POST http://localhost:8000/auth/dev-token -H 'Content-Type: application/json' \
   -d '{"role":"admin"}'
 ```
+````
 
 Đăng ký / đăng nhập bằng email + mật khẩu (yêu cầu email thuộc
 `GOOGLE_ALLOWED_DOMAINS`, mật khẩu tối thiểu 8 ký tự):
@@ -980,7 +1009,8 @@ ngược lại), hệ thống dùng lại đúng identity/role cũ — không t�
 
 **Bảo mật:** `GOOGLE_CLIENT_SECRET`/`JWT_SECRET` chỉ đọc từ `.env` (gitignored),
 không hardcode trong repo.
-```
+
+````
 
 - [ ] **Step 2: Verify no stale references remain**
 
@@ -992,16 +1022,18 @@ Expected: no output (all references removed).
 ```bash
 git add README.md
 git commit -m "docs: document register/login/logout alongside Google OAuth"
-```
+````
 
 ---
 
 ## Task 7: Frontend API client — `registerUser`/`loginUser`/`logoutUser`
 
 **Files:**
+
 - Modify: `src/frontend/src/services/api.ts`
 
 **Interfaces:**
+
 - Produces: `AuthResponse` type (`{ access_token: string; token_type: string; role: 'reader' | 'editor' | 'admin' }`), `registerUser(email: string, password: string): Promise<AuthResponse>`, `loginUser(email: string, password: string): Promise<AuthResponse>`, `logoutUser(): Promise<void>`. Consumed by Tasks 8–10.
 
 - [ ] **Step 1: Add the type and functions**
@@ -1010,33 +1042,39 @@ In `src/frontend/src/services/api.ts`, add after the existing `type ApiErrorBody
 
 ```typescript
 export type AuthResponse = {
-  access_token: string
-  token_type: string
-  role: 'reader' | 'editor' | 'admin'
-}
+  access_token: string;
+  token_type: string;
+  role: "reader" | "editor" | "admin";
+};
 ```
 
 Add at the end of the file:
 
 ```typescript
-export function registerUser(email: string, password: string): Promise<AuthResponse> {
-  return request('/auth/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+export function registerUser(
+  email: string,
+  password: string,
+): Promise<AuthResponse> {
+  return request("/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  })
+  });
 }
 
-export function loginUser(email: string, password: string): Promise<AuthResponse> {
-  return request('/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+export function loginUser(
+  email: string,
+  password: string,
+): Promise<AuthResponse> {
+  return request("/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  })
+  });
 }
 
 export function logoutUser(): Promise<void> {
-  return request('/auth/logout', { method: 'POST' })
+  return request("/auth/logout", { method: "POST" });
 }
 ```
 
@@ -1058,11 +1096,13 @@ git commit -m "feat(frontend): add register/login/logout API client functions"
 ## Task 8: `LoginPage` — add local email/password form
 
 **Files:**
+
 - Modify: `src/frontend/src/pages/LoginPage.tsx`
 - Modify: `src/frontend/src/pages/LoginPage.test.tsx`
 - Modify: `src/frontend/src/App.css`
 
 **Interfaces:**
+
 - Consumes: `loginUser` (Task 7), `useAuth()` (existing `AuthContext`), `react-router`'s `Link`/`useNavigate`.
 
 - [ ] **Step 1: Update the failing test first**
@@ -1393,7 +1433,7 @@ In `src/frontend/src/App.css`, right after the `.login-hint code { ... }` block 
 
 .auth-divider::before,
 .auth-divider::after {
-  content: '';
+  content: "";
   flex: 1;
   height: 1px;
   background: #dbe5e1;
@@ -1420,11 +1460,13 @@ git commit -m "feat(frontend): add email/password login form alongside Google bu
 ## Task 9: `RegisterPage` (new)
 
 **Files:**
+
 - Create: `src/frontend/src/pages/RegisterPage.tsx`
 - Create: `src/frontend/src/pages/RegisterPage.test.tsx`
 - Modify: `src/frontend/src/App.tsx`
 
 **Interfaces:**
+
 - Consumes: `registerUser` (Task 7), `useAuth()`, `react-router`'s `Link`/`useNavigate`.
 - Produces: route `/register`.
 
@@ -1695,12 +1737,15 @@ export function RegisterPage() {
 - [ ] **Step 4: Wire the route into `App.tsx`**
 
 In `src/frontend/src/App.tsx`, add the import:
+
 ```typescript
-import { RegisterPage } from './pages/RegisterPage'
+import { RegisterPage } from "./pages/RegisterPage";
 ```
+
 (place it right after `import { LoginPage } from './pages/LoginPage'`)
 
 Add the route inside `<Routes>`, right after `<Route path="/login" element={<LoginPage />} />`:
+
 ```typescript
         <Route path="/register" element={<RegisterPage />} />
 ```
@@ -1728,19 +1773,23 @@ git commit -m "feat(frontend): add register page and route"
 ## Task 10: Logout calls `POST /auth/logout` before clearing the token
 
 **Files:**
+
 - Modify: `src/frontend/src/App.tsx`
 
 **Interfaces:**
+
 - Consumes: `logoutUser` (Task 7), existing `clearToken()` from `useAuth()`.
 
 - [ ] **Step 1: Update `AuthNavItem` in `App.tsx`**
 
 Add the import:
+
 ```typescript
-import { logoutUser } from './services/api'
+import { logoutUser } from "./services/api";
 ```
 
 Replace the `AuthNavItem` function body:
+
 ```typescript
 function AuthNavItem() {
   const { token, clearToken } = useAuth()

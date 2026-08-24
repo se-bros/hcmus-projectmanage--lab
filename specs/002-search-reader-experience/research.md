@@ -7,6 +7,7 @@
 **Rationale**: Backlog LDMS-014 AC2 yêu cầu cụ thể "MinIO Signed URL", không phải chỉ "route có auth". Endpoint `/documents/{id}/source` hiện tại (proxy stream qua backend) phục vụ mục đích khác (Split-screen Editor đọc file scan gốc, LDMS-017) — không tái sử dụng cho EPUB vì đó không phải luồng đọc sách công khai cho độc giả.
 
 **Alternatives considered**:
+
 - Proxy stream EPUB qua backend giống `/source` — bị loại vì không khớp literal AC "Signed URL", và tốn băng thông backend không cần thiết cho file có thể serve thẳng từ object storage.
 - Presigned URL không giới hạn thời gian / thời gian dài hơn — bị loại, Constitution Principle IV cố định 15 phút.
 
@@ -37,6 +38,7 @@
 **Vấn đề phát hiện được**: `tests/conftest.py` chạy toàn bộ test suite trên **SQLite in-memory** (`create_engine("sqlite://")`, dùng `Base.metadata.create_all()` — **không chạy qua Alembic**, và `.github/workflows/ci.yml` không có service Postgres nào). SQLite không có `to_tsvector`/`plainto_tsquery`/`ts_headline`. Nếu viết thẳng SQL Postgres FTS, toàn bộ test cho Search sẽ không chạy được trong CI hiện tại.
 
 **Decision**: `search_service.search_documents(db, q)` **branch theo dialect**:
+
 - `db.bind.dialect.name == "postgresql"` (production/Docker Compose thật): dùng `func.to_tsvector('simple', ...)`, `func.plainto_tsquery('simple', q)`, `func.ts_headline('simple', text_content, plainto_tsquery(...))` cho snippet.
 - Dialect khác (SQLite — chỉ xảy ra trong test suite hiện tại): fallback bằng so khớp `LIKE`/Python substring (case-insensitive) trên `title`/`author`/`Page.text_content`, và cắt snippet thủ công quanh vị trí khớp đầu tiên (logic tương tự bản fixture cũ ở `001-reader-search-placeholder`, giữ lại đúng chỗ này thay vì xoá hẳn).
 
@@ -45,6 +47,7 @@ Text search config dùng `'simple'` (không stem) thay vì `'english'` — vì n
 **Rationale**: Giữ đúng kiến trúc đã chọn (`docs/06-architecture.md` §4.2: PostgreSQL FTS cho production) mà vẫn test được trên hạ tầng test hiện tại của repo, không phải thêm Postgres service vào CI (thay đổi lớn, ngoài phạm vi 1 feature). Fallback chỉ tồn tại vì giới hạn test, không phải đường chạy thật ở production (production luôn dùng Postgres theo `docker-compose.yml`).
 
 **Alternatives considered**:
+
 - Thêm Postgres service vào `.github/workflows/ci.yml` để test thật trên Postgres — cân nhắc nhưng bị loại cho feature này: thay đổi CI ảnh hưởng toàn team, nằm ngoài scope 1 feature, nên đề xuất làm riêng (ví dụ ticket kỹ thuật hạ tầng test) nếu team muốn test FTS thật 1:1.
 - Mock toàn bộ `search_service` trong test (giống cách `minio_client` được monkeypatch) — bị loại vì sẽ không kiểm chứng được logic khớp từ khóa/snippet thật, chỉ test được phần routing/schema.
 - Index GIN được thêm bằng `op.execute()` thô trong migration (không khai báo qua `Index()` trong model) để tránh việc `Base.metadata.create_all()` (chạy trong test) cố tạo index Postgres-only trên SQLite và lỗi.

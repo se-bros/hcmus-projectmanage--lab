@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650" role="img" aria-labelledby="title desc">
+  <title id="title">Mô hình trạng thái tài liệu</title><desc id="desc">Các trạng thái OCR, hiệu chỉnh, xuất bản và nhánh lỗi có thể retry.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#17365d"/></marker><style>text{font-family:Arial,sans-serif;fill:#10233f}.h{font-size:24px;font-weight:700}.t{font-size:16px}.s{fill:#eef4fb;stroke:#17365d;stroke-width:2;rx:24}.ok{fill:#e6f4ea;stroke:#287a45;stroke-width:2;rx:24}.err{fill:#fdeceb;stroke:#b43a31;stroke-width:2;rx:24}.e{stroke:#17365d;stroke-width:2;fill:none;marker-end:url(#a)}.retry{stroke:#b43a31;stroke-width:2;stroke-dasharray:7 5;fill:none;marker-end:url(#a)}</style></defs>
+  <text x="550" y="38" text-anchor="middle" class="h">VÒNG ĐỜI TÀI LIỆU MVP</text>
+  <g class="t" text-anchor="middle">
+    <rect class="s" x="55" y="110" width="180" height="60"/><text x="145" y="146">ocr_pending</text>
+    <rect class="s" x="315" y="110" width="180" height="60"/><text x="405" y="146">ocr_processing</text>
+    <rect class="ok" x="575" y="110" width="180" height="60"/><text x="665" y="146">ocr_completed</text>
+    <rect class="err" x="315" y="260" width="180" height="60"/><text x="405" y="296">ocr_failed</text>
+    <rect class="s" x="575" y="260" width="180" height="60"/><text x="665" y="288">editing</text><text x="665" y="308">(trạng thái UI/domain)</text>
+    <rect class="s" x="835" y="260" width="180" height="60"/><text x="925" y="296">publishing</text>
+    <rect class="ok" x="835" y="430" width="180" height="60"/><text x="925" y="466">published</text>
+    <rect class="err" x="575" y="430" width="180" height="60"/><text x="665" y="466">publish_failed</text>
+  </g>
+  <path class="e" d="M235 140 H315"/><text class="t" x="275" y="129" text-anchor="middle">claim</text>
+  <path class="e" d="M495 140 H575"/><text class="t" x="535" y="129" text-anchor="middle">success</text>
+  <path class="e" d="M405 170 V260"/><text class="t" x="420" y="220">fail/timeout</text>
+  <path class="retry" d="M315 290 H250 Q210 290 210 240 V175"/><text class="t" x="245" y="278">retry</text>
+  <path class="e" d="M665 170 V260"/><text class="t" x="681" y="220">open/edit</text>
+  <path class="e" d="M755 290 H835"/><text class="t" x="795" y="279" text-anchor="middle">gate đạt</text>
+  <path class="e" d="M925 320 V430"/><text class="t" x="940" y="380">success</text>
+  <path class="e" d="M835 290 H800 Q780 290 780 360 Q780 460 755 460"/><text class="t" x="792" y="410">fail</text>
+  <path class="retry" d="M665 430 V325"/><text class="t" x="680" y="380">sửa/retry</text>
+  <rect x="65" y="535" width="970" height="75" rx="10" fill="#fff7df" stroke="#c59424" stroke-width="1.5"/>
+  <text class="t" x="550" y="565" text-anchor="middle">Mọi chuyển trạng thái ghi actor/job/attempt/time/error phù hợp.</text>
+  <text class="t" x="550" y="592" text-anchor="middle">Nhánh lỗi không xóa source, corrected text hoặc evidence của attempt trước.</text>
+</svg>

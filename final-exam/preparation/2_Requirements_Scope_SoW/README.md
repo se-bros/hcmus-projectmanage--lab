@@ -1,12 +1,12 @@
 # PHIẾU BÀI LÀM ÔN TẬP — NGƯỜI 2: YÊU CẦU NGHIỆP VỤ, PHẠM VI & SOW
 
-| Thông tin | Nội dung |
-| :-- | :-- |
-| **Phiên bản** | 1.0 |
-| **Ngày hoàn thiện** | 18/08/2026 |
-| **Người phụ trách** | Ngô Nguyễn Thế Khoa — MSSV 23127065 |
-| **Phạm vi** | Câu 2, Câu 4, Câu 12 |
-| **Trạng thái** | Đã hoàn thiện đề cương ôn tập; cần in và luyện vấn đáp |
+| Thông tin           | Nội dung                                               |
+| :------------------ | :----------------------------------------------------- |
+| **Phiên bản**       | 1.0                                                    |
+| **Ngày hoàn thiện** | 18/08/2026                                             |
+| **Người phụ trách** | Ngô Nguyễn Thế Khoa — MSSV 23127065                    |
+| **Phạm vi**         | Câu 2, Câu 4, Câu 12                                   |
+| **Trạng thái**      | Đã hoàn thiện đề cương ôn tập; cần in và luyện vấn đáp |
 
 ## Mục lục
 
@@ -56,11 +56,11 @@
 
 ### 2.1. Các điểm cần nói trung thực khi vấn đáp
 
-| Tài liệu | Trạng thái ghi trong tài liệu | Kết luận được phép nói |
-| :-- | :-- | :-- |
-| Vision & Scope v3.0 | `Under Review` | Đã trải qua ba phiên bản và có người xem xét/phê duyệt được chỉ định; chưa có bằng chứng phê duyệt cuối cùng. |
-| Product Backlog v4.0 | `Ready for Implementation` | Đã sẵn sàng làm đầu vào triển khai theo tài liệu; vẫn còn lỗi chất lượng tài liệu cần sửa. |
-| SoW v1.0 | `Pending Approval`, bảng chữ ký còn trống | Mới là bản cam kết dự thảo/chờ ký; chưa được gọi là hợp đồng có hiệu lực. |
+| Tài liệu             | Trạng thái ghi trong tài liệu             | Kết luận được phép nói                                                                                        |
+| :------------------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| Vision & Scope v3.0  | `Under Review`                            | Đã trải qua ba phiên bản và có người xem xét/phê duyệt được chỉ định; chưa có bằng chứng phê duyệt cuối cùng. |
+| Product Backlog v4.0 | `Ready for Implementation`                | Đã sẵn sàng làm đầu vào triển khai theo tài liệu; vẫn còn lỗi chất lượng tài liệu cần sửa.                    |
+| SoW v1.0             | `Pending Approval`, bảng chữ ký còn trống | Mới là bản cam kết dự thảo/chờ ký; chưa được gọi là hợp đồng có hiệu lực.                                     |
 
 ### 2.2. Các sai lệch đã phát hiện khi đánh giá chéo
 
@@ -220,14 +220,14 @@ Backlog được dùng để kéo card Kanban, phân công theo module, xác đ�
 
 #### 6. Giải thích INVEST cho một User Story chất lượng
 
-| Chữ | Ý nghĩa | Cách kiểm tra trong HCMUS-LDMS |
-| :--: | :-- | :-- |
-| **I — Independent** | Tương đối độc lập | Giảm coupling; dependency được khai báo rõ. |
-| **N — Negotiable** | Có thể thương lượng | Story mô tả nhu cầu, không khóa mọi chi tiết giải pháp quá sớm. |
-| **V — Valuable** | Có giá trị | Truy ngược được về pain point/workflow của thủ thư, biên tập viên hoặc độc giả. |
-| **E — Estimable** | Có thể ước lượng | Đủ rõ về phạm vi, AC và dependency để gán size S/M. |
-| **S — Small** | Đủ nhỏ | S ≤ 1 ngày, M ≤ 2 ngày theo Backlog; quá lớn phải tách. |
-| **T — Testable** | Có thể kiểm thử | AC có kết quả quan sát/đo được như HTTP 200, thời gian ≤ 5 phút hoặc quyền truy cập bị từ chối. |
+|         Chữ         | Ý nghĩa             | Cách kiểm tra trong HCMUS-LDMS                                                                  |
+| :-----------------: | :------------------ | :---------------------------------------------------------------------------------------------- |
+| **I — Independent** | Tương đối độc lập   | Giảm coupling; dependency được khai báo rõ.                                                     |
+| **N — Negotiable**  | Có thể thương lượng | Story mô tả nhu cầu, không khóa mọi chi tiết giải pháp quá sớm.                                 |
+|  **V — Valuable**   | Có giá trị          | Truy ngược được về pain point/workflow của thủ thư, biên tập viên hoặc độc giả.                 |
+|  **E — Estimable**  | Có thể ước lượng    | Đủ rõ về phạm vi, AC và dependency để gán size S/M.                                             |
+|    **S — Small**    | Đủ nhỏ              | S ≤ 1 ngày, M ≤ 2 ngày theo Backlog; quá lớn phải tách.                                         |
+|  **T — Testable**   | Có thể kiểm thử     | AC có kết quả quan sát/đo được như HTTP 200, thời gian ≤ 5 phút hoặc quyền truy cập bị từ chối. |
 
 ### 4.4. Câu chuyện trình bày 60–90 giây
 
@@ -308,11 +308,11 @@ Khi được ký, SoW định hướng execution, procurement, release gate, ngh
 
 #### 6. Proposal, Estimate và SoW khác nhau về thời gian và chi phí thế nào?
 
-| Tài liệu | Thời điểm | Bản chất thời gian/chi phí | Mức ràng buộc |
-| :-- | :-- | :-- | :-- |
-| **Proposal** | Rất sớm, trước khi lập kế hoạch chi tiết | Mục tiêu hoặc khoảng sơ bộ để chứng minh ý tưởng đáng đầu tư; thường do sponsor/client kỳ vọng. | Chưa phải cam kết kỹ thuật cuối cùng. |
-| **Estimate** | Sau khi có scope/backlog và phương pháp ước lượng | Dự đoán bằng size, effort, năng suất, UCP/COCOMO/throughput; nên là khoảng và cập nhật theo dữ liệu mới. | Là căn cứ ra quyết định, không đồng nhất với commitment. |
-| **SoW** | Sau khi các bên reconcile nhu cầu và estimate | Baseline thời gian/chi phí đã thương lượng, gắn với scope, deliverables, acceptance và change control. | Chỉ thành cam kết có hiệu lực khi được phê duyệt/ký theo thẩm quyền. |
+| Tài liệu     | Thời điểm                                         | Bản chất thời gian/chi phí                                                                               | Mức ràng buộc                                                        |
+| :----------- | :------------------------------------------------ | :------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
+| **Proposal** | Rất sớm, trước khi lập kế hoạch chi tiết          | Mục tiêu hoặc khoảng sơ bộ để chứng minh ý tưởng đáng đầu tư; thường do sponsor/client kỳ vọng.          | Chưa phải cam kết kỹ thuật cuối cùng.                                |
+| **Estimate** | Sau khi có scope/backlog và phương pháp ước lượng | Dự đoán bằng size, effort, năng suất, UCP/COCOMO/throughput; nên là khoảng và cập nhật theo dữ liệu mới. | Là căn cứ ra quyết định, không đồng nhất với commitment.             |
+| **SoW**      | Sau khi các bên reconcile nhu cầu và estimate     | Baseline thời gian/chi phí đã thương lượng, gắn với scope, deliverables, acceptance và change control.   | Chỉ thành cam kết có hiệu lực khi được phê duyệt/ký theo thẩm quyền. |
 
 Trong HCMUS-LDMS, nếu Proposal muốn nhanh/rẻ hơn Estimate kỹ thuật, nhóm không chép nguyên con số vào SoW; phải giảm scope, tăng nguồn lực, kéo lịch hoặc tăng ngân sách rồi ghi kết quả thống nhất.
 
@@ -329,14 +329,14 @@ Trong HCMUS-LDMS, nếu Proposal muốn nhanh/rẻ hơn Estimate kỹ thuật, n
 
 #### 8. Fixed-Price và Time & Materials khác nhau thế nào?
 
-| Tiêu chí | Fixed-Price | Time & Materials (T&M) |
-| :-- | :-- | :-- |
-| **Cách trả tiền** | Giá tổng cố định cho scope/deliverables đã chốt. | Giờ công thực tế × đơn giá + vật tư/thiết bị thực tế và phần lợi nhuận thỏa thuận. |
-| **Phù hợp khi** | Yêu cầu rõ, domain/technology hiểu tốt, có thể estimate và plan chi tiết. | Scope còn biến động hoặc không thể mô tả đầy đủ từ đầu. |
-| **Rủi ro chi phí** | Nhà cung cấp chịu nhiều rủi ro vượt effort; khách hàng chịu chi phí change request. | Khách hàng chịu nhiều rủi ro tổng chi phí; nhà cung cấp ít động lực tự nhiên để giảm giờ nếu governance yếu. |
-| **Thay đổi** | Tốn kém, phải quản lý bằng CR hoặc thay đổi giá/lịch/scope. | Linh hoạt hơn vì thanh toán theo effort thực tế. |
-| **Quản trị** | Cần đặc tả và acceptance rõ trước khi ký. | Cần minh bạch timesheet, rate, cap ngân sách và review thường xuyên; đòi hỏi tin cậy cao. |
-| **Đối với HCMUS-LDMS** | Chỉ phù hợp sau khi sửa mâu thuẫn scope/budget và đủ bằng chứng estimate. | Phù hợp hơn cho phần nghiên cứu/OCR chưa chắc chắn, nhưng phải đặt cap và checkpoint. |
+| Tiêu chí               | Fixed-Price                                                                         | Time & Materials (T&M)                                                                                       |
+| :--------------------- | :---------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| **Cách trả tiền**      | Giá tổng cố định cho scope/deliverables đã chốt.                                    | Giờ công thực tế × đơn giá + vật tư/thiết bị thực tế và phần lợi nhuận thỏa thuận.                           |
+| **Phù hợp khi**        | Yêu cầu rõ, domain/technology hiểu tốt, có thể estimate và plan chi tiết.           | Scope còn biến động hoặc không thể mô tả đầy đủ từ đầu.                                                      |
+| **Rủi ro chi phí**     | Nhà cung cấp chịu nhiều rủi ro vượt effort; khách hàng chịu chi phí change request. | Khách hàng chịu nhiều rủi ro tổng chi phí; nhà cung cấp ít động lực tự nhiên để giảm giờ nếu governance yếu. |
+| **Thay đổi**           | Tốn kém, phải quản lý bằng CR hoặc thay đổi giá/lịch/scope.                         | Linh hoạt hơn vì thanh toán theo effort thực tế.                                                             |
+| **Quản trị**           | Cần đặc tả và acceptance rõ trước khi ký.                                           | Cần minh bạch timesheet, rate, cap ngân sách và review thường xuyên; đòi hỏi tin cậy cao.                    |
+| **Đối với HCMUS-LDMS** | Chỉ phù hợp sau khi sửa mâu thuẫn scope/budget và đủ bằng chứng estimate.           | Phù hợp hơn cho phần nghiên cứu/OCR chưa chắc chắn, nhưng phải đặt cap và checkpoint.                        |
 
 ### 5.4. Câu chuyện trình bày 60–90 giây
 

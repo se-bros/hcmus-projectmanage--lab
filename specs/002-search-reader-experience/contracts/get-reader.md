@@ -11,9 +11,9 @@ GET /documents/{document_id}/reader
 Authorization: Bearer <token>   # optional nếu document is_public
 ```
 
-| Path param | Type | Ghi chú |
-|---|---|---|
-| `document_id` | `uuid.UUID` | |
+| Path param    | Type        | Ghi chú |
+| ------------- | ----------- | ------- |
+| `document_id` | `uuid.UUID` |         |
 
 ## Response 200 — `ReaderContent`
 
@@ -31,11 +31,11 @@ Authorization: Bearer <token>   # optional nếu document is_public
 
 ## Response lỗi
 
-| Status | Khi nào | AppError |
-|---|---|---|
-| 401 | `is_public=false` và không có token hợp lệ | `UnauthorizedError` (dùng lại `ensure_readable`) |
-| 404 | `document_id` không tồn tại | `NotFoundError` (US1 AC3) |
-| 422 | Document tồn tại nhưng `status != "published"` hoặc thiếu `epub_object_key` | `ValidationError` — message rõ ràng kiểu "Tài liệu chưa được xuất bản." / "Không tìm thấy bản đọc EPUB." (US1 AC2) |
+| Status | Khi nào                                                                     | AppError                                                                                                           |
+| ------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 401    | `is_public=false` và không có token hợp lệ                                  | `UnauthorizedError` (dùng lại `ensure_readable`)                                                                   |
+| 404    | `document_id` không tồn tại                                                 | `NotFoundError` (US1 AC3)                                                                                          |
+| 422    | Document tồn tại nhưng `status != "published"` hoặc thiếu `epub_object_key` | `ValidationError` — message rõ ràng kiểu "Tài liệu chưa được xuất bản." / "Không tìm thấy bản đọc EPUB." (US1 AC2) |
 
 ## Pydantic schema
 

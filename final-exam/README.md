@@ -144,4 +144,4 @@ flowchart TD
   - **Buổi 06 & 08:** Quản lý nhóm (Tuckman, McGregor Y, Maslow), kiểm soát xung đột bằng chính sách sớm, quản lý rủi ro RAID log.
   - **Buổi 07 & 08:** Ước lượng đa chiều (Fibonacci Planning Poker, đối chuẩn COCOMO II trên DSpace, UCP), đo lường throughput và gap time.
   - **Buổi 08 & 10:** 5 bài toán CD/DevOps (Script deploy, Release tag, Monitoring, Multi-environment, Backup), QA/QC với AI Code Review và Test Coverage.
-  - **Dặn dò thi vấn đáp:** *Kể chi tiết tự sự như một câu chuyện thực tế, nhắc đến code phải có dẫn chứng (evidence), không nói lý thuyết suông*.
+  - **Dặn dò thi vấn đáp:** _Kể chi tiết tự sự như một câu chuyện thực tế, nhắc đến code phải có dẫn chứng (evidence), không nói lý thuyết suông_.

@@ -21,15 +21,15 @@ Dựng khung 2 trang FE (Document List, Reader placeholder) + 1 trang FE Search 
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-checked after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-checked after Phase 1 design._
 
-| Principle | Trạng thái | Ghi chú |
-|---|---|---|
-| I. Layering (định hướng, không cứng nhắc khi MVP) | **PASS (miễn trừ scaffold)** | Đây là dựng khung trên fixture, một người code cả 2 lớp — constitution cho phép. Vẫn tổ chức đúng thư mục `api/` cho router, không nhét business logic linh tinh. |
-| II. Clear Contracts khi story được pick chính thức | **PASS (miễn trừ)** | LDMS-008/026 chưa được pick chính thức (full AC) — đây chỉ là scaffold đọc fixture, không có Pydantic schema đầy đủ là chấp nhận được, nhưng vẫn dùng `response_model` cơ bản cho rõ ràng (xem `contracts/`). |
+| Principle                                           | Trạng thái                               | Ghi chú                                                                                                                                                                                                                                                                                                               |
+| --------------------------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| I. Layering (định hướng, không cứng nhắc khi MVP)   | **PASS (miễn trừ scaffold)**             | Đây là dựng khung trên fixture, một người code cả 2 lớp — constitution cho phép. Vẫn tổ chức đúng thư mục `api/` cho router, không nhét business logic linh tinh.                                                                                                                                                     |
+| II. Clear Contracts khi story được pick chính thức  | **PASS (miễn trừ)**                      | LDMS-008/026 chưa được pick chính thức (full AC) — đây chỉ là scaffold đọc fixture, không có Pydantic schema đầy đủ là chấp nhận được, nhưng vẫn dùng `response_model` cơ bản cho rõ ràng (xem `contracts/`).                                                                                                         |
 | III. Test & Lint bắt buộc trước khi merge `develop` | **PASS (miễn trừ khi scaffold fixture)** | Không viết test mới cho fixture endpoints; **vẫn chạy** `uv run ruff format .`, `uv run ruff check .` (backend) và `npm run format`, `npm run lint` (frontend) trước khi coi task hoàn thành, vì đây là yêu cầu universal của `AGENTS.md`/`CLAUDE.md`, tách biệt với gate "trước khi merge develop" của constitution. |
-| IV. File Security non-negotiable | **PASS — không áp dụng** | Feature này không serve file gốc/EPUB thật, không tạo Signed URL nào. Không vi phạm vì không chạm vào phạm vi của principle này. |
-| V. Heavy work chạy background | **PASS — không áp dụng** | Không có OCR/EPUB compile trong scope này; tất cả endpoint đọc fixture in-memory, đồng bộ, cực nhanh. |
+| IV. File Security non-negotiable                    | **PASS — không áp dụng**                 | Feature này không serve file gốc/EPUB thật, không tạo Signed URL nào. Không vi phạm vì không chạm vào phạm vi của principle này.                                                                                                                                                                                      |
+| V. Heavy work chạy background                       | **PASS — không áp dụng**                 | Không có OCR/EPUB compile trong scope này; tất cả endpoint đọc fixture in-memory, đồng bộ, cực nhanh.                                                                                                                                                                                                                 |
 
 **Kết luận**: Không có vi phạm nào cần biện minh trong Complexity Tracking.
 
@@ -81,4 +81,4 @@ src/frontend/
 
 ## Complexity Tracking
 
-*Không có vi phạm nào cần biện minh — bảng để trống.*
+_Không có vi phạm nào cần biện minh — bảng để trống._

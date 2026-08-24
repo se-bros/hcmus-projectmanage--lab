@@ -10,9 +10,10 @@ Cho phép độc giả đã đăng nhập bôi đen một đoạn văn trong tr�
 **Cách tiếp cận kỹ thuật**: một bảng `highlights` mới lưu vùng đánh dấu dưới dạng **EPUB CFI range** (cùng họ định vị mà `bookmarks.location` đang dùng), kèm bản sao đoạn text đã chọn và ghi chú. Phía client dùng API sẵn có của epub.js — `rendition.on('selected')` để bắt vùng chọn và `rendition.annotations.add('highlight', ...)` để tô — nên không cần thêm thư viện nào. Bốn endpoint CRUD thuần, không có tác vụ nặng, không đụng tới đường đọc file gốc.
 
 Ba quyết định từ `/speckit.clarify` định hình thiết kế:
+
 - **FR-004** (chồng lấn tự do) → bảng **không** có unique constraint trên vùng; mỗi highlight là một bản ghi độc lập.
 - **FR-005b** (một highlight nằm gọn trong một chương) → epub.js render mỗi spine item trong một iframe riêng nên vùng chọn của trình duyệt **không thể** vắt qua chương; ràng buộc được thoả về mặt cấu trúc, vẫn kiểm lại ở server.
-- **FR-011** (giữ bản ghi khi vị trí hỏng) → **không** thêm cột trạng thái vào DB; việc một CFI còn dựng lại được hay không là thuộc tính của bản EPUB *hiện tại*, chỉ client mới biết, nên phân loại xảy ra ở client lúc render.
+- **FR-011** (giữ bản ghi khi vị trí hỏng) → **không** thêm cột trạng thái vào DB; việc một CFI còn dựng lại được hay không là thuộc tính của bản EPUB _hiện tại_, chỉ client mới biết, nên phân loại xảy ra ở client lúc render.
 
 ## Technical Context
 
@@ -30,19 +31,20 @@ Ba quyết định từ `/speckit.clarify` định hình thiết kế:
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-checked after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-checked after Phase 1 design._
 
 Đối chiếu từng nguyên tắc trong `.specify/memory/constitution.md` (v1.2.0):
 
-| Nguyên tắc | Kết quả | Ghi chú |
-| :--- | :--- | :--- |
-| **I. Layering** | ✅ PASS | Tách đúng `models/highlight.py` → `schemas/highlight.py` → `services/highlight_service.py` → `api/highlights.py`, một file cho mỗi entity theo đúng mục Development Workflow. FE tách `services/api.ts` (gọi API) khỏi `components/` (UI). |
-| **II. Clear Contracts** | ✅ PASS | Đây là story pick chính thức đủ AC nên áp dụng đầy đủ: mọi endpoint có schema Pydantic trong `schemas/highlight.py`, mọi lỗi ném qua `AppError` (`NotFoundError`/`ValidationError`/`UnauthorizedError`), không dùng `JSONResponse` thủ công. |
-| **III. Test & Lint** | ✅ PASS | Story đủ AC → chạy `ruff format`/`ruff check`/`pytest` và `npm run format`/`npm run lint` trước khi mở PR vào `develop`. CI (`.github/workflows/ci.yml`) gate PR nên đằng nào cũng bắt buộc. |
-| **IV. File Security** | ✅ PASS — có lưu ý | Feature **không** mở thêm đường truy cập file: không endpoint tải file mới, không object key mới, đường đọc EPUB vẫn nguyên Signed URL 15 phút qua `reader_service.get_reader_content`. Xem lưu ý bên dưới về `selected_text`. |
-| **V. Background Work** | ✅ PASS (N/A) | Toàn bộ thao tác là CRUD một bản ghi, không OCR/Pandoc, không tác vụ nặng — không cần `BackgroundTasks`. |
+| Nguyên tắc              | Kết quả            | Ghi chú                                                                                                                                                                                                                                      |
+| :---------------------- | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **I. Layering**         | ✅ PASS            | Tách đúng `models/highlight.py` → `schemas/highlight.py` → `services/highlight_service.py` → `api/highlights.py`, một file cho mỗi entity theo đúng mục Development Workflow. FE tách `services/api.ts` (gọi API) khỏi `components/` (UI).   |
+| **II. Clear Contracts** | ✅ PASS            | Đây là story pick chính thức đủ AC nên áp dụng đầy đủ: mọi endpoint có schema Pydantic trong `schemas/highlight.py`, mọi lỗi ném qua `AppError` (`NotFoundError`/`ValidationError`/`UnauthorizedError`), không dùng `JSONResponse` thủ công. |
+| **III. Test & Lint**    | ✅ PASS            | Story đủ AC → chạy `ruff format`/`ruff check`/`pytest` và `npm run format`/`npm run lint` trước khi mở PR vào `develop`. CI (`.github/workflows/ci.yml`) gate PR nên đằng nào cũng bắt buộc.                                                 |
+| **IV. File Security**   | ✅ PASS — có lưu ý | Feature **không** mở thêm đường truy cập file: không endpoint tải file mới, không object key mới, đường đọc EPUB vẫn nguyên Signed URL 15 phút qua `reader_service.get_reader_content`. Xem lưu ý bên dưới về `selected_text`.               |
+| **V. Background Work**  | ✅ PASS (N/A)      | Toàn bộ thao tác là CRUD một bản ghi, không OCR/Pandoc, không tác vụ nặng — không cần `BackgroundTasks`.                                                                                                                                     |
 
-**Lưu ý cho Nguyên tắc IV (đã xử lý trong thiết kế, không phải vi phạm):** cột `selected_text` (FR-003) lưu một bản sao nội dung sách trong DB — về nguyên tắc đây là một kênh chứa nội dung có bản quyền nằm *ngoài* đường Signed URL. Rủi ro được chặn bằng bốn biện pháp, xem `data-model.md` và `contracts/highlights-api.md`:
+**Lưu ý cho Nguyên tắc IV (đã xử lý trong thiết kế, không phải vi phạm):** cột `selected_text` (FR-003) lưu một bản sao nội dung sách trong DB — về nguyên tắc đây là một kênh chứa nội dung có bản quyền nằm _ngoài_ đường Signed URL. Rủi ro được chặn bằng bốn biện pháp, xem `data-model.md` và `contracts/highlights-api.md`:
+
 1. Giới hạn `selected_text` ≤ 5.000 ký tự/bản ghi, từ chối ở tầng schema — không thể dùng để mirror cả cuốn sách.
 2. Chỉ đọc lại được bởi đúng user đã tạo (FR-012); không có endpoint nào trả highlight của người khác.
 3. Chỉ chứa đúng phần độc giả tự bôi đen trên nội dung mà họ **đã** có quyền đọc — không mở rộng quyền sẵn có.
@@ -107,6 +109,7 @@ src/frontend/
 **Structure Decision**: Giữ nguyên cấu trúc web app hai thư mục `src/backend` + `src/frontend` đã có, phân lớp theo kỹ thuật đúng Nguyên tắc I. Feature này là phần mở rộng của Module M6 (Reader) nên mọi file mới nằm cạnh file M6 sẵn có. Router tách thành `api/highlights.py` thay vì nhồi vào `api/reader.py` để không biến file M6 thành file gom tất cả — nhất quán với cách `api/` đang tách theo từng nhóm nghiệp vụ (`auth`, `editor`, `metadata`, `publish`…).
 
 Hai điểm cần biết trước khi code:
+
 - `src/frontend/src/services/documents.ts` là client thời fixture của spec `001`, **không** phải client thật đang chạy. Client thật là `services/api.ts`. Không đụng vào `documents.ts`.
 - Hiện **chưa có** `tests/api/test_reader.py` — nhánh bookmark/reader chưa có test ở tầng API. Feature này thêm `test_highlights.py` cho phần của mình; việc bổ sung test cho bookmark nằm ngoài phạm vi, chỉ nêu ra để team biết.
 

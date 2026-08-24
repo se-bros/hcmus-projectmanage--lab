@@ -34,13 +34,13 @@ npm install
 npm run dev
 ```
 
-| Service | URL |
-| --- | --- |
+| Service                    | URL                   |
+| -------------------------- | --------------------- |
 | Frontend (Vite dev server) | http://localhost:5173 |
-| API | http://localhost:8000 |
-| PostgreSQL | localhost:5434 |
-| MinIO API | localhost:9002 |
-| MinIO Console UI | localhost:9003 |
+| API                        | http://localhost:8000 |
+| PostgreSQL                 | localhost:5434        |
+| MinIO API                  | localhost:9002        |
+| MinIO Console UI           | localhost:9003        |
 
 > Cổng PostgreSQL/MinIO được map ra ngoài container ở các số khác mặc định 5434, 9002, 9003
 
@@ -54,24 +54,24 @@ Tesseract `vie+eng`. Docker image đã chứa Tesseract, Poppler và Pandoc.
 
 Các endpoint chính:
 
-| Method | Endpoint | Kết quả |
-| --- | --- | --- |
-| `POST` | `/documents` | Lưu source, tạo OCR job, trả `201 {document_id}` |
-| `GET` | `/documents/{id}/source` | Stream bytes source gốc |
-| `POST` | `/documents/{id}/ocr` | Retry job failed, trả job mới với HTTP 202 |
-| `GET` | `/documents/{id}/ocr` | Job mới nhất, attempt, status và lỗi |
-| `GET` | `/documents/{id}/pages` | Text theo `page_number` tăng dần |
-| `GET` | `/documents/{id}/pages/{n}` | Đọc text và trạng thái preview của một trang |
-| `PUT` | `/documents/{id}/pages/{n}` | Lưu `{ "text_content": "..." }`, kể cả chuỗi rỗng |
-| `GET` | `/documents/{id}/pages/{n}/image` | Preview PNG của trang |
-| `PUT` | `/documents/{id}/metadata` | Lưu title, author, shelf location và category |
-| `POST` | `/categories` | Tạo category cấp 1 hoặc cấp 2 bằng `parent_id` |
-| `GET` | `/categories` | Trả cây category hai cấp với mảng `children` |
-| `PATCH` | `/categories/{id}` | Đổi tên category |
-| `DELETE` | `/categories/{id}` | Xóa category không có con và chưa được sử dụng |
-| `GET` | `/ocr/jobs` | Job OCR mới nhất của từng document cho dashboard |
-| `POST` | `/documents/{id}/publish` | Kiểm tra metadata/page text và tạo publish job |
-| `GET` | `/documents/{id}/publish` | Publish job mới nhất |
+| Method   | Endpoint                          | Kết quả                                           |
+| -------- | --------------------------------- | ------------------------------------------------- |
+| `POST`   | `/documents`                      | Lưu source, tạo OCR job, trả `201 {document_id}`  |
+| `GET`    | `/documents/{id}/source`          | Stream bytes source gốc                           |
+| `POST`   | `/documents/{id}/ocr`             | Retry job failed, trả job mới với HTTP 202        |
+| `GET`    | `/documents/{id}/ocr`             | Job mới nhất, attempt, status và lỗi              |
+| `GET`    | `/documents/{id}/pages`           | Text theo `page_number` tăng dần                  |
+| `GET`    | `/documents/{id}/pages/{n}`       | Đọc text và trạng thái preview của một trang      |
+| `PUT`    | `/documents/{id}/pages/{n}`       | Lưu `{ "text_content": "..." }`, kể cả chuỗi rỗng |
+| `GET`    | `/documents/{id}/pages/{n}/image` | Preview PNG của trang                             |
+| `PUT`    | `/documents/{id}/metadata`        | Lưu title, author, shelf location và category     |
+| `POST`   | `/categories`                     | Tạo category cấp 1 hoặc cấp 2 bằng `parent_id`    |
+| `GET`    | `/categories`                     | Trả cây category hai cấp với mảng `children`      |
+| `PATCH`  | `/categories/{id}`                | Đổi tên category                                  |
+| `DELETE` | `/categories/{id}`                | Xóa category không có con và chưa được sử dụng    |
+| `GET`    | `/ocr/jobs`                       | Job OCR mới nhất của từng document cho dashboard  |
+| `POST`   | `/documents/{id}/publish`         | Kiểm tra metadata/page text và tạo publish job    |
+| `GET`    | `/documents/{id}/publish`         | Publish job mới nhất                              |
 
 Các trạng thái document gồm `ocr_pending`, `ocr_processing`, `ocr_completed`, `ocr_failed`,
 `publishing`, `published` và `publish_failed`. Job `pending`/`processing` bị gián đoạn bởi API
@@ -174,15 +174,15 @@ xuất" thực tế là FE xoá token khỏi `localStorage`.
 
 Gắn token vào header `Authorization: Bearer <token>`. RBAC theo role:
 
-* **`reader`**: chỉ đọc. Mọi endpoint ghi (`POST /documents`, `POST
-  .../ocr`, `PUT .../metadata`, `PUT .../pages/{n}`, `POST /documents/{id}/publish`,
+- **`reader`**: chỉ đọc. Mọi endpoint ghi (`POST /documents`, `POST
+.../ocr`, `PUT .../metadata`, `PUT .../pages/{n}`, `POST /documents/{id}/publish`,
   `POST/PATCH/DELETE /categories`) trả `403`.
-* **`editor`**: `POST /documents` (upload) và `POST .../ocr` (chạy/chạy lại
+- **`editor`**: `POST /documents` (upload) và `POST .../ocr` (chạy/chạy lại
   OCR) cho phép trên mọi document. `PUT .../metadata` và `PUT .../pages/{n}`
   chỉ cho phép trên document do chính editor đó upload (`document.owner_id`
   khớp `sub` trong JWT) — document của người khác trả `403` giống hệt
   reader. `/categories` (tạo/sửa/xoá) vẫn `403` với editor.
-* **`admin`**: full access mọi endpoint, không bị ràng buộc ownership.
+- **`admin`**: full access mọi endpoint, không bị ràng buộc ownership.
 
 Không có token (guest) → `401` trên mọi endpoint ghi. `GET /categories` là
 ngoại lệ luôn mở, không cần token, vì đây chỉ là dữ liệu tham chiếu cho
@@ -282,6 +282,7 @@ src/
 ```
 
 Quy ước:
+
 - Model/schema/service/repository cũng tách 1 file/entity hoặc module tương ứng (vd. `models/document.py`, `repositories/document_repository.py`, `services/ocr.py`) — tránh dồn hết vào 1 file dùng chung.
 - Lỗi nghiệp vụ raise bằng các exception trong `core/exceptions.py` (`NotFoundError`, `ConflictError`, ...) thay vì tự trả `JSONResponse` — handler dùng chung đã đăng ký sẵn trong `main.py`.
 - Migration: `uv run alembic revision --autogenerate -m "..."` rồi `uv run alembic upgrade head` (cần import model mới vào `app/db/migrations/env.py` để autogenerate nhận diện).
@@ -341,5 +342,3 @@ Epub.js dùng URL tạm thời này để tải nội dung; UI không có nút t
 - [`docs/02-planning/03-product-backlog.md`](docs/02-planning/03-product-backlog.md) — Backlog & Acceptance Criteria
 - [`docs/02-planning/02-architecture.md`](docs/02-planning/02-architecture.md) — Kiến trúc hệ thống & tech stack
 - [`docs/03-execution-monitoring/01-sprint-plan.md`](docs/03-execution-monitoring/01-sprint-plan.md) — Kế hoạch phân công Sprint
-
-

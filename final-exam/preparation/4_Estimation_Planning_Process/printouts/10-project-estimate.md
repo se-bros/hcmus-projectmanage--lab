@@ -29,44 +29,44 @@ Baseline này được dùng để kiểm tra tính khả thi của lộ trình 
 
 ### 2.1. Trọng lượng tác nhân
 
-| Nhóm tác nhân | Số lượng | Trọng số | Điểm |
-| :--- | ---: | ---: | ---: |
-| Hệ thống/API đơn giản | 3 | 1 | 3 |
-| Người dùng qua giao diện | 3 | 3 | 9 |
-| **UAW** |  |  | **12** |
+| Nhóm tác nhân            | Số lượng | Trọng số |   Điểm |
+| :----------------------- | -------: | -------: | -----: |
+| Hệ thống/API đơn giản    |        3 |        1 |      3 |
+| Người dùng qua giao diện |        3 |        3 |      9 |
+| **UAW**                  |          |          | **12** |
 
 ### 2.2. Trọng lượng Use Case
 
-| Loại Use Case | Số lượng | Trọng số | Điểm |
-| :--- | ---: | ---: | ---: |
-| Simple | 6 | 5 | 30 |
-| Average | 4 | 10 | 40 |
-| Complex | 4 | 15 | 60 |
-| **UUCW** |  |  | **130** |
+| Loại Use Case | Số lượng | Trọng số |    Điểm |
+| :------------ | -------: | -------: | ------: |
+| Simple        |        6 |        5 |      30 |
+| Average       |        4 |       10 |      40 |
+| Complex       |        4 |       15 |      60 |
+| **UUCW**      |          |          | **130** |
 
 ### 2.3. Công thức
 
-| Đại lượng | Phép tính | Kết quả |
-| :--- | :--- | ---: |
-| UUCP | `UAW + UUCW = 12 + 130` | 142 |
-| TCF | `0.6 + 0.01 × 53` | 1.13 |
-| ECF | `1.4 − 0.03 × 20.5` | 0.785 |
-| AUCP | `142 × 1.13 × 0.785` | ≈ 126 UCP |
-| Nỗ lực thô | `126 × 20 giờ/UCP` | 2.520 giờ |
-| Quy đổi | `2.520 / 160 giờ/tháng` | 15.75 PM |
-| Sau giảm 40% nhờ tái sử dụng | `15.75 × 60%` | 9.45 PM |
-| Baseline UCP bảo thủ | Làm tròn lên theo tài liệu dự án | **10.0 PM** |
+| Đại lượng                    | Phép tính                        |     Kết quả |
+| :--------------------------- | :------------------------------- | ----------: |
+| UUCP                         | `UAW + UUCW = 12 + 130`          |         142 |
+| TCF                          | `0.6 + 0.01 × 53`                |        1.13 |
+| ECF                          | `1.4 − 0.03 × 20.5`              |       0.785 |
+| AUCP                         | `142 × 1.13 × 0.785`             |   ≈ 126 UCP |
+| Nỗ lực thô                   | `126 × 20 giờ/UCP`               |   2.520 giờ |
+| Quy đổi                      | `2.520 / 160 giờ/tháng`          |    15.75 PM |
+| Sau giảm 40% nhờ tái sử dụng | `15.75 × 60%`                    |     9.45 PM |
+| Baseline UCP bảo thủ         | Làm tròn lên theo tài liệu dự án | **10.0 PM** |
 
 ## 3. Đối chuẩn COCOMO II
 
-| Đầu vào | Giá trị |
-| :--- | ---: |
-| Quy mô tổng thể trước điều chỉnh tái sử dụng | 8.5 KLOC |
-| Hệ số quy mô `B` | 1.05 |
-| Hệ số nhân nỗ lực `EAF` | 0.95 |
-| Nỗ lực trên quy mô tổng thể | ≈ 26.3 PM |
-| Mã tương đương viết mới sau điều chỉnh tái sử dụng | 3.5 KLOC |
-| Nỗ lực phần viết mới | **≈ 10.4 PM** |
+| Đầu vào                                            |       Giá trị |
+| :------------------------------------------------- | ------------: |
+| Quy mô tổng thể trước điều chỉnh tái sử dụng       |      8.5 KLOC |
+| Hệ số quy mô `B`                                   |          1.05 |
+| Hệ số nhân nỗ lực `EAF`                            |          0.95 |
+| Nỗ lực trên quy mô tổng thể                        |     ≈ 26.3 PM |
+| Mã tương đương viết mới sau điều chỉnh tái sử dụng |      3.5 KLOC |
+| Nỗ lực phần viết mới                               | **≈ 10.4 PM** |
 
 Công thức đối chuẩn phần viết mới:
 

@@ -84,7 +84,7 @@
     - PM Quốc Tấn điều phối và nhắc nhở thành viên theo dõi monitoring và chủ động nhận việc (`@Tahi @TuanAnh | HCMC nhớ pick task rồi làm nhé`).
     - Các luồng thảo luận kỹ thuật được phân chia khoa học thành Threads riêng biệt: `Deploy` (23 tin nhắn), `product-tracking` (12 tin nhắn), `quality-control`.
     - Thành viên Khoa Nguyễn gửi link Pull Request GitHub (`pull/41`) cho Tuấn Anh review độc lập theo đúng Policy 2.
-    - Cây thành viên hiển thị đầy đủ 6 thành viên trong nhóm (*Quốc Tấn, Khoa Nguyễn, nguyenan.0808, Tahi, TuanAnh | HCMC, yuran*).
+    - Cây thành viên hiển thị đầy đủ 6 thành viên trong nhóm (_Quốc Tấn, Khoa Nguyễn, nguyenan.0808, Tahi, TuanAnh | HCMC, yuran_).
   - Không có thành viên nào bỏ nhóm hoặc vi phạm kỷ luật mức Nặng.
 
 ![Giao diện Hệ thống Liên lạc Discord SE Bros](./images/discord_communication.png)
@@ -116,10 +116,10 @@ flowchart LR
    - **Tổ chức theo chức năng (Functional Organization):** Nhân sự được phân chia theo phòng ban chuyên môn (Phòng IT, Marketing, Kế toán). PM có rất ít hoặc không có quyền lực (chỉ là điều phối viên - Coordinator).
    - **Tổ chức theo dự án (Projectized Organization):** Nhân sự được tuyển chọn và cống hiến toàn thời gian cho dự án. PM có **toàn quyền quyết định cao nhất** về ngân sách, phân công và khen thưởng.
    - **Tổ chức ma trận (Matrix Organization) — Kết hợp Chức năng và Dự án:**
-     - *Ma trận yếu (Weak Matrix):* Quyền lực thuộc về Trưởng phòng Chức năng; PM đóng vai trò liên lạc/điều phối.
-     - *Ma trận cân bằng (Balanced Matrix):* Quyền lực được chia sẻ ngang nhau giữa PM và Trưởng phòng Chức năng.
-     - *Ma trận mạnh (Strong Matrix):* PM có quyền hạn vượt trội về ngân sách và tiến độ dự án, Trưởng phòng Chức năng chỉ hỗ trợ về mặt chuyên môn kỹ thuật.
-   - *Áp dụng trong đồ án:* Nhóm hoạt động tương đương mô hình **Tổ chức theo dự án (Projectized)**, PM Mạch Quốc Tấn có quyền điều phối task và phê duyệt quy trình theo sự đồng thuận của nhóm.
+     - _Ma trận yếu (Weak Matrix):_ Quyền lực thuộc về Trưởng phòng Chức năng; PM đóng vai trò liên lạc/điều phối.
+     - _Ma trận cân bằng (Balanced Matrix):_ Quyền lực được chia sẻ ngang nhau giữa PM và Trưởng phòng Chức năng.
+     - _Ma trận mạnh (Strong Matrix):_ PM có quyền hạn vượt trội về ngân sách và tiến độ dự án, Trưởng phòng Chức năng chỉ hỗ trợ về mặt chuyên môn kỹ thuật.
+   - _Áp dụng trong đồ án:_ Nhóm hoạt động tương đương mô hình **Tổ chức theo dự án (Projectized)**, PM Mạch Quốc Tấn có quyền điều phối task và phê duyệt quy trình theo sự đồng thuận của nhóm.
 
 3. **Giải thích các mô hình quản lý nhóm: Lý thuyết X, Lý thuyết Y (Douglas McGregor) và Lý thuyết Z (William Ouchi):**
    - **Lý thuyết X (Theory X):** Giả định con người bản chất là lười biếng, trốn tránh trách nhiệm, chỉ làm việc khi bị giám sát chặt chẽ hoặc bị đe dọa trừng phạt (Carrot & Stick). Dẫn đến phong cách quản lý vi mô, áp đặt và độc đoán.
@@ -128,12 +128,12 @@ flowchart LR
 
 4. **Giải thích nguyên tắc xử lý mâu thuẫn trong một nhóm:**
    - Có **5 kỹ thuật xử lý xung đột** theo PMBOK (Mục 3.2 trong `materials/08`):
-     1. *Rút lui / Tránh né (Withdraw/Avoid):* Một bên bỏ đi hoặc từ chối thảo luận xung đột $\rightarrow$ Tệ nhất, không giải quyết được tận gốc vấn đề.
-     2. *Xoa dịu / Nhượng bộ (Smooth/Accommodate):* Nhấn mạnh điểm chung, xem nhẹ sự khác biệt $\rightarrow$ Tạm thời, không bền vững.
-     3. *Ép buộc / Áp đặt (Force/Direct):* Dùng quyền lực ép người khác nghe theo $\rightarrow$ Giải quyết tạm thời, gây ức chế tâm lý.
-     4. *Thỏa hiệp / Hòa giải (Compromise/Reconcile):* Mỗi bên từ bỏ một phần lợi ích để đạt thỏa thuận trung dung.
-     5. *Hợp tác / Giải quyết vấn đề (Collaborate/Problem Solve):* **Tốt nhất (Win-Win)** — Tìm kiếm dữ liệu thực tế (Data-driven), đối thoại cởi mở để tìm ra giải pháp tối ưu mà cả hai bên cùng đồng thuận lâu dài.
-   - *Kinh nghiệm thực tế của nhóm:* Khi bất đồng về Database (Postgres vs Elasticsearch), nhóm tạo 2 branch PoC đo lường RAM và độ trễ phản hồi, sau đó cùng đồng thuận chọn Postgres FTS vì nhẹ và đáp ứng tốt $< 200\text{ms}$.
+     1. _Rút lui / Tránh né (Withdraw/Avoid):_ Một bên bỏ đi hoặc từ chối thảo luận xung đột $\rightarrow$ Tệ nhất, không giải quyết được tận gốc vấn đề.
+     2. _Xoa dịu / Nhượng bộ (Smooth/Accommodate):_ Nhấn mạnh điểm chung, xem nhẹ sự khác biệt $\rightarrow$ Tạm thời, không bền vững.
+     3. _Ép buộc / Áp đặt (Force/Direct):_ Dùng quyền lực ép người khác nghe theo $\rightarrow$ Giải quyết tạm thời, gây ức chế tâm lý.
+     4. _Thỏa hiệp / Hòa giải (Compromise/Reconcile):_ Mỗi bên từ bỏ một phần lợi ích để đạt thỏa thuận trung dung.
+     5. _Hợp tác / Giải quyết vấn đề (Collaborate/Problem Solve):_ **Tốt nhất (Win-Win)** — Tìm kiếm dữ liệu thực tế (Data-driven), đối thoại cởi mở để tìm ra giải pháp tối ưu mà cả hai bên cùng đồng thuận lâu dài.
+   - _Kinh nghiệm thực tế của nhóm:_ Khi bất đồng về Database (Postgres vs Elasticsearch), nhóm tạo 2 branch PoC đo lường RAM và độ trễ phản hồi, sau đó cùng đồng thuận chọn Postgres FTS vì nhẹ và đáp ứng tốt $< 200\text{ms}$.
 
 5. **Giải thích các phương pháp tăng năng suất làm việc của nhóm:**
    - **Lý thuyết tiếng Anh (The English Theory / Working Smarter):** Nâng cao năng suất bằng công nghệ hiện đại, tự động hóa quy trình (CI/CD) và sử dụng AI Coding Assistants. Đây là con đường bền vững giúp đạt nhiều giá trị hơn trong một giờ làm việc.
@@ -142,12 +142,12 @@ flowchart LR
 
 6. **Giải thích mô hình tháp nhu cầu của Maslow và cách ứng dụng vào quản lý thành viên:**
    - Tháp 5 tầng:
-     1. *Sinh lý (Physiological):* Cơ sở vật chất tối thiểu, ăn uống, nghỉ ngơi.
-     2. *An toàn (Safety):* Môi trường làm việc an toàn, tâm lý không bị trừng phạt vô cớ khi thử nghiệm cái mới.
-     3. *Xã hội / Gắn kết (Social/Belonging):* Được đồng đội lắng nghe, tôn trọng qua Daily Standup và Team building.
-     4. *Được tôn trọng (Esteem):* Được ghi nhận đóng góp công khai trong nhật ký `project-log.md` và buổi họp Review.
-     5. *Khẳng định bản thân (Self-Actualization):* Đỉnh cao — Được tự do sáng tạo, giải quyết bài toán khó (như viết thuật toán OCR, tối ưu DRM Signed URL) và làm chủ công nghệ.
-   - *Ứng dụng:* PM phân công story phức tạp cho thành viên có mong muốn khẳng định bản thân (như An làm Kiến trúc, Tuấn Anh làm DevOps), tạo điều kiện cho mọi người phát triển tối đa tiềm năng.
+     1. _Sinh lý (Physiological):_ Cơ sở vật chất tối thiểu, ăn uống, nghỉ ngơi.
+     2. _An toàn (Safety):_ Môi trường làm việc an toàn, tâm lý không bị trừng phạt vô cớ khi thử nghiệm cái mới.
+     3. _Xã hội / Gắn kết (Social/Belonging):_ Được đồng đội lắng nghe, tôn trọng qua Daily Standup và Team building.
+     4. _Được tôn trọng (Esteem):_ Được ghi nhận đóng góp công khai trong nhật ký `project-log.md` và buổi họp Review.
+     5. _Khẳng định bản thân (Self-Actualization):_ Đỉnh cao — Được tự do sáng tạo, giải quyết bài toán khó (như viết thuật toán OCR, tối ưu DRM Signed URL) và làm chủ công nghệ.
+   - _Ứng dụng:_ PM phân công story phức tạp cho thành viên có mong muốn khẳng định bản thân (như An làm Kiến trúc, Tuấn Anh làm DevOps), tạo điều kiện cho mọi người phát triển tối đa tiềm năng.
 
 ---
 
@@ -189,15 +189,15 @@ flowchart LR
     - Cột `Product Backlog` & `To Do` trống ($0$ cards) chứng minh toàn bộ công việc đã được kéo vào thực thi.
     - Cột `In Progress` chỉ duy trì $2$ thẻ (`LDMS-025` của AT, `LDMS-024` của NT) $\rightarrow$ Tuân thủ nghiêm ngặt nguyên tắc **WIP Limit = 1** card/người, chống quá tải và tránh nghẽn review.
     - Cột `Week 1 - Done` chứa $14$ thẻ và cột `Week 2 - Done` chứa tích lũy $26$ thẻ hoàn thành.
-    - Mỗi thẻ đều có Checklist chi tiết (ví dụ: $5/5$, $4/4$ tiêu chí DoD đã kiểm tra đạt), phân loại màu nhãn (Labels) theo Module và gán Avatar người chịu trách nhiệm rõ ràng (*AT, KT, NT*...).
+    - Mỗi thẻ đều có Checklist chi tiết (ví dụ: $5/5$, $4/4$ tiêu chí DoD đã kiểm tra đạt), phân loại màu nhãn (Labels) theo Module và gán Avatar người chịu trách nhiệm rõ ràng (_AT, KT, NT_...).
 
 ![Giao diện Kanban Board Trello LDMS-project](./images/trello_kanban_board.png)
 
-  - **Biểu đồ Burndown Toàn Dự án (Project Burndown Chart):** Dữ liệu thực tế đối chiếu với đường lý tưởng (Ideal Line):
-    - Khởi đầu ngày 14/07 với $26$ User Stories cần thực hiện.
-    - Tuần 1 (16–18/07): Hoàn thành nhanh chóng $16$ Must-have stories cốt lõi (S1, S2, S3, S5) nhờ ứng dụng AI Coding Assistant cho phần boilerplate và pipeline.
-    - Tuần 2 (22–29/07): Hoàn tất các module xác thực JWT, RBAC mở rộng và tích hợp Reader (phiên S4) $\rightarrow$ chỉ còn lại các tính năng nâng cao.
-    - Hoàn tất $100\%$ (26/26 stories) đạt chuẩn Definition of Done (DoD) trước mốc bàn giao.
+- **Biểu đồ Burndown Toàn Dự án (Project Burndown Chart):** Dữ liệu thực tế đối chiếu với đường lý tưởng (Ideal Line):
+  - Khởi đầu ngày 14/07 với $26$ User Stories cần thực hiện.
+  - Tuần 1 (16–18/07): Hoàn thành nhanh chóng $16$ Must-have stories cốt lõi (S1, S2, S3, S5) nhờ ứng dụng AI Coding Assistant cho phần boilerplate và pipeline.
+  - Tuần 2 (22–29/07): Hoàn tất các module xác thực JWT, RBAC mở rộng và tích hợp Reader (phiên S4) $\rightarrow$ chỉ còn lại các tính năng nâng cao.
+  - Hoàn tất $100\%$ (26/26 stories) đạt chuẩn Definition of Done (DoD) trước mốc bàn giao.
 
 ![Biểu đồ Burndown Toàn Dự án HCMUS-LDMS](./images/burndown_chart.png)
 
@@ -219,20 +219,20 @@ flowchart LR
 #### C. Trả lời chi tiết 100% Bộ câu hỏi thường gặp của Giảng viên
 
 1. **Làm sao để giải quyết vấn đề vượt phạm vi dự kiến (Scope Creep)?**
-   - *Khái niệm:* Scope Creep là tình trạng các yêu cầu bổ sung không được kiểm soát làm phình to phạm vi dự án mà không tăng ngân sách/thời gian tương ứng.
-   - *Tâm lý con người:* Phản ứng với thay đổi qua đường cong tổn thất **SARAH** (*Shock $\rightarrow$ Anger $\rightarrow$ Rejection $\rightarrow$ Acceptance $\rightarrow$ Healing*).
-   - *Giải pháp của nhóm:*
+   - _Khái niệm:_ Scope Creep là tình trạng các yêu cầu bổ sung không được kiểm soát làm phình to phạm vi dự án mà không tăng ngân sách/thời gian tương ứng.
+   - _Tâm lý con người:_ Phản ứng với thay đổi qua đường cong tổn thất **SARAH** (_Shock $\rightarrow$ Anger $\rightarrow$ Rejection $\rightarrow$ Acceptance $\rightarrow$ Healing_).
+   - _Giải pháp của nhóm:_
      - Chốt chặt ranh giới In-Scope và Out-of-Scope trong tài liệu `01-vision-and-scope.md` và `05-statement-of-work.md`.
      - Áp dụng **Quy trình Kiểm soát Thay đổi (Change Request - CR) 7 bước** có Ban kiểm soát thay đổi (CCB): Khi thủ thư yêu cầu tính năng mới, PM lập biên bản đánh giá tác động $\rightarrow$ Yêu cầu bổ sung ngân sách/thời gian $\rightarrow$ Nếu không có ngân sách bổ sung thì chuyển tính năng đó vào danh sách phát triển cho Giai đoạn 2 (Phase 2).
 
 2. **Làm sao để giải quyết vấn đề vượt công sức dự kiến (Effort Creep)?**
-   - *5 nguyên nhân và giải pháp theo giáo trình (`materials/09` Mục 2.2):*
-     1. *Ước tính thấp:* Sử dụng quỹ dự phòng rủi ro dựa trên dữ liệu dự án cũ.
-     2. *Thiết kế quá mức (Over-engineering):* Yêu cầu hiểu rõ giải pháp trước khi code, tránh dựng cụm hạ tầng phức tạp khi chưa cần.
-     3. *Bùng nổ yêu cầu ngầm:* Kiểm soát các yêu cầu phái sinh phát sinh từ độ phức tạp kỹ thuật.
-     4. *Ranh giới mờ nhạt:* Xác định rõ ràng phạm vi trong hợp đồng nhóm và SOW.
-     5. *Thiếu kỹ năng:* Sử dụng AI Coding Assistant hỗ trợ và tổ chức đào tạo chéo (Peer programming).
-   - *Theo dõi thực tế:* Định cỡ nhỏ cho User Story (Size S $\le 1$ ngày, Size M $\le 2$ ngày). Theo dõi qua `02-project-log.md`. Nếu 1 task vượt quá 2 ngày, thảo luận ngay trong Daily Standup.
+   - _5 nguyên nhân và giải pháp theo giáo trình (`materials/09` Mục 2.2):_
+     1. _Ước tính thấp:_ Sử dụng quỹ dự phòng rủi ro dựa trên dữ liệu dự án cũ.
+     2. _Thiết kế quá mức (Over-engineering):_ Yêu cầu hiểu rõ giải pháp trước khi code, tránh dựng cụm hạ tầng phức tạp khi chưa cần.
+     3. _Bùng nổ yêu cầu ngầm:_ Kiểm soát các yêu cầu phái sinh phát sinh từ độ phức tạp kỹ thuật.
+     4. _Ranh giới mờ nhạt:_ Xác định rõ ràng phạm vi trong hợp đồng nhóm và SOW.
+     5. _Thiếu kỹ năng:_ Sử dụng AI Coding Assistant hỗ trợ và tổ chức đào tạo chéo (Peer programming).
+   - _Theo dõi thực tế:_ Định cỡ nhỏ cho User Story (Size S $\le 1$ ngày, Size M $\le 2$ ngày). Theo dõi qua `02-project-log.md`. Nếu 1 task vượt quá 2 ngày, thảo luận ngay trong Daily Standup.
 
 3. **Làm sao để các thay đổi không trở nên bất ngờ và ảnh hưởng tiêu cực đến sự thành công của dự án?**
    - Duy trì giao tiếp liên tục và minh bạch với Stakeholder (cô thủ thư Mai) qua các bản Prototype tiến hóa sớm.
@@ -240,30 +240,30 @@ flowchart LR
    - Duy trì cập nhật **RAID Log** hàng tuần để phát hiện sớm các dấu hiệu rủi ro tiềm ẩn.
 
 4. **Giải thích các khái niệm trong mô hình Scrum:**
-   - *Sprint Backlog:* Tập hợp các User Stories được nhóm chọn từ Product Backlog để cam kết hoàn thành trong 1 Sprint (thường từ 1–4 tuần).
-   - *Sprint Board:* Bảng trực quan hóa các task trong Sprint (To Do, In Progress, Testing, Done).
-   - *Sprint Task:* Đơn vị công việc kỹ thuật nhỏ được phân rã từ User Story (tính theo giờ, thường 4–8 giờ).
-   - *Sprint Burndown Chart:* Biểu đồ thể hiện lượng công việc còn lại (theo Story Points hoặc Giờ) giảm dần theo từng ngày trong 1 Sprint.
-   - *Project Burndown Chart:* Biểu đồ thể hiện tổng số Story Points còn lại của toàn dự án qua các Sprints, giúp dự báo ngày hoàn thành toàn bộ dự án.
+   - _Sprint Backlog:_ Tập hợp các User Stories được nhóm chọn từ Product Backlog để cam kết hoàn thành trong 1 Sprint (thường từ 1–4 tuần).
+   - _Sprint Board:_ Bảng trực quan hóa các task trong Sprint (To Do, In Progress, Testing, Done).
+   - _Sprint Task:_ Đơn vị công việc kỹ thuật nhỏ được phân rã từ User Story (tính theo giờ, thường 4–8 giờ).
+   - _Sprint Burndown Chart:_ Biểu đồ thể hiện lượng công việc còn lại (theo Story Points hoặc Giờ) giảm dần theo từng ngày trong 1 Sprint.
+   - _Project Burndown Chart:_ Biểu đồ thể hiện tổng số Story Points còn lại của toàn dự án qua các Sprints, giúp dự báo ngày hoàn thành toàn bộ dự án.
 
 5. **Phải xử lý thế nào khi kết thúc một Sprint mà nhóm không đưa ra được bản phân phối (Potentially Shippable Increment)?**
-   - *Bước 1:* Tổ chức ngay buổi họp **Sprint Retrospective** để mổ xẻ nguyên nhân gốc rễ (Do ước lượng quá lạc quan? Do gặp blocker kỹ thuật bất ngờ? Hay do tiêu chuẩn DoD quá khắt khe?).
-   - *Bước 2:* Đưa các User Story chưa hoàn thành quay trở lại Product Backlog để Product Owner tái thẩm định và sắp xếp độ ưu tiên lại.
-   - *Bước 3:* Hiệu chỉnh lại Vận tốc (Velocity) thực tế của nhóm giảm xuống để lập kế hoạch Sprint tiếp theo thực tế và an toàn hơn.
+   - _Bước 1:_ Tổ chức ngay buổi họp **Sprint Retrospective** để mổ xẻ nguyên nhân gốc rễ (Do ước lượng quá lạc quan? Do gặp blocker kỹ thuật bất ngờ? Hay do tiêu chuẩn DoD quá khắt khe?).
+   - _Bước 2:_ Đưa các User Story chưa hoàn thành quay trở lại Product Backlog để Product Owner tái thẩm định và sắp xếp độ ưu tiên lại.
+   - _Bước 3:_ Hiệu chỉnh lại Vận tốc (Velocity) thực tế của nhóm giảm xuống để lập kế hoạch Sprint tiếp theo thực tế và an toàn hơn.
 
 6. **Phải xử lý thế nào khi kết quả của các Sprint chênh lệch một cách bất bình thường?**
-   - *Phân tích nguyên nhân:* Biến động về nhân sự (thành viên bận thi cử), độ khó của User Story không đồng đều (do phân rã task chưa kỹ), hoặc định nghĩa Story Points bị lệch.
-   - *Giải pháp:* Chuẩn hóa lại kỹ thuật ước lượng qua **Planning Poker** kết hợp đối chuẩn dữ liệu thực tế của các Sprint trước; chia nhỏ các story phức tạp để kích thước các task đồng đều hơn.
+   - _Phân tích nguyên nhân:_ Biến động về nhân sự (thành viên bận thi cử), độ khó của User Story không đồng đều (do phân rã task chưa kỹ), hoặc định nghĩa Story Points bị lệch.
+   - _Giải pháp:_ Chuẩn hóa lại kỹ thuật ước lượng qua **Planning Poker** kết hợp đối chuẩn dữ liệu thực tế của các Sprint trước; chia nhỏ các story phức tạp để kích thước các task đồng đều hơn.
 
 7. **Giải thích các khái niệm trong mô hình Kanban:**
-   - *Kanban Board:* Bảng trực quan hóa luồng công việc liên tục, không bị giới hạn bởi các khung thời gian cố định (time-box).
-   - *Development Workflow:* Các trạng thái mà một công việc phải đi qua từ ý tưởng đến hoàn thành (`Backlog` $\rightarrow$ `Ready` $\rightarrow$ `In Progress` $\rightarrow$ `Review` $\rightarrow$ `Done`).
-   - *WIP Limit (Work In Progress Limit):* Số lượng công việc tối đa được phép tồn tại trong một cột/trạng thái tại một thời điểm. Giúp phát hiện điểm nghẽn (bottlenecks) và tối ưu hóa thời gian chu kỳ (Cycle Time).
+   - _Kanban Board:_ Bảng trực quan hóa luồng công việc liên tục, không bị giới hạn bởi các khung thời gian cố định (time-box).
+   - _Development Workflow:_ Các trạng thái mà một công việc phải đi qua từ ý tưởng đến hoàn thành (`Backlog` $\rightarrow$ `Ready` $\rightarrow$ `In Progress` $\rightarrow$ `Review` $\rightarrow$ `Done`).
+   - _WIP Limit (Work In Progress Limit):_ Số lượng công việc tối đa được phép tồn tại trong một cột/trạng thái tại một thời điểm. Giúp phát hiện điểm nghẽn (bottlenecks) và tối ưu hóa thời gian chu kỳ (Cycle Time).
 
 8. **Giải thích phương pháp cập nhật lịch trình, phương pháp tính toán thời gian, chi phí cần thiết để hoàn thành các công việc còn lại trong mô hình Waterfall:**
    - **(a) Phương pháp cập nhật lịch trình (Schedule Updating):**
      - Định kỳ đối chiếu ngày bắt đầu/kết thúc thực tế của từng gói công việc (WBS) với Đường cơ sở tiến độ (Schedule Baseline) trên biểu đồ Gantt.
-     - Xác định lại đường găng (Critical Path). Nếu tiến độ bị trễ ($\text{SV} = \text{EV} - \text{PV} < 0$ hoặc $\text{SPI} < 1$), áp dụng 2 kỹ thuật rút ngắn tiến độ: *Fast Tracking* (cho các công việc độc lập chạy song song) hoặc *Crashing* (tăng cường công cụ tự động hóa/AI để đẩy nhanh tiến độ).
+     - Xác định lại đường găng (Critical Path). Nếu tiến độ bị trễ ($\text{SV} = \text{EV} - \text{PV} < 0$ hoặc $\text{SPI} < 1$), áp dụng 2 kỹ thuật rút ngắn tiến độ: _Fast Tracking_ (cho các công việc độc lập chạy song song) hoặc _Crashing_ (tăng cường công cụ tự động hóa/AI để đẩy nhanh tiến độ).
    - **(b) Phương pháp tính toán chi phí & thời gian cho công việc còn lại (EVM Metrics):**
      - **PV (Planned Value):** Giá trị kế hoạch dự kiến đến hiện tại.
      - **EV (Earned Value):** Giá trị thu được từ khối lượng công việc thực tế hoàn thành.
@@ -306,9 +306,9 @@ flowchart LR
   - Chi phí để khắc phục hậu quả khi một rủi ro biến thành sự cố nghiêm trọng (ví dụ: bị tác giả kiện vi phạm bản quyền hoặc hệ thống sập khi demo) tốn kém gấp **10 đến 50 lần** so với chi phí chủ động thiết kế giải pháp phòng ngừa ngay từ giai đoạn lập kế hoạch.
 
 - **EVIDENCE (Minh chứng 3 rủi ro cốt lõi và giải pháp thực tế trong HCMUS-LDMS):**
-  1. *Rủi ro Pháp lý/Bản quyền (R-01 — Score = 15):* Sinh viên tải lậu file sách gốc $\rightarrow$ Giải pháp Mitigate: MinIO Object Storage đặt private, tạo Presigned URL thời hạn ngắn **15 phút**, hiển thị sách trên Web Reader Canvas chống tải trực tiếp.
-  2. *Rủi ro Kỹ thuật OCR tiếng Việt (R-02 — Score = 16):* Sách scan cũ ố vàng làm vỡ cấu trúc và sai dấu tiếng Việt $\rightarrow$ Giải pháp Mitigate: Pipeline tiền xử lý ảnh (OpenCV deskew) + Xây dựng giao diện **Split-screen Editor** cho phép thủ thư đối soát ảnh gốc song song để giữ CER $< 5\%$.
-  3. *Rủi ro Tài chính Token AI (R-03 — Score = 9):* Chatbot AI lặp vô tận làm cạn kiệt ngân sách $\rightarrow$ Giải pháp Avoid: Đặt trần ngân sách 5 triệu VNĐ, chuẩn hóa Prompt RACFT và kiểm soát log token qua `02-project-log.md` (kết quả thực tế chỉ dùng 810K tokens ~ 350K VNĐ).
+  1. _Rủi ro Pháp lý/Bản quyền (R-01 — Score = 15):_ Sinh viên tải lậu file sách gốc $\rightarrow$ Giải pháp Mitigate: MinIO Object Storage đặt private, tạo Presigned URL thời hạn ngắn **15 phút**, hiển thị sách trên Web Reader Canvas chống tải trực tiếp.
+  2. _Rủi ro Kỹ thuật OCR tiếng Việt (R-02 — Score = 16):_ Sách scan cũ ố vàng làm vỡ cấu trúc và sai dấu tiếng Việt $\rightarrow$ Giải pháp Mitigate: Pipeline tiền xử lý ảnh (OpenCV deskew) + Xây dựng giao diện **Split-screen Editor** cho phép thủ thư đối soát ảnh gốc song song để giữ CER $< 5\%$.
+  3. _Rủi ro Tài chính Token AI (R-03 — Score = 9):_ Chatbot AI lặp vô tận làm cạn kiệt ngân sách $\rightarrow$ Giải pháp Avoid: Đặt trần ngân sách 5 triệu VNĐ, chuẩn hóa Prompt RACFT và kiểm soát log token qua `02-project-log.md` (kết quả thực tế chỉ dùng 810K tokens ~ 350K VNĐ).
 
 ---
 
@@ -346,8 +346,8 @@ quadrantChart
    - Ngưỡng kích hoạt (Trigger point) để triển khai phương án ứng phó khẩn cấp là gì?
 
 2. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý rủi ro là gì?**
-   - *Đầu vào:* Project Charter, Báo cáo nghiên cứu khả thi TELOS, WBS 6 gói công việc, Đặc tả kiến trúc công nghệ, và kết quả khảo sát thực địa tại Thư viện.
-   - *Các bước thực hiện:*
+   - _Đầu vào:_ Project Charter, Báo cáo nghiên cứu khả thi TELOS, WBS 6 gói công việc, Đặc tả kiến trúc công nghệ, và kết quả khảo sát thực địa tại Thư viện.
+   - _Các bước thực hiện:_
      1. Tổ chức buổi họp Brainstorming nhận diện toàn bộ rủi ro kỹ thuật, nghiệp vụ và con người.
      2. Lập bảng khảo sát đánh giá điểm Xác suất ($P$) và Tác động ($I$) cho từng rủi ro.
      3. Phân loại theo 4 chiến lược ứng phó chuẩn của PMBOK.
@@ -446,8 +446,8 @@ flowchart TD
    - Ai chịu trách nhiệm (RACI) cho từng hoạt động đảm bảo và kiểm soát chất lượng?
 
 2. **Các đầu vào cần thiết và các bước nhóm đã thực hiện để tạo tài liệu Kế hoạch quản lý chất lượng là gì?**
-   - *Đầu vào:* Yêu cầu nghiệp vụ và người dùng từ Thư viện, Tiêu chuẩn kỹ thuật (FastAPI, React, PostgreSQL), Tài liệu kiến trúc `02-architecture.md`, và Product Backlog.
-   - *Các bước thực hiện:*
+   - _Đầu vào:_ Yêu cầu nghiệp vụ và người dùng từ Thư viện, Tiêu chuẩn kỹ thuật (FastAPI, React, PostgreSQL), Tài liệu kiến trúc `02-architecture.md`, và Product Backlog.
+   - _Các bước thực hiện:_
      1. Xác định các thuộc tính chất lượng cốt lõi theo mô hình McCall và ISO 9126.
      2. Thiết lập các chỉ số đo lường định lượng (Thresholds) cho từng thuộc tính.
      3. Xây dựng bộ quy tắc Coding Standards và cấu hình linter tự động.
@@ -468,24 +468,24 @@ flowchart TD
    - Khi nhận thấy tốc độ xử lý OCR ban đầu chậm do ảnh scan quá nặng, nhóm đã cập nhật bổ sung tiêu chuẩn tiền xử lý nén ảnh và phân luồng bất đồng bộ vào kế hoạch chất lượng.
 
 6. **Mô hình chất lượng của McCall và ISO 9126 đã giúp ích cho nhóm trong việc kiểm soát chất lượng phần mềm như thế nào?**
-   - *Mô hình McCall (11 yếu tố):* Giúp nhóm phân loại toàn diện từ yếu tố Vận hành (Correctness, Reliability, Efficiency, Integrity, Usability), Chuyển giao (Portability, Reusability, Interoperability) đến Sửa đổi (Maintainability, Flexibility, Testability).
-   - *Tiêu chuẩn ISO 9126 (6 đặc tính):* Giúp nhóm ánh xạ chính xác các yêu cầu phi chức năng vào hệ thống: Functionality (OCR tiếng Việt chính xác), Efficiency (Tìm kiếm FTS $< 500\text{ms}$), Usability (Giao diện Web Reader thân thiện).
+   - _Mô hình McCall (11 yếu tố):_ Giúp nhóm phân loại toàn diện từ yếu tố Vận hành (Correctness, Reliability, Efficiency, Integrity, Usability), Chuyển giao (Portability, Reusability, Interoperability) đến Sửa đổi (Maintainability, Flexibility, Testability).
+   - _Tiêu chuẩn ISO 9126 (6 đặc tính):_ Giúp nhóm ánh xạ chính xác các yêu cầu phi chức năng vào hệ thống: Functionality (OCR tiếng Việt chính xác), Efficiency (Tìm kiếm FTS $< 500\text{ms}$), Usability (Giao diện Web Reader thân thiện).
 
 7. **Đo lường định tính khác gì với đo lường định lượng?**
-   - *Định tính (Qualitative):* Đánh giá mang tính mô tả, cảm nhận chủ quan (ví dụ: *"Giao diện đẹp"*, *"Hệ thống dễ dùng"*).
-   - *Định lượng (Quantitative):* Đo lường bằng các con số cụ thể, khách quan và có thể kiểm chứng (ví dụ: *"Độ trễ FTS = 180ms"*, *"Tỷ lệ bao phủ kiểm thử = 85.4%"*, *"Số lỗi linter = 0"*). Định lượng hóa giúp kiểm soát chất lượng chính xác và khoa học.
+   - _Định tính (Qualitative):_ Đánh giá mang tính mô tả, cảm nhận chủ quan (ví dụ: _"Giao diện đẹp"_, _"Hệ thống dễ dùng"_).
+   - _Định lượng (Quantitative):_ Đo lường bằng các con số cụ thể, khách quan và có thể kiểm chứng (ví dụ: _"Độ trễ FTS = 180ms"_, _"Tỷ lệ bao phủ kiểm thử = 85.4%"_, _"Số lỗi linter = 0"_). Định lượng hóa giúp kiểm soát chất lượng chính xác và khoa học.
 
 8. **Giải thích phương pháp đo lường chất lượng sản phẩm, quy trình và con người trong một dự án:**
    - **(a) Đo lường chất lượng Quy trình (Process Quality Metrics):**
      - Đánh giá độ phức tạp và tính chặt chẽ của mô hình quy trình thông qua các chỉ số: $NA$ (Số hoạt động), $NWP$ (Số sản phẩm công việc), $NPR$ (Số vai trò), $NDWP = NDWP_{\text{In}} + NDWP_{\text{Out}}$ (Tổng số phụ thuộc giữa sản phẩm và hoạt động), và $NDA$ (Số phụ thuộc thứ tự ưu tiên giữa các hoạt động).
    - **(b) Đo lường chất lượng Sản phẩm / Dự án (Product & Project Quality Metrics):**
-     - *Năng suất (Productivity):* Số User Stories hoàn thành/tuần ($6.5\text{ stories/tuần}$), số SLOC ($10.5\text{K LOC}$).
-     - *Độ tin cậy & Lỗi:* Tỷ lệ lỗi ký tự OCR ($\text{CER} = 3.2\% < 5\%$), Defect Density ($0\text{ bug blocker}$), Tỷ lệ làm lại ($0\text{ rework lớn}$).
-     - *Hiệu năng:* Độ trễ truy vấn FTS ($180\text{ms} < 500\text{ms}$), Bộ nhớ tiêu thụ ($< 400\text{MB RAM}$).
-     - *Độ bao phủ kiểm thử:* Test Code Coverage ($85.4\% \ge 80\%$).
+     - _Năng suất (Productivity):_ Số User Stories hoàn thành/tuần ($6.5\text{ stories/tuần}$), số SLOC ($10.5\text{K LOC}$).
+     - _Độ tin cậy & Lỗi:_ Tỷ lệ lỗi ký tự OCR ($\text{CER} = 3.2\% < 5\%$), Defect Density ($0\text{ bug blocker}$), Tỷ lệ làm lại ($0\text{ rework lớn}$).
+     - _Hiệu năng:_ Độ trễ truy vấn FTS ($180\text{ms} < 500\text{ms}$), Bộ nhớ tiêu thụ ($< 400\text{MB RAM}$).
+     - _Độ bao phủ kiểm thử:_ Test Code Coverage ($85.4\% \ge 80\%$).
    - **(c) Đo lường chất lượng Con người (Person Quality Metrics):**
-     - *Kinh nghiệm nhân sự (Personnel Experience):* Đánh giá nền tảng kỹ thuật và số năm/tháng kinh nghiệm thực chiến với stack FastAPI, React, PostgreSQL.
-     - *Chỉ số hài lòng và cam kết:* Mức độ chủ động kéo task trên Kanban (WIP=1), tỷ lệ tuân thủ nhật ký $100\%$, và đánh giá Peer Review tích cực giữa các thành viên.
+     - _Kinh nghiệm nhân sự (Personnel Experience):_ Đánh giá nền tảng kỹ thuật và số năm/tháng kinh nghiệm thực chiến với stack FastAPI, React, PostgreSQL.
+     - _Chỉ số hài lòng và cam kết:_ Mức độ chủ động kéo task trên Kanban (WIP=1), tỷ lệ tuân thủ nhật ký $100\%$, và đánh giá Peer Review tích cực giữa các thành viên.
 
 9. **Các phương pháp nhóm đã dùng để hạn chế:**
    - **(a) Tài liệu sai yêu cầu:** Sử dụng mẫu đặc tả User Story chuẩn INVEST kèm Acceptance Criteria rõ ràng; phỏng vấn trực tiếp thủ thư và làm mẫu Prototype xác thực sớm.
@@ -515,9 +515,9 @@ flowchart TD
 - **HOW (Quy trình đúc kết bài học qua vòng lặp PDCA & Retrospective):**
   1. **Thu thập dữ liệu liên tục:** Ghi nhận nhật ký sau từng phiên làm việc vào `02-project-log.md` (thời gian, token AI, khó khăn kỹ thuật).
   2. **Họp Sprint Retrospective:** Tổ chức định kỳ theo khung **"Start - Stop - Continue"**:
-     - *Start (Cần bắt đầu làm):* Viết Spec & Acceptance Criteria chi tiết trước khi prompt AI.
-     - *Stop (Cần dừng lại ngay):* Dừng việc dùng Elasticsearch microservices quá cồng kềnh gây tốn RAM; dừng prompt AI chung chung không có context.
-     - *Continue (Cần tiếp tục duy trì):* Duy trì chính sách PR Review độc lập (Policy 2) và tự giác log token (Policy 1).
+     - _Start (Cần bắt đầu làm):_ Viết Spec & Acceptance Criteria chi tiết trước khi prompt AI.
+     - _Stop (Cần dừng lại ngay):_ Dừng việc dùng Elasticsearch microservices quá cồng kềnh gây tốn RAM; dừng prompt AI chung chung không có context.
+     - _Continue (Cần tiếp tục duy trì):_ Duy trì chính sách PR Review độc lập (Policy 2) và tự giác log token (Policy 1).
   3. **Phân loại & Tổng kết:** Hệ thống hóa bài học thành 4 nhóm (Quy trình AI, Kiến trúc kỹ thuật, Quản trị nhân sự, Quản lý chi phí) vào tài liệu `05-lessons-learned-register.md`.
 
 - **WHY (Tại sao Lessons Learned lại tối quan trọng?):**
@@ -551,24 +551,24 @@ flowchart TD
    - Phần mềm là sản phẩm vô hình (Intangible), phức tạp và dễ thay đổi. Nếu không có quản lý, dự án sẽ rơi vào tình trạng mất kiểm soát phạm vi (Scope Creep), vượt ngân sách (Cost Overrun), trễ hạn giao hàng và nhân sự kiệt sức. Quản lý giúp định hướng nỗ lực của cả nhóm thành một thể thống nhất.
 
 3. **Liệt kê các công việc quản lý của nhóm trong đồ án và sản phẩm tương ứng:**
-   - *Khởi tạo dự án:* Soạn `04-project-charter.md`, `05-team-contract.md`.
-   - *Lập kế hoạch:* Soạn `01-vision-and-scope.md`, `03-product-backlog.md`, `04-cost-time-resource.md`, `07-risk-management-plan.md`, `08-quality-management-plan.md`.
-   - *Thực thi & Giám sát:* Điều phối Kanban Board, ghi nhật ký `02-project-log.md`, họp Daily Standup, kiểm soát CI/CD.
-   - *Đóng dự án & Nghiệm thu:* Soạn `05-lessons-learned-register.md`, biên bản UAT `02_uat_feedback_record.md`.
+   - _Khởi tạo dự án:_ Soạn `04-project-charter.md`, `05-team-contract.md`.
+   - _Lập kế hoạch:_ Soạn `01-vision-and-scope.md`, `03-product-backlog.md`, `04-cost-time-resource.md`, `07-risk-management-plan.md`, `08-quality-management-plan.md`.
+   - _Thực thi & Giám sát:_ Điều phối Kanban Board, ghi nhật ký `02-project-log.md`, họp Daily Standup, kiểm soát CI/CD.
+   - _Đóng dự án & Nghiệm thu:_ Soạn `05-lessons-learned-register.md`, biên bản UAT `02_uat_feedback_record.md`.
 
 4. **Nhóm có thực sự cần một người chuyên tâm quản lý không? Tại sao?**
    - **Rất cần thiết.** Dù nhóm có thể tự quản (Self-organizing), nhưng vẫn cần một người đóng vai trò **Project Manager (PM)** chuyên tâm để: (1) Nhìn bức tranh toàn cảnh và cân bằng giữa góc nhìn kỹ thuật và mục tiêu kinh doanh; (2) Giải quyết các xung đột nội bộ và bảo vệ nhóm khỏi áp lực bên ngoài; (3) Theo dõi tiến độ, chi phí và rủi ro để đưa ra cảnh báo sớm. Nếu không có PM, các kỹ sư dễ bị cuốn vào chi tiết kỹ thuật (Over-engineering) và làm trễ hạn bàn giao.
 
 5. **Phân biệt Quản lý dựa trên kế hoạch chặt chẽ (Plan-driven) vs Quản lý thích ứng linh hoạt (Agile):**
-   - *Giống nhau:* Đều hướng tới mục tiêu hoàn thành sản phẩm đáp ứng nhu cầu khách hàng trong giới hạn nguồn lực; đều yêu cầu kiểm soát chất lượng và rủi ro.
-   - *Khác nhau:*
+   - _Giống nhau:_ Đều hướng tới mục tiêu hoàn thành sản phẩm đáp ứng nhu cầu khách hàng trong giới hạn nguồn lực; đều yêu cầu kiểm soát chất lượng và rủi ro.
+   - _Khác nhau:_
      - **Plan-driven (Waterfall):** Coi trọng kế hoạch chi tiết từ đầu (Predictive), kiểm soát thay đổi nghiêm ngặt, tài liệu hóa toàn diện, phù hợp với dự án có yêu cầu ổn định và rõ ràng.
      - **Agile (Scrum/Kanban):** Coi trọng khả năng thích ứng linh hoạt (Adaptive), chấp nhận thay đổi ngay cả ở giai đoạn muộn, phân phối sản phẩm theo từng chu kỳ ngắn (Iterations/Sprints), đề cao sự tương tác trực tiếp hơn là quy trình cứng nhắc.
 
 6. **Kỹ thuật phần mềm (Software Engineering) và Quản lý dự án (Project Management) liên quan ra sao?**
    - Đây là hai mặt của một đồng xu trong phát triển phần mềm:
-     - *Kỹ thuật phần mềm (SE):* Cung cấp phương pháp, công cụ và kỹ thuật kỹ thuật để **xây dựng sản phẩm** (Yêu cầu, Kiến trúc, Coding, Testing).
-     - *Quản lý dự án (PM):* Cung cấp khuôn khổ tổ chức, môi trường và sự điều phối để các hoạt động kỹ thuật diễn ra **đúng hạn, đúng ngân sách và đạt chất lượng**.
+     - _Kỹ thuật phần mềm (SE):_ Cung cấp phương pháp, công cụ và kỹ thuật kỹ thuật để **xây dựng sản phẩm** (Yêu cầu, Kiến trúc, Coding, Testing).
+     - _Quản lý dự án (PM):_ Cung cấp khuôn khổ tổ chức, môi trường và sự điều phối để các hoạt động kỹ thuật diễn ra **đúng hạn, đúng ngân sách và đạt chất lượng**.
      - SE và PM bổ trợ lẫn nhau; thiếu một trong hai thì dự án không thể thành công bền vững.
 
 7. **Tại sao công ty phần mềm lớn cần Phòng Quản lý Dự án (Project Management Office - PMO)?**

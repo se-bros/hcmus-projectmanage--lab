@@ -1,0 +1,27 @@
+@startuml
+!include <C4/C4_Container>
+LAYOUT_LEFT_RIGHT()
+scale 0.7
+title Các container chính của HCMUS-LDMS
+
+Person(reader, "Độc giả", "Tìm kiếm và đọc tài liệu")
+Person(librarian, "Thủ thư / Biên tập viên", "Xử lý và xuất bản")
+Person(admin, "Quản trị viên", "Quản lý tài khoản và danh mục")
+
+System_Boundary(ldms, "HCMUS-LDMS") {
+  Container(web, "Giao diện web", "React và TypeScript", "Quản lý, hiệu chỉnh, tìm kiếm và đọc EPUB")
+  Container(api, "Máy chủ API", "FastAPI", "Xác thực, phân quyền và điều phối nghiệp vụ")
+  ContainerDb(db, "Cơ sở dữ liệu", "PostgreSQL", "Tài khoản, tài liệu, thông tin mô tả và tìm kiếm toàn văn")
+  Container(storage, "Kho tệp", "MinIO hoặc tương đương", "Tệp gốc và tệp EPUB")
+}
+System_Ext(auth, "Dịch vụ xác thực", "Dữ liệu mô phỏng hoặc Google OAuth 2.0")
+
+Rel(reader, web, "Sử dụng")
+Rel(librarian, web, "Sử dụng")
+Rel(admin, web, "Sử dụng")
+Rel(web, api, "Gọi API")
+Rel(api, db, "Đọc và ghi")
+Rel(api, storage, "Đọc và ghi")
+Rel(api, auth, "Xác thực khi cần")
+SHOW_LEGEND()
+@enduml
