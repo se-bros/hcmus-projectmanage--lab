@@ -14,7 +14,7 @@ Nguồn câu trả lời:
 |      1, 3, 8       | Nguyễn Quang Thái (23127116)     | [preparation/1](../docs.1/preparation/1_Initiation_Charter_Feasibility/README.md) |
 |      2, 4, 12      | Ngô Nguyễn Thế Khoa (23127065)   | [preparation/2](../docs.1/preparation/2_Requirements_Scope_SoW/README.md)         |
 |      5, 6, 7       | Nguyễn Lê Hồ Anh Khoa (23127211) | [preparation/3](../docs.1/preparation/3_Architecture_PoC_Prototype/README.md)     |
-|     9, 10, 11      | Ân Tiến Nguyên An (23127148)     | [preparation/4](../docs.1/preparation/4_Estimation_Planning_Process/README.md)    |
+|     9, 10, 11      | Ân Tiến Nguyên An (23127048)     | [preparation/4](../docs.1/preparation/4_Estimation_Planning_Process/README.md)    |
 |   13, 14, 15, 20   | Nguyễn Tuấn Anh (23127152)       | [preparation/5](../docs.1/preparation/5_CICD_DevOps_Testing/README.md)            |
 | 16, 17, 18, 19, 21 | Mạch Quốc Tấn (23127115)         | [preparation/6](../docs.1/preparation/6_Team_Monitoring_Risk_Lessons/README.md)   |
 
@@ -886,7 +886,7 @@ Kế hoạch **20 tuần**, 4 giai đoạn:
 | Thành viên                       | Vai trò                                   |
 | :------------------------------- | :---------------------------------------- |
 | Mạch Quốc Tấn (23127115)         | Project Manager                           |
-| Ân Tiến Nguyên An (23127148)     | Solution Architect / Backend Developer    |
+| Ân Tiến Nguyên An (23127048)     | Solution Architect / Backend Developer    |
 | Nguyễn Tuấn Anh (23127152)       | Backend Developer / DevOps / System Admin |
 | Ngô Nguyễn Thế Khoa (23127065)   | Frontend Developer                        |
 | Nguyễn Lê Hồ Anh Khoa (23127211) | Frontend Developer                        |

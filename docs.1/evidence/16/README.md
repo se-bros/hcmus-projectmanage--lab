@@ -8,29 +8,28 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                             | Loại tài liệu        | Nguồn tệp Markdown                                                           | Nguồn tệp PDF / Ảnh chụp                                                       | Mô tả chi tiết                                                                                                                                      |
-| :-: | ----------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros**                    | `Ảnh chụp thực tế`   | [README.md](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md) | [README.pdf](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.pdf) | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án.                                                                             |
-|  2  | **Bản in tài liệu quy định, quy chế, lịch làm việc của nhóm (Team Contract)** | `Tài liệu in A4`     | [16-team-contract.md](docs.1/md/16-team-contract.md)                         | [16-team-contract.pdf](docs.1/pdf/16-team-contract.pdf)                        | Hợp đồng nhóm quy định giá trị cốt lõi, vai trò 6 thành viên, quy tắc giao tiếp, chuẩn mực commit, nguyên tắc giải quyết xung đột và thang kỷ luật. |
-|  3  | **Bản in một biên bản họp của nhóm (Meeting Minutes)**                        | `Tài liệu in A4`     | [README.md](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md) | [README.pdf](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.pdf) | Biên bản họp tuần ghi nhận nội dung thảo luận, phân chia nhiệm vụ, giải quyết blocker và ký nhận của các thành viên.                                |
-|  4  | **Bản in giao diện hệ thống liên lạc với dữ liệu thực tế của nhóm**           | `Ảnh chụp giao diện` | [README.md](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md) | [README.pdf](final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.pdf) | Ảnh chụp không gian làm việc Discord (kênh standup, review code, chia sẻ tài liệu) với dữ liệu trao đổi thực tế của nhóm.                           |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                    | Loại tài liệu                | Tệp đính kèm tại thư mục này                                                       | Nguồn tài liệu PDF                                                               | Mô tả chi tiết                                                                                                                           |
+| :-: | -------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Hợp đồng nhóm (Team Contract)**                    | `Tài liệu in A4`             | [16-team-contract.pdf](./16-team-contract.pdf)                                     | [16-team-contract.pdf](../../pdf/16-team-contract.pdf)                           | Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên.                |
+|  2  | **Bản in Biên bản họp rút ra bài học kinh nghiệm (Meeting Minutes)** | `Tài liệu in A4`             | [01_meeting_minutes_lessons_learned.pdf](./01_meeting_minutes_lessons_learned.pdf) | [01_meeting_minutes_lessons_learned.pdf](01_meeting_minutes_lessons_learned.pdf) | Biên bản họp rút ra bài học kinh nghiệm ngày 22/08/2026 (mã HCMUS-LDMS-MM02) ghi nhận phản hồi, nguyên nhân và bài học của 6 thành viên. |
+|  3  | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros**           | `Ảnh chụp thực tế`           | [group3-photo.png](./group3-photo.png)                                             | N/A                                                                              | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án.                                                                  |
+|  4  | **Bản in giao diện hệ thống liên lạc Discord thực tế của nhóm**      | `Ảnh chụp màn hình liên lạc` | [discord_communication.png](./discord_communication.png)                           | N/A                                                                              | Ảnh chụp không gian trao đổi công việc, thông báo họp và chia sẻ tài liệu trên Discord của nhóm.                                         |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **5 Giai đoạn phát triển nhóm theo mô hình Tuckman:** Forming (Thành lập) → Storming (Xung đột) → Norming (Ổn định) → Performing (Hiệu suất cao) → Adjourning (Đóng dự án).
-- **Vấn đề xung đột thực tế:** Tranh cãi lựa chọn công nghệ OCR (Tesseract vs Cloud Vision), xung đột lịch làm việc khi thành viên trùng lịch học/thi cử.
-- **Cách giải quyết:** Áp dụng PoC thực nghiệm để đưa ra quyết định kỹ thuật khách quan; thiết lập kênh thông báo vắng mặt trước 24h và tái phân bổ công việc qua Kanban.
-- **Kết quả:** 100% thành viên đồng thuận, duy trì kỷ luật nhóm và hoàn thành đúng cam kết.
+- **Mô hình phát triển nhóm Tuckman:** Forming (Hình thành) → Storming (Sóng gió) → Norming (Ổn định) → Performing (Hiệu quả cao) → Adjourning (Đóng dự án).
+- **Xung đột thực tế:** Thành viên trễ deadline do bận đồ án khác → Giải quyết bằng quy tắc báo trước 12h và giới hạn WIP ≤ 3.
+- **Quy tắc Team Contract:** Họp tuần định kỳ, Pull Request bắt buộc 1 Tech Lead approve, xử lý vắng mặt công bằng.
+- Ảnh chụp nhóm 6 người, Biên bản họp rút ra bài học kinh nghiệm và bằng chứng kênh liên lạc Discord thực tế.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 
-- **WHAT (Khái niệm & Nội dung):** Nghệ thuật và phương pháp điều phối, tạo động lực, giải quyết xung đột và phát triển năng lực của các thành viên trong nhóm.
-- **HOW (Quy trình thực hiện):** Soạn thảo Team Contract → Thiết lập kênh liên lạc chính thức → Tổ chức họp định kỳ → Áp dụng quy trình giải quyết xung đột dân chủ → Đánh giá đóng góp cá nhân.
-- **WHY (Lý do & Giá trị):** Con người là yếu tố quyết định sự thành bại của dự án; quản trị tốt giúp duy trì tinh thần đồng đội và năng suất cao.
-- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bản in Team Contract (Mục 3-4), Biên bản họp nhóm và Ảnh chụp kênh Discord thực tế.
+- **WHAT (Khái niệm & Nội dung):** Hoạt động tổ chức, điều phối, tạo động lực và giải quyết xung đột nhằm xây dựng một đội ngũ gắn kết và đạt hiệu suất cao.
+- **HOW (Quy trình thực hiện):** Ký kết Team Contract ngay Tuần 1 → Thiết lập kênh Discord và lịch họp cố định → Áp dụng mô hình Tuckman nhận diện sóng gió → Thảo luận giải quyết qua Retrospective.
+- **WHY (Lý do & Giá trị):** Con người là yếu tố quyết định 80% sự thành bại của dự án phần mềm.
+- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bản in Team Contract, Bản in Biên bản họp Sprint 1, Ảnh chụp 6 thành viên và Ảnh chụp kênh Discord thực tế.
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/16-team-contract.md](../../md/16-team-contract.md)
-- [docs.1/pdf/16-team-contract.pdf](../../pdf/16-team-contract.pdf)
+- [Tài liệu Hợp đồng nhóm (docs.1/md/16-team-contract.md)](../../md/16-team-contract.md)
 - [Phiếu ôn tập Câu 16 (final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)](../../../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)

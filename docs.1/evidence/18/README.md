@@ -8,26 +8,25 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                           | Loại tài liệu    | Nguồn tệp Markdown                                                 | Nguồn tệp PDF / Ảnh chụp                                              | Mô tả chi tiết                                                                                                                              |
-| :-: | --------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan)** | `Tài liệu in A4` | [18-risk-management-plan.md](docs.1/md/18-risk-management-plan.md) | [18-risk-management-plan.pdf](docs.1/pdf/18-risk-management-plan.pdf) | Tài liệu quy trình quản lý rủi ro 4 bước, Ma trận xác suất - tác động 5x5, và Sổ đăng ký rủi ro (Risk Register) định danh 18 rủi ro cụ thể. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                           | Loại tài liệu    | Tệp đính kèm tại thư mục này                                 | Nguồn tài liệu PDF                                                   | Mô tả chi tiết                                                                                                               |
+| :-: | --------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan)** | `Tài liệu in A4` | [18-risk-management-plan.pdf](./18-risk-management-plan.pdf) | [18-risk-management-plan.pdf](../../pdf/18-risk-management-plan.pdf) | Quy trình quản lý rủi ro, ma trận đánh giá 5x5, sổ đăng ký 18 rủi ro (RSK-01..18), phân công Risk Owner và kế hoạch ứng phó. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **Quy trình quản lý rủi ro 4 bước:** Nhận diện (Identify) → Phân tích & Đánh giá (Analyze & Assess) → Lập kế hoạch ứng phó (Plan Response) → Giám sát & Kiểm soát (Monitor & Control).
-- **Ma trận 5x5:** Phân loại rủi ro theo mức độ Nghiêm trọng (Critical: Score ≥ 15), Cao (High: 10-14), Trung bình (Medium: 5-9), Thấp (Low: 1-4).
-- **18 Rủi ro định danh (RSK-01 đến RSK-18):** Ví dụ RSK-01 (Độ chính xác OCR tiếng Việt thấp), RSK-02 (Tràn dung lượng lưu trữ), RSK-05 (Thành viên bị ốm/trùng lịch thi).
-- **Chiến lược 4T:** Treat (Giảm thiểu qua PoC), Tolerate (Chấp nhận), Transfer (Chuyển giao), Terminate (Né tránh/loại khỏi scope).
+- **Sổ đăng ký 18 rủi ro phân loại theo 4 nhóm:** Kỹ thuật, Lịch trình & Con người, Nghiệp vụ & Dữ liệu, Vận hành & Môi trường.
+- Ma trận định lượng rủi ro 5×5 (Xác suất P × Mức độ tác động I = Điểm rủi ro R).
+- **4 Chiến lược ứng phó chính:** Né tránh (Avoid), Giảm thiểu (Mitigate), Chuyển giao (Transfer), Chấp nhận (Accept).
+- **Các rủi ro hàng đầu:** RSK-01 (Độ chính xác OCR thấp), RSK-02 (Rò rỉ bản quyền EPUB), RSK-05 (Thành viên quá tải).
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 
-- **WHAT (Khái niệm & Nội dung):** Kế hoạch chủ động nhận diện, phân tích và chuẩn bị các biện pháp ứng phó với các sự kiện không chắc chắn có thể ảnh hưởng đến dự án.
-- **HOW (Quy trình thực hiện):** Họp Brainstorming nhận diện rủi ro → Đánh giá P (Probability) và I (Impact) → Lập Risk Register → Xây dựng Kịch bản ứng phó (Mitigation & Contingency) → Review hàng tuần.
-- **WHY (Lý do & Giá trị):** Chuyển từ thế bị động (chữa cháy) sang thế chủ động kiểm soát rủi ro, giảm thiểu thiệt hại về thời gian và chi phí.
-- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Ma trận 5x5 và Sổ đăng ký 18 rủi ro (Mục 3) trong bản in Kế hoạch quản lý rủi ro.
+- **WHAT (Khái niệm & Nội dung):** Quy trình nhận diện, phân tích, lập kế hoạch ứng phó và theo dõi các biến cố không chắc chắn có thể ảnh hưởng tiêu cực đến dự án.
+- **HOW (Quy trình thực hiện):** Họp Brainstorming nhận diện rủi ro → Lập Sổ Risk Register → Định lượng P×I trên ma trận 5×5 → Xây dựng kịch bản ứng phó cho rủi ro Cao/Nghiêm trọng → Rà soát định kỳ hàng tuần.
+- **WHY (Lý do & Giá trị):** Chuyển từ thế bị động ứng phó sự cố (Firefighting) sang chủ động phòng ngừa, bảo vệ tiến độ và chất lượng dự án.
+- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Sổ đăng ký 18 rủi ro (Mục 3) và Ma trận rủi ro 5×5 trong bản in Kế hoạch quản lý rủi ro.
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/18-risk-management-plan.md](../../md/18-risk-management-plan.md)
-- [docs.1/pdf/18-risk-management-plan.pdf](../../pdf/18-risk-management-plan.pdf)
+- [Tài liệu Kế hoạch quản lý rủi ro (docs.1/md/18-risk-management-plan.md)](../../md/18-risk-management-plan.md)
 - [Phiếu ôn tập Câu 18 (final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)](../../../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)

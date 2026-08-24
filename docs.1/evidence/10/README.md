@@ -8,26 +8,26 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                      | Loại tài liệu    | Nguồn tệp Markdown                                         | Nguồn tệp PDF / Ảnh chụp                                      | Mô tả chi tiết                                                                                                                                              |
-| :-: | ------------------------------------------------------ | ---------------- | ---------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Ước lượng dự án (Project Estimate)** | `Tài liệu in A4` | [10-project-estimate.md](docs.1/md/10-project-estimate.md) | [10-project-estimate.pdf](docs.1/pdf/10-project-estimate.pdf) | Tài liệu phân tích Bottom-up kết hợp T-Shirt sizing: Phân rã 26 stories, tổng nhu cầu Demand = 190h, tổng năng lực Capacity = 198h, đệm dự phòng 8h (4.2%). |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                      | Loại tài liệu    | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF                                           | Mô tả chi tiết                                                                                                              |
+| :-: | ------------------------------------------------------ | ---------------- | ---------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Ước lượng dự án (Project Estimate)** | `Tài liệu in A4` | [10-project-estimate.pdf](./10-project-estimate.pdf) | [10-project-estimate.pdf](../../pdf/10-project-estimate.pdf) | Ước lượng Bottom-up từ kết quả làm thử, áp dụng hệ số dự phòng 2,5, tính toán Demand 190 giờ và đối chiếu Capacity 198 giờ. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **Phương pháp ước lượng:** Bottom-up Estimation kết hợp Planning Poker / T-Shirt Sizing (Nhỏ: 4-8h, Vừa: 8-16h, Lớn: 16-32h).
-- **Nhu cầu công việc (Demand):** 15 Must (132h) + 6 Should (42h) + 5 Could (16h) = 190 giờ-người.
-- **Năng lực nhóm (Capacity):** 6 thành viên × 3 giờ/tuần × 11 tuần = 198 giờ-người.
-- **Dự phòng rủi ro (Buffer):** 198h - 190h = 8 giờ-người (4.2%), đảm bảo hoàn thành 100% phạm vi bắt buộc.
+- Phương pháp ước lượng Bottom-up dựa trên kết quả làm thử thực tế (spike test ngày 16-17/07/2026).
+- **Hệ số dự phòng rủi ro kỹ thuật và học tập:** 2,5× trên thời gian làm thử.
+- **Tổng thời gian yêu cầu (Demand):** 190 giờ cho 15 hạng mục Bắt buộc.
+- **Năng lực đáp ứng (Capacity):** 198 giờ (6 thành viên × 3 giờ/tuần × 11 tuần) đảm bảo tính khả thi cao.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 
-- **WHAT (Khái niệm & Nội dung):** Dự báo định lượng về khối lượng công việc, thời gian và năng lực cần thiết để hoàn thành dự án.
-- **HOW (Quy trình thực hiện):** Phân rã User Stories thành tasks kỹ thuật → Nhóm họp Planning Poker chấm điểm cỡ → Tính tổng Demand → So sánh với Capacity → Phân tích độ nhạy và dự phòng.
-- **WHY (Lý do & Giá trị):** Tránh tình trạng cam kết vượt quá năng lực (Over-commitment) dẫn đến trễ hạn hoặc suy giảm chất lượng.
-- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bảng so sánh Demand vs Capacity và Bảng chi tiết ước lượng 26 User Stories trong bản in Estimate.
+- **WHAT (Khái niệm & Nội dung):** Tài liệu dự báo tổng khối lượng công việc, thời gian và công sức cần thiết để hoàn thành phạm vi cam kết.
+- **HOW (Quy trình thực hiện):** Phân rã 15 Must stories thành task kỹ thuật → Thực hiện làm thử đo thời gian gốc → Nhân hệ số dự phòng 2,5 → Tính tổng Demand → Đối chiếu với Capacity của 6 thành viên.
+- **WHY (Lý do & Giá trị):** Đảm bảo kế hoạch dự án dựa trên dữ liệu thực nghiệm, tránh ước lượng cảm tính dẫn đến trễ hạn.
+- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bảng phân tích Demand vs Capacity và Bảng kết quả làm thử trong bản in Ước lượng dự án.
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/10-project-estimate.md](../../md/10-project-estimate.md)
-- [docs.1/pdf/10-project-estimate.pdf](../../pdf/10-project-estimate.pdf)
+- [Tài liệu Markdown (docs.1/md/10-project-estimate.md)](../../md/10-project-estimate.md)
+- [Tài liệu PDF (docs.1/pdf/10-project-estimate.pdf)](../../pdf/10-project-estimate.pdf)
 - [Phiếu ôn tập Câu 10 (final-exam/preparation/4_Estimation_Planning_Process/README.md)](../../../final-exam/preparation/4_Estimation_Planning_Process/README.md)
