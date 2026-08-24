@@ -4,166 +4,262 @@
 
 ### Thông tin tài liệu
 
-| Trường        | Nội dung                                                                    |
-| ------------- | --------------------------------------------------------------------------- |
-| Mã tài liệu   | `HCMUS-LDMS-PLAN`                                                           |
-| Chủ sở hữu    | Project Manager — Mạch Quốc Tấn                                             |
-| Người xem xét | Nhóm Sebros và Đại diện nghiệp vụ Thư viện                                  |
-| Phiên bản     | 1.0 — 22/08/2026                                                            |
-| Trạng thái    | Bản kế hoạch cơ sở chờ phê duyệt; actual được cập nhật từ board/Project Log |
-| Thời gian     | 11 tuần                                                                     |
+| Trường thông tin | Nội dung                                    |
+| ---------------- | ------------------------------------------- |
+| Mã tài liệu      | `HCMUS-LDMS-PLAN`                           |
+| Tên tài liệu     | Kế hoạch dự án                              |
+| Người phụ trách  | Mạch Quốc Tấn — Quản lý dự án               |
+| Người xem xét    | Các thành viên nhóm Sebros                  |
+| Trạng thái       | Baseline nội bộ đã được nhóm xác nhận       |
+| Thời gian        | 11 tuần                                     |
+| Phạm vi          | 15 hạng mục Bắt buộc                        |
+| Cơ sở ước lượng  | Kết quả làm thử và điểm của Product Backlog |
+
+### Lịch sử phiên bản
+
+| Phiên bản | Ngày       | Mô tả thay đổi                                                                  | Người thực hiện |
+| --------- | ---------- | ------------------------------------------------------------------------------- | --------------- |
+| 1.0       | 22/08/2026 | Xây dựng kế hoạch 11 tuần theo phạm vi, công sức và nguồn lực ban đầu.          | Mạch Quốc Tấn   |
+| 2.0       | 24/08/2026 | Đồng bộ phương pháp ước lượng theo kết quả làm thử, điểm và hệ số dự phòng 2,5. | Mạch Quốc Tấn   |
+| 2.1       | 24/08/2026 | Đồng bộ Technical Lead, Backend, DevOps và QA theo Hợp đồng nhóm.               | Mạch Quốc Tấn   |
 
 ## Mục lục
 
-- [1. Mục tiêu và đường cơ sở](#1-mục-tiêu-và-đường-cơ-sở)
-- [2. Phân rã công việc](#2-phân-rã-công-việc)
-- [3. Lịch, phụ thuộc và mốc](#3-lịch-phụ-thuộc-và-mốc)
-- [4. Nguồn lực và phân công](#4-nguồn-lực-và-phân-công)
-- [5. Công sức, chi phí và dự phòng](#5-công-sức-chi-phí-và-dự-phòng)
-- [6. Kế hoạch chất lượng và kiểm thử](#6-kế-hoạch-chất-lượng-và-kiểm-thử)
-- [7. Rủi ro, truyền thông và thay đổi](#7-rủi-ro-truyền-thông-và-thay-đổi)
-- [8. Theo dõi và báo cáo](#8-theo-dõi-và-báo-cáo)
-- [9. Điều kiện hoàn thành và phê duyệt](#9-điều-kiện-hoàn-thành-và-phê-duyệt)
+- [1. Mục đích](#1-mục-đích)
+- [2. Baseline của dự án](#2-baseline-của-dự-án)
+- [3. Cơ sở lập kế hoạch](#3-cơ-sở-lập-kế-hoạch)
+- [4. Phân chia công việc](#4-phân-chia-công-việc)
+- [5. Kế hoạch 11 tuần](#5-kế-hoạch-11-tuần)
+- [6. Nguồn lực và trách nhiệm](#6-nguồn-lực-và-trách-nhiệm)
+- [7. Quy trình thực hiện hạng mục](#7-quy-trình-thực-hiện-hạng-mục)
+- [8. Chất lượng và kiểm thử](#8-chất-lượng-và-kiểm-thử)
+- [9. Theo dõi tiến độ](#9-theo-dõi-tiến-độ)
+- [10. Rủi ro và thay đổi](#10-rủi-ro-và-thay-đổi)
+- [11. Điều kiện hoàn thành dự án](#11-điều-kiện-hoàn-thành-dự-án)
+- [12. Tài liệu tham khảo](#12-tài-liệu-tham-khảo)
 
-## 1. Mục tiêu và đường cơ sở
+---
 
-Mục tiêu là bàn giao MVP trình diễn có kiểm soát cho luồng tải tài liệu → OCR → hiệu chỉnh → EPUB → xuất bản → tìm kiếm → đọc trong 11 tuần. Phạm vi có 15 hạng mục Bắt buộc, 6 Nên có và 5 Có thể xem xét; chỉ 15 Bắt buộc thuộc cam kết cơ sở.
+## 1. Mục đích
 
-| Yếu tố     | Đường cơ sở                                                       |
-| ---------- | ----------------------------------------------------------------- |
-| Phạm vi    | 15 story Bắt buộc; dữ liệu mẫu có quyền                           |
-| Thời gian  | 11 tuần                                                           |
-| Nhân sự    | 6 sinh viên kiêm nhiệm                                            |
-| Công sức   | Nhu cầu 190 giờ-người; năng lực hữu dụng 198 giờ-người            |
-| Dự phòng   | 8 giờ-người, mức thấp; scope creep phải được chặn                 |
-| Tiền mặt   | Giả định 0 VNĐ cho môn học nếu dùng tài nguyên sẵn có             |
-| Cách làm   | Kanban sáu cột, giới hạn WIP, Trunk-Based                         |
-| Môi trường | Local là nguồn phát triển; demo cloud có điều kiện sau smoke test |
+Tài liệu xác định phạm vi, lịch thực hiện, phân công, cách kiểm soát chất lượng và điều kiện hoàn thành dự án trong 11 tuần. Kế hoạch phục vụ mục đích học tập và quản lý công việc của nhóm Sebros.
 
-## 2. Phân rã công việc
+Dự án ưu tiên hoàn thành luồng chính:
 
-| Gói                       | Nội dung                                        | Story/deliverable chính    | Owner               |
-| ------------------------- | ----------------------------------------------- | -------------------------- | ------------------- |
-| WP-01 Quản trị            | Baseline, board, risk/change/status và phối hợp | Charter, Plan, SOW, logs   | PM                  |
-| WP-02 Yêu cầu/UX          | SRS, backlog, AC, bản mẫu, phản hồi             | SRS, Backlog, Prototype    | PM/Frontend/QA      |
-| WP-03 Nền tảng/quyền      | Setup, đăng nhập, phiên, RBAC                   | LDMS-001, 009, 010         | Backend/DevOps      |
-| WP-04 Tiếp nhận/OCR       | Upload, source, job, kết quả trang              | LDMS-002, 003, 004         | Backend/Architect   |
-| WP-05 Hiệu chỉnh/metadata | Save text, metadata, danh sách                  | LDMS-005, 011, 026         | Backend/Frontend    |
-| WP-06 Xuất bản/đọc        | EPUB, gate, reader, quyền đọc                   | LDMS-007, 013, 008, 014    | Backend/Frontend/QA |
-| WP-07 Tìm kiếm            | Full-text search và kết quả                     | LDMS-015, 016              | Backend/Frontend    |
-| WP-08 Chất lượng          | Review, test, evidence, UAT                     | Quality/Test Plan, reports | QA                  |
-| WP-09 Triển khai/bàn giao | Local/demo, hướng dẫn, backup/rollback          | CI/CD/DevOps docs, release | DevOps/PM           |
+`Tải tài liệu → OCR → Hiệu chỉnh → Tạo EPUB → Xuất bản → Tìm kiếm → Đọc trực tuyến`
 
-Gói không thay thế story. Mỗi card vẫn phải có AC, owner, reviewer, estimate, dependency và evidence.
+## 2. Baseline của dự án
 
-## 3. Lịch, phụ thuộc và mốc
+| Yếu tố           | Baseline đã xác nhận                                                      |
+| ---------------- | ------------------------------------------------------------------------- |
+| Phạm vi          | 15 hạng mục Bắt buộc, tổng cộng 26 điểm.                                  |
+| Thời gian        | 11 tuần.                                                                  |
+| Nhân sự          | 6 sinh viên thuộc nhóm Sebros.                                            |
+| Phương pháp      | Kanban theo luồng liên tục.                                               |
+| Kiểm soát mã     | Mỗi thay đổi mã nguồn được thực hiện qua Pull Request.                    |
+| Xem xét kỹ thuật | Technical Lead xem xét và phê duyệt trước khi hợp nhất vào `main`.        |
+| Chất lượng       | Chỉ ghi Hoàn thành khi hạng mục đạt Tiêu chí hoàn thành (DoD).            |
+| Công cụ hỗ trợ   | Coding agent hỗ trợ phát triển, kiểm thử, rà soát, tài liệu và xử lý lỗi. |
+| Chi phí          | 0 VNĐ tiền mặt nếu sử dụng thiết bị và các gói dịch vụ sẵn có.            |
 
-### 3.1. Kế hoạch 11 tuần
+Sáu hạng mục Nên có và năm hạng mục Có thể xem xét không thuộc cam kết baseline. Các hạng mục này chỉ được thực hiện khi không ảnh hưởng đến 15 hạng mục Bắt buộc.
 
-| Tuần | Mục tiêu                      | Đầu ra dự kiến                                   | Gate/mốc                     |
-| ---: | ----------------------------- | ------------------------------------------------ | ---------------------------- |
-|    1 | Khởi động và khóa mục tiêu    | Charter/Plan/SOW draft, vai trò, dataset request | M1 Baseline review           |
-|    2 | Yêu cầu, backlog, bản mẫu     | SRS, AC, Prototype, test/risk draft              | G0 readiness                 |
-|    3 | Kiến trúc và PoC              | ADR, PoC runs nếu môi trường sẵn sàng, setup     | M2 Architecture/PoC          |
-|    4 | Nền tảng, auth, upload        | LDMS-001, 009, 010, 002 ở luồng review           | Integration đầu              |
-|    5 | OCR và kết quả                | LDMS-003, 004; job states                        | Core processing              |
-|    6 | Hiệu chỉnh và metadata        | LDMS-005, 011, 026                               | Core content                 |
-|    7 | EPUB, gate và reader          | LDMS-007, 013, 008, 014                          | M3 Core flow                 |
-|    8 | Tìm kiếm và tích hợp          | LDMS-015, 016; flow đầu cuối                     | Feature integration          |
-|    9 | Hoàn thiện và đóng gap        | Regression, data, docs, cloud smoke              | M4 Feature complete mục tiêu |
-|   10 | System/security/recovery test | Release candidate, defect triage                 | M5 Enter UAT decision        |
-|   11 | UAT và bàn giao               | UAT, evidence index, hướng dẫn, lessons          | M6 Acceptance/closeout       |
+## 3. Cơ sở lập kế hoạch
 
-Đây là forecast theo baseline, không phải khẳng định các đầu ra đã hoàn thành. Actual lấy từ completion event đủ evidence.
+### 3.1. Kết quả làm thử
 
-### 3.2. Phụ thuộc và đường găng dự kiến
+Nhóm thực hiện làm thử trong ngày 16 và 17 tháng 07 năm 2026.
 
-Chuỗi có khả năng quyết định mốc là:
+| Nội dung                                 | Kết quả |
+| ---------------------------------------- | ------: |
+| Số ngày làm thử                          |  2 ngày |
+| Số hạng mục đã được triển khai thử       |      11 |
+| Tổng số điểm đã được triển khai thử      |      18 |
+| Hạng mục Bắt buộc đã được triển khai thử |       9 |
+| Điểm Bắt buộc đã được triển khai thử     |      15 |
 
-`Setup/Auth → Upload → OCR → Hiệu chỉnh → Metadata/Publish gate → EPUB → Reader/Search → System test → UAT`.
+Các hạng mục làm thử đã tạo được kết quả kỹ thuật nhưng chưa mặc định được xem là Hoàn thành. Mỗi hạng mục vẫn phải có Pull Request, kết quả kiểm thử, Technical Lead xem xét và bằng chứng đạt DoD.
 
-| Phụ thuộc                                  | Tác động nếu trễ                   | Hành động                                         |
-| ------------------------------------------ | ---------------------------------- | ------------------------------------------------- |
-| Dataset/quyền trước PoC/UAT                | Không thể chứng minh OCR/nghiệp vụ | PM chốt owner trước tuần 2; chỉ dùng mẫu có quyền |
-| Upload/source trước OCR                    | Chặn WP-04                         | Ưu tiên vertical slice nhỏ                        |
-| Corrected text/metadata trước EPUB/publish | Chặn WP-06                         | Làm contract và dữ liệu mẫu sớm                   |
-| RBAC trước search/reader security          | Không thể nghiệm thu quyền         | Negative tests từ lúc có endpoint                 |
-| Evidence trước Done/UAT                    | Không thể báo hoàn thành           | G3/G4 trả card nếu thiếu evidence                 |
+### 3.2. Ước lượng phần baseline còn lại
 
-Đường găng chỉ là giả thuyết kế hoạch vì chưa có actual duration/dependency đầy đủ. PM cập nhật khi có ít nhất ba completion event đủ evidence.
+Baseline có 26 điểm. Giai đoạn làm thử đã triển khai 15 điểm Bắt buộc, vì vậy phần chưa được triển khai thử còn:
 
-## 4. Nguồn lực và phân công
+`26 điểm - 15 điểm = 11 điểm`
 
-| Thành viên            | Vai trò chính                    | Gói ưu tiên                   |
-| --------------------- | -------------------------------- | ----------------------------- |
-| Mạch Quốc Tấn         | PM; Backend                      | WP-01, WP-02, hỗ trợ WP-03/04 |
-| Ân Tiến Nguyên An     | Solution Architect; Backend Lead | WP-03, WP-04, WP-06           |
-| Ngô Nguyễn Thế Khoa   | Frontend Lead                    | WP-02, WP-05, WP-07           |
-| Nguyễn Tuấn Anh       | Backend; DevOps                  | WP-03, WP-04, WP-09           |
-| Nguyễn Quang Thái     | QA; DevOps                       | WP-08, WP-09                  |
-| Nguyễn Lê Hồ Anh Khoa | Frontend                         | WP-05, WP-06, accessibility   |
+Tốc độ triển khai thử đối với hạng mục Bắt buộc:
 
-Giới hạn: tối đa 1 card Đang thực hiện mỗi người; 6 card toàn nhóm ở Đang thực hiện; 4 card ở Đang xem xét. Việc review/QA không được dồn hết cuối lịch.
+`15 điểm ÷ 2 ngày = 7,5 điểm/ngày`
 
-## 5. Công sức, chi phí và dự phòng
+Thời gian tính theo tốc độ làm thử:
 
-| Thành phần          |       Giá trị | Nguồn/cách dùng                     |
-| ------------------- | ------------: | ----------------------------------- |
-| 15 story Bắt buộc   | 190 giờ-người | Bottom-up Estimate                  |
-| Năng lực danh nghĩa | 264 giờ-người | 6 × 4 giờ/tuần × 11 tuần            |
-| Năng lực hữu dụng   | 198 giờ-người | 75% sau overhead                    |
-| Dự phòng còn lại    |   8 giờ-người | Không đủ hấp thụ scope tùy chọn lớn |
+`11 điểm ÷ 7,5 điểm/ngày = 1,47 ngày`
 
-Chi phí tiền mặt baseline là 0 VNĐ nếu dùng thiết bị/tài nguyên/gói sẵn có. Phí cloud, AI, thiết bị số hóa hoặc production phải có Change Request và nguồn phê duyệt; không tự quy đổi effort sinh viên thành lương cam kết.
+Nhóm áp dụng hệ số dự phòng rủi ro 2,5:
 
-## 6. Kế hoạch chất lượng và kiểm thử
+`1,47 ngày × 2,5 = 3,68 ngày`
 
-- [Kế hoạch chất lượng](19-quality-management-plan.md) định nghĩa G0–G4, review, metric và ngoại lệ.
-- [Kế hoạch kiểm thử](20-test-plan.md) định nghĩa dataset, test matrix, NFR, UAT và evidence.
-- Story Done phải có Requirement → Story → Change → Test → Reviewer → UAT khi cần.
-- Critical/High chưa xử lý chặn release, trừ ngoại lệ đúng thẩm quyền.
-- PoC và Prototype không thay System Test/UAT.
+Kết quả được làm tròn thành **4 ngày làm việc tương đương của nhóm** cho sáu hạng mục Bắt buộc chưa được triển khai thử. Hệ số dự phòng bao gồm xem xét Pull Request, kiểm thử, tích hợp, sửa lỗi, tài liệu, công việc bị chặn và sai lệch so với giai đoạn làm thử.
 
-## 7. Rủi ro, truyền thông và thay đổi
+Kế hoạch vẫn sử dụng 11 tuần vì ngoài việc tạo mã nguồn, nhóm phải hoàn thiện cả 15 hạng mục theo DoD, phối hợp giữa sáu thành viên, thực hiện công việc quản lý và bảo đảm phù hợp với lịch học.
 
-### 7.1. Rủi ro
+## 4. Phân chia công việc
 
-[Kế hoạch rủi ro](18-risk-management-plan.md) là nguồn chuẩn. R-01, R-04, R-05, R-06, R-07 và R-12 cần được xem tại mọi mốc chính.
+| Nhóm công việc                | Hạng mục hoặc nội dung chính            | Kết quả cần đạt                                |
+| ----------------------------- | --------------------------------------- | ---------------------------------------------- |
+| Quản lý dự án                 | Phạm vi, kế hoạch, rủi ro, thay đổi     | Baseline và trạng thái được cập nhật.          |
+| Nền tảng và phân quyền        | LDMS-001, LDMS-009, LDMS-010            | Hệ thống chạy được và kiểm soát đúng quyền.    |
+| Tiếp nhận và OCR              | LDMS-002, LDMS-003, LDMS-004            | Tải tệp, xử lý OCR và xem kết quả theo trang.  |
+| Hiệu chỉnh và thông tin mô tả | LDMS-005, LDMS-011, LDMS-026            | Lưu nội dung, quản lý mô tả và trạng thái.     |
+| Xuất bản và đọc               | LDMS-007, LDMS-013, LDMS-008, LDMS-014  | Tạo EPUB, kiểm tra xuất bản và đọc đúng quyền. |
+| Tìm kiếm                      | LDMS-015, LDMS-016                      | Tìm kiếm toàn văn và hiển thị kết quả.         |
+| Chất lượng và bàn giao        | Kiểm thử, sửa lỗi, tài liệu và xác nhận | Baseline đạt DoD và có bằng chứng.             |
 
-### 7.2. Truyền thông
+## 5. Kế hoạch 11 tuần
 
-| Nhịp                       | Người tham gia    | Nội dung                       | Đầu ra               |
-| -------------------------- | ----------------- | ------------------------------ | -------------------- |
-| Cập nhật ngắn 2–3 lần/tuần | Nhóm              | WIP, blocker, việc tiếp theo   | Board/log cập nhật   |
-| Rà soát tuần               | PM, leads, QA     | Scope, forecast, risk, quality | Status note/decision |
-| Review nghiệp vụ theo mốc  | PM, QA, nghiệp vụ | AC, prototype, demo/UAT        | Phản hồi/xác nhận    |
-| Incident/change            | Owner liên quan   | Tác động và quyết định         | Incident/CR/ADR      |
+| Tuần | Trọng tâm                             | Hạng mục chính               | Kết quả cuối tuần                                  |
+| ---: | ------------------------------------- | ---------------------------- | -------------------------------------------------- |
+|    1 | Xác nhận baseline và chuẩn bị         | Toàn bộ baseline             | Phạm vi, vai trò, môi trường và dữ liệu được chốt. |
+|    2 | Nền tảng, đăng nhập và phân quyền     | LDMS-001, LDMS-009, LDMS-010 | Nền tảng chạy được; quyền được kiểm thử.           |
+|    3 | Tải lên và danh sách tài liệu         | LDMS-002, LDMS-026           | Tệp được lưu an toàn; danh sách đúng quyền.        |
+|    4 | OCR và kết quả theo trang             | LDMS-003, LDMS-004           | Tác vụ OCR và kết quả theo trang hoạt động.        |
+|    5 | Hiệu chỉnh và thông tin mô tả         | LDMS-005, LDMS-011           | Nội dung hiệu chỉnh và thông tin mô tả được lưu.   |
+|    6 | Tạo EPUB và kiểm tra xuất bản         | LDMS-007, LDMS-013           | EPUB hợp lệ; tài liệu thiếu điều kiện bị chặn.     |
+|    7 | Tìm kiếm và hiển thị kết quả          | LDMS-015, LDMS-016           | Tìm kiếm đúng dữ liệu và đúng quyền.               |
+|    8 | Đọc trực tuyến và bảo vệ quyền đọc    | LDMS-008, LDMS-014           | Nội dung đọc được và không lộ tệp riêng tư.        |
+|    9 | Tích hợp và kiểm thử hồi quy          | Toàn bộ 15 hạng mục          | Luồng đầu cuối hoạt động; lỗi được ghi nhận.       |
+|   10 | Sửa lỗi và hoàn thiện tài liệu        | Lỗi còn lại và bộ tài liệu   | Không còn lỗi nghiêm trọng; tài liệu đồng bộ.      |
+|   11 | Kiểm thử chấp nhận nội bộ và bàn giao | Toàn bộ baseline             | Có kết quả xác nhận, bằng chứng và tổng kết.       |
 
-### 7.3. Thay đổi
+Hạng mục có thể được thực hiện sớm hơn khi còn năng lực. Việc thay đổi thứ tự không làm thay đổi tiêu chí chấp nhận hoặc DoD.
 
-Mọi thay đổi baseline có mã CR, nguồn, lý do, tác động phạm vi–effort–lịch–quality–risk–operations, lựa chọn, người quyết định và tài liệu bị ảnh hưởng. Không thêm story tùy chọn vào WIP khi core chưa ổn định.
+## 6. Nguồn lực và trách nhiệm
 
-## 8. Theo dõi và báo cáo
+| Thành viên            | Vai trò chính              | Trách nhiệm chính                                          |
+| --------------------- | -------------------------- | ---------------------------------------------------------- |
+| Mạch Quốc Tấn         | Quản lý dự án; máy chủ     | Baseline, kế hoạch, điều phối, máy chủ và tài liệu.        |
+| Ân Tiến Nguyên An     | DevOps; đảm bảo chất lượng | Môi trường, CI/CD, kiểm thử, lỗi và bằng chứng kiểm thử.   |
+| Ngô Nguyễn Thế Khoa   | Phụ trách giao diện        | Giao diện, hiệu chỉnh và tìm kiếm.                         |
+| Nguyễn Tuấn Anh       | Technical Lead             | Kiến trúc, xem xét Pull Request và phê duyệt kỹ thuật.     |
+| Nguyễn Quang Thái     | Máy chủ                    | API, dữ liệu, xác thực, phân quyền, OCR, EPUB và tìm kiếm. |
+| Nguyễn Lê Hồ Anh Khoa | Giao diện                  | Trình đọc, trải nghiệm sử dụng và hỗ trợ tích hợp.         |
 
-| Chỉ số                | Nguồn                | Quy tắc                                               |
-| --------------------- | -------------------- | ----------------------------------------------------- |
-| WIP/blocked/age       | Kanban board         | Dùng phát hiện bottleneck, không xếp hạng cá nhân     |
-| Throughput/cycle time | Completion event     | Chỉ tính story Done đủ evidence                       |
-| Actual effort/rework  | Effort log           | Không chia đều session đa-story nếu thiếu timesheet   |
-| Scope/forecast        | Backlog + Estimate   | Cập nhật khi actual đủ tin cậy hoặc CR thay đổi scope |
-| Defect/test/evidence  | Test/Quality records | Không đổi Chưa chạy thành Đạt                         |
-| Risk/action           | Risk Register        | Owner cập nhật trigger, action và residual risk       |
+Mỗi hạng mục có một người phụ trách chính. Người tạo thay đổi không tự phê duyệt Pull Request của mình. Technical Lead có thể ủy quyền xem xét khi cần, nhưng việc ủy quyền phải được ghi rõ.
 
-Báo cáo tình trạng nêu: kỳ báo cáo, baseline, Done đã xác minh, WIP/blocker, milestone, forecast, risk/issue, test/defect, quyết định cần thiết và bằng chứng. Hiện Project Log chưa có completion event đủ evidence nên không tạo burndown giả.
+## 7. Quy trình thực hiện hạng mục
 
-## 9. Điều kiện hoàn thành và phê duyệt
+Mỗi hạng mục đi qua các trạng thái:
 
-Dự án chỉ đạt baseline khi 15 story Bắt buộc Done hoặc có ngoại lệ được duyệt; core flow chạy trên dataset mẫu; quyền, integrity và recovery đạt; Critical/High = 0 chưa xử lý; UAT có quyết định; tài liệu/bàn giao đồng bộ.
+`Ý tưởng → Đã sẵn sàng → Đang thực hiện → Đang xem xét → Chờ xác nhận → Hoàn thành`
 
-| Vai trò                     | Người                   | Trạng thái            |
-| --------------------------- | ----------------------- | --------------------- |
-| Project Manager             | Mạch Quốc Tấn           | Chờ xác nhận baseline |
-| Đại diện nhóm Sebros        | Chưa ghi người ký riêng | Chờ xác nhận          |
-| Đại diện nghiệp vụ Thư viện | Chưa chỉ định bằng tên  | Chờ phê duyệt         |
+Quy trình thực hiện:
 
-Tài liệu tham chiếu: [Charter](03-project-charter.md), [Backlog](04-product-backlog.md), [Estimate](10-project-estimate.md), [SOW](12-statement-of-work.md), [Team Contract](16-team-contract.md) và [Project Log](17-project-log.md).
+1. Chọn hạng mục Bắt buộc có mức ưu tiên cao nhất và không còn phụ thuộc.
+2. Xác nhận mô tả, tiêu chí chấp nhận, người phụ trách và ước lượng.
+3. Phát triển, tự kiểm tra và cập nhật tài liệu liên quan.
+4. Tạo Pull Request vào `main` khi mã nguồn đã sẵn sàng.
+5. Yêu cầu Technical Lead xem xét.
+6. Sửa các nội dung được yêu cầu và chạy lại kiểm thử.
+7. Chỉ hợp nhất khi Technical Lead phê duyệt và các kiểm tra bắt buộc đạt.
+8. Xác nhận tiêu chí chấp nhận, bằng chứng và DoD trước khi ghi Hoàn thành.
+
+Giới hạn công việc:
+
+- mỗi thành viên chỉ có tối đa một hạng mục ở trạng thái Đang thực hiện;
+- toàn nhóm có tối đa sáu hạng mục Đang thực hiện;
+- toàn nhóm có tối đa bốn hạng mục Đang xem xét.
+
+## 8. Chất lượng và kiểm thử
+
+Một hạng mục chỉ được ghi Hoàn thành khi:
+
+- tất cả tiêu chí chấp nhận đều đạt;
+- Pull Request đã được Technical Lead xem xét và phê duyệt;
+- kiểm thử phù hợp đã chạy và có kết quả;
+- không còn lỗi nghiêm trọng chưa xử lý;
+- thay đổi đã được hợp nhất vào `main`;
+- tài liệu và truy vết đã được cập nhật;
+- có người xác nhận và ngày hoàn thành.
+
+Các loại kiểm thử chính gồm kiểm thử đơn vị, tích hợp, chức năng, giao diện, phân quyền, hồi quy và chấp nhận nội bộ. Trước khi bàn giao, nhóm kiểm tra toàn bộ luồng từ tải tài liệu đến đọc trực tuyến.
+
+## 9. Theo dõi tiến độ
+
+### 9.1. Nhịp theo dõi
+
+| Hoạt động               | Tần suất             | Nội dung                                           |
+| ----------------------- | -------------------- | -------------------------------------------------- |
+| Cập nhật hạng mục       | Mỗi ngày có làm việc | Trạng thái, kết quả, việc tiếp theo và điểm chặn.  |
+| Xem xét luồng công việc | Hai lần mỗi tuần     | Giới hạn công việc, hạng mục kéo dài và phụ thuộc. |
+| Xem xét tiến độ         | Cuối mỗi tuần        | Điểm hoàn thành, mốc, lỗi, rủi ro và điều chỉnh.   |
+| Tổng kết                | Tuần 11              | Baseline, chất lượng, bài học và bàn giao.         |
+
+### 9.2. Chỉ số theo dõi
+
+| Chỉ số                   | Cách sử dụng                                             |
+| ------------------------ | -------------------------------------------------------- |
+| Hạng mục Hoàn thành      | Chỉ tính khi đạt DoD và có bằng chứng.                   |
+| Điểm Hoàn thành          | Tổng điểm của các hạng mục đạt DoD.                      |
+| Công việc đang thực hiện | Dùng để kiểm soát giới hạn và tránh nhận quá nhiều việc. |
+| Thời gian bị chặn        | Dùng để ưu tiên gỡ phụ thuộc.                            |
+| Lỗi còn lại              | Theo dõi mức độ, người xử lý và trạng thái kiểm thử lại. |
+| Sai lệch so với kế hoạch | So sánh kết quả thực tế với mục tiêu từng tuần.          |
+
+Kết quả làm thử không được tự động tính là điểm Hoàn thành. Điểm chỉ được ghi nhận sau khi hạng mục đạt DoD.
+
+## 10. Rủi ro và thay đổi
+
+### 10.1. Rủi ro chính
+
+| Rủi ro                             | Cách xử lý                                                           |
+| ---------------------------------- | -------------------------------------------------------------------- |
+| Tích hợp nhiều công nghệ           | Hoàn thành theo từng luồng nhỏ và kiểm thử sớm.                      |
+| Sai quyền truy cập                 | Kiểm tra quyền tại máy chủ và thực hiện kiểm thử trường hợp sai.     |
+| Công việc bị chặn                  | Ghi rõ nguyên nhân, người xử lý và ưu tiên gỡ trong tuần.            |
+| Pull Request chờ xem xét lâu       | Technical Lead xem xét theo lịch; ủy quyền rõ khi không sẵn sàng.    |
+| Coding agent tạo kết quả chưa đúng | Thành viên đọc, kiểm tra và chạy kiểm thử trước khi yêu cầu xem xét. |
+| Phạm vi tăng ngoài kế hoạch        | Không đưa hạng mục tùy chọn vào thực hiện khi baseline chưa ổn định. |
+
+Hệ số dự phòng 2,5 đã được dùng trong ước lượng để giảm ảnh hưởng của các rủi ro kỹ thuật và phối hợp thông thường.
+
+### 10.2. Quản lý thay đổi
+
+Thay đổi baseline phải nêu rõ:
+
+- nội dung và lý do thay đổi;
+- hạng mục và tài liệu bị ảnh hưởng;
+- tác động đến điểm, lịch, nguồn lực, chất lượng và rủi ro;
+- phương án xử lý;
+- kết quả xác nhận của nhóm Sebros.
+
+Không tự ý giảm tiêu chí chấp nhận, kiểm thử hoặc DoD để giữ tiến độ.
+
+## 11. Điều kiện hoàn thành dự án
+
+Dự án đạt baseline khi:
+
+1. Cả 15 hạng mục Bắt buộc đều đạt DoD.
+2. Luồng tải tài liệu, OCR, hiệu chỉnh, tạo EPUB, xuất bản, tìm kiếm và đọc hoạt động với dữ liệu mẫu.
+3. Quyền truy cập được kiểm tra tại máy chủ và các trường hợp sai quyền bị từ chối.
+4. Không còn lỗi nghiêm trọng chưa xử lý.
+5. Tài liệu dự án được cập nhật đầy đủ và nhất quán.
+6. Nhóm hoàn tất kiểm thử chấp nhận nội bộ và ghi nhận kết quả.
+7. Có bằng chứng cho Pull Request, kiểm thử, người xem xét và ngày hoàn thành.
+
+Sáu thành viên nhóm Sebros xác nhận kết quả nội bộ cho phạm vi dự án học tập. Đại diện thư viện hoặc bên ngoài chỉ tham gia tham khảo khi dự án được mở rộng.
+
+## 12. Tài liệu tham khảo
+
+- Đề xuất dự án.
+- Viễn cảnh và phạm vi.
+- Ủy nhiệm dự án.
+- Yêu cầu phần mềm.
+- Product Backlog.
+- Kiến trúc phần mềm.
+- Báo cáo nghiên cứu tính khả thi.
+- Định nghĩa quy trình phát triển phần mềm.
+- Ước lượng dự án.
+- Bản mô tả công việc.
+- Kế hoạch quản lý rủi ro.
+- Kế hoạch quản lý chất lượng.
+- Kế hoạch kiểm thử.
+- Nhật ký dự án.

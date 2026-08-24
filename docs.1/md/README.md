@@ -1,122 +1,93 @@
 # HỆ THỐNG QUẢN LÝ VÀ SỐ HÓA TÀI LIỆU THƯ VIỆN HCMUS
 
-## Danh mục hồ sơ dự án HCMUS-LDMS
+## Danh mục bộ tài liệu dự án HCMUS-LDMS
 
-### Thông tin bộ hồ sơ
+### Thông tin chung
 
-| Trường         | Nội dung                                                             |
-| -------------- | -------------------------------------------------------------------- |
-| Baseline       | MVP môn học 11 tuần                                                  |
-| Phạm vi        | 15 Bắt buộc, 6 Nên có, 5 Có thể xem xét                              |
-| Nhân sự        | Nhóm Sebros — 6 sinh viên                                            |
-| Trạng thái     | Đang rà soát/phê duyệt; xem trạng thái trong từng tài liệu           |
-| Nguồn nội dung | Markdown là nguồn chỉnh sửa; PDF phải được tái xuất sau mỗi thay đổi |
+| Trường thông tin | Nội dung                                                   |
+| ---------------- | ---------------------------------------------------------- |
+| Dự án            | Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS         |
+| Mục đích         | Phục vụ học tập và thực hành quản lý dự án phần mềm        |
+| Nhóm thực hiện   | Nhóm Sebros — 6 sinh viên                                  |
+| Thời gian        | 11 tuần                                                    |
+| Phương pháp      | Kanban                                                     |
+| Baseline         | 15 hạng mục Bắt buộc, tổng cộng 26 điểm                    |
+| Ngoài baseline   | 6 hạng mục Nên có và 5 hạng mục Có thể xem xét             |
+| Trạng thái       | Bộ tài liệu đang được hoàn thiện và rà soát tính nhất quán |
 
-## Mục lục
+## 1. Mục đích của bộ tài liệu
 
-- [1. Đường cơ sở dùng chung](#1-đường-cơ-sở-dùng-chung)
-- [2. Danh sách tài liệu](#2-danh-sách-tài-liệu)
-- [3. Nguồn chuẩn theo chủ đề](#3-nguồn-chuẩn-theo-chủ-đề)
-- [4. Ma trận bao phủ 21 câu hỏi](#4-ma-trận-bao-phủ-21-câu-hỏi)
-- [5. Quy tắc cập nhật và phát hành](#5-quy-tắc-cập-nhật-và-phát-hành)
+Bộ tài liệu mô tả mục tiêu, phạm vi, yêu cầu, kiến trúc, kế hoạch, cách tổ chức và phương pháp kiểm soát dự án HCMUS-LDMS. Dự án được thực hiện chủ yếu để phục vụ học tập. Nhà trường, thư viện và người dùng bên ngoài là các bên tham khảo nếu dự án được mở rộng trong tương lai.
 
----
-
-## 1. Đường cơ sở dùng chung
-
-- Phiên bản đầu tiên kéo dài 11 tuần và được quản lý theo Kanban.
-- Nhóm gồm 6 sinh viên kiêm nhiệm.
-- Backlog có 26 hạng mục: 15 Bắt buộc, 6 Nên có, 5 Có thể xem xét.
-- Dữ liệu nghiệm thu là bộ tài liệu mẫu đã xác nhận quyền sử dụng; không cam kết số hóa 500/2.000 cuốn.
-- Local dùng Docker Compose, PostgreSQL và MinIO.
-- Demo cloud có thể dùng Vercel, Render, Neon và Cloudflare R2 sau khi kiểm chứng.
-- Production/on-premise, ngân sách triển khai thật và vận hành dài hạn nằm ngoài baseline môn học.
-- Tài liệu chưa có chữ ký/ngày/bằng chứng giữ trạng thái Chờ phê duyệt hoặc Bản dự thảo.
+Mỗi tài liệu tập trung vào một mục đích riêng. Khi cần thông tin chi tiết, người đọc xem tài liệu tương ứng trong bộ tài liệu dự án.
 
 ## 2. Danh sách tài liệu
 
-|     Câu | Markdown                                                     | PDF                                              | Nội dung chính                                                    | Trạng thái nội dung                             |
-| ------: | ------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
-|       1 | [Đề xuất dự án](01-project-proposal.md)                      | [PDF](../pdf/01-project-proposal.pdf)            | Vấn đề, cơ hội, giải pháp, phạm vi và quyết định đề xuất.         | Chờ phê duyệt                                   |
-|       2 | [Viễn cảnh và phạm vi](02-vision-and-scope.md)               | [PDF](../pdf/02-vision-and-scope.pdf)            | Viễn cảnh, người dùng, As-Is/To-Be, phạm vi và NFR định hướng.    | Chờ phê duyệt                                   |
-|       3 | [Ủy nhiệm dự án](03-project-charter.md)                      | [PDF](../pdf/03-project-charter.pdf)             | Mục tiêu, quyền hạn, vai trò, RACI, mốc và ràng buộc.             | Chờ phê duyệt                                   |
-|       4 | [Yêu cầu phần mềm](04-software-requirements.md)              | [PDF](../pdf/04-software-requirements.pdf)       | Yêu cầu chức năng/phi chức năng, dữ liệu và truy vết.             | Bản dự thảo để xem xét                          |
-|       4 | [Danh mục công việc](04-product-backlog.md)                  | [PDF](../pdf/04-product-backlog.pdf)             | 26 story, ưu tiên 15/6/5, AC, phụ thuộc và DoR/DoD.               | Bản dự thảo để xem xét                          |
-|       4 | [Hướng dẫn sử dụng](04-user-guide.md)                        | [PDF](../pdf/04-user-guide.pdf)                  | Hướng dẫn theo vai trò và luồng cốt lõi.                          | Chờ đối chiếu giao diện thực tế                 |
-|       5 | [Kiến trúc phần mềm](05-software-architecture.md)            | [PDF](../pdf/05-software-architecture.pdf)       | C4, công nghệ, dữ liệu, bảo mật và profile triển khai.            | Bản dự thảo để xem xét                          |
-|       8 | [Nghiên cứu khả thi](08-feasibility-study.md)                | [PDF](../pdf/08-feasibility-study.pdf)           | Khả thi có điều kiện và rủi ro.                                   | Chờ phê duyệt                                   |
-|       9 | [Quy trình phát triển](09-software-process-definition.md)    | [PDF](../pdf/09-software-process-definition.pdf) | Kanban, WIP, DoR/DoD, Trunk-Based và đo lường.                    | Bản dự thảo để xem xét                          |
-|      10 | [Ước lượng dự án](10-project-estimate.md)                    | [PDF](../pdf/10-project-estimate.pdf)            | Bottom-up estimate, demand 190 giờ, capacity 198 giờ và forecast. | Dự thảo để hiệu chỉnh                           |
-|      11 | [Kế hoạch dự án](11-project-plan.md)                         | [PDF](../pdf/11-project-plan.pdf)                | WBS, lịch, phụ thuộc, nguồn lực, chi phí và kiểm soát.            | Đường cơ sở chờ phê duyệt                       |
-|      12 | [Bản mô tả công việc](12-statement-of-work.md)               | [PDF](../pdf/12-statement-of-work.pdf)           | Scope, deliverable, schedule, cost, acceptance và change control. | Chờ phê duyệt                                   |
-|      13 | [Tích hợp liên tục](13-continuous-integration.md)            | [PDF](../pdf/13-continuous-integration.pdf)      | GitHub Actions, backend/frontend checks và email.                 | Có cấu hình; thiếu run/email evidence           |
-|      14 | [Chuyển giao liên tục](14-continuous-delivery.md)            | [PDF](../pdf/14-continuous-delivery.pdf)         | Môi trường, triển khai, smoke, phê duyệt và rollback.             | Runbook có; chưa có workflow/evidence           |
-|      15 | [DevOps, vận hành và bảo mật](15-devops-and-operations.md)   | [PDF](../pdf/15-devops-and-operations.pdf)       | Luồng DevOps, secrets, log, backup, incident và rollback.         | Runbook dự thảo; Chưa xác minh                  |
-|      16 | [Hợp đồng nhóm](16-team-contract.md)                         | [PDF](../pdf/16-team-contract.pdf)               | Vai trò, workflow, source control, AI, giao tiếp và quyết định.   | Chờ 6/6 thành viên xác nhận                     |
-|      17 | [Nhật ký dự án](17-project-log.md)                           | [PDF](../pdf/17-project-log.pdf)                 | Effort, completion, evidence, flow metrics và decision log.       | Đang sử dụng; lịch sử cần xác minh              |
-|      18 | [Kế hoạch quản lý rủi ro](18-risk-management-plan.md)        | [PDF](../pdf/18-risk-management-plan.pdf)        | 18 rủi ro, owner, trigger, ứng phó và tồn dư.                     | Bản dự thảo; hành động đang theo dõi            |
-|      19 | [Kế hoạch quản lý chất lượng](19-quality-management-plan.md) | [PDF](../pdf/19-quality-management-plan.pdf)     | Thuộc tính, gate, review, chỉ số và ngoại lệ.                     | Bản dự thảo; gate Chưa đánh giá                 |
-|      20 | [Kế hoạch kiểm thử](20-test-plan.md)                         | [PDF](../pdf/20-test-plan.pdf)                   | Cấp test, dữ liệu, truy vết, NFR, UAT và evidence.                | Kế hoạch có; kết quả Chưa chạy                  |
-|      21 | [Sổ bài học kinh nghiệm](21-lessons-learned.md)              | [PDF](../pdf/21-lessons-learned.pdf)             | Bài học có căn cứ và giả thuyết cần kiểm chứng.                   | Đang ghi nhận; chưa đóng dự án                  |
-| Phụ lục | [Nhật ký quyết định và ADR](A1-decision-log-and-adr.md)      | [PDF](../pdf/A1-decision-log-and-adr.pdf)        | 10 quyết định kiến trúc và điều kiện kiểm chứng.                  | Đường cơ sở tài liệu; chưa đủ evidence kỹ thuật |
+| Mã  | Tên tài liệu                    | Mục đích chính                                                         |
+| --- | ------------------------------- | ---------------------------------------------------------------------- |
+| 01  | Đề xuất dự án                   | Trình bày vấn đề, giá trị, giải pháp đề xuất và phạm vi ban đầu.       |
+| 02  | Viễn cảnh và phạm vi            | Xác định định hướng sản phẩm, người dùng và ranh giới phạm vi.         |
+| 03  | Ủy nhiệm dự án                  | Xác nhận mục tiêu, quyền hạn, nguồn lực, mốc và trách nhiệm chung.     |
+| 04  | Yêu cầu phần mềm                | Quy định các yêu cầu chức năng, phi chức năng, dữ liệu và truy vết.    |
+| 04  | Danh mục công việc              | Quản lý các hạng mục, mức ưu tiên, ước lượng và tiêu chí chấp nhận.    |
+| 04  | Hướng dẫn sử dụng               | Hướng dẫn người dùng thực hiện các luồng chức năng chính.              |
+| 05  | Kiến trúc phần mềm              | Mô tả cấu trúc hệ thống, công nghệ, dữ liệu, bảo mật và triển khai.    |
+| 08  | Báo cáo nghiên cứu tính khả thi | Đánh giá tám loại khả thi và kết luận khả năng thực hiện dự án.        |
+| 09  | Định nghĩa quy trình phát triển | Quy định Kanban, cách thực hiện công việc và kiểm soát mã nguồn.       |
+| 10  | Ước lượng dự án                 | Trình bày cơ sở làm thử, điểm ước lượng và hệ số dự phòng 2,5.         |
+| 11  | Kế hoạch dự án                  | Xác định kế hoạch 11 tuần, công việc, nguồn lực và cách theo dõi.      |
+| 12  | Bản mô tả công việc             | Xác định phạm vi cam kết, sản phẩm bàn giao và điều kiện hoàn thành.   |
+| 16  | Hợp đồng nhóm                   | Thống nhất vai trò, nguyên tắc phối hợp và trách nhiệm của thành viên. |
+| 17  | Nhật ký dự án                   | Ghi nhận công việc, quyết định, cuộc họp và tình trạng thực tế.        |
+| 18  | Kế hoạch quản lý rủi ro         | Nhận diện, đánh giá, phân công và theo dõi biện pháp ứng phó rủi ro.   |
+| 19  | Kế hoạch quản lý chất lượng     | Quy định mục tiêu, cổng kiểm soát và trách nhiệm chất lượng.           |
+| 20  | Kế hoạch kiểm thử               | Xác định phạm vi, phương pháp, môi trường và trách nhiệm kiểm thử.     |
+| 21  | Báo cáo bài học kinh nghiệm     | Tổng hợp vấn đề, bài học và hành động cải thiện của nhóm.              |
+| A1  | Nhật ký quyết định kiến trúc    | Lưu các quyết định kỹ thuật quan trọng và lý do lựa chọn.              |
 
-Thứ tự 1–21 bám theo `Final-Answer.md`. Một câu có thể cần nhiều tài liệu in kèm; câu 4 gồm SRS, Backlog và Hướng dẫn sử dụng. Câu 6 và 7 không duy trì tài liệu riêng trong bộ hồ sơ hiện tại; nội dung liên quan được dẫn chiếu trong ma trận ở Mục 4. ADR là phụ lục kiến trúc nên không chiếm số câu riêng.
+Tài liệu về tích hợp liên tục, chuyển giao liên tục và DevOps sẽ được cập nhật sau khi nhóm hoàn thiện nội dung và có kết quả thực tế để kiểm chứng.
 
 ## 3. Nguồn chuẩn theo chủ đề
 
-| Chủ đề                   | Nguồn chuẩn              | Nguồn bổ trợ                               |
-| ------------------------ | ------------------------ | ------------------------------------------ |
-| Vấn đề và giá trị        | Proposal                 | Vision, Feasibility                        |
-| Scope baseline           | SOW                      | Vision, Charter, Backlog                   |
-| Yêu cầu                  | SRS                      | Backlog                                    |
-| Story, ưu tiên, AC       | Backlog                  | SRS                                        |
-| Kiến trúc/môi trường     | Architecture             | Root README và cấu hình repository         |
-| Rủi ro                   | Risk Register            | Feasibility, SOW, Operations–Security Plan |
-| Quality gates/metric     | Quality Plan             | Process, Test/UAT Plan                     |
-| Kế hoạch tích hợp        | Project Plan             | SOW, Estimate, Risk/Quality/Test Plans     |
-| CI/CD/DevOps             | CI, CD, DevOps documents | Workflow/Compose và run evidence           |
-| Quy trình/WIP/branching  | Process                  | Team Contract                              |
-| Effort/capacity/forecast | Estimate                 | Project Log                                |
-| Kiểm thử/UAT/evidence    | Test/UAT Plan            | SRS, Backlog, Quality Plan                 |
-| Quyết định kỹ thuật      | Decision Log/ADR         | Architecture, Project Log                  |
-| Vận hành/bảo mật         | Operations–Security Plan | Architecture, Risk Register                |
-| Deliverable/acceptance   | SOW                      | Backlog, Test/UAT Evidence Index           |
-| Vai trò nội bộ           | Team Contract            | Charter, SOW                               |
-| Trạng thái thực tế       | Board + Project Log      | Git/CI/test/UAT evidence                   |
+| Chủ đề                         | Tài liệu chính                  | Tài liệu bổ trợ                               |
+| ------------------------------ | ------------------------------- | --------------------------------------------- |
+| Mục tiêu và giá trị            | Đề xuất dự án                   | Viễn cảnh và phạm vi; Nghiên cứu tính khả thi |
+| Phạm vi                        | Bản mô tả công việc             | Viễn cảnh và phạm vi; Danh mục công việc      |
+| Yêu cầu                        | Yêu cầu phần mềm                | Danh mục công việc                            |
+| Hạng mục và tiêu chí chấp nhận | Danh mục công việc              | Yêu cầu phần mềm                              |
+| Kiến trúc và công nghệ         | Kiến trúc phần mềm              | Nhật ký quyết định kiến trúc                  |
+| Quy trình làm việc             | Định nghĩa quy trình phát triển | Hợp đồng nhóm                                 |
+| Ước lượng và kế hoạch          | Ước lượng dự án; Kế hoạch dự án | Nhật ký dự án                                 |
+| Vai trò và trách nhiệm         | Hợp đồng nhóm                   | Kế hoạch dự án; Bản mô tả công việc           |
+| Rủi ro                         | Kế hoạch quản lý rủi ro         | Nghiên cứu tính khả thi; Bản mô tả công việc  |
+| Chất lượng                     | Kế hoạch quản lý chất lượng     | Quy trình phát triển; Kế hoạch kiểm thử       |
+| Kiểm thử                       | Kế hoạch kiểm thử               | Yêu cầu phần mềm; Danh mục công việc          |
+| Trạng thái thực tế             | Nhật ký dự án                   | Bảng công việc và kết quả kiểm thử            |
+| Bài học                        | Báo cáo bài học kinh nghiệm     | Nhật ký dự án                                 |
 
-Khi hai nguồn mâu thuẫn, không tự chọn một nguồn. Nhóm phải ghi Change Request/decision và cập nhật đồng thời các tài liệu bị ảnh hưởng.
+Khi các tài liệu có nội dung mâu thuẫn, nhóm không tự chọn một nội dung để sử dụng. Thay đổi phải được xác nhận, ghi vào Nhật ký dự án và cập nhật đồng thời các tài liệu liên quan.
 
-## 4. Ma trận bao phủ 21 câu hỏi
+## 4. Thông tin thống nhất
 
-| Câu | Nội dung             | Nguồn/evidence hiện tại                                     | Trạng thái                                         |
-| --: | -------------------- | ----------------------------------------------------------- | -------------------------------------------------- |
-|   1 | Project Proposal     | `01-project-proposal.md`                                    | Ready for review                                   |
-|   2 | Vision & Scope       | `02-vision-and-scope.md`                                    | Ready for review                                   |
-|   3 | Project Charter      | `03-project-charter.md`                                     | Pending approval                                   |
-|   4 | Requirements/Backlog | `04-software-requirements.md`, `04-product-backlog.md`      | Draft baseline                                     |
-|   5 | Architecture         | `05-software-architecture.md`, `assets/`                    | Draft baseline                                     |
-|   6 | Proof of Concept     | `05-software-architecture.md`, source code và test evidence | Không duy trì tài liệu PoC riêng                   |
-|   7 | Prototype            | Giao diện hiện tại và evidence trong repository             | Không duy trì tài liệu Prototype riêng             |
-|   8 | Feasibility          | `08-feasibility-study.md`                                   | Conditional                                        |
-|   9 | Process              | `09-software-process-definition.md`                         | Draft baseline                                     |
-|  10 | Estimation           | `10-project-estimate.md`                                    | Forecast ban đầu; cần actuals                      |
-|  11 | Project Plan         | `11-project-plan.md` + SOW/Estimate/board                   | Đường cơ sở chờ phê duyệt và actual                |
-|  12 | SOW                  | `12-statement-of-work.md`                                   | Pending approval                                   |
-|  13 | CI                   | `13-continuous-integration.md` + `.github/workflows/ci.yml` | Cấu hình có; cần run/email evidence                |
-|  14 | CD                   | `14-continuous-delivery.md`                                 | Runbook có; chưa có workflow/deploy evidence       |
-|  15 | DevOps               | `15-devops-and-operations.md` + Docker/monitoring config    | Hồ sơ có; vận hành còn Chưa xác minh               |
-|  16 | Team management      | `16-team-contract.md`                                       | Pending member confirmation                        |
-|  17 | Monitoring/control   | `17-project-log.md`, board, Estimate                        | Historical evidence incomplete                     |
-|  18 | Risk Plan            | `18-risk-management-plan.md` + SOW + Feasibility            | Đủ cấu trúc; hành động/evidence đang theo dõi      |
-|  19 | Quality Plan         | `19-quality-management-plan.md` + Process/Team Contract     | Đủ cấu trúc; gate Chưa đánh giá                    |
-|  20 | Test Plan            | `20-test-plan.md` + SRS/Backlog AC                          | Đủ kế hoạch/truy vết; kết quả Chưa chạy            |
-|  21 | Lessons Learned      | `21-lessons-learned.md` + Project Log/ADR                   | Có bài học từ hồ sơ; chưa retrospective đóng dự án |
+- Dự án được thực hiện trong 11 tuần.
+- Nhóm gồm 6 thành viên.
+- Baseline gồm 15 hạng mục Bắt buộc, tổng cộng 26 điểm.
+- Ước lượng dựa trên kết quả làm thử ngày 16 và 17 tháng 07 năm 2026.
+- Thời gian ước lượng được nhân hệ số dự phòng rủi ro 2,5.
+- Nguyễn Tuấn Anh là Technical Lead.
+- Nguyễn Quang Thái phụ trách Backend.
+- Ân Tiến Nguyên An phụ trách DevOps và QA.
+- Mạch Quốc Tấn là Project Manager và đồng thời hỗ trợ Backend.
+- Mọi thay đổi mã nguồn phải có Pull Request và được Technical Lead xem xét trước khi hợp nhất.
+- Coding agent hỗ trợ tăng tốc công việc nhưng không thay thế việc kiểm tra của thành viên.
+- Thành viên dự kiến không hoàn thành đúng hạn phải báo cho nhóm trước ít nhất 12 giờ.
 
-## 5. Quy tắc cập nhật và phát hành
+## 5. Quy tắc cập nhật
 
-1. Sửa Markdown trước; cập nhật lịch sử phiên bản nếu thay đổi nghĩa.
-2. Chạy kiểm tra liên kết, fragment và Markdown lint với `docs.1/.markdownlint.json`; bộ hồ sơ tắt MD013/MD060 vì bảng PDF rộng nhưng vẫn kiểm tra các lỗi cấu trúc.
-3. Tái xuất PDF tương ứng với cỡ chữ cơ bản 11pt.
-4. Kiểm tra trực quan trang đầu, mục lục, bảng rộng, sơ đồ và trang chữ ký.
-5. Không ghi Approved/Active/Done khi thiếu người, ngày và evidence.
-6. Cập nhật README/ma trận bao phủ khi thêm, đổi tên hoặc bỏ tài liệu.
+1. Chỉ sửa tài liệu Markdown.
+2. Cập nhật lịch sử phiên bản khi thay đổi nội dung hoặc trách nhiệm.
+3. Dùng thống nhất thuật ngữ, số liệu, vai trò và trạng thái trong toàn bộ tài liệu.
+4. Không ghi kết quả kiểm thử, phê duyệt hoặc hoàn thành khi chưa có dữ liệu thực tế.
+5. Không đưa đường dẫn thư mục nội bộ vào nội dung dùng để in và bàn giao.
+6. Chạy `npm run format:md` sau mỗi lần tạo hoặc sửa tài liệu Markdown.
+7. Chạy kiểm tra Markdown trước khi kết thúc một đợt cập nhật.

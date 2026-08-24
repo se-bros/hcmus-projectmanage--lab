@@ -28,6 +28,8 @@
 | 5.2       | 24/08/2026 | Bổ sung tóm tắt điều hành, kết quả PoC, số liệu nguồn lực và kết quả kiểm chứng công nghệ.                | Mạch Quốc Tấn     |
 | 5.3       | 24/08/2026 | Bổ sung tác động của trợ lý lập trình AI đối với năng suất, tiến độ và yêu cầu kiểm soát chất lượng.      | Mạch Quốc Tấn     |
 | 5.4       | 24/08/2026 | Xác nhận tiến độ baseline được bảo đảm nhờ năng lực nhóm và việc sử dụng trợ lý lập trình AI.             | Mạch Quốc Tấn     |
+| 5.5       | 24/08/2026 | Đồng bộ ước lượng theo kết quả làm thử, điểm tương đối và hệ số dự phòng rủi ro 2,5.                      | Mạch Quốc Tấn     |
+| 5.6       | 24/08/2026 | Bổ sung đối chuẩn giải pháp cạnh tranh, phương án ghép công cụ và lợi thế nội dung đặc thù của HCMUS.     | Mạch Quốc Tấn     |
 
 ### Tóm tắt điều hành
 
@@ -37,8 +39,8 @@
 | Kết luận chung      | Dự án khả thi trong phạm vi 11 tuần và nhóm sáu thành viên.                                  |
 | Tám loại khả thi    | Cả tám loại đã được đánh giá và đạt mức phù hợp với phạm vi học tập.                         |
 | Kết quả PoC         | PoC-01 đạt 5/5 tiêu chí; PoC-02 đạt 8/8 tiêu chí.                                            |
-| Nhu cầu nguồn lực   | 190 giờ-người cho 15 hạng mục Bắt buộc.                                                      |
-| Năng lực sử dụng    | 198 giờ-người; còn 8 giờ-người dự phòng, tương đương mức sử dụng khoảng 96%.                 |
+| Cơ sở tiến độ       | Làm thử 18 điểm trong hai ngày; trong đó có 15 điểm thuộc baseline.                          |
+| Ước lượng còn lại   | 11 điểm; sau hệ số dự phòng 2,5 tương đương 3,68 ngày, làm tròn thành 4 ngày.                |
 | Yếu tố hỗ trợ       | Thành viên sử dụng trợ lý lập trình AI để tăng tốc viết mã, kiểm thử, tài liệu và xử lý lỗi. |
 | Rủi ro trọng yếu    | Tiến độ baseline được bảo đảm; pháp lý và vận hành phải được đánh giá lại nếu dự án mở rộng. |
 | Khuyến nghị         | Tiếp tục thực hiện baseline, không tự động bổ sung hạng mục Nên có hoặc Có thể xem xét.      |
@@ -162,6 +164,23 @@ Nhóm đã xác nhận dữ liệu PoC do nhóm tạo hoặc có quyền sử d�
 
 Các kịch bản và dữ liệu mẫu đã cho phép nhóm xác nhận hệ thống giải quyết được bài toán đặt ra trong phạm vi học tập. Nhu cầu vận hành thực tế chỉ cần đánh giá lại khi dự án được đề xuất mở rộng cho thư viện hoặc nhóm người dùng thật.
 
+#### 4.2.1. Đối thủ và giải pháp thay thế
+
+| Phương án                         | Điểm mạnh                                                           | Hạn chế so với HCMUS-LDMS                                                |
+| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Phần mềm thư viện thương mại      | Nhiều chức năng quản lý có sẵn và hỗ trợ hãng.                      | Chi phí cao; mức tùy chỉnh cho OCR, hiệu chỉnh và EPUB có thể hạn chế.   |
+| Nền tảng nguồn mở như DSpace      | Phù hợp lưu trữ và công bố tài liệu số.                             | Cần tùy chỉnh thêm cho OCR, hiệu chỉnh theo trang và tạo EPUB.           |
+| Ghép OCR, Calibre/Pandoc và Drive | Dễ bắt đầu, tận dụng công cụ sẵn có.                                | Quy trình rời rạc, chuyển tệp thủ công và khó truy vết trạng thái/quyền. |
+| HCMUS-LDMS                        | Tích hợp số hóa, hiệu chỉnh, EPUB, tìm kiếm và đọc trong một luồng. | Phải tự phát triển, kiểm thử và bảo trì.                                 |
+
+Phương án ghép công cụ phù hợp cho khối lượng nhỏ hoặc thử nghiệm nhanh. Khi số lượng tài liệu và người tham gia tăng, việc chuyển tệp giữa nhiều công cụ dễ làm lặp thông tin mô tả, khó kiểm soát phiên bản, quyền truy cập và lỗi. HCMUS-LDMS giảm các điểm bàn giao này bằng một quy trình và trạng thái thống nhất.
+
+#### 4.2.2. Lợi thế cạnh tranh bền vững (MOAT)
+
+MOAT tiềm năng không nằm ở việc sở hữu công nghệ OCR hoặc EPUB, vì các công nghệ này có thể được thay thế. Lợi thế quan trọng hơn là nguồn tài liệu nội bộ, giáo trình, luận văn và tài liệu chuyên ngành đặc thù của HCMUS mà các hệ thống bên ngoài không có cùng nội dung.
+
+Lợi thế này chỉ hình thành khi HCMUS có quyền số hóa và khai thác phù hợp đối với từng tài liệu. HCMUS-LDMS không tự tạo ra quyền sở hữu nội dung. Nếu điều kiện pháp lý được đáp ứng, kho tài liệu đặc thù kết hợp với dữ liệu đã hiệu chỉnh và chỉ mục tìm kiếm tích lũy sẽ làm hệ thống ngày càng hữu ích và khó thay thế bằng một công cụ chung.
+
 ### 4.3. `KT-03` — Khả thi về kinh tế
 
 **Kết luận: Khả thi trong phạm vi học tập.**
@@ -186,7 +205,8 @@ Báo cáo không tự đặt ngân sách hoặc thời gian hoàn vốn. Số li
 | Chỉ số kinh tế trong phạm vi học tập | Giá trị                       | Ý nghĩa                                                        |
 | ------------------------------------ | ----------------------------- | -------------------------------------------------------------- |
 | Nhân công sinh viên                  | 0 VNĐ tiền mặt                | Không đồng nghĩa công sức phát triển không có giá trị kinh tế. |
-| Công sức kế hoạch                    | 190 giờ-người                 | Bao gồm 15 hạng mục Bắt buộc sau điều chỉnh rủi ro.            |
+| Khối lượng baseline                  | 26 điểm                       | Gồm 15 hạng mục Bắt buộc theo Product Backlog.                 |
+| Phần chưa triển khai thử             | 11 điểm                       | Sau dự phòng tương đương 4 ngày làm việc của nhóm.             |
 | Dịch vụ nội bộ hoặc gói sẵn có       | 0 VNĐ nếu không phát sinh phí | Chi phí thật phải được ghi nhận khi sử dụng dịch vụ trả phí.   |
 | Thiết bị số hóa và vận hành thực tế  | Ngoài phạm vi                 | Phải được ước lượng lại nếu dự án mở rộng.                     |
 
@@ -245,18 +265,23 @@ Môi trường học tập đã có cơ sở cài đặt, tài khoản mẫu, d�
 
 **Kết luận: Khả thi và tiến độ baseline được bảo đảm trong 11 tuần.**
 
-| Chỉ số tiến độ                   | Giá trị       |
-| -------------------------------- | ------------- |
-| Năng lực tổng trong 11 tuần      | 264 giờ-người |
-| Hệ số tập trung kế hoạch         | 75%           |
-| Năng lực sử dụng                 | 198 giờ-người |
-| Nhu cầu của 15 hạng mục Bắt buộc | 190 giờ-người |
-| Dự phòng còn lại                 | 8 giờ-người   |
-| Mức sử dụng năng lực             | Khoảng 96%    |
+| Chỉ số tiến độ                         | Giá trị                                 |
+| -------------------------------------- | --------------------------------------- |
+| Quy mô baseline                        | 15 hạng mục Bắt buộc, tổng cộng 26 điểm |
+| Thời gian làm thử                      | Ngày 16 và 17 tháng 07 năm 2026         |
+| Kết quả làm thử chung                  | 11 hạng mục, tương ứng 18 điểm          |
+| Kết quả làm thử thuộc baseline         | 9 hạng mục, tương ứng 15 điểm           |
+| Phần baseline chưa được triển khai thử | 6 hạng mục, tương ứng 11 điểm           |
+| Tốc độ tham khảo của baseline          | 7,5 điểm/ngày                           |
+| Thời gian theo tốc độ làm thử          | 1,47 ngày                               |
+| Hệ số dự phòng rủi ro                  | 2,5                                     |
+| Thời gian sau dự phòng                 | 3,68 ngày; làm tròn thành 4 ngày        |
 
-Nhu cầu kế hoạch 190 giờ-người thấp hơn năng lực sử dụng 198 giờ-người nên baseline đã nằm trong khả năng thực hiện của nhóm. Các thành viên còn sử dụng trợ lý lập trình AI để hỗ trợ viết mã, tạo kiểm thử, rà soát, cập nhật tài liệu và gỡ lỗi; nhờ đó, nhóm hoàn thành thao tác kỹ thuật nhanh hơn và dành thêm thời gian cho tích hợp cùng kiểm tra chất lượng.
+Kết quả làm thử cho thấy nhóm có thể tạo kết quả cho 15 điểm Bắt buộc trong hai ngày với sự hỗ trợ của coding agent. Sáu hạng mục Bắt buộc chưa được triển khai thử có tổng cộng 11 điểm. Theo tốc độ 7,5 điểm/ngày, phần này cần 1,47 ngày; sau khi nhân hệ số dự phòng rủi ro 2,5, thời gian kế hoạch là 3,68 ngày và được làm tròn thành 4 ngày làm việc tương đương của nhóm.
 
-Năng lực 198 giờ-người là mức tính bảo thủ và chưa cộng phần tăng năng suất từ trợ lý lập trình AI. Kết quả làm việc thực tế cho thấy công cụ này giúp nhóm duy trì tốc độ cần thiết mà không bỏ qua xem xét hoặc kiểm thử. Vì vậy, dù dự phòng theo cách tính truyền thống là 8 giờ-người, tiến độ của 15 hạng mục Bắt buộc vẫn được nhóm xác nhận là được bảo đảm trong 11 tuần.
+Hệ số 2,5 dự phòng cho việc hoàn thiện tiêu chí chấp nhận, tạo và chỉnh sửa Pull Request, Technical Lead xem xét, kiểm thử, tích hợp, sửa lỗi, cập nhật tài liệu và công việc bị chặn. Kết quả làm thử chưa mặc định là hạng mục đã đạt DoD; toàn bộ 15 hạng mục vẫn phải được kiểm tra và xác nhận theo quy trình.
+
+Khung 11 tuần đủ để nhóm hoàn thiện mã nguồn, chất lượng, tài liệu và hoạt động quản lý trong điều kiện lịch học của sáu thành viên. Coding agent tiếp tục hỗ trợ tăng tốc nhưng không thay thế việc xem xét hoặc kiểm thử. Vì vậy, tiến độ baseline được xác nhận là được bảo đảm.
 
 | Giai đoạn                        | Thời gian  | Kết quả chính                                                    |
 | -------------------------------- | ---------- | ---------------------------------------------------------------- |
@@ -285,16 +310,16 @@ Các điều kiện bảo vệ tiến độ:
 
 ### 4.9. Tổng hợp kết quả
 
-| Mã      | Loại khả thi          | Kết luận              | Cơ sở đã xác nhận                                                |
-| ------- | --------------------- | --------------------- | ---------------------------------------------------------------- |
-| `KT-01` | Pháp lý               | Khả thi               | Dữ liệu PoC có nguồn gốc và quyền sử dụng rõ ràng.               |
-| `KT-02` | Nhu cầu và thị trường | Khả thi               | Bài toán và giá trị học tập đã được xác nhận.                    |
-| `KT-03` | Kinh tế               | Khả thi               | Công cụ hiện có và phạm vi baseline phù hợp nguồn lực.           |
-| `KT-04` | Kỹ thuật              | Khả thi               | PoC-01 và PoC-02 đã thực hiện, đạt yêu cầu.                      |
-| `KT-05` | Nguồn lực và tổ chức  | Khả thi               | Nhóm sáu thành viên đã phân công và phối hợp.                    |
-| `KT-06` | Vận hành              | Khả thi trong học tập | Luồng sử dụng, xử lý lỗi và hướng dẫn đã được xác nhận.          |
-| `KT-07` | Tiến độ               | Khả thi, được bảo đảm | Nhu cầu thấp hơn năng lực; trợ lý lập trình AI hỗ trợ năng suất. |
-| `KT-08` | Văn hóa và tiếp nhận  | Khả thi trong học tập | Thuật ngữ, giao diện và cách sử dụng phù hợp đối tượng.          |
+| Mã      | Loại khả thi          | Kết luận              | Cơ sở đã xác nhận                                                   |
+| ------- | --------------------- | --------------------- | ------------------------------------------------------------------- |
+| `KT-01` | Pháp lý               | Khả thi               | Dữ liệu PoC có nguồn gốc và quyền sử dụng rõ ràng.                  |
+| `KT-02` | Nhu cầu và thị trường | Khả thi               | Có nhu cầu học tập, giá trị tích hợp và lợi thế nội dung tiềm năng. |
+| `KT-03` | Kinh tế               | Khả thi               | Công cụ hiện có và phạm vi baseline phù hợp nguồn lực.              |
+| `KT-04` | Kỹ thuật              | Khả thi               | PoC-01 và PoC-02 đã thực hiện, đạt yêu cầu.                         |
+| `KT-05` | Nguồn lực và tổ chức  | Khả thi               | Nhóm sáu thành viên đã phân công và phối hợp.                       |
+| `KT-06` | Vận hành              | Khả thi trong học tập | Luồng sử dụng, xử lý lỗi và hướng dẫn đã được xác nhận.             |
+| `KT-07` | Tiến độ               | Khả thi, được bảo đảm | Nhu cầu thấp hơn năng lực; trợ lý lập trình AI hỗ trợ năng suất.    |
+| `KT-08` | Văn hóa và tiếp nhận  | Khả thi trong học tập | Thuật ngữ, giao diện và cách sử dụng phù hợp đối tượng.             |
 
 ## 5. Kiểm chứng ý tưởng kỹ thuật
 
@@ -457,7 +482,7 @@ Chi tiết chủ sở hữu, chỉ báo, phương án ứng phó và trạng th�
 
 ### 7.1. Kết luận chung
 
-HCMUS-LDMS **khả thi** trong phạm vi dự án học tập 11 tuần. Cả tám loại khả thi đã được xem xét và đều đạt mức phù hợp với phạm vi đã xác nhận. PoC-01 và PoC-02 đã hoàn tất, đạt yêu cầu và cung cấp cơ sở kỹ thuật để tiếp tục thực hiện baseline. Nhu cầu 190 giờ-người thấp hơn năng lực sử dụng 198 giờ-người. Việc các thành viên sử dụng trợ lý lập trình AI tiếp tục tăng tốc phát triển, kiểm thử, tài liệu và xử lý lỗi; do đó, tiến độ của 15 hạng mục Bắt buộc được xác nhận là được bảo đảm trong 11 tuần.
+HCMUS-LDMS **khả thi** trong phạm vi dự án học tập 11 tuần. Cả tám loại khả thi đã được xem xét và đều đạt mức phù hợp với phạm vi đã xác nhận. PoC-01 và PoC-02 đã hoàn tất, đạt yêu cầu và cung cấp cơ sở kỹ thuật để tiếp tục thực hiện baseline. Giai đoạn làm thử đã triển khai 15 trong tổng số 26 điểm Bắt buộc. Phần còn lại có 11 điểm, tương đương 3,68 ngày sau khi áp dụng hệ số dự phòng 2,5 và được làm tròn thành 4 ngày làm việc của nhóm. Coding agent tiếp tục hỗ trợ tăng tốc phát triển, kiểm thử, tài liệu và xử lý lỗi; do đó, tiến độ của 15 hạng mục Bắt buộc được xác nhận là được bảo đảm trong 11 tuần.
 
 Kết luận này không xác nhận hệ thống sẵn sàng vận hành chính thức cho thư viện hoặc có thể phục vụ ở quy mô toàn trường.
 

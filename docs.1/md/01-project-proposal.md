@@ -4,16 +4,16 @@
 
 ### Kiểm soát tài liệu
 
-| Trường thông tin        | Nội dung                                              |
-| :---------------------- | :---------------------------------------------------- |
-| **Mã tài liệu**         | `HCMUS-LDMS-PRP`                                      |
-| **Tên tài liệu**        | Đề xuất dự án                                         |
-| **Tên dự án**           | HCMUS-LDMS                                            |
-| **Đơn vị soạn thảo**    | Sebros - Nhóm sinh viên đề xuất dự án                 |
-| **Người xem xét**       | Trưởng Phòng Công nghệ Thông tin và Giám đốc Thư viện |
-| **Người phê duyệt**     | Ban Giám hiệu Trường Đại học Khoa học Tự nhiên        |
-| **Cấp độ bảo mật**      | Nội bộ                                                |
-| **Trạng thái tài liệu** | Chờ phê duyệt                                         |
+| Trường thông tin        | Nội dung                              |
+| :---------------------- | :------------------------------------ |
+| **Mã tài liệu**         | `HCMUS-LDMS-PRP`                      |
+| **Tên tài liệu**        | Đề xuất dự án                         |
+| **Tên dự án**           | HCMUS-LDMS                            |
+| **Đơn vị soạn thảo**    | Sebros - Nhóm sinh viên đề xuất dự án |
+| **Người xem xét**       | Toàn bộ 6 thành viên nhóm Sebros      |
+| **Người phê duyệt**     | Nhóm Sebros                           |
+| **Cấp độ bảo mật**      | Nội bộ                                |
+| **Trạng thái tài liệu** | Baseline nội bộ đã được nhóm xác nhận |
 
 ### Lịch sử phiên bản
 
@@ -23,6 +23,7 @@
 |    2.0    |   14/07/2026   | Chuẩn hóa cấu trúc và chuyển các nội dung phân định trách nhiệm sang tài liệu phù hợp.                                                                                                                                                                                   | Mạch Quốc Tấn   |
 |    3.0    |   23/07/2026   | Cập nhật đối chuẩn, định hướng công nghệ và Việt hóa nội dung.                                                                                                                                                                                                           | Mạch Quốc Tấn   |
 |    4.0    |   21/08/2026   | Rút gọn về đúng phạm vi đề xuất dự án, bổ sung lộ trình 11 tuần, liên kết tới tài liệu chi tiết, rà soát cách diễn đạt, thay thuật ngữ chưa tự nhiên bằng cách viết tiếng Việt rõ ràng hơn và thống nhất cách gọi tài liệu Ủy nhiệm dự án trong các nội dung tham chiếu. | Mạch Quốc Tấn   |
+|    5.0    |   24/08/2026   | Đồng bộ mục đích học tập, xác nhận nội bộ, baseline 15/6/5, cách gọi hoạt động chạy thử và tài liệu tham chiếu dùng cho bản in.                                                                                                                                          | Mạch Quốc Tấn   |
 
 ## Mục lục
 
@@ -32,11 +33,11 @@
 - [4. Mục tiêu và tiêu chí thành công](#4-mục-tiêu-và-tiêu-chí-thành-công)
 - [5. Phạm vi dự án](#5-phạm-vi-dự-án)
 - [6. Tính khả thi và giá trị dự kiến](#6-tính-khả-thi-và-giá-trị-dự-kiến)
-- [7. Các bên liên quan chính](#7-các-bên-liên-quan-chính)
+- [7. Các bên tham khảo khi dự án mở rộng](#7-các-bên-tham-khảo-khi-dự-án-mở-rộng)
 - [8. Lộ trình tổng quát trong 11 tuần](#8-lộ-trình-tổng-quát-trong-11-tuần)
 - [9. Rủi ro chính và điều kiện giả định](#9-rủi-ro-chính-và-điều-kiện-giả-định)
 - [10. Sử dụng và cập nhật đề xuất](#10-sử-dụng-và-cập-nhật-đề-xuất)
-- [11. Quyết định cần phê duyệt](#11-quyết-định-cần-phê-duyệt)
+- [11. Quyết định của nhóm](#11-quyết-định-của-nhóm)
 - [12. Tài liệu tham chiếu](#12-tài-liệu-tham-chiếu)
 
 ---
@@ -45,7 +46,7 @@
 
 HCMUS-LDMS là hệ thống trực tuyến hỗ trợ thư viện số hóa tài liệu giấy, xử lý nhận dạng ký tự, biên tập nội dung, đóng gói EPUB và cho phép người dùng nội bộ tìm kiếm, đọc tài liệu.
 
-Đề xuất này xin phê duyệt chủ trương xây dựng phiên bản đầu tiên tập trung vào các chức năng cốt lõi trong **11 tuần**. Phiên bản này hỗ trợ toàn bộ quy trình: tiếp nhận tài liệu → nhận dạng ký tự → hiệu chỉnh → xuất bản → tìm kiếm → đọc trực tuyến có kiểm soát quyền truy cập.
+Đề xuất này ghi nhận chủ trương nội bộ của nhóm về việc xây dựng phiên bản đầu tiên trong **11 tuần** để phục vụ học tập. Baseline gồm 15 hạng mục Bắt buộc; 6 hạng mục Nên có và 5 hạng mục Có thể xem xét được quản lý ngoài baseline. Phiên bản này hỗ trợ toàn bộ quy trình: tiếp nhận tài liệu → nhận dạng ký tự → hiệu chỉnh → xuất bản → tìm kiếm → đọc trực tuyến có kiểm soát quyền truy cập.
 
 Các chi tiết về yêu cầu, chức năng người dùng, kiến trúc, chi phí và kế hoạch thực hiện không lặp lại trong đề xuất này; xem các tài liệu được dẫn tại [Mục 12](#12-tài-liệu-tham-chiếu).
 
@@ -71,7 +72,7 @@ Nhóm đã xem xét các phương án thay thế cụ thể:
 - **Hệ thống lưu trữ mã nguồn mở:** DSpace.
 - **Phương án ghép công cụ:** Abbyy FineReader, Google Drive và Calibre.
 
-HCMUS-LDMS được đề xuất vì tích hợp nhận dạng ký tự, hiệu chỉnh, xuất bản EPUB, tìm kiếm toàn văn và kiểm soát quyền truy cập trong một quy trình; đồng thời phù hợp hơn với quy trình nội bộ và cho phép nhóm chủ động điều chỉnh hệ thống. Việc so sánh chi tiết được trình bày trong [Nghiên cứu khả thi](08-feasibility-study.md).
+HCMUS-LDMS được đề xuất vì tích hợp nhận dạng ký tự, hiệu chỉnh, xuất bản EPUB, tìm kiếm toàn văn và kiểm soát quyền truy cập trong một quy trình; đồng thời phù hợp hơn với quy trình nội bộ và cho phép nhóm chủ động điều chỉnh hệ thống. Việc so sánh chi tiết được trình bày trong tài liệu **Báo cáo nghiên cứu tính khả thi**.
 
 ## 3. Giải pháp đề xuất
 
@@ -80,13 +81,13 @@ Hệ thống được đề xuất gồm hai nhóm chức năng chính:
 - **Nghiệp vụ số hóa:** cán bộ hoặc cộng tác viên tải ảnh quét, thực hiện nhận dạng ký tự, đối chiếu ảnh gốc với văn bản nhận dạng, chỉnh sửa và gửi tài liệu qua bước duyệt xuất bản.
 - **Tra cứu và đọc tài liệu:** người dùng nội bộ đăng nhập, tìm kiếm theo thông tin tài liệu hoặc nội dung toàn văn, sau đó đọc sách trên trình duyệt với giao diện tương thích nhiều kích thước màn hình.
 
-Định hướng kỹ thuật ở mức đề xuất là React cho giao diện, FastAPI cho máy chủ, PostgreSQL cho tìm kiếm toàn văn và kho đối tượng tương thích S3. Môi trường local dùng Docker Compose, PostgreSQL và MinIO; môi trường demo cloud có thể dùng Vercel, Render, Neon và Cloudflare R2 sau khi kiểm chứng. Đây là định hướng, không phải đặc tả kiến trúc chi tiết; xem [Kiến trúc](05-software-architecture.md).
+Định hướng kỹ thuật ở mức đề xuất là React cho giao diện, FastAPI cho máy chủ, PostgreSQL cho tìm kiếm toàn văn và kho đối tượng tương thích S3. Môi trường cục bộ dùng Docker Compose, PostgreSQL và MinIO; môi trường chạy thử trên đám mây có thể dùng Vercel, Render, Neon và Cloudflare R2 sau khi kiểm chứng. Chi tiết được trình bày trong tài liệu **Kiến trúc phần mềm**.
 
 ## 4. Mục tiêu và tiêu chí thành công
 
 ### Mục tiêu
 
-- Xây dựng và trình diễn phiên bản đầu tiên của hệ thống số hóa tài liệu trong 11 tuần.
+- Xây dựng và chạy thử phiên bản đầu tiên của hệ thống số hóa tài liệu trong 11 tuần.
 - Cho phép người dùng nội bộ tìm kiếm và đọc tài liệu số trên nền tảng trực tuyến.
 - Có bước biên tập và phê duyệt trước khi tài liệu được phát hành.
 - Giảm rủi ro phát tán tệp gốc bằng xác thực, phân quyền và cơ chế cấp quyền truy cập có thời hạn.
@@ -96,9 +97,9 @@ Hệ thống được đề xuất gồm hai nhóm chức năng chính:
 - Luồng quét/nhận dạng ký tự/biên tập/xuất bản hoạt động được trên bộ tài liệu thử nghiệm.
 - Tài liệu đã xuất bản có thể được tìm kiếm toàn văn và mở bằng trình đọc trực tuyến.
 - Các vai trò chính và quyền truy cập được kiểm tra trước nghiệm thu.
-- Phiên bản đầu tiên được kiểm thử, trình diễn và bàn giao theo kế hoạch 11 tuần.
+- Phiên bản đầu tiên được kiểm thử, đánh giá nội bộ và hoàn thiện theo kế hoạch 11 tuần.
 
-Điều kiện chấp nhận và tiêu chí hoàn thành chi tiết xem [Danh mục công việc](04-product-backlog.md); các chỉ số nghiệm thu chi tiết xem [Bản mô tả công việc](12-statement-of-work.md).
+Điều kiện chấp nhận và tiêu chí hoàn thành được trình bày trong tài liệu **Danh mục công việc**; các điều kiện hoàn thành sản phẩm được trình bày trong tài liệu **Bản mô tả công việc**.
 
 ## 5. Phạm vi dự án
 
@@ -120,7 +121,7 @@ Hệ thống được đề xuất gồm hai nhóm chức năng chính:
 - Số hóa toàn bộ kho tài liệu của thư viện trong phiên bản đầu tiên.
 - Các tích hợp ngoài danh sách được chấp thuận trong danh mục công việc.
 
-Phân rã phạm vi, các giả định và các yêu cầu cụ thể xem [Tầm nhìn và phạm vi](02-vision-and-scope.md).
+Phân rã phạm vi, các giả định và yêu cầu cụ thể được trình bày trong tài liệu **Viễn cảnh và phạm vi**.
 
 ## 6. Tính khả thi và giá trị dự kiến
 
@@ -131,7 +132,7 @@ Phân rã phạm vi, các giả định và các yêu cầu cụ thể xem [Tầ
 - **Pháp lý:** quyền số hóa và quyền đọc tài liệu cần được Phòng Pháp chế xác nhận trước khi đưa tài liệu thật vào hệ thống.
 - **Thời gian:** phạm vi phiên bản đầu tiên được giới hạn vào các chức năng cốt lõi và triển khai theo từng mốc trong 11 tuần.
 
-Báo cáo đánh giá đầy đủ theo các khía cạnh kỹ thuật, vận hành, pháp lý, nguồn lực và tài chính xem [Nghiên cứu khả thi](08-feasibility-study.md).
+Báo cáo đánh giá đầy đủ theo các khía cạnh kỹ thuật, vận hành, pháp lý, nguồn lực và tài chính được trình bày trong tài liệu **Báo cáo nghiên cứu tính khả thi**.
 
 ### Giá trị dự kiến
 
@@ -141,19 +142,19 @@ Báo cáo đánh giá đầy đủ theo các khía cạnh kỹ thuật, vận h�
 - Tăng quyền tự chủ công nghệ của nhà trường thông qua hệ thống có tài liệu và mã nguồn do nhóm quản lý.
 - Nếu phiên bản đầu tiên vận hành hiệu quả và được nhà trường chấp thuận, mô hình có thể được giới thiệu cho các trường đại học lân cận trong khối Đại học Quốc gia Thành phố Hồ Chí Minh, qua đó phục vụ thêm nhiều thư viện và sinh viên.
 
-Phân tích chi phí, nguồn lực và cách ước lượng xem [Chi phí, thời gian và nguồn lực](10-project-estimate.md); không đưa lại các bảng chi phí chi tiết trong đề xuất để tránh trùng lặp.
+Phân tích nguồn lực và phương pháp ước lượng được trình bày trong tài liệu **Ước lượng dự án**; nội dung chi tiết không lặp lại trong đề xuất này.
 
-## 7. Các bên liên quan chính
+## 7. Các bên tham khảo khi dự án mở rộng
 
-| Bên liên quan                          | Mối quan tâm hoặc trách nhiệm chính                                          |
-| :------------------------------------- | :--------------------------------------------------------------------------- |
-| Ban Giám hiệu                          | Phê duyệt chủ trương và định hướng đầu tư.                                   |
-| Ban Giám đốc Thư viện và thủ thư       | Xác nhận quy trình nghiệp vụ, tài liệu nguồn và nghiệm thu khả năng sử dụng. |
-| Phòng Công nghệ Thông tin              | Phát triển, tích hợp, triển khai và hỗ trợ kỹ thuật.                         |
-| Bộ phận Pháp chế                       | Rà soát quyền số hóa, quyền sử dụng và chính sách truy cập.                  |
-| Sinh viên, giảng viên, nghiên cứu viên | Sử dụng hệ thống và cung cấp phản hồi nghiệm thu.                            |
+| Bên tham khảo                          | Nội dung có thể tham vấn khi dự án mở rộng                      |
+| :------------------------------------- | :-------------------------------------------------------------- |
+| Ban Giám hiệu                          | Chủ trương và định hướng đầu tư.                                |
+| Ban Giám đốc Thư viện và thủ thư       | Quy trình nghiệp vụ, tài liệu nguồn và khả năng sử dụng.        |
+| Phòng Công nghệ Thông tin              | Hạ tầng, tích hợp, triển khai và hỗ trợ kỹ thuật.               |
+| Bộ phận Pháp chế                       | Quyền số hóa, quyền sử dụng và chính sách truy cập.             |
+| Sinh viên, giảng viên, nghiên cứu viên | Nhu cầu tìm kiếm, đọc tài liệu và phản hồi về khả năng sử dụng. |
 
-Ma trận phân công trách nhiệm, cấu trúc phân rã công việc và cơ chế phối hợp chi tiết xem [Ủy nhiệm dự án](03-project-charter.md) và [Bản mô tả công việc](12-statement-of-work.md).
+Các bên trên không tham gia phê duyệt baseline hiện tại. Phân công nội bộ và cơ chế phối hợp được trình bày trong tài liệu **Ủy nhiệm dự án**, **Hợp đồng nhóm** và **Bản mô tả công việc**.
 
 ## 8. Lộ trình tổng quát trong 11 tuần
 
@@ -168,7 +169,7 @@ Lộ trình dưới đây là kế hoạch tổng quát cho phiên bản đầu 
 | Kiểm thử và nghiệm thu người dùng          |  10  | Kiểm thử chức năng, tích hợp, an toàn ở mức phù hợp và nghiệm thu với đại diện nghiệp vụ.                                                |
 | Triển khai và đóng dự án                   |  11  | Sửa lỗi nghiệm thu, triển khai phiên bản đầu tiên, hướng dẫn sử dụng, bàn giao và tổng kết.                                              |
 
-Chi tiết thứ tự ưu tiên, trạng thái và điều kiện hoàn thành của từng hạng mục xem [Danh mục công việc](04-product-backlog.md); nhật ký thực hiện xem [Nhật ký dự án](17-project-log.md). Phân bổ công sức, nguồn lực và ngân sách xem [Chi phí, thời gian và nguồn lực](10-project-estimate.md).
+Chi tiết thứ tự ưu tiên và điều kiện hoàn thành được trình bày trong **Danh mục công việc**; tình trạng thực tế được ghi trong **Nhật ký dự án**; phương pháp ước lượng được trình bày trong **Ước lượng dự án**.
 
 ## 9. Rủi ro chính và điều kiện giả định
 
@@ -188,25 +189,25 @@ Danh mục rủi ro, biện pháp ứng phó và cơ chế theo dõi chi tiết 
 
 Đề xuất được xem xét lại khi có thay đổi đáng kể về vấn đề, người dùng, phương án giải pháp, phạm vi, thời gian hoặc điều kiện pháp lý. Mọi thay đổi phải được ghi vào lịch sử phiên bản và đồng bộ với các tài liệu liên quan. Các phiên bản trước đã thể hiện việc nhóm chuẩn hóa nội dung, cập nhật công nghệ, bổ sung đối chuẩn và rút gọn tài liệu.
 
-Việc đánh giá đề xuất tập trung vào năm điểm: vấn đề có cơ sở hay không, giải pháp có phù hợp với nhu cầu hay không, giá trị có hợp lý hay không, phạm vi và lộ trình 11 tuần có khả thi hay không, và rủi ro/điều kiện phê duyệt đã rõ hay chưa.
+Việc đánh giá đề xuất tập trung vào năm điểm: vấn đề có cơ sở hay không, giải pháp có phù hợp với nhu cầu hay không, giá trị có hợp lý hay không, phạm vi và lộ trình 11 tuần có khả thi hay không, và rủi ro cùng điều kiện xác nhận đã rõ hay chưa.
 
-## 11. Quyết định cần phê duyệt
+## 11. Quyết định của nhóm
 
-Đề nghị Ban Giám hiệu và các đơn vị liên quan:
+Nhóm Sebros đã thống nhất:
 
-1. Phê duyệt chủ trương xây dựng phiên bản đầu tiên của HCMUS-LDMS trong 11 tuần.
-2. Chỉ định đại diện Thư viện, Phòng Công nghệ Thông tin và Pháp chế tham gia xác nhận yêu cầu, quyền tài liệu và nghiệm thu.
-3. Cho phép sử dụng bộ tài liệu mẫu đã được chấp thuận để kiểm chứng nhận dạng ký tự, xuất bản và đọc trực tuyến.
-4. Phê duyệt việc lập kế hoạch chi tiết về phạm vi, chi phí, nguồn lực và tiến độ sau khi đề xuất được thông qua.
+1. Thực hiện phiên bản đầu tiên của HCMUS-LDMS trong 11 tuần để phục vụ học tập.
+2. Sử dụng baseline gồm 15 hạng mục Bắt buộc, tổng cộng 26 điểm.
+3. Chỉ sử dụng tài liệu mẫu có nguồn và quyền sử dụng phù hợp.
+4. Tham khảo ý kiến của các bên liên quan bên ngoài nếu dự án có điều kiện mở rộng.
 
 ## 12. Tài liệu tham chiếu
 
 - Tài liệu này là nguồn mô tả ý tưởng, vấn đề và bối cảnh đề xuất của dự án.
-- [Nghiên cứu khả thi](08-feasibility-study.md): phân tích tính khả thi và chi phí-lợi ích chi tiết.
-- [Ủy nhiệm dự án](03-project-charter.md): mục tiêu, quyền hạn, vai trò và các ràng buộc của dự án.
-- [Viễn cảnh và phạm vi](02-vision-and-scope.md): phạm vi, yêu cầu tổng quát và các nội dung loại trừ.
-- [Kiến trúc](05-software-architecture.md): kiến trúc, công nghệ và các quyết định kỹ thuật.
-- [Danh mục công việc](04-product-backlog.md): chức năng người dùng, điều kiện chấp nhận, mức độ ưu tiên và tiêu chí hoàn thành.
-- [Chi phí, thời gian và nguồn lực](10-project-estimate.md): ước lượng chi phí, công sức, nguồn lực và kế hoạch thời gian chi tiết.
-- [Bản mô tả công việc](12-statement-of-work.md): sản phẩm bàn giao, chỉ số đánh giá và điều kiện nghiệm thu.
-- [Nhật ký dự án](17-project-log.md): nhật ký thực hiện và theo dõi các hạng mục đã hoàn thành.
+- Báo cáo nghiên cứu tính khả thi: phân tích tám loại khả thi và kết luận dự án.
+- Ủy nhiệm dự án: mục tiêu, quyền hạn, vai trò và ràng buộc.
+- Viễn cảnh và phạm vi: phạm vi, yêu cầu tổng quát và nội dung loại trừ.
+- Kiến trúc phần mềm: cấu trúc, công nghệ và quyết định kỹ thuật.
+- Danh mục công việc: hạng mục, mức ưu tiên, ước lượng và tiêu chí chấp nhận.
+- Ước lượng dự án: cơ sở làm thử, điểm và hệ số dự phòng.
+- Bản mô tả công việc: sản phẩm bàn giao và điều kiện hoàn thành.
+- Nhật ký dự án: tình trạng thực hiện, quyết định và cuộc họp.

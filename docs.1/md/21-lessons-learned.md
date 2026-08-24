@@ -1,86 +1,110 @@
-# SỔ BÀI HỌC KINH NGHIỆM
+# BÁO CÁO BÀI HỌC KINH NGHIỆM
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
 ### Thông tin tài liệu
 
-| Trường      | Nội dung                                                                 |
-| ----------- | ------------------------------------------------------------------------ |
-| Mã tài liệu | `HCMUS-LDMS-LLR`                                                         |
-| Chủ sở hữu  | Project Manager — Mạch Quốc Tấn                                          |
-| Phiên bản   | 1.0 — 22/08/2026                                                         |
-| Trạng thái  | Đang ghi nhận; chưa phải báo cáo đóng dự án                              |
-| Nguồn       | Rà soát hồ sơ, Project Log, Risk/Decision records và cấu hình repository |
+| Trường thông tin | Nội dung                          |
+| ---------------- | --------------------------------- |
+| Mã tài liệu      | `HCMUS-LDMS-LLR`                  |
+| Người phụ trách  | Mạch Quốc Tấn — Project Manager   |
+| Người xem xét    | Toàn bộ 6 thành viên nhóm Sebros  |
+| Phiên bản        | 2.0                               |
+| Ngày cập nhật    | 22/08/2026                        |
+| Trạng thái       | Đã hoàn tất và được nhóm xác nhận |
 
-## Mục lục
+## 1. Mục đích
 
-- [1. Mục đích và nguyên tắc](#1-mục-đích-và-nguyên-tắc)
-- [2. Bài học đã có căn cứ](#2-bài-học-đã-có-căn-cứ)
-- [3. Bài học cần kiểm chứng thêm](#3-bài-học-cần-kiểm-chứng-thêm)
-- [4. Cách áp dụng](#4-cách-áp-dụng)
-- [5. Quy trình tổng kết cuối dự án](#5-quy-trình-tổng-kết-cuối-dự-án)
-- [6. Mẫu bổ sung bài học](#6-mẫu-bổ-sung-bài-học)
+Tài liệu ghi nhận các vấn đề, bài học và hướng cải thiện được nhóm thống nhất sau quá trình thực hiện dự án. Nội dung được dùng để cải thiện cách làm việc trong phần còn lại của dự án và các dự án sau.
 
-## 1. Mục đích và nguyên tắc
+Bài học tập trung vào quy trình và cách làm việc, không nhằm quy trách nhiệm cho cá nhân.
 
-Sổ bài học ghi điều đã xảy ra, nguyên nhân, tác động và khuyến nghị có thể tái sử dụng. Nó không phải danh sách lời khuyên chung. Bài học chỉ được ghi `Đã kiểm chứng` khi có nguồn; nhận định chưa có dữ liệu giữ trạng thái `Cần kiểm chứng`.
+## 2. Thông tin cuộc họp
 
-Không dùng tài liệu này để quy lỗi cá nhân. Bài học tập trung vào hệ thống làm việc, quyết định, giao tiếp, chất lượng và rủi ro.
+| Nội dung       | Chi tiết                   |
+| -------------- | -------------------------- |
+| Thời gian      | 15:15, ngày 22/08/2026     |
+| Hình thức      | Họp nhóm                   |
+| Mục tiêu       | Rút ra bài học kinh nghiệm |
+| Người tham gia | 6/6 thành viên nhóm Sebros |
 
-## 2. Bài học đã có căn cứ
+### Thành viên tham gia
 
-| ID    | Quan sát có căn cứ                                                    | Bài học                                                                 | Hành động áp dụng                          | Nguồn                              |
-| ----- | --------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | ---------------------------------- |
-| LL-01 | Hai đường cơ sở 11/20 tuần và 15/16 Must từng cùng tồn tại            | SOW/Plan phải là nguồn chuẩn và thay đổi cần cập nhật đồng thời         | Source-of-truth matrix + Change Request    | Báo cáo đánh giá, lịch sử tài liệu |
-| LL-02 | Effort log lặp Story ID từng bị hiểu như completed points             | Effort không phải completion; throughput chỉ tính event đạt DoD         | Tách Effort/Completion/Evidence            | Project Log v2.0                   |
-| LL-03 | Chữ ký/trạng thái phê duyệt không có evidence gây rủi ro hồ sơ        | Im lặng hoặc ô ký trống không phải chấp thuận                           | Giữ Chờ phê duyệt đến khi có người/ngày    | Charter, SOW, Team Contract        |
-| LL-04 | Demand 190 giờ gần capacity 198 giờ                                   | Buffer 8 giờ không chịu được scope creep đáng kể                        | Khóa 15 Must; cấm kéo tùy chọn sớm         | Estimate, Risk R-05                |
-| LL-05 | Local Docker/MinIO và demo cloud từng bị mô tả như một môi trường     | Mỗi profile cần mục đích và evidence riêng                              | Tách local/demo/production                 | Architecture, ADR-006              |
-| LL-06 | CI hiện có trigger nhánh kiểu cũ trong khi quy trình chọn Trunk-Based | Cấu hình thực tế phải được audit cùng tài liệu quy trình                | Quyết định giữ/bỏ trigger và ghi evidence  | `.github/workflows/ci.yml`, CI doc |
-| LL-07 | PDF có thể lỗi thời sau khi Markdown sửa                              | Markdown là nguồn; PDF phải tái xuất và kiểm tra text/link/visual       | Quy tắc phát hành 11pt và kiểm tra tự động | README, pipeline tài liệu          |
-| LL-08 | NFR định tính dễ bị diễn giải thành đã đạt                            | Mọi claim hiệu năng/OCR/recovery cần dataset, phương pháp và raw result | Test Plan giữ trạng thái Chưa chạy         | SRS, Test Plan                     |
-| LL-09 | Risk được nhắc rải rác nhưng thiếu owner/trigger                      | Risk register vận hành cần owner, trigger, contingency và residual risk | Dùng Risk ID trong Plan/SOW/Status         | Risk Plan                          |
-| LL-10 | Prototype, PoC và sản phẩm dễ bị đánh đồng                            | Mỗi artifact trả lời câu hỏi khác và có evidence khác                   | Tách Prototype, PoC, Test/UAT              | Prototype và PoC docs              |
+1. Mạch Quốc Tấn.
+2. Ngô Nguyễn Thế Khoa.
+3. Ân Tiến Nguyên An.
+4. Nguyễn Lê Hồ Anh Khoa.
+5. Nguyễn Quang Thái.
+6. Nguyễn Tuấn Anh.
 
-## 3. Bài học cần kiểm chứng thêm
+## 3. Ý kiến và bài học của thành viên
 
-| Giả thuyết                             | Dữ liệu cần có                              | Khi đánh giá                    |
-| -------------------------------------- | ------------------------------------------- | ------------------------------- |
-| WIP 1/người giảm thời gian chu kỳ      | Board history, cycle/blocked time           | Sau ít nhất ba completion event |
-| Modular monolith phù hợp capacity      | Rework, module coupling, deploy/test effort | Mốc tuần 7 và đóng dự án        |
-| PostgreSQL full-text search đủ cho MVP | DS-07 và P50/P95/search correctness         | Trước UAT                       |
-| Job cùng backend đủ cho demo           | Restart/timeout/concurrency PoC             | PoC-01                          |
-| Bản mẫu giảm rework giao diện          | Feedback và change history                  | Sau prototype review            |
+### 3.1. Nguyễn Tuấn Anh
 
-Các giả thuyết này chưa phải bài học thành công/thất bại cho đến khi có dữ liệu.
+**Vấn đề:** Một số sản phẩm do Tuấn Anh thực hiện chưa đạt chất lượng mong muốn khi được các thành viên xem xét.
 
-## 4. Cách áp dụng
+**Nguyên nhân:** Câu lệnh cung cấp cho AI còn thiếu kiến thức nền, bối cảnh dự án và tài liệu tham khảo cần thiết. Vì vậy, kết quả tạo ra chưa bám sát yêu cầu và phải chỉnh sửa nhiều.
 
-- PM dùng LL-01/03/04 trong baseline/change/status review.
-- QA dùng LL-02/08/10 để audit Done, evidence và test state.
-- Architect/DevOps dùng LL-05/06/09 cho môi trường, CI/CD, risk và ADR.
-- Toàn nhóm dùng LL-07 trước mỗi lần phát hành tài liệu.
-- Mỗi hành động phải có owner/ngày trong board hoặc tài liệu nguồn; sổ bài học không thay task.
+**Bài học và hướng cải thiện:**
 
-## 5. Quy trình tổng kết cuối dự án
+- Cung cấp đầy đủ mục tiêu, bối cảnh và yêu cầu trước khi yêu cầu AI thực hiện.
+- Đưa các tài liệu chính thức có liên quan vào ngữ cảnh để AI có đủ thông tin.
+- Dành thời gian xem xét kết quả dựa trên tài liệu chính thức trước khi gửi cho nhóm.
+- Không xem kết quả đầu tiên của AI là sản phẩm hoàn chỉnh.
 
-1. Thu nguồn: Plan so với actual, completion/effort, test/defect, risk/incident, UAT và stakeholder feedback.
-2. Mỗi thành viên nêu điều hiệu quả, không hiệu quả, nguyên nhân và đề xuất.
-3. Tách sự kiện khỏi suy đoán; xác nhận nguồn và mức tin cậy.
-4. Chọn bài học có khả năng tái sử dụng; gán category, owner và hành động.
-5. Đại diện nhóm review; cập nhật trạng thái tài liệu thành Báo cáo đóng dự án khi đủ căn cứ.
+### 3.2. Ân Tiến Nguyên An
 
-## 6. Mẫu bổ sung bài học
+**Vấn đề:** Mất nhiều thời gian để xác định tài liệu đã đầy đủ và đúng định dạng giảng viên yêu cầu hay chưa.
 
-| Trường               | Nội dung                                               |
-| -------------------- | ------------------------------------------------------ |
-| Mã/ngày              | `LL-NN`, thời điểm ghi                                 |
-| Bối cảnh/sự kiện     | Điều thực sự xảy ra                                    |
-| Tác động             | Scope, schedule, quality, people, risk hoặc operations |
-| Nguyên nhân          | Nguyên nhân có evidence; ghi mức tin cậy               |
-| Bài học              | Điều nên lặp lại hoặc thay đổi                         |
-| Hành động/owner/ngày | Cách áp dụng cụ thể                                    |
-| Nguồn                | Link log, PR, test, UAT, risk, incident hoặc feedback  |
-| Trạng thái           | Cần kiểm chứng / Đã kiểm chứng / Đã áp dụng            |
+**Bài học và hướng cải thiện:**
 
-Tài liệu liên quan: [Project Plan](11-project-plan.md), [Project Log](17-project-log.md), [Risk Plan](18-risk-management-plan.md), [Quality Plan](19-quality-management-plan.md), [Test Plan](20-test-plan.md) và [ADR](A1-decision-log-and-adr.md).
+- Đánh giá tài liệu dựa trên yêu cầu của môn học và các tài liệu môn học chính thức.
+- Xây dựng tiêu chí kiểm tra trước khi kết luận tài liệu đã hoàn chỉnh.
+- Có thể dùng một phiên làm việc hoặc mô hình AI khác để phản biện kết quả.
+- Yêu cầu AI tìm kiếm và phân tích sâu hơn khi nội dung chưa đủ toàn diện.
+- Người phụ trách vẫn phải kiểm tra và xác nhận kết quả cuối cùng.
+
+### 3.3. Nguyễn Quang Thái
+
+**Vấn đề:** Gặp khó khăn khi bắt đầu sử dụng AI cho các hoạt động của môn học.
+
+**Bài học:** Qua quá trình thực hiện, Thái đã hiểu rõ hơn cách dùng AI để hỗ trợ lập kế hoạch và phát triển phần mềm.
+
+**Hướng cải thiện:** Tiếp tục sử dụng AI theo từng mục tiêu rõ ràng, kiểm tra kết quả và điều chỉnh câu lệnh dựa trên phản hồi thực tế.
+
+### 3.4. Ngô Nguyễn Thế Khoa
+
+Không ghi nhận vấn đề đáng kể hoặc bài học bổ sung tại cuộc họp.
+
+### 3.5. Nguyễn Lê Hồ Anh Khoa
+
+Không ghi nhận vấn đề đáng kể hoặc bài học bổ sung tại cuộc họp.
+
+### 3.6. Mạch Quốc Tấn
+
+Không ghi nhận vấn đề đáng kể hoặc bài học bổ sung tại cuộc họp.
+
+## 4. Bài học chung của nhóm
+
+Từ các ý kiến trong cuộc họp, nhóm thống nhất ba bài học chính:
+
+1. Câu lệnh cho AI phải có mục tiêu, bối cảnh và tài liệu tham khảo rõ ràng.
+2. Kết quả do AI hỗ trợ phải được đối chiếu với yêu cầu và tài liệu chính thức.
+3. AI hỗ trợ tăng tốc công việc nhưng không thay thế việc xem xét, kiểm thử và xác nhận của thành viên.
+
+## 5. Hành động cải thiện
+
+| Mã    | Hành động                                                               | Người áp dụng     | Thời điểm áp dụng          |
+| ----- | ----------------------------------------------------------------------- | ----------------- | -------------------------- |
+| AC-01 | Bổ sung mục tiêu, bối cảnh và tài liệu liên quan trước khi dùng AI.     | Tất cả thành viên | Từ công việc tiếp theo     |
+| AC-02 | Đối chiếu kết quả với yêu cầu và tài liệu môn học chính thức.           | Người phụ trách   | Trước khi yêu cầu xem xét  |
+| AC-03 | Dùng phiên hoặc mô hình AI khác để phản biện khi nội dung còn nghi ngờ. | Người phụ trách   | Khi cần kiểm tra bổ sung   |
+| AC-04 | Chỉnh sửa và kiểm tra kết quả AI trước khi đưa vào sản phẩm hoặc hồ sơ. | Tất cả thành viên | Trước khi tạo Pull Request |
+
+Project Manager theo dõi việc áp dụng các hành động trên trong quá trình rà soát công việc. Technical Lead và người phụ trách QA kiểm tra kết quả trong phạm vi chuyên môn tương ứng.
+
+## 6. Kết luận
+
+Cuộc họp có đủ 6 thành viên tham gia. Nhóm thống nhất rằng hiệu quả sử dụng AI phụ thuộc nhiều vào chất lượng bối cảnh, tài liệu đầu vào và việc kiểm tra của con người. Các hành động cải thiện được áp dụng cho phần công việc còn lại và làm kinh nghiệm cho các dự án sau.
+
+Chi tiết về quy trình làm việc, kiểm soát chất lượng và kiểm thử được trình bày trong bộ tài liệu dự án.

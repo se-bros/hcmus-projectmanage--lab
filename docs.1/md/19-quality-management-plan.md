@@ -4,202 +4,257 @@
 
 ### Thông tin tài liệu
 
-| Trường                | Nội dung                                                   |
-| --------------------- | ---------------------------------------------------------- |
-| Mã tài liệu           | `HCMUS-LDMS-QMP`                                           |
-| Chủ sở hữu            | QA Lead — Nguyễn Quang Thái                                |
-| Chịu trách nhiệm cuối | Project Manager — Mạch Quốc Tấn                            |
-| Phiên bản             | 1.0 — 22/08/2026                                           |
-| Trạng thái            | Bản dự thảo để xem xét; gate chưa chạy giữ `Chưa đánh giá` |
-| Phạm vi               | Sản phẩm, quy trình, tài liệu và evidence của MVP 11 tuần  |
+| Trường thông tin  | Nội dung                                |
+| ----------------- | --------------------------------------- |
+| Mã tài liệu       | `HCMUS-LDMS-QMP`                        |
+| Tên tài liệu      | Kế hoạch quản lý chất lượng             |
+| Người phụ trách   | Mạch Quốc Tấn                           |
+| Người xem xét     | Các thành viên nhóm Sebros              |
+| Người xác nhận    | Mạch Quốc Tấn — Quản lý dự án           |
+| Trạng thái        | Baseline nội bộ đã được nhóm xác nhận   |
+| Thời gian áp dụng | 11 tuần                                 |
+| Phạm vi           | 15 hạng mục Bắt buộc, tổng cộng 26 điểm |
+
+### Lịch sử phiên bản
+
+| Phiên bản | Ngày       | Mô tả thay đổi                                                             | Người thực hiện |
+| --------- | ---------- | -------------------------------------------------------------------------- | --------------- |
+| 1.0       | 22/08/2026 | Xây dựng thuộc tính chất lượng, cổng kiểm soát và chỉ số theo dõi.         | Mạch Quốc Tấn   |
+| 2.0       | 24/08/2026 | Viết lại theo baseline, Pull Request, Technical Lead, DoD và coding agent. | Mạch Quốc Tấn   |
+| 2.1       | 24/08/2026 | Xác nhận Mạch Quốc Tấn là người viết và phụ trách tài liệu.                | Mạch Quốc Tấn   |
+| 2.2       | 24/08/2026 | Đồng bộ Technical Lead, Backend, DevOps và QA theo Hợp đồng nhóm.          | Mạch Quốc Tấn   |
+| 2.3       | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.     | Mạch Quốc Tấn   |
 
 ## Mục lục
 
-- [1. Mục tiêu và nguyên tắc](#1-mục-tiêu-và-nguyên-tắc)
-- [2. Thuộc tính chất lượng](#2-thuộc-tính-chất-lượng)
-- [3. Quality Gates](#3-quality-gates)
-- [4. Tiêu chuẩn review](#4-tiêu-chuẩn-review)
-- [5. Kiểm thử và quản lý lỗi](#5-kiểm-thử-và-quản-lý-lỗi)
-- [6. Chất lượng tài liệu và truy vết](#6-chất-lượng-tài-liệu-và-truy-vết)
-- [7. Chỉ số và báo cáo](#7-chỉ-số-và-báo-cáo)
-- [8. Ngoại lệ và cải tiến](#8-ngoại-lệ-và-cải-tiến)
-- [9. RACI và truy vết](#9-raci-và-truy-vết)
+- [1. Mục đích và nguyên tắc](#1-mục-đích-và-nguyên-tắc)
+- [2. Mục tiêu chất lượng](#2-mục-tiêu-chất-lượng)
+- [3. Vai trò và trách nhiệm](#3-vai-trò-và-trách-nhiệm)
+- [4. Cổng kiểm soát chất lượng](#4-cổng-kiểm-soát-chất-lượng)
+- [5. Xem xét mã nguồn và tài liệu](#5-xem-xét-mã-nguồn-và-tài-liệu)
+- [6. Kiểm thử và quản lý lỗi](#6-kiểm-thử-và-quản-lý-lỗi)
+- [7. Truy vết và bằng chứng](#7-truy-vết-và-bằng-chứng)
+- [8. Chỉ số và báo cáo](#8-chỉ-số-và-báo-cáo)
+- [9. Ngoại lệ và cải tiến](#9-ngoại-lệ-và-cải-tiến)
+- [10. Điều kiện hoàn thành chất lượng](#10-điều-kiện-hoàn-thành-chất-lượng)
+- [11. Tài liệu tham khảo](#11-tài-liệu-tham-khảo)
 
-## 1. Mục tiêu và nguyên tắc
+---
 
-Chất lượng của HCMUS-LDMS được hiểu là khả năng đáp ứng đúng yêu cầu, bảo toàn dữ liệu, kiểm soát quyền, phục hồi được khi lỗi, dùng được trong luồng nghiệp vụ và có bằng chứng truy vết. Mục tiêu không phải tạo nhiều artifact mà là ngăn kết quả chưa kiểm chứng đi qua gate.
+## 1. Mục đích và nguyên tắc
 
-- Quality được xây vào từng card, không để đến tuần 11.
-- Người tạo không phải là người duy nhất xác nhận thay đổi của mình.
-- Automation được ưu tiên cho kiểm tra lặp lại; manual/UAT dùng cho trải nghiệm và nghiệp vụ.
-- Coverage phần trăm không thay thế test case đúng rủi ro; chưa có baseline coverage nên không đặt số đạt giả.
-- Mọi metric phải ghi nguồn, thời gian và cách tính.
-- Không hạ severity để đạt release gate; ngoại lệ cần người có thẩm quyền.
+Tài liệu quy định cách nhóm bảo đảm sản phẩm đáp ứng yêu cầu, bảo toàn dữ liệu, kiểm soát đúng quyền, hoạt động ổn định và có đủ bằng chứng để xác nhận kết quả.
 
-## 2. Thuộc tính chất lượng
+Nguyên tắc:
 
-| Thuộc tính                | Mục tiêu MVP                                                    | Cách chứng minh                     |
-| ------------------------- | --------------------------------------------------------------- | ----------------------------------- |
-| Functional suitability    | 15 story Bắt buộc đạt AC hoặc có ngoại lệ được duyệt            | Story test + UAT + trace            |
-| Security/privacy          | Server-side authorization, private objects, không lộ secrets    | Negative tests, scan, review        |
-| Reliability/integrity     | Lỗi/retry/restart không làm mất source hoặc save gần nhất       | Failure/recovery/integrity tests    |
-| Performance               | UI không bị block bởi job; search được đo đúng phương pháp      | Job/UI test, raw performance result |
-| Usability/accessibility   | Trạng thái/lỗi rõ; core flow dùng bàn phím và viewport mục tiêu | Checklist + UAT                     |
-| Maintainability           | Module rõ, setup tái lập, thay đổi được review/test             | Architecture review, clean setup    |
-| Portability/deployability | Local chạy từ repo; demo cloud có smoke riêng                   | Setup/smoke evidence                |
-| Traceability              | Requirement→Story→Change→Test→UAT                               | Evidence audit                      |
+1. Chất lượng được kiểm soát trong từng hạng mục, không dồn đến cuối dự án.
+2. Người tạo thay đổi không tự phê duyệt Pull Request của mình.
+3. Mọi thay đổi mã nguồn phải được Technical Lead xem xét trước khi hợp nhất vào `main`.
+4. Không ghi Hoàn thành khi chưa đạt tiêu chí chấp nhận và DoD.
+5. Kiểm thử phải dùng kết quả thực tế; không đổi “Chưa chạy” thành “Đạt”.
+6. Không giảm mức độ lỗi để giữ tiến độ.
+7. Coding agent hỗ trợ tạo mã, kiểm thử và tài liệu nhưng không thay thế việc kiểm tra của thành viên.
+8. Chỉ công bố chỉ số khi có dữ liệu, phương pháp đo và thời điểm đo rõ ràng.
 
-## 3. Quality Gates
+## 2. Mục tiêu chất lượng
 
-### 3.1. Gate theo card
+| Thuộc tính                | Mục tiêu đối với baseline                                         | Cách kiểm tra                                         |
+| ------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
+| Đúng chức năng            | 15 hạng mục Bắt buộc đạt tiêu chí chấp nhận.                      | Kiểm thử chức năng và kiểm thử chấp nhận nội bộ.      |
+| Bảo mật và quyền riêng tư | Quyền được kiểm tra tại máy chủ; không lộ tệp hay khóa bí mật.    | Kiểm thử sai quyền, rà soát mã nguồn và cấu hình.     |
+| Toàn vẹn dữ liệu          | Tệp gốc và nội dung đã lưu không bị mất hoặc ghi đè ngoài ý muốn. | Kiểm thử lỗi, xử lý lại và khôi phục.                 |
+| Độ tin cậy                | Tác vụ OCR và EPUB có trạng thái rõ, xử lý được trường hợp lỗi.   | Kiểm thử tích hợp, khởi động lại và xử lý lại.        |
+| Khả năng sử dụng          | Luồng chính rõ ràng trên máy tính và thiết bị di động.            | Kiểm thử giao diện và kiểm thử chấp nhận nội bộ.      |
+| Khả năng bảo trì          | Mã nguồn dễ đọc, thay đổi nhỏ và có kiểm thử phù hợp.             | Technical Lead xem xét Pull Request.                  |
+| Khả năng triển khai       | Môi trường cục bộ có thể thiết lập và chạy lại theo hướng dẫn.    | Thiết lập sạch và kiểm tra nhanh các chức năng chính. |
+| Khả năng truy vết         | Yêu cầu được nối với thay đổi, kiểm thử và xác nhận.              | Rà soát chuỗi truy vết và bằng chứng DoD.             |
 
-| Gate                | Điều kiện bắt buộc                                                    | Người xác nhận                  | Trạng thái hiện tại |
-| ------------------- | --------------------------------------------------------------------- | ------------------------------- | ------------------- |
-| G0 — Idea→Ready     | AC, priority, size, dependency, data, owner/reviewer và NFR rõ        | PM + QA/Technical Lead          | Chưa đánh giá       |
-| G1 — Ready→Doing    | WIP còn chỗ; blocker chính xử lý; test approach biết trước            | Owner + PM                      | Chưa đánh giá       |
-| G2 — Doing→Review   | Thay đổi hoàn chỉnh; self-test; doc/config cập nhật; không có secret  | Owner                           | Chưa đánh giá       |
-| G3 — Review→Waiting | Review đạt; test phù hợp đạt; defect được phân loại; evidence mở được | Reviewer + QA                   | Chưa đánh giá       |
-| G4 — Waiting→Done   | AC đạt; nghiệp vụ xác nhận khi cần; completion event đủ trường        | PM + QA + nghiệp vụ khi áp dụng | Chưa đánh giá       |
+Các ngưỡng chi tiết của yêu cầu phi chức năng được trình bày trong tài liệu **Yêu cầu phần mềm** và **Kế hoạch kiểm thử**.
 
-### 3.2. Gate theo mốc
+## 3. Vai trò và trách nhiệm
 
-| Mốc                                | Điều kiện                                                       | Quyết định có thể đưa ra                |
-| ---------------------------------- | --------------------------------------------------------------- | --------------------------------------- |
-| Tuần 3 — Architecture/PoC          | ADR chính có owner; PoC plan; risk rất cao có response          | Continue / Rework / Reduce scope        |
-| Tuần 7 — Core flow                 | Happy path core tích hợp; evidence không đứt; forecast cập nhật | Continue / Swarm / Scope control        |
-| Tuần 9 — Feature complete mục tiêu | 15 Must không còn gap không owner; UAT/data/matrix chốt         | Enter system test / Delay               |
-| Tuần 10 — Release candidate        | System/security/recovery test; Critical/High triage             | Enter UAT / Reject RC                   |
-| Tuần 11 — Release/UAT              | SOW acceptance, evidence audit, UAT decision, runbook           | Accept / Accept with exception / Reject |
+| Vai trò                  | Trách nhiệm                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| Quản lý dự án            | Xác nhận baseline, giải quyết ngoại lệ và điều phối cải tiến.     |
+| Technical Lead           | Xem xét, yêu cầu sửa và phê duyệt kỹ thuật cho Pull Request.      |
+| Đảm bảo chất lượng       | Lập kế hoạch kiểm thử, theo dõi lỗi và rà soát bằng chứng.        |
+| Người phụ trách hạng mục | Tự kiểm tra, tạo Pull Request, sửa lỗi và cung cấp bằng chứng.    |
+| Người xem xét tài liệu   | Kiểm tra nội dung, thuật ngữ, số liệu và tính nhất quán.          |
+| Các thành viên           | Báo lỗi, không che giấu kết quả chưa đạt và hỗ trợ kiểm thử chéo. |
 
-Không có gate nào được xem là đạt tại thời điểm lập kế hoạch nếu chưa có record đánh giá.
+Nguyễn Tuấn Anh giữ vai trò Technical Lead. Ân Tiến Nguyên An phụ trách đảm bảo chất lượng và DevOps. Nguyễn Quang Thái phụ trách Backend. Mạch Quốc Tấn chịu trách nhiệm xác nhận nội bộ đối với kế hoạch chất lượng.
 
-## 4. Tiêu chuẩn review
+## 4. Cổng kiểm soát chất lượng
 
-### 4.1. Code/Configuration Review
+### 4.1. Cổng theo trạng thái hạng mục
 
-- Liên kết đúng Story/Requirement và mô tả tác động.
-- Validation, error path và authorization được xử lý phía server khi cần.
-- Không có credential, dữ liệu thật hoặc log nhạy cảm trong Git/UI.
-- Migration/config thay đổi có backward/rollback consideration.
-- Job/retry không ghi đè source và có idempotency phù hợp.
-- Test mới/sửa bao phủ hành vi thay đổi và thất bại trọng yếu.
-- Thay đổi nhỏ, dễ đọc; tên/module/API phù hợp ADR.
-- Reviewer độc lập ghi kết luận; comment nghiêm trọng được giải quyết.
+| Cổng | Chuyển trạng thái             | Điều kiện bắt buộc                                                          | Người xác nhận                  |
+| ---- | ----------------------------- | --------------------------------------------------------------------------- | ------------------------------- |
+| G0   | Ý tưởng → Đã sẵn sàng         | Có mô tả, Priority, điểm, tiêu chí chấp nhận, phụ thuộc và người phụ trách. | Quản lý dự án; QA khi cần.      |
+| G1   | Đã sẵn sàng → Đang thực hiện  | Không vượt giới hạn công việc; dữ liệu và môi trường đã rõ.                 | Người phụ trách; Quản lý dự án. |
+| G2   | Đang thực hiện → Đang xem xét | Đã tự kiểm tra, tạo Pull Request và ghi kết quả kiểm thử.                   | Người phụ trách.                |
+| G3   | Đang xem xét → Chờ xác nhận   | Technical Lead phê duyệt; kiểm thử bắt buộc đạt; lỗi được phân loại.        | Technical Lead; QA.             |
+| G4   | Chờ xác nhận → Hoàn thành     | Đạt tiêu chí chấp nhận, DoD, truy vết và bằng chứng; không còn lỗi chặn.    | QA; Quản lý dự án.              |
 
-### 4.2. Architecture Review
+Nếu không đạt một cổng, hạng mục được trả về trạng thái phù hợp để sửa. Không được bỏ qua cổng chỉ vì đã đến ngày dự kiến.
 
-- Không tạo thành phần ngoài scope khi chưa có ADR/CR.
-- Xem tác động security, data consistency, recovery, operations và cost.
-- Quyết định có alternatives, consequences và verification conditions.
-- Interface/state/data owner rõ; failure mode được mô tả.
+### 4.2. Cổng theo mốc dự án
 
-### 4.3. Document Review
+| Mốc     | Điều kiện chất lượng chính                                      | Kết quả xác nhận                      |
+| ------- | --------------------------------------------------------------- | ------------------------------------- |
+| Tuần 1  | Baseline, môi trường, dữ liệu mẫu và trách nhiệm được xác định. | Sẵn sàng bắt đầu thực hiện.           |
+| Tuần 4  | Nền tảng, phân quyền, tải lên và OCR được tích hợp bước đầu.    | Tiếp tục hoặc sửa phần tích hợp.      |
+| Tuần 8  | Toàn bộ chức năng Bắt buộc đã có kết quả để kiểm thử đầu cuối.  | Chuyển sang kiểm thử hồi quy.         |
+| Tuần 9  | Luồng đầu cuối chạy được; lỗi được ghi nhận và phân loại.       | Tiếp tục sửa lỗi và hoàn thiện.       |
+| Tuần 10 | Không còn lỗi nghiêm trọng; bộ tài liệu phản ánh đúng sản phẩm. | Sẵn sàng kiểm thử chấp nhận nội bộ.   |
+| Tuần 11 | 15 hạng mục Bắt buộc đạt DoD và có bằng chứng.                  | Xác nhận baseline và bàn giao nội bộ. |
 
-- Baseline 11 tuần, scope 15/6/5, vai trò và môi trường không mâu thuẫn.
-- ID và liên kết mở được; bảng/TOC/PDF đồng bộ.
-- Trạng thái Approved/Done/Pass chỉ có khi có evidence.
-- Metric có nguồn/phương pháp; giả định và giới hạn được ghi rõ.
-- Markdown là nguồn chỉnh sửa; PDF 11pt được tái xuất sau thay đổi.
+## 5. Xem xét mã nguồn và tài liệu
 
-## 5. Kiểm thử và quản lý lỗi
+### 5.1. Xem xét Pull Request
 
-Chiến lược chi tiết nằm trong [Kế hoạch kiểm thử và UAT](20-test-plan.md). Quality Plan đặt các quy tắc release:
+Người phụ trách phải tạo Pull Request sau khi hoàn tất mã nguồn và tự kiểm tra. Pull Request cần có:
 
-| Mức lỗi  | Ví dụ                                               | Gate                                   |
-| -------- | --------------------------------------------------- | -------------------------------------- |
-| Critical | Mất source, lộ tài liệu hàng loạt, core unavailable | Chặn RC/UAT/release                    |
-| High     | Bypass quyền, story Must hỏng, publish sai          | Chặn trừ ngoại lệ đúng thẩm quyền      |
-| Medium   | Hành vi cục bộ có workaround                        | Có owner, target, impact và quyết định |
-| Low      | Trình bày/tiện ích không ảnh hưởng AC               | Có thể đưa backlog                     |
+- mã và tiêu đề hạng mục;
+- mô tả thay đổi;
+- tiêu chí chấp nhận liên quan;
+- kết quả kiểm thử đã chạy;
+- ảnh hưởng đến dữ liệu, bảo mật, kiến trúc hoặc tài liệu;
+- bằng chứng giao diện khi hành vi hiển thị thay đổi.
 
-Mỗi defect có ID, build, environment, data, steps, expected, actual, severity, owner, state, fix link và retest evidence. `Cannot Reproduce` phải ghi môi trường/lần thử, không dùng để đóng thiếu căn cứ.
+Technical Lead kiểm tra:
 
-## 6. Chất lượng tài liệu và truy vết
+- thay đổi đúng phạm vi và tiêu chí chấp nhận;
+- quyền được kiểm tra tại máy chủ;
+- không có khóa bí mật hoặc dữ liệu không được phép;
+- dữ liệu được bảo toàn khi có lỗi;
+- mã nguồn rõ ràng và phù hợp kiến trúc;
+- kiểm thử bao phủ luồng chính và trường hợp lỗi quan trọng;
+- tài liệu liên quan đã được cập nhật.
 
-### 6.1. Traceability gate
+Pull Request chỉ được hợp nhất khi Technical Lead phê duyệt và các kiểm tra bắt buộc đạt. Nếu Technical Lead ủy quyền người khác xem xét, việc ủy quyền phải được ghi rõ.
 
-Mỗi story Done phải liên kết:
+### 5.2. Xem xét tài liệu
 
-`Requirement ID → Story ID → PR/commit → Test/Evidence ID → Reviewer → UAT/Acceptance (khi cần) → Completion event`.
+Tài liệu được xem xét theo các tiêu chí:
 
-Nếu một liên kết không áp dụng, phải ghi lý do. Không dùng token, số commit hoặc effort làm bằng chứng AC đạt.
+- đúng mục đích của tài liệu;
+- câu rõ nghĩa, không dài dòng và không tạo cam kết ngoài phạm vi;
+- dùng thống nhất baseline, tên vai trò và số liệu;
+- không có liên kết tệp hoặc thư mục trong nội dung bản in;
+- không tuyên bố “Đạt”, “Hoàn thành” hoặc “Đã xác nhận” khi thiếu căn cứ;
+- bảng, mục lục và tiêu đề phản ánh đúng nội dung;
+- Markdown đạt kiểm tra định dạng của dự án.
 
-### 6.2. Document release checklist
+## 6. Kiểm thử và quản lý lỗi
 
-- [ ] Markdown lint đạt theo cấu hình dự án.
-- [ ] Không có liên kết nội bộ hỏng.
-- [ ] TOC và heading phản ánh nội dung.
-- [ ] PDF tương ứng mới hơn hoặc cùng thời điểm nguồn Markdown.
-- [ ] PDF có text layer, tiếng Việt và bảng đọc được.
-- [ ] Sơ đồ là SVG vector, nhãn không chồng lấn.
-- [ ] Version/status/history được cập nhật.
-- [ ] Không có claim Pass/Approved/Done thiếu nguồn.
+### 6.1. Loại kiểm thử
 
-Checklist trên là tiêu chí; dấu chưa chọn không có nghĩa lỗi đã xảy ra, mà là chưa có release record cho lần phát hành cụ thể.
+| Loại kiểm thử    | Mục đích                                            |
+| ---------------- | --------------------------------------------------- |
+| Đơn vị           | Kiểm tra hàm hoặc thành phần độc lập.               |
+| Tích hợp         | Kiểm tra API, dữ liệu, kho tệp và công cụ xử lý.    |
+| Chức năng        | Đối chiếu hành vi với tiêu chí chấp nhận.           |
+| Giao diện        | Kiểm tra thao tác, trạng thái lỗi và hiển thị.      |
+| Phân quyền       | Kiểm tra người hợp lệ, chưa đăng nhập và sai quyền. |
+| Hồi quy          | Xác nhận thay đổi không làm hỏng chức năng đã đạt.  |
+| Chấp nhận nội bộ | Xác nhận sản phẩm phù hợp mục tiêu học tập.         |
 
-## 7. Chỉ số và báo cáo
+### 6.2. Mức độ lỗi
 
-| Chỉ số                | Nguồn                | Cách tính                                 | Ngưỡng hành động                                 |
-| --------------------- | -------------------- | ----------------------------------------- | ------------------------------------------------ |
-| Gate pass rate        | Gate records         | Gate đạt / gate được đánh giá             | Bất kỳ Must card thất bại G3/G4 phải xử lý       |
-| Requirement coverage  | Trace matrix         | Must requirements có evidence / tổng Must | Phải 100% hoặc có ngoại lệ trước accept          |
-| Test status           | Test report          | Pass/Fail/Blocked/Chưa chạy theo build    | Critical/High Fail chặn release                  |
-| Defect escape         | UAT/post-Done defect | Lỗi phát hiện sau G4                      | Mọi Critical/High kích hoạt RCA                  |
-| Rework                | Board/effort         | Effort sửa do lỗi/yêu cầu sai             | Tăng liên tiếp hai review cần cải tiến           |
-| Cycle/blocked time    | Completion/board     | Theo quy tắc Process                      | Card già/blocker vượt ngưỡng nhóm chốt cần swarm |
-| Evidence completeness | Evidence audit       | Event đủ trường / event được audit        | Bất kỳ event thiếu trường bị trả khỏi Done       |
+| Mức độ       | Ý nghĩa                                                       | Cách xử lý                               |
+| ------------ | ------------------------------------------------------------- | ---------------------------------------- |
+| Nghiêm trọng | Mất dữ liệu, lộ quyền hoặc luồng chính không hoạt động.       | Chặn xác nhận; sửa và kiểm thử lại ngay. |
+| Cao          | Hạng mục Bắt buộc không đạt hoặc có thể ảnh hưởng nhiều phần. | Sửa trước khi đạt DoD.                   |
+| Trung bình   | Hành vi cục bộ sai nhưng có cách xử lý tạm thời.              | Ghi người phụ trách và thời điểm sửa.    |
+| Thấp         | Lỗi trình bày không ảnh hưởng tiêu chí chấp nhận.             | Ghi nhận và xử lý theo thứ tự ưu tiên.   |
 
-Hiện chưa có dữ liệu đủ để điền các chỉ số trên. Báo cáo phải giữ `Chưa có dữ liệu` thay vì 0 nếu chưa đo.
+Mỗi lỗi cần có mã, môi trường, dữ liệu, bước tái hiện, kết quả mong đợi, kết quả thực tế, mức độ, người phụ trách, trạng thái và kết quả kiểm thử lại.
 
-## 8. Ngoại lệ và cải tiến
+## 7. Truy vết và bằng chứng
 
-Ngoại lệ chất lượng ghi `QEX-NN`, gate/requirement bị ảnh hưởng, lý do, risk ID, workaround, thời hạn, người chấp nhận và điều kiện đóng. Ngoại lệ không được dùng để hợp thức hóa vi phạm quyền hoặc che mất dữ liệu.
+Một hạng mục Hoàn thành phải có chuỗi truy vết:
 
-Sau mỗi mốc, nhóm chọn tối đa hai cải tiến dựa trên defect/rework/blocker/evidence. Mỗi cải tiến có giả thuyết, owner, thay đổi, chỉ số quan sát và ngày đánh giá. Nếu không có dữ liệu chứng minh hiệu quả, không tuyên bố cải tiến đã thành công.
+`Yêu cầu → Hạng mục → Pull Request → Kiểm thử → Technical Lead xem xét → Xác nhận → Hoàn thành`
 
-## 9. RACI và truy vết
+Bằng chứng phải:
 
-| Hoạt động                  | R                  | A                                  | C               |
-| -------------------------- | ------------------ | ---------------------------------- | --------------- |
-| Duy trì Quality Plan/gates | QA Lead            | PM                                 | Technical Leads |
-| Code review                | Reviewer kỹ thuật  | Technical Lead                     | QA              |
-| Architecture review        | Solution Architect | Solution Architect                 | PM, QA/DevOps   |
-| Test/evidence audit        | QA                 | QA Lead                            | Developer, PM   |
-| UAT/release decision       | QA + nghiệp vụ     | Đại diện nghiệp vụ/PM theo phạm vi | Nhóm            |
+- là kết quả thực tế;
+- ghi mã hạng mục, thời điểm và người thực hiện;
+- cho biết môi trường và dữ liệu kiểm thử khi cần;
+- không chứa khóa bí mật hoặc dữ liệu chưa được phép;
+- đủ để người khác kiểm tra lại kết luận.
 
-Nguồn liên quan: [SRS](04-software-requirements.md), [Backlog](04-product-backlog.md), [Architecture](05-software-architecture.md), [Risk Register](18-risk-management-plan.md), [Process](09-software-process-definition.md), [Test/UAT Plan](20-test-plan.md), [SOW](12-statement-of-work.md) và [Operations–Security Plan](15-devops-and-operations.md).
+Số token, số commit, thời gian làm việc hoặc câu trả lời của coding agent không tự chứng minh hạng mục đã đạt.
 
-## Evidence — Bản in minh chứng quản lý chất lượng
+Kết quả làm thử ngày 16 và 17 tháng 07 năm 2026 đã triển khai 11 hạng mục, tương ứng 18 điểm. Các kết quả này chưa tự động được tính là Hoàn thành vì chưa có đầy đủ bằng chứng DoD trong Nhật ký dự án.
 
-### Giao diện cấu hình Coding Standards
+## 8. Chỉ số và báo cáo
 
-Tài liệu quy chuẩn lập trình và cấu hình linter: [`03_coding_standards_and_linter_config.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/03_coding_standards_and_linter_config.md)
+| Chỉ số                | Cách tính hoặc ghi nhận                                | Ngưỡng hành động                                      |
+| --------------------- | ------------------------------------------------------ | ----------------------------------------------------- |
+| Hạng mục Hoàn thành   | Số hạng mục đạt DoD.                                   | Hạng mục thiếu bằng chứng bị trả khỏi Hoàn thành.     |
+| Điểm Hoàn thành       | Tổng điểm của các hạng mục đạt DoD.                    | So sánh với baseline 26 điểm.                         |
+| Mức đạt tiêu chí      | Tiêu chí đạt chia tổng tiêu chí đã kiểm tra.           | Baseline cần đạt 100% hoặc có ngoại lệ hợp lệ.        |
+| Trạng thái kiểm thử   | Đạt, Không đạt, Bị chặn hoặc Chưa chạy theo phiên bản. | Lỗi nghiêm trọng hoặc cao chặn xác nhận.              |
+| Mức đầy đủ bằng chứng | Hạng mục đủ bằng chứng chia số hạng mục được rà soát.  | Thiếu trường bắt buộc thì chưa đạt DoD.               |
+| Công việc làm lại     | Công sức sửa do yêu cầu, thiết kế hoặc mã chưa đúng.   | Tăng liên tiếp hai tuần thì phải cải tiến.            |
+| Thời gian bị chặn     | Thời gian hạng mục không thể tiếp tục.                 | Quá hai ngày phải điều phối lại.                      |
+| Lỗi sau Hoàn thành    | Lỗi phát hiện sau khi hạng mục đã đạt G4.              | Lỗi nghiêm trọng hoặc cao phải phân tích nguyên nhân. |
 
-Nội dung bao gồm:
+Khi chưa có dữ liệu, báo cáo ghi “Chưa có dữ liệu”, không ghi 0 hoặc Đạt. Báo cáo chất lượng được xem xét cuối mỗi tuần và trước các mốc tuần 8, 10 và 11.
 
-- Cấu hình **Ruff** (Python): `pyproject.toml` — line-length 100, target Python 3.11, bật rules E/F/I/UP
-- Cấu hình **Oxlint** (React/TypeScript): ESLint + Oxlint cho frontend
-- Cơ chế cưỡng chế: CI pipeline chặn merge tự động nếu phát hiện lỗi linter
+## 9. Ngoại lệ và cải tiến
 
-### Biên bản thanh tra mã nguồn (Code Inspection)
+### 9.1. Ngoại lệ chất lượng
 
-Biên bản thanh tra PR #41: [`01_code_inspection_record_pr41.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/01_code_inspection_record_pr41.md)
+Ngoại lệ phải ghi:
 
-- **Pull Request:** `feat: highlight and note in reading books (LDMS-021)`
-- **Author:** Khoa Nguyễn
-- **Reviewer:** Nguyễn Tuấn Anh + GitHub Copilot AI
-- **Kết quả:** APPROVED & MERGED vào `main`
-- **Quy mô:** 27 files thay đổi
+- mã ngoại lệ;
+- yêu cầu hoặc cổng bị ảnh hưởng;
+- lý do và tác động;
+- rủi ro liên quan;
+- biện pháp tạm thời;
+- người chấp nhận;
+- thời hạn và điều kiện đóng.
 
-### Biên bản phản hồi từ khách hàng (UAT Feedback)
+Không chấp nhận ngoại lệ làm lộ dữ liệu, bỏ kiểm tra quyền hoặc che giấu mất dữ liệu. Ngoại lệ thay đổi baseline phải được sáu thành viên nhóm Sebros xác nhận.
 
-Biên bản UAT: [`02_uat_feedback_record.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/02_uat_feedback_record.md)
+### 9.2. Cải tiến
 
-- **Khách hàng:** Cô Nguyễn Thị Mai — Chuyên viên Thư viện ĐHKHTN
-- **Thời gian:** 16/08/2026, 09:30–11:30
-- **Kết quả:** 5/5 kịch bản ĐẠT (điểm trung bình 4.6/5)
-- **Phản hồi:** Yêu cầu bổ sung watermark chống chụp màn hình
+Khi lỗi, công việc làm lại hoặc điểm chặn lặp lại, nhóm:
 
-### Định nghĩa hoàn thành (Definition of Done)
+1. Xác định nguyên nhân.
+2. Chọn một thay đổi có thể thực hiện.
+3. Giao người phụ trách và thời hạn.
+4. Chọn chỉ số để đánh giá.
+5. Kiểm tra kết quả ở lần xem xét tiếp theo.
 
-DoD được trích từ [Hợp đồng nhóm](16-team-contract.md) — Mục 4.4.
+Không tuyên bố cải tiến thành công khi chưa có kết quả quan sát được.
+
+## 10. Điều kiện hoàn thành chất lượng
+
+Baseline đạt yêu cầu chất lượng khi:
+
+1. Cả 15 hạng mục Bắt buộc đạt tiêu chí chấp nhận và DoD.
+2. Tổng điểm Hoàn thành của baseline đạt 26 điểm.
+3. Mọi thay đổi mã nguồn có Pull Request được Technical Lead phê duyệt.
+4. Không còn lỗi nghiêm trọng hoặc cao chưa xử lý.
+5. Kiểm thử phân quyền, toàn vẹn dữ liệu và luồng đầu cuối đạt.
+6. Tài liệu phản ánh đúng sản phẩm và không mâu thuẫn về phạm vi, tiến độ hoặc vai trò.
+7. Mỗi hạng mục có đầy đủ truy vết và bằng chứng.
+8. Nhóm hoàn tất kiểm thử chấp nhận nội bộ và ghi nhận kết quả thực tế.
+
+## 11. Tài liệu tham khảo
+
+- Yêu cầu phần mềm.
+- Product Backlog.
+- Kiến trúc phần mềm.
+- Định nghĩa quy trình phát triển phần mềm.
+- Ước lượng dự án.
+- Kế hoạch dự án.
+- Bản mô tả công việc.
+- Kế hoạch quản lý rủi ro.
+- Kế hoạch kiểm thử.
+- Hợp đồng nhóm.
+- Nhật ký dự án.

@@ -25,6 +25,9 @@
 |       3.0 | 24/08/2026 | Xác định dự án phục vụ học tập; phân biệt thành phần tham gia thực tế với bên liên quan tham khảo; rút gọn nội dung trùng và chuẩn hóa thuật ngữ. | Mạch Quốc Tấn     |
 |       3.1 | 24/08/2026 | Dùng thống nhất thuật ngữ baseline, đổi tên tài liệu rủi ro được dẫn chiếu, giải thích thuật ngữ và ghi nhận xác nhận nội bộ của sáu thành viên.  | Mạch Quốc Tấn     |
 |       3.2 | 24/08/2026 | Loại bỏ đường dẫn tệp khỏi nội dung bản in; chuẩn hóa cách gọi hoạt động chạy thử, đánh giá và kiểm chứng kết quả.                                | Mạch Quốc Tấn     |
+|       3.3 | 24/08/2026 | Đồng bộ baseline 26 điểm, kết quả làm thử, hệ số dự phòng 2,5, kế hoạch 11 tuần và quy trình Pull Request.                                        | Mạch Quốc Tấn     |
+|       3.4 | 24/08/2026 | Đồng bộ phân công Technical Lead, Backend, DevOps và QA theo Hợp đồng nhóm.                                                                       | Mạch Quốc Tấn     |
+|       3.5 | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.                                                                            | Mạch Quốc Tấn     |
 
 ## Mục lục
 
@@ -88,9 +91,12 @@ Các bên trong Mục 2.2 không được xem là đã tham gia, phê duyệt ho
 | Thời gian          | 11 tuần                                                                  |
 | Nhân sự phát triển | 6 sinh viên kiêm nhiệm                                                   |
 | Phương pháp        | Kanban, luồng liên tục và giới hạn công việc đang thực hiện              |
-| Phạm vi baseline   | 15 hạng mục Bắt buộc                                                     |
+| Phạm vi baseline   | 15 hạng mục Bắt buộc, tổng cộng 26 điểm                                  |
 | Phạm vi điều kiện  | 6 hạng mục Nên có, chỉ thực hiện khi baseline ổn định                    |
 | Ngoài baseline     | 5 hạng mục Có thể xem xét                                                |
+| Cơ sở ước lượng    | Kết quả làm thử ngày 16 và 17 tháng 07 năm 2026                          |
+| Dự phòng           | Nhân thời gian theo tốc độ làm thử với hệ số 2,5                         |
+| Kiểm soát mã nguồn | Pull Request được Technical Lead xem xét trước khi hợp nhất vào `main`   |
 | Dữ liệu            | Bộ tài liệu mẫu có nguồn và quyền sử dụng phù hợp                        |
 | Khả năng mở rộng   | Chỉ là định hướng tham khảo, không thuộc cam kết hiện tại                |
 
@@ -148,31 +154,39 @@ Kết quả ở một môi trường không được dùng để khẳng định
 
 ## 6. Tiến độ 11 tuần
 
-| Thời gian | Trọng tâm                                            | Điều kiện kiểm tra                                           |
-| --------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| Tuần 1    | Chốt phạm vi, quy tắc hoàn thành và dữ liệu mẫu.     | Baseline được ghi nhận; môi trường cục bộ chạy được.         |
-| Tuần 2–3  | Xác thực, phân quyền, tải lên và danh sách tài liệu. | Luồng đầu vào hoạt động đúng quyền.                          |
-| Tuần 4–6  | Nhận dạng ký tự, kết quả theo trang và hiệu chỉnh.   | Tài liệu mẫu đi đến văn bản đã lưu.                          |
-| Tuần 7–8  | Thông tin mô tả, EPUB và xuất bản.                   | Thiếu điều kiện bị chặn; tài liệu hợp lệ được xuất bản.      |
-| Tuần 9–10 | Tìm kiếm, đọc và bảo vệ quyền.                       | Người dùng đúng quyền tìm và đọc được; quyền sai bị từ chối. |
-| Tuần 11   | Kiểm thử hồi quy, sửa lỗi và tổng kết.               | Có bằng chứng kết quả và danh sách sản phẩm hoàn thành.      |
+| Tuần | Trọng tâm                             | Hạng mục chính               | Điều kiện kiểm tra                                 |
+| ---: | ------------------------------------- | ---------------------------- | -------------------------------------------------- |
+|    1 | Xác nhận baseline và chuẩn bị         | Toàn bộ baseline             | Phạm vi, vai trò, môi trường và dữ liệu được chốt. |
+|    2 | Nền tảng, đăng nhập và phân quyền     | LDMS-001, LDMS-009, LDMS-010 | Nền tảng chạy được; quyền được kiểm thử.           |
+|    3 | Tải lên và danh sách tài liệu         | LDMS-002, LDMS-026           | Tệp được lưu an toàn; danh sách đúng quyền.        |
+|    4 | OCR và kết quả theo trang             | LDMS-003, LDMS-004           | Tác vụ OCR và kết quả theo trang hoạt động.        |
+|    5 | Hiệu chỉnh và thông tin mô tả         | LDMS-005, LDMS-011           | Nội dung và thông tin mô tả được lưu đúng.         |
+|    6 | Tạo EPUB và kiểm tra xuất bản         | LDMS-007, LDMS-013           | EPUB hợp lệ; tài liệu thiếu điều kiện bị chặn.     |
+|    7 | Tìm kiếm và hiển thị kết quả          | LDMS-015, LDMS-016           | Tìm kiếm đúng dữ liệu và đúng quyền.               |
+|    8 | Đọc trực tuyến và bảo vệ quyền đọc    | LDMS-008, LDMS-014           | Nội dung đọc được và không lộ tệp riêng tư.        |
+|    9 | Tích hợp và kiểm thử hồi quy          | Toàn bộ 15 hạng mục          | Luồng đầu cuối hoạt động; lỗi được ghi nhận.       |
+|   10 | Sửa lỗi và hoàn thiện tài liệu        | Lỗi còn lại và bộ tài liệu   | Không còn lỗi nghiêm trọng; tài liệu đồng bộ.      |
+|   11 | Kiểm thử chấp nhận nội bộ và bàn giao | Toàn bộ baseline             | Có kết quả xác nhận, bằng chứng và tổng kết.       |
 
 Đây là các mốc điều phối, không phải chu kỳ phát triển cố định. Một hạng mục chỉ được ghi Hoàn thành khi đạt điều kiện hoàn thành và có bằng chứng. Chi tiết lịch, phụ thuộc và phân công được trình bày trong tài liệu **Kế hoạch dự án**.
 
 ## 7. Nguồn lực và chi phí
 
-Nhóm Sebros gồm 6 sinh viên kiêm nhiệm các vai trò quản lý, phân tích, kiến trúc, phát triển giao diện, phát triển máy chủ, kiểm thử và vận hành môi trường chạy thử. Phân công và cơ chế phối hợp chi tiết được trình bày trong tài liệu **Hợp đồng nhóm** và **Kế hoạch dự án**.
+Nhóm Sebros gồm 6 sinh viên kiêm nhiệm các vai trò quản lý, phân tích, phát triển giao diện, phát triển máy chủ, kiểm thử và vận hành môi trường chạy thử. Nguyễn Tuấn Anh giữ vai trò Technical Lead và phê duyệt kỹ thuật cho Pull Request; Nguyễn Quang Thái phụ trách Backend; Ân Tiến Nguyên An phụ trách DevOps và QA. Phân công và cơ chế phối hợp chi tiết được trình bày trong tài liệu **Hợp đồng nhóm** và **Kế hoạch dự án**.
 
-Dự án không có ngân sách tiền mặt được phê duyệt. Nhóm sử dụng thiết bị, tài nguyên và gói dịch vụ sẵn có hoặc miễn phí; công sức được theo dõi bằng giờ để phục vụ quản lý và đánh giá học tập. Mọi chi phí triển khai, mua sắm hoặc vận hành thực tế nằm ngoài phạm vi và phải được lập dự toán riêng trong một giai đoạn mở rộng.
+Dự án không có ngân sách tiền mặt được phê duyệt. Nhóm sử dụng thiết bị, tài nguyên và gói dịch vụ sẵn có hoặc miễn phí. Khối lượng được theo dõi bằng điểm: Nhỏ = 1, Vừa = 2 và Lớn = 3. Mọi chi phí triển khai, mua sắm hoặc vận hành thực tế nằm ngoài phạm vi và phải được lập dự toán riêng trong một giai đoạn mở rộng.
 
-Chi tiết phương pháp ước lượng, năng lực khả dụng và chi phí được trình bày trong tài liệu **Ước lượng dự án**.
+Giai đoạn làm thử ngày 16 và 17 tháng 07 năm 2026 đã triển khai 15 trong tổng số 26 điểm Bắt buộc. Phần chưa được triển khai thử còn 11 điểm. Theo tốc độ 7,5 điểm/ngày và hệ số dự phòng rủi ro 2,5, phần này tương đương 3,68 ngày và được làm tròn thành 4 ngày làm việc của nhóm. Chi tiết phương pháp được trình bày trong tài liệu **Ước lượng dự án**.
+
+Coding agent hỗ trợ phát triển, kiểm thử, rà soát, tài liệu và xử lý lỗi. Công cụ không thay thế trách nhiệm kiểm tra của thành viên hoặc việc Technical Lead xem xét Pull Request.
 
 ## 8. Tiêu chí hoàn thành
 
 ### 8.1. Điều kiện hoàn thành dự án môn học
 
 - 15 hạng mục Bắt buộc có trạng thái Hoàn thành, hoặc nhóm xác nhận danh sách ngoại lệ theo quy trình thay đổi.
-- Mỗi hạng mục Hoàn thành có liên kết tới thay đổi mã nguồn hoặc tài liệu, kết quả kiểm thử, người xem xét và ngày xác nhận.
+- Mỗi thay đổi mã nguồn có Pull Request được Technical Lead xem xét và phê duyệt trước khi hợp nhất vào `main`.
+- Mỗi hạng mục Hoàn thành có bằng chứng thay đổi mã nguồn hoặc tài liệu, kết quả kiểm thử, người xem xét và ngày xác nhận.
 - Luồng tải lên → nhận dạng ký tự → hiệu chỉnh → tạo EPUB → xuất bản → tìm kiếm → đọc chạy được trên bộ dữ liệu mẫu.
 - Phân quyền được kiểm tra phía máy chủ; người không đủ quyền bị từ chối.
 - Tài liệu chưa xuất bản không xuất hiện trong kết quả tìm kiếm dành cho người đọc.
@@ -192,12 +206,12 @@ Số token, số commit hoặc thời gian làm việc không tự chứng minh 
 
 ## 10. Kiểm soát thay đổi
 
-| Loại thay đổi | Ví dụ                                                                   | Người xác nhận                                 |
-| ------------- | ----------------------------------------------------------------------- | ---------------------------------------------- |
-| Biên tập      | Chính tả, liên kết hoặc định dạng không làm thay đổi ý nghĩa            | Chủ sở hữu tài liệu và người xem xét           |
-| Nhỏ           | Làm rõ tiêu chí, điều chỉnh thứ tự nhưng không đổi baseline             | Đại diện nhóm và người phụ trách nội dung      |
-| Baseline      | Đổi 15 hạng mục Bắt buộc, 11 tuần, nguồn lực hoặc sản phẩm bàn giao     | Nhóm Sebros theo quy tắc trong Hợp đồng nhóm   |
-| Mở rộng       | Triển khai cho đơn vị thật, dùng tài liệu thật hoặc phát sinh ngân sách | Cần đề xuất, SOW và thẩm quyền phê duyệt riêng |
+| Loại thay đổi | Ví dụ                                                                       | Người xác nhận                                 |
+| ------------- | --------------------------------------------------------------------------- | ---------------------------------------------- |
+| Biên tập      | Chính tả, liên kết hoặc định dạng không làm thay đổi ý nghĩa                | Chủ sở hữu tài liệu và người xem xét           |
+| Nhỏ           | Làm rõ tiêu chí, điều chỉnh thứ tự nhưng không đổi baseline                 | Đại diện nhóm và người phụ trách nội dung      |
+| Baseline      | Đổi 15 hạng mục/26 điểm Bắt buộc, 11 tuần, nguồn lực hoặc sản phẩm bàn giao | Nhóm Sebros theo quy tắc trong Hợp đồng nhóm   |
+| Mở rộng       | Triển khai cho đơn vị thật, dùng tài liệu thật hoặc phát sinh ngân sách     | Cần đề xuất, SOW và thẩm quyền phê duyệt riêng |
 
 Quy trình thay đổi gồm: ghi yêu cầu và lý do; phân tích tác động; xác định người có thẩm quyền; ghi nhận quyết định; cập nhật đồng thời SOW và các tài liệu bị ảnh hưởng. Im lặng không được xem là đồng ý.
 
@@ -212,6 +226,7 @@ Quy trình thay đổi gồm: ghi yêu cầu và lý do; phân tích tác độn
 ### Ràng buộc
 
 - Thời gian thực hiện là 11 tuần và phụ thuộc lịch học của thành viên.
+- Hệ số dự phòng rủi ro 2,5 được áp dụng cho thời gian tính theo tốc độ làm thử.
 - Không có ngân sách tiền mặt được phê duyệt.
 - Không dùng hoặc phát hành tài liệu thật khi chưa xác nhận quyền sử dụng.
 - Hạng mục tùy chọn không được làm giảm khả năng hoàn thành phạm vi baseline.
@@ -229,13 +244,14 @@ Việc có đại diện Thư viện, Phòng Công nghệ Thông tin hoặc Phá
 
 Tài liệu **Kế hoạch quản lý rủi ro** trình bày chi tiết mã rủi ro, người phụ trách, dấu hiệu kích hoạt, biện pháp ứng phó và trạng thái. SOW chỉ tóm tắt các rủi ro ảnh hưởng trực tiếp tới baseline.
 
-| Rủi ro                            | Mức        | Hướng xử lý chính                                                  |
-| --------------------------------- | ---------- | ------------------------------------------------------------------ |
-| Phạm vi vượt quá khả năng 11 tuần | Cao        | Giữ 15 hạng mục Bắt buộc; hoãn hạng mục tùy chọn.                  |
-| Thành viên thiếu thời gian        | Cao        | Giới hạn công việc đang thực hiện và điều phối lại nhiệm vụ.       |
-| Luồng cốt lõi hoặc phân quyền lỗi | Cao        | Ưu tiên sửa, kiểm thử hồi quy và không dùng kết quả chưa đạt.      |
-| Thiếu bằng chứng hoàn thành       | Cao        | Không ghi Hoàn thành; bổ sung thay đổi, kiểm thử và người xem xét. |
-| Môi trường chạy thử không ổn định | Trung bình | Duy trì môi trường cục bộ đã kiểm chứng làm phương án dự phòng.    |
+| Rủi ro                            | Mức        | Hướng xử lý chính                                                   |
+| --------------------------------- | ---------- | ------------------------------------------------------------------- |
+| Phạm vi vượt quá khả năng 11 tuần | Cao        | Giữ 15 hạng mục Bắt buộc; hoãn hạng mục tùy chọn.                   |
+| Thành viên thiếu thời gian        | Cao        | Giới hạn công việc đang thực hiện và điều phối lại nhiệm vụ.        |
+| Luồng cốt lõi hoặc phân quyền lỗi | Cao        | Ưu tiên sửa, kiểm thử hồi quy và không dùng kết quả chưa đạt.       |
+| Thiếu bằng chứng hoàn thành       | Cao        | Không ghi Hoàn thành; bổ sung thay đổi, kiểm thử và người xem xét.  |
+| Pull Request chờ xem xét lâu      | Trung bình | Technical Lead xem xét theo lịch hoặc ghi nhận người được ủy quyền. |
+| Môi trường chạy thử không ổn định | Trung bình | Duy trì môi trường cục bộ đã kiểm chứng làm phương án dự phòng.     |
 
 Rủi ro về quyền tài liệu, hạ tầng và vận hành toàn trường phải được đánh giá lại trước bất kỳ giai đoạn mở rộng nào.
 
@@ -264,7 +280,6 @@ Baseline này được ghi nhận là xác nhận nội bộ của nhóm Sebros.
 - Định nghĩa quy trình phát triển.
 - Ước lượng dự án.
 - Kế hoạch dự án.
-- Kế hoạch vận hành và bảo mật.
 - Hợp đồng nhóm.
 - Nhật ký dự án.
 - Kế hoạch quản lý rủi ro.

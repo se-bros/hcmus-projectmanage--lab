@@ -4,13 +4,13 @@
 
 ### Thông tin tài liệu
 
-| Trường      | Nội dung                                                                            |
-| ----------- | ----------------------------------------------------------------------------------- |
-| Mã tài liệu | `HCMUS-LDMS-UG`                                                                     |
-| Chủ sở hữu  | Frontend Lead và QA                                                                 |
-| Phiên bản   | 1.0 — 22/08/2026                                                                    |
-| Trạng thái  | Hướng dẫn theo đường cơ sở yêu cầu; cần đối chiếu giao diện thực tế trước phát hành |
-| Đối tượng   | Độc giả, Biên tập viên/Thủ thư và Quản trị viên                                     |
+| Trường      | Nội dung                                                                   |
+| ----------- | -------------------------------------------------------------------------- |
+| Mã tài liệu | `HCMUS-LDMS-UG`                                                            |
+| Chủ sở hữu  | Frontend Lead và QA                                                        |
+| Phiên bản   | 1.1 — 24/08/2026                                                           |
+| Trạng thái  | Hướng dẫn theo baseline; cần đối chiếu giao diện thực tế trước khi sử dụng |
+| Đối tượng   | Độc giả, Biên tập viên/Thủ thư và Quản trị viên                            |
 
 ## Mục lục
 
@@ -115,4 +115,4 @@ Quản trị viên gán vai trò theo nguyên tắc quyền tối thiểu. Thay 
 - Báo lỗi với thời gian, môi trường, build, bước, expected/actual và ảnh đã che dữ liệu nhạy cảm.
 - Kênh hỗ trợ/địa chỉ chính thức chưa được xác nhận trong bộ tài liệu; PM phải bổ sung trước bàn giao.
 
-Nguồn hành vi: [SRS](04-software-requirements.md), [Backlog](04-product-backlog.md), [Prototype](07-prototype.md), [Test Plan](20-test-plan.md) và [DevOps](15-devops-and-operations.md).
+Hành vi của hệ thống được xác định trong các tài liệu **Yêu cầu phần mềm**, **Danh mục công việc** và **Kế hoạch kiểm thử**. Giao diện thực tế là nguồn đối chiếu cuối cùng khi sử dụng hướng dẫn.

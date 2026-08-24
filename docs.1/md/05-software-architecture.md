@@ -26,6 +26,7 @@
 | 4.1       | 24/08/2026 | Chuẩn hóa từ ngữ tiếng Việt, giải thích thuật ngữ kỹ thuật và làm rõ các câu có thể gây mơ hồ.        | Mạch Quốc Tấn   |
 | 4.2       | 24/08/2026 | Chuyển bốn sơ đồ cốt lõi sang PlantUML và rút gọn các góc nhìn trùng lặp.                             | Mạch Quốc Tấn   |
 | 4.3       | 24/08/2026 | Đồng bộ xử lý nền, dữ liệu cốt lõi và cấu hình Nginx với cách triển khai thực tế.                     | Mạch Quốc Tấn   |
+| 4.4       | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.                                | Mạch Quốc Tấn   |
 
 ## Mục lục
 
@@ -396,6 +397,5 @@ Mọi mở rộng phải được nhóm xác nhận, cập nhật baseline và t
 - Kế hoạch kiểm thử.
 - Kế hoạch quản lý chất lượng.
 - Kế hoạch quản lý rủi ro.
-- Kế hoạch vận hành và bảo mật.
 - Nhật ký dự án.
 - Nhật ký quyết định kiến trúc.

@@ -1,241 +1,344 @@
-# KẾ HOẠCH KIỂM THỬ VÀ NGHIỆM THU NGƯỜI DÙNG
+# KẾ HOẠCH KIỂM THỬ
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
 ### Thông tin tài liệu
 
-| Trường                      | Nội dung                                                          |
-| --------------------------- | ----------------------------------------------------------------- |
-| Mã tài liệu                 | `HCMUS-LDMS-TUP`                                                  |
-| Chủ sở hữu                  | QA Lead — Nguyễn Quang Thái                                       |
-| Người phê duyệt kết quả UAT | Đại diện nghiệp vụ Thư viện hoặc người được ủy quyền              |
-| Phiên bản                   | 1.0 — 22/08/2026                                                  |
-| Trạng thái                  | Kế hoạch sẵn sàng để xem xét; toàn bộ kết quả hiện là `Chưa chạy` |
-| Phạm vi                     | 15 hạng mục Bắt buộc và NFR liên quan của MVP 11 tuần             |
+| Trường thông tin  | Nội dung                                |
+| ----------------- | --------------------------------------- |
+| Mã tài liệu       | `HCMUS-LDMS-TST`                        |
+| Tên tài liệu      | Kế hoạch kiểm thử                       |
+| Người viết        | Mạch Quốc Tấn                           |
+| Người xem xét     | Các thành viên nhóm Sebros              |
+| Người xác nhận    | Mạch Quốc Tấn — Quản lý dự án           |
+| Trạng thái        | Baseline nội bộ đã được nhóm xác nhận   |
+| Thời gian áp dụng | 11 tuần                                 |
+| Phạm vi           | 15 hạng mục Bắt buộc, tổng cộng 26 điểm |
+
+### Lịch sử phiên bản
+
+| Phiên bản | Ngày       | Mô tả thay đổi                                                           | Người thực hiện |
+| --------- | ---------- | ------------------------------------------------------------------------ | --------------- |
+| 1.0       | 22/08/2026 | Xây dựng phạm vi, chiến lược, môi trường và ma trận kiểm thử ban đầu.    | Mạch Quốc Tấn   |
+| 2.0       | 24/08/2026 | Đồng bộ baseline, DoD, cổng chất lượng và kiểm thử chấp nhận nội bộ.     | Mạch Quốc Tấn   |
+| 2.1       | 24/08/2026 | Đơn giản hóa cấu trúc và câu chữ, giữ đủ nội dung của kế hoạch kiểm thử. | Mạch Quốc Tấn   |
+| 2.2       | 24/08/2026 | Đồng bộ Ân Tiến Nguyên An là người phụ trách QA theo Hợp đồng nhóm.      | Mạch Quốc Tấn   |
+| 2.3       | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.   | Mạch Quốc Tấn   |
 
 ## Mục lục
 
 - [1. Mục đích và phạm vi](#1-mục-đích-và-phạm-vi)
-- [2. Chiến lược kiểm thử](#2-chiến-lược-kiểm-thử)
+- [2. Cách kiểm thử](#2-cách-kiểm-thử)
 - [3. Môi trường và dữ liệu](#3-môi-trường-và-dữ-liệu)
-- [4. Điều kiện vào và ra](#4-điều-kiện-vào-và-ra)
-- [5. Ma trận kiểm thử chức năng](#5-ma-trận-kiểm-thử-chức-năng)
+- [4. Điều kiện bắt đầu và kết thúc](#4-điều-kiện-bắt-đầu-và-kết-thúc)
+- [5. Kiểm thử 15 hạng mục Bắt buộc](#5-kiểm-thử-15-hạng-mục-bắt-buộc)
 - [6. Kiểm thử phi chức năng](#6-kiểm-thử-phi-chức-năng)
-- [7. Kịch bản UAT đầu cuối](#7-kịch-bản-uat-đầu-cuối)
-- [8. Quản lý lỗi và ngoại lệ](#8-quản-lý-lỗi-và-ngoại-lệ)
-- [9. Evidence Index](#9-evidence-index)
+- [7. Kiểm thử chấp nhận nội bộ](#7-kiểm-thử-chấp-nhận-nội-bộ)
+- [8. Ghi nhận kết quả và bằng chứng](#8-ghi-nhận-kết-quả-và-bằng-chứng)
+- [9. Quản lý lỗi](#9-quản-lý-lỗi)
 - [10. Vai trò, lịch và báo cáo](#10-vai-trò-lịch-và-báo-cáo)
-- [11. Truy vết và phê duyệt](#11-truy-vết-và-phê-duyệt)
+- [11. Điều kiện hoàn thành](#11-điều-kiện-hoàn-thành)
+- [12. Tài liệu tham khảo](#12-tài-liệu-tham-khảo)
+
+---
 
 ## 1. Mục đích và phạm vi
 
-Tài liệu quy định cách chứng minh HCMUS-LDMS đáp ứng yêu cầu, tiêu chí chấp nhận và điều kiện nghiệm thu. Kế hoạch bao phủ unit/component test do developer thực hiện, integration/API test, UI/end-to-end test, security/authorization test, reliability test, performance measurement, compatibility/accessibility check và UAT.
+Tài liệu quy định nhóm kiểm thử gì, kiểm thử như thế nào, ai thực hiện và điều kiện nào cho phép xác nhận kết quả. Mục tiêu là chứng minh 15 hạng mục Bắt buộc đáp ứng tiêu chí chấp nhận, yêu cầu phi chức năng và Tiêu chí hoàn thành (Definition of Done - DoD).
 
-Ngoài phạm vi:
+### Trong phạm vi
 
-- chứng nhận production, penetration test chuyên nghiệp hoặc kiểm toán pháp lý;
-- tải ở quy mô kho 500/2.000 tài liệu;
-- kết luận chất lượng OCR trên dữ liệu thật khi chưa có dataset và ground truth được duyệt;
-- các story Có thể xem xét nếu chưa có Change Request đưa vào baseline.
+- Cài đặt và khởi chạy hệ thống.
+- Đăng nhập và phân quyền.
+- Tải lên, lưu trữ và quản lý trạng thái tài liệu.
+- OCR, xem kết quả theo trang và hiệu chỉnh văn bản.
+- Quản lý thông tin mô tả.
+- Tạo EPUB và kiểm tra điều kiện xuất bản.
+- Tìm kiếm, hiển thị kết quả và đọc trực tuyến.
+- Kiểm tra lỗi, bảo toàn dữ liệu và quyền truy cập.
+- Kiểm thử đơn vị, tích hợp, chức năng, giao diện, hồi quy và chấp nhận nội bộ.
 
-## 2. Chiến lược kiểm thử
+### Ngoài phạm vi
 
-### 2.1. Các cấp kiểm thử
+- Hạng mục Nên có hoặc Có thể xem xét chưa được đưa vào baseline.
+- Kiểm thử xâm nhập chuyên nghiệp.
+- Kiểm thử tải ở quy mô toàn trường.
+- Kiểm định pháp lý đối với tài liệu thật.
+- Chứng nhận môi trường vận hành chính thức.
 
-| Cấp                    | Mục tiêu                                           | Owner chính             | Evidence tối thiểu                             |
-| ---------------------- | -------------------------------------------------- | ----------------------- | ---------------------------------------------- |
-| Unit/component         | Kiểm tra logic nhỏ, validation và trạng thái UI    | Developer               | Lệnh chạy, report/log, commit                  |
-| Integration/API        | Kiểm tra API–database–object storage–job           | Backend + QA            | Request/data, expected/actual, report          |
-| UI/E2E                 | Kiểm tra luồng người dùng trên browser             | Frontend + QA           | Script/checklist, screenshot/video khi phù hợp |
-| Security/authorization | Kiểm tra từ chối quyền, private file, secret       | Backend + QA/DevOps     | Negative tests, scan/log đã loại bí mật        |
-| Reliability/recovery   | Kiểm tra retry, restart, integrity và restore      | Architect + DevOps + QA | Test log, hash/version, thời gian phục hồi     |
-| Performance            | Đo, không suy diễn, trên dataset/môi trường ghi rõ | QA + Backend            | Raw result, phép tổng hợp, percentile          |
-| UAT                    | Xác nhận kết quả nghiệp vụ đầu cuối                | Đại diện nghiệp vụ      | Biên bản UAT có người/ngày/kết quả             |
+Kiểm thử chấp nhận do nhóm Sebros thực hiện nội bộ. Đại diện Thư viện hoặc người dùng bên ngoài chỉ tham gia tham khảo nếu dự án được mở rộng.
 
-### 2.2. Nguyên tắc thiết kế test
+## 2. Cách kiểm thử
 
-- Mỗi AC có ít nhất một trường hợp thành công và một trường hợp lỗi/quyền khi áp dụng.
-- Test case dùng ID `TC-<Story>-NN`; UAT dùng `UAT-NN`; NFR dùng `NFT-<NFR>-NN`.
-- Expected result lấy từ SRS/Backlog; hành vi chưa định nghĩa được ghi `Specification Gap`, không tự đặt oracle.
-- `Chưa chạy` không được đổi thành `Pass` nếu chỉ đọc code hoặc xem tài liệu.
-- Test evidence phải gắn phiên bản build/commit và môi trường.
-- Dữ liệu nhạy cảm, token và URL tạm thời phải được che trong evidence.
+### 2.1. Nguyên tắc
+
+1. Mỗi tiêu chí chấp nhận có ít nhất một trường hợp kiểm thử thành công.
+2. Yêu cầu về quyền, dữ liệu và trạng thái lỗi phải có trường hợp kiểm thử không hợp lệ.
+3. Kết quả phải ghi phiên bản mã nguồn, môi trường, dữ liệu, người chạy và thời điểm.
+4. “Chưa chạy” không được ghi thành “Đạt”.
+5. Người tạo mã tự kiểm tra trước khi tạo Pull Request.
+6. Technical Lead xem xét Pull Request trước khi hợp nhất vào `main`.
+7. Coding agent có thể hỗ trợ viết kiểm thử; thành viên phải đọc, chạy và xác minh kết quả.
+8. Không đưa khóa bí mật hoặc dữ liệu chưa được phép vào bằng chứng.
+
+### 2.2. Các loại kiểm thử
+
+| Loại kiểm thử    | Mục đích                                               | Người thực hiện chính       |
+| ---------------- | ------------------------------------------------------ | --------------------------- |
+| Đơn vị           | Kiểm tra hàm, logic và thành phần riêng lẻ.            | Người tạo mã                |
+| Tích hợp         | Kiểm tra API, cơ sở dữ liệu, kho tệp và công cụ xử lý. | Máy chủ; QA                 |
+| Chức năng        | Đối chiếu hệ thống với tiêu chí chấp nhận.             | QA; người phụ trách         |
+| Giao diện        | Kiểm tra thao tác, hiển thị, trạng thái và lỗi.        | Giao diện; QA               |
+| Phân quyền       | Kiểm tra đúng quyền và trường hợp sai quyền.           | Máy chủ; QA                 |
+| Độ tin cậy       | Kiểm tra lỗi, khởi động lại và bảo toàn dữ liệu.       | Máy chủ; Technical Lead; QA |
+| Hiệu năng        | Đo thời gian phản hồi trên môi trường xác định.        | QA; máy chủ                 |
+| Hồi quy          | Kiểm tra thay đổi không làm hỏng chức năng đã đạt.     | QA; nhóm phát triển         |
+| Chấp nhận nội bộ | Kiểm tra luồng chính phù hợp mục tiêu học tập.         | Nhóm Sebros                 |
+
+Nhóm ưu tiên tự động hóa kiểm thử đơn vị, API, phân quyền và hồi quy. Kiểm thử giao diện và chấp nhận nội bộ có thể thực hiện thủ công theo kịch bản.
 
 ## 3. Môi trường và dữ liệu
 
-### 3.1. Ma trận môi trường
+### 3.1. Môi trường
 
-| Môi trường            | Mục đích                        | Cấu hình chuẩn                                            | Trạng thái xác minh                          |
-| --------------------- | ------------------------------- | --------------------------------------------------------- | -------------------------------------------- |
-| Local                 | Unit, integration, phần lớn E2E | Docker Compose, PostgreSQL, MinIO, frontend/backend local | Chưa ghi smoke evidence trong tài liệu này   |
-| Demo cloud            | Smoke, UAT trình diễn           | Vercel, Render, Neon, Cloudflare R2                       | Chỉ dùng khi smoke đạt; hiện `Chưa xác minh` |
-| Production/on-premise | Không thuộc MVP                 | Chưa chốt                                                 | Ngoài phạm vi                                |
+| Môi trường                | Mục đích                                | Điều kiện sử dụng                                    |
+| ------------------------- | --------------------------------------- | ---------------------------------------------------- |
+| Cục bộ                    | Đơn vị, tích hợp, chức năng và hồi quy. | Thiết lập được theo hướng dẫn và kiểm tra nhanh đạt. |
+| Trực tuyến, nếu được dùng | Kiểm tra nhanh và trình bày nội bộ.     | Cấu hình đã được xác minh.                           |
+| Vận hành thực tế          | Không thuộc phạm vi dự án học tập.      | Cần kế hoạch và phê duyệt riêng.                     |
 
-Mỗi báo cáo chạy phải ghi hệ điều hành, browser/version, commit/build, cấu hình dịch vụ, thời gian và dataset. Không dùng kết quả local để khẳng định demo cloud đã đạt.
+Mỗi lần chạy phải ghi hệ điều hành, trình duyệt khi liên quan, mã commit hoặc bản dựng, cấu hình, thời gian và bộ dữ liệu.
 
-### 3.2. Dataset tối thiểu cần chuẩn bị
+### 3.2. Dữ liệu
 
-| ID    | Dữ liệu                                             | Mục đích                      | Điều kiện                       |
-| ----- | --------------------------------------------------- | ----------------------------- | ------------------------------- |
-| DS-01 | PDF/ảnh hợp lệ, chữ rõ                              | Happy path upload/OCR         | Có nguồn và quyền sử dụng       |
-| DS-02 | PDF nhiều trang, chất lượng không đồng đều          | Mapping trang và hiệu chỉnh   | Có ground truth cho phần đo OCR |
-| DS-03 | Sai loại, vượt giới hạn, tệp hỏng                   | Validation/error              | Không chứa dữ liệu thật         |
-| DS-04 | Metadata hợp lệ/thiếu/sai định dạng                 | Metadata/publish gate         | Có expected result rõ           |
-| DS-05 | EPUB hợp lệ và EPUB lỗi                             | Reader/validator              | Không chứa tài liệu trái quyền  |
-| DS-06 | Tài liệu draft/published/private theo nhiều vai trò | Search/RBAC                   | Tài khoản thử có role matrix    |
-| DS-07 | Dataset tìm kiếm có từ khóa và quyền biết trước     | Functional/performance search | Ghi số tài liệu và kích thước   |
+| Mã    | Dữ liệu                                              | Dùng để kiểm tra                    |
+| ----- | ---------------------------------------------------- | ----------------------------------- |
+| DS-01 | PDF hoặc ảnh hợp lệ, chữ rõ.                         | Tải lên và OCR thông thường.        |
+| DS-02 | PDF nhiều trang, chất lượng ảnh khác nhau.           | Ánh xạ trang và hiệu chỉnh.         |
+| DS-03 | Tệp sai loại, rỗng, hỏng hoặc vượt giới hạn.         | Xác thực dữ liệu và thông báo lỗi.  |
+| DS-04 | Thông tin mô tả hợp lệ, thiếu và sai định dạng.      | Lưu thông tin và kiểm tra xuất bản. |
+| DS-05 | EPUB hợp lệ và EPUB lỗi.                             | Tạo tệp và trình đọc.               |
+| DS-06 | Tài liệu nháp, đã xuất bản và riêng tư.              | Tìm kiếm và phân quyền.             |
+| DS-07 | Bộ tài liệu có từ khóa và quyền truy cập biết trước. | Tìm kiếm và đo hiệu năng.           |
+| DS-08 | Tài khoản thử cho quản trị, biên tập và người đọc.   | Đăng nhập và ma trận quyền.         |
 
-Dataset Register phải ghi nguồn, quyền, hash, ngày tạo, người duyệt và nơi lưu. Chưa có Dataset Register được xác minh tại thời điểm lập kế hoạch.
+Dữ liệu phải có nguồn và quyền sử dụng phù hợp. Không dùng tài khoản, mật khẩu hoặc tài liệu thật chưa được phép. Khi dữ liệu thay đổi, các kiểm thử liên quan phải chạy lại.
 
-## 4. Điều kiện vào và ra
+## 4. Điều kiện bắt đầu và kết thúc
 
-### 4.1. Điều kiện vào System Test
+### 4.1. Bắt đầu kiểm thử
 
-- Build khởi chạy được theo hướng dẫn.
-- Story có AC, requirement mapping và owner/reviewer.
-- Dữ liệu thử có nguồn/quyền và expected result.
-- Thay đổi đã qua review phù hợp; không còn blocker ngăn chạy test.
-- Môi trường và build ID được ghi nhận.
+Chỉ bắt đầu khi:
 
-### 4.2. Điều kiện vào UAT
+- yêu cầu và tiêu chí chấp nhận đã rõ;
+- Pull Request sẵn sàng hoặc mã đã được hợp nhất theo loại kiểm thử;
+- môi trường chạy được và xác định được phiên bản;
+- dữ liệu và kết quả mong đợi đã chuẩn bị;
+- người chạy và phạm vi đã được xác định.
 
-- 15 story Bắt buộc đạt system test, hoặc có ngoại lệ được phê duyệt.
-- Không còn defect Critical/High chưa có quyết định ngoại lệ.
-- Luồng đầu cuối và phân quyền đã smoke test.
-- Dataset UAT được Đại diện nghiệp vụ chấp thuận.
-- Người chạy, lịch, môi trường, cách ghi phản hồi và người ký đã được xác nhận.
+### 4.2. Tạm dừng và tiếp tục
 
-### 4.3. Điều kiện ra
+Tạm dừng phần kiểm thử liên quan khi môi trường không ổn định, sai phiên bản, dữ liệu không hợp lệ, phụ thuộc chính bị lỗi hoặc phát hiện nguy cơ mất dữ liệu hay lộ quyền.
 
-- Toàn bộ test bắt buộc có trạng thái Pass/Fail/Blocked/Chưa chạy rõ ràng.
-- Requirement/Story bắt buộc có evidence hoặc ngoại lệ được ký.
-- Critical/High = 0 chưa xử lý; Medium còn lại có owner và quyết định.
-- UAT có kết luận Đã chấp nhận, Đã chấp nhận with Exceptions hoặc Đã bác bỏ.
-- Evidence Index và Completion Register được cập nhật.
+Chỉ tiếp tục sau khi nguyên nhân đã được xử lý, môi trường và dữ liệu được xác minh, và người phụ trách kiểm thử xác nhận kết quả mới có thể đánh giá.
 
-## 5. Ma trận kiểm thử chức năng
+### 4.3. Kết thúc kiểm thử baseline
 
-| Story    | Requirements chính           | Test trọng tâm                                | Negative/boundary bắt buộc                    | Trạng thái |
-| -------- | ---------------------------- | --------------------------------------------- | --------------------------------------------- | ---------- |
-| LDMS-001 | YC-PN-07, YC-PN-09           | Cài đặt, khởi chạy, health/smoke              | Thiếu biến môi trường, service unavailable    | Chưa chạy  |
-| LDMS-009 | YC-HT-01, YC-HT-02           | Đăng nhập dữ liệu thử và tạo phiên            | Sai/thiếu credential, session hết hạn         | Chưa chạy  |
-| LDMS-010 | YC-HT-03, YC-HT-04, YC-PN-01 | Gán role và kiểm tra quyền server             | Role thấp gọi trực tiếp API quản trị          | Chưa chạy  |
-| LDMS-002 | YC-TL-01..03                 | Upload và bảo toàn source                     | Sai loại, rỗng, hỏng, vượt giới hạn           | Chưa chạy  |
-| LDMS-003 | YC-ND-01..03, YC-PN-03       | Tạo job OCR và theo dõi trạng thái            | Job lỗi/timeout/restart                       | Chưa chạy  |
-| LDMS-004 | YC-ND-03, YC-ND-04           | Văn bản đúng tài liệu/trang                   | Mapping thiếu/sai trang                       | Chưa chạy  |
-| LDMS-005 | YC-ND-05, YC-PN-08           | Lưu, mở lại nội dung đã sửa                   | Lỗi save/concurrency; source không đổi        | Chưa chạy  |
-| LDMS-011 | YC-TL-04, YC-TL-05           | CRUD metadata và gán danh mục có sẵn          | Thiếu trường bắt buộc, dữ liệu sai            | Chưa chạy  |
-| LDMS-007 | YC-PH-04                     | Tạo/lưu EPUB và mở bằng reader                | Nội dung lỗi; validator fail; job fail        | Chưa chạy  |
-| LDMS-013 | YC-PH-01..03                 | Publish khi đủ điều kiện                      | Thiếu metadata/nội dung/quyền                 | Chưa chạy  |
-| LDMS-015 | YC-TC-01..03, YC-PN-04       | Full-text search và lọc quyền                 | Draft/private không xuất hiện; empty query    | Chưa chạy  |
-| LDMS-016 | YC-TC-04                     | Kết quả đủ thông tin và mở đúng tài liệu      | Không kết quả, lỗi API, metadata thiếu        | Chưa chạy  |
-| LDMS-008 | YC-PH-05, YC-TC-05           | Mở/đọc EPUB responsive                        | EPUB lỗi, mất phiên, viewport nhỏ             | Chưa chạy  |
-| LDMS-014 | YC-PH-06, YC-TC-06, YC-PN-02 | Chỉ người có quyền đọc; không có nút download | API/URL trực tiếp, URL hết hạn, role không đủ | Chưa chạy  |
-| LDMS-026 | YC-TL-06                     | Danh sách và trạng thái đúng                  | Lọc quyền, phân trang, empty/error state      | Chưa chạy  |
+- Cả 15 hạng mục Bắt buộc có kết quả theo tiêu chí chấp nhận.
+- Tổng điểm Hoàn thành đạt 26 điểm.
+- Không còn lỗi Nghiêm trọng hoặc Cao chưa xử lý.
+- Kiểm thử phân quyền, toàn vẹn dữ liệu và luồng đầu cuối đạt.
+- Các trường hợp bắt buộc có trạng thái và bằng chứng rõ ràng.
+- Kiểm thử chấp nhận nội bộ có kết luận.
+- Báo cáo tổng kết và danh sách lỗi còn lại đã được cập nhật.
 
-Các story Nên có chỉ được đưa vào release khi có test riêng đạt; chúng không được dùng để thay thế evidence của 15 story Bắt buộc.
+## 5. Kiểm thử 15 hạng mục Bắt buộc
+
+| Hạng mục | Nội dung kiểm tra chính                                   | Trường hợp lỗi hoặc biên bắt buộc                       | Trạng thái ban đầu |
+| -------- | --------------------------------------------------------- | ------------------------------------------------------- | ------------------ |
+| LDMS-001 | Cài đặt, khởi chạy và kiểm tra nhanh hệ thống.            | Thiếu cấu hình hoặc dịch vụ phụ thuộc bị lỗi.           | Chưa chạy          |
+| LDMS-002 | Tải tệp hợp lệ và bảo toàn tệp gốc.                       | Tệp sai loại, rỗng, hỏng hoặc vượt giới hạn.            | Chưa chạy          |
+| LDMS-003 | Tạo tác vụ OCR và theo dõi trạng thái.                    | Tác vụ lỗi, quá thời gian hoặc dịch vụ khởi động lại.   | Chưa chạy          |
+| LDMS-004 | Hiển thị văn bản đúng tài liệu và trang.                  | Chưa có kết quả, thiếu hoặc sai ánh xạ trang.           | Chưa chạy          |
+| LDMS-005 | Lưu và mở lại đúng nội dung đã hiệu chỉnh.                | Lưu lỗi, cập nhật đồng thời hoặc tệp gốc bị thay đổi.   | Chưa chạy          |
+| LDMS-007 | Tạo EPUB hợp lệ và mở được bằng trình đọc.                | Nội dung lỗi, tạo tệp thất bại hoặc EPUB không hợp lệ.  | Chưa chạy          |
+| LDMS-008 | Mở và đọc EPUB trên kích thước màn hình mục tiêu.         | EPUB lỗi, hết phiên hoặc màn hình nhỏ.                  | Chưa chạy          |
+| LDMS-009 | Đăng nhập bằng dữ liệu thử và tạo phiên.                  | Sai hoặc thiếu thông tin; phiên hết hạn.                | Chưa chạy          |
+| LDMS-010 | Gán vai trò và áp dụng quyền đúng.                        | Vai trò thấp gọi trực tiếp API quản trị.                | Chưa chạy          |
+| LDMS-011 | Nhập, sửa và lưu thông tin mô tả hợp lệ.                  | Thiếu trường bắt buộc hoặc sai định dạng.               | Chưa chạy          |
+| LDMS-013 | Xuất bản khi nội dung và thông tin đầy đủ.                | Thiếu nội dung, thông tin, EPUB hoặc quyền.             | Chưa chạy          |
+| LDMS-014 | Người đủ quyền đọc được tài liệu.                         | Gọi API hoặc liên kết trực tiếp khi không đủ quyền.     | Chưa chạy          |
+| LDMS-015 | Tìm theo thông tin mô tả, toàn văn và đúng phạm vi quyền. | Tài liệu nháp, riêng tư hoặc ngoài quyền xuất hiện.     | Chưa chạy          |
+| LDMS-016 | Hiển thị kết quả và mở đúng tài liệu.                     | Không có kết quả, lỗi API hoặc thiếu thông tin mô tả.   | Chưa chạy          |
+| LDMS-026 | Hiển thị danh sách và trạng thái đúng quyền.              | Danh sách rỗng, lỗi tải, sai phân trang hoặc lọc quyền. | Chưa chạy          |
+
+“Chưa chạy” cho biết đây là kế hoạch, không phải kết quả. Sau khi thực hiện, trạng thái được đổi thành Đạt, Không đạt, Bị chặn hoặc Không áp dụng kèm lý do.
 
 ## 6. Kiểm thử phi chức năng
 
-| ID     | NFR            | Phương pháp                                     | Chỉ số/Oracle cần chốt                             | Trạng thái |
-| ------ | -------------- | ----------------------------------------------- | -------------------------------------------------- | ---------- |
-| NFT-01 | YC-PN-01       | Authorization matrix ở UI và gọi API trực tiếp  | 100% negative case trọng yếu bị từ chối            | Chưa chạy  |
-| NFT-02 | YC-PN-02       | Kiểm tra bucket private, signed URL và expiry   | Không truy cập ẩn danh; URL hết hạn bị từ chối     | Chưa chạy  |
-| NFT-03 | YC-PN-03       | Chạy OCR/EPUB và tương tác UI song song         | UI không bị khóa; có status/error                  | Chưa chạy  |
-| NFT-04 | YC-PN-04       | Đo search trên DS-07, warm-up và nhiều lần chạy | Dataset, số lượt, P50/P95 và ngưỡng chốt trước UAT | Chưa chạy  |
-| NFT-05 | YC-PN-05       | Heuristic/usability checklist + UAT             | Người dùng hiểu trạng thái/lỗi và hoàn thành luồng | Chưa chạy  |
-| NFT-06 | YC-PN-06       | Browser/device matrix                           | Matrix phải được chốt trước chạy                   | Chưa chạy  |
-| NFT-07 | YC-PN-07       | Review module boundaries và hướng dẫn setup     | Thành viên mới chạy được theo hướng dẫn            | Chưa chạy  |
-| NFT-08 | YC-PN-08       | Failure injection/restart/hash comparison       | Source và save gần nhất không mất                  | Chưa chạy  |
-| NFT-09 | YC-PN-09       | Clean environment setup/smoke                   | Khởi chạy từ cấu hình repo, ghi thời gian          | Chưa chạy  |
-| NFT-10 | YC-PN-10       | Audit trace Requirement→Story→PR→Test→UAT       | Không thiếu link ở story Done                      | Chưa chạy  |
-| NFT-11 | Accessibility  | Keyboard, focus, label, contrast, zoom 200%     | Không có lỗi chặn luồng core                       | Chưa chạy  |
-| NFT-12 | Backup/restore | Restore drill database + object mapping         | RPO/RTO demo được ghi và kết quả đạt               | Chưa chạy  |
+| Mã     | Nội dung           | Cách kiểm tra                                               | Tiêu chí đánh giá                                          |
+| ------ | ------------------ | ----------------------------------------------------------- | ---------------------------------------------------------- |
+| NFT-01 | Phân quyền         | Kiểm tra tại giao diện và gọi API trực tiếp.                | Trường hợp sai quyền trọng yếu đều bị từ chối.             |
+| NFT-02 | Bảo vệ tệp         | Kiểm tra kho riêng tư và liên kết tạm thời.                 | Không truy cập ẩn danh; liên kết hết hạn bị từ chối.       |
+| NFT-03 | Xử lý nền          | Chạy OCR/EPUB cùng thao tác giao diện.                      | Giao diện không bị khóa; trạng thái được hiển thị.         |
+| NFT-04 | Hiệu năng tìm kiếm | Chạy nhiều lần trên DS-07 và ghi dữ liệu thô.               | Báo cáo nêu dữ liệu, số lượt, trung vị và phân vị 95.      |
+| NFT-05 | Khả năng sử dụng   | Thực hiện các kịch bản chấp nhận nội bộ.                    | Người chạy hiểu trạng thái và hoàn thành được luồng chính. |
+| NFT-06 | Tương thích        | Kiểm tra trên trình duyệt và kích thước màn hình đã chọn.   | Không có lỗi chặn luồng chính.                             |
+| NFT-07 | Khả năng thiết lập | Thiết lập trên môi trường sạch theo hướng dẫn.              | Thành viên khác có thể khởi chạy hệ thống.                 |
+| NFT-08 | Toàn vẹn dữ liệu   | Gây lỗi, khởi động lại và đối chiếu dữ liệu.                | Tệp gốc và nội dung đã xác nhận không bị mất.              |
+| NFT-09 | Khả năng truy vết  | Rà yêu cầu, hạng mục, Pull Request, kiểm thử và DoD.        | Hạng mục Hoàn thành không thiếu bằng chứng.                |
+| NFT-10 | Khả năng truy cập  | Kiểm tra bàn phím, tiêu điểm, nhãn, tương phản và phóng to. | Không có lỗi chặn luồng chính.                             |
 
-Kết quả hiệu năng/OCR phải kèm raw data và cách tính. Không chốt con số đạt trước khi đại diện liên quan thống nhất dataset và ngưỡng.
+Kết quả OCR và hiệu năng chỉ được công bố khi có dữ liệu, môi trường, số lượt chạy và cách tính rõ ràng.
 
-## 7. Kịch bản UAT đầu cuối
+## 7. Kiểm thử chấp nhận nội bộ
 
-| ID     | Vai trò                 | Kịch bản                                      | Kết quả chấp nhận                                  | Trạng thái |
-| ------ | ----------------------- | --------------------------------------------- | -------------------------------------------------- | ---------- |
-| UAT-01 | Biên tập viên           | Đăng nhập, upload DS-01, theo dõi OCR         | Tệp được lưu; trạng thái rõ; không mất source      | Chưa chạy  |
-| UAT-02 | Biên tập viên           | Đối chiếu trang, sửa và mở lại nội dung       | Mapping đúng; thay đổi được giữ; source nguyên vẹn | Chưa chạy  |
-| UAT-03 | Biên tập viên           | Nhập metadata, gán danh mục, kiểm tra publish | Thiếu dữ liệu bị chặn và nêu lý do                 | Chưa chạy  |
-| UAT-04 | Người có quyền xuất bản | Tạo EPUB, xác nhận và xuất bản                | EPUB hợp lệ; trạng thái chuyển đúng; có audit      | Chưa chạy  |
-| UAT-05 | Độc giả có quyền        | Tìm kiếm, mở kết quả và đọc                   | Chỉ thấy tài liệu được phép; reader dùng được      | Chưa chạy  |
-| UAT-06 | Người không đủ quyền    | Tìm/gọi URL/API của private/draft             | Không lộ metadata/nội dung/tệp                     | Chưa chạy  |
-| UAT-07 | Biên tập viên           | Job OCR/EPUB thất bại rồi retry               | Lỗi rõ; retry truy vết được; dữ liệu không mất     | Chưa chạy  |
-| UAT-08 | Quản trị viên           | Gán role và kiểm tra quyền mới                | Quyền có hiệu lực đúng; hành động được ghi nhận    | Chưa chạy  |
+| Mã     | Vai trò         | Kịch bản                                       | Kết quả chấp nhận                                 |
+| ------ | --------------- | ---------------------------------------------- | ------------------------------------------------- |
+| UAT-01 | Biên tập viên   | Đăng nhập, tải tài liệu và theo dõi OCR.       | Tệp được lưu; trạng thái rõ; không mất tệp gốc.   |
+| UAT-02 | Biên tập viên   | Xem từng trang, hiệu chỉnh và mở lại nội dung. | Đúng trang; thay đổi được giữ; tệp gốc không đổi. |
+| UAT-03 | Biên tập viên   | Nhập thông tin và kiểm tra điều kiện xuất bản. | Dữ liệu thiếu bị chặn và có lý do rõ.             |
+| UAT-04 | Người xuất bản  | Tạo EPUB và xuất bản tài liệu hợp lệ.          | EPUB mở được và trạng thái chuyển đúng.           |
+| UAT-05 | Người đọc       | Tìm kiếm, mở kết quả và đọc trực tuyến.        | Chỉ thấy tài liệu được phép và đọc được nội dung. |
+| UAT-06 | Người sai quyền | Truy cập tài liệu riêng tư hoặc chưa xuất bản. | Không lộ thông tin, nội dung hoặc tệp.            |
+| UAT-07 | Biên tập viên   | Gặp lỗi OCR/EPUB và thực hiện lại.             | Lỗi rõ; xử lý lại được; dữ liệu không mất.        |
+| UAT-08 | Quản trị viên   | Gán vai trò và kiểm tra quyền mới.             | Quyền có hiệu lực đúng và không vượt phạm vi.     |
 
-Mỗi kịch bản ghi người chạy, ngày, build, môi trường, dataset, actual result, defect liên quan và chữ ký/xác nhận. Bảng trên là kế hoạch, không phải kết quả.
+Mỗi lần thực hiện phải ghi người chạy, ngày, phiên bản, môi trường, dữ liệu, kết quả thực tế, lỗi liên quan và kết luận. Bảng trên là kế hoạch, không phải kết quả đã đạt.
 
-## 8. Quản lý lỗi và ngoại lệ
+## 8. Ghi nhận kết quả và bằng chứng
 
-| Mức      | Định nghĩa                                                              | Quy tắc release                           |
-| -------- | ----------------------------------------------------------------------- | ----------------------------------------- |
-| Critical | Mất dữ liệu, lộ dữ liệu/tệp nghiêm trọng, hệ thống core không dùng được | Không release/UAT                         |
-| High     | Hỏng story Bắt buộc, bypass quyền, sai dữ liệu đáng kể                  | Phải sửa hoặc ngoại lệ có thẩm quyền      |
-| Medium   | Có workaround, ảnh hưởng cục bộ                                         | Có owner, target và đánh giá tác động     |
-| Low      | Trình bày/tiện ích nhỏ                                                  | Có thể đưa backlog nếu không ảnh hưởng AC |
+### 8.1. Quy ước mã
 
-Ngoại lệ phải ghi defect/test ID, phạm vi ảnh hưởng, rủi ro tồn dư, workaround, thời hạn và người chấp nhận. Developer không tự chấp nhận ngoại lệ bảo mật, dữ liệu hoặc nghiệp vụ.
+| Bản ghi                | Định dạng         |
+| ---------------------- | ----------------- |
+| Trường hợp chức năng   | `TC-LDMS-xxx-nn`  |
+| Kiểm thử phi chức năng | `NFT-nn`          |
+| Kiểm thử chấp nhận     | `UAT-nn`          |
+| Lỗi                    | `DEF-yyyymmdd-nn` |
+| Bằng chứng             | `EVD-yyyymmdd-nn` |
 
-## 9. Evidence Index
+### 8.2. Nội dung cần ghi
 
-| Evidence ID                    | Story/NFR     | Build/commit  | Test report   | Môi trường/dataset | Kết quả   | Reviewer/UAT  | Trạng thái    |
-| ------------------------------ | ------------- | ------------- | ------------- | ------------------ | --------- | ------------- | ------------- |
-| Chưa có evidence được xác minh | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận      | Chưa chạy | Chưa ghi nhận | Đang theo dõi |
+Mỗi trường hợp kiểm thử cần có:
 
-Evidence ID dùng định dạng `EVD-YYYYMMDD-NN`. Artifact có thể là report máy, raw log đã che bí mật, screenshot, video ngắn, biên bản hoặc link CI. Chỉ link tồn tại và truy cập được mới được ghi.
+- mã, tiêu đề và hạng mục liên quan;
+- điều kiện trước và dữ liệu;
+- các bước thực hiện;
+- kết quả mong đợi và kết quả thực tế;
+- trạng thái;
+- phiên bản và môi trường;
+- người thực hiện và ngày;
+- lỗi và bằng chứng liên quan.
+
+### 8.3. Trạng thái
+
+| Trạng thái    | Ý nghĩa                                                   |
+| ------------- | --------------------------------------------------------- |
+| Chưa chạy     | Chưa thực hiện trên phiên bản và môi trường xác định.     |
+| Đạt           | Kết quả thực tế đúng với kết quả mong đợi.                |
+| Không đạt     | Có khác biệt cần sửa hoặc chấp nhận ngoại lệ.             |
+| Bị chặn       | Không thể hoàn tất do môi trường, dữ liệu hoặc phụ thuộc. |
+| Không áp dụng | Không còn phù hợp; phải ghi lý do và người xác nhận.      |
+
+Bằng chứng có thể là kết quả máy, nhật ký đã che thông tin nhạy cảm, ảnh giao diện hoặc biên bản nội bộ. Bằng chứng phải mở được, gắn đúng mã và đủ để người khác kiểm tra lại kết luận.
+
+## 9. Quản lý lỗi
+
+### 9.1. Mức độ
+
+| Mức độ       | Ý nghĩa                                                     | Cách xử lý                                     |
+| ------------ | ----------------------------------------------------------- | ---------------------------------------------- |
+| Nghiêm trọng | Mất dữ liệu, lộ quyền hoặc luồng chính không dùng được.     | Dừng phần liên quan; sửa và kiểm thử lại ngay. |
+| Cao          | Hạng mục Bắt buộc không đạt hoặc ảnh hưởng nhiều chức năng. | Sửa trước khi đạt DoD.                         |
+| Trung bình   | Lỗi cục bộ nhưng có cách xử lý tạm thời.                    | Có người phụ trách và thời điểm sửa.           |
+| Thấp         | Lỗi trình bày không ảnh hưởng tiêu chí chấp nhận.           | Xử lý theo thứ tự ưu tiên.                     |
+
+### 9.2. Vòng đời
+
+`Mới → Đã phân công → Đang sửa → Chờ kiểm thử lại → Đã đóng`
+
+Kiểm thử lại không đạt thì lỗi được Mở lại. Trường hợp không tái hiện được phải ghi rõ môi trường và các lần thử. Ngoại lệ phải có lý do, tác động, người chấp nhận và thời hạn.
+
+Mỗi lỗi cần ghi mã, phiên bản, môi trường, bước tái hiện, kết quả mong đợi, kết quả thực tế, mức độ, người phụ trách, Pull Request sửa lỗi và kết quả kiểm thử lại.
 
 ## 10. Vai trò, lịch và báo cáo
 
-| Hoạt động                     | R                  | A                  | C/I                  |
-| ----------------------------- | ------------------ | ------------------ | -------------------- |
-| Test design và evidence index | QA Lead            | PM                 | Developer, nghiệp vụ |
-| Unit/component test           | Developer          | Technical Lead     | QA                   |
-| Integration/security/recovery | Backend/DevOps/QA  | Solution Architect | PM                   |
-| UAT preparation               | QA + PM            | Đại diện nghiệp vụ | Nhóm                 |
-| UAT decision                  | Đại diện nghiệp vụ | Đại diện nghiệp vụ | PM, QA               |
+### 10.1. Vai trò
 
-- Tuần 2–3: chốt dataset, test design và PoC.
-- Tuần 4–9: kiểm thử liên tục theo card; regression sau tích hợp.
-- Tuần 9: chốt browser/device matrix, UAT dataset và ngưỡng NFR.
-- Tuần 10: system test, security/recovery và defect triage.
-- Tuần 11: UAT, regression cuối, evidence audit và release decision.
+| Hoạt động                     | Người thực hiện                      | Người xác nhận                  |
+| ----------------------------- | ------------------------------------ | ------------------------------- |
+| Viết và duy trì kế hoạch      | Mạch Quốc Tấn                        | Nhóm Sebros                     |
+| Thiết kế trường hợp kiểm thử  | Ân Tiến Nguyên An và người phụ trách | Quản lý dự án                   |
+| Kiểm thử đơn vị               | Người tạo mã                         | Technical Lead qua Pull Request |
+| Kiểm thử tích hợp, phân quyền | Máy chủ; QA                          | Technical Lead                  |
+| Kiểm thử giao diện            | Giao diện; QA                        | Ân Tiến Nguyên An               |
+| Kiểm thử hồi quy              | QA; nhóm phát triển                  | Quản lý dự án                   |
+| Kiểm thử chấp nhận nội bộ     | Các thành viên nhóm Sebros           | Quản lý dự án                   |
+| Rà soát bằng chứng            | Ân Tiến Nguyên An                    | Quản lý dự án                   |
 
-## 11. Truy vết và phê duyệt
+### 10.2. Lịch
 
-Nguồn yêu cầu: [SRS](04-software-requirements.md), [Backlog](04-product-backlog.md), [Architecture](05-software-architecture.md), [SOW](12-statement-of-work.md), [Quality Plan](19-quality-management-plan.md) và [Operations–Security Plan](15-devops-and-operations.md).
+| Tuần | Hoạt động chính                                             |
+| ---: | ----------------------------------------------------------- |
+|    1 | Chuẩn bị môi trường, dữ liệu và trường hợp kiểm thử.        |
+|  2–8 | Kiểm thử liên tục theo từng hạng mục và Pull Request.       |
+|    4 | Kiểm thử tích hợp nền tảng, phân quyền, tải lên và OCR.     |
+|    8 | Kiểm thử toàn bộ chức năng Bắt buộc.                        |
+|    9 | Kiểm thử đầu cuối, hồi quy, phân quyền và toàn vẹn dữ liệu. |
+|   10 | Sửa lỗi, kiểm thử lại và chuẩn bị chấp nhận nội bộ.         |
+|   11 | Kiểm thử chấp nhận, hồi quy cuối và tổng kết.               |
 
-| Vai trò                     | Người                  | Quyết định           | Ngày          |
-| --------------------------- | ---------------------- | -------------------- | ------------- |
-| QA Lead                     | Nguyễn Quang Thái      | Chờ xem xét kế hoạch | Chưa xác nhận |
-| Project Manager             | Mạch Quốc Tấn          | Chờ xem xét kế hoạch | Chưa xác nhận |
-| Đại diện nghiệp vụ Thư viện | Chưa chỉ định bằng tên | Chờ duyệt UAT        | Chưa xác nhận |
+### 10.3. Báo cáo
 
-## Evidence — Bản in minh chứng kiểm thử
+Báo cáo theo tuần và báo cáo tổng kết cần có:
 
-### Kết quả chạy Unit Tests
+- phạm vi, phiên bản, môi trường và dữ liệu;
+- số trường hợp Chưa chạy, Đạt, Không đạt và Bị chặn;
+- lỗi mới, lỗi đã đóng và lỗi còn lại theo mức độ;
+- hạng mục bị chặn, rủi ro và ngoại lệ;
+- kết luận và hành động tiếp theo.
 
-![Unit Test Results](../final-exam/preparation/5_CICD_DevOps_Testing/printouts/Q20/run-test.png)
+Các chỉ số chính gồm tỷ lệ trường hợp đã chạy, tỷ lệ đạt, mức bao phủ yêu cầu, lỗi theo mức độ, tỷ lệ kiểm thử lại đạt và mức đầy đủ của bằng chứng. Khi chưa có dữ liệu, báo cáo ghi “Chưa có dữ liệu”, không ghi 0 hoặc Đạt.
 
-Ảnh chụp terminal output khi chạy `pytest -v` trên backend, hiển thị danh sách test pass/fail.
+### 10.4. Rủi ro kiểm thử
 
-### Giao diện cấu hình Coding Standards
+| Rủi ro                           | Cách xử lý                                                |
+| -------------------------------- | --------------------------------------------------------- |
+| Môi trường không ổn định         | Ghi cấu hình, kiểm tra nhanh và tạm dừng khi cần.         |
+| Dữ liệu không đại diện           | Dùng nhiều loại dữ liệu và ghi giới hạn của kết quả.      |
+| Thiếu thời gian                  | Kiểm thử liên tục và ưu tiên theo rủi ro.                 |
+| Người tạo tự xác nhận            | Technical Lead và QA kiểm tra trước khi đạt DoD.          |
+| Coding agent tạo kiểm thử sai    | Thành viên đọc, chạy và đối chiếu với tiêu chí chấp nhận. |
+| Thiếu bằng chứng                 | Rà soát bằng chứng tại cổng G3 và G4.                     |
+| Pull Request chờ xem xét         | Technical Lead xử lý theo lịch hoặc ủy quyền rõ ràng.     |
+| Bằng chứng chứa dữ liệu nhạy cảm | Dùng dữ liệu mẫu và rà soát trước khi lưu.                |
 
-Tham chiếu cùng tài liệu với Câu 19: [`03_coding_standards_and_linter_config.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/03_coding_standards_and_linter_config.md)
+## 11. Điều kiện hoàn thành
 
-CI pipeline chặn merge tự động khi Ruff (Python) hoặc Oxlint (TypeScript) phát hiện vi phạm.
+Kế hoạch kiểm thử được áp dụng đầy đủ khi:
 
-### Biên bản thanh tra mã nguồn (Code Inspection)
+1. Cả 15 hạng mục Bắt buộc và 26 điểm có kiểm thử phù hợp.
+2. Môi trường, dữ liệu và người thực hiện được xác định.
+3. Mỗi hạng mục có trường hợp thành công và trường hợp lỗi quan trọng.
+4. Mọi thay đổi mã nguồn có Pull Request được Technical Lead xem xét.
+5. Không còn lỗi Nghiêm trọng hoặc Cao chưa xử lý.
+6. Kiểm thử phân quyền, toàn vẹn dữ liệu và luồng đầu cuối đạt.
+7. Kiểm thử chấp nhận nội bộ có kết luận và bằng chứng.
+8. Báo cáo tổng kết kiểm thử được cập nhật trong bộ tài liệu dự án.
 
-Tham chiếu cùng tài liệu với Câu 19: [`01_code_inspection_record_pr41.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/01_code_inspection_record_pr41.md)
+Việc xác nhận kế hoạch không đồng nghĩa các trường hợp kiểm thử đã được chạy hoặc đã đạt.
 
-PR #41 — `feat: highlight and note in reading books (LDMS-021)`, 27 files, APPROVED & MERGED.
+## 12. Tài liệu tham khảo
 
-### Biên bản phản hồi khách hàng (UAT Feedback)
-
-Tham chiếu cùng tài liệu với Câu 19: [`02_uat_feedback_record.md`](../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/02_uat_feedback_record.md)
-
-5/5 kịch bản UAT đạt, điểm trung bình 4.6/5 từ Chuyên viên Thư viện ĐHKHTN.
+- Yêu cầu phần mềm.
+- Product Backlog.
+- Kiến trúc phần mềm.
+- Định nghĩa quy trình phát triển phần mềm.
+- Ước lượng dự án.
+- Kế hoạch dự án.
+- Bản mô tả công việc.
+- Kế hoạch quản lý rủi ro.
+- Kế hoạch quản lý chất lượng.
+- Hợp đồng nhóm.
+- Nhật ký dự án.

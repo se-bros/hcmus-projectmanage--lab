@@ -1,136 +1,231 @@
-# SỔ ĐĂNG KÝ RỦI RO
+# KẾ HOẠCH QUẢN LÝ RỦI RO
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
 ### Thông tin tài liệu
 
-| Trường        | Nội dung                                                     |
-| ------------- | ------------------------------------------------------------ |
-| Mã tài liệu   | `HCMUS-LDMS-RSK`                                             |
-| Chủ sở hữu    | Project Manager — Mạch Quốc Tấn                              |
-| Người xem xét | Solution Architect, QA và Đại diện nghiệp vụ Thư viện        |
-| Phiên bản     | 1.0 — 22/08/2026                                             |
-| Trạng thái    | Bản dự thảo để xem xét                                       |
-| Baseline      | MVP môn học 11 tuần; 15 Bắt buộc, 6 Nên có, 5 Có thể xem xét |
+| Trường thông tin  | Nội dung                                |
+| ----------------- | --------------------------------------- |
+| Mã tài liệu       | `HCMUS-LDMS-RSK`                        |
+| Tên tài liệu      | Kế hoạch quản lý rủi ro                 |
+| Người phụ trách   | Mạch Quốc Tấn — Quản lý dự án           |
+| Người xem xét     | Các thành viên nhóm Sebros              |
+| Trạng thái        | Baseline nội bộ đã được nhóm xác nhận   |
+| Thời gian áp dụng | 11 tuần                                 |
+| Phạm vi           | 15 hạng mục Bắt buộc, tổng cộng 26 điểm |
+
+### Lịch sử phiên bản
+
+| Phiên bản | Ngày       | Mô tả thay đổi                                                            | Người thực hiện |
+| --------- | ---------- | ------------------------------------------------------------------------- | --------------- |
+| 1.0       | 22/08/2026 | Khởi tạo danh sách rủi ro và phương pháp đánh giá.                        | Mạch Quốc Tấn   |
+| 2.0       | 24/08/2026 | Viết lại theo baseline, hệ số dự phòng 2,5, Pull Request và coding agent. | Mạch Quốc Tấn   |
+| 2.1       | 24/08/2026 | Loại bỏ tham chiếu tới tài liệu vận hành chưa thuộc bộ hồ sơ hiện tại.    | Mạch Quốc Tấn   |
 
 ## Mục lục
 
-- [1. Mục đích và nguyên tắc](#1-mục-đích-và-nguyên-tắc)
-- [2. Phương pháp đánh giá](#2-phương-pháp-đánh-giá)
-- [3. Sổ đăng ký rủi ro](#3-sổ-đăng-ký-rủi-ro)
-- [4. Kế hoạch ứng phó chi tiết](#4-kế-hoạch-ứng-phó-chi-tiết)
-- [5. Ngưỡng báo cáo và nhịp rà soát](#5-ngưỡng-báo-cáo-và-nhịp-rà-soát)
-- [6. Rủi ro tồn dư và điều kiện chấp nhận](#6-rủi-ro-tồn-dư-và-điều-kiện-chấp-nhận)
-- [7. Truy vết](#7-truy-vết)
+- [1. Mục đích](#1-mục-đích)
+- [2. Nguyên tắc quản lý](#2-nguyên-tắc-quản-lý)
+- [3. Phương pháp đánh giá](#3-phương-pháp-đánh-giá)
+- [4. Vai trò và trách nhiệm](#4-vai-trò-và-trách-nhiệm)
+- [5. Danh sách rủi ro](#5-danh-sách-rủi-ro)
+- [6. Kế hoạch ứng phó](#6-kế-hoạch-ứng-phó)
+- [7. Theo dõi và báo cáo](#7-theo-dõi-và-báo-cáo)
+- [8. Dự phòng tiến độ](#8-dự-phòng-tiến-độ)
+- [9. Rủi ro khi dự án mở rộng](#9-rủi-ro-khi-dự-án-mở-rộng)
+- [10. Điều kiện chấp nhận và đóng rủi ro](#10-điều-kiện-chấp-nhận-và-đóng-rủi-ro)
+- [11. Tài liệu tham khảo](#11-tài-liệu-tham-khảo)
 
-## 1. Mục đích và nguyên tắc
+---
 
-Sổ đăng ký này tập trung các rủi ro có thể ảnh hưởng đến phạm vi, tiến độ, chất lượng, dữ liệu, bảo mật và khả năng nghiệm thu của HCMUS-LDMS. Mỗi rủi ro có một owner chịu trách nhiệm theo dõi, trigger quan sát được, biện pháp phòng ngừa và phương án dự phòng.
+## 1. Mục đích
 
-Nguyên tắc áp dụng:
+Tài liệu xác định cách nhóm nhận diện, đánh giá, theo dõi và xử lý những sự kiện không chắc chắn có thể ảnh hưởng đến phạm vi, tiến độ, chất lượng, dữ liệu hoặc bảo mật của dự án.
 
-- Không xem rủi ro là đã đóng khi biện pháp mới chỉ được ghi trong tài liệu.
-- Không dùng trạng thái `Đã xử lý` nếu chưa có evidence cho hành động tương ứng.
-- Rủi ro có thể được chấp nhận, giảm thiểu, tránh hoặc chuyển giao; người chấp nhận phải có thẩm quyền đối với tác động đó.
-- Issue đã xảy ra được chuyển sang board/Project Log và vẫn liên kết về Risk ID ban đầu.
-- Mở rộng phạm vi, thay đổi môi trường hoặc dùng dữ liệu thật phải kích hoạt rà soát lại toàn bộ rủi ro liên quan.
+Kế hoạch áp dụng cho baseline gồm 15 hạng mục Bắt buộc trong 11 tuần. Các bên ngoài nhóm chỉ được xem là bên liên quan tham khảo nếu dự án được mở rộng.
 
-## 2. Phương pháp đánh giá
+## 2. Nguyên tắc quản lý
 
-### 2.1. Thang xác suất và tác động
+1. Mỗi rủi ro phải có một người phụ trách chính.
+2. Rủi ro phải có dấu hiệu nhận biết và hành động cụ thể.
+3. Khi rủi ro đã xảy ra, nhóm ghi nhận thành vấn đề cần xử lý; không tiếp tục gọi đó là khả năng chưa xảy ra.
+4. Không ghi “Đã đóng” khi chưa có bằng chứng cho thấy nguyên nhân đã hết hoặc biện pháp xử lý đã đạt.
+5. Không giảm tiêu chí chấp nhận, kiểm thử, bảo mật hoặc DoD để che giấu ảnh hưởng của rủi ro.
+6. Coding agent hỗ trợ xử lý công việc nhưng không tự xác nhận chất lượng hoặc chấp nhận rủi ro.
+7. Hệ số dự phòng 2,5 hỗ trợ lập kế hoạch nhưng không thay thế việc theo dõi và xử lý từng rủi ro.
 
-| Điểm | Xác suất   | Hướng dẫn                                        | Tác động      | Hướng dẫn                                    |
-| ---: | ---------- | ------------------------------------------------ | ------------- | -------------------------------------------- |
-|    1 | Hiếm       | Khó xảy ra trong baseline 11 tuần                | Không đáng kể | Không ảnh hưởng mốc; sửa trong luồng thường  |
-|    2 | Thấp       | Có thể xảy ra nhưng chưa có dấu hiệu             | Nhỏ           | Ảnh hưởng một hạng mục, không đổi mốc        |
-|    3 | Trung bình | Có tín hiệu hoặc phụ thuộc chưa chắc chắn        | Vừa           | Gây rework hoặc chậm một mốc nội bộ          |
-|    4 | Cao        | Đã có tiền lệ, phụ thuộc yếu hoặc nguồn lực căng | Lớn           | Đe dọa story Bắt buộc hoặc UAT               |
-|    5 | Rất cao    | Đang xảy ra hoặc gần như chắc chắn               | Nghiêm trọng  | Phá baseline, vi phạm quyền hoặc mất dữ liệu |
+## 3. Phương pháp đánh giá
 
-Điểm rủi ro = Xác suất × Tác động:
+### 3.1. Xác suất
 
-|  Điểm | Mức        | Cách xử lý                                                          |
-| ----: | ---------- | ------------------------------------------------------------------- |
-|   1–4 | Thấp       | Owner theo dõi; rà soát tại mốc liên quan                           |
-|   5–9 | Trung bình | Có hành động phòng ngừa và ngày rà soát                             |
-| 10–15 | Cao        | Báo PM; hành động trước khi kéo việc phụ thuộc                      |
-| 16–25 | Rất cao    | Dừng hoặc giới hạn hoạt động gây rủi ro; cần quyết định/ngoại lệ rõ |
+| Điểm | Mức xác suất | Cách hiểu trong dự án                            |
+| ---: | ------------ | ------------------------------------------------ |
+|    1 | Hiếm         | Khó xảy ra trong 11 tuần.                        |
+|    2 | Thấp         | Có thể xảy ra nhưng chưa có dấu hiệu.            |
+|    3 | Trung bình   | Có phụ thuộc hoặc đã xuất hiện dấu hiệu ban đầu. |
+|    4 | Cao          | Đã có tiền lệ hoặc điều kiện gây rủi ro đang có. |
+|    5 | Rất cao      | Đang xảy ra hoặc gần như chắc chắn xảy ra.       |
 
-### 2.2. Trạng thái
+### 3.2. Tác động
 
-`Đang theo dõi` — đang theo dõi; `Đã xảy ra` — trigger đã xảy ra; `Đang giảm thiểu` — đang thực hiện hành động; `Đã chấp nhận` — người có thẩm quyền chấp nhận tồn dư; `Đã đóng` — nguyên nhân không còn hoặc giai đoạn đã kết thúc và có evidence.
+| Điểm | Mức tác động  | Cách hiểu trong dự án                                  |
+| ---: | ------------- | ------------------------------------------------------ |
+|    1 | Không đáng kể | Xử lý trong luồng làm việc thông thường.               |
+|    2 | Nhỏ           | Ảnh hưởng một hạng mục nhưng không ảnh hưởng mốc tuần. |
+|    3 | Vừa           | Gây làm lại hoặc làm chậm một mốc nội bộ.              |
+|    4 | Lớn           | Ảnh hưởng nhiều hạng mục hoặc chất lượng bàn giao.     |
+|    5 | Nghiêm trọng  | Có thể làm mất dữ liệu, lộ quyền hoặc phá vỡ baseline. |
 
-## 3. Sổ đăng ký rủi ro
+Điểm rủi ro được tính như sau:
 
-| ID   | Rủi ro                                                         |   P |   I | Điểm | Mức        | Owner                   | Trigger chính                                                       | Trạng thái    |
-| ---- | -------------------------------------------------------------- | --: | --: | ---: | ---------- | ----------------------- | ------------------------------------------------------------------- | ------------- |
-| R-01 | Chưa xác nhận quyền số hóa/đọc tài liệu thật                   |   4 |   5 |   20 | Rất cao    | PM + Đại diện nghiệp vụ | Có yêu cầu đưa tài liệu thật vào demo nhưng không có xác nhận quyền | Đang theo dõi |
-| R-02 | Chất lượng OCR không đủ cho tài liệu mẫu                       |   4 |   4 |   16 | Rất cao    | Solution Architect      | CER/WER hoặc rà soát mẫu không đạt ngưỡng sẽ chốt trước PoC         | Đang theo dõi |
-| R-03 | Mất hoặc ghi đè tệp gốc/nội dung đã hiệu chỉnh                 |   3 |   5 |   15 | Cao        | Backend Lead            | Hash/phiên bản sai, tệp không mở được hoặc retry làm mất dữ liệu    | Đang theo dõi |
-| R-04 | Truy cập trái phép tệp riêng tư hoặc dữ liệu chưa xuất bản     |   4 |   5 |   20 | Rất cao    | Backend Lead + QA       | Negative authorization test trả nội dung/URL hợp lệ                 | Đang theo dõi |
-| R-05 | Scope creep phá buffer 8 giờ                                   |   5 |   4 |   20 | Rất cao    | PM                      | Đưa story tùy chọn vào WIP hoặc forecast vượt capacity 198 giờ      | Đang theo dõi |
-| R-06 | Thiếu đại diện nghiệp vụ để xác nhận AC/UAT                    |   4 |   4 |   16 | Rất cao    | PM                      | AC chờ quá 3 ngày làm việc hoặc chưa có người xác nhận trước UAT    | Đang theo dõi |
-| R-07 | Job OCR/EPUB treo hoặc mất khi backend restart                 |   4 |   4 |   16 | Rất cao    | Solution Architect      | Job `processing` vượt timeout hoặc không phục hồi sau restart       | Đang theo dõi |
-| R-08 | Demo cloud khác local và thất bại sát hạn                      |   3 |   4 |   12 | Cao        | DevOps Lead             | Smoke test cloud lỗi hoặc cấu hình môi trường khác nguồn chuẩn      | Đang theo dõi |
-| R-09 | Bí mật/credential bị đưa vào Git hoặc frontend                 |   3 |   5 |   15 | Cao        | DevOps Lead             | Secret scan/codereview phát hiện token, key hoặc connection string  | Đang theo dõi |
-| R-10 | Tìm kiếm chậm hoặc lọc quyền không đúng                        |   3 |   4 |   12 | Cao        | Backend Lead + QA       | Dataset test cho kết quả sai quyền hoặc percentile vượt ngưỡng UAT  | Đang theo dõi |
-| R-11 | EPUB tạo ra không hợp lệ/không đọc được                        |   3 |   4 |   12 | Cao        | Backend Lead            | Validator hoặc trình đọc mục tiêu không mở được EPUB                | Đang theo dõi |
-| R-12 | Không đủ evidence để chứng minh story Done                     |   5 |   4 |   20 | Rất cao    | QA Lead + PM            | Card ở Chờ xác nhận thiếu PR/test/reviewer/UAT                      | Đã xảy ra     |
-| R-13 | Thành viên quá tải hoặc WIP vượt giới hạn                      |   4 |   3 |   12 | Cao        | PM                      | Thành viên có hơn 1 card đang làm hoặc board vượt WIP               | Đang theo dõi |
-| R-14 | Thay đổi yêu cầu/kiến trúc không đồng bộ tài liệu              |   4 |   3 |   12 | Cao        | PM + Solution Architect | Mâu thuẫn ID, scope, môi trường hoặc quyết định giữa hai nguồn      | Đang theo dõi |
-| R-15 | Dữ liệu thử lẫn với dữ liệu thật hoặc chứa PII không cần thiết |   3 |   5 |   15 | Cao        | QA Lead                 | Dataset không có nguồn/quyền hoặc chứa dữ liệu nhận diện cá nhân    | Đang theo dõi |
-| R-16 | Backup/restore chỉ tồn tại trên giấy                           |   3 |   5 |   15 | Cao        | DevOps Lead             | Không có restore drill hoặc bản sao không khôi phục được            | Đang theo dõi |
-| R-17 | Phụ thuộc dịch vụ cloud/free tier thay đổi hoặc hết hạn mức    |   3 |   3 |    9 | Trung bình | DevOps Lead             | Quota/cost/availability ngăn smoke test hoặc demo                   | Đang theo dõi |
-| R-18 | Lỗi accessibility/responsive cản trở đọc tài liệu              |   3 |   3 |    9 | Trung bình | Frontend Lead + QA      | Browser/device/accessibility checklist có lỗi chặn luồng đọc        | Đang theo dõi |
+`Điểm rủi ro = Điểm xác suất × Điểm tác động`
 
-## 4. Kế hoạch ứng phó chi tiết
+| Tổng điểm | Mức rủi ro | Yêu cầu xử lý                                                       |
+| --------: | ---------- | ------------------------------------------------------------------- |
+|       1–4 | Thấp       | Người phụ trách theo dõi tại mốc liên quan.                         |
+|       5–9 | Trung bình | Có hành động phòng ngừa và ngày xem xét.                            |
+|     10–15 | Cao        | Báo Quản lý dự án và xử lý trước công việc phụ thuộc.               |
+|     16–25 | Rất cao    | Ưu tiên xử lý; tạm dừng hoạt động có thể gây tác động nghiêm trọng. |
 
-| ID   | Chiến lược     | Phòng ngừa                                                      | Dự phòng khi trigger xảy ra                                                   | Evidence đóng/giảm mức                                       |
-| ---- | -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| R-01 | Tránh          | Chỉ dùng bộ mẫu có nguồn và xác nhận quyền; lưu thông tin nguồn | Gỡ tài liệu khỏi môi trường, khóa truy cập, báo PM/nghiệp vụ                  | Danh sách dataset được duyệt và xác nhận người có thẩm quyền |
-| R-02 | Giảm           | PoC sớm; chọn mẫu đa dạng; giữ bước hiệu chỉnh con người        | Giảm tuyên bố chất lượng, đổi tiền xử lý/cấu hình hoặc giới hạn loại tài liệu | Báo cáo PoC có dataset, ground truth, công thức và kết quả   |
-| R-03 | Giảm           | Object key bất biến; version/hash; không ghi đè source          | Cô lập job, khôi phục từ version/backup và điều tra audit log                 | Test integrity + restore evidence                            |
-| R-04 | Tránh/Giảm     | Server-side RBAC; private bucket; URL tạm thời; negative tests  | Thu hồi credential/URL, khóa endpoint, phân tích phạm vi ảnh hưởng            | Authorization matrix và test pass                            |
-| R-05 | Tránh          | Khóa 15 Bắt buộc; cấm kéo tùy chọn khi core chưa ổn định        | Loại/hoãn scope qua Change Request; tái forecast                              | Board và CR thể hiện quyết định                              |
-| R-06 | Giảm           | Chốt người đại diện và lịch review trước khi đưa card vào Ready | Ghi Pending; không tự chuyển Done; escalates sponsor/giảng viên               | Xác nhận có ngày/người                                       |
-| R-07 | Giảm           | Timeout, attempt, heartbeat/recovery rule và retry idempotent   | Đánh dấu failed/recoverable; retry có kiểm soát; bảo toàn dữ liệu             | Restart/timeout/retry test pass                              |
-| R-08 | Giảm           | Deploy/smoke sớm; cấu hình theo biến môi trường; runbook        | Dùng local demo đã kiểm chứng và ghi rõ giới hạn                              | Cloud smoke evidence hoặc quyết định fallback                |
-| R-09 | Tránh          | `.env` ngoài Git; least privilege; secret scan/review           | Rotate/revoke ngay; xóa khỏi bản phát hành; đánh giá lịch sử Git              | Secret scan pass và biên bản rotate nếu xảy ra               |
-| R-10 | Giảm           | Dataset chuẩn; index; lọc quyền trong truy vấn server           | Giới hạn dataset/demo; sửa query/index; không công bố NFR chưa đo             | Functional + performance evidence                            |
-| R-11 | Giảm           | Validate EPUB; kiểm thử ít nhất hai reader mục tiêu             | Không publish artifact lỗi; quay lại bản trước; ghi nguyên nhân               | Validator và reader smoke pass                               |
-| R-12 | Giảm           | Evidence template là bắt buộc trong DoD                         | Chuyển card về Đang xem xét; bổ sung test/review; không hồi tố giả            | Completion event đủ trường                                   |
-| R-13 | Giảm           | WIP 1/người, 6 development, 4 review; swarm blocker             | Dừng kéo việc, hỗ trợ card già nhất, điều chỉnh owner                         | Board về đúng WIP và blocker log                             |
-| R-14 | Giảm           | ADR/CR và source-of-truth matrix                                | Dừng phát hành tài liệu; sửa tất cả nguồn bị ảnh hưởng                        | Link ADR/CR và lint/link check pass                          |
-| R-15 | Tránh          | Data inventory; tối thiểu hóa PII; tách test/real               | Cô lập/xóa theo phê duyệt, đổi credential, thông báo owner                    | Dataset register và kiểm tra truy cập                        |
-| R-16 | Giảm           | Định nghĩa RPO/RTO mục tiêu cho demo; tạo backup có kiểm tra    | Dừng thay đổi dữ liệu, restore bản gần nhất, ghi mất mát                      | Restore drill pass có thời gian và phạm vi                   |
-| R-17 | Chấp nhận/Giảm | Theo dõi quota; không phụ thuộc một tính năng độc quyền         | Chuyển local/fallback service qua quyết định kỹ thuật                         | Quota check và smoke result                                  |
-| R-18 | Giảm           | Browser/device matrix; keyboard/contrast/zoom checks            | Sửa lỗi chặn trước UAT hoặc ghi ngoại lệ được duyệt                           | Checklist và evidence theo phiên bản                         |
+### 3.3. Trạng thái
 
-## 5. Ngưỡng báo cáo và nhịp rà soát
+| Trạng thái    | Ý nghĩa                                                       |
+| ------------- | ------------------------------------------------------------- |
+| Đang theo dõi | Rủi ro chưa xảy ra và đang được quan sát.                     |
+| Đã xảy ra     | Dấu hiệu đã xuất hiện và rủi ro đã trở thành vấn đề.          |
+| Đang xử lý    | Nhóm đang thực hiện hành động giảm ảnh hưởng.                 |
+| Đã chấp nhận  | Nhóm chấp nhận phần ảnh hưởng còn lại với lý do rõ ràng.      |
+| Đã đóng       | Nguyên nhân không còn hoặc biện pháp đã đạt và có bằng chứng. |
 
-- PM rà soát sổ rủi ro tối thiểu hai lần mỗi tuần và trước các mốc tuần 3, 7, 9, 10, 11.
-- Risk owner cập nhật ngay khi trigger xảy ra, điểm thay đổi hoặc hành động quá hạn.
-- Rủi ro từ 16 điểm phải được đưa vào cuộc họp gần nhất; hoạt động gây tác động pháp lý, mất dữ liệu hoặc lộ quyền phải tạm dừng.
-- Rủi ro 10–15 điểm phải có hành động, owner và ngày rà soát trước khi hạng mục phụ thuộc vào cột Đang thực hiện.
-- Risk review không thay thế defect triage, security incident hoặc Change Request.
+## 4. Vai trò và trách nhiệm
 
-## 6. Rủi ro tồn dư và điều kiện chấp nhận
+| Vai trò                  | Trách nhiệm                                                      |
+| ------------------------ | ---------------------------------------------------------------- |
+| Quản lý dự án            | Duy trì kế hoạch, ưu tiên xử lý và điều phối nguồn lực.          |
+| Technical Lead           | Theo dõi rủi ro kiến trúc, tích hợp, Pull Request và bảo mật mã. |
+| Đảm bảo chất lượng       | Theo dõi kiểm thử, lỗi, bằng chứng và điều kiện hoàn thành.      |
+| Người phụ trách hạng mục | Báo dấu hiệu, thực hiện hành động và cập nhật kết quả.           |
+| Các thành viên           | Nhận diện rủi ro mới và không che giấu vấn đề đã xảy ra.         |
 
-| Nhóm tồn dư           | Người có thể chấp nhận           | Điều kiện tối thiểu                                            |
-| --------------------- | -------------------------------- | -------------------------------------------------------------- |
-| Scope/tiến độ nội bộ  | PM và nhóm                       | Có forecast mới và không che giấu story Bắt buộc bị loại       |
-| Nghiệp vụ/UAT         | Đại diện nghiệp vụ               | Có danh sách ngoại lệ, tác động và ngày xác nhận               |
-| Bảo mật/dữ liệu/quyền | Không tự chấp nhận bởi developer | Cần PM, owner dữ liệu/nghiệp vụ và người có thẩm quyền phù hợp |
-| Kiến trúc demo        | Solution Architect + PM          | Có PoC/smoke evidence và giới hạn được công bố                 |
+## 5. Danh sách rủi ro
 
-Tại thời điểm lập tài liệu, chưa có rủi ro nào được đóng bằng evidence. `R-12` được đánh dấu `Đã xảy ra` vì Project Log xác nhận chưa có completion event lịch sử đủ bằng chứng.
+| ID   | Rủi ro                                                    | Xác suất | Tác động | Điểm | Mức        | Người phụ trách        | Dấu hiệu chính                                                   | Trạng thái    |
+| ---- | --------------------------------------------------------- | -------: | -------: | ---: | ---------- | ---------------------- | ---------------------------------------------------------------- | ------------- |
+| R-01 | Phạm vi tùy chọn làm ảnh hưởng baseline                   |        4 |        4 |   16 | Rất cao    | Quản lý dự án          | Hạng mục Nên có hoặc Có thể xem xét được đưa vào thực hiện.      | Đang theo dõi |
+| R-02 | Thành viên thiếu thời gian hoặc nhận quá nhiều việc       |        3 |        4 |   12 | Cao        | Quản lý dự án          | Vượt giới hạn công việc hoặc hạng mục không tiến triển.          | Đang theo dõi |
+| R-03 | Pull Request chờ Technical Lead xem xét quá lâu           |        3 |        3 |    9 | Trung bình | Technical Lead         | Pull Request chờ quá hai ngày làm việc.                          | Đang theo dõi |
+| R-04 | Coding agent tạo mã hoặc tài liệu không chính xác         |        4 |        4 |   16 | Rất cao    | Người tạo kết quả      | Kết quả không hiểu được, kiểm thử lỗi hoặc sai phạm vi.          | Đang theo dõi |
+| R-05 | Chất lượng OCR không đạt trên tài liệu mẫu                |        3 |        4 |   12 | Cao        | Technical Lead         | Kết quả nhận dạng sai nhiều và khó hiệu chỉnh.                   | Đang theo dõi |
+| R-06 | Tệp gốc hoặc nội dung hiệu chỉnh bị mất hay ghi đè        |        3 |        5 |   15 | Cao        | Phụ trách máy chủ      | Tệp không mở được, sai phiên bản hoặc xử lý lại làm mất dữ liệu. | Đang theo dõi |
+| R-07 | Người dùng truy cập nội dung không đúng quyền             |        3 |        5 |   15 | Cao        | Technical Lead; QA     | Kiểm thử sai quyền vẫn nhận được nội dung hoặc liên kết.         | Đang theo dõi |
+| R-08 | Tác vụ OCR hoặc EPUB bị treo và không phục hồi            |        3 |        4 |   12 | Cao        | Phụ trách máy chủ      | Trạng thái xử lý kéo dài hoặc mất sau khi dịch vụ khởi động lại. | Đang theo dõi |
+| R-09 | EPUB, tìm kiếm hoặc trình đọc không tích hợp đúng         |        3 |        4 |   12 | Cao        | Technical Lead         | Luồng đầu cuối lỗi dù từng thành phần chạy riêng.                | Đang theo dõi |
+| R-10 | Thiếu Pull Request, kiểm thử hoặc bằng chứng đạt DoD      |        5 |        4 |   20 | Rất cao    | Đảm bảo chất lượng; PM | Hạng mục chờ xác nhận nhưng thiếu bằng chứng bắt buộc.           | Đã xảy ra     |
+| R-11 | Khóa bí mật hoặc dữ liệu nhạy cảm bị đưa vào mã nguồn     |        2 |        5 |   10 | Cao        | Technical Lead         | Rà soát phát hiện khóa, mật khẩu hoặc dữ liệu không được phép.   | Đang theo dõi |
+| R-12 | Yêu cầu, kế hoạch và tài liệu không được cập nhật đồng bộ |        3 |        4 |   12 | Cao        | Quản lý dự án          | Cùng một nội dung có số liệu hoặc quyết định khác nhau.          | Đang theo dõi |
 
-## 7. Truy vết
+## 6. Kế hoạch ứng phó
 
-| Nhóm rủi ro                           | Nguồn liên quan                                                                                                      |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Quyền dữ liệu, scope và nghiệm thu    | [SOW](12-statement-of-work.md), [Feasibility](08-feasibility-study.md)                                               |
-| Bảo mật, job, integrity và môi trường | [Architecture](05-software-architecture.md), [SRS](04-software-requirements.md)                                      |
-| WIP, evidence và thay đổi             | [Process](09-software-process-definition.md), [Team Contract](16-team-contract.md), [Project Log](17-project-log.md) |
-| Kiểm thử và chấp nhận                 | [Test and UAT Plan](20-test-plan.md), [Quality Plan](19-quality-management-plan.md)                                  |
-| Backup, incident và secrets           | [Operations and Security Plan](15-devops-and-operations.md)                                                          |
+| ID   | Cách xử lý | Hành động phòng ngừa                                                    | Hành động khi xảy ra                                                      | Bằng chứng để giảm mức hoặc đóng                         |
+| ---- | ---------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------- |
+| R-01 | Tránh      | Chỉ thực hiện 15 hạng mục Bắt buộc khi baseline chưa ổn định.           | Dừng hạng mục tùy chọn và điều phối lại người thực hiện.                  | Bảng Kanban và quyết định phạm vi đã cập nhật.           |
+| R-02 | Giảm       | Giữ giới hạn một việc đang thực hiện cho mỗi thành viên.                | Dừng nhận việc mới, hỗ trợ việc bị chặn và phân công lại.                 | Khối lượng trở về đúng giới hạn; hạng mục tiếp tục chạy. |
+| R-03 | Giảm       | Technical Lead dành thời gian xem xét Pull Request trong tuần.          | Ghi người được ủy quyền xem xét và ưu tiên Pull Request chờ lâu nhất.     | Pull Request được phê duyệt hoặc có yêu cầu sửa rõ ràng. |
+| R-04 | Giảm       | Thành viên đọc, hiểu, định dạng và kiểm thử kết quả của coding agent.   | Loại phần sai, sửa lại, chạy kiểm thử và yêu cầu Technical Lead xem xét.  | Kiểm thử đạt và Pull Request được phê duyệt.             |
+| R-05 | Giảm       | Dùng tài liệu mẫu phù hợp và giữ bước hiệu chỉnh của con người.         | Điều chỉnh tiền xử lý, cấu hình hoặc giới hạn loại tài liệu được hỗ trợ.  | Kết quả kiểm thử OCR trên bộ mẫu đã xác định.            |
+| R-06 | Tránh      | Không ghi đè tệp gốc; dùng định danh, phiên bản và kiểm tra dữ liệu.    | Dừng tác vụ, khôi phục bản gần nhất và kiểm tra phạm vi ảnh hưởng.        | Kiểm thử bảo toàn và khôi phục dữ liệu đạt.              |
+| R-07 | Tránh      | Kiểm tra quyền tại máy chủ và kiểm thử trường hợp không đủ quyền.       | Khóa đường truy cập, sửa kiểm tra quyền và chạy kiểm thử hồi quy.         | Ma trận quyền và các kiểm thử sai quyền đều đạt.         |
+| R-08 | Giảm       | Có giới hạn thời gian, trạng thái lỗi và xử lý lại an toàn.             | Đánh dấu thất bại, bảo toàn tệp gốc và chạy lại có kiểm soát.             | Kiểm thử lỗi, khởi động lại và xử lý lại đạt.            |
+| R-09 | Giảm       | Tích hợp theo từng luồng nhỏ và kiểm thử sớm giữa các thành phần.       | Cô lập điểm lỗi, quay lại kết quả ổn định và sửa theo thứ tự phụ thuộc.   | Luồng đầu cuối và kiểm thử hồi quy đạt.                  |
+| R-10 | Giảm       | DoD bắt buộc có Pull Request, kiểm thử, người xem xét và ngày xác nhận. | Trả hạng mục về Đang xem xét và bổ sung bằng chứng còn thiếu.             | Hạng mục có đầy đủ bằng chứng DoD.                       |
+| R-11 | Tránh      | Không đưa tệp môi trường vào Git; rà soát mã và dùng quyền tối thiểu.   | Thu hồi khóa, thay khóa mới, loại khỏi bản phát hành và kiểm tra lịch sử. | Không còn khóa hợp lệ trong mã; kết quả rà soát đạt.     |
+| R-12 | Giảm       | Khi có thay đổi, xác định và cập nhật tất cả tài liệu bị ảnh hưởng.     | Tạm dừng xác nhận tài liệu, sửa mâu thuẫn và rà chéo lại baseline.        | Các tài liệu dùng cùng số liệu, phạm vi và quyết định.   |
+
+## 7. Theo dõi và báo cáo
+
+### 7.1. Nhịp theo dõi
+
+| Hoạt động                | Tần suất              | Người thực hiện                  |
+| ------------------------ | --------------------- | -------------------------------- |
+| Kiểm tra dấu hiệu rủi ro | Mỗi ngày có làm việc  | Người phụ trách hạng mục         |
+| Rà soát danh sách rủi ro | Hai lần mỗi tuần      | Quản lý dự án và người phụ trách |
+| Rà soát tại mốc          | Cuối mỗi tuần         | Nhóm Sebros                      |
+| Rà soát toàn bộ          | Khi thay đổi baseline | Sáu thành viên nhóm Sebros       |
+
+### 7.2. Ngưỡng hành động
+
+- Rủi ro từ 16 điểm phải được ưu tiên trong lần trao đổi gần nhất.
+- Rủi ro từ 10 đến 15 điểm phải có hành động và người phụ trách trước khi tiếp tục công việc phụ thuộc.
+- Rủi ro gây mất dữ liệu, lộ quyền hoặc lộ khóa bí mật phải dừng hoạt động liên quan ngay.
+- Pull Request chờ quá hai ngày phải được Technical Lead xử lý hoặc ủy quyền rõ ràng.
+- Công việc bị chặn quá hai ngày phải được Quản lý dự án điều phối lại.
+- Mọi rủi ro đã xảy ra phải được ghi vào Nhật ký dự án cùng hành động xử lý.
+
+## 8. Dự phòng tiến độ
+
+Baseline gồm 26 điểm. Giai đoạn làm thử ngày 16 và 17 tháng 07 năm 2026 đã triển khai 15 điểm Bắt buộc; phần chưa được triển khai thử còn 11 điểm.
+
+Thời gian theo tốc độ làm thử:
+
+`11 điểm ÷ 7,5 điểm/ngày = 1,47 ngày`
+
+Thời gian sau khi thêm dự phòng:
+
+`1,47 ngày × 2,5 = 3,68 ngày`
+
+Nhóm làm tròn thành 4 ngày làm việc tương đương. Hệ số 2,5 dự phòng cho xem xét Pull Request, kiểm thử, tích hợp, sửa lỗi, tài liệu, công việc bị chặn và sai lệch giữa làm thử với phát triển đầy đủ.
+
+Tiến độ baseline vẫn được bảo đảm trong 11 tuần. Khi rủi ro xảy ra, nhóm ưu tiên gỡ vướng, điều phối lại người thực hiện và thứ tự công việc; không tự động giảm DoD hoặc bổ sung hạng mục tùy chọn.
+
+## 9. Rủi ro khi dự án mở rộng
+
+Các rủi ro sau không thuộc điều kiện hoàn thành dự án học tập hiện tại nhưng phải được đánh giá lại nếu hệ thống được triển khai thực tế:
+
+| Rủi ro mở rộng                           | Yêu cầu trước khi triển khai                               |
+| ---------------------------------------- | ---------------------------------------------------------- |
+| Chưa có quyền số hóa tài liệu thật       | Xác định nguồn, quyền sử dụng và người có thẩm quyền.      |
+| Dữ liệu thật chứa thông tin nhạy cảm     | Phân loại dữ liệu, giới hạn truy cập và quy trình xử lý.   |
+| Hạ tầng không đáp ứng quy mô sử dụng     | Đo tải, lập dự toán và thiết kế môi trường vận hành.       |
+| Sao lưu và phục hồi chưa được kiểm chứng | Xác định mục tiêu phục hồi và chạy thử khôi phục.          |
+| Dịch vụ trả phí thay đổi hạn mức         | Xác định ngân sách, người phê duyệt và phương án thay thế. |
+| Chưa có đơn vị chịu trách nhiệm vận hành | Xác định chủ sở hữu, hỗ trợ người dùng và xử lý sự cố.     |
+
+Việc nhắc đến Thư viện, Nhà trường hoặc đơn vị khác không đồng nghĩa các bên này đã chấp nhận rủi ro hay phê duyệt triển khai.
+
+## 10. Điều kiện chấp nhận và đóng rủi ro
+
+### 10.1. Chấp nhận rủi ro
+
+| Loại tác động                      | Người xác nhận                                    |
+| ---------------------------------- | ------------------------------------------------- |
+| Ảnh hưởng nhỏ, không đổi baseline  | Người phụ trách và Quản lý dự án.                 |
+| Ảnh hưởng baseline hoặc thời gian  | Sáu thành viên nhóm Sebros.                       |
+| Ảnh hưởng bảo mật hoặc dữ liệu mẫu | Technical Lead, Quản lý dự án và QA.              |
+| Ảnh hưởng triển khai thực tế       | Đơn vị có thẩm quyền trong một giai đoạn mở rộng. |
+
+### 10.2. Đóng rủi ro
+
+Một rủi ro chỉ được ghi Đã đóng khi:
+
+1. Dấu hiệu không còn hoặc giai đoạn liên quan đã kết thúc.
+2. Hành động ứng phó đã được thực hiện.
+3. Có bằng chứng kiểm tra kết quả.
+4. Phần ảnh hưởng còn lại đã được người có thẩm quyền chấp nhận.
+5. Tài liệu và Nhật ký dự án đã được cập nhật.
+
+Tại thời điểm cập nhật, R-10 được ghi Đã xảy ra vì Nhật ký dự án chưa có đầy đủ bằng chứng DoD cho các kết quả làm thử. Các rủi ro còn lại tiếp tục được theo dõi; chưa có rủi ro nào đủ điều kiện ghi Đã đóng.
+
+## 11. Tài liệu tham khảo
+
+- Bản mô tả công việc.
+- Báo cáo nghiên cứu tính khả thi.
+- Yêu cầu phần mềm.
+- Product Backlog.
+- Kiến trúc phần mềm.
+- Định nghĩa quy trình phát triển phần mềm.
+- Ước lượng dự án.
+- Kế hoạch dự án.
+- Kế hoạch quản lý chất lượng.
+- Kế hoạch kiểm thử.
+- Hợp đồng nhóm.
+- Nhật ký dự án.

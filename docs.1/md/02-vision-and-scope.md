@@ -4,16 +4,16 @@
 
 ### Thông tin tài liệu
 
-| Trường thông tin        | Nội dung                                              |
-| :---------------------- | :---------------------------------------------------- |
-| **Mã tài liệu**         | `HCMUS-LDMS-VSD`                                      |
-| **Tên tài liệu**        | Viễn cảnh và phạm vi dự án                            |
-| **Tên dự án**           | HCMUS-LDMS                                            |
-| **Đơn vị soạn thảo**    | Sebros - Nhóm sinh viên đề xuất dự án                 |
-| **Người xem xét**       | Trưởng Phòng Công nghệ Thông tin và Giám đốc Thư viện |
-| **Người phê duyệt**     | Ban Giám hiệu Trường Đại học Khoa học Tự nhiên        |
-| **Cấp độ bảo mật**      | Nội bộ                                                |
-| **Trạng thái tài liệu** | Chờ phê duyệt                                         |
+| Trường thông tin        | Nội dung                              |
+| :---------------------- | :------------------------------------ |
+| **Mã tài liệu**         | `HCMUS-LDMS-VSD`                      |
+| **Tên tài liệu**        | Viễn cảnh và phạm vi dự án            |
+| **Tên dự án**           | HCMUS-LDMS                            |
+| **Đơn vị soạn thảo**    | Sebros - Nhóm sinh viên đề xuất dự án |
+| **Người xem xét**       | Toàn bộ 6 thành viên nhóm Sebros      |
+| **Người phê duyệt**     | Nhóm Sebros                           |
+| **Cấp độ bảo mật**      | Nội bộ                                |
+| **Trạng thái tài liệu** | Baseline nội bộ đã được nhóm xác nhận |
 
 ### Lịch sử phiên bản
 
@@ -23,6 +23,8 @@
 |    2.0    |   14/07/2026   | Chuẩn hóa cấu trúc, thuật ngữ và mô tả quy trình hiện tại/tương lai.                                                                                                                                                                                                                                                   | Mạch Quốc Tấn     |
 |    3.0    |   17/07/2026   | Cập nhật vai trò người dùng, công nghệ và phạm vi theo đề xuất dự án.                                                                                                                                                                                                                                                  | Ân Tiến Nguyên An |
 |    4.0    |   21/08/2026   | Việt hóa toàn bộ, đồng bộ với Đề xuất dự án đã chấp thuận, giới hạn phạm vi cho phiên bản đầu tiên trong 11 tuần, bổ sung phạm vi công việc, phương pháp đánh giá và cách cập nhật tài liệu, loại bỏ mục mô tả quá trình hình thành tài liệu và thống nhất cách gọi tài liệu Ủy nhiệm dự án trong nội dung tham chiếu. | Mạch Quốc Tấn     |
+|    5.0    |   24/08/2026   | Đồng bộ mục đích học tập, xác nhận nội bộ, baseline 15/6/5, vai trò bên tham khảo và cách dẫn chiếu tài liệu dùng cho bản in.                                                                                                                                                                                          | Mạch Quốc Tấn     |
+|    5.1    |   24/08/2026   | Mô tả chi tiết từng bước của quy trình hiện tại và quy trình đề xuất cho Thủ thư và Sinh viên.                                                                                                                                                                                                                         | Mạch Quốc Tấn     |
 
 ## Mục lục
 
@@ -43,15 +45,17 @@
 
 Tài liệu này xác định viễn cảnh, người dùng, nhu cầu, phạm vi và các yêu cầu định hướng của HCMUS-LDMS. Hệ thống hỗ trợ thư viện số hóa tài liệu giấy, biên tập nội dung nhận dạng ký tự, xuất bản tài liệu EPUB và cung cấp chức năng tìm kiếm, đọc tài liệu trực tuyến cho người dùng nội bộ.
 
-Tài liệu này được xây dựng từ [Đề xuất dự án](01-project-proposal.md). Các yêu cầu chi tiết, điều kiện chấp nhận và thứ tự ưu tiên được quản lý trong [Danh mục công việc](04-product-backlog.md).
+Dự án được thực hiện để phục vụ học tập trong 11 tuần. Baseline gồm 15 hạng mục Bắt buộc, tổng cộng 26 điểm; 6 hạng mục Nên có và 5 hạng mục Có thể xem xét được quản lý ngoài baseline.
+
+Tài liệu này được xây dựng từ **Đề xuất dự án**. Các yêu cầu chi tiết, điều kiện chấp nhận và thứ tự ưu tiên được quản lý trong **Danh mục công việc**.
 
 ### 1.1 Căn cứ và tài liệu liên quan
 
 - Đề xuất dự án HCMUS-LDMS.
 - Nhu cầu tiếp cận và bảo quản tài liệu học thuật của thư viện.
 - Quy định pháp luật liên quan đến quyền tác giả và số hóa tài liệu.
-- Định hướng kỹ thuật trong [Tài liệu kiến trúc](05-software-architecture.md).
-- Các yêu cầu, điều kiện chấp nhận và tiêu chí hoàn thành trong [Danh mục công việc](04-product-backlog.md).
+- Định hướng kỹ thuật trong tài liệu **Kiến trúc phần mềm**.
+- Các yêu cầu, điều kiện chấp nhận và tiêu chí hoàn thành trong **Danh mục công việc**.
 
 ## 2. Viễn cảnh và định vị sản phẩm
 
@@ -76,15 +80,17 @@ HCMUS-LDMS giúp thư viện chuyển một phần tài liệu giấy phù hợp
 
 ## 3. Người dùng và nhu cầu
 
-### 3.1 Các bên liên quan
+### 3.1 Các bên tham khảo khi dự án mở rộng
 
-| Bên liên quan                    | Mối quan tâm hoặc trách nhiệm                                               |
-| :------------------------------- | :-------------------------------------------------------------------------- |
-| Ban Giám hiệu                    | Phê duyệt chủ trương và định hướng đầu tư.                                  |
-| Ban Giám đốc Thư viện và thủ thư | Xác nhận quy trình nghiệp vụ, quản lý tài liệu nguồn và phê duyệt xuất bản. |
-| Phòng Công nghệ Thông tin        | Phát triển, triển khai, bảo trì và hỗ trợ kỹ thuật.                         |
-| Bộ phận Pháp chế                 | Rà soát quyền số hóa, quyền sử dụng và chính sách truy cập.                 |
-| Người đọc                        | Tìm kiếm, đọc tài liệu và phản hồi về khả năng sử dụng.                     |
+| Bên tham khảo                    | Nội dung có thể tham vấn                                   |
+| :------------------------------- | :--------------------------------------------------------- |
+| Ban Giám hiệu                    | Chủ trương và định hướng đầu tư.                           |
+| Ban Giám đốc Thư viện và thủ thư | Quy trình nghiệp vụ, tài liệu nguồn và phát hành tài liệu. |
+| Phòng Công nghệ Thông tin        | Hạ tầng, triển khai, bảo trì và hỗ trợ kỹ thuật.           |
+| Bộ phận Pháp chế                 | Quyền số hóa, quyền sử dụng và chính sách truy cập.        |
+| Người đọc                        | Nhu cầu tìm kiếm, đọc và khả năng sử dụng hệ thống.        |
+
+Các bên trên không tham gia phê duyệt baseline hiện tại. Nhóm chỉ tham khảo ý kiến của họ nếu dự án có điều kiện mở rộng.
 
 ### 3.2 Nhóm người dùng
 
@@ -112,31 +118,85 @@ HCMUS-LDMS giúp thư viện chuyển một phần tài liệu giấy phù hợp
 
 ## 4. Quy trình hiện tại và quy trình đề xuất
 
-### 4.1 Hạn chế của quy trình hiện tại
+### 4.1 Quy trình hiện tại
 
-Theo bối cảnh được mô tả trong Đề xuất dự án, người đọc có thể phải đến nơi lưu tài liệu giấy hoặc tự xử lý ảnh chụp, trong khi thủ thư phải quản lý tài liệu và yêu cầu số hóa bằng nhiều thao tác rời rạc. Tài liệu ảnh quét khó đọc trên màn hình nhỏ và không thuận tiện cho việc tìm kiếm nội dung.
+Quy trình dưới đây được mô tả theo bối cảnh mà nhóm ghi nhận cho dự án học tập. Đây chưa phải quy trình chính thức của Thư viện. Nếu dự án được mở rộng, nhóm phải xác minh lại với đơn vị thực tế.
 
-Các hạn chế chính là:
+#### 4.1.1 Quy trình hiện tại của Thủ thư
 
-- Khó tiếp cận tài liệu khi người đọc ở khác cơ sở.
-- Tài liệu giấy có nguy cơ xuống cấp và chiếm không gian lưu trữ.
-- Ảnh quét hoặc PDF tĩnh khó đọc và khó tìm kiếm toàn văn.
-- Việc nhận dạng, hiệu chỉnh, phê duyệt và xuất bản chưa được quản lý trong một quy trình thống nhất.
-- Quyền truy cập và việc phát hành tài liệu số cần được kiểm soát chặt chẽ hơn.
+1. **Tiếp nhận tài liệu:** Thủ thư tiếp nhận tài liệu giấy hoặc yêu cầu xử lý tài liệu từ nguồn hiện có.
+2. **Kiểm tra thông tin:** Thủ thư kiểm tra tên tài liệu, tác giả, tình trạng vật lý và thông tin quản lý cơ bản.
+3. **Xác định quyền sử dụng:** Thủ thư kiểm tra tài liệu có được phép sao chụp, số hóa hoặc cung cấp cho người đọc hay không.
+4. **Chuẩn bị bản quét:** Tài liệu được quét thành ảnh hoặc PDF bằng công cụ riêng.
+5. **Lưu tệp:** Tệp quét được lưu trong thư mục hoặc kho lưu trữ riêng; thông tin mô tả có thể được ghi ở một công cụ khác.
+6. **Kiểm tra thủ công:** Thủ thư mở từng tệp để kiểm tra thiếu trang, sai thứ tự, ảnh mờ hoặc lệch trang.
+7. **Xử lý nội dung:** Nếu cần văn bản có thể tìm kiếm, Thủ thư phải dùng công cụ nhận dạng ký tự riêng và tự sửa kết quả.
+8. **Theo dõi trạng thái:** Tiến độ nhận dạng, hiệu chỉnh và phê duyệt được theo dõi thủ công, chưa có một luồng trạng thái thống nhất.
+9. **Cung cấp tài liệu:** Tài liệu được cung cấp dưới dạng bản giấy, ảnh quét hoặc PDF tùy điều kiện và quyền truy cập.
+10. **Xử lý yêu cầu phát sinh:** Khi người đọc báo thiếu trang, khó đọc hoặc không tìm thấy tài liệu, Thủ thư phải kiểm tra lại ở nhiều nguồn.
+
+#### 4.1.2 Quy trình hiện tại của Sinh viên
+
+1. **Xác định nhu cầu:** Sinh viên xác định tên tài liệu, tác giả hoặc chủ đề cần tìm.
+2. **Tra cứu ban đầu:** Sinh viên tra cứu thông tin hiện có hoặc liên hệ với Thủ thư để hỏi vị trí tài liệu.
+3. **Đến nơi lưu trữ:** Nếu tài liệu chỉ có bản giấy, Sinh viên phải đến cơ sở đang lưu giữ tài liệu.
+4. **Xác nhận quyền sử dụng:** Sinh viên thực hiện thủ tục mượn, đọc tại chỗ hoặc truy cập theo quy định hiện có.
+5. **Nhận tài liệu:** Sinh viên nhận bản giấy, ảnh quét hoặc PDF nếu tài liệu đã có bản số.
+6. **Tìm nội dung:** Với bản giấy hoặc PDF dạng ảnh, Sinh viên phải đọc từng trang vì không thể tìm kiếm toàn văn thuận tiện.
+7. **Đọc tài liệu:** Việc đọc trên điện thoại có thể khó khăn do trang quét có kích thước cố định và phải phóng to, thu nhỏ.
+8. **Yêu cầu hỗ trợ:** Khi không tìm thấy tài liệu hoặc bản quét có lỗi, Sinh viên liên hệ lại với Thủ thư để được xử lý.
+
+#### 4.1.3 Hạn chế của quy trình hiện tại
+
+- Thông tin mô tả, tệp quét, kết quả nhận dạng và trạng thái xử lý có thể nằm ở nhiều nơi.
+- Thủ thư phải thực hiện nhiều bước thủ công và khó theo dõi toàn bộ tiến độ.
+- Sinh viên gặp khó khăn khi tài liệu nằm ở cơ sở khác hoặc chỉ được đọc tại chỗ.
+- Ảnh quét và PDF dạng ảnh khó đọc trên màn hình nhỏ và không thuận tiện cho tìm kiếm toàn văn.
+- Quyền truy cập, phê duyệt và phát hành tài liệu số chưa được quản lý trong một quy trình thống nhất.
 
 ### 4.2 Quy trình đề xuất
 
-Quy trình dự kiến gồm các bước:
+HCMUS-LDMS đề xuất hai luồng chính cho Thủ thư và Sinh viên. Mỗi người chỉ được thực hiện chức năng phù hợp với vai trò đã được cấp.
 
-1. Thủ thư tiếp nhận tài liệu và tải ảnh quét lên hệ thống.
-2. Thủ thư bổ sung thông tin mô tả cho tài liệu.
-3. Hệ thống nhận dạng ký tự và tạo văn bản thô.
-4. Biên tập viên đối chiếu ảnh gốc, sửa lỗi và gửi tài liệu chờ phê duyệt.
-5. Thủ thư kiểm tra, phê duyệt hoặc yêu cầu chỉnh sửa.
-6. Hệ thống đóng gói tài liệu đã duyệt thành EPUB và lập chỉ mục tìm kiếm.
-7. Người đọc đăng nhập, tìm kiếm và đọc tài liệu theo quyền được cấp.
+#### 4.2.1 Quy trình đề xuất cho Thủ thư
 
-Quy trình chi tiết, trạng thái công việc và điều kiện hoàn thành được quản lý trong [Danh mục công việc](04-product-backlog.md). Quyết định kỹ thuật liên quan được trình bày trong [Tài liệu kiến trúc](05-software-architecture.md).
+1. **Đăng nhập:** Thủ thư mở hệ thống và đăng nhập bằng tài khoản nội bộ hoặc tài khoản mô phỏng trong môi trường học tập.
+2. **Xác thực và phân quyền:** Hệ thống kiểm tra thông tin đăng nhập, xác định vai trò và chỉ hiển thị các chức năng mà Thủ thư được phép sử dụng.
+3. **Mở khu vực quản lý:** Thủ thư xem danh sách tài liệu và trạng thái xử lý như mới tạo, đang nhận dạng, đang hiệu chỉnh, chờ phê duyệt hoặc đã xuất bản.
+4. **Tạo tài liệu:** Thủ thư tạo hồ sơ mới và nhập thông tin mô tả cơ bản như tên tài liệu, tác giả, loại tài liệu và năm xuất bản.
+5. **Tải tệp nguồn:** Thủ thư chọn PDF hoặc ảnh quét thuộc bộ dữ liệu được phép sử dụng và tải lên hệ thống.
+6. **Kiểm tra tệp:** Hệ thống kiểm tra định dạng, kích thước và khả năng lưu tệp. Nếu không hợp lệ, hệ thống thông báo lỗi để Thủ thư sửa.
+7. **Lưu tệp riêng tư:** Tệp nguồn được lưu ở vùng không công khai; người không có quyền không thể truy cập trực tiếp.
+8. **Bắt đầu nhận dạng ký tự:** Thủ thư yêu cầu hệ thống xử lý OCR. Hệ thống tạo tác vụ và hiển thị trạng thái đang chờ, đang xử lý, hoàn thành hoặc thất bại.
+9. **Theo dõi và xử lý lỗi:** Nếu tác vụ thất bại, Thủ thư xem thông báo, sửa dữ liệu đầu vào hoặc thực hiện lại theo quyền được cấp.
+10. **Hiệu chỉnh nội dung:** Khi OCR hoàn thành, Thủ thư đối chiếu ảnh gốc với văn bản theo từng trang và sửa các lỗi nhận dạng.
+11. **Hoàn thiện thông tin:** Thủ thư rà soát lại thông tin mô tả, thứ tự trang và nội dung đã hiệu chỉnh.
+12. **Gửi chờ phê duyệt:** Thủ thư chuyển tài liệu sang trạng thái chờ phê duyệt. Người có quyền phê duyệt kiểm tra nội dung và quyền sử dụng.
+13. **Xử lý phản hồi:** Nếu tài liệu chưa đạt, hệ thống chuyển lại trạng thái hiệu chỉnh và ghi rõ nội dung cần sửa.
+14. **Tạo EPUB:** Khi nội dung đạt yêu cầu, Thủ thư yêu cầu hệ thống tạo EPUB từ văn bản và thông tin đã duyệt.
+15. **Kiểm tra EPUB:** Hệ thống kiểm tra tệp EPUB; Thủ thư mở thử để kiểm tra cấu trúc, thứ tự và khả năng đọc.
+16. **Xuất bản:** Thủ thư có quyền xuất bản xác nhận tài liệu. Hệ thống chỉ xuất bản khi nội dung, tệp EPUB và điều kiện quyền sử dụng đều hợp lệ.
+17. **Lập chỉ mục tìm kiếm:** Hệ thống đưa thông tin mô tả và nội dung được phép tìm kiếm vào chỉ mục.
+18. **Theo dõi sau xuất bản:** Thủ thư có thể xem trạng thái, sửa thông tin hoặc ngừng xuất bản khi phát hiện lỗi hay vấn đề quyền truy cập.
+19. **Đăng xuất:** Thủ thư đăng xuất sau khi hoàn thành công việc, đặc biệt khi sử dụng thiết bị dùng chung.
+
+#### 4.2.2 Quy trình đề xuất cho Sinh viên
+
+1. **Đăng nhập:** Sinh viên mở hệ thống và đăng nhập bằng tài khoản được cấp hoặc tài khoản mô phỏng trong môi trường học tập.
+2. **Xác thực và phân quyền:** Hệ thống kiểm tra tài khoản, xác định vai trò Sinh viên và giới hạn các chức năng quản trị.
+3. **Mở trang tìm kiếm:** Sinh viên truy cập khu vực tìm kiếm tài liệu.
+4. **Nhập yêu cầu tìm kiếm:** Sinh viên nhập tên tài liệu, tác giả, từ khóa hoặc nội dung cần tìm.
+5. **Nhận kết quả:** Hệ thống tìm trong thông tin mô tả và nội dung toàn văn, đồng thời loại bỏ tài liệu mà Sinh viên không được phép xem.
+6. **Thu hẹp kết quả:** Sinh viên dùng bộ lọc hoặc điều chỉnh từ khóa để tìm tài liệu phù hợp hơn.
+7. **Xem thông tin tài liệu:** Sinh viên chọn một kết quả để xem tên, tác giả, mô tả và trạng thái có thể đọc.
+8. **Yêu cầu mở tài liệu:** Sinh viên chọn chức năng đọc trực tuyến.
+9. **Kiểm tra quyền truy cập:** Hệ thống kiểm tra tài liệu đã xuất bản hay chưa và Sinh viên có quyền đọc hay không. Nếu không đủ quyền, hệ thống từ chối và hiển thị thông báo phù hợp.
+10. **Đọc trực tuyến:** Nếu được phép, hệ thống mở trình đọc EPUB. Sinh viên có thể chuyển trang, xem mục lục và điều chỉnh cách hiển thị trong phạm vi hệ thống hỗ trợ.
+11. **Quay lại tìm kiếm:** Sinh viên đóng trình đọc hoặc quay lại danh sách kết quả để chọn tài liệu khác.
+12. **Báo lỗi khi cần:** Nếu tài liệu thiếu nội dung, hiển thị sai hoặc không mở được, Sinh viên ghi nhận thông tin lỗi để nhóm xử lý.
+13. **Đăng xuất:** Sinh viên đăng xuất sau khi sử dụng, đặc biệt trên thiết bị dùng chung.
+
+Quy trình trên mô tả luồng nghiệp vụ ở mức viễn cảnh và phạm vi. Tiêu chí chấp nhận, trạng thái công việc và trường hợp lỗi chi tiết được quản lý trong **Danh mục công việc**, **Yêu cầu phần mềm** và **Kế hoạch kiểm thử**. Quyết định kỹ thuật được trình bày trong **Kiến trúc phần mềm**.
 
 ## 5. Phạm vi sản phẩm
 
@@ -161,7 +221,7 @@ Quy trình chi tiết, trạng thái công việc và điều kiện hoàn thàn
 - Tích hợp với hệ thống chống đạo văn hoặc các hệ thống đào tạo khác.
 - Mở rộng quy mô số hóa sang toàn bộ kho tài liệu.
 
-Các chức năng cụ thể chỉ được đưa vào phạm vi khi có trong [Danh mục công việc](04-product-backlog.md) và được nhóm chấp thuận.
+Các chức năng cụ thể chỉ được đưa vào phạm vi khi có trong **Danh mục công việc** và được nhóm xác nhận.
 
 ### 5.3 Phạm vi công việc của dự án
 
@@ -170,7 +230,7 @@ Phạm vi sản phẩm mô tả những gì HCMUS-LDMS cung cấp cho người d
 - Phân tích nhu cầu, xác nhận phạm vi và lập danh mục công việc.
 - Thiết kế giao diện, kiến trúc và mô hình dữ liệu phù hợp với phiên bản đầu tiên.
 - Phát triển chức năng, tích hợp các mô-đun và cấu hình môi trường triển khai.
-- Kiểm thử, sửa lỗi, nghiệm thu với đại diện nghiệp vụ và kiểm tra quyền truy cập.
+- Kiểm thử, sửa lỗi, đánh giá nội bộ và kiểm tra quyền truy cập.
 - Viết tài liệu, hướng dẫn sử dụng, triển khai và bàn giao phiên bản đầu tiên.
 
 Các hoạt động vận hành lâu dài, số hóa toàn bộ kho tài liệu và phát triển các chức năng mở rộng không thuộc phạm vi công việc của phiên bản đầu tiên.
@@ -223,9 +283,9 @@ Các hoạt động vận hành lâu dài, số hóa toàn bộ kho tài liệu 
 - Cấu hình local bằng Docker Compose/PostgreSQL/MinIO; cấu hình demo cloud Vercel/Render/Neon/R2 nếu môi trường này được dùng và smoke test đạt.
 - Phiên bản đầu tiên có các chức năng trong phạm vi được chấp thuận.
 - Bộ tài liệu hướng dẫn sử dụng, tài liệu kỹ thuật và hướng dẫn triển khai.
-- Bộ tài liệu mẫu đã được phép sử dụng để trình diễn và nghiệm thu.
+- Bộ tài liệu mẫu có nguồn và quyền sử dụng phù hợp để chạy thử và đánh giá.
 
-Danh sách sản phẩm bàn giao, chức năng và điều kiện nghiệm thu chi tiết xem [Bản mô tả công việc](12-statement-of-work.md).
+Danh sách sản phẩm bàn giao, chức năng và điều kiện hoàn thành được trình bày trong **Bản mô tả công việc**.
 
 ### 7.2 Nội dung loại trừ
 
@@ -239,9 +299,9 @@ Danh sách sản phẩm bàn giao, chức năng và điều kiện nghiệm thu 
 
 ### 8.1 Giả định
 
-- Nhà trường cung cấp hoặc cho phép sử dụng bộ tài liệu mẫu phù hợp với mục đích thử nghiệm.
+- Nhóm sử dụng bộ tài liệu mẫu có nguồn và quyền sử dụng phù hợp với mục đích học tập.
 - Các tài liệu đưa vào thử nghiệm đã được xác nhận quyền sử dụng.
-- Thư viện cử người đại diện để xác nhận quy trình và nghiệm thu.
+- Ý kiến từ Thư viện chỉ được xem là nguồn tham khảo nếu dự án có điều kiện mở rộng.
 - Nhóm có thể sử dụng hạ tầng và công cụ mã nguồn mở phù hợp với phạm vi phiên bản đầu tiên.
 
 ### 8.2 Phụ thuộc
@@ -273,9 +333,9 @@ Phiên bản đầu tiên được xem là đạt mục tiêu khi:
 - Người dùng nội bộ có thể tìm kiếm và đọc tài liệu đã xuất bản.
 - Vai trò và quyền truy cập chính được kiểm tra trước nghiệm thu.
 - Tài liệu mẫu được bảo vệ theo quyền sử dụng đã được xác nhận.
-- Hệ thống được kiểm thử, trình diễn, hướng dẫn sử dụng và bàn giao trong 11 tuần.
+- Hệ thống được kiểm thử, chạy thử, hướng dẫn sử dụng và hoàn thiện trong 11 tuần.
 
-Tiêu chí chấp nhận chi tiết của từng chức năng xem [Danh mục công việc](04-product-backlog.md). Các chỉ số và điều kiện nghiệm thu của sản phẩm bàn giao xem [Bản mô tả công việc](12-statement-of-work.md).
+Tiêu chí chấp nhận chi tiết của từng chức năng được trình bày trong **Danh mục công việc**. Các chỉ số và điều kiện hoàn thành sản phẩm được trình bày trong **Bản mô tả công việc**.
 
 ### Cách đánh giá tài liệu và phạm vi
 
@@ -297,10 +357,10 @@ Khi có thay đổi về người dùng, nhu cầu, chức năng, thời gian ho
 
 ## 10. Tài liệu tham chiếu
 
-- [Đề xuất dự án](01-project-proposal.md): vấn đề, cơ hội, giá trị và quyết định đầu tư.
-- [Nghiên cứu khả thi](08-feasibility-study.md): đánh giá khả thi về kỹ thuật, vận hành, pháp lý, nguồn lực và tài chính.
-- [Ủy nhiệm dự án](03-project-charter.md): mục tiêu, vai trò, quyền hạn và ràng buộc của dự án.
-- [Kiến trúc](05-software-architecture.md): các quyết định kỹ thuật, mô-đun, dữ liệu và triển khai.
-- [Danh mục công việc](04-product-backlog.md): chức năng người dùng, điều kiện chấp nhận, mức độ ưu tiên và tiêu chí hoàn thành.
-- [Chi phí, thời gian và nguồn lực](10-project-estimate.md): ước lượng và phân bổ nguồn lực.
-- [Bản mô tả công việc](12-statement-of-work.md): sản phẩm bàn giao và điều kiện nghiệm thu.
+- Đề xuất dự án: vấn đề, cơ hội, giá trị và quyết định thực hiện.
+- Báo cáo nghiên cứu tính khả thi: đánh giá tám loại khả thi và kết luận dự án.
+- Ủy nhiệm dự án: mục tiêu, vai trò, quyền hạn và ràng buộc.
+- Kiến trúc phần mềm: các quyết định kỹ thuật, mô-đun, dữ liệu và triển khai.
+- Danh mục công việc: hạng mục, điều kiện chấp nhận, mức ưu tiên và ước lượng.
+- Ước lượng dự án: cơ sở làm thử, điểm và hệ số dự phòng.
+- Bản mô tả công việc: sản phẩm bàn giao và điều kiện hoàn thành.
