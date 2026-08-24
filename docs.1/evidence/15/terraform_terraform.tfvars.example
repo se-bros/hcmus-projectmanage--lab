@@ -1,0 +1,24 @@
+# ==============================================================================
+# Sample Terraform Variables - HCMUS-LDMS Infrastructure Customization
+# ==============================================================================
+
+app_env             = "production"
+project_name        = "ldms"
+postgres_user       = "ldms"
+postgres_password   = "ldms"
+postgres_db         = "ldms"
+postgres_port       = 5434
+
+minio_root_user     = "ldms"
+minio_root_password = "ldms12345"
+minio_api_port      = 9002
+minio_console_port  = 9003
+
+web_port            = 8080
+web_ssl_port        = 8443
+api_port            = 8000
+grafana_port        = 3000
+prometheus_port     = 9090
+mailhog_ui_port     = 8025
+
+live_app_url        = "https://hcmus-projectmanage-lab.vercel.app"
