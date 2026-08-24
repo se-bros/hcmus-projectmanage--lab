@@ -2,231 +2,190 @@
 
 ## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
 
-### THÔNG TIN TÀI LIỆU
+### Thông tin tài liệu
 
-| Trường thông tin    | Nội dung                                            |
-| ------------------- | --------------------------------------------------- |
-| Mã tài liệu         | `HCMUS-LDMS-SRS`                                    |
-| Tên tài liệu        | Yêu cầu phần mềm                                    |
-| Dự án               | HCMUS-LDMS                                          |
-| Đơn vị soạn thảo    | Sebros – Nhóm sinh viên đề xuất dự án               |
-| Người thực hiện     | Mạch Quốc Tấn                                       |
-| Người xem xét       | Đại diện nhóm Sebros và Đại diện nghiệp vụ Thư viện |
-| Trạng thái tài liệu | Bản dự thảo để xem xét                              |
-| Phạm vi phiên bản   | Phiên bản đầu tiên trong 11 tuần                    |
+| Trường thông tin    | Nội dung                                 |
+| ------------------- | ---------------------------------------- |
+| Mã tài liệu         | `HCMUS-LDMS-SRS`                         |
+| Tên tài liệu        | Yêu cầu phần mềm                         |
+| Đơn vị thực hiện    | Nhóm Sebros                              |
+| Người phụ trách     | Mạch Quốc Tấn — Đại diện nhóm Sebros     |
+| Người xem xét       | Các thành viên nhóm Sebros               |
+| Trạng thái          | Baseline nội bộ đã được nhóm xác nhận    |
+| Thời gian thực hiện | 11 tuần                                  |
+| Mục đích            | Phục vụ học tập và quản lý dự án môn học |
 
-### LỊCH SỬ PHIÊN BẢN
+### Lịch sử phiên bản
 
-| Phiên bản | Ngày       | Mô tả thay đổi                                                                                                                               | Người thực hiện |
-| --------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| 1.0       | 21/08/2026 | Khởi tạo và hoàn thiện yêu cầu phần mềm, bổ sung tiêu chí chấp nhận, điều kiện sẵn sàng, điều kiện hoàn thành, truy vết và quản lý thay đổi. | Mạch Quốc Tấn   |
-| 2.0       | 22/08/2026 | Làm rõ phân loại tài liệu, trạng thái vòng đời, cách đo NFR và truy vết tới bằng chứng; đồng bộ SOW 11 tuần.                                 | Mạch Quốc Tấn   |
+| Phiên bản | Ngày       | Mô tả thay đổi                                                                                 | Người thực hiện |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| 1.0       | 21/08/2026 | Khởi tạo yêu cầu chức năng, yêu cầu phi chức năng và yêu cầu dữ liệu.                          | Mạch Quốc Tấn   |
+| 2.0       | 22/08/2026 | Bổ sung cách đo yêu cầu phi chức năng và bảng truy vết.                                        | Mạch Quốc Tấn   |
+| 3.0       | 24/08/2026 | Đồng bộ baseline 15/6/5, chuẩn hóa thuật ngữ và truy vết đủ 26 hạng mục trong Product Backlog. | Mạch Quốc Tấn   |
 
 ## Mục lục
 
-- [Mục đích và phạm vi](#1-mục-đích-và-phạm-vi)
-- [Bối cảnh và người sử dụng](#2-bối-cảnh-và-người-sử-dụng)
-- [Thuật ngữ và quy tắc nghiệp vụ](#3-thuật-ngữ-và-quy-tắc-nghiệp-vụ)
-- [Yêu cầu chức năng](#4-yêu-cầu-chức-năng)
-- [Yêu cầu phi chức năng](#5-yêu-cầu-phi-chức-năng)
-- [Yêu cầu dữ liệu](#6-yêu-cầu-dữ-liệu)
-- [Tiêu chí chấp nhận và truy vết](#7-tiêu-chí-chấp-nhận-và-truy-vết)
-- [Giả định, giới hạn và quản lý thay đổi](#8-giả-định-giới-hạn-và-quản-lý-thay-đổi)
-- [Cách sử dụng tài liệu](#9-cách-sử-dụng-tài-liệu)
-- [Tài liệu tham khảo](#10-tài-liệu-tham-khảo)
+- [1. Mục đích và phạm vi](#1-mục-đích-và-phạm-vi)
+- [2. Người sử dụng](#2-người-sử-dụng)
+- [3. Thuật ngữ và quy tắc nghiệp vụ](#3-thuật-ngữ-và-quy-tắc-nghiệp-vụ)
+- [4. Yêu cầu chức năng](#4-yêu-cầu-chức-năng)
+- [5. Yêu cầu phi chức năng](#5-yêu-cầu-phi-chức-năng)
+- [6. Yêu cầu dữ liệu](#6-yêu-cầu-dữ-liệu)
+- [7. Truy vết và xác nhận](#7-truy-vết-và-xác-nhận)
+- [8. Giả định, giới hạn và quản lý thay đổi](#8-giả-định-giới-hạn-và-quản-lý-thay-đổi)
+- [9. Tài liệu tham khảo](#9-tài-liệu-tham-khảo)
+
+---
 
 ## 1. Mục đích và phạm vi
 
-Tài liệu xác định các nhu cầu và hành vi mà HCMUS-LDMS cần đáp ứng trong phiên bản đầu tiên. Đây là cơ sở để nhóm lập danh mục công việc, thiết kế, lập trình, kiểm thử và nghiệm thu; không phải tài liệu mô tả chi tiết mã nguồn.
+Tài liệu xác định các hành vi, dữ liệu và đặc tính chất lượng mà HCMUS-LDMS cần đáp ứng. Đây là cơ sở để lập Product Backlog, thiết kế, phát triển, kiểm thử và xác nhận kết quả; không mô tả chi tiết mã nguồn hoặc cách triển khai.
 
-Phạm vi phiên bản đầu tiên gồm: tiếp nhận tài liệu, nhận dạng ký tự, hiệu chỉnh văn bản, nhập thông tin mô tả tài liệu, phân loại, xuất bản EPUB, tìm kiếm toàn văn, đọc trực tuyến và kiểm soát quyền truy cập. Công việc được tổ chức theo luồng Kanban trong 11 tuần; các chức năng nâng cao như ghi chú, đánh dấu, trích dẫn và mở rộng công cụ tìm kiếm chỉ được thực hiện khi còn năng lực sau khi hoàn thành phạm vi bắt buộc.
+Dự án được thực hiện trước hết để phục vụ học tập. Hệ thống mô phỏng quy trình tiếp nhận tài liệu gốc, nhận dạng ký tự, hiệu chỉnh nội dung, quản lý thông tin mô tả, tạo EPUB, xuất bản, tìm kiếm và đọc trực tuyến. Các bên liên quan ngoài nhóm được xem là đối tượng tham khảo nếu dự án được mở rộng trong tương lai.
 
-## 2. Bối cảnh và người sử dụng
+Baseline 11 tuần gồm 15 yêu cầu **Bắt buộc**. Sáu yêu cầu **Nên có** chỉ được thực hiện khi không ảnh hưởng đến baseline. Năm yêu cầu **Có thể xem xét** nằm ngoài baseline và chỉ được bổ sung khi nhóm xác nhận thay đổi.
 
-HCMUS-LDMS hỗ trợ Thư viện chuyển tài liệu giấy hoặc bản quét thành học liệu số có thể tìm kiếm và đọc trực tuyến. Nhu cầu thực tế được mô tả trong [Đề xuất dự án](01-project-proposal.md) và [Tài liệu viễn cảnh và phạm vi](02-vision-and-scope.md). Không sử dụng số liệu khảo sát định lượng nếu nhóm chưa có dữ liệu thực tế.
+Chi tiết câu chuyện người dùng, mức ưu tiên, ước lượng và tiêu chí chấp nhận được trình bày trong tài liệu **Product Backlog**. Kịch bản và bằng chứng xác nhận được trình bày trong tài liệu **Kế hoạch kiểm thử** và **Nhật ký dự án**.
 
-Các nhóm người sử dụng chính:
+## 2. Người sử dụng
 
-- **Độc giả:** sinh viên, giảng viên hoặc người được cấp quyền; tìm kiếm và đọc tài liệu trực tuyến.
-- **Thủ thư hoặc biên tập viên:** tiếp nhận tài liệu, theo dõi nhận dạng ký tự, sửa lỗi, bổ sung thông tin và xuất bản.
-- **Quản trị viên:** quản lý tài khoản, vai trò, quyền truy cập và danh mục dùng chung.
+| Vai trò                    | Nhu cầu chính                                                                 |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| Độc giả                    | Tìm kiếm và đọc tài liệu đã xuất bản trong phạm vi được phép.                 |
+| Thủ thư hoặc biên tập viên | Tiếp nhận tài liệu, theo dõi OCR, hiệu chỉnh, bổ sung thông tin và xuất bản.  |
+| Quản trị viên              | Quản lý vai trò, quyền truy cập, danh mục và nhật ký thao tác.                |
+| Thành viên nhóm            | Cài đặt, phát triển, kiểm thử và tái tạo kết quả trong môi trường thống nhất. |
 
 ## 3. Thuật ngữ và quy tắc nghiệp vụ
 
-| Thuật ngữ                | Giải thích                                                                       |
-| ------------------------ | -------------------------------------------------------------------------------- |
-| Tài liệu gốc             | Bản PDF hoặc ảnh quét được đưa vào hệ thống để xử lý.                            |
-| Nhận dạng ký tự          | Quá trình chuyển chữ trong ảnh hoặc PDF thành văn bản có thể chỉnh sửa.          |
-| Thông tin mô tả tài liệu | Thông tin như tên, tác giả, năm, thể loại và từ khóa dùng để nhận biết tài liệu. |
-| Bản nháp                 | Tài liệu đang được xử lý hoặc hiệu chỉnh, chưa cho độc giả đọc.                  |
-| Xuất bản                 | Đưa tài liệu đã đạt điều kiện lên kho để người có quyền truy cập.                |
-| Độc giả                  | Người được phép tìm kiếm và đọc tài liệu đã xuất bản.                            |
-| Thủ thư/biên tập viên    | Người chịu trách nhiệm kiểm tra và hoàn thiện nội dung tài liệu.                 |
+| Thuật ngữ                | Giải thích                                                                    |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| Tài liệu gốc             | Tệp PDF hoặc ảnh quét được đưa vào hệ thống để xử lý.                         |
+| OCR                      | Quá trình nhận dạng ký tự trong tài liệu gốc thành văn bản có thể hiệu chỉnh. |
+| Tác vụ OCR               | Lần xử lý OCR có trạng thái chờ, đang xử lý, hoàn tất hoặc thất bại.          |
+| Thông tin mô tả tài liệu | Dữ liệu như tên tài liệu, tác giả, năm xuất bản, danh mục và từ khóa.         |
+| Bản nháp                 | Tài liệu đang được xử lý hoặc hiệu chỉnh và chưa được cung cấp cho độc giả.   |
+| Xuất bản                 | Xác nhận tài liệu đạt điều kiện và cho phép người có quyền đọc trực tuyến.    |
+| EPUB                     | Định dạng sách điện tử được tạo từ nội dung đã hiệu chỉnh.                    |
+| Baseline                 | Phạm vi Bắt buộc đã được nhóm xác nhận cho thời gian thực hiện 11 tuần.       |
 
-Quy tắc nghiệp vụ chính:
+Các quy tắc nghiệp vụ chính:
 
-- Chỉ tài liệu đã có nội dung xử lý, thông tin mô tả tài liệu tối thiểu và kết quả kiểm tra đạt mới được xuất bản.
-- Tài liệu chưa xuất bản không xuất hiện trong kết quả tìm kiếm và không được cung cấp cho độc giả.
-- Người dùng chỉ thực hiện được chức năng phù hợp với vai trò và quyền đã được cấp.
-- Kết quả nhận dạng ký tự phải có thể kiểm tra, hiệu chỉnh và lưu lại trước khi xuất bản.
-- Tệp gốc và tệp EPUB được bảo vệ; người đọc sử dụng trình đọc trực tuyến theo quyền được cấp, không có nút tải tệp EPUB gốc trong giao diện.
+- Chỉ người có quyền mới được tiếp nhận, hiệu chỉnh, quản lý hoặc xuất bản tài liệu.
+- Tài liệu chỉ được xuất bản khi có nội dung hợp lệ, thông tin mô tả bắt buộc và tệp EPUB có thể sử dụng.
+- Tài liệu chưa xuất bản hoặc ngoài phạm vi quyền không xuất hiện trong kết quả tìm kiếm của độc giả.
+- Tài liệu gốc phải được bảo toàn trong quá trình OCR, hiệu chỉnh và xuất bản.
+- Giao diện đọc không cung cấp chức năng tải trực tiếp tệp EPUB gốc.
+- Dữ liệu riêng của một người dùng không được cung cấp cho người dùng khác nếu chưa được phép.
 
 ## 4. Yêu cầu chức năng
 
-### 4.1. Tài khoản và phân quyền
+Mỗi yêu cầu chức năng sử dụng từ “phải” để thể hiện hành vi cần được kiểm tra. Cột Product Backlog cung cấp liên kết truy vết về phạm vi và tiêu chí chấp nhận tương ứng.
 
-| Mã       | Yêu cầu                                                                                                                                                                                                | Ưu tiên  |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
-| YC-HT-01 | Hệ thống cho phép người dùng đăng nhập bằng cơ chế xác thực được cấu hình cho phiên bản đầu tiên; có thể dùng dữ liệu mô phỏng trong môi trường phát triển và Google OAuth 2.0 khi triển khai phù hợp. | Bắt buộc |
-| YC-HT-02 | Hệ thống tạo và duy trì phiên làm việc, đồng thời từ chối yêu cầu không có thông tin xác thực hợp lệ.                                                                                                  | Bắt buộc |
-| YC-HT-03 | Quản trị viên có thể gán vai trò và quyền cho tài khoản.                                                                                                                                               | Bắt buộc |
-| YC-HT-04 | Hệ thống kiểm tra quyền trước các thao tác xem, sửa, xuất bản và quản trị.                                                                                                                             | Bắt buộc |
+| Mã yêu cầu | Product Backlog | Yêu cầu                                                                                                                              | Priority       |
+| ---------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
+| `YC-001`   | `LDMS-001`      | Hệ thống phải có môi trường phát triển thống nhất để thành viên cài đặt, khởi chạy và kiểm thử theo cùng một hướng dẫn.              | Bắt buộc       |
+| `YC-002`   | `LDMS-002`      | Hệ thống phải cho phép người có quyền tải tài liệu gốc hợp lệ lên và phải từ chối tệp không đáp ứng điều kiện tiếp nhận.             | Bắt buộc       |
+| `YC-003`   | `LDMS-003`      | Hệ thống phải cho phép khởi chạy tác vụ OCR ở nền và theo dõi trạng thái chờ, đang xử lý, hoàn tất hoặc thất bại.                    | Bắt buộc       |
+| `YC-004`   | `LDMS-004`      | Hệ thống phải lưu và hiển thị kết quả OCR theo đúng tài liệu và trang tương ứng.                                                     | Bắt buộc       |
+| `YC-005`   | `LDMS-005`      | Hệ thống phải cho phép người có quyền sửa, lưu và mở lại văn bản đã hiệu chỉnh mà không làm thay đổi tài liệu gốc.                   | Bắt buộc       |
+| `YC-006`   | `LDMS-006`      | Hệ thống nên cho phép hiển thị song song tài liệu gốc và văn bản tương ứng để hỗ trợ hiệu chỉnh.                                     | Nên có         |
+| `YC-007`   | `LDMS-007`      | Hệ thống phải tạo được tệp EPUB có thể đọc từ nội dung đã hiệu chỉnh và không làm mất nội dung khi quá trình tạo tệp thất bại.       | Bắt buộc       |
+| `YC-008`   | `LDMS-008`      | Hệ thống phải cho phép độc giả có quyền đọc tài liệu EPUB đã xuất bản trên máy tính và thiết bị di động.                             | Bắt buộc       |
+| `YC-009`   | `LDMS-009`      | Hệ thống phải hỗ trợ đăng nhập bằng dữ liệu mô phỏng để kiểm thử các luồng chính trong môi trường học tập.                           | Bắt buộc       |
+| `YC-010`   | `LDMS-010`      | Hệ thống phải kiểm tra vai trò và từ chối thao tác khi người dùng không có quyền tương ứng.                                          | Bắt buộc       |
+| `YC-011`   | `LDMS-011`      | Hệ thống phải cho phép người có quyền tạo và cập nhật thông tin mô tả bắt buộc của tài liệu.                                         | Bắt buộc       |
+| `YC-012`   | `LDMS-012`      | Hệ thống nên cho phép quản trị viên tạo, cập nhật và sử dụng danh mục để phân loại tài liệu.                                         | Nên có         |
+| `YC-013`   | `LDMS-013`      | Hệ thống phải kiểm tra nội dung, thông tin mô tả và EPUB trước khi cho phép xuất bản, đồng thời nêu rõ điều kiện chưa đạt.           | Bắt buộc       |
+| `YC-014`   | `LDMS-014`      | Hệ thống phải kiểm tra quyền đọc, bảo vệ tệp riêng tư và không cung cấp chức năng tải trực tiếp EPUB gốc cho độc giả.                | Bắt buộc       |
+| `YC-015`   | `LDMS-015`      | Hệ thống phải tìm kiếm được tài liệu đã xuất bản theo thông tin mô tả và nội dung toàn văn trong phạm vi quyền truy cập.             | Bắt buộc       |
+| `YC-016`   | `LDMS-016`      | Hệ thống phải hiển thị kết quả tìm kiếm có thông tin nhận biết, ngữ cảnh phù hợp và khả năng mở tài liệu hợp lệ.                     | Bắt buộc       |
+| `YC-017`   | `LDMS-017`      | Hệ thống nên cho phép biên tập viên chuyển giữa các trang khi hiệu chỉnh mà không làm mất nội dung đã lưu.                           | Nên có         |
+| `YC-018`   | `LDMS-018`      | Hệ thống nên hỗ trợ đăng nhập Google OAuth 2.0 khi môi trường được cấu hình và không được tạo phiên khi xác thực thất bại.           | Nên có         |
+| `YC-019`   | `LDMS-019`      | Hệ thống có thể cho phép độc giả thay đổi thiết lập hiển thị mà không làm thay đổi nội dung tài liệu.                                | Có thể xem xét |
+| `YC-020`   | `LDMS-020`      | Hệ thống có thể cho phép độc giả lưu, cập nhật và xóa vị trí đọc của chính mình.                                                     | Có thể xem xét |
+| `YC-021`   | `LDMS-021`      | Hệ thống có thể cho phép độc giả tạo, xem, sửa và xóa đánh dấu hoặc ghi chú của chính mình trên tài liệu.                            | Có thể xem xét |
+| `YC-022`   | `LDMS-022`      | Hệ thống nên hiển thị nguyên nhân phù hợp và cho phép người có quyền yêu cầu xử lý lại tác vụ OCR thất bại.                          | Nên có         |
+| `YC-023`   | `LDMS-023`      | Hệ thống nên ghi nhật ký người thực hiện và thời điểm của các thao tác quan trọng, đồng thời bảo vệ nhật ký khỏi truy cập trái phép. | Nên có         |
+| `YC-024`   | `LDMS-024`      | Hệ thống có thể tạo và cho phép sao chép trích dẫn từ thông tin mô tả theo định dạng được nhóm xác nhận.                             | Có thể xem xét |
+| `YC-025`   | `LDMS-025`      | Hệ thống có thể hỗ trợ công cụ tìm kiếm mở rộng sau khi có dữ liệu chứng minh giải pháp hiện tại không đáp ứng nhu cầu.              | Có thể xem xét |
+| `YC-026`   | `LDMS-026`      | Hệ thống phải hiển thị danh sách và trạng thái chính của các tài liệu thuộc phạm vi quản lý của người dùng.                          | Bắt buộc       |
 
-### 4.2. Tiếp nhận và quản lý tài liệu
-
-| Mã       | Yêu cầu                                                                                                 | Ưu tiên  |
-| -------- | ------------------------------------------------------------------------------------------------------- | -------- |
-| YC-TL-01 | Thủ thư hoặc biên tập viên có thể tải tài liệu gốc lên hệ thống.                                        | Bắt buộc |
-| YC-TL-02 | Hệ thống kiểm tra loại tệp, kích thước và các điều kiện đầu vào trước khi tiếp nhận.                    | Bắt buộc |
-| YC-TL-03 | Hệ thống lưu tài liệu gốc an toàn và thông báo kết quả tiếp nhận.                                       | Bắt buộc |
-| YC-TL-04 | Người có quyền có thể tạo và cập nhật thông tin mô tả tài liệu tối thiểu.                               | Bắt buộc |
-| YC-TL-05 | Người có quyền có thể gán tài liệu vào danh mục đã có; quản trị cây danh mục là hạng mục Nên có riêng.  | Bắt buộc |
-| YC-TL-06 | Người có quyền có thể xem danh sách, trạng thái và thông tin cơ bản của các tài liệu mình được quản lý. | Bắt buộc |
-
-### 4.3. Nhận dạng ký tự và hiệu chỉnh
-
-| Mã       | Yêu cầu                                                                                                           | Ưu tiên  |
-| -------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
-| YC-ND-01 | Người có quyền có thể yêu cầu hệ thống nhận dạng ký tự cho tài liệu đã tiếp nhận.                                 | Bắt buộc |
-| YC-ND-02 | Hệ thống xử lý tác vụ nhận dạng ký tự ở nền và hiển thị trạng thái chờ xử lý, đang xử lý, hoàn tất hoặc thất bại. | Bắt buộc |
-| YC-ND-03 | Hệ thống lưu văn bản nhận dạng được gắn với tài liệu và từng trang tương ứng khi có thể xác định.                 | Bắt buộc |
-| YC-ND-04 | Người có quyền có thể xem ảnh hoặc PDF gốc cùng với văn bản nhận dạng để đối chiếu.                               | Bắt buộc |
-| YC-ND-05 | Người có quyền có thể sửa, lưu và tiếp tục hiệu chỉnh văn bản nhận dạng.                                          | Bắt buộc |
-| YC-ND-06 | Giao diện hiệu chỉnh hỗ trợ xem song song nội dung gốc và nội dung văn bản.                                       | Nên có   |
-| YC-ND-07 | Người có quyền có thể yêu cầu xử lý lại khi tác vụ nhận dạng thất bại và xem nguyên nhân lỗi ở mức phù hợp.       | Nên có   |
-
-### 4.4. Xuất bản và đọc tài liệu
-
-| Mã       | Yêu cầu                                                                                              | Ưu tiên  |
-| -------- | ---------------------------------------------------------------------------------------------------- | -------- |
-| YC-PH-01 | Hệ thống cho phép kiểm tra các điều kiện trước khi xuất bản.                                         | Bắt buộc |
-| YC-PH-02 | Hệ thống thông báo rõ các điều kiện chưa đạt và không cho xuất bản khi còn thiếu điều kiện bắt buộc. | Bắt buộc |
-| YC-PH-03 | Người có quyền có thể xác nhận xuất bản tài liệu đã đạt điều kiện.                                   | Bắt buộc |
-| YC-PH-04 | Hệ thống tạo hoặc lưu bản EPUB từ nội dung đã được hiệu chỉnh.                                       | Bắt buộc |
-| YC-PH-05 | Độc giả có quyền có thể đọc tài liệu đã xuất bản trên trình đọc trực tuyến.                          | Bắt buộc |
-| YC-PH-06 | Hệ thống chỉ cung cấp tài liệu đã xuất bản cho người dùng có quyền truy cập.                         | Bắt buộc |
-
-### 4.5. Tìm kiếm và quản trị danh mục
-
-| Mã       | Yêu cầu                                                                                                   | Ưu tiên        |
-| -------- | --------------------------------------------------------------------------------------------------------- | -------------- |
-| YC-TC-01 | Độc giả có thể tìm kiếm tài liệu theo thông tin mô tả cơ bản.                                             | Bắt buộc       |
-| YC-TC-02 | Độc giả có thể tìm kiếm toàn văn trong nội dung tài liệu đã xuất bản.                                     | Bắt buộc       |
-| YC-TC-03 | Hệ thống chỉ đưa tài liệu mà người dùng được phép xem vào kết quả tìm kiếm.                               | Bắt buộc       |
-| YC-TC-04 | Kết quả tìm kiếm hiển thị thông tin đủ để người dùng nhận biết và mở tài liệu phù hợp.                    | Bắt buộc       |
-| YC-TC-05 | Trình đọc hiển thị nội dung EPUB theo cách dễ đọc trên màn hình máy tính và thiết bị di động.             | Bắt buộc       |
-| YC-TC-06 | Hệ thống không hiển thị liên kết tải trực tiếp tệp EPUB gốc cho độc giả.                                  | Bắt buộc       |
-| YC-TC-07 | Người đọc có thể thay đổi một số thiết lập đọc cơ bản nếu chức năng đã được đưa vào phiên bản triển khai. | Có thể xem xét |
-
-| Mã       | Yêu cầu                                                                                           | Ưu tiên |
-| -------- | ------------------------------------------------------------------------------------------------- | ------- |
-| YC-QL-01 | Quản trị viên có thể tạo, sửa, sắp xếp hoặc ẩn danh mục tài liệu.                                 | Nên có  |
-| YC-QL-02 | Hệ thống ghi nhận trạng thái và lỗi chính của các tác vụ xử lý để người có quyền theo dõi.        | Nên có  |
-| YC-QL-03 | Hệ thống lưu nhật ký tối thiểu cho các thao tác quan trọng như tải lên, sửa nội dung và xuất bản. | Nên có  |
+Tổng số: **26 yêu cầu chức năng**, gồm **15 Bắt buộc**, **6 Nên có** và **5 Có thể xem xét**.
 
 ## 5. Yêu cầu phi chức năng
 
-| Mã       | Nhóm        | Yêu cầu                                                                                                               | Ưu tiên  |
-| -------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
-| YC-PN-01 | Bảo mật     | Kiểm tra xác thực và phân quyền ở phía máy chủ, không chỉ dựa vào giao diện.                                          | Bắt buộc |
-| YC-PN-02 | Bảo mật     | Tệp riêng tư được lưu trong vùng bảo vệ; liên kết truy cập tạm thời phải có thời hạn và không được công khai lâu dài. | Bắt buộc |
-| YC-PN-03 | Hiệu năng   | Các tác vụ nhận dạng ký tự và tạo EPUB không làm treo yêu cầu giao diện; người dùng nhận được trạng thái xử lý.       | Bắt buộc |
-| YC-PN-04 | Hiệu năng   | Tìm kiếm toàn văn phải được đo trên dataset và môi trường được ghi nhận; nhóm chốt ngưỡng/percentile trước UAT.       | Bắt buộc |
-| YC-PN-05 | Dễ sử dụng  | Luồng tải lên, hiệu chỉnh, kiểm tra và xuất bản phải có trạng thái và thông báo dễ hiểu.                              | Bắt buộc |
-| YC-PN-06 | Tương thích | Giao diện chính được kiểm thử theo browser/version/device matrix được chốt trước UAT.                                 | Nên có   |
-| YC-PN-07 | Bảo trì     | Mã nguồn được tổ chức theo các phần chức năng, có hướng dẫn cài đặt, cấu hình và chạy hệ thống.                       | Bắt buộc |
-| YC-PN-08 | Tin cậy     | Lỗi tác vụ không làm mất tài liệu gốc hoặc dữ liệu đã lưu trước đó.                                                   | Bắt buộc |
-| YC-PN-09 | Triển khai  | Hệ thống có thể chạy trong môi trường phát triển thống nhất bằng cấu hình được quản lý trong kho mã nguồn.            | Nên có   |
-| YC-PN-10 | Truy vết    | Yêu cầu, câu chuyện người dùng, mã nguồn, kiểm thử và kết quả nghiệm thu có thể liên kết với nhau.                    | Bắt buộc |
+| Mã yêu cầu | Nhóm        | Yêu cầu và cách xác nhận                                                                                                                                    | Priority |
+| ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `YCP-01`   | Bảo mật     | Phân quyền phải được kiểm tra ở phía máy chủ; kiểm thử bằng tài khoản hợp lệ, tài khoản không đủ quyền và yêu cầu không xác thực.                           | Bắt buộc |
+| `YCP-02`   | Bảo mật     | Thông tin bí mật phải được cấu hình ngoài mã nguồn; việc rà soát kho mã nguồn không được phát hiện khóa hoặc mật khẩu thật.                                 | Bắt buộc |
+| `YCP-03`   | Bảo mật     | Tệp riêng tư không được dùng liên kết công khai lâu dài; quyền truy cập phải hết hiệu lực theo cấu hình hoặc khi phiên không còn hợp lệ.                    | Bắt buộc |
+| `YCP-04`   | Tin cậy     | Tác vụ OCR hoặc tạo EPUB thất bại không được làm mất tài liệu gốc hay nội dung đã lưu trước đó.                                                             | Bắt buộc |
+| `YCP-05`   | Khả dụng    | Các luồng chính phải hiển thị trạng thái đang xử lý, thành công, dữ liệu trống và lỗi bằng thông báo có thể hiểu được.                                      | Bắt buộc |
+| `YCP-06`   | Tương thích | Các luồng chính phải được kiểm tra trên trình duyệt và kích thước màn hình được ghi trong Kế hoạch kiểm thử.                                                | Bắt buộc |
+| `YCP-07`   | Hiệu năng   | OCR và tạo EPUB phải chạy dưới dạng tác vụ nền; thao tác khởi chạy phải trả trạng thái mà không chờ toàn bộ quá trình hoàn tất.                             | Bắt buộc |
+| `YCP-08`   | Hiệu năng   | Tìm kiếm phải được đo bằng dữ liệu, môi trường, số lần chạy và cách tổng hợp đã ghi nhận; ngưỡng chấp nhận được xác nhận trong Kế hoạch kiểm thử trước UAT. | Bắt buộc |
+| `YCP-09`   | Bảo trì     | Hệ thống phải có hướng dẫn cài đặt, cấu hình, khởi chạy và kiểm thử đủ để một thành viên khác tái tạo môi trường.                                           | Bắt buộc |
+| `YCP-10`   | Truy vết    | Yêu cầu, hạng mục Product Backlog, kiểm thử và kết quả xác nhận phải sử dụng mã nhận diện để có thể đối chiếu.                                              | Bắt buộc |
 
-Các chỉ số như thời gian phản hồi hoặc tỷ lệ lỗi chỉ được chốt thành số cụ thể khi nhóm có dữ liệu kiểm thử hoặc thỏa thuận nghiệm thu tương ứng; không tự xem các con số trong tài liệu kiến trúc là số liệu đã đo.
-
-Khi chốt một chỉ số, bằng chứng phải ghi tối thiểu môi trường, dataset, số lần chạy, cách tổng hợp và kết quả thực tế. Tuyên bố “phù hợp” không thay thế phép đo.
+Không sử dụng một con số hiệu năng làm baseline nếu chưa có kết quả đo hoặc xác nhận của nhóm. Chi tiết môi trường, dữ liệu, ngưỡng và kết quả được trình bày trong **Kế hoạch kiểm thử** và **Nhật ký dự án**.
 
 ## 6. Yêu cầu dữ liệu
 
-| Nhóm dữ liệu             | Nội dung chính                                                                     |
-| ------------------------ | ---------------------------------------------------------------------------------- |
-| Tài khoản và vai trò     | Mã người dùng, thông tin định danh, vai trò, trạng thái và quyền.                  |
-| Tài liệu                 | Tên, mã, tệp gốc, trạng thái xử lý, người tạo và thời điểm cập nhật.               |
-| Thông tin mô tả tài liệu | Tác giả, năm, thể loại, từ khóa, mô tả và thông tin phân loại.                     |
-| Nội dung nhận dạng       | Văn bản theo tài liệu hoặc trang, trạng thái hiệu chỉnh và phiên bản lưu gần nhất. |
-| Bản xuất bản             | Tệp EPUB, trạng thái xuất bản, thời điểm xuất bản và người xác nhận.               |
-| Tác vụ và nhật ký        | Loại tác vụ, trạng thái, lỗi chính, người thực hiện và thời điểm.                  |
+| Nhóm dữ liệu             | Nội dung tối thiểu                                                 | Quy tắc chính                                                                |
+| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Tài khoản và quyền       | Định danh người dùng, vai trò, trạng thái và quyền.                | Người dùng chỉ được truy cập dữ liệu và thao tác trong phạm vi quyền.        |
+| Tài liệu                 | Mã tài liệu, tệp gốc, trạng thái, người tạo và thời điểm cập nhật. | Tệp gốc không bị ghi đè bởi kết quả OCR, hiệu chỉnh hoặc xuất bản.           |
+| Thông tin mô tả tài liệu | Tên tài liệu, tác giả và các trường phân loại được sử dụng.        | Trường bắt buộc phải hợp lệ trước khi xuất bản.                              |
+| Nội dung OCR             | Văn bản, tài liệu và trang tương ứng, trạng thái hiệu chỉnh.       | Nội dung phải gắn đúng tài liệu và trang; thay đổi đã lưu phải đọc lại được. |
+| Bản xuất bản             | Tệp EPUB, trạng thái, người xác nhận và thời điểm xuất bản.        | Chỉ bản đạt điều kiện mới được cung cấp cho độc giả có quyền.                |
+| Tác vụ và nhật ký        | Loại tác vụ, trạng thái, lỗi, người thực hiện và thời điểm.        | Lần xử lý lại và thao tác quan trọng phải có thể truy vết khi chức năng có.  |
+| Dữ liệu cá nhân          | Vị trí đọc, đánh dấu và ghi chú gắn với người dùng.                | Người dùng chỉ được truy cập dữ liệu cá nhân của mình.                       |
 
-Tệp gốc phải được bảo toàn; việc xử lý hoặc xuất bản tạo dữ liệu kết quả, không ghi đè làm mất bản gốc. Dữ liệu thử nghiệm phải được phân biệt với dữ liệu thật của Thư viện.
+Dữ liệu thử nghiệm phải được phân biệt với dữ liệu thực. Dự án không giả định được sử dụng dữ liệu thật của Thư viện nếu chưa có sự cho phép phù hợp.
 
-Vòng đời tài liệu tối thiểu gồm: `ocr_pending`, `ocr_processing`, `ocr_completed`, `ocr_failed`, `publishing`, `published`, `publish_failed`. Trạng thái lỗi không được làm mất tệp gốc hoặc nội dung đã lưu; hành động retry phải tạo hoặc ghi nhận lần thử mới có thể truy vết.
+Vòng đời xử lý tối thiểu gồm: chờ OCR, đang OCR, OCR hoàn tất, OCR thất bại, đang xuất bản, đã xuất bản và xuất bản thất bại. Tên kỹ thuật của trạng thái được xác định trong tài liệu **Kiến trúc phần mềm**.
 
-## 7. Tiêu chí chấp nhận và truy vết
+## 7. Truy vết và xác nhận
 
-Một yêu cầu được xem là đạt khi thỏa các điều kiện: đúng nhu cầu đã thống nhất, không mâu thuẫn với yêu cầu khác, khả thi trong phạm vi 11 tuần, có mức ưu tiên, có cách kiểm thử và có liên kết đến câu chuyện người dùng hoặc công việc tương ứng.
+Mỗi mã `YC-001`–`YC-026` truy vết một-một tới mã `LDMS-001`–`LDMS-026` cùng số thứ tự. Yêu cầu phi chức năng được gắn vào các kịch bản kiểm thử liên quan bằng mã `YCP`. Cách tổ chức này giúp đối chiếu phạm vi mà không lặp lại toàn bộ tiêu chí chấp nhận.
 
-Tiêu chí chấp nhận của từng câu chuyện người dùng phải mô tả kết quả quan sát được, gồm cả trường hợp thành công và trường hợp dữ liệu không hợp lệ hoặc không đủ quyền. Các tiêu chí phải được xem xét cùng Đại diện nghiệp vụ Thư viện trước khi đưa vào thực hiện.
+Một yêu cầu được xác nhận khi:
 
-### Điều kiện đưa vào luồng thực hiện
+- Nội dung không mâu thuẫn với phạm vi và quy tắc nghiệp vụ.
+- Priority khớp với Product Backlog.
+- Có tiêu chí chấp nhận quan sát được trong Product Backlog.
+- Có kịch bản kiểm thử và kết quả được ghi nhận trong bộ tài liệu dự án.
+- Không còn lỗi nghiêm trọng làm cho kết quả không thể sử dụng theo mục đích đã nêu.
 
-- Nêu rõ người sử dụng và nhu cầu cần giải quyết.
-- Có mô tả đủ rõ để nhóm ước lượng và phân chia công việc.
-- Có mức ưu tiên, tiêu chí chấp nhận và yêu cầu phi chức năng liên quan.
-- Đã nhận diện phụ thuộc, dữ liệu đầu vào và người xem xét.
-
-### Điều kiện hoàn thành
-
-- Mã nguồn đã được xem xét và tích hợp vào nhánh ổn định.
-- Kiểm thử phù hợp đã được thực hiện và không còn lỗi nghiêm trọng chưa xử lý.
-- Toàn bộ tiêu chí chấp nhận đạt, tài liệu liên quan được cập nhật.
-- Kết quả đã được trình bày hoặc xác nhận bởi người có trách nhiệm nghiệm thu.
-
-| Nhóm yêu cầu | Câu chuyện người dùng hoặc nhóm công việc                  | Truy vết sang danh mục công việc                                                                                                                        |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| YC-HT        | Đăng nhập, phiên làm việc, phân quyền                      | `LDMS-009`, `LDMS-010`, `LDMS-018`                                                                                                                      |
-| YC-TL        | Tải lên, thông tin mô tả, gán danh mục, danh sách tài liệu | `LDMS-002`, `LDMS-011`, `LDMS-026`; quản trị cây danh mục: `LDMS-012`                                                                                   |
-| YC-ND        | Nhận dạng ký tự, theo dõi, hiệu chỉnh, xử lý lại           | `LDMS-003`, `LDMS-004`, `LDMS-005`, `LDMS-006`, `LDMS-017`, `LDMS-022`                                                                                  |
-| YC-PH        | Kiểm tra, tạo EPUB, xuất bản, đọc                          | `LDMS-007`, `LDMS-008`, `LDMS-013`, `LDMS-014`                                                                                                          |
-| YC-TC        | Tìm kiếm, kết quả, đọc trực tuyến                          | `LDMS-008`, `LDMS-015`, `LDMS-016`, `LDMS-019`                                                                                                          |
-| YC-QL        | Danh mục, trạng thái, nhật ký                              | `LDMS-012`, `LDMS-022`, `LDMS-023`                                                                                                                      |
-| YC-PN        | Bảo mật, hiệu năng, dễ dùng, triển khai, truy vết          | AC của story, [Tài liệu kiến trúc](05-software-architecture.md), [Test/UAT Plan](20-test-plan.md) và evidence index theo [SOW](12-statement-of-work.md) |
+Nhóm Sebros xác nhận toàn bộ 26 yêu cầu chức năng và 10 yêu cầu phi chức năng trong tài liệu này làm baseline nội bộ. Việc xác nhận không đồng nghĩa rằng các hạng mục Nên có hoặc Có thể xem xét được đưa vào baseline triển khai.
 
 ## 8. Giả định, giới hạn và quản lý thay đổi
 
-Các giả định chính: nhóm gồm 6 sinh viên chuyên ngành Kỹ thuật phần mềm; nhóm có đủ kỹ năng triển khai phiên bản học tập; người đại diện nghiệp vụ là Đại diện nghiệp vụ Thư viện; hạ tầng và dữ liệu thật có thể cần được cung cấp sau khi dự án được chấp thuận.
+Các giả định chính:
 
-Giới hạn chính: thời gian thực hiện phiên bản đầu tiên là 11 tuần; ngân sách sơ bộ chưa có con số cụ thể vì đây là dự án phục vụ môn học; chi phí mở rộng quy mô được xem xét trong tài liệu khác; không khẳng định kết quả nhận dạng ký tự hoàn toàn chính xác nếu chưa có bộ dữ liệu đánh giá.
+- Nhóm gồm sáu sinh viên và triển khai dự án trong 11 tuần để phục vụ môn học.
+- Môi trường, dữ liệu và tài khoản sử dụng cho phát triển và kiểm thử có thể là dữ liệu mô phỏng.
+- Đại diện Thư viện và các bên liên quan bên ngoài chỉ được tham vấn khi dự án có điều kiện mở rộng.
 
-Yêu cầu được quản lý theo Kanban. Khi có đề xuất thay đổi, nhóm ghi rõ lý do, nguồn yêu cầu, tác động đến phạm vi, thời gian, chất lượng và phụ thuộc; sau đó Đại diện nhóm Sebros cùng Đại diện nghiệp vụ Thư viện quyết định cập nhật hoặc đưa vào danh sách xem xét sau. Mọi thay đổi được cập nhật đồng thời ở câu chuyện người dùng, tiêu chí chấp nhận và bảng truy vết.
+Các giới hạn chính:
 
-## 9. Cách sử dụng tài liệu
+- Không khẳng định độ chính xác OCR, khả năng chịu tải hoặc mức sẵn sàng vận hành khi chưa có dữ liệu đo.
+- Không xem đăng nhập Google OAuth 2.0, dữ liệu thật hoặc hạ tầng vận hành chính thức là điều kiện bắt buộc của baseline.
+- Không xem các hạng mục Có thể xem xét là cam kết thực hiện trong 11 tuần.
 
-- Tạo và rà soát câu chuyện người dùng trong [Danh mục công việc](04-product-backlog.md).
-- Làm căn cứ cho [Tài liệu kiến trúc phần mềm](05-software-architecture.md).
-- Lập công việc, kiểm thử và nghiệm thu theo luồng Kanban.
-- Cập nhật yêu cầu khi có quyết định thay đổi đã được ghi nhận.
+Khi thay đổi yêu cầu, nhóm phải ghi nhận lý do, Priority, tác động tới baseline, thời gian, chất lượng và các hạng mục liên quan. Thay đổi chỉ có hiệu lực sau khi nhóm Sebros xác nhận và cập nhật đồng thời **Yêu cầu phần mềm**, **Product Backlog**, **Kế hoạch kiểm thử** cùng các tài liệu bị ảnh hưởng.
 
-## 10. Tài liệu tham khảo
+## 9. Tài liệu tham khảo
 
-- [Đề xuất dự án](01-project-proposal.md)
-- [Tài liệu viễn cảnh và phạm vi](02-vision-and-scope.md)
-- [Ủy nhiệm dự án](03-project-charter.md)
-- [Tài liệu kiến trúc phần mềm](05-software-architecture.md)
-- [Nghiên cứu tính khả thi](08-feasibility-study.md)
-- [Sổ đăng ký rủi ro](18-risk-management-plan.md)
-- [Kế hoạch quản lý chất lượng](19-quality-management-plan.md)
-- [Kế hoạch kiểm thử và UAT](20-test-plan.md)
-
-## 11. Tài liệu nộp kèm khi thi vấn đáp (Câu 4)
-
-Theo yêu cầu đề thi Câu 4, sinh viên nộp kèm:
-
-1. Bản in tài liệu **Yêu cầu phần mềm** (file này hoặc [04-product-backlog.md](04-product-backlog.md)).
-2. Bản in tài liệu **Hướng dẫn sử dụng hệ thống** của nhóm: [04-user-guide.md](04-user-guide.md) (`HCMUS-LDMS-UG`).
+- Đề xuất dự án.
+- Viễn cảnh và phạm vi.
+- Ủy nhiệm dự án.
+- Product Backlog.
+- Kiến trúc phần mềm.
+- Bản mô tả công việc.
+- Kế hoạch dự án.
+- Kế hoạch kiểm thử.
+- Kế hoạch quản lý chất lượng.
+- Kế hoạch quản lý rủi ro.
+- Nhật ký dự án.
