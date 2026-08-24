@@ -44,8 +44,6 @@
 |       4 | [Danh mục công việc](04-product-backlog.md)                  | [PDF](../pdf/04-product-backlog.pdf)             | 26 story, ưu tiên 15/6/5, AC, phụ thuộc và DoR/DoD.               | Bản dự thảo để xem xét                          |
 |       4 | [Hướng dẫn sử dụng](04-user-guide.md)                        | [PDF](../pdf/04-user-guide.pdf)                  | Hướng dẫn theo vai trò và luồng cốt lõi.                          | Chờ đối chiếu giao diện thực tế                 |
 |       5 | [Kiến trúc phần mềm](05-software-architecture.md)            | [PDF](../pdf/05-software-architecture.pdf)       | C4, công nghệ, dữ liệu, bảo mật và profile triển khai.            | Bản dự thảo để xem xét                          |
-|       6 | [Chứng minh ý tưởng](06-proof-of-concept.md)                 | [PDF](../pdf/06-proof-of-concept.pdf)            | Hai PoC, đầu vào/đầu ra, tiêu chí và biên bản chạy.               | Kế hoạch có; kết quả Chưa chạy                  |
-|       7 | [Bản mẫu giao diện](07-prototype.md)                         | [PDF](../pdf/07-prototype.pdf)                   | Luồng giao diện và kế hoạch lấy phản hồi.                         | Bản mẫu có; đánh giá Chưa thực hiện             |
 |       8 | [Nghiên cứu khả thi](08-feasibility-study.md)                | [PDF](../pdf/08-feasibility-study.pdf)           | Khả thi có điều kiện và rủi ro.                                   | Chờ phê duyệt                                   |
 |       9 | [Quy trình phát triển](09-software-process-definition.md)    | [PDF](../pdf/09-software-process-definition.pdf) | Kanban, WIP, DoR/DoD, Trunk-Based và đo lường.                    | Bản dự thảo để xem xét                          |
 |      10 | [Ước lượng dự án](10-project-estimate.md)                    | [PDF](../pdf/10-project-estimate.pdf)            | Bottom-up estimate, demand 190 giờ, capacity 198 giờ và forecast. | Dự thảo để hiệu chỉnh                           |
@@ -62,7 +60,7 @@
 |      21 | [Sổ bài học kinh nghiệm](21-lessons-learned.md)              | [PDF](../pdf/21-lessons-learned.pdf)             | Bài học có căn cứ và giả thuyết cần kiểm chứng.                   | Đang ghi nhận; chưa đóng dự án                  |
 | Phụ lục | [Nhật ký quyết định và ADR](A1-decision-log-and-adr.md)      | [PDF](../pdf/A1-decision-log-and-adr.pdf)        | 10 quyết định kiến trúc và điều kiện kiểm chứng.                  | Đường cơ sở tài liệu; chưa đủ evidence kỹ thuật |
 
-Thứ tự 1–21 bám theo `Final-Answer.md`. Một câu có thể cần nhiều tài liệu in kèm; câu 4 gồm SRS, Backlog và Hướng dẫn sử dụng. ADR là phụ lục kiến trúc nên không chiếm số câu 13.
+Thứ tự 1–21 bám theo `Final-Answer.md`. Một câu có thể cần nhiều tài liệu in kèm; câu 4 gồm SRS, Backlog và Hướng dẫn sử dụng. Câu 6 và 7 không duy trì tài liệu riêng trong bộ hồ sơ hiện tại; nội dung liên quan được dẫn chiếu trong ma trận ở Mục 4. ADR là phụ lục kiến trúc nên không chiếm số câu riêng.
 
 ## 3. Nguồn chuẩn theo chủ đề
 
@@ -76,7 +74,6 @@ Thứ tự 1–21 bám theo `Final-Answer.md`. Một câu có thể cần nhiề
 | Rủi ro                   | Risk Register            | Feasibility, SOW, Operations–Security Plan |
 | Quality gates/metric     | Quality Plan             | Process, Test/UAT Plan                     |
 | Kế hoạch tích hợp        | Project Plan             | SOW, Estimate, Risk/Quality/Test Plans     |
-| PoC/bản mẫu              | PoC, Prototype           | Architecture, Backlog, Test Plan           |
 | CI/CD/DevOps             | CI, CD, DevOps documents | Workflow/Compose và run evidence           |
 | Quy trình/WIP/branching  | Process                  | Team Contract                              |
 | Effort/capacity/forecast | Estimate                 | Project Log                                |
@@ -98,8 +95,8 @@ Khi hai nguồn mâu thuẫn, không tự chọn một nguồn. Nhóm phải ghi
 |   3 | Project Charter      | `03-project-charter.md`                                     | Pending approval                                   |
 |   4 | Requirements/Backlog | `04-software-requirements.md`, `04-product-backlog.md`      | Draft baseline                                     |
 |   5 | Architecture         | `05-software-architecture.md`, `assets/`                    | Draft baseline                                     |
-|   6 | Proof of Concept     | `06-proof-of-concept.md` + Architecture/Test Plan           | Kế hoạch đầy đủ; hai PoC Chưa chạy                 |
-|   7 | Prototype            | `07-prototype.md` + SVG bản mẫu                             | Có phác thảo; chưa có phản hồi/ảnh hệ thống thật   |
+|   6 | Proof of Concept     | `05-software-architecture.md`, source code và test evidence | Không duy trì tài liệu PoC riêng                   |
+|   7 | Prototype            | Giao diện hiện tại và evidence trong repository             | Không duy trì tài liệu Prototype riêng             |
 |   8 | Feasibility          | `08-feasibility-study.md`                                   | Conditional                                        |
 |   9 | Process              | `09-software-process-definition.md`                         | Draft baseline                                     |
 |  10 | Estimation           | `10-project-estimate.md`                                    | Forecast ban đầu; cần actuals                      |
