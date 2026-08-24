@@ -22,6 +22,8 @@ def copy_tree_files(src_dir, dst_dir, prefix=""):
     os.makedirs(dst_dir, exist_ok=True)
     for root, _, files in os.walk(src_dir):
         for f in files:
+            if f.endswith('.svg'):
+                continue
             src_file = os.path.join(root, f)
             rel = os.path.relpath(src_file, src_dir)
             target_name = f"{prefix}_{rel.replace(os.sep, '_')}" if prefix else rel.replace(os.sep, '_')
@@ -33,31 +35,25 @@ def main():
     # 01 - Proposal
     q01 = os.path.join(EVIDENCE_DIR, '01')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '01-project-proposal.pdf'), q01)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '1_Initiation_Charter_Feasibility', 'assets', 'q1_proposal_flow.svg'), q01)
 
     # 02 - Vision & Scope
     q02 = os.path.join(EVIDENCE_DIR, '02')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '02-vision-and-scope.pdf'), q02)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '2_Requirements_Scope_SoW', 'diagrams', 'vision-as-is-to-be.svg'), q02)
 
     # 03 - Charter
     q03 = os.path.join(EVIDENCE_DIR, '03')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '03-project-charter.pdf'), q03)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '1_Initiation_Charter_Feasibility', 'assets', 'q3_charter_governance.svg'), q03)
 
     # 04 - Requirements & Backlog & User Guide
     q04 = os.path.join(EVIDENCE_DIR, '04')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '04-software-requirements.pdf'), q04)
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '04-product-backlog.pdf'), q04)
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '04-user-guide.pdf'), q04)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '2_Requirements_Scope_SoW', 'diagrams', 'requirements-traceability.svg'), q04)
 
     # 05 - Architecture & ADR
     q05 = os.path.join(EVIDENCE_DIR, '05')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '05-software-architecture.pdf'), q05)
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', 'A1-decision-log-and-adr.pdf'), q05)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '3_Architecture_PoC_Prototype', 'printouts', 'Q5', 'context_diagram.svg'), q05)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '3_Architecture_PoC_Prototype', 'printouts', 'Q5', 'system_architecture.svg'), q05)
 
     # 06 - PoC
     q06 = os.path.join(EVIDENCE_DIR, '06')
@@ -68,12 +64,10 @@ def main():
     # 07 - Prototype
     q07 = os.path.join(EVIDENCE_DIR, '07')
     copy_tree_files(os.path.join(BASE_DIR, 'final-exam', 'preparation', '3_Architecture_PoC_Prototype', 'printouts', 'Q7'), q07)
-    copy_file(os.path.join(BASE_DIR, 'docs.1', 'md', 'assets', 'prototype-core-flow.svg'), q07)
 
     # 08 - Feasibility
     q08 = os.path.join(EVIDENCE_DIR, '08')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '08-feasibility-study.pdf'), q08)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '1_Initiation_Charter_Feasibility', 'assets', 'q8_telos_assessment.svg'), q08)
 
     # 09 - Process
     q09 = os.path.join(EVIDENCE_DIR, '09')
@@ -82,18 +76,14 @@ def main():
     # 10 - Estimate
     q10 = os.path.join(EVIDENCE_DIR, '10')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '10-project-estimate.pdf'), q10)
-    copy_file(os.path.join(BASE_DIR, 'docs', 'assets', 'images', 'capex_breakdown.svg'), q10)
 
     # 11 - Project Plan
     q11 = os.path.join(EVIDENCE_DIR, '11')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '11-project-plan.pdf'), q11)
-    copy_file(os.path.join(BASE_DIR, 'docs', 'assets', 'images', 'project_roadmap.svg'), q11)
-    copy_file(os.path.join(BASE_DIR, 'docs', 'assets', 'images', 'project_timeline.svg'), q11)
 
     # 12 - SOW
     q12 = os.path.join(EVIDENCE_DIR, '12')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '12-statement-of-work.pdf'), q12)
-    copy_file(os.path.join(BASE_DIR, 'final-exam', 'preparation', '2_Requirements_Scope_SoW', 'diagrams', 'sow-change-control.svg'), q12)
 
     # 13 - CI
     q13 = os.path.join(EVIDENCE_DIR, '13')
@@ -149,7 +139,7 @@ def main():
     q21 = os.path.join(EVIDENCE_DIR, '21')
     copy_file(os.path.join(BASE_DIR, 'docs.1', 'pdf', '21-lessons-learned.pdf'), q21)
 
-    print("\nAll evidence artifacts populated successfully!")
+    print("\nAll evidence artifacts populated successfully without SVG files!")
 
 if __name__ == '__main__':
     main()
