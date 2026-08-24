@@ -4,20 +4,20 @@
 
 ### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                      |
-| :----------------------------------------- | :----------------------------------------------------------------- |
-| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-DEVGUIDE`                                              |
-| **Tên tài liệu (Document Title)**          | Hướng dẫn Cài đặt và Phát triển (Developer Guide)                  |
-| **Dự án (Project Name)**                   | HCMUS-LDMS                                                         |
-| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                   |
-| **Cấp độ bảo mật (Security Class)**        | Internal                                                           |
-| **Trạng thái tài liệu (Status)**           | Active — khớp README và scripts hiện có                            |
+| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                     |
+| :----------------------------------------- | :------------------------------------------------ |
+| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-DEVGUIDE`                             |
+| **Tên tài liệu (Document Title)**          | Hướng dẫn Cài đặt và Phát triển (Developer Guide) |
+| **Dự án (Project Name)**                   | HCMUS-LDMS                                        |
+| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                  |
+| **Cấp độ bảo mật (Security Class)**        | Internal                                          |
+| **Trạng thái tài liệu (Status)**           | Active — khớp README và scripts hiện có           |
 
 ### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
 | Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                      | Người thực hiện (Author) |
 | :-----------------: | :-------------------: | :-------------------------------------------------------------------------- | :----------------------: |
-|         1.0         |      20/08/2026       | Tách hướng dẫn dev từ root README; bổ sung CI local checklist và nhánh Git. |    Nguyễn Tuấn Anh     |
+|         1.0         |      20/08/2026       | Tách hướng dẫn dev từ root README; bổ sung CI local checklist và nhánh Git. |     Nguyễn Tuấn Anh      |
 
 ---
 
@@ -29,14 +29,14 @@ Tài liệu giúp thành viên mới (hoặc máy mới) **cài công cụ, biê
 
 ## 2. Yêu cầu công cụ
 
-| Công cụ | Phiên bản tối thiểu | Ghi chú |
-| ------- | ------------------- | ------- |
-| Docker + Docker Compose plugin | Docker 24.x khuyến nghị | Bắt buộc cho Postgres, MinIO, API image |
-| Node.js | 20+ | Frontend Vite/React |
-| npm | Đi kèm Node 20 | Dùng `npm ci` / `npm install` |
-| [uv](https://docs.astral.sh/uv/) | Latest ổn định | Quản lý Python 3.11 backend |
-| Git | 2.x | Nhánh theo GitFlow |
-| curl | Có sẵn hầu hết OS | Health check trong `scripts/run.sh` |
+| Công cụ                          | Phiên bản tối thiểu     | Ghi chú                                 |
+| -------------------------------- | ----------------------- | --------------------------------------- |
+| Docker + Docker Compose plugin   | Docker 24.x khuyến nghị | Bắt buộc cho Postgres, MinIO, API image |
+| Node.js                          | 20+                     | Frontend Vite/React                     |
+| npm                              | Đi kèm Node 20          | Dùng `npm ci` / `npm install`           |
+| [uv](https://docs.astral.sh/uv/) | Latest ổn định          | Quản lý Python 3.11 backend             |
+| Git                              | 2.x                     | Nhánh theo GitFlow                      |
+| curl                             | Có sẵn hầu hết OS       | Health check trong `scripts/run.sh`     |
 
 Tùy chọn:
 
@@ -95,13 +95,13 @@ npm run dev
 
 ### 4.3 Cổng dịch vụ (dev)
 
-| Service | URL |
-| ------- | --- |
-| Frontend (Vite) | http://localhost:5173 |
-| API | http://localhost:8000 |
-| PostgreSQL (host) | localhost:**5434** |
-| MinIO API (host) | localhost:**9002** |
-| MinIO Console | localhost:**9003** |
+| Service           | URL                   |
+| ----------------- | --------------------- |
+| Frontend (Vite)   | http://localhost:5173 |
+| API               | http://localhost:8000 |
+| PostgreSQL (host) | localhost:**5434**    |
+| MinIO API (host)  | localhost:**9002**    |
+| MinIO Console     | localhost:**9003**    |
 
 > Cổng map ra host khác cổng trong container để tránh đụng Postgres/MinIO local khác.
 
@@ -139,12 +139,12 @@ npm test
 
 ### 5.3 Ý nghĩa từng bước
 
-| Bước | Mục đích |
-| ---- | -------- |
-| Ruff format/check | Thống nhất style Python; chặn merge nếu lệch |
-| Pytest | ~141 test API/service/worker/core |
-| ESLint + `npm run build` | Type/lint + bundle production FE |
-| Vitest | Regression UI/component |
+| Bước                     | Mục đích                                     |
+| ------------------------ | -------------------------------------------- |
+| Ruff format/check        | Thống nhất style Python; chặn merge nếu lệch |
+| Pytest                   | ~141 test API/service/worker/core            |
+| ESLint + `npm run build` | Type/lint + bundle production FE             |
+| Vitest                   | Regression UI/component                      |
 
 CI cũng chạy các bước trên khi mở PR vào `main` / `develop`, hoặc push các nhánh `main`, `develop`, `release/**`, `hotfix/**`.
 
@@ -173,13 +173,13 @@ Import model mới vào `app/db/migrations/env.py` nếu autogenerate không nh�
 
 Theo [`02-architecture.md`](../02-planning/02-architecture.md) §8.2 (GitFlow):
 
-| Nhánh | Mục đích |
-| ----- | -------- |
-| `feature/*` | Tính năng từ `develop` |
-| `develop` | Tích hợp sprint |
+| Nhánh       | Mục đích                 |
+| ----------- | ------------------------ |
+| `feature/*` | Tính năng từ `develop`   |
+| `develop`   | Tích hợp sprint          |
 | `release/*` | Chuẩn bị phát hành / UAT |
-| `main` | Ổn định nhất |
-| `hotfix/*` | Sửa khẩn từ `main` |
+| `main`      | Ổn định nhất             |
+| `hotfix/*`  | Sửa khẩn từ `main`       |
 
 Checklist trước khi nhờ review:
 
@@ -217,13 +217,13 @@ hcmus-projectmanage--lab/
 
 ## 10. Sự cố thường gặp
 
-| Triệu chứng | Hướng xử lý |
-| ----------- | ----------- |
-| `run.sh` báo API không ready trong 60s | `docker compose -f src/backend/docker-compose.yml logs --tail 80 api` |
-| Pytest fail liên quan DB | Đảm bảo không phụ thuộc Postgres thật; kiểm tra fixture `api_context` |
-| Frontend port 5173 bận | Tắt process cũ; `run.sh` cố gắng `fuser -k 5173/tcp` nếu có `fuser` |
-| OCR không chạy | Image API phải build đủ Tesseract/Poppler/Pandoc; xem Dockerfile backend |
-| Migration chưa chạy | `docker compose exec api uv run --no-dev alembic upgrade head` |
+| Triệu chứng                            | Hướng xử lý                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------ |
+| `run.sh` báo API không ready trong 60s | `docker compose -f src/backend/docker-compose.yml logs --tail 80 api`    |
+| Pytest fail liên quan DB               | Đảm bảo không phụ thuộc Postgres thật; kiểm tra fixture `api_context`    |
+| Frontend port 5173 bận                 | Tắt process cũ; `run.sh` cố gắng `fuser -k 5173/tcp` nếu có `fuser`      |
+| OCR không chạy                         | Image API phải build đủ Tesseract/Poppler/Pandoc; xem Dockerfile backend |
+| Migration chưa chạy                    | `docker compose exec api uv run --no-dev alembic upgrade head`           |
 
 ---
 

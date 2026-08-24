@@ -54,6 +54,7 @@
 - [8. Kết luận và Khuyến nghị hành động](#8-kết-luận-và-khuyến-nghị-hành-động)
 
 ---
+
 ## 1. Tóm tắt điều hành
 
 Thư viện Trường Đại học Khoa học Tự nhiên (HCMUS) hiện quản lý hàng chục ngàn tài liệu học thuật cứng độc bản. Việc lưu trữ vật lý này đang đối mặt với các thách thức lớn về quá tải diện tích kho bãi, xuống cấp tài liệu và rào cản địa lý tiếp cận thông tin đối với sinh viên tại cơ sở Linh Trung (Thủ Đức). Các tệp tin ảnh quét PDF tĩnh hiện tại không hỗ trợ tự co giãn dòng và cực kỳ khó đọc trên các thiết bị di động.

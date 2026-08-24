@@ -41,11 +41,11 @@ Cùng shape với GET. Upsert theo unique `(document_id, user_sub)` — gọi PU
 
 ### Response lỗi
 
-| Status | Khi nào |
-|---|---|
-| 401 | Không có token / token không hợp lệ |
-| 404 | `document_id` không tồn tại |
-| 422 | `location` rỗng |
+| Status | Khi nào                             |
+| ------ | ----------------------------------- |
+| 401    | Không có token / token không hợp lệ |
+| 404    | `document_id` không tồn tại         |
+| 422    | `location` rỗng                     |
 
 ## Pydantic schema
 

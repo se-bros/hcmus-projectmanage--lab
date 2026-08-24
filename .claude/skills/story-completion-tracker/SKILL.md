@@ -12,7 +12,7 @@ Skill này CHỈ làm hai việc:
 1. Thêm một dòng log khi thành viên báo hoàn thành story.
 2. Cộng lại tổng 3 cột số cho cả nhóm.
 
-Skill này KHÔNG tính velocity, KHÔNG dự báo tiến độ dự án, KHÔNG tính chi phí. Nếu người dùng hỏi về những việc đó, trả lời: *"Việc tổng hợp velocity, dự báo tiến độ và chi phí nằm ngoài phạm vi skill này. Bạn có thể tự tính từ dữ liệu trong file project_log.md."*
+Skill này KHÔNG tính velocity, KHÔNG dự báo tiến độ dự án, KHÔNG tính chi phí. Nếu người dùng hỏi về những việc đó, trả lời: _"Việc tổng hợp velocity, dự báo tiến độ và chi phí nằm ngoài phạm vi skill này. Bạn có thể tự tính từ dữ liệu trong file project_log.md."_
 
 ## File dùng chung
 
@@ -36,16 +36,16 @@ Skill này KHÔNG tính velocity, KHÔNG dự báo tiến độ dự án, KHÔNG
 
 Hỏi người dùng các thông tin sau. Không hỏi lại trường nào đã biết rõ:
 
-| Trường | Mô tả | Bắt buộc |
-|---|---|---|
-| Ngày hoàn thành | Ngày story được hoàn thành (mặc định là ngày hôm nay nếu người dùng xác nhận) | Có |
-| Dev | Tên thành viên thực hiện | Có |
-| Story ID | Mã định danh story trong backlog | Có |
-| Tên Story | Tên mô tả ngắn gọn của story | Có |
-| Story Points | Điểm ước lượng của story | Có |
-| Thời gian làm (giờ) | Số giờ thực tế dev tự khai | Có |
-| Token AI đã dùng | Số token AI dev tự khai | Có |
-| Ghi chú | Tool AI nào đã dùng, hoặc ghi chú khác | Không (để trống nếu không có) |
+| Trường              | Mô tả                                                                         | Bắt buộc                      |
+| ------------------- | ----------------------------------------------------------------------------- | ----------------------------- |
+| Ngày hoàn thành     | Ngày story được hoàn thành (mặc định là ngày hôm nay nếu người dùng xác nhận) | Có                            |
+| Dev                 | Tên thành viên thực hiện                                                      | Có                            |
+| Story ID            | Mã định danh story trong backlog                                              | Có                            |
+| Tên Story           | Tên mô tả ngắn gọn của story                                                  | Có                            |
+| Story Points        | Điểm ước lượng của story                                                      | Có                            |
+| Thời gian làm (giờ) | Số giờ thực tế dev tự khai                                                    | Có                            |
+| Token AI đã dùng    | Số token AI dev tự khai                                                       | Có                            |
+| Ghi chú             | Tool AI nào đã dùng, hoặc ghi chú khác                                        | Không (để trống nếu không có) |
 
 **Nguyên tắc bao trùm:** Nếu bất kỳ trường bắt buộc nào thiếu hoặc mơ hồ — PHẢI hỏi lại để làm rõ. Không tự đoán, không tự bịa số, không điền giá trị mặc định cho các trường số (Story Points, Thời gian làm, Token AI).
 

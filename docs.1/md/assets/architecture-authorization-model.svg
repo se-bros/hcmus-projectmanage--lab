@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650" role="img" aria-labelledby="title desc">
+  <title id="title">Mô hình xác thực và phân quyền</title><desc id="desc">Yêu cầu đi qua xác thực, kiểm tra quyền phía máy chủ và cấp quyền tạm thời tới tệp riêng tư.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#17365d"/></marker><style>text{font-family:Arial,sans-serif;fill:#10233f}.h{font-size:24px;font-weight:700}.t{font-size:17px}.b{fill:#eef4fb;stroke:#17365d;stroke-width:2;rx:10}.g{fill:#e6f4ea;stroke:#287a45;stroke-width:2;rx:10}.r{fill:#fdeceb;stroke:#b43a31;stroke-width:2;rx:10}.e{stroke:#17365d;stroke-width:2;fill:none;marker-end:url(#a)}</style></defs>
+  <text x="550" y="40" text-anchor="middle" class="h">AUTHENTICATION → AUTHORIZATION → RESOURCE</text>
+  <g class="t" text-anchor="middle">
+    <rect class="b" x="35" y="115" width="180" height="70"/><text x="125" y="145">Browser / Client</text><text x="125" y="168">session request</text>
+    <rect class="b" x="280" y="115" width="190" height="70"/><text x="375" y="145">Identity / Session</text><text x="375" y="168">mock hoặc OAuth</text>
+    <rect class="b" x="535" y="115" width="190" height="70"/><text x="630" y="145">FastAPI Policy</text><text x="630" y="168">actor + action + resource</text>
+    <rect class="g" x="790" y="70" width="260" height="70"/><text x="920" y="100">PostgreSQL</text><text x="920" y="123">row/filter/audit</text>
+    <rect class="g" x="790" y="200" width="260" height="70"/><text x="920" y="230">Private MinIO / R2</text><text x="920" y="253">short-lived authorized URL</text>
+    <rect class="r" x="535" y="335" width="190" height="70"/><text x="630" y="365">Deny</text><text x="630" y="388">401 / 403, no object URL</text>
+  </g>
+  <path class="e" d="M215 150 H280"/><text class="t" x="247" y="139" text-anchor="middle">1</text>
+  <path class="e" d="M470 150 H535"/><text class="t" x="502" y="139" text-anchor="middle">2. identity</text>
+  <path class="e" d="M725 140 H790"/><text class="t" x="758" y="128" text-anchor="middle">3a</text>
+  <path class="e" d="M725 165 Q760 165 760 235 H790"/><text class="t" x="763" y="196">3b</text>
+  <path class="e" d="M630 185 V335"/><text class="t" x="646" y="275">policy fail</text>
+  <rect x="85" y="480" width="930" height="115" rx="10" fill="#fff7df" stroke="#c59424" stroke-width="1.5"/>
+  <text class="t" x="550" y="515" text-anchor="middle">Frontend visibility không phải security boundary.</text>
+  <text class="t" x="550" y="545" text-anchor="middle">Search/list/reader/upload/edit/publish/admin đều kiểm tra quyền tại server.</text>
+  <text class="t" x="550" y="575" text-anchor="middle">Không log token; URL tạm thời có TTL và không thay thế kiểm tra quyền.</text>
+</svg>

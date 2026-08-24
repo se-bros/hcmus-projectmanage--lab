@@ -11,9 +11,9 @@ GET /search?q=<keyword>
 Authorization: Bearer <token>   # optional
 ```
 
-| Query param | Type | Ghi chú |
-|---|---|---|
-| `q` | `str = ""` | Rỗng/whitespace → trả `[]` ngay, không query DB (US3 AC3, Assumption đã chốt ở spec) |
+| Query param | Type       | Ghi chú                                                                              |
+| ----------- | ---------- | ------------------------------------------------------------------------------------ |
+| `q`         | `str = ""` | Rỗng/whitespace → trả `[]` ngay, không query DB (US3 AC3, Assumption đã chốt ở spec) |
 
 ## Response 200 — `list[SearchResult]`
 

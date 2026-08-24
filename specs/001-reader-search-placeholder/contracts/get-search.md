@@ -9,9 +9,9 @@
 GET /search?q={keyword}
 ```
 
-| Query param | Type | Bắt buộc | Ghi chú |
-|---|---|---|---|
-| `q` | `str` | có | Từ khóa tìm kiếm. Rỗng/whitespace-only → xem quy tắc dưới (US3 AC3). |
+| Query param | Type  | Bắt buộc | Ghi chú                                                              |
+| ----------- | ----- | -------- | -------------------------------------------------------------------- |
+| `q`         | `str` | có       | Từ khóa tìm kiếm. Rỗng/whitespace-only → xem quy tắc dưới (US3 AC3). |
 
 ## Quy tắc xử lý `q` rỗng (US3 AC3)
 

@@ -22,6 +22,7 @@ You **MUST** consider the user input before proceeding (empty is not valid — a
    ```
 
    Parse the JSON output for `BRANCH_NAME`, `SPEC_FILE`, `FEATURE_NUM`. Run this only once per feature — if it fails because the branch already exists, ask the user before retrying with `--allow-existing-branch`.
+
 3. Load `SPEC_FILE` (already seeded from `.specify/templates/spec-template.md` by the script) and fill it in:
    - Replace `[FEATURE NAME]`, `[###-feature-name]`, `[DATE]` (today's date).
    - Write 1-3 prioritized user stories (P1/P2/P3+), each independently testable — a P1-only implementation must still be a viable MVP.

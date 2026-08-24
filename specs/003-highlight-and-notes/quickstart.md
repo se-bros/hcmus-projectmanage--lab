@@ -19,10 +19,10 @@ npm install
 npm run dev
 ```
 
-| Service | URL |
-| :--- | :--- |
-| Frontend | http://localhost:5173 |
-| API | http://localhost:8000 |
+| Service  | URL                        |
+| :------- | :------------------------- |
+| Frontend | http://localhost:5173      |
+| API      | http://localhost:8000      |
 | API docs | http://localhost:8000/docs |
 
 ---
@@ -88,7 +88,7 @@ curl -s -X DELETE $API/documents/$DOC/highlights/$HL -H "Authorization: Bearer $
 curl -s $API/documents/$DOC/highlights -H "Authorization: Bearer $TOKEN" | jq 'length'
 ```
 
-**Kiểm cô lập user (FR-012)** — đây là lúc *cố tình* xin token thứ hai:
+**Kiểm cô lập user (FR-012)** — đây là lúc _cố tình_ xin token thứ hai:
 
 ```bash
 TOKEN_B=$(curl -s -X POST $API/auth/dev-token -H 'Content-Type: application/json' \
@@ -126,7 +126,7 @@ Cần một document `status = published` đã có EPUB (qua luồng LDMS-002 �
 2. **AC 1** — bôi đen một đoạn → menu nổi hiện ra → bấm đánh dấu → đoạn được tô ngay. F5 → highlight còn nguyên đúng chỗ.
 3. **AC 2** — bấm vào highlight (hoặc chọn trong sidebar) → nhập ghi chú → lưu. F5 → mở lại → ghi chú còn nguyên văn.
 4. **AC 3** — xóa highlight → mất khỏi trang ngay. F5 → không quay lại.
-5. **FR-004** — bôi đen một đoạn nằm *bên trong* highlight đã có rồi tạo tiếp → cả hai cùng tồn tại, phần giao đậm hơn. Xóa cái ngoài → cái trong còn nguyên kèm ghi chú.
+5. **FR-004** — bôi đen một đoạn nằm _bên trong_ highlight đã có rồi tạo tiếp → cả hai cùng tồn tại, phần giao đậm hơn. Xóa cái ngoài → cái trong còn nguyên kèm ghi chú.
 6. **FR-014** — bấm `A+`/`A−` đổi cỡ chữ → highlight vẫn bám đúng đoạn văn cũ, không trôi.
 7. **FR-005b** — thử kéo chọn vượt hết một chương: ở chế độ `flow: 'scrolled-doc'` mỗi chương nằm trong iframe riêng nên selection tự dừng ở ranh giới chương. Không kéo qua được là **đúng thiết kế** (R3), không phải lỗi.
 

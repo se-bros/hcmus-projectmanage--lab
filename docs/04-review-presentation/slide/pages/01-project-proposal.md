@@ -298,4 +298,3 @@ graph LR
   • <strong>WP (Work Package):</strong> Gói công việc nhỏ nhất trong cấu trúc phân rã công việc dự án.<br>
   • <strong>RACI:</strong> Ma trận phân định trách nhiệm (Thực hiện trực tiếp - R, Trách nhiệm chính - A, Tham vấn ý kiến - C, Nhận thông tin - I).
 </div>
-

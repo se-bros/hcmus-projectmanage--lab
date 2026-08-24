@@ -9,6 +9,7 @@ when_to_use: Khi có ≥1 tài liệu dạng báo cáo/markdown/docx về một 
 Skill này mô tả quy trình lặp lại được để biến N tài liệu dự án dài thành 1 file Markdown chứa đầy đủ nội dung + hướng dẫn thiết kế cho từng slide — không tự tạo file .pptx, mà tạo "bản thiết kế" (spec) để đưa vào công cụ AI-slide-generator khác.
 
 ## Bước 1 — Thu thập & đọc toàn bộ tài liệu nguồn
+
 - Đọc **hết** từng file được cung cấp, không chỉ file "quan trọng nhất". Với dự án phần mềm, thứ tự tài liệu thường là:
   `01-idea → 02-proposal → 03-vision-scope → 04-feasibility → 05-charter → 06-architecture → 07-backlog → 08-cost-time-resource`
 - Với mỗi tài liệu, trích ra 3 loại thông tin để dùng cho slide:
@@ -17,13 +18,17 @@ Skill này mô tả quy trình lặp lại được để biến N tài liệu d
   3. **Sơ đồ có sẵn:** workflow, kiến trúc, ma trận (SWOT, RACI, As-is/To-be) — ưu tiên trực quan hóa thay vì liệt kê chữ
 
 ## Bước 2 — Hỏi/nắm rõ 3 tham số bắt buộc trước khi soạn
+
 Nếu người dùng chưa nói rõ, hỏi 1 câu duy nhất (không hỏi dồn dập):
+
 1. **Thời lượng trình bày** (vd: 10 phút / 20-25 phút / 45 phút) → quyết định số slide (~1 slide/45-70 giây)
 2. **Đối tượng khán giả** (Ban Giám hiệu ra quyết định ngân sách / hội đồng bảo vệ đồ án / khách hàng kỹ thuật) → quyết định tỷ trọng slide kỹ thuật vs slide kinh doanh
 3. **Mục tiêu cuối (call-to-action)** của bài nói (xin phê duyệt ngân sách / trình bày học thuật / demo sản phẩm)
 
 ## Bước 3 — Dựng khung chương (không quá 5-6 chương)
+
 Khung chuẩn cho dự án phần mềm/CNTT (điều chỉnh theo nội dung thực tế):
+
 1. Vấn đề & Bối cảnh (why)
 2. Giải pháp & Giá trị đề xuất (what + differentiation/MOAT)
 3. Công nghệ & Kiến trúc (how, chỉ nêu mức cần thiết theo khán giả)
@@ -34,26 +39,33 @@ Khung chuẩn cho dự án phần mềm/CNTT (điều chỉnh theo nội dung th
 Mỗi chương mở bằng 1 "slide chuyển chương" (nền tối, số thứ tự lớn) để tạo nhịp nghỉ.
 
 ## Bước 4 — Viết từng slide theo khuôn cố định
+
 Với mỗi slide, luôn viết đủ 4 phần sau (đừng bỏ phần Design/Ghi chú):
+
 ```
 ### Slide N — TIÊU ĐỀ VIẾT NHƯ MỘT KẾT LUẬN (không phải chủ đề chung chung)
 **Layout:** [mô tả bố cục cụ thể: số cột, vị trí hình/chart, kiểu sơ đồ]
 **Nội dung:** [bullet cực ngắn hoặc bảng — KHÔNG copy nguyên đoạn văn dài từ tài liệu gốc, phải rút gọn thành slide-ready text]
 **Ghi chú thuyết trình:** [1 câu định hướng người nói nên nhấn điều gì trong ~X giây]
 ```
+
 Nguyên tắc tiêu đề: "Sinh viên phải di chuyển 15km để đọc 1 cuốn sách" tốt hơn "Vấn đề hiện trạng".
 
 ## Bước 5 — Thiết kế Design System TRƯỚC khi liệt kê slide
+
 Luôn mở đầu file bằng 1 Design System gồm:
+
 - Bảng màu (Primary/Accent/Cảnh báo) kèm mã hex — chọn màu phản ánh **ngành/chủ đề** của dự án (thư viện → xanh navy+vàng hổ phách "tri thức"; fintech → xanh lá+đen; y tế → xanh dương+trắng...)
 - Font chữ (ưu tiên font hỗ trợ tiếng Việt tốt nếu nội dung tiếng Việt: Be Vietnam Pro, Inter)
 - Nguyên tắc bố cục (1 thông điệp/slide, tỷ lệ 80/15/5 màu, số trang, header bar)
 - Danh sách các sơ đồ/biểu đồ cần chuẩn bị trước (liệt kê rõ loại chart: Gantt, radar, 2x2 matrix, funnel...)
 
 ## Bước 6 — Kết thúc bằng bảng phân bổ thời gian
+
 Luôn có 1 bảng: Chương | Số slide | Thời gian ước tính — để người trình bày tự luyện tập đúng thời lượng, và để kiểm tra tổng số slide có hợp lý không (quy tắc ngón tay cái: 45-70 giây/slide đối với slide có dữ liệu, 5-10 giây cho slide chuyển chương).
 
 ## Lỗi thường gặp cần tránh
+
 - ❌ Copy nguyên bảng/đoạn dài từ tài liệu gốc vào slide — luôn rút gọn, slide không phải tài liệu để đọc
 - ❌ Tiêu đề slide là danh từ chung ("Kiến trúc hệ thống") thay vì thông điệp ("Modular Monolith giúp 4 kỹ sư kiêm nhiệm vẫn kịp tiến độ")
 - ❌ Thiếu phần Design/Layout cho từng slide — nếu chỉ liệt kê nội dung, công cụ AI-slide-generator sẽ tự chọn bố cục ngẫu nhiên, không nhất quán
@@ -61,6 +73,7 @@ Luôn có 1 bảng: Chương | Số slide | Thời gian ước tính — để n
 - ❌ Số slide không khớp thời lượng yêu cầu (quá nhiều slide cho 10 phút, quá ít cho 45 phút)
 
 ## Cách dùng output với công cụ AI-slide
+
 - **Gamma / Tome / Napkin AI:** paste toàn bộ nội dung Phần 2 (từng slide) vào ô "Paste in text/outline", giữ nguyên heading `### Slide N —` để công cụ tách đúng slide
 - **Canva Magic Design:** tách riêng Design System (Phần 1) làm brief màu sắc/font, sau đó paste nội dung từng slide
 - **Claude/GPT tạo file .pptx trực tiếp:** đưa cả file này kèm yêu cầu "hãy dùng skill pptx để tạo file PowerPoint theo đúng nội dung và bố cục mô tả trong file, dùng bảng màu và font đã khai báo ở Design System"

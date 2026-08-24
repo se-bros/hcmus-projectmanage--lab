@@ -207,14 +207,14 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 
 # Dự Toán Ngân Sách Chi Tiết: Chi Phí Đầu Tư Một Lần (CapEx)
 
-| Hạng mục đầu tư CapEx (Theo SOW và CTR) | Giá trị dự toán (VNĐ) | Mô tả chi tiết |
-| :-------------------------------------- | :-------------------- | :------------- |
-| **Số hóa & Biên tập EPUB** (CTV SV) | 30.000.000 - 40.000.000 | Thuê sinh viên scan và soát lỗi OCR (~10.000 cuốn) |
-| **Phát triển phần mềm** (4 kỹ sư) | 25.000.000 - 35.000.000 | Định mức khoán thù lao phát triển hệ thống |
-| **Thiết bị scan & nâng cấp Server** | 10.000.000 - 12.000.000 | 02 máy scan chuyên dụng chữ V + linh kiện server |
-| **Đào tạo, Triển khai & AI Tools** | 7.000.000 - 12.000.000 | Hướng dẫn sử dụng + phí bản quyền/AI API (≤5 triệu) |
-| **Dự phòng rủi ro phát sinh (~15%)** | 5.000.000 - 10.000.000 | Buffer xử lý các lỗi hoặc phát sinh phần cứng |
-| **Tổng dự toán CapEx đầu tư ban đầu** | **77M - 106M VNĐ** | **Cam kết dưới 100.000.000 VNĐ trong năm đầu** |
+| Hạng mục đầu tư CapEx (Theo SOW và CTR) | Giá trị dự toán (VNĐ)   | Mô tả chi tiết                                      |
+| :-------------------------------------- | :---------------------- | :-------------------------------------------------- |
+| **Số hóa & Biên tập EPUB** (CTV SV)     | 30.000.000 - 40.000.000 | Thuê sinh viên scan và soát lỗi OCR (~10.000 cuốn)  |
+| **Phát triển phần mềm** (4 kỹ sư)       | 25.000.000 - 35.000.000 | Định mức khoán thù lao phát triển hệ thống          |
+| **Thiết bị scan & nâng cấp Server**     | 10.000.000 - 12.000.000 | 02 máy scan chuyên dụng chữ V + linh kiện server    |
+| **Đào tạo, Triển khai & AI Tools**      | 7.000.000 - 12.000.000  | Hướng dẫn sử dụng + phí bản quyền/AI API (≤5 triệu) |
+| **Dự phòng rủi ro phát sinh (~15%)**    | 5.000.000 - 10.000.000  | Buffer xử lý các lỗi hoặc phát sinh phần cứng       |
+| **Tổng dự toán CapEx đầu tư ban đầu**   | **77M - 106M VNĐ**      | **Cam kết dưới 100.000.000 VNĐ trong năm đầu**      |
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
   <strong>CapEx (Capital Expenditure)</strong>: Chi phí đầu tư ban đầu một lần để xây dựng và đưa hệ thống vào hoạt động.
@@ -224,13 +224,13 @@ Trước khi bắt tay vào code, nhóm cần trả lời 3 câu hỏi: <strong>
 
 # Dự Toán Ngân Sách Chi Tiết: Chi Phí Vận Hành Hàng Năm (OpEx)
 
-| Hạng mục chi phí vận hành OpEx (Hàng năm) | Chi phí dự kiến (VNĐ/năm) | Ghi chú |
-| :---------------------------------------- | :------------------------ | :------ |
-| **Hạ tầng Server & Cloud** | 4.000.000 - 8.000.000 | Điện, mạng băng thông rộng, máy lạnh server room |
-| **Bảo trì & Hỗ trợ kỹ thuật** | 6.000.000 - 12.000.000 | Vá lỗi bảo mật, nâng cấp thư viện code định kỳ |
-| **Dịch vụ Cloud OCR dự phòng** | 3.000.000 - 6.000.000 | Dùng API đám mây khi gặp tài liệu quá mờ |
-| **Số hóa bổ sung sách mới hàng năm** | 2.000.000 - 4.000.000 | Quy trình số hóa cuốn chiếu cho đầu sách mới nhập |
-| **Tổng dự toán OpEx duy trì hàng năm** | **15.000.000 - 30.000.000 VNĐ** | Tiết kiệm chi phí kho lưu trữ vật lý của thư viện |
+| Hạng mục chi phí vận hành OpEx (Hàng năm) | Chi phí dự kiến (VNĐ/năm)       | Ghi chú                                           |
+| :---------------------------------------- | :------------------------------ | :------------------------------------------------ |
+| **Hạ tầng Server & Cloud**                | 4.000.000 - 8.000.000           | Điện, mạng băng thông rộng, máy lạnh server room  |
+| **Bảo trì & Hỗ trợ kỹ thuật**             | 6.000.000 - 12.000.000          | Vá lỗi bảo mật, nâng cấp thư viện code định kỳ    |
+| **Dịch vụ Cloud OCR dự phòng**            | 3.000.000 - 6.000.000           | Dùng API đám mây khi gặp tài liệu quá mờ          |
+| **Số hóa bổ sung sách mới hàng năm**      | 2.000.000 - 4.000.000           | Quy trình số hóa cuốn chiếu cho đầu sách mới nhập |
+| **Tổng dự toán OpEx duy trì hàng năm**    | **15.000.000 - 30.000.000 VNĐ** | Tiết kiệm chi phí kho lưu trữ vật lý của thư viện |
 
 <div class="mt-4 text-[9px] text-slate-500 leading-normal border-t border-slate-200 pt-1">
   <strong>OpEx (Operational Expenditure)</strong>: Chi phí vận hành, bảo trì định kỳ hàng năm để duy trì hoạt động của hệ thống.
@@ -372,8 +372,6 @@ Một bản kế hoạch dự án đầy đủ không chỉ là "làm gì" mà c
 </div>
 
 </div>
-
-
 
 ---
 

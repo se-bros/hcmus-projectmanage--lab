@@ -8,16 +8,16 @@ Một bảng mới. Không sửa bảng nào đang có.
 
 Model: `src/backend/app/models/highlight.py` · bám theo đúng khuôn `models/bookmark.py`.
 
-| Cột | Kiểu | Ràng buộc | Nguồn |
-| :--- | :--- | :--- | :--- |
-| `id` | `Uuid` | PK, mặc định `uuid.uuid4` | — |
-| `document_id` | `Uuid` | FK → `documents.id`, `ondelete="CASCADE"`, có index | FR-002, FR-013 |
-| `user_sub` | `String(255)` | NOT NULL, có index | FR-002, FR-012 |
-| `cfi_range` | `Text` | NOT NULL | FR-002 (R1) |
-| `selected_text` | `Text` | NOT NULL | FR-003 |
-| `note` | `Text` | **NULL được** | FR-007 |
-| `created_at` | `DateTime(timezone=True)` | `server_default=now()` | — |
-| `updated_at` | `DateTime(timezone=True)` | `server_default=now()`, `onupdate=now()` | — |
+| Cột             | Kiểu                      | Ràng buộc                                           | Nguồn          |
+| :-------------- | :------------------------ | :-------------------------------------------------- | :------------- |
+| `id`            | `Uuid`                    | PK, mặc định `uuid.uuid4`                           | —              |
+| `document_id`   | `Uuid`                    | FK → `documents.id`, `ondelete="CASCADE"`, có index | FR-002, FR-013 |
+| `user_sub`      | `String(255)`             | NOT NULL, có index                                  | FR-002, FR-012 |
+| `cfi_range`     | `Text`                    | NOT NULL                                            | FR-002 (R1)    |
+| `selected_text` | `Text`                    | NOT NULL                                            | FR-003         |
+| `note`          | `Text`                    | **NULL được**                                       | FR-007         |
+| `created_at`    | `DateTime(timezone=True)` | `server_default=now()`                              | —              |
+| `updated_at`    | `DateTime(timezone=True)` | `server_default=now()`, `onupdate=now()`            | —              |
 
 ### Index
 
@@ -42,14 +42,14 @@ Khác hẳn `bookmarks` (vốn có `UniqueConstraint("document_id", "user_sub")`
 
 Đặt ở tầng schema Pydantic (`schemas/highlight.py`), ném `ValidationError` (422) kèm thông báo tiếng Việt — theo tiền lệ `BookmarkUpdate.required_text`.
 
-| # | Quy tắc | Áp dụng cho | FR |
-| :--- | :--- | :--- | :--- |
-| V1 | `selected_text` sau khi `.strip()` không được rỗng | tạo | FR-005 |
-| V2 | `selected_text` ≤ **5.000** ký tự | tạo | Nguyên tắc IV (xem dưới) |
-| V3 | `cfi_range` không rỗng và bắt đầu bằng `epubcfi(` | tạo | R1 |
-| V4 | `cfi_range` phải nằm trong một chương: phần chung trước dấu `,` đầu tiên phải chứa `!` | tạo | FR-005b |
-| V5 | `note` ≤ **2.000** ký tự, báo lỗi kèm số ký tự hiện tại | tạo, sửa ghi chú | FR-009 |
-| V6 | `note` rỗng/toàn khoảng trắng → chuẩn hoá thành `NULL` (gỡ ghi chú, giữ highlight) | sửa ghi chú | FR-007 |
+| #   | Quy tắc                                                                                | Áp dụng cho      | FR                       |
+| :-- | :------------------------------------------------------------------------------------- | :--------------- | :----------------------- |
+| V1  | `selected_text` sau khi `.strip()` không được rỗng                                     | tạo              | FR-005                   |
+| V2  | `selected_text` ≤ **5.000** ký tự                                                      | tạo              | Nguyên tắc IV (xem dưới) |
+| V3  | `cfi_range` không rỗng và bắt đầu bằng `epubcfi(`                                      | tạo              | R1                       |
+| V4  | `cfi_range` phải nằm trong một chương: phần chung trước dấu `,` đầu tiên phải chứa `!` | tạo              | FR-005b                  |
+| V5  | `note` ≤ **2.000** ký tự, báo lỗi kèm số ký tự hiện tại                                | tạo, sửa ghi chú | FR-009                   |
+| V6  | `note` rỗng/toàn khoảng trắng → chuẩn hoá thành `NULL` (gỡ ghi chú, giữ highlight)     | sửa ghi chú      | FR-007                   |
 
 **Về V2** — giới hạn 5.000 ký tự cho `selected_text` là biện pháp thuộc Nguyên tắc IV đã nêu ở Constitution Check: cột này chứa nội dung sách có bản quyền nằm ngoài đường Signed URL, nên phải chặn khả năng dùng API highlight để dựng dần một bản sao cuốn sách trong DB. 5.000 ký tự tương đương vài trang — thừa sức cho mọi thao tác đánh dấu thật, nhưng không đủ để mirror sách.
 
@@ -75,9 +75,9 @@ documents (1) ──< (N) highlights
 
 Bảng này **không** có cột nào mô tả việc highlight còn dựng lại được hay không — theo quyết định R4. Client tự phân loại lúc render:
 
-| Nhóm ở UI | Cách xác định | Hiển thị |
-| :--- | :--- | :--- |
-| Dựng được | `rendition.annotations.add(...)` thành công | Tô trên trang sách + hiện trong sidebar |
+| Nhóm ở UI          | Cách xác định                                                          | Hiển thị                                                                    |
+| :----------------- | :--------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| Dựng được          | `rendition.annotations.add(...)` thành công                            | Tô trên trang sách + hiện trong sidebar                                     |
 | Không định vị được | `book.spine.get(cfi_range)` trả `null`, hoặc `annotations.add` ném lỗi | Chỉ hiện ở nhóm riêng trong sidebar, dùng `selected_text` (FR-011, FR-011a) |
 
 Cùng một bản ghi có thể rơi vào nhóm khác nhau ở hai thời điểm nếu document được xuất bản lại — đó chính là lý do trạng thái này không được lưu xuống DB.

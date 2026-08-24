@@ -7,13 +7,13 @@
 
 **Bối cảnh (không phải yêu cầu implementation nhưng cần để hiểu scope)**: Đây là việc **dựng khung** (scaffold) cho Ngày 1–2 của sprint MVP (`docs/plan.md` mục 3, hàng "Khoa Nguyễn"), **chưa phải** là pick chính thức LDMS-008 (Đọc EPUB — cần LDMS-007 xong) hay LDMS-026 (Document List đủ AC — cần LDMS-002/006 xong). Mục tiêu là có một luồng **click-through demo được** (danh sách → mở đọc) chạy trên dữ liệu giả (fixture), theo đúng tinh thần Constitution "MVP Phase Note": ưu tiên luồng end-to-end chạy được trước, AC đầy đủ và test làm sau khi story được pick chính thức.
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 <!--
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
+
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
@@ -75,7 +75,7 @@ Là độc giả, tôi muốn nhập từ khóa vào ô tìm kiếm và thấy c
 - Từ khóa tìm kiếm rỗng/toàn khoảng trắng → xử lý nhất quán, không lỗi server/console (US3, AC3).
 - Đây là placeholder: không cần xử lý phân trang, không cần auth/RBAC thật ở bước này (RBAC thật sẽ áp dụng khi LDMS-026/008 được pick chính thức với đủ AC).
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
@@ -91,17 +91,18 @@ Là độc giả, tôi muốn nhập từ khóa vào ô tìm kiếm và thấy c
 - **FR-005**: System MUST xử lý 3 trạng thái rỗng/lỗi mà không crash: danh sách rỗng, document_id không tồn tại, từ khóa không khớp (xem Edge Cases).
 - **FR-006**: Routing FE MUST tách thành 2 route độc lập — `/reader/:documentId` (Reader placeholder) và `/search` (Search placeholder, kết quả dẫn sang `/reader/:documentId` khi click) — không gộp chung 1 trang, để mỗi trang test/triển khai độc lập được và path không đổi khi LDMS-008/026 chính thức implement đầy đủ.
 
-*Ghi chú phạm vi (không phải NEEDS CLARIFICATION — đã xác nhận qua `docs/plan.md`/constitution MVP note):*
+_Ghi chú phạm vi (không phải NEEDS CLARIFICATION — đã xác nhận qua `docs/plan.md`/constitution MVP note):_
+
 - Chưa cần auth/RBAC thật ở bước này.
 - Chưa cần phân trang, sort, filter nâng cao cho Document List.
 - Chưa cần snippet/highlight thật cho Search (đó là LDMS-016).
 
-### Key Entities *(include if feature involves data)*
+### Key Entities _(include if feature involves data)_
 
 - **Document (fixture)**: đại diện một tài liệu — `id`, `name`/`title`, `status` (ví dụ: draft/published), `created_at`. Nguồn: file fixture tĩnh trong backend, không phải bảng DB thật ở bước này.
 - **DocumentContent (fixture)**: nội dung text thô gắn với một `document_id`, dùng để Reader placeholder hiển thị và Search placeholder lọc theo từ khóa.
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 <!--
   ACTION REQUIRED: Define measurable success criteria.

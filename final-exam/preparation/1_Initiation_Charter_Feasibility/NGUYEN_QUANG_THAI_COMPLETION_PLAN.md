@@ -24,11 +24,11 @@
 
 Nguyễn Quang Thái phải hoàn thành một bộ ôn tập có thể dùng ngay trong phòng thi cho ba câu được phân công:
 
-| Câu | Chủ đề | Sản phẩm phải hoàn thành | Bản in bắt buộc |
-| :--: | :--- | :--- | :--- |
-| 1 | Đề xuất dự án (Project Proposal) | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ hình thành và đánh giá, 15 câu FAQ | `02-project-proposal.md` |
-| 3 | Điều lệ dự án (Project Charter) | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ quyền hạn/RACI, 5 câu FAQ | `04-project-charter.md` |
-| 8 | Báo cáo tính khả thi (Feasibility Study) | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ TELOS, 5 câu FAQ | `03-feasibility-study.md` |
+| Câu | Chủ đề                                   | Sản phẩm phải hoàn thành                                              | Bản in bắt buộc           |
+| :-: | :--------------------------------------- | :-------------------------------------------------------------------- | :------------------------ |
+|  1  | Đề xuất dự án (Project Proposal)         | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ hình thành và đánh giá, 15 câu FAQ | `02-project-proposal.md`  |
+|  3  | Điều lệ dự án (Project Charter)          | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ quyền hạn/RACI, 5 câu FAQ          | `04-project-charter.md`   |
+|  8  | Báo cáo tính khả thi (Feasibility Study) | Dàn ý WHAT-HOW-WHY-EVIDENCE, sơ đồ TELOS, 5 câu FAQ                   | `03-feasibility-study.md` |
 
 Mục tiêu chất lượng là trả lời được trong 5-10 phút, tự viết được khung trả lời trên một tờ A4 trong 10 phút mà không dùng tài liệu, và chọn đúng bản in trong 2 phút.
 
@@ -66,41 +66,41 @@ Mọi câu trả lời phải tách rõ:
 
 ### 3.2. Bộ dữ kiện cốt lõi
 
-| Nhóm | Dữ kiện nên sử dụng khi trả lời |
-| :--- | :--- |
-| Bài toán | Kho Quận 5 quá tải; tài liệu xuống cấp; sinh viên Thủ Đức phải di chuyển khoảng 15 km; PDF scan khó đọc trên điện thoại |
-| Giải pháp | Scan -> Tesseract OCR -> hiệu chỉnh Split-screen -> Pandoc/EPUB 3.0 -> PostgreSQL FTS -> Web Reader bảo mật |
-| Công nghệ hiện hành | React 18, FastAPI, PostgreSQL FTS, MinIO, Google OAuth 2.0/Mock Auth, Tesseract OCR, Pandoc, Docker Compose |
-| Đối chuẩn | HCMUS-LDMS so với Lạc Việt Vebrary, DSpace và chuỗi công cụ rời Abbyy + Calibre + Drive |
-| Charter | Sponsor là Ban Giám hiệu; PM là Trưởng phòng CNTT; 20 tuần; MVP tuần 12; RACI cho 6 gói công việc |
-| Nguồn lực | 4 kỹ sư CNTT kiêm nhiệm 50%, 2 cán bộ thư viện, 10-15 sinh viên cộng tác viên, 3 máy chủ ảo hóa |
-| KPI | OCR tối thiểu 85%; tìm kiếm dưới 3 giây; mức hài lòng tối thiểu 85%; số hóa 500 sách CNTT theo phạm vi bàn giao |
-| Tài chính | CapEx 75-95 triệu VNĐ; OpEx 15-30 triệu VNĐ/năm; kịch bản cơ sở 75 triệu CapEx và 15 triệu OpEx/năm |
-| Bảo mật | Signed URL hết hạn sau 15 phút; hạn chế tải tệp gốc; chỉ phục vụ người dùng nội bộ theo quy chế bản quyền |
-| Khả thi | TELOS là lõi 5 mặt: Technical, Economic, Legal, Operational, Schedule; báo cáo dự án mở rộng thêm Market, Resource, Cultural |
+| Nhóm                | Dữ kiện nên sử dụng khi trả lời                                                                                              |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------- |
+| Bài toán            | Kho Quận 5 quá tải; tài liệu xuống cấp; sinh viên Thủ Đức phải di chuyển khoảng 15 km; PDF scan khó đọc trên điện thoại      |
+| Giải pháp           | Scan -> Tesseract OCR -> hiệu chỉnh Split-screen -> Pandoc/EPUB 3.0 -> PostgreSQL FTS -> Web Reader bảo mật                  |
+| Công nghệ hiện hành | React 18, FastAPI, PostgreSQL FTS, MinIO, Google OAuth 2.0/Mock Auth, Tesseract OCR, Pandoc, Docker Compose                  |
+| Đối chuẩn           | HCMUS-LDMS so với Lạc Việt Vebrary, DSpace và chuỗi công cụ rời Abbyy + Calibre + Drive                                      |
+| Charter             | Sponsor là Ban Giám hiệu; PM là Trưởng phòng CNTT; 20 tuần; MVP tuần 12; RACI cho 6 gói công việc                            |
+| Nguồn lực           | 4 kỹ sư CNTT kiêm nhiệm 50%, 2 cán bộ thư viện, 10-15 sinh viên cộng tác viên, 3 máy chủ ảo hóa                              |
+| KPI                 | OCR tối thiểu 85%; tìm kiếm dưới 3 giây; mức hài lòng tối thiểu 85%; số hóa 500 sách CNTT theo phạm vi bàn giao              |
+| Tài chính           | CapEx 75-95 triệu VNĐ; OpEx 15-30 triệu VNĐ/năm; kịch bản cơ sở 75 triệu CapEx và 15 triệu OpEx/năm                          |
+| Bảo mật             | Signed URL hết hạn sau 15 phút; hạn chế tải tệp gốc; chỉ phục vụ người dùng nội bộ theo quy chế bản quyền                    |
+| Khả thi             | TELOS là lõi 5 mặt: Technical, Economic, Legal, Operational, Schedule; báo cáo dự án mở rộng thêm Market, Resource, Cultural |
 
 ### 3.3. Mâu thuẫn phải xử lý trước khi học thuộc
 
-| Vấn đề | Dữ kiện không thống nhất | Quyết định dùng khi trả lời |
-| :--- | :--- | :--- |
-| Chi phí | Phiếu gợi ý nêu 18,5 triệu; tài liệu khả thi và Charter nêu CapEx 75-95 triệu, OpEx 15-30 triệu/năm | Dùng số liệu trong Feasibility Study và Charter; không nhắc 18,5 triệu nếu chưa có tài liệu nguồn mới xác nhận |
-| Hiệu năng tìm kiếm | Phiếu gợi ý nêu dưới 2 giây; tài liệu gốc nêu dưới 3 giây | Dùng dưới 3 giây |
-| Công nghệ tìm kiếm | Một đoạn cũ còn nhắc Elasticsearch; các revision mới chuyển sang PostgreSQL FTS | Dùng PostgreSQL FTS và nói đây là phương án đã được đồng bộ hóa |
-| Hòa vốn | Tiêu chí đặt mục tiêu trong 3 năm; phần tính toán cho 3,75 năm ở kịch bản cơ sở và 2,5-3,8 năm khi tính lợi ích dài hạn | Trình bày đây là điểm cần thẩm định lại; không khẳng định chắc chắn đạt dưới 3 năm |
-| Trạng thái phê duyệt | Charter có câu ủy quyền chính thức nhưng trạng thái là Under Review và bảng chữ ký còn trống | Nêu chức năng của Charter là ủy quyền; chỉ khẳng định đã phê duyệt nếu có bản ký thật |
-| Pháp lý | Tài liệu dùng câu khẳng định mạnh về quyền số hóa | Trình bày là khả thi có điều kiện, cần Pháp chế thẩm định và giới hạn tài liệu được phép số hóa |
+| Vấn đề               | Dữ kiện không thống nhất                                                                                                | Quyết định dùng khi trả lời                                                                                    |
+| :------------------- | :---------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| Chi phí              | Phiếu gợi ý nêu 18,5 triệu; tài liệu khả thi và Charter nêu CapEx 75-95 triệu, OpEx 15-30 triệu/năm                     | Dùng số liệu trong Feasibility Study và Charter; không nhắc 18,5 triệu nếu chưa có tài liệu nguồn mới xác nhận |
+| Hiệu năng tìm kiếm   | Phiếu gợi ý nêu dưới 2 giây; tài liệu gốc nêu dưới 3 giây                                                               | Dùng dưới 3 giây                                                                                               |
+| Công nghệ tìm kiếm   | Một đoạn cũ còn nhắc Elasticsearch; các revision mới chuyển sang PostgreSQL FTS                                         | Dùng PostgreSQL FTS và nói đây là phương án đã được đồng bộ hóa                                                |
+| Hòa vốn              | Tiêu chí đặt mục tiêu trong 3 năm; phần tính toán cho 3,75 năm ở kịch bản cơ sở và 2,5-3,8 năm khi tính lợi ích dài hạn | Trình bày đây là điểm cần thẩm định lại; không khẳng định chắc chắn đạt dưới 3 năm                             |
+| Trạng thái phê duyệt | Charter có câu ủy quyền chính thức nhưng trạng thái là Under Review và bảng chữ ký còn trống                            | Nêu chức năng của Charter là ủy quyền; chỉ khẳng định đã phê duyệt nếu có bản ký thật                          |
+| Pháp lý              | Tài liệu dùng câu khẳng định mạnh về quyền số hóa                                                                       | Trình bày là khả thi có điều kiện, cần Pháp chế thẩm định và giới hạn tài liệu được phép số hóa                |
 
 ## 4. Kế hoạch cứu hạn trước 20:00
 
 Nếu bắt đầu trước hạn, thực hiện chuỗi 40 phút sau. Nếu đã qua 20:00, giữ nguyên thứ tự, hoàn thành trong phiên 60-90 phút và báo ngay cho nhóm về việc nộp muộn.
 
-| Khoảng thời gian | Việc phải làm | Đầu ra bắt buộc |
-| :---: | :--- | :--- |
-| Phút 0-5 | Chép bộ dữ kiện cốt lõi ở Mục 3 ra một trang nháp; đánh dấu các số liệu không được dùng | Một evidence sheet thống nhất |
-| Phút 5-18 | Hoàn thiện Câu 1 theo khung 4 phần; trả lời 15 FAQ bằng 2-4 gạch đầu dòng/câu | Câu 1 không còn placeholder |
-| Phút 18-27 | Hoàn thiện Câu 3; ưu tiên chuỗi Proposal/Feasibility -> Charter -> Sponsor phê duyệt -> PM được trao quyền -> RACI | Câu 3 không còn placeholder |
-| Phút 27-36 | Hoàn thiện Câu 8; trình bày TELOS 5 mặt và ba mặt mở rộng; chốt khuyến nghị có điều kiện | Câu 8 không còn placeholder |
-| Phút 36-40 | Tìm toàn bộ `_Trả lời:_`, kiểm tra số liệu, liên kết và sơ đồ; lưu và gửi nhóm xin review | 0 placeholder, 3 sơ đồ, 1 yêu cầu review |
+| Khoảng thời gian | Việc phải làm                                                                                                      | Đầu ra bắt buộc                          |
+| :--------------: | :----------------------------------------------------------------------------------------------------------------- | :--------------------------------------- |
+|     Phút 0-5     | Chép bộ dữ kiện cốt lõi ở Mục 3 ra một trang nháp; đánh dấu các số liệu không được dùng                            | Một evidence sheet thống nhất            |
+|    Phút 5-18     | Hoàn thiện Câu 1 theo khung 4 phần; trả lời 15 FAQ bằng 2-4 gạch đầu dòng/câu                                      | Câu 1 không còn placeholder              |
+|    Phút 18-27    | Hoàn thiện Câu 3; ưu tiên chuỗi Proposal/Feasibility -> Charter -> Sponsor phê duyệt -> PM được trao quyền -> RACI | Câu 3 không còn placeholder              |
+|    Phút 27-36    | Hoàn thiện Câu 8; trình bày TELOS 5 mặt và ba mặt mở rộng; chốt khuyến nghị có điều kiện                           | Câu 8 không còn placeholder              |
+|    Phút 36-40    | Tìm toàn bộ `_Trả lời:_`, kiểm tra số liệu, liên kết và sơ đồ; lưu và gửi nhóm xin review                          | 0 placeholder, 3 sơ đồ, 1 yêu cầu review |
 
 Luồng hoàn thành toàn bộ phần việc:
 

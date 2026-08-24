@@ -57,6 +57,7 @@
 - [11. Chữ ký cam kết (Signatures)](#11-chữ-ký-cam-kết-signatures)
 
 ---
+
 ## 1. Mục đích Hợp đồng Nhóm
 
 Hợp đồng Nhóm (Team Contract) là thỏa thuận nội bộ giữa tất cả thành viên nhóm phát triển dự án **HCMUS-LDMS**, nhằm:
@@ -112,14 +113,14 @@ Mỗi thành viên cam kết theo đuổi ít nhất **1 mục tiêu phát tri�
 
 #### A. Phân vai theo chức danh kỹ thuật
 
-| Vai trò                          | Trách nhiệm chính                                                                                                                      | Thành viên phụ trách                       |
-| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
+| Vai trò                          | Trách nhiệm chính                                                                                                                                                    | Thành viên phụ trách                       |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
 | **Project Manager (PM)**         | Lập kế hoạch, theo dõi tiến độ throughput, kiểm soát rủi ro, điều phối nhóm, tổng hợp báo cáo Weekly Review, duy trì `../03-execution-monitoring/02-project-log.md`. | Mạch Quốc Tấn                              |
-| **Solution Architect (SA) / BE** | Thiết kế kiến trúc Modular Monolith, lập trình API FastAPI, tích hợp OCR/Pandoc, review code chất lượng và phê duyệt Pull Request.     | Ân Tiến Nguyên An                          |
-| **Backend Developer**            | Phát triển các API nghiệp vụ FastAPI, truy vấn PostgreSQL Full-Text Search và thiết lập lưu trữ MinIO.                                 | Ân Tiến Nguyên An, Nguyễn Tuấn Anh         |
-| **Frontend Developer**           | Lập trình UI React (Dashboard, Split-screen Editor, Reader), tích hợp Epub.js và xử lý state management.                               | Ngô Nguyễn Thế Khoa, Nguyễn Lê Hồ Anh Khoa |
-| **DevOps / System Admin**        | Quản trị Docker Compose (3 services), cấu hình CI/CD, thiết lập Google OAuth 2.0 / Mock JWT, quản lý môi trường Staging/Production.    | Nguyễn Tuấn Anh, Nguyễn Quang Thái         |
-| **QA / Tester**                  | Xây dựng test scenario, thực hiện kiểm thử chức năng (UAT), viết test case và kiểm soát tiêu chí nghiệm thu Acceptance Criteria.       | Nguyễn Quang Thái                          |
+| **Solution Architect (SA) / BE** | Thiết kế kiến trúc Modular Monolith, lập trình API FastAPI, tích hợp OCR/Pandoc, review code chất lượng và phê duyệt Pull Request.                                   | Ân Tiến Nguyên An                          |
+| **Backend Developer**            | Phát triển các API nghiệp vụ FastAPI, truy vấn PostgreSQL Full-Text Search và thiết lập lưu trữ MinIO.                                                               | Ân Tiến Nguyên An, Nguyễn Tuấn Anh         |
+| **Frontend Developer**           | Lập trình UI React (Dashboard, Split-screen Editor, Reader), tích hợp Epub.js và xử lý state management.                                                             | Ngô Nguyễn Thế Khoa, Nguyễn Lê Hồ Anh Khoa |
+| **DevOps / System Admin**        | Quản trị Docker Compose (3 services), cấu hình CI/CD, thiết lập Google OAuth 2.0 / Mock JWT, quản lý môi trường Staging/Production.                                  | Nguyễn Tuấn Anh, Nguyễn Quang Thái         |
+| **QA / Tester**                  | Xây dựng test scenario, thực hiện kiểm thử chức năng (UAT), viết test case và kiểm soát tiêu chí nghiệm thu Acceptance Criteria.                                     | Nguyễn Quang Thái                          |
 
 #### B. Ma trận RACI nội bộ nhóm theo Gói công việc WBS
 
@@ -163,13 +164,13 @@ Nhóm áp dụng phương pháp **Kanban** với các quy tắc:
 
 Một User Story chỉ được coi là **Done** khi đáp ứng đủ **5 tiêu chí**:
 
-| #   | Tiêu chí DoD   | Mô tả chi tiết                                                              |
-| --- | :------------- | :-------------------------------------------------------------------------- |
-| 1   | **AC pass**    | Toàn bộ Acceptance Criteria của card đã kiểm tra đạt.                       |
-| 2   | **Code merge** | Mã nguồn merge vào nhánh chính qua Pull Request (self-review checklist OK). |
-| 3   | **Chạy local** | Chạy được trên môi trường local (`docker compose up` + `npm run dev`).      |
-| 4   | **README**     | Endpoint hoặc trang mới có ghi trong README module.                         |
-| 5   | **Log effort** | Ghi nhận thời gian thực hiện và token AI vào `../03-execution-monitoring/02-project-log.md`.              |
+| #   | Tiêu chí DoD   | Mô tả chi tiết                                                                               |
+| --- | :------------- | :------------------------------------------------------------------------------------------- |
+| 1   | **AC pass**    | Toàn bộ Acceptance Criteria của card đã kiểm tra đạt.                                        |
+| 2   | **Code merge** | Mã nguồn merge vào nhánh chính qua Pull Request (self-review checklist OK).                  |
+| 3   | **Chạy local** | Chạy được trên môi trường local (`docker compose up` + `npm run dev`).                       |
+| 4   | **README**     | Endpoint hoặc trang mới có ghi trong README module.                                          |
+| 5   | **Log effort** | Ghi nhận thời gian thực hiện và token AI vào `../03-execution-monitoring/02-project-log.md`. |
 
 ### 4.3. Đo lường Throughput và Forecast
 
@@ -231,13 +232,13 @@ Sau **mỗi phiên làm việc** với AI Coding Assistant, thành viên **bắt
 
 | Trường           | Bắt buộc | Mô tả                                          |
 | :--------------- | :------: | :--------------------------------------------- |
-| Ngày hoàn thành  |        | Ngày kết thúc session.                         |
-| Dev              |        | Tên thành viên thực hiện.                      |
-| Story ID         |        | Mã các stories hoàn thành trong session.       |
-| Tên Story        |        | Mô tả ngắn gọn công việc đã làm.               |
-| Thời gian làm    |        | Tổng thời gian thực tế (giờ hoặc phút).        |
-| Token AI đã dùng |        | Số token AI tiêu thụ trong session.            |
-| Ghi chú          |        | Model AI sử dụng và ghi chú đặc biệt (nếu có). |
+| Ngày hoàn thành  |          | Ngày kết thúc session.                         |
+| Dev              |          | Tên thành viên thực hiện.                      |
+| Story ID         |          | Mã các stories hoàn thành trong session.       |
+| Tên Story        |          | Mô tả ngắn gọn công việc đã làm.               |
+| Thời gian làm    |          | Tổng thời gian thực tế (giờ hoặc phút).        |
+| Token AI đã dùng |          | Số token AI tiêu thụ trong session.            |
+| Ghi chú          |          | Model AI sử dụng và ghi chú đặc biệt (nếu có). |
 
 > **Vi phạm:** Không ghi session log sẽ bị tính là vi phạm kỷ luật nhóm (mục 9.2).
 

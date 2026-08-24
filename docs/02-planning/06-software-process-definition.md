@@ -6,19 +6,19 @@
 
 ### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-| Trường thông tin | Nội dung |
-| :--- | :--- |
-| **Mã tài liệu** | `HCMUS-LDMS-SPD` |
-| **Tên tài liệu** | Định nghĩa Quy trình Phát triển Phần mềm |
+| Trường thông tin    | Nội dung                                                   |
+| :------------------ | :--------------------------------------------------------- |
+| **Mã tài liệu**     | `HCMUS-LDMS-SPD`                                           |
+| **Tên tài liệu**    | Định nghĩa Quy trình Phát triển Phần mềm                   |
 | **Người thực hiện** | Ân Tiến Nguyên An — Solution Architect / Backend Developer |
 | **Nguồn quy trình** | Product Backlog, Sprint Plan, Team Contract và Project Log |
-| **Trạng thái** | Ready for Review |
+| **Trạng thái**      | Ready for Review                                           |
 
 ### LỊCH SỬ SỬA ĐỔI (REVISION HISTORY)
 
-| Phiên bản | Ngày | Người thực hiện | Mô tả thay đổi |
-| :---: | :---: | :--- | :--- |
-| 1.0 | 20/08/2026 | Ân Tiến Nguyên An | Tổng hợp quy trình Kanban, DoR, DoD, luồng phát triển và cơ chế đánh giá từ các tài liệu dự án hiện hành. |
+| Phiên bản |    Ngày    | Người thực hiện   | Mô tả thay đổi                                                                                            |
+| :-------: | :--------: | :---------------- | :-------------------------------------------------------------------------------------------------------- |
+|    1.0    | 20/08/2026 | Ân Tiến Nguyên An | Tổng hợp quy trình Kanban, DoR, DoD, luồng phát triển và cơ chế đánh giá từ các tài liệu dự án hiện hành. |
 
 ## Mục lục
 
@@ -57,15 +57,15 @@ AI Coding Assistant được dùng để hỗ trợ phân tích đặc tả, t�
 
 ## 3. Vai trò và sản phẩm công việc
 
-| Vai trò | Trách nhiệm trong quy trình | Sản phẩm chính |
-| :--- | :--- | :--- |
-| Product Owner / Lead Frontend | Làm rõ nhu cầu, độ ưu tiên và Acceptance Criteria | User Story, AC, quyết định ưu tiên |
-| Mạch Quốc Tấn — Project Manager | Điều phối luồng, xử lý blocker và tổng hợp báo cáo | Kế hoạch, báo cáo tiến độ |
+| Vai trò                                                    | Trách nhiệm trong quy trình                                   | Sản phẩm chính                            |
+| :--------------------------------------------------------- | :------------------------------------------------------------ | :---------------------------------------- |
+| Product Owner / Lead Frontend                              | Làm rõ nhu cầu, độ ưu tiên và Acceptance Criteria             | User Story, AC, quyết định ưu tiên        |
+| Mạch Quốc Tấn — Project Manager                            | Điều phối luồng, xử lý blocker và tổng hợp báo cáo            | Kế hoạch, báo cáo tiến độ                 |
 | Ân Tiến Nguyên An — Solution Architect / Backend Developer | Kiểm tra kiến trúc, phát triển Backend và review Pull Request | API, quyết định kỹ thuật, ghi nhận review |
-| Nguyễn Tuấn Anh — Backend Developer / DevOps | Phát triển Backend, cấu hình môi trường và CI/CD | API, Docker, workflow CI/CD |
-| Ngô Nguyễn Thế Khoa — Frontend Developer | Phát triển giao diện React | Giao diện và tài liệu module |
-| Nguyễn Lê Hồ Anh Khoa — Frontend Developer | Phát triển giao diện React và Reader | Giao diện và tài liệu module |
-| Nguyễn Quang Thái — DevOps / QA / Tester | Hỗ trợ môi trường, kiểm tra AC và UAT | Kết quả kiểm tra, lỗi và phản hồi |
+| Nguyễn Tuấn Anh — Backend Developer / DevOps               | Phát triển Backend, cấu hình môi trường và CI/CD              | API, Docker, workflow CI/CD               |
+| Ngô Nguyễn Thế Khoa — Frontend Developer                   | Phát triển giao diện React                                    | Giao diện và tài liệu module              |
+| Nguyễn Lê Hồ Anh Khoa — Frontend Developer                 | Phát triển giao diện React và Reader                          | Giao diện và tài liệu module              |
+| Nguyễn Quang Thái — DevOps / QA / Tester                   | Hỗ trợ môi trường, kiểm tra AC và UAT                         | Kết quả kiểm tra, lỗi và phản hồi         |
 
 Các sản phẩm có thể được tạo ra trong một card gồm schema dữ liệu, API FastAPI, giao diện React, cấu hình Docker, tài liệu README và bản ghi effort trong Project Log.
 
@@ -126,12 +126,12 @@ Một card chỉ được chuyển sang `Done` khi đáp ứng đủ năm điề
 
 Quy trình được áp dụng xuyên suốt lộ trình 20 tuần:
 
-| Giai đoạn | Thời gian | Kết quả chính |
-| :--- | :---: | :--- |
-| Khảo sát và bản quyền | Tuần 1–2 | Phạm vi, ràng buộc pháp lý, hạ tầng ban đầu |
-| Xây dựng MVP và thí điểm | Tuần 3–12 | Phần mềm cốt lõi và 500 sách thí điểm |
-| Số hóa diện rộng | Tuần 13–18 | Quy trình vận hành và 2.000 giáo trình tiếp theo |
-| Nghiệm thu và chuyển giao | Tuần 19–20 | UAT, đào tạo và go-live |
+| Giai đoạn                 | Thời gian  | Kết quả chính                                    |
+| :------------------------ | :--------: | :----------------------------------------------- |
+| Khảo sát và bản quyền     |  Tuần 1–2  | Phạm vi, ràng buộc pháp lý, hạ tầng ban đầu      |
+| Xây dựng MVP và thí điểm  | Tuần 3–12  | Phần mềm cốt lõi và 500 sách thí điểm            |
+| Số hóa diện rộng          | Tuần 13–18 | Quy trình vận hành và 2.000 giáo trình tiếp theo |
+| Nghiệm thu và chuyển giao | Tuần 19–20 | UAT, đào tạo và go-live                          |
 
 Trong Sprint 1, bốn kỹ sư làm theo mô hình full-stack cho story của mình; Sprint kéo dài chín ngày với 17 stories trong phạm vi cam kết.
 
@@ -139,12 +139,12 @@ Trong Sprint 1, bốn kỹ sư làm theo mô hình full-stack cho story của m�
 
 ### 7.1. Phương pháp đánh giá
 
-| Cách đánh giá | Nội dung kiểm tra | Nguồn bằng chứng |
-| :--- | :--- | :--- |
-| Kiểm tra tuân thủ | DoR, WIP và DoD có được áp dụng hay không | Backlog, Pull Request, Project Log |
-| Đo hiệu suất dòng chảy | Throughput, Cycle Time và số blocker | Báo cáo tuần |
-| Đánh giá chất lượng | AC pass, khả năng chạy local, lỗi phải làm lại | Kết quả review và kiểm tra |
-| Kiểm soát chi phí AI | Token theo session và xu hướng tiêu thụ | Project Log |
+| Cách đánh giá          | Nội dung kiểm tra                              | Nguồn bằng chứng                   |
+| :--------------------- | :--------------------------------------------- | :--------------------------------- |
+| Kiểm tra tuân thủ      | DoR, WIP và DoD có được áp dụng hay không      | Backlog, Pull Request, Project Log |
+| Đo hiệu suất dòng chảy | Throughput, Cycle Time và số blocker           | Báo cáo tuần                       |
+| Đánh giá chất lượng    | AC pass, khả năng chạy local, lỗi phải làm lại | Kết quả review và kiểm tra         |
+| Kiểm soát chi phí AI   | Token theo session và xu hướng tiêu thụ        | Project Log                        |
 
 Snapshot tuần 1 ghi nhận **12/26 stories**, **440.000 tokens** và chi phí ước tính khoảng **300.000 VNĐ**. Đây là snapshot ngày 16–17/07/2026, không phải tổng tích lũy hiện tại của Project Log.
 

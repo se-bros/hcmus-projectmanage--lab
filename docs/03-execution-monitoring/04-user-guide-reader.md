@@ -4,21 +4,21 @@
 
 ### THÔNG TIN TÀI LIỆU (DOCUMENT CONTROL)
 
-| Trường thông tin (Field) | Nội dung đặc tả (Description) |
-| :--- | :--- |
-| **Mã tài liệu (Document ID)** | `HCMUS-LDMS-UG-READER` |
-| **Tên tài liệu (Document Title)** | Cẩm nang Hướng dẫn Sử dụng dành cho Độc giả (Reader User Guide) |
-| **Dự án (Project Name)** | Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS) |
-| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS |
-| **Người phụ trách biên soạn** | Ngô Nguyễn Thế Khoa (MSSV: 23127065) |
-| **Cấp độ bảo mật (Security Class)** | Public / Internal Readers (Độc giả Thư viện) |
-| **Trạng thái tài liệu (Status)** | Phát hành chính thức (Active) |
+| Trường thông tin (Field)                   | Nội dung đặc tả (Description)                                   |
+| :----------------------------------------- | :-------------------------------------------------------------- |
+| **Mã tài liệu (Document ID)**              | `HCMUS-LDMS-UG-READER`                                          |
+| **Tên tài liệu (Document Title)**          | Cẩm nang Hướng dẫn Sử dụng dành cho Độc giả (Reader User Guide) |
+| **Dự án (Project Name)**                   | Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS) |
+| **Đơn vị soạn thảo (Author/Organization)** | Nhóm Phát triển Dự án HCMUS-LDMS                                |
+| **Người phụ trách biên soạn**              | Ngô Nguyễn Thế Khoa (MSSV: 23127065)                            |
+| **Cấp độ bảo mật (Security Class)**        | Public / Internal Readers (Độc giả Thư viện)                    |
+| **Trạng thái tài liệu (Status)**           | Phát hành chính thức (Active)                                   |
 
 ### LỊCH SỬ PHIÊN BẢN (REVISION HISTORY)
 
-| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change) | Người thực hiện (Author) |
-| :---: | :---: | :--- | :---: |
-| 1.0 | 21/08/2026 | Khởi tạo cẩm nang hướng dẫn sử dụng chi tiết cho nhóm người dùng Độc giả (Reader): Tìm kiếm toàn văn (FTS), Đọc sách EPUB responsive, Tùy biến giao diện & Highlight/Ghi chú học tập. | Ngô Nguyễn Thế Khoa |
+| Phiên bản (Version) | Ngày phát hành (Date) | Mô tả thay đổi (Description of Change)                                                                                                                                                | Người thực hiện (Author) |
+| :-----------------: | :-------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------: |
+|         1.0         |      21/08/2026       | Khởi tạo cẩm nang hướng dẫn sử dụng chi tiết cho nhóm người dùng Độc giả (Reader): Tìm kiếm toàn văn (FTS), Đọc sách EPUB responsive, Tùy biến giao diện & Highlight/Ghi chú học tập. |   Ngô Nguyễn Thế Khoa    |
 
 ---
 
@@ -56,11 +56,11 @@
 
 Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (**HCMUS-LDMS**) cung cấp cho bạn đọc (sinh viên, học viên cao học, nghiên cứu sinh, giảng viên và cán bộ nghiên cứu) một nền tảng đọc sách điện tử chất lượng cao, linh hoạt và tiện ích. Thay vì phải đọc các tệp PDF scan thô sơ, nặng nề và khó tra cứu, bạn đọc có thể:
 
-* **Tra cứu toàn văn (Full-Text Search - FTS):** Tìm kiếm tức thì từ khóa xuất hiện ở bất kỳ trang nào của toàn bộ kho sách điện tử.
-* **Đọc sách EPUB thích ứng (Responsive EPUB Reader):** Sách tự động co giãn theo kích thước màn hình máy tính, máy tính bảng hoặc điện thoại.
-* **Cá nhân hóa trải nghiệm đọc:** Tùy chỉnh tăng/giảm cỡ chữ và đổi màu nền sáng/tối để chống mỏi mắt.
-* **Học tập chủ động:** Bôi đen tạo highlight đoạn văn tâm đắc, viết ghi chú phân tích và quản lý trích dẫn dễ dàng.
-* **Tự động nhớ trang sách:** Hệ thống tự động ghi nhớ vị trí đọc dở chính xác theo đoạn văn bản (chuẩn EPUB CFI).
+- **Tra cứu toàn văn (Full-Text Search - FTS):** Tìm kiếm tức thì từ khóa xuất hiện ở bất kỳ trang nào của toàn bộ kho sách điện tử.
+- **Đọc sách EPUB thích ứng (Responsive EPUB Reader):** Sách tự động co giãn theo kích thước màn hình máy tính, máy tính bảng hoặc điện thoại.
+- **Cá nhân hóa trải nghiệm đọc:** Tùy chỉnh tăng/giảm cỡ chữ và đổi màu nền sáng/tối để chống mỏi mắt.
+- **Học tập chủ động:** Bôi đen tạo highlight đoạn văn tâm đắc, viết ghi chú phân tích và quản lý trích dẫn dễ dàng.
+- **Tự động nhớ trang sách:** Hệ thống tự động ghi nhớ vị trí đọc dở chính xác theo đoạn văn bản (chuẩn EPUB CFI).
 
 ```plantuml
 @startuml
@@ -89,17 +89,17 @@ stop
 
 ### Bảng tóm tắt quyền hạn của Độc giả (Reader Role)
 
-| Tính năng | Quyền hạn Độc giả | Ghi chú |
-| :--- | :---: | :--- |
-| Tìm kiếm tài liệu theo từ khóa / FTS | **Có** | Tìm trong tiêu đề, tác giả và toàn văn nội dung |
-| Duyệt danh mục tài liệu đã xuất bản | **Có** | Xem thông tin sách, ảnh bìa, vị trí kệ sách |
-| Đọc sách EPUB trực tuyến | **Có** | Bảo vệ bản quyền qua Signed URL 15 phút |
-| Tùy chỉnh cỡ chữ (80% - 200%) | **Có** | Lưu cấu hình tự động vào trình duyệt |
-| Đổi giao diện Sáng / Tối | **Có** | Phù hợp đọc ban ngày và ban đêm |
-| Tạo, sửa, xóa Highlight & Note | **Có** | Gắn liền với tài khoản cá nhân |
-| Tự động lưu Bookmark vị trí đọc | **Có** | Tự phục hồi vị trí khi mở lại sách |
-| Tải tài liệu lên / OCR / Biên tập | *Không* | Cần gửi yêu cầu nâng quyền lên `editor` |
-| Quản trị danh mục & phê duyệt | *Không* | Dành riêng cho `admin` |
+| Tính năng                            | Quyền hạn Độc giả | Ghi chú                                         |
+| :----------------------------------- | :---------------: | :---------------------------------------------- |
+| Tìm kiếm tài liệu theo từ khóa / FTS |      **Có**       | Tìm trong tiêu đề, tác giả và toàn văn nội dung |
+| Duyệt danh mục tài liệu đã xuất bản  |      **Có**       | Xem thông tin sách, ảnh bìa, vị trí kệ sách     |
+| Đọc sách EPUB trực tuyến             |      **Có**       | Bảo vệ bản quyền qua Signed URL 15 phút         |
+| Tùy chỉnh cỡ chữ (80% - 200%)        |      **Có**       | Lưu cấu hình tự động vào trình duyệt            |
+| Đổi giao diện Sáng / Tối             |      **Có**       | Phù hợp đọc ban ngày và ban đêm                 |
+| Tạo, sửa, xóa Highlight & Note       |      **Có**       | Gắn liền với tài khoản cá nhân                  |
+| Tự động lưu Bookmark vị trí đọc      |      **Có**       | Tự phục hồi vị trí khi mở lại sách              |
+| Tải tài liệu lên / OCR / Biên tập    |      _Không_      | Cần gửi yêu cầu nâng quyền lên `editor`         |
+| Quản trị danh mục & phê duyệt        |      _Không_      | Dành riêng cho `admin`                          |
 
 ---
 
@@ -111,10 +111,10 @@ Nếu chưa có tài khoản, độc giả thực hiện các bước sau:
 
 1. Truy cập đường dẫn trang đăng ký: `http://<domain-he-thong>/register`.
 2. Điền đầy đủ các trường thông tin:
-   * **Email:** Nhập email cá nhân hoặc email trường (ví dụ: `nguyenvana@student.hcmus.edu.vn`).
-   * **Username:** Tên định danh người dùng (viết liền không dấu hoặc có dấu gạch ngang).
-   * **Password:** Mật khẩu bảo vệ (tối thiểu 8 ký tự, khuyến nghị bao gồm chữ hoa, chữ thường và chữ số).
-   * **Confirm Password:** Nhập lại chính xác mật khẩu đã đặt.
+   - **Email:** Nhập email cá nhân hoặc email trường (ví dụ: `nguyenvana@student.hcmus.edu.vn`).
+   - **Username:** Tên định danh người dùng (viết liền không dấu hoặc có dấu gạch ngang).
+   - **Password:** Mật khẩu bảo vệ (tối thiểu 8 ký tự, khuyến nghị bao gồm chữ hoa, chữ thường và chữ số).
+   - **Confirm Password:** Nhập lại chính xác mật khẩu đã đặt.
 3. Bấm nút **"Đăng ký tài khoản"**. Hệ thống sẽ tự động khởi tạo tài khoản với quyền mặc định là **Reader** và tự động chuyển hướng đến trang chủ.
 
 ### 2.2 Đăng nhập hệ thống (Mật khẩu & Google SSO)
@@ -122,12 +122,12 @@ Nếu chưa có tài khoản, độc giả thực hiện các bước sau:
 Độc giả truy cập trang Đăng nhập tại `http://<domain-he-thong>/login` bằng một trong hai hình thức:
 
 1. **Đăng nhập bằng Mật khẩu:**
-   * Nhập Email hoặc Username và Mật khẩu.
-   * Bấm nút **"Đăng nhập"**.
+   - Nhập Email hoặc Username và Mật khẩu.
+   - Bấm nút **"Đăng nhập"**.
 2. **Đăng nhập bằng Google SSO (Khuyến nghị cho sinh viên/giảng viên HCMUS):**
-   * Bấm nút **"Đăng nhập với Google"**.
-   * Chọn tài khoản Google thuộc tên miền trường quản lý (ví dụ `@hcmus.edu.vn`, `@clc.fit.hcmus.edu.vn`).
-   * Hệ thống sẽ tự động xác thực và cấp mã JWT mà không cần nhớ mật khẩu riêng.
+   - Bấm nút **"Đăng nhập với Google"**.
+   - Chọn tài khoản Google thuộc tên miền trường quản lý (ví dụ `@hcmus.edu.vn`, `@clc.fit.hcmus.edu.vn`).
+   - Hệ thống sẽ tự động xác thực và cấp mã JWT mà không cần nhớ mật khẩu riêng.
 
 ### 2.3 Quản lý Hồ sơ cá nhân & Đổi mật khẩu
 
@@ -136,8 +136,8 @@ Sau khi đăng nhập thành công, độc giả có thể tùy chỉnh thông t
 1. Nhấp vào tên tài khoản hoặc biểu tượng hồ sơ ở góc trên bên phải thanh điều hướng (`Site Header`).
 2. Chọn menu **"Cài đặt"** để mở hộp thoại cấu hình (`SettingsModal`).
 3. Tại tab **"Hồ sơ"** (`ProfileTab`):
-   * **Cập nhật Username:** Nhập username mới -> Bấm **"Lưu"**.
-   * **Đổi Mật khẩu:** Nhập Mật khẩu hiện tại, Mật khẩu mới (tối thiểu 8 ký tự) và Xác nhận mật khẩu mới -> Bấm **"Đổi mật khẩu"**.
+   - **Cập nhật Username:** Nhập username mới -> Bấm **"Lưu"**.
+   - **Đổi Mật khẩu:** Nhập Mật khẩu hiện tại, Mật khẩu mới (tối thiểu 8 ký tự) và Xác nhận mật khẩu mới -> Bấm **"Đổi mật khẩu"**.
 
 ### 2.4 Gửi yêu cầu nâng quyền lên Biên tập viên (Editor)
 
@@ -156,13 +156,13 @@ Nếu độc giả là sinh viên hỗ trợ thủ thư hoặc giảng viên ph�
 
 1. Trên thanh điều hướng, chọn mục **"Tài liệu"** (hoặc truy cập `/documents`).
 2. Giao diện hiển thị danh sách các tài liệu số hóa dưới dạng lưới thẻ trực quan (`Document Grid`):
-   * **Ảnh bìa thu nhỏ (Thumbnail):** Trích xuất tự động từ trang đầu tiên của bản scan hoặc biểu tượng định dạng sách.
-   * **Tên tài liệu / Tên file gốc:** Tiêu đề sách đã được chuẩn hóa.
-   * **Mã định danh (Document ID):** Mã duy nhất để tra cứu nhanh.
-   * **Trạng thái xuất bản:** Nhãn trạng thái tài liệu (`Đã xử lý`, `Hoàn tất`).
+   - **Ảnh bìa thu nhỏ (Thumbnail):** Trích xuất tự động từ trang đầu tiên của bản scan hoặc biểu tượng định dạng sách.
+   - **Tên tài liệu / Tên file gốc:** Tiêu đề sách đã được chuẩn hóa.
+   - **Mã định danh (Document ID):** Mã duy nhất để tra cứu nhanh.
+   - **Trạng thái xuất bản:** Nhãn trạng thái tài liệu (`Đã xử lý`, `Hoàn tất`).
 3. **Thanh lọc và tìm kiếm nhanh:**
-   * Hộp tìm kiếm (`input[type="search"]`): Nhập tên file hoặc mã số tài liệu để lọc tức thì trên giao diện.
-   * Bộ nút lọc trạng thái: `Tất cả`, `Đang chờ`, `Đang xử lý`, `Đã xử lý`, `Lỗi`.
+   - Hộp tìm kiếm (`input[type="search"]`): Nhập tên file hoặc mã số tài liệu để lọc tức thì trên giao diện.
+   - Bộ nút lọc trạng thái: `Tất cả`, `Đang chờ`, `Đang xử lý`, `Đã xử lý`, `Lỗi`.
 
 ### 3.2 Tìm kiếm toàn văn (Full-Text Search - FTS)
 
@@ -176,9 +176,10 @@ Tính năng Tìm kiếm toàn văn cho phép độc giả tìm kiếm bất kỳ
 ### 3.3 Xem trích đoạn ngữ cảnh nổi bật
 
 Kết quả tìm kiếm trả về danh sách các tài liệu phù hợp kèm:
-* **Tiêu đề tài liệu:** Liên kết nhấp chuột trực tiếp dẫn vào phòng đọc sách.
-* **Đoạn trích ngữ cảnh (Snippet):** Hiển thị câu văn hoặc đoạn văn chứa từ khóa trong sách, trong đó từ khóa tìm kiếm được tô vàng nổi bật bằng thẻ `<mark>`.
-* Nhấp vào tiêu đề tài liệu để chuyển ngay đến giao diện đọc sách EPUB.
+
+- **Tiêu đề tài liệu:** Liên kết nhấp chuột trực tiếp dẫn vào phòng đọc sách.
+- **Đoạn trích ngữ cảnh (Snippet):** Hiển thị câu văn hoặc đoạn văn chứa từ khóa trong sách, trong đó từ khóa tìm kiếm được tô vàng nổi bật bằng thẻ `<mark>`.
+- Nhấp vào tiêu đề tài liệu để chuyển ngay đến giao diện đọc sách EPUB.
 
 ---
 
@@ -189,20 +190,21 @@ Kết quả tìm kiếm trả về danh sách các tài liệu phù hợp kèm:
 Khi độc giả nhấp vào một tài liệu đã xuất bản hoặc chọn từ kết quả tìm kiếm, hệ thống sẽ mở màn hình Đọc sách (`/reader/:documentId`).
 
 Giao diện đọc sách được thiết kế tối giản, tập trung vào nội dung:
-* **Thanh công cụ trên cùng (Reader Toolbar):**
-  * Nút `← Về danh sách`: Quay lại kho tài liệu.
-  * `Tiêu đề sách`: Tên cuốn sách đang mở.
-  * Bộ công cụ cỡ chữ `A−` / `A+`.
-  * Bộ chuyển đổi màu nền `Nền tối` / `Nền sáng` (Theme Selector).
-* **Khung hiển thị nội dung sách (`Reader Body`):** Khung cuộn văn bản EPUB thích ứng hiển thị trung tâm, chiếm 70%–80% chiều cao màn hình.
-* **Thanh bên ghi chú (`Highlight Sidebar`):** Nằm ở cạnh phải, hỗ trợ theo dõi các trích đoạn đã lưu.
+
+- **Thanh công cụ trên cùng (Reader Toolbar):**
+  - Nút `← Về danh sách`: Quay lại kho tài liệu.
+  - `Tiêu đề sách`: Tên cuốn sách đang mở.
+  - Bộ công cụ cỡ chữ `A−` / `A+`.
+  - Bộ chuyển đổi màu nền `Nền tối` / `Nền sáng` (Theme Selector).
+- **Khung hiển thị nội dung sách (`Reader Body`):** Khung cuộn văn bản EPUB thích ứng hiển thị trung tâm, chiếm 70%–80% chiều cao màn hình.
+- **Thanh bên ghi chú (`Highlight Sidebar`):** Nằm ở cạnh phải, hỗ trợ theo dõi các trích đoạn đã lưu.
 
 ### 4.2 Điều hướng và lật trang
 
-* **Chế độ cuộn liên tục (Scrolled Document Flow):** Nội dung chương sách được dàn trang liên tục, độc giả có thể dùng con lăn chuột hoặc vuốt cảm ứng để cuộn đọc mượt mà.
-* **Nút chuyển trang dưới đáy (`Reader Nav`):**
-  * Nút **`← Trang trước`**: Lùi về phân đoạn/chương trước đó.
-  * Nút **`Trang sau →`**: Tiến tới phân đoạn/chương tiếp theo.
+- **Chế độ cuộn liên tục (Scrolled Document Flow):** Nội dung chương sách được dàn trang liên tục, độc giả có thể dùng con lăn chuột hoặc vuốt cảm ứng để cuộn đọc mượt mà.
+- **Nút chuyển trang dưới đáy (`Reader Nav`):**
+  - Nút **`← Trang trước`**: Lùi về phân đoạn/chương trước đó.
+  - Nút **`Trang sau →`**: Tiến tới phân đoạn/chương tiếp theo.
 
 ### 4.3 Cơ chế Tự động đánh dấu vị trí đọc dở (Auto-bookmarking)
 
@@ -220,14 +222,14 @@ Giao diện đọc sách được thiết kế tối giản, tập trung vào n�
 
 ### 5.1 Điều chỉnh kích thước cỡ chữ
 
-* Nhấn nút **`A−`**: Giảm kích thước phông chữ đi 10% (giới hạn tối thiểu là **80%** so với cỡ chuẩn).
-* Nhấn nút **`A+`**: Tăng kích thước phông chữ thêm 10% (giới hạn tối đa là **200%** so với cỡ chuẩn).
-* Toàn bộ các dòng chữ và đoạn văn trong sách sẽ tự động co giãn và dàn lại trang tức thì mà không bị vỡ bố cục hay tràn khung.
+- Nhấn nút **`A−`**: Giảm kích thước phông chữ đi 10% (giới hạn tối thiểu là **80%** so với cỡ chuẩn).
+- Nhấn nút **`A+`**: Tăng kích thước phông chữ thêm 10% (giới hạn tối đa là **200%** so với cỡ chuẩn).
+- Toàn bộ các dòng chữ và đoạn văn trong sách sẽ tự động co giãn và dàn lại trang tức thì mà không bị vỡ bố cục hay tràn khung.
 
 ### 5.2 Chuyển đổi Giao diện Sáng / Tối (Light/Dark Theme)
 
-* Nhấn nút **`Nền tối (Dark Mode)`**: Chuyển sang giao diện Dark Mode với nền màu đen sẫm (`#141414`) và chữ màu xám sáng (`#e6e6e6`). Giúp bảo vệ mắt khi đọc sách vào ban đêm hoặc trong phòng thiếu sáng.
-* Nhấn nút **`Nền sáng (Light Mode)`**: Chuyển sang giao diện Light Mode với nền trắng tinh khôi (`#ffffff`) và chữ màu than đen tiêu chuẩn (`#1a1a1a`). Phù hợp đọc tài liệu ban ngày.
+- Nhấn nút **`Nền tối (Dark Mode)`**: Chuyển sang giao diện Dark Mode với nền màu đen sẫm (`#141414`) và chữ màu xám sáng (`#e6e6e6`). Giúp bảo vệ mắt khi đọc sách vào ban đêm hoặc trong phòng thiếu sáng.
+- Nhấn nút **`Nền sáng (Light Mode)`**: Chuyển sang giao diện Light Mode với nền trắng tinh khôi (`#ffffff`) và chữ màu than đen tiêu chuẩn (`#1a1a1a`). Phù hợp đọc tài liệu ban ngày.
 
 ### 5.3 Cơ chế lưu trữ cấu hình cá nhân
 
@@ -244,8 +246,8 @@ Tính năng đánh dấu hỗ trợ độc giả trích dẫn và ghi chép họ
 1. Dùng chuột bôi đen (select) đoạn văn bản cần đánh dấu trong sách.
 2. Một cửa sổ nhỏ nổi lên (`HighlightPopover`) ngay tại vị trí con trỏ chuột.
 3. Độc giả có thể:
-   * Nhập nội dung suy nghĩ / bình luận vào ô ghi chú (tùy chọn).
-   * Bấm nút **"Lưu highlight"** (hoặc tạo highlight nhanh không cần ghi chú).
+   - Nhập nội dung suy nghĩ / bình luận vào ô ghi chú (tùy chọn).
+   - Bấm nút **"Lưu highlight"** (hoặc tạo highlight nhanh không cần ghi chú).
 4. Đoạn văn bản trong sách sẽ lập tức được phủ lớp màu vàng hổ phách nhạt (`#f5c518` độ mờ 40%), đồng thời được lưu vào cơ sở dữ liệu.
 
 ```plantuml
@@ -273,21 +275,23 @@ ReaderUI -> ReaderUI : Render lớp phủ màu vàng (#f5c518)\nvà thêm vào H
 ### 6.2 Quản lý danh sách Highlight qua Thanh bên (Sidebar)
 
 Thanh bên **Highlight Sidebar** ở bên phải màn hình hiển thị toàn bộ các ghi chú trong sách:
-* Trích đoạn văn bản gốc được đánh dấu.
-* Nội dung ghi chú cá nhân đi kèm.
-* Thời điểm tạo ghi chú.
-* Nhấp vào một thẻ ghi chú trong sidebar để làm nổi bật vị trí tương ứng trong sách.
+
+- Trích đoạn văn bản gốc được đánh dấu.
+- Nội dung ghi chú cá nhân đi kèm.
+- Thời điểm tạo ghi chú.
+- Nhấp vào một thẻ ghi chú trong sidebar để làm nổi bật vị trí tương ứng trong sách.
 
 ### 6.3 Chỉnh sửa ghi chú và Xóa đánh dấu
 
-* **Sửa ghi chú:** Nhấp vào nút chỉnh sửa trên thẻ highlight trong Sidebar -> Nhập nội dung ghi chú mới -> Nhấn "Lưu".
-* **Xóa highlight:** Nhấp vào nút biểu tượng thùng rác hoặc nút "Xóa" trên thẻ highlight trong Sidebar -> Hệ thống sẽ gỡ bỏ lớp màu vàng trên trang sách và xóa bản ghi khỏi cơ sở dữ liệu.
+- **Sửa ghi chú:** Nhấp vào nút chỉnh sửa trên thẻ highlight trong Sidebar -> Nhập nội dung ghi chú mới -> Nhấn "Lưu".
+- **Xóa highlight:** Nhấp vào nút biểu tượng thùng rác hoặc nút "Xóa" trên thẻ highlight trong Sidebar -> Hệ thống sẽ gỡ bỏ lớp màu vàng trên trang sách và xóa bản ghi khỏi cơ sở dữ liệu.
 
 ### 6.4 Cơ chế xử lý Đánh dấu không định vị được (Orphaned Highlights)
 
 Theo tiêu chuẩn đặc tả `FR-011`:
-* Nếu cuốn sách được ban biên tập hiệu đính và tái xuất bản phiên bản mới, một số đoạn văn bản cũ có thể đã bị dời vị trí hoặc chỉnh sửa từ ngữ, khiến mã định vị CFI không còn gắn chính xác vào trang.
-* Hệ thống sẽ **không tự ý xóa bỏ** ghi chú của độc giả. Thay vào đó, các đánh dấu này được chuyển vào nhóm **"Đánh dấu không định vị được"** trên Sidebar để độc giả vẫn xem lại được toàn bộ nội dung trích dẫn và ghi chép học tập đã lưu trước đây.
+
+- Nếu cuốn sách được ban biên tập hiệu đính và tái xuất bản phiên bản mới, một số đoạn văn bản cũ có thể đã bị dời vị trí hoặc chỉnh sửa từ ngữ, khiến mã định vị CFI không còn gắn chính xác vào trang.
+- Hệ thống sẽ **không tự ý xóa bỏ** ghi chú của độc giả. Thay vào đó, các đánh dấu này được chuyển vào nhóm **"Đánh dấu không định vị được"** trên Sidebar để độc giả vẫn xem lại được toàn bộ nội dung trích dẫn và ghi chép học tập đã lưu trước đây.
 
 ---
 
@@ -304,15 +308,19 @@ Nhằm bảo vệ bản quyền tài liệu và giáo trình số hóa của Tr�
 ## 8. Xử lý sự cố thường gặp & Câu hỏi phổ biến (FAQ)
 
 ### Q1: Tại sao tôi mở sách nhưng màn hình báo lỗi "Không mở được tài liệu"?
-* **Nguyên nhân:** Phiên đăng nhập của bạn có thể đã hết hạn hoặc đường link ký điện tử (Signed URL) đã quá thời gian hiệu lực.
-* **Cách khắc phục:** Nhấn phím `F5` hoặc nút Làm mới của trình duyệt để hệ thống tự động cấp phát phiên đọc mới. Nếu vẫn lỗi, vui lòng đăng xuất và đăng nhập lại.
+
+- **Nguyên nhân:** Phiên đăng nhập của bạn có thể đã hết hạn hoặc đường link ký điện tử (Signed URL) đã quá thời gian hiệu lực.
+- **Cách khắc phục:** Nhấn phím `F5` hoặc nút Làm mới của trình duyệt để hệ thống tự động cấp phát phiên đọc mới. Nếu vẫn lỗi, vui lòng đăng xuất và đăng nhập lại.
 
 ### Q2: Tại sao một số sách tôi không thấy xuất hiện trên thanh tìm kiếm?
-* **Nguyên nhân:** Sách đó có thể đang trong quá trình biên tập OCR, đang chờ thủ thư rà soát lỗi hoặc chưa được quản trị viên phê duyệt phát hành (`status != published`).
-* **Cách khắc phục:** Chỉ những tài liệu đã hoàn tất quy trình xuất bản EPUB mới xuất hiện công khai trên kho tìm kiếm của Độc giả.
+
+- **Nguyên nhân:** Sách đó có thể đang trong quá trình biên tập OCR, đang chờ thủ thư rà soát lỗi hoặc chưa được quản trị viên phê duyệt phát hành (`status != published`).
+- **Cách khắc phục:** Chỉ những tài liệu đã hoàn tất quy trình xuất bản EPUB mới xuất hiện công khai trên kho tìm kiếm của Độc giả.
 
 ### Q3: Tôi có thể tải toàn bộ tệp EPUB về máy tính để đọc offline không?
-* **Trả lời:** Để tuân thủ Luật Sở hữu Trí tuệ và thỏa thuận bản quyền giáo trình của HCMUS, hệ thống hiện tại hỗ trợ đọc trực tiếp bảo mật trên trình duyệt web và không hỗ trợ tải tệp nguồn về máy cá nhân.
+
+- **Trả lời:** Để tuân thủ Luật Sở hữu Trí tuệ và thỏa thuận bản quyền giáo trình của HCMUS, hệ thống hiện tại hỗ trợ đọc trực tiếp bảo mật trên trình duyệt web và không hỗ trợ tải tệp nguồn về máy cá nhân.
 
 ### Q4: Tôi dùng điện thoại di động có đọc được sách không?
-* **Trả lời:** Hoàn toàn được. Giao diện Reader được xây dựng thích ứng (Responsive Design), tự động căn chỉnh cỡ chữ, khoảng cách lề và kích thước hình ảnh để mang lại trải nghiệm đọc tối ưu trên cả smartphone và máy tính bảng.
+
+- **Trả lời:** Hoàn toàn được. Giao diện Reader được xây dựng thích ứng (Responsive Design), tự động căn chỉnh cỡ chữ, khoảng cách lề và kích thước hình ảnh để mang lại trải nghiệm đọc tối ưu trên cả smartphone và máy tính bảng.

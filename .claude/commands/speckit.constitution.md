@@ -26,7 +26,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **MAJOR**: backward-incompatible principle removals/redefinitions
    - **MINOR**: new principle or materially expanded section
    - **PATCH**: wording/clarification only
-   Set `Last Amended` to today's date; keep `Ratified` as the original date unless this is the first ratification.
+     Set `Last Amended` to today's date; keep `Ratified` as the original date unless this is the first ratification.
 5. Write the result to `.specify/memory/constitution.md`, replacing all placeholder tokens — no bracketed placeholders may remain.
 6. After writing, list every other file that references constitution principles (e.g. `.specify/templates/plan-template.md`'s Constitution Check gate, `README.md`) and flag any that are now inconsistent with the new wording, without editing them unless asked.
 7. Output a short summary: version bump (old → new), principles added/removed/reworded, and any follow-up files flagged in step 6.

@@ -19,7 +19,7 @@ description: "Task list for Tìm kiếm toàn văn & Trải nghiệm đọc sác
 
 - [x] T001 [P] Thêm dependency `epubjs` vào `src/frontend/package.json`, chạy `npm install` trong `src/frontend` (cần cho US1/US6/US7 — Epub.js render + theming + CFI bookmark).
 
-*Không có task setup nào khác — dự án đã có sẵn cấu trúc `src/backend`/`src/frontend`, DB/MinIO/Auth đã hoạt động.*
+_Không có task setup nào khác — dự án đã có sẵn cấu trúc `src/backend`/`src/frontend`, DB/MinIO/Auth đã hoạt động._
 
 ---
 
@@ -95,7 +95,7 @@ description: "Task list for Tìm kiếm toàn văn & Trải nghiệm đọc sác
 
 ### Implementation
 
-- [x] T018 [US4] Kiểm tra thủ công theo `quickstart.md` §4: `snippet` trả về từ T013/T014 hiển thị đúng có highlight trong `SearchPage.tsx`, click kết quả điều hướng đúng document — sửa lại nếu phát hiện lệch (không kỳ vọng có thay đổi code nếu US3 đã đúng). *Đã sửa: strip markup `<b>`/`</b>` mặc định của `ts_headline` trong `search_service.py` để không lọt tag thô vào snippet — FE tự highlight qua `highlightSnippet`.*
+- [x] T018 [US4] Kiểm tra thủ công theo `quickstart.md` §4: `snippet` trả về từ T013/T014 hiển thị đúng có highlight trong `SearchPage.tsx`, click kết quả điều hướng đúng document — sửa lại nếu phát hiện lệch (không kỳ vọng có thay đổi code nếu US3 đã đúng). _Đã sửa: strip markup `<b>`/`</b>` mặc định của `ts_headline` trong `search_service.py` để không lọt tag thô vào snippet — FE tự highlight qua `highlightSnippet`._
 
 **Checkpoint**: US4 xác nhận xong — không có phần backend/frontend mới ngoài T018.
 
@@ -109,7 +109,7 @@ description: "Task list for Tìm kiếm toàn văn & Trải nghiệm đọc sác
 
 ### Implementation
 
-- [x] T019 [US5] Rà lại `src/frontend/src/pages/ReaderPage.tsx` (viết ở T008) — xác nhận không có control nào trỏ tới tải file EPUB gốc; xoá nếu vô tình có. *Đã xác nhận: ReaderPage chỉ truyền Signed URL cho epubjs, không có nút Download nào.*
+- [x] T019 [US5] Rà lại `src/frontend/src/pages/ReaderPage.tsx` (viết ở T008) — xác nhận không có control nào trỏ tới tải file EPUB gốc; xoá nếu vô tình có. _Đã xác nhận: ReaderPage chỉ truyền Signed URL cho epubjs, không có nút Download nào._
 - [x] T020 [US5] Thêm mục "## Bảo mật đọc sách (LDMS-014)" vào `README.md` (repo root) ghi nhận: EPUB chỉ qua Signed URL 15 phút; residual risk (screenshot, DevTools) không thể chặn hoàn toàn bằng kỹ thuật.
 
 **Checkpoint**: US5 hoàn thiện.
@@ -138,7 +138,7 @@ description: "Task list for Tìm kiếm toàn văn & Trải nghiệm đọc sác
 
 ### Implementation
 
-- [x] T022 [P] [US7] Tạo `src/backend/app/models/bookmark.py::Bookmark` (document_id FK CASCADE, user_sub, location, created_at, updated_at, unique `(document_id, user_sub)`) theo `data-model.md`. *Đã import vào `app/models/__init__.py` để `create_all`/migrations thấy được.*
+- [x] T022 [P] [US7] Tạo `src/backend/app/models/bookmark.py::Bookmark` (document_id FK CASCADE, user_sub, location, created_at, updated_at, unique `(document_id, user_sub)`) theo `data-model.md`. _Đã import vào `app/models/__init__.py` để `create_all`/migrations thấy được._
 - [x] T023 [US7] Thêm migration `src/backend/app/db/migrations/versions/20260717_0007_bookmarks.py` (`down_revision = "20260717_0006"`) — tạo bảng `bookmarks` khớp model T022.
 - [x] T024 [P] [US7] Trong `src/backend/app/schemas/document.py`: thêm `BookmarkDetail` (document_id, location, updated_at) và `BookmarkUpdate` (location, validator không rỗng).
 - [x] T025 [US7] Tạo `src/backend/app/services/bookmark_service.py::get_bookmark()`/`save_bookmark()` (upsert theo `(document_id, user_sub)`, phụ thuộc T022, T024).
@@ -152,7 +152,7 @@ description: "Task list for Tìm kiếm toàn văn & Trải nghiệm đọc sác
 
 ## Phase 10: Polish
 
-- [x] T029 Chạy full verification: `uv run ruff format .`, `uv run ruff check .`, `uv run pytest` (backend); `npm run format`, `npm run lint`, `npm run build`, `npm test` (frontend) — bắt buộc trước khi merge theo Constitution Principle III + CI (`.github/workflows/ci.yml`); đi qua từng bước `quickstart.md` thủ công 1 lần. *Kết quả: backend ruff sạch + 53 pytest pass; frontend oxlint exit 0 (1 warning có sẵn ở `AuthContext.tsx`, không phải file của feature này), `tsc -b && vite build` pass, 14 vitest pass. Kiểm chứng runtime `quickstart.md` (cần Postgres+MinIO+EPUB thật) chưa chạy trong môi trường này — để lại cho người triển khai theo `quickstart.md`.*
+- [x] T029 Chạy full verification: `uv run ruff format .`, `uv run ruff check .`, `uv run pytest` (backend); `npm run format`, `npm run lint`, `npm run build`, `npm test` (frontend) — bắt buộc trước khi merge theo Constitution Principle III + CI (`.github/workflows/ci.yml`); đi qua từng bước `quickstart.md` thủ công 1 lần. _Kết quả: backend ruff sạch + 53 pytest pass; frontend oxlint exit 0 (1 warning có sẵn ở `AuthContext.tsx`, không phải file của feature này), `tsc -b && vite build` pass, 14 vitest pass. Kiểm chứng runtime `quickstart.md` (cần Postgres+MinIO+EPUB thật) chưa chạy trong môi trường này — để lại cho người triển khai theo `quickstart.md`._
 
 ---
 

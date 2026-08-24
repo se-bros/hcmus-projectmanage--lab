@@ -47,6 +47,7 @@
   - [5.4. Quy chế Báo cáo định kỳ (Status Reporting)](#54-quy-chế-báo-cáo-định-kỳ-status-reporting)
 
 ---
+
 ## 1. Kế hoạch thời gian và Tiến độ thực hiện (Time & Schedule Plan)
 
 Dự án HCMUS-LDMS được hoạch định thực hiện trong vòng **20 tuần** (5 tháng), chia làm 4 giai đoạn lớn kết hợp kiểm soát chốt cổng (Gating Checkpoints):
@@ -238,11 +239,11 @@ Tổng chi phí OpEx hàng năm duy trì từ năm thứ 2 ước tính **15.000
 
 #### B. Chỉ số chi phí AI & Hiệu suất (AI Cost & Productivity)
 
-| Chỉ số                     | Cách đo                                                                | Mục tiêu                                       |
-| :------------------------- | :--------------------------------------------------------------------- | :--------------------------------------------- |
-| **Token AI tiêu thụ**      | Tổng token sử dụng mỗi phiên làm việc (ghi vào `../03-execution-monitoring/02-project-log.md`).      | ≤ 300K tokens/session trung bình.              |
-| **Chi phí AI tích lũy**    | Quy đổi token ra VNĐ theo bảng giá API từng model, cộng dồn theo tuần. | Tổng ≤ 5.000.000 VNĐ (hạn mức CapEx).          |
-| **AI Productivity Factor** | Số stories Done / Tổng token AI đã dùng (hiệu suất sử dụng AI).        | Theo dõi xu hướng để phát hiện lãng phí token. |
+| Chỉ số                     | Cách đo                                                                                         | Mục tiêu                                       |
+| :------------------------- | :---------------------------------------------------------------------------------------------- | :--------------------------------------------- |
+| **Token AI tiêu thụ**      | Tổng token sử dụng mỗi phiên làm việc (ghi vào `../03-execution-monitoring/02-project-log.md`). | ≤ 300K tokens/session trung bình.              |
+| **Chi phí AI tích lũy**    | Quy đổi token ra VNĐ theo bảng giá API từng model, cộng dồn theo tuần.                          | Tổng ≤ 5.000.000 VNĐ (hạn mức CapEx).          |
+| **AI Productivity Factor** | Số stories Done / Tổng token AI đã dùng (hiệu suất sử dụng AI).                                 | Theo dõi xu hướng để phát hiện lãng phí token. |
 
 #### C. Chỉ số rủi ro kỹ thuật (Technical Risk Indicators)
 

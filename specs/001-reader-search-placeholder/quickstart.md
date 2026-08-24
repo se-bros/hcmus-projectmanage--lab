@@ -26,6 +26,7 @@ npm run dev
 ```
 
 Mở trình duyệt:
+
 1. `http://localhost:5173/` — Document List, phải thấy ≥ 2 tài liệu fixture.
 2. Click một tài liệu → điều hướng sang `/reader/:documentId`, thấy nội dung text.
 3. `http://localhost:5173/search` — nhập từ khóa có trong fixture → thấy kết quả; click kết quả → mở đúng Reader.

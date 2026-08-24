@@ -62,6 +62,7 @@
   - [8.2 Thử nghiệm công nghệ (Proof of Concept - PoC)](#82-thử-nghiệm-công-nghệ-proof-of-concept-poc)
 
 ---
+
 ## 1. Giới thiệu
 
 Tài liệu Tầm nhìn và Phạm vi này đặc tả hệ thống **HCMUS-LDMS** (Library Document Management & Digitization System). Hệ thống hướng tới việc xây dựng một quy trình số hóa tài liệu học thuật tự động hóa, chuyển đổi từ các trang giáo trình in sang định dạng sách điện tử responsive chuẩn EPUB 3.0, đáp ứng trải nghiệm đọc di động mọi lúc mọi nơi cho sinh viên và bảo vệ bản quyền số của nhà trường.

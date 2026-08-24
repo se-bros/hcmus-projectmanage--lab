@@ -7,7 +7,7 @@
 
 **Bối cảnh**: Story LDMS-021 (`docs/07-product-backlog.md` §LDMS-021, hàng 24 của bảng roadmap) thuộc Module M6 — Reader, độ ưu tiên **Could**, phụ thuộc LDMS-020 (Bookmark). LDMS-020 đã thiết lập sẵn khuôn mẫu "trạng thái đọc riêng theo từng user trên từng document": bản ghi gắn theo cặp `(document_id, user)`, chỉ user sở hữu mới đọc được, và vị trí trong sách được lưu dưới dạng một chuỗi định vị do trình đọc EPUB sinh ra. Feature này mở rộng đúng khuôn mẫu đó từ **một** vị trí đọc dở sang **nhiều** vùng văn bản được đánh dấu, mỗi vùng kèm một ghi chú tùy chọn.
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Tạo highlight cho đoạn văn đang đọc (Priority: P1)
 
@@ -86,7 +86,7 @@ Là độc giả, tôi muốn xóa một highlight đã đánh dấu nhầm ho�
 - **Thay đổi cỡ chữ/theme khi đọc (LDMS-019)**: độc giả tăng giảm cỡ chữ làm chữ dàn lại trang → highlight phải vẫn bám đúng đoạn văn gốc, không nhảy sang đoạn khác.
 - **Document chưa xuất bản hoặc không có bản đọc**: không có nội dung để chọn → chức năng highlight không khả dụng, nhất quán với hành vi Reader hiện có.
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -118,7 +118,7 @@ Là độc giả, tôi muốn xóa một highlight đã đánh dấu nhầm ho�
 - **Người dùng (Reader)**: Chủ sở hữu của Highlight và Ghi chú, xác định qua danh tính đăng nhập. Là ranh giới phân tách dữ liệu — dùng chung khuôn mẫu định danh mà LDMS-020 (Bookmark) đã thiết lập.
 - **Tài liệu (Document)**: Sách đã xuất bản mà độc giả đang đọc; là ngữ cảnh chứa Highlight. Đã tồn tại sẵn từ các story trước, feature này không thay đổi nó.
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 

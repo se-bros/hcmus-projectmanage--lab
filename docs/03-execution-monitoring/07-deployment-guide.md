@@ -21,7 +21,7 @@
 |         1.0         |      20/08/2026       | Khởi tạo Deployment Guide (bản nháp gắn script tạm).                                                                                      |     Nguyễn Tuấn Anh      |
 |         1.1         |      20/08/2026       | Đồng bộ main: dùng `scripts/run-prod.sh` + `docker-compose.prod.yml` (Web, MailHog, Prometheus, Grafana); bỏ tham chiếu `deploy-prod.sh`. |     Nguyễn Tuấn Anh      |
 |         1.2         |      22/08/2026       | Bổ sung workflow `.github/workflows/cd.yml` tự động build/deploy, xuất URL live và gửi email Brevo qua job notify.                        |    Ân Tiến Nguyên An     |
-|         1.3         |      22/08/2026       | Bổ sung mô-đun Infrastructure as Code (IaaC) dùng Terraform (`terraform/`) hoàn thiện bộ 3 DevOps (IaaC + CI + CD).                      |    Ân Tiến Nguyên An     |
+|         1.3         |      22/08/2026       | Bổ sung mô-đun Infrastructure as Code (IaaC) dùng Terraform (`terraform/`) hoàn thiện bộ 3 DevOps (IaaC + CI + CD).                       |    Ân Tiến Nguyên An     |
 
 ---
 
@@ -175,7 +175,7 @@ git checkout <commit-hoặc-tag-trước-đó>
    ```bash
    terraform plan
    ```
-   *Output hiển thị 7 tài nguyên được khởi tạo tự động (`docker_network`, `docker_volume`, PostgreSQL, MinIO, MailHog, Prometheus, Grafana).*
+   _Output hiển thị 7 tài nguyên được khởi tạo tự động (`docker_network`, `docker_volume`, PostgreSQL, MinIO, MailHog, Prometheus, Grafana)._
 3. **Áp dụng hạ tầng**:
    ```bash
    terraform apply -auto-approve
@@ -184,7 +184,7 @@ git checkout <commit-hoặc-tag-trước-đó>
    ```bash
    terraform output
    ```
-   *Output xuất Live URL, API Docs URL (`:8000/docs`), MinIO Console (`:9003`), Grafana Dashboard (`:3000`).*
+   _Output xuất Live URL, API Docs URL (`:8000/docs`), MinIO Console (`:9003`), Grafana Dashboard (`:3000`)._
 5. **Dọn dẹp hạ tầng khi kết thúc**:
    ```bash
    terraform destroy -auto-approve

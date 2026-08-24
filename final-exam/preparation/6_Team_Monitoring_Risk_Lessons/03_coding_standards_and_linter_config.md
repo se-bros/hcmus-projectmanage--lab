@@ -1,14 +1,16 @@
 # TÀI LIỆU QUY CHUẨN LẬP TRÌNH VÀ CẤU HÌNH KIỂM SOÁT MÃ NGUỒN (CODING STANDARDS & LINTER CONFIGURATION)
+
 ## Dự án: Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
+
 ### Mã tài liệu: `HCMUS-LDMS-STD-01` | Phục vụ minh chứng: Câu 19 (Quality Management)
 
 ---
 
-| Thông tin chung | Chi tiết |
-| :--- | :--- |
-| **Hệ thống áp dụng:** | Toàn bộ Monorepo dự án HCMUS-LDMS (Backend FastAPI & Frontend React) |
-| **Công cụ kiểm soát tự động:** | **Ruff** (Python Linter & Formatter), **Oxlint** (React/TypeScript), **Prettier** |
-| **Mục tiêu chất lượng (QA):** | Đảm bảo 100% mã nguồn tuân thủ PEP 8, Clean Code, ngăn ngừa lỗi cú pháp và logic trước khi merge |
+| Thông tin chung                | Chi tiết                                                                                           |
+| :----------------------------- | :------------------------------------------------------------------------------------------------- |
+| **Hệ thống áp dụng:**          | Toàn bộ Monorepo dự án HCMUS-LDMS (Backend FastAPI & Frontend React)                               |
+| **Công cụ kiểm soát tự động:** | **Ruff** (Python Linter & Formatter), **Oxlint** (React/TypeScript), **Prettier**                  |
+| **Mục tiêu chất lượng (QA):**  | Đảm bảo 100% mã nguồn tuân thủ PEP 8, Clean Code, ngăn ngừa lỗi cú pháp và logic trước khi merge   |
 | **Cơ chế cưỡng chế (Gating):** | Chặn merge Pull Request tự động qua GitHub Actions CI Pipeline nếu phát hiện bất kỳ lỗi linter nào |
 
 ---
@@ -70,9 +72,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
       - run: uv sync
-      - run: uv run ruff format --check .   # Kiểm tra định dạng code chuẩn
-      - run: uv run ruff check .            # Kiểm tra quy chuẩn linter (0 warnings)
-      - run: uv run pytest                  # Chạy toàn bộ 100% Unit Test suites
+      - run: uv run ruff format --check . # Kiểm tra định dạng code chuẩn
+      - run: uv run ruff check . # Kiểm tra quy chuẩn linter (0 warnings)
+      - run: uv run pytest # Chạy toàn bộ 100% Unit Test suites
 ```
 
 ---

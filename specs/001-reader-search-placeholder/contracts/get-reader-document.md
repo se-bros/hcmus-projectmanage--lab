@@ -9,8 +9,8 @@
 GET /reader/{document_id}
 ```
 
-| Path param | Type | Ghi chú |
-|---|---|---|
+| Path param    | Type  | Ghi chú                                         |
+| ------------- | ----- | ----------------------------------------------- |
 | `document_id` | `str` | Khớp `Document.id` trong fixture (US2 AC1/AC2). |
 
 ## Response 200 — `DocumentContent`

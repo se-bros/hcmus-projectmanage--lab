@@ -10,9 +10,9 @@ transition: slide-left
 mermaid:
   theme: base
   themeVariables:
-    edgeLabelBackground: '#ffffff'
-    labelBackground: '#ffffff'
-    primaryTextColor: '#475569'
+    edgeLabelBackground: "#ffffff"
+    labelBackground: "#ffffff"
+    primaryTextColor: "#475569"
 ---
 
 <style>
@@ -41,6 +41,7 @@ footer span:first-of-type,
 </div>
 
 ---
+
 layout: default
 ---
 
@@ -94,27 +95,31 @@ layout: default
 </div>
 
 ---
+
 src: ./pages/01-project-proposal.md
 hide: false
 ---
 
 ---
+
 src: ./pages/02-vision-charter-backlog.md
 hide: false
 ---
 
 ---
+
 src: ./pages/03-architecture-poc.md
 hide: false
 ---
 
 ---
+
 src: ./pages/04-development-method.md
 hide: false
 ---
 
 ---
+
 src: ./pages/05-estimation-planning-monitoring.md
 hide: false
 ---
-

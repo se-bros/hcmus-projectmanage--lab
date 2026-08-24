@@ -53,6 +53,7 @@
 - [13. Chữ ký phê duyệt (Signatures)](#13-chữ-ký-phê-duyệt-signatures)
 
 ---
+
 ## 1. Mục đích và Ý nghĩa tài liệu
 
 Tài liệu **Phát biểu Công việc (Statement of Work — SOW)** là văn bản pháp lý đánh dấu sự kết thúc của giai đoạn **Project Planning** trong vòng đời dự án HCMUS-LDMS. Khi SOW được ký duyệt bởi tất cả các bên liên quan, dự án chính thức chuyển sang giai đoạn **Project Execution**.
@@ -201,16 +202,16 @@ Dự án được thực hiện trong **20 tuần**, chia thành 4 giai đoạn 
 
 ### 7.1. Tổng ngân sách đầu tư một lần (CapEx)
 
-| Hạng mục                        |        Khoảng giá (VNĐ)        | Ghi chú chi tiết thù lao / lương nhân lực |
-| :------------------------------ | :----------------------------: | :---------------------------------------- |
-| Số hóa & Biên tập EPUB (CTV SV) |    30.000.000 – 40.000.000     | Thù lao CTV sinh viên: 30.000 VNĐ/giờ (hoặc 12.000 VNĐ/cuốn 200 trang đã sửa lỗi OCR). |
+| Hạng mục                        |        Khoảng giá (VNĐ)        | Ghi chú chi tiết thù lao / lương nhân lực                                                  |
+| :------------------------------ | :----------------------------: | :----------------------------------------------------------------------------------------- |
+| Số hóa & Biên tập EPUB (CTV SV) |    30.000.000 – 40.000.000     | Thù lao CTV sinh viên: 30.000 VNĐ/giờ (hoặc 12.000 VNĐ/cuốn 200 trang đã sửa lỗi OCR).     |
 | Phát triển phần mềm (Nhóm Dev)  |    25.000.000 – 35.000.000     | Phụ cấp khoán nỗ lực cho 6 thành viên nhóm Dev (trung bình 4.5 - 6 triệu VNĐ/người/dự án). |
-| Phụ cấp Cán bộ Thư viện         |     4.000.000 – 6.000.000      | Phụ cấp kiêm nhiệm kiểm duyệt cho 02 thủ thư (1.000.000 VNĐ/người/tháng x 3 tháng). |
-| Thiết bị scan & Server          |    10.000.000 – 12.000.000     | 02 máy quét chữ V + RAM/SSD nâng cấp server VMware. |
-| Đào tạo & Triển khai            |     2.000.000 – 4.000.000      | Tài liệu, video hướng dẫn và tập huấn cán bộ. |
-| **Chi phí AI Tools (hạn mức)**  |        **≤ 5.000.000**         | Hạn mức chi trả API/Token AI (Claude, Antigravity, v.v.). |
-| Dự phòng rủi ro (~15%)          |     5.000.000 – 10.000.000     | Phát sinh ngoài dự kiến. |
-| **TỔNG CAPEX**                  | **≈ 77.000.000 – 106.000.000** | |
+| Phụ cấp Cán bộ Thư viện         |     4.000.000 – 6.000.000      | Phụ cấp kiêm nhiệm kiểm duyệt cho 02 thủ thư (1.000.000 VNĐ/người/tháng x 3 tháng).        |
+| Thiết bị scan & Server          |    10.000.000 – 12.000.000     | 02 máy quét chữ V + RAM/SSD nâng cấp server VMware.                                        |
+| Đào tạo & Triển khai            |     2.000.000 – 4.000.000      | Tài liệu, video hướng dẫn và tập huấn cán bộ.                                              |
+| **Chi phí AI Tools (hạn mức)**  |        **≤ 5.000.000**         | Hạn mức chi trả API/Token AI (Claude, Antigravity, v.v.).                                  |
+| Dự phòng rủi ro (~15%)          |     5.000.000 – 10.000.000     | Phát sinh ngoài dự kiến.                                                                   |
+| **TỔNG CAPEX**                  | **≈ 77.000.000 – 106.000.000** |                                                                                            |
 
 ### 7.2. Chi phí vận hành định kỳ (OpEx/năm)
 
@@ -245,8 +246,6 @@ Dự án được thực hiện trong **20 tuần**, chia thành 4 giai đoạn 
 
 - **Cán bộ Thủ thư (Kiểm duyệt):** 02 người — Phụ cấp kiêm nhiệm kiểm duyệt chất lượng sách & thẩm định bản quyền **1.000.000 VNĐ/tháng/người** (trong 3 tháng cao điểm).
 - **Sinh viên CTV (Scan & OCR):** 10–15 người — Thù lao **30.000 VNĐ/giờ** (hoặc khoán **12.000 VNĐ/cuốn 200 trang** đã nghiệm thu không lỗi chính tả OCR).
-
-
 
 ### 8.2. Vai trò của AI Coding Assistants
 
