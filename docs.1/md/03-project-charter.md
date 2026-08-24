@@ -208,7 +208,7 @@ Việc xác nhận cho biết các thành viên đã xem xét và đồng ý v�
 | Thành viên            | MSSV     | Xác nhận    | Ngày       |
 | :-------------------- | :------- | :---------- | :--------- |
 | Mạch Quốc Tấn         | 23127115 | Đã xác nhận | 24/08/2026 |
-| Ân Tiến Nguyên An     | 23127148 | Đã xác nhận | 24/08/2026 |
+| Ân Tiến Nguyên An     | 23127048 | Đã xác nhận | 24/08/2026 |
 | Ngô Nguyễn Thế Khoa   | 23127065 | Đã xác nhận | 24/08/2026 |
 | Nguyễn Tuấn Anh       | 23127152 | Đã xác nhận | 24/08/2026 |
 | Nguyễn Quang Thái     | 23127116 | Đã xác nhận | 24/08/2026 |

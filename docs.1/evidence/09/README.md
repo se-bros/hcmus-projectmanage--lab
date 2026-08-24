@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Định nghĩa quy trình phát triển phần mềm** | `Tài liệu in A4` | [09-software-process-definition.pdf](./09-software-process-definition.pdf) | [09-software-process-definition.pdf](../../pdf/09-software-process-definition.pdf) | Quy định quy trình Kanban 6 cột, chính sách giới hạn WIP (WIP Limits), quy tắc DoR / DoD và chiến lược nhánh Trunk-Based Development. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                            | Loại tài liệu    | Tệp đính kèm tại thư mục này                                               | Nguồn tài liệu PDF                                                                 | Mô tả chi tiết                                                                                                                        |
+| :-: | ------------------------------------------------------------ | ---------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Định nghĩa quy trình phát triển phần mềm** | `Tài liệu in A4` | [09-software-process-definition.pdf](./09-software-process-definition.pdf) | [09-software-process-definition.pdf](../../pdf/09-software-process-definition.pdf) | Quy định quy trình Kanban 6 cột, chính sách giới hạn WIP (WIP Limits), quy tắc DoR / DoD và chiến lược nhánh Trunk-Based Development. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

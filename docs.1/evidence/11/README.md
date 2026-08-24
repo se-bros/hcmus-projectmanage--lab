@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Kế hoạch dự án (Project Plan)** | `Tài liệu in A4` | [11-project-plan.pdf](./11-project-plan.pdf) | [11-project-plan.pdf](../../pdf/11-project-plan.pdf) | Kế hoạch tích hợp 11 tuần, cấu trúc phân rã công việc WBS 5 pha, phân bổ nguồn lực, quản lý phụ thuộc và ngân sách. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                 | Loại tài liệu    | Tệp đính kèm tại thư mục này                 | Nguồn tài liệu PDF                                   | Mô tả chi tiết                                                                                                      |
+| :-: | ------------------------------------------------- | ---------------- | -------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Kế hoạch dự án (Project Plan)** | `Tài liệu in A4` | [11-project-plan.pdf](./11-project-plan.pdf) | [11-project-plan.pdf](../../pdf/11-project-plan.pdf) | Kế hoạch tích hợp 11 tuần, cấu trúc phân rã công việc WBS 5 pha, phân bổ nguồn lực, quản lý phụ thuộc và ngân sách. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

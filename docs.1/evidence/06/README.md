@@ -8,11 +8,11 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in giao diện đầu vào/đầu ra PoC 1 (OCR tiếng Việt) và MinIO Storage** | `Ảnh chụp thực nghiệm` | [poc1_split-screen-view.png](./poc1_split-screen-view.png) | N/A | Tập hợp 8 ảnh chụp màn hình thực nghiệm PoC 1: input scan, xử lý OCR, kết quả trích xuất văn bản và lưu trữ MinIO. |
-| 2 | **Bản in giao diện đầu vào/đầu ra PoC 2 (Trình đọc EPUB Reader & Stream)** | `Ảnh chụp thực nghiệm` | [poc2_epub-exported.png](./poc2_epub-exported.png) | N/A | Tập hợp 5 ảnh chụp màn hình thực nghiệm PoC 2: đóng gói EPUB, stream dữ liệu qua presigned URL 900s và hiển thị reader. |
-| 3 | **Ảnh chụp kết quả chạy kiểm thử tự động PoC (Pytest Pass)** | `Ảnh chụp console` | [test-passed.png](./test-passed.png) | N/A | Minh chứng toàn bộ unit tests kiểm chứng PoC chạy thành công 100%. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                           | Loại tài liệu          | Tệp đính kèm tại thư mục này                               | Nguồn tài liệu PDF | Mô tả chi tiết                                                                                                          |
+| :-: | --------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in giao diện đầu vào/đầu ra PoC 1 (OCR tiếng Việt) và MinIO Storage** | `Ảnh chụp thực nghiệm` | [poc1_split-screen-view.png](./poc1_split-screen-view.png) | N/A                | Tập hợp 8 ảnh chụp màn hình thực nghiệm PoC 1: input scan, xử lý OCR, kết quả trích xuất văn bản và lưu trữ MinIO.      |
+|  2  | **Bản in giao diện đầu vào/đầu ra PoC 2 (Trình đọc EPUB Reader & Stream)**  | `Ảnh chụp thực nghiệm` | [poc2_epub-exported.png](./poc2_epub-exported.png)         | N/A                | Tập hợp 5 ảnh chụp màn hình thực nghiệm PoC 2: đóng gói EPUB, stream dữ liệu qua presigned URL 900s và hiển thị reader. |
+|  3  | **Ảnh chụp kết quả chạy kiểm thử tự động PoC (Pytest Pass)**                | `Ảnh chụp console`     | [test-passed.png](./test-passed.png)                       | N/A                | Minh chứng toàn bộ unit tests kiểm chứng PoC chạy thành công 100%.                                                      |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

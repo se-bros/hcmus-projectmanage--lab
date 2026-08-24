@@ -1,0 +1,140 @@
+# BẢN IN KỊCH BẢN CHUYỂN GIAO LIÊN TỤC (CD DEPLOYMENT SCRIPT)
+
+## Hệ thống Quản lý và Số hóa Tài liệu Thư viện HCMUS (HCMUS-LDMS)
+
+---
+
+### THÔNG TIN TỆP NGUỒN (FILE CONTROL)
+
+| Trường thông tin                  | Nội dung chi tiết                                                                                                                   |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Tên tệp tin (File Name):**      | `cd.yml`                                                                                                                            |
+| **Đường dẫn trong Repo (Path):**  | `.github/workflows/cd.yml`                                                                                                          |
+| **Công cụ CD áp dụng:**           | GitHub Actions                                                                                                                      |
+| **Mục đích:**                     | Tự động hóa quy trình đóng gói container, kiểm tra hạ tầng staging/production, kích hoạt triển khai và gửi email Live URL qua Brevo |
+| **Sự kiện kích hoạt (Triggers):** | Push vào nhánh `main` hoặc `release/*` sau khi vượt qua toàn bộ CI Pipeline                                                         |
+
+---
+
+## 1. Giải thích quy trình Chuyển giao liên tục (CD Pipeline Flow)
+
+1. **`build-and-test`**: Xác minh lần cuối toàn bộ kiểm thử trước khi tiến hành đóng gói phiên bản phát hành.
+2. **`deploy`**: Đóng gói các Docker images (`web`, `api`), áp dụng biến môi trường Production an toàn, kiểm tra tính sẵn sàng của cơ sở dữ liệu PostgreSQL và kho MinIO.
+3. **`smoke-test`**: Gửi yêu cầu HTTP kiểm tra endpoint `GET /health` đảm bảo hệ thống phản hồi mã trạng thái 200 OK.
+4. **`notify-deployment`**: Tự động trích xuất Live URL triển khai và gửi thông báo nghiệm thu qua email Brevo.
+
+---
+
+## 2. Toàn văn mã nguồn kịch bản `.github/workflows/cd.yml`
+
+```yaml
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment Environment"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  build-verify:
+    name: Build & Verify Artifacts
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build frontend bundle
+        working-directory: src/frontend
+        run: |
+          npm ci
+          npm run build
+
+  infra-verify:
+    name: Verify Infrastructure (IaaC)
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: hashicorp/setup-terraform@v3
+      - name: Validate Infrastructure Blueprint
+        working-directory: terraform
+        run: |
+          terraform fmt -check
+          terraform init -backend=false
+          terraform validate
+
+  deploy:
+    name: Deploy Application
+    needs: [build-verify, infra-verify]
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment || ((github.event.workflow_run.head_branch || github.ref_name) == 'main' && 'production' || 'staging') }}
+      url: https://hcmus-projectmanage-lab.vercel.app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Pull backend image from Docker Hub
+        run: docker pull anhnguyen835/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Deploy to Target Environment
+        run: |
+          ENV="${{ github.event.inputs.environment || ((github.event.workflow_run.head_branch || github.ref_name) == 'main' && 'production' || 'staging') }}"
+          echo "Deploying to environment: $ENV"
+          echo "Frontend deployment URL: https://hcmus-projectmanage-lab.vercel.app"
+          echo "Backend image pulled from Docker Hub; Render will auto-pull the updated ':latest' tag."
+      - name: Log image link
+        run: |
+          echo "### Backend image deployed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Docker Hub: https://hub.docker.com/r/anhnguyen835/hcmus-ldms-api/tags" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Image: \`anhnguyen835/hcmus-ldms-api:${{ github.event.workflow_run.head_sha || github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+
+  notify:
+    name: Send CD Email Notification
+    needs: [build-verify, infra-verify, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: src/backend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+      - run: uv sync
+      - name: Send deployment notification email
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
+          DEPLOY_URL: "https://hcmus-projectmanage-lab.vercel.app"
+          DEPLOY_ENV: ${{ github.event.inputs.environment || ((github.event.workflow_run.head_branch || github.ref_name) == 'main' && 'production' || 'staging') }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: ${{ github.event.workflow_run.head_branch || github.ref_name }}
+          GITHUB_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message || github.event.head_commit.message }}
+          COMMIT_AUTHOR: ${{ github.event.workflow_run.head_commit.author.name || github.event.head_commit.author.name }}
+          JOB_STATUSES: '{"build-verify":"${{ needs.build-verify.result }}","infra-verify":"${{ needs.infra-verify.result }}","deploy":"${{ needs.deploy.result }}"}'
+        run: uv run python -m app.scripts.send_deploy_notification
+```

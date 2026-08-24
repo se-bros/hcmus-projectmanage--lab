@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Đề xuất dự án (Project Proposal)** | `Tài liệu in A4` | [01-project-proposal.pdf](./01-project-proposal.pdf) | [01-project-proposal.pdf](../../pdf/01-project-proposal.pdf) | Tài liệu đề xuất dự án mô tả vấn đề tại Thư viện HCMUS, các bên liên quan, giải pháp 4 use case cốt lõi, so sánh 3 đối thủ và quyết định đề xuất. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                    | Loại tài liệu    | Tệp đính kèm tại thư mục này                         | Nguồn tài liệu PDF                                           | Mô tả chi tiết                                                                                                                                    |
+| :-: | ---------------------------------------------------- | ---------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Đề xuất dự án (Project Proposal)** | `Tài liệu in A4` | [01-project-proposal.pdf](./01-project-proposal.pdf) | [01-project-proposal.pdf](../../pdf/01-project-proposal.pdf) | Tài liệu đề xuất dự án mô tả vấn đề tại Thư viện HCMUS, các bên liên quan, giải pháp 4 use case cốt lõi, so sánh 3 đối thủ và quyết định đề xuất. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

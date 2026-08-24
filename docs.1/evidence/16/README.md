@@ -8,19 +8,19 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Hợp đồng nhóm (Team Contract)** | `Tài liệu in A4` | [16-team-contract.pdf](./16-team-contract.pdf) | [16-team-contract.pdf](../../pdf/16-team-contract.pdf) | Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên. |
-| 2 | **Bản in Biên bản họp nhóm chính thức (Meeting Minutes - Sprint 1)** | `Biên bản in A4` | [01_meeting_minutes_sprint1.md](./01_meeting_minutes_sprint1.md) | N/A | Biên bản họp Kick-off Sprint 1 (mã HCMUS-LDMS-MM01) thống nhất phân công 17 stories, cơ chế Kanban và biểu quyết đồng thuận 6/6. |
-| 3 | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros** | `Ảnh chụp thực tế` | [group3-photo.png](./group3-photo.png) | N/A | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án. |
-| 4 | **Bản in giao diện hệ thống liên lạc Discord thực tế của nhóm** | `Ảnh chụp màn hình liên lạc` | [discord_communication.png](./discord_communication.png) | N/A | Ảnh chụp không gian trao đổi công việc, thông báo họp và chia sẻ tài liệu trên Discord của nhóm. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                    | Loại tài liệu                | Tệp đính kèm tại thư mục này                                                       | Nguồn tài liệu PDF                                                               | Mô tả chi tiết                                                                                                                           |
+| :-: | -------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Hợp đồng nhóm (Team Contract)**                    | `Tài liệu in A4`             | [16-team-contract.pdf](./16-team-contract.pdf)                                     | [16-team-contract.pdf](../../pdf/16-team-contract.pdf)                           | Quy định quy chế làm việc, lịch sinh hoạt, cam kết trách nhiệm, chính sách escalation và văn hóa ứng xử của 6 thành viên.                |
+|  2  | **Bản in Biên bản họp rút ra bài học kinh nghiệm (Meeting Minutes)** | `Tài liệu in A4`             | [01_meeting_minutes_lessons_learned.pdf](./01_meeting_minutes_lessons_learned.pdf) | [01_meeting_minutes_lessons_learned.pdf](01_meeting_minutes_lessons_learned.pdf) | Biên bản họp rút ra bài học kinh nghiệm ngày 22/08/2026 (mã HCMUS-LDMS-MM02) ghi nhận phản hồi, nguyên nhân và bài học của 6 thành viên. |
+|  3  | **Bản in ảnh chụp chung các thành viên trong nhóm Sebros**           | `Ảnh chụp thực tế`           | [group3-photo.png](./group3-photo.png)                                             | N/A                                                                              | Ảnh chụp đầy đủ 6 thành viên nhóm Sebros cùng tham gia sinh hoạt dự án.                                                                  |
+|  4  | **Bản in giao diện hệ thống liên lạc Discord thực tế của nhóm**      | `Ảnh chụp màn hình liên lạc` | [discord_communication.png](./discord_communication.png)                           | N/A                                                                              | Ảnh chụp không gian trao đổi công việc, thông báo họp và chia sẻ tài liệu trên Discord của nhóm.                                         |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
 - **Mô hình phát triển nhóm Tuckman:** Forming (Hình thành) → Storming (Sóng gió) → Norming (Ổn định) → Performing (Hiệu quả cao) → Adjourning (Đóng dự án).
 - **Xung đột thực tế:** Thành viên trễ deadline do bận đồ án khác → Giải quyết bằng quy tắc báo trước 12h và giới hạn WIP ≤ 3.
 - **Quy tắc Team Contract:** Họp tuần định kỳ, Pull Request bắt buộc 1 Tech Lead approve, xử lý vắng mặt công bằng.
-- Ảnh chụp nhóm 6 người, Biên bản họp Sprint 1 và bằng chứng kênh liên lạc Discord thực tế.
+- Ảnh chụp nhóm 6 người, Biên bản họp rút ra bài học kinh nghiệm và bằng chứng kênh liên lạc Discord thực tế.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 

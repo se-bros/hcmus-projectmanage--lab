@@ -1,7 +1,7 @@
 # PHIẾU BÀI LÀM ÔN TẬP — NGƯỜI 4: ƯỚC LƯỢNG, LẬP KẾ HOẠCH & QUY TRÌNH
 
 - **Họ và tên thành viên:** Ân Tiến Nguyên An
-- **Mã số sinh viên:** 23127148
+- **Mã số sinh viên:** 23127048
 - **Vai trò trong dự án:** **Solution Architect (SA) / Backend Developer**
 - **Phạm vi phụ trách:** **Câu 9, Câu 10, Câu 11**
 - **Hạn chót hoàn thành (Bước 1):** **20:00, Thứ Năm (20/08/2026)**
@@ -121,7 +121,7 @@ flowchart TD
 4. **Các vai trò nào từng thành viên trong nhóm sẽ đảm nhiệm?**
    - _Trả lời:_ Theo Hợp đồng nhóm ([`05-team-contract.md`](../../../docs/01-initiation/05-team-contract.md) §3.1), vai trò được phân công như sau:
      - **Mạch Quốc Tấn (`23127115`):** Project Manager.
-     - **Ân Tiến Nguyên An (`23127148`):** Solution Architect / Backend Developer.
+     - **Ân Tiến Nguyên An (`23127048`):** Solution Architect / Backend Developer.
      - **Nguyễn Tuấn Anh (`23127152`):** Backend Developer / DevOps / System Admin.
      - **Ngô Nguyễn Thế Khoa (`23127065`):** Frontend Developer.
      - **Nguyễn Lê Hồ Anh Khoa (`23127211`):** Frontend Developer.

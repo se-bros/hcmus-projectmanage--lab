@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan)** | `Tài liệu in A4` | [18-risk-management-plan.pdf](./18-risk-management-plan.pdf) | [18-risk-management-plan.pdf](../../pdf/18-risk-management-plan.pdf) | Quy trình quản lý rủi ro, ma trận đánh giá 5x5, sổ đăng ký 18 rủi ro (RSK-01..18), phân công Risk Owner và kế hoạch ứng phó. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                           | Loại tài liệu    | Tệp đính kèm tại thư mục này                                 | Nguồn tài liệu PDF                                                   | Mô tả chi tiết                                                                                                               |
+| :-: | --------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Kế hoạch quản lý rủi ro (Software Risk Management Plan)** | `Tài liệu in A4` | [18-risk-management-plan.pdf](./18-risk-management-plan.pdf) | [18-risk-management-plan.pdf](../../pdf/18-risk-management-plan.pdf) | Quy trình quản lý rủi ro, ma trận đánh giá 5x5, sổ đăng ký 18 rủi ro (RSK-01..18), phân công Risk Owner và kế hoạch ứng phó. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 

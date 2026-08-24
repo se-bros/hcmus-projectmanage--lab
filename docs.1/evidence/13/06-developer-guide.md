@@ -95,13 +95,13 @@ npm run dev
 
 ### 4.3 Cổng dịch vụ (dev)
 
-| Service           | URL                   |
-| ----------------- | --------------------- |
+| Service           | URL                     |
+| ----------------- | ----------------------- |
 | Frontend (Vite)   | `http://localhost:5173` |
 | API               | `http://localhost:8000` |
-| PostgreSQL (host) | localhost:**5434**    |
-| MinIO API (host)  | localhost:**9002**    |
-| MinIO Console     | localhost:**9003**    |
+| PostgreSQL (host) | localhost:**5434**      |
+| MinIO API (host)  | localhost:**9002**      |
+| MinIO Console     | localhost:**9003**      |
 
 > Cổng map ra host khác cổng trong container để tránh đụng Postgres/MinIO local khác.
 

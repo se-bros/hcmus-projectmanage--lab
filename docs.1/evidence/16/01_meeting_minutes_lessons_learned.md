@@ -8,28 +8,28 @@
 
 ### THÔNG TIN QUẢN TRỊ BIÊN BẢN (DOCUMENT CONTROL)
 
-| Trường thông tin | Nội dung chi tiết |
-|---|---|
-| **Mã biên bản (Document ID):** | `HCMUS-LDMS-MM02` |
-| **Tên biên bản:** | Biên bản Họp Rút ra Bài học Kinh nghiệm & Tổng kết Dự án |
-| **Thời gian họp:** | 15:15 – 17:00, Thứ Bảy ngày 22/08/2026 |
-| **Hình thức / Địa điểm:** | Kênh thoại Discord server `SE Bros` kết hợp Không gian sinh hoạt nhóm |
-| **Chủ tọa (Meeting Chair):** | **Mạch Quốc Tấn** (Project Manager) |
-| **Thư ký (Secretary):** | **Nguyễn Nguyên An** |
-| **Thành phần tham dự:** | Đầy đủ 6/6 thành viên nhóm Sebros |
+| Trường thông tin               | Nội dung chi tiết                                                     |
+| ------------------------------ | --------------------------------------------------------------------- |
+| **Mã biên bản (Document ID):** | `HCMUS-LDMS-MM02`                                                     |
+| **Tên biên bản:**              | Biên bản Họp Rút ra Bài học Kinh nghiệm & Tổng kết Dự án              |
+| **Thời gian họp:**             | 15:15 – 17:00, Thứ Bảy ngày 22/08/2026                                |
+| **Hình thức / Địa điểm:**      | Kênh thoại Discord server `SE Bros` kết hợp Không gian sinh hoạt nhóm |
+| **Chủ tọa (Meeting Chair):**   | **Mạch Quốc Tấn** (Project Manager)                                   |
+| **Thư ký (Secretary):**        | **Ân Tiến Nguyên An**                                                 |
+| **Thành phần tham dự:**        | Đầy đủ 6/6 thành viên nhóm Sebros                                     |
 
 ---
 
 ### DANH SÁCH THÀNH VIÊN THAM DỰ
 
-| STT | Họ và tên thành viên | Mã số sinh viên | Vai trò trong dự án | Tình trạng tham dự |
-|:---:|---|:---:|---|:---:|
-| 1 | **Mạch Quốc Tấn** | `23127115` | Trưởng nhóm / Quản lý dự án (Project Manager) | Có mặt (15:15) |
-| 2 | **Trần Thế Khoa** | `23127063` | Kỹ sư Backend & Pipeline OCR | Có mặt (15:15) |
-| 3 | **Nguyễn Nguyên An** | `23127003` | Kỹ sư Fullstack & Kiến trúc phần mềm | Có mặt (15:15) |
-| 4 | **Nguyễn Anh Khoa** | `23127061` | Kỹ sư Frontend & Trải nghiệm người dùng (UX) | Có mặt (15:15) |
-| 5 | **Nguyễn Quang Thái** | `23127113` | Kỹ sư Phân tích Yêu cầu & Quy trình | Có mặt (15:15) |
-| 6 | **Nguyễn Tuấn Anh** | `23127138` | Kỹ sư DevOps & Đảm bảo chất lượng (QA) | Có mặt (15:15) |
+| STT | Họ và tên thành viên      | Mã số sinh viên | Vai trò trong dự án                           | Tình trạng tham dự |
+| :-: | ------------------------- | :-------------: | --------------------------------------------- | :----------------: |
+|  1  | **Mạch Quốc Tấn**         |   `23127115`    | Trưởng nhóm / Quản lý dự án (Project Manager) |   Có mặt (15:15)   |
+|  2  | **Ngô Nguyễn Thế Khoa**   |   `23127065`    | Frontend Lead / Kỹ sư giao diện & OCR         |   Có mặt (15:15)   |
+|  3  | **Ân Tiến Nguyên An**     |   `23127048`    | DevOps & QA / Kiến trúc phần mềm & Tài liệu   |   Có mặt (15:15)   |
+|  4  | **Nguyễn Lê Hồ Anh Khoa** |   `23127211`    | Kỹ sư Frontend & Trải nghiệm người dùng (UX)  |   Có mặt (15:15)   |
+|  5  | **Nguyễn Quang Thái**     |   `23127116`    | Kỹ sư Backend & Phân tích Yêu cầu             |   Có mặt (15:15)   |
+|  6  | **Nguyễn Tuấn Anh**       |   `23127152`    | Technical Lead / Kỹ sư Hệ thống & Kiểm thử    |   Có mặt (15:15)   |
 
 ---
 
@@ -51,12 +51,12 @@
 
 ## 2. Ý kiến phản hồi & Đánh giá chi tiết của từng thành viên
 
-### 2.1. Trần Thế Khoa (Backend / OCR Pipeline)
+### 2.1. Ngô Nguyễn Thế Khoa (Frontend Lead)
 
-- **Vấn đề / Khó khăn:** Không có nhiều vấn đề kỹ thuật lớn phát sinh trong phạm vi phụ trách. Các luồng xử lý OCR Tesseract tiếng Việt và kết nối MinIO Storage được triển khai ổn định theo đúng thiết kế ban đầu.
+- **Vấn đề / Khó khăn:** Không có nhiều vấn đề kỹ thuật lớn phát sinh trong phạm vi phụ trách. Các luồng xử lý giao diện biên tập OCR và tích hợp kho MinIO Storage được triển khai ổn định theo đúng thiết kế ban đầu.
 - **Bài học rút ra:** Việc xây dựng sớm mã nguồn PoC độc lập ở tuần đầu đã giúp loại bỏ hầu hết rủi ro tích hợp thư viện xử lý ảnh ở giai đoạn sau.
 
-### 2.2. Nguyễn Tuấn Anh (DevOps / QA)
+### 2.2. Nguyễn Tuấn Anh (Technical Lead)
 
 - **Vấn đề phát sinh:** Các sản phẩm (tài liệu và cấu hình) ban đầu của Tuấn Anh chưa đạt chất lượng cao khi đưa ra cho các thành viên trong nhóm review chéo.
 - **Phân tích nguyên nhân:** Quá trình sử dụng AI hỗ trợ soạn thảo gặp tình trạng prompt thiếu kiến thức chuyên sâu của bài toán và thiếu ngữ cảnh (context) đầy đủ của hệ thống, dẫn đến AI sinh ra nội dung chung chung (generic), chưa bám sát nghiệp vụ thực tế của dự án thư viện.
@@ -64,7 +64,7 @@
   - Khi prompt cho AI, bắt buộc phải cung cấp đầy đủ tài liệu ngữ cảnh, đặc tả chi tiết và các ràng buộc cụ thể để tránh mất nhiều thời gian sửa chữa về sau.
   - Phải luôn chủ động rà soát, đối chiếu kỹ lưỡng sản phẩm của AI với các tài liệu và quy chuẩn chính thức của môn học trước khi submit cho nhóm.
 
-### 2.3. Nguyễn Nguyên An (Fullstack / Architecture & Docs)
+### 2.3. Ân Tiến Nguyên An (DevOps & QA)
 
 - **Vấn đề phát sinh:** Tốn rất nhiều thời gian để xác định khi nào một tài liệu đạt độ hoàn chỉnh, đúng chuẩn cấu trúc và đáp ứng đầy đủ rubric đánh giá của giảng viên.
 - **Phân tích nguyên nhân & Giải pháp:** Trước đây việc tự đánh giá còn mang tính chủ quan, thiếu công cụ phản biện độc lập.
@@ -72,12 +72,12 @@
   - Phải nắm vững và áp dụng chặt chẽ các phương pháp đánh giá chuẩn mực từ tài liệu, slide bài giảng môn học.
   - Áp dụng kỹ thuật mở một phiên làm việc mới (fresh session) hoặc dùng mô hình AI khác đóng vai trò phản biện độc lập (Devil's Advocate) để kiểm tra chéo, phát hiện các lỗ hổng logic và hoàn thiện tài liệu một cách sâu sắc, toàn diện.
 
-### 2.4. Nguyễn Quang Thái (Requirements & Backlog)
+### 2.4. Nguyễn Quang Thái (Backend & Requirements)
 
 - **Vấn đề phát sinh:** Giai đoạn đầu gặp nhiều khó khăn, bỡ ngỡ trong việc sử dụng các công cụ AI để thực hiện các hoạt động quản lý dự án theo chuẩn yêu cầu môn học.
 - **Bài học rút ra & Tiến bộ đạt được:** Qua quá trình thực chiến và hướng dẫn của nhóm, đã học được phương pháp làm chủ và khai thác AI hiệu quả hơn, đặc biệt trong việc phân rã cấu trúc công việc (WBS), lập kế hoạch, ước lượng tiến độ và xây dựng tài liệu phát triển phần mềm theo quy trình chuẩn.
 
-### 2.5. Nguyễn Anh Khoa (Frontend / UI-UX)
+### 2.5. Nguyễn Lê Hồ Anh Khoa (Frontend & UX)
 
 - **Vấn đề / Khó khăn:** Không có vấn đề tồn đọng; giao diện người dùng cho độc giả và luồng đọc sách EPUB trực tuyến được hoàn thiện tốt, đáp ứng đúng yêu cầu bản mẫu (Prototype).
 
@@ -103,11 +103,11 @@ Cuộc họp kết thúc lúc **17:00 ngày 22/08/2026**. Toàn bộ 6/6 thành 
 
 ### Chữ ký xác nhận của các thành viên
 
-| STT | Thành viên | Vai trò | Trạng thái ký xác nhận |
-|:---:|---|---|:---:|
-| 1 | **Mạch Quốc Tấn** | Chủ tọa / Project Manager | *Đã ký duyệt điện tử* |
-| 2 | **Nguyễn Nguyên An** | Thư ký cuộc họp | *Đã ký duyệt điện tử* |
-| 3 | **Trần Thế Khoa** | Kỹ sư Backend & OCR | *Đã ký duyệt điện tử* |
-| 4 | **Nguyễn Anh Khoa** | Kỹ sư Frontend & UX | *Đã ký duyệt điện tử* |
-| 5 | **Nguyễn Quang Thái** | Kỹ sư Phân tích Yêu cầu | *Đã ký duyệt điện tử* |
-| 6 | **Nguyễn Tuấn Anh** | Kỹ sư DevOps & QA | *Đã ký duyệt điện tử* |
+| STT | Thành viên                | Vai trò                       | Trạng thái ký xác nhận |
+| :-: | ------------------------- | ----------------------------- | :--------------------: |
+|  1  | **Mạch Quốc Tấn**         | Chủ tọa / Project Manager     | _Đã ký duyệt điện tử_  |
+|  2  | **Ân Tiến Nguyên An**     | Thư ký cuộc họp / DevOps & QA | _Đã ký duyệt điện tử_  |
+|  3  | **Ngô Nguyễn Thế Khoa**   | Frontend Lead                 | _Đã ký duyệt điện tử_  |
+|  4  | **Nguyễn Lê Hồ Anh Khoa** | Kỹ sư Frontend & UX           | _Đã ký duyệt điện tử_  |
+|  5  | **Nguyễn Quang Thái**     | Kỹ sư Backend & Requirements  | _Đã ký duyệt điện tử_  |
+|  6  | **Nguyễn Tuấn Anh**       | Technical Lead                | _Đã ký duyệt điện tử_  |

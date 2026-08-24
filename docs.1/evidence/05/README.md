@@ -8,10 +8,10 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
-|:---:|---|---|---|---|---|
-| 1 | **Bản in tài liệu Kiến trúc phần mềm (Software Architecture Document)** | `Tài liệu in A4` | [05-software-architecture.pdf](./05-software-architecture.pdf) | [05-software-architecture.pdf](../../pdf/05-software-architecture.pdf) | Tài liệu kiến trúc mô hình C4, sơ đồ tuần tự xử lý, mô hình an toàn dữ liệu, phân rã module máy chủ và 10 quyết định ADR. |
-| 2 | **Bản in tài liệu Nhật ký quyết định kiến trúc (ADR Log)** | `Tài liệu in A4` | [A1-decision-log-and-adr.pdf](./A1-decision-log-and-adr.pdf) | [A1-decision-log-and-adr.pdf](../../pdf/A1-decision-log-and-adr.pdf) | 10 quyết định kiến trúc quan trọng (ADR-01 đến ADR-10) giải thích lý do lựa chọn công nghệ và đánh giá đánh đổi. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm                                       | Loại tài liệu    | Tệp đính kèm tại thư mục này                                   | Nguồn tài liệu PDF                                                     | Mô tả chi tiết                                                                                                            |
+| :-: | ----------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+|  1  | **Bản in tài liệu Kiến trúc phần mềm (Software Architecture Document)** | `Tài liệu in A4` | [05-software-architecture.pdf](./05-software-architecture.pdf) | [05-software-architecture.pdf](../../pdf/05-software-architecture.pdf) | Tài liệu kiến trúc mô hình C4, sơ đồ tuần tự xử lý, mô hình an toàn dữ liệu, phân rã module máy chủ và 10 quyết định ADR. |
+|  2  | **Bản in tài liệu Nhật ký quyết định kiến trúc (ADR Log)**              | `Tài liệu in A4` | [A1-decision-log-and-adr.pdf](./A1-decision-log-and-adr.pdf)   | [A1-decision-log-and-adr.pdf](../../pdf/A1-decision-log-and-adr.pdf)   | 10 quyết định kiến trúc quan trọng (ADR-01 đến ADR-10) giải thích lý do lựa chọn công nghệ và đánh giá đánh đổi.          |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
