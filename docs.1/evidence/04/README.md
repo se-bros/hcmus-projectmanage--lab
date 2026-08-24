@@ -8,16 +8,17 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                           | Loại tài liệu    | Nguồn tệp Markdown                                                                                                             | Nguồn tệp PDF / Ảnh chụp                                                                                                            | Mô tả chi tiết                                                                                                       |
-| :-: | --------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Yêu cầu phần mềm (SRS) hoặc Product Backlog**             | `Tài liệu in A4` | [04-software-requirements.md (hoặc 04-product-backlog.md)](docs.1/md/04-software-requirements.md "hoặc 04-product-backlog.md") | [04-software-requirements.pdf (hoặc 04-product-backlog.pdf)](docs.1/pdf/04-software-requirements.pdf "hoặc 04-product-backlog.pdf") | Đặc tả 26 User Stories, tiêu chí chấp nhận (Acceptance Criteria), DoR, DoD, bảng phân rã FR/NFR và ma trận truy vết. |
-|  2  | **Bản in tài liệu Hướng dẫn sử dụng hệ thống (User Guide - HCMUS-LDMS-UG)** | `Tài liệu in A4` | [04-user-guide.md](docs.1/md/04-user-guide.md)                                                                                 | [04-user-guide.pdf](docs.1/pdf/04-user-guide.pdf)                                                                                   | Hướng dẫn chi tiết quy trình sử dụng giao diện theo 4 vai trò: Quản trị viên, Thủ thư, Biên tập viên và Độc giả.     |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Yêu cầu phần mềm (SRS)** | `Tài liệu in A4` | [04-software-requirements.pdf](./04-software-requirements.pdf) | [04-software-requirements.pdf](../../pdf/04-software-requirements.pdf) | Đặc tả 26 yêu cầu chức năng (YC-001..026), 10 yêu cầu phi chức năng (YCP-01..10) và ma trận truy vết 1:1. |
+| 2 | **Bản in tài liệu Danh mục công việc (Product Backlog)** | `Tài liệu in A4` | [04-product-backlog.pdf](./04-product-backlog.pdf) | [04-product-backlog.pdf](../../pdf/04-product-backlog.pdf) | Danh mục 26 User Stories (LDMS-001..026), ưu tiên 15 Must, 6 Should, 5 Could, Acceptance Criteria chi tiết, DoR và DoD. |
+| 3 | **Bản in tài liệu Hướng dẫn sử dụng hệ thống (User Guide)** | `Tài liệu in A4` | [04-user-guide.pdf](./04-user-guide.pdf) | [04-user-guide.pdf](../../pdf/04-user-guide.pdf) | Hướng dẫn chi tiết quy trình sử dụng giao diện theo vai trò: Quản trị viên, Thủ thư, Biên tập viên và Độc giả. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
 - **26 User Stories phân bổ:** 15 Bắt buộc (Must), 6 Nên có (Should), 5 Có thể xem xét (Could).
 - **Cấu trúc Story chuẩn:** `As a <role>, I want <goal>, so that <benefit>` + Acceptance Criteria kiểm thử được.
-- **Quy tắc DoR (Definition of Ready) và DoD (Definition of Done) cho từng card công việc.:**
+- Quy tắc DoR (Definition of Ready) và DoD (Definition of Done) cho từng card công việc.
 - **Hướng dẫn sử dụng đầy đủ các bước thao tác trên màn hình:** Đăng nhập, Tải sách, OCR, Sửa văn bản 2 cột, Xuất bản, Tìm kiếm và Đọc EPUB.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
@@ -29,9 +30,7 @@
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/04-product-backlog.md](../../md/04-product-backlog.md)
-- [docs.1/md/04-software-requirements.md](../../md/04-software-requirements.md)
-- [docs.1/md/04-user-guide.md](../../md/04-user-guide.md)
-- [docs.1/pdf/04-product-backlog.pdf](../../pdf/04-product-backlog.pdf)
-- [docs.1/pdf/04-user-guide.pdf](../../pdf/04-user-guide.pdf)
+- [Tài liệu SRS (docs.1/md/04-software-requirements.md)](../../md/04-software-requirements.md)
+- [Tài liệu Product Backlog (docs.1/md/04-product-backlog.md)](../../md/04-product-backlog.md)
+- [Tài liệu User Guide (docs.1/md/04-user-guide.md)](../../md/04-user-guide.md)
 - [Phiếu ôn tập Câu 4 (final-exam/preparation/2_Requirements_Scope_SoW/README.md)](../../../final-exam/preparation/2_Requirements_Scope_SoW/README.md)

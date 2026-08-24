@@ -8,9 +8,9 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                          | Loại tài liệu    | Nguồn tệp Markdown                                       | Nguồn tệp PDF / Ảnh chụp                                    | Mô tả chi tiết                                                                                                                                |
-| :-: | -------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Báo cáo bài học kinh nghiệm (Lessons Learned Register)** | `Tài liệu in A4` | [21-lessons-learned.md](docs.1/md/21-lessons-learned.md) | [21-lessons-learned.pdf](docs.1/pdf/21-lessons-learned.pdf) | Tài liệu tổng kết 7 bài học kinh nghiệm thực tiễn có căn cứ rút ra qua 11 tuần triển khai dự án kèm theo khuyến nghị cho các dự án tương lai. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Báo cáo bài học kinh nghiệm (Lessons Learned Register)** | `Tài liệu in A4` | [21-lessons-learned.pdf](./21-lessons-learned.pdf) | [21-lessons-learned.pdf](../../pdf/21-lessons-learned.pdf) | Tài liệu tổng kết 7 bài học kinh nghiệm thực tiễn có căn cứ rút ra qua 11 tuần triển khai dự án kèm theo khuyến nghị cho các dự án tương lai. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
@@ -27,6 +27,5 @@
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/21-lessons-learned.md](../../md/21-lessons-learned.md)
-- [docs.1/pdf/21-lessons-learned.pdf](../../pdf/21-lessons-learned.pdf)
+- [Tài liệu Bài học kinh nghiệm (docs.1/md/21-lessons-learned.md)](../../md/21-lessons-learned.md)
 - [Phiếu ôn tập Câu 21 (final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)](../../../final-exam/preparation/6_Team_Monitoring_Risk_Lessons/README.md)

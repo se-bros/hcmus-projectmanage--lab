@@ -8,14 +8,14 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                  | Loại tài liệu    | Nguồn tệp Markdown                                         | Nguồn tệp PDF / Ảnh chụp                                      | Mô tả chi tiết                                                                                                                                                   |
-| :-: | ------------------------------------------------------------------ | ---------------- | ---------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Viễn cảnh và phạm vi (Vision & Scope Document)** | `Tài liệu in A4` | [02-vision-and-scope.md](docs.1/md/02-vision-and-scope.md) | [02-vision-and-scope.pdf](docs.1/pdf/02-vision-and-scope.pdf) | Tài liệu mô tả tuyên bố viễn cảnh, người dùng mục tiêu, phân tích As-Is vs To-Be, ranh giới In-Scope (15 Bắt buộc, 6 Nên có) và Out-of-Scope (5 Có thể xem xét). |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Viễn cảnh và phạm vi (Vision & Scope Document)** | `Tài liệu in A4` | [02-vision-and-scope.pdf](./02-vision-and-scope.pdf) | [02-vision-and-scope.pdf](../../pdf/02-vision-and-scope.pdf) | Tài liệu mô tả tuyên bố viễn cảnh, người dùng mục tiêu, phân tích As-Is vs To-Be, ranh giới In-Scope (15 Bắt buộc, 6 Nên có) và Out-of-Scope (5 Có thể xem xét). |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **Tuyên bố viễn cảnh (Vision Statement) cho độc giả và thủ thư ĐH Khoa học Tự nhiên.:**
-- **Phân tích hiện trạng As-Is vs tương lai To-Be (số hóa tự động, tìm kiếm toàn văn, bảo vệ bản quyền tệp EPUB).:**
+- Tuyên bố viễn cảnh (Vision Statement) cho độc giả và thủ thư ĐH Khoa học Tự nhiên.
+- Phân tích hiện trạng As-Is vs tương lai To-Be (số hóa tự động, tìm kiếm toàn văn, bảo vệ bản quyền tệp EPUB).
 - **Ranh giới phạm vi rõ ràng:** In-Scope (15 Must + 6 Should) và Out-of-Scope (5 Could: lưu bookmark đám mây, highlight nâng cao...).
 - **NFR định hướng:** Thời gian phản hồi tìm kiếm < 2s, thời gian xử lý OCR < 30s/trang.
 
@@ -28,6 +28,6 @@
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/02-vision-and-scope.md](../../md/02-vision-and-scope.md)
-- [docs.1/pdf/02-vision-and-scope.pdf](../../pdf/02-vision-and-scope.pdf)
+- [Tài liệu Markdown (docs.1/md/02-vision-and-scope.md)](../../md/02-vision-and-scope.md)
+- [Tài liệu PDF (docs.1/pdf/02-vision-and-scope.pdf)](../../pdf/02-vision-and-scope.pdf)
 - [Phiếu ôn tập Câu 2 (final-exam/preparation/2_Requirements_Scope_SoW/README.md)](../../../final-exam/preparation/2_Requirements_Scope_SoW/README.md)

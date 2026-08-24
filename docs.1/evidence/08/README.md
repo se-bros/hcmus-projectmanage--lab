@@ -8,27 +8,26 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                                   | Loại tài liệu    | Nguồn tệp Markdown                                           | Nguồn tệp PDF / Ảnh chụp                                        | Mô tả chi tiết                                                                                                                |
-| :-: | ------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Báo cáo tính khả thi (Feasibility Study Report)** | `Tài liệu in A4` | [08-feasibility-study.md](docs.1/md/08-feasibility-study.md) | [08-feasibility-study.pdf](docs.1/pdf/08-feasibility-study.pdf) | Đánh giá khả thi theo 5 khía cạnh TELOS (Technical, Economic, Legal, Operational, Schedule) và kết luận khả thi có điều kiện. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Báo cáo tính khả thi (Feasibility Study Report)** | `Tài liệu in A4` | [08-feasibility-study.pdf](./08-feasibility-study.pdf) | [08-feasibility-study.pdf](../../pdf/08-feasibility-study.pdf) | Đánh giá 8 loại khả thi theo khung TELOS, phân tích chi phí - lợi ích (CBA) và kết luận khả thi có điều kiện. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **Technical Feasibility:** Khả thi nhờ kết hợp FastAPI + Next.js + Tesseract OCR mã nguồn mở, đã kiểm chứng qua PoC.
-- **Economic Feasibility:** Chi phí phần mềm 0đ, tận dụng hạ tầng có sẵn của nhà trường và Cloud Free Tier.
-- **Legal Feasibility:** Tuân thủ Luật Sở hữu Trí tuệ Việt Nam — chỉ số hóa tài liệu thuộc phạm vi phục vụ nội bộ thư viện ĐH KHTN.
-- **Operational Feasibility:** Thủ thư và sinh viên dễ dàng sử dụng thông qua giao diện Web không cần cài đặt phần mềm phức tạp.
-- **Schedule Feasibility:** 11 tuần đủ để hoàn thành 15 Must + 6 Should stories theo luồng Kanban.
+- **Khung TELOS 5 chiều:** Technical (Kỹ thuật), Economic (Kinh tế), Legal (Pháp lý), Operational (Vận hành), Schedule (Lịch trình).
+- **Kỹ thuật:** PoC chứng minh Tesseract và ePub.js khả thi trong giới hạn tài nguyên.
+- **Kinh tế:** Dự án tận dụng hạ tầng mã nguồn mở, không phát sinh chi phí bản quyền thương mại.
+- **Kết luận:** Dự án đạt tính khả thi có điều kiện trong phạm vi môn học 11 tuần.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 
-- **WHAT (Khái niệm & Nội dung):** Báo cáo đánh giá toàn diện khả năng thực thi của dự án dưới các ràng buộc thực tế.
-- **HOW (Quy trình thực hiện):** Áp dụng khung TELOS 5 chiều → Thu thập dữ liệu kỹ thuật, chi phí, pháp lý và vận hành → Đánh giá rủi ro → Đưa ra kết luận Khả thi có điều kiện.
-- **WHY (Lý do & Giá trị):** Cung cấp cơ sở khoa học để Nhà tài trợ / Giảng viên quyết định phê duyệt dự án.
-- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bảng phân tích TELOS 5 khía cạnh trong bản in Báo cáo tính khả thi.
+- **WHAT (Khái niệm & Nội dung):** Tài liệu phân tích đa chiều nhằm xác định dự án có thể thực hiện thành công với các ràng buộc về kỹ thuật, tài chính, thời gian và pháp lý hay không.
+- **HOW (Quy trình thực hiện):** Thu thập dữ liệu từ Proposal & PoC → Phân tích 8 khía cạnh khả thi theo TELOS → Tính toán CBA → Nhận diện rào cản và đề xuất điều kiện khả thi → Kết luận Go/No-go.
+- **WHY (Lý do & Giá trị):** Đưa ra quyết định đầu tư có căn cứ khoa học, bảo vệ nhóm khỏi việc cam kết những mục tiêu bất khả thi.
+- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bảng đánh giá TELOS (Mục 3) và Bảng kết luận khả thi có điều kiện trong bản in Báo cáo tính khả thi.
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/08-feasibility-study.md](../../md/08-feasibility-study.md)
-- [docs.1/pdf/08-feasibility-study.pdf](../../pdf/08-feasibility-study.pdf)
+- [Tài liệu Markdown (docs.1/md/08-feasibility-study.md)](../../md/08-feasibility-study.md)
+- [Tài liệu PDF (docs.1/pdf/08-feasibility-study.pdf)](../../pdf/08-feasibility-study.pdf)
 - [Phiếu ôn tập Câu 8 (final-exam/preparation/1_Initiation_Charter_Feasibility/README.md)](../../../final-exam/preparation/1_Initiation_Charter_Feasibility/README.md)

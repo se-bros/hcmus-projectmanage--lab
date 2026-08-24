@@ -8,26 +8,26 @@
 
 ## 2. Danh mục tài liệu / bằng chứng cần nộp kèm khi thi
 
-| STT | Tên tài liệu / Bằng chứng nộp kèm                            | Loại tài liệu    | Nguồn tệp Markdown                                                               | Nguồn tệp PDF / Ảnh chụp                                                            | Mô tả chi tiết                                                                                                                          |
-| :-: | ------------------------------------------------------------ | ---------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-|  1  | **Bản in tài liệu Định nghĩa quy trình phát triển phần mềm** | `Tài liệu in A4` | [09-software-process-definition.md](docs.1/md/09-software-process-definition.md) | [09-software-process-definition.pdf](docs.1/pdf/09-software-process-definition.pdf) | Tài liệu định nghĩa mô hình Agile/Kanban luồng liên tục 6 cột, chính sách WIP Limits, Trunk-Based Development, DoR/DoD và chỉ số luồng. |
+| STT | Tên tài liệu / Bằng chứng nộp kèm | Loại tài liệu | Tệp đính kèm tại thư mục này | Nguồn tài liệu PDF | Mô tả chi tiết |
+|:---:|---|---|---|---|---|
+| 1 | **Bản in tài liệu Định nghĩa quy trình phát triển phần mềm** | `Tài liệu in A4` | [09-software-process-definition.pdf](./09-software-process-definition.pdf) | [09-software-process-definition.pdf](../../pdf/09-software-process-definition.pdf) | Quy định quy trình Kanban 6 cột, chính sách giới hạn WIP (WIP Limits), quy tắc DoR / DoD và chiến lược nhánh Trunk-Based Development. |
 
 ## 3. Các bằng chứng & số liệu then chốt cần chỉ ra trên tài liệu
 
-- **Mô hình Kanban 6 cột:** Ý tưởng → Đã sẵn sàng → Đang thực hiện → Đang xem xét (Code Review) → Chờ xác nhận (Acceptance) → Hoàn thành.
-- **Chính sách WIP Limits:** Ready (5), In Progress (6), In Review (4), Acceptance (3).
-- **Quy tắc phát triển:** Trunk-Based Development, nhánh ngắn hạn (Short-lived feature branches), mỗi PR bắt buộc có ít nhất 1 review đạt và CI pass.
-- **Chỉ số luồng:** Đo lường Lead Time, Cycle Time, Throughput và Cumulative Flow Diagram (CFD).
+- **Bảng Kanban 6 cột:** Backlog → Ready → In Progress → In Review → Testing → Done.
+- **WIP Limits nghiêm ngặt:** In Progress ≤ 3, In Review ≤ 2, Testing ≤ 2 nhằm tránh nghẽn luồng và tăng thông lượng.
+- **Quy tắc chuyển cột:** Tiêu chí đầu vào DoR và tiêu chí hoàn thành DoD rõ ràng cho từng bước.
+- **Chiến lược phân nhánh Trunk-Based Development:** Nhánh `main` luôn deploy được, nhánh tính năng tồn tại ngắn < 2 ngày.
 
 ## 4. Khung hướng dẫn trả lời vấn đáp (WHAT — HOW — WHY — EVIDENCE)
 
-- **WHAT (Khái niệm & Nội dung):** Quy chuẩn hóa cách thức nhóm tổ chức, phối hợp và đưa công việc từ ý tưởng đến sản phẩm hoàn chỉnh.
-- **HOW (Quy trình thực hiện):** Phân tích đặc thù nhóm 6 SV kiêm nhiệm → Lựa chọn mô hình Kanban luồng liên tục → Thiết lập WIP limits và chính sách chuyển cột → Ban hành quy chế Trunk-Based.
-- **WHY (Lý do & Giá trị):** Tối ưu hóa luồng giá trị (Value Stream), giảm thời gian chờ đợi (Bottleneck) và duy trì chất lượng mã nguồn ổn định.
-- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Sơ đồ luồng Kanban 6 cột và Bảng chính sách WIP limits trong bản in Quy trình.
+- **WHAT (Khái niệm & Nội dung):** Văn bản hóa toàn bộ quy chuẩn làm việc, luồng di chuyển công việc và quy tắc phối hợp kỹ thuật của đội ngũ phát triển.
+- **HOW (Quy trình thực hiện):** Phân tích đặc thù dự án 11 tuần → Chọn mô hình Agile/Kanban kết hợp Trunk-Based → Thiết lập bảng 6 cột và WIP limits → Ban hành DoR/DoD → Tích hợp vào GitHub Project.
+- **WHY (Lý do & Giá trị):** Chuẩn hóa cách làm việc, giảm thời gian lãng phí, phát hiện sớm điểm nghẽn và duy trì nhịp độ phát triển bền vững.
+- **EVIDENCE (Minh chứng chỉ tay):** Chỉ vào Bảng Kanban 6 cột kèm WIP limits (Mục 3) và Quy tắc Trunk-Based (Mục 5) trong bản in Quy trình.
 
 ## 5. Liên kết tệp nguồn và tài liệu liên quan
 
-- [docs.1/md/09-software-process-definition.md](../../md/09-software-process-definition.md)
-- [docs.1/pdf/09-software-process-definition.pdf](../../pdf/09-software-process-definition.pdf)
+- [Tài liệu Markdown (docs.1/md/09-software-process-definition.md)](../../md/09-software-process-definition.md)
+- [Tài liệu PDF (docs.1/pdf/09-software-process-definition.pdf)](../../pdf/09-software-process-definition.pdf)
 - [Phiếu ôn tập Câu 9 (final-exam/preparation/4_Estimation_Planning_Process/README.md)](../../../final-exam/preparation/4_Estimation_Planning_Process/README.md)
